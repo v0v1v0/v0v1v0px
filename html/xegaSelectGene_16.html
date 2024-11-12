@@ -1,0 +1,80 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>newEnvXOR</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Generates a problem environment for the XOR problem.</h2>
+
+<h3>Description</h3>
+
+<p>Generates a problem environment for the XOR problem.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">newEnvXOR()
+</code></pre>
+
+
+<h3>Value</h3>
+
+<p>The problem environment for the XOR problem with 
+</p>
+
+<ul>
+<li> <p><code>$name</code>: 
+<code>"envXOR"</code>, the name of the problem environment.
+</p>
+</li>
+<li> <p><code>$buildtest(expr)</code>: 
+The function which builds the environment 
+for evaluating the expression 
+by binding the variables to the parameters.
+</p>
+</li>
+<li> <p><code>$TestCases</code>: The truthtable of the XOR function.
+</p>
+</li>
+<li> <p><code>$f(expr, gene=NULL, lF=NULL)</code>: The fitness function.
+<code>expr</code> is the string with the 
+logical expression to be evaluated. 
+</p>
+</li>
+</ul>
+<p>The problem environment.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Problem Environments: 
+<code>DeJongF4Factory()</code>,
+<code>DelayedPFactory()</code>,
+<code>Parabola2DEarlyFactory()</code>,
+<code>Parabola2DErrFactory()</code>,
+<code>Parabola2DFactory()</code>,
+<code>envXOR</code>,
+<code>lau15</code>,
+<code>newTSP()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">envXOR&lt;-newEnvXOR()
+envXOR$name()
+a2&lt;-"OR(OR(D1, D2), (AND(NOT(D1), NOT(D2))))"
+a3&lt;-"OR(OR(D1, D2), AND(D1, D2))"
+a4&lt;-"AND(OR(D1,D2),NOT(AND(D1,D2)))"
+gp4&lt;-"(AND(AND(OR(D2,D1),NOT(AND(D1,D2))),(OR(D2,D1))))"
+envXOR$f(a2)
+envXOR$f(a3)
+envXOR$f(a4)
+envXOR$f(gp4)
+
+</code></pre>
+
+
+</div>

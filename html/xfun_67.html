@@ -1,0 +1,47 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>is_abs_path</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Test if paths are relative or absolute</h2>
+
+<h3>Description</h3>
+
+<p>On Unix, check if the paths start with ‘<span class="file">/</span>’ or ‘<span class="file">~</span>’ (if they do, they
+are absolute paths). On Windows, check if a path remains the same (via
+<code>same_path()</code>) if it is prepended with ‘<span class="file">./</span>’ (if it does, it is a
+relative path).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">is_abs_path(x)
+
+is_rel_path(x)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>A vector of paths.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A logical vector.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">xfun::is_abs_path(c("C:/foo", "foo.txt", "/Users/john/", tempdir()))
+xfun::is_rel_path(c("C:/foo", "foo.txt", "/Users/john/", tempdir()))
+</code></pre>
+
+
+</div>

@@ -1,0 +1,86 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>alpha</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Getters for linearFilter objects</h2>
+
+<h3>Description</h3>
+
+<p>These functions allow you to extract slots from objects of the
+class <code>linearFilter</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">alpha(x)
+
+na_removed(x)
+
+## S3 method for class 'linearFilter'
+mean(x, ...)
+
+## S4 method for signature 'linearFilter'
+mean(x, ...)
+
+## S4 method for signature 'linearFilter'
+colMeans(x)
+
+## S4 method for signature 'linearFilter'
+rowMeans(x)
+
+## S4 method for signature 'linearFilter'
+alpha(x)
+
+## S4 method for signature 'linearFilter'
+na_removed(x)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>a <code>linearFilter</code> object</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>arguments passed to or from other methods.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>for <code>mean</code>: the mean of the original matrix
+</p>
+<p>for <code>colMeans</code>: a numeric vector with the column means
+</p>
+<p>for <code>rowMeans</code>: a numeric vector with the row means
+</p>
+<p>for <code>alpha</code>: a numeric vector of length 4 with the alpha
+values.
+</p>
+<p>for <code>na_removed</code>: a logical value indicating whether
+missing values were removed prior to the fitting of the filter.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(drugtarget)
+lf &lt;- linear_filter(drugTargetInteraction, alpha = 0.25)
+alpha(lf)
+mean(lf)
+colMeans(lf)
+na_removed(lf)
+
+</code></pre>
+
+
+</div>

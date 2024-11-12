@@ -1,0 +1,89 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaPermMutationFactory</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Configure the mutation function of a genetic algorithm.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaPermMutationFactory</code> implements the selection
+of one of the gene mutation functions in this 
+package by specifying a text string.
+The selection fails ungracefully (produces
+a runtime error), if the label does not match.
+The functions are specified locally.             
+</p>
+<p>Current Support:
+</p>
+
+<ol>
+<li>
+<p> "MutateGene" returns <code>xegaPermMutateGeneOrderBased</code>.
+</p>
+</li>
+<li>
+<p> "MutateGeneOrderBased" returns <code>xegaPermMutateGeneOrderBased</code>.
+</p>
+</li>
+<li>
+<p> "MutateGenekInversion" returns <code>xegaPermMutateGenekInversion</code>.
+</p>
+</li>
+<li>
+<p> "MutateGene2Opt" returns <code>xegaPermMutateGene2Opt</code>.
+</p>
+</li>
+<li>
+<p> "MutateGenekOptLK" returns <code>xegaPermMutateGenekOptLK</code>.
+</p>
+</li>
+<li>
+<p> "MutateGeneGreedy" returns <code>xegaPermMutateGeneGreedy</code>.
+</p>
+</li>
+<li>
+<p> "MutateGeneBestGreedy" returns <code>xegaPermMutateGeneBestGreedy</code>.
+</p>
+</li>
+<li>
+<p> "MutateGeneMix" returns <code>xegaPermMutateMix</code>.
+</p>
+</li>
+</ol>
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaPermMutationFactory(method = "MutateGene")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>The name of the mutation method.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A permutation based mutation function.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Configuration: 
+<code>lFxegaPermGene</code>,
+<code>xegaPermCrossoverFactory()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">xegaPermMutationFactory(method="MutateGene")
+</code></pre>
+
+
+</div>

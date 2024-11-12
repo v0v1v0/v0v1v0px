@@ -1,0 +1,141 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>TransformSelect</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Convert a selection function into a continuation.</h2>
+
+<h3>Description</h3>
+
+<p><code>TransformSelect</code> precomputes 
+the indices of genes to be selected and
+converts the selection function into an access function to the 
+next index. 
+The access function provides a periodic random 
+index stream with a period length of the population size.
+In a genetic algorithm with a fixed size population,
+this avoids recomputation of the selection functions 
+for each gene 
+and its mate.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">TransformSelect(fit, lF, SelectFUN)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>fit</code></td>
+<td>
+<p>Fitness vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>SelectFUN</code></td>
+<td>
+<p>Selection function.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The motivation for this transformation is: 
+</p>
+
+<ol>
+<li>
+<p> We avoid the recomputation of potentially 
+expensive selection functions.
+E.g. In population-based genetic algorithms, 
+the selection function
+is computed twice per generation instead of 
+more than generation times the population size. 
+</p>
+</li>
+<li>
+<p> No additional control flow is needed.
+</p>
+</li>
+<li>
+<p> Dynamic reconfiguration is possible.
+</p>
+</li>
+<li>
+<p> All selection functions have a 
+common abstract interface and, 
+therefore, can be overloaded by 
+specialized concrete implementations.
+(Polymorphism).
+</p>
+</li>
+</ol>
+<p>The implementation idea is adapted from the
+continuation passing style 
+in functional programming. See Reynolds, J. C. (1993).
+</p>
+
+
+<h3>Value</h3>
+
+<p>A function with a  state which consists of 
+the precomputed gene index 
+vector, its <code>length</code>, and a <code>counter</code>. 
+The function increments the counter in the state 
+of its environment and
+returns the precomputed gene index at position 
+<code>modulo((counter+1),length)</code> in   
+the precomputed index vector in its environment.
+The function supports the same interface as a selection function.
+</p>
+
+
+<h3>Parallelization/Distribution</h3>
+
+         
+<ol>
+<li>
+<p> We use this tranformation if only the evaluation of genes 
+should be parallelized/distributed.
+</p>
+</li>
+<li>
+<p> If the complete replication of genes is parallelized, 
+this transformation cannot be used in its current form.
+The current implementations of the selection functions
+can not easily be parallelized.
+</p>
+</li>
+</ol>
+<h3>References</h3>
+
+<p>Reynolds, J. C. (1993):
+The discoveries of continuations.
+<em>LISP and Symbolic Computation</em> 6, 233-247. 
+&lt;doi:10.1007/BF01019459&gt;
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">fit&lt;-sample(10, 15, replace=TRUE)
+newselect&lt;-TransformSelect(fit, NewlFselectGenes(), SelectSUS) 
+newselect(fit, NewlFselectGenes())
+newselect(fit, NewlFselectGenes(), 5)
+newselect(fit, NewlFselectGenes(), 10)
+newselect(fit, NewlFselectGenes(), 10)
+</code></pre>
+
+
+</div>

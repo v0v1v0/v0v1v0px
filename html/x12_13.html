@@ -1,0 +1,270 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>crossVal</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2> ~~ Methods for Function <code>crossVal</code> in Package <span class="pkg">x12</span> ~~</h2>
+
+<h3>Description</h3>
+
+<p>Cross Validation with function <code>crossVal</code> in package <span class="pkg">x12</span>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S4 method for signature 'ts'
+crossVal(object, x12Parameter, x12BaseInfo,
+		showCI=FALSE, main="Cross Validation",
+		col_original="black", col_fc="#2020ff", col_bc="#2020ff",
+		col_ci="#d1d1ff", col_cishade="#d1d1ff",
+		lty_original=1, lty_fc=2, lty_bc=2, lty_ci=1,
+		lwd_original=1, lwd_fc=1, lwd_bc=1, lwd_ci=1, ytop=1,
+		points_bc=FALSE, points_fc=FALSE, points_original=FALSE,
+		showLine=TRUE, col_line="grey", lty_line=3,
+		ylab="Value", xlab="Date",ylim=NULL,span=NULL)
+## S4 method for signature 'x12Single'
+crossVal(object, x12BaseInfo=new("x12BaseInfo"),
+		showCI=FALSE, main="Cross Validation",
+		col_original="black", col_fc="#2020ff", col_bc="#2020ff",
+		col_ci="#d1d1ff", col_cishade="#d1d1ff",
+		lty_original=1, lty_fc=2, lty_bc=2, lty_ci=1,
+		lwd_original=1, lwd_fc=1, lwd_bc=1, lwd_ci=1, ytop=1,
+		points_bc=FALSE, points_fc=FALSE, points_original=FALSE,
+		showLine=TRUE, col_line="grey", lty_line=3,
+		ylab="Value", xlab="Date",ylim=NULL,span=NULL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>object of class <code>ts</code> or <code>x12Single-class</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x12Parameter</code></td>
+<td>
+<p>object of class <code>x12Parameter</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x12BaseInfo</code></td>
+<td>
+<p>object of class <code>x12BaseInfo</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>showCI</code></td>
+<td>
+<p>logical specifying if the prediction interval should be plotted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>plot title.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col_original</code></td>
+<td>
+<p>color of the original time series.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col_fc</code></td>
+<td>
+<p>color of the forecasts.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col_bc</code></td>
+<td>
+<p>color of the backcasts.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col_ci</code></td>
+<td>
+<p>color of the prediction interval.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col_cishade</code></td>
+<td>
+<p>color of the shading of the prediction interval.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lty_original</code></td>
+<td>
+<p>line type of the original time series.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lty_fc</code></td>
+<td>
+<p>line type of the forecasts.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lty_bc</code></td>
+<td>
+<p>line type of the backcasts.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lty_ci</code></td>
+<td>
+<p>line type of the prediction interval.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lwd_original</code></td>
+<td>
+<p>line width of the original time series.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lwd_fc</code></td>
+<td>
+<p>line width of the forecasts.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lwd_bc</code></td>
+<td>
+<p>line width of the backcasts.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lwd_ci</code></td>
+<td>
+<p>line width of the prediction interval.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ytop</code></td>
+<td>
+<p>multiplication factor for <code>ylim</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>points_bc</code></td>
+<td>
+<p>logical specifying if backcasts should additionally be indicated with points.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>points_fc</code></td>
+<td>
+<p>logical specifying if forecasts should additionally be indicated with points.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>points_original</code></td>
+<td>
+<p>logical specifying if the original time series should additionally be indicated with points.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>showLine</code></td>
+<td>
+<p>logical indicating if a boundary line should be drawn before/after fore-/backcasts.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col_line</code></td>
+<td>
+<p>color of <code>showLine</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lty_line</code></td>
+<td>
+<p>line type of <code>showLine</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylab</code></td>
+<td>
+<p>label of y-axis.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xlab</code></td>
+<td>
+<p>label of x-axis.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylim</code></td>
+<td>
+<p>range of the y-axis</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>span</code></td>
+<td>
+<p>vector of length 4, limiting the data used for the plot.<br>
+Start and end date of said time interval can be specified by 4 integers in the format <code>c(start year, start seasonal period, end year, end seasonal period)</code></p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An S4 object of class <code>crossValidation-class</code>.
+</p>
+
+
+<h3>Methods</h3>
+
+
+<dl>
+<dt><code>signature(object = "ts")</code></dt>
+<dd>
+
+</dd>
+</dl>
+<dl>
+<dt><code>signature(object = "x12Single")</code></dt>
+<dd>
+
+</dd>
+</dl>
+<h3>Author(s)</h3>
+
+<p>Alexander Kowarik, Angelika Meraner</p>
+
+
+<h3>See Also</h3>
+
+<p><code>x12</code>,
+<code>plot</code>,
+<code>plotSpec</code>,
+<code>plotSeasFac</code>,
+<code>plotRsdAcf</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+s &lt;- new("x12Single",ts=AirPassengers,tsName="air")
+s &lt;- setP(s,list(estimate=TRUE,regression.variables="AO1950.1",outlier.types="all",
+  outlier.critical=list(LS=3.5,TC=2.5),
+backcast_years=1/2,forecast_years=1))
+
+cv&lt;-crossVal(s,showLine=TRUE)
+cv
+
+## End(Not run)
+</code></pre>
+
+
+</div>

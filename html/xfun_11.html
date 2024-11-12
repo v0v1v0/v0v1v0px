@@ -1,0 +1,72 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>bg_process</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Start a background process</h2>
+
+<h3>Description</h3>
+
+<p>Start a background process using the PowerShell cmdlet
+<code>Start-Process-PassThru</code> on Windows or the ampersand <code>&amp;</code> on
+Unix, and return the process ID.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">bg_process(
+  command,
+  args = character(),
+  verbose = getOption("xfun.bg_process.verbose", FALSE)
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>command, args</code></td>
+<td>
+<p>The system command and its arguments. They do not need to
+be quoted, since they will be quoted via <code>shQuote()</code> internally.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbose</code></td>
+<td>
+<p>If <code>FALSE</code>, suppress the output from <code>stdout</code> (and also
+<code>stderr</code> on Windows). The default value of this argument can be set via a
+global option, e.g., <code>options(xfun.bg_process.verbose = TRUE)</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>The process ID as a character string.
+</p>
+
+
+<h3>Note</h3>
+
+<p>On Windows, if PowerShell is not available, try to use
+<code>system2</code><code>(wait = FALSE)</code> to start the background process instead. The
+process ID will be identified from the output of the command
+<code>tasklist</code>. This method of looking for the process ID may not be
+reliable. If the search is not successful in 30 seconds, it will throw an
+error (timeout). If a longer time is needed, you may set
+<code>options(xfun.bg_process.timeout)</code> to a larger value, but it should be very
+rare that a process cannot be started in 30 seconds. When you reach the
+timeout, it is more likely that the command actually failed.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>proc_kill()</code> to kill a process.
+</p>
+
+
+</div>

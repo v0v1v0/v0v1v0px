@@ -1,0 +1,239 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>bllim</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>EM Algorithm for Block diagonal Gaussian Locally Linear Mapping
+</h2>
+
+<h3>Description</h3>
+
+<p>EM Algorithm for Block diagonal Gaussian Locally Linear Mapping
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">bllim(tapp,yapp,in_K,in_r=NULL,ninit=20,maxiter=100,verb=0,in_theta=NULL,plot=TRUE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>tapp</code></td>
+<td>
+<p>An <code>L x N</code> matrix of training responses with variables in rows and subjects in columns</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>yapp</code></td>
+<td>
+<p>An <code>D x N</code> matrix of training covariates with variables in rows and subjects in columns</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>in_K</code></td>
+<td>
+<p>Initial number of components or number of clusters</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>in_r</code></td>
+<td>
+<p>Initial assignments (default NULL). If NULL, the model is initialized with the best initialisation among 20, computed by a joint Gaussian mixture model on both response and covariates.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ninit</code></td>
+<td>
+<p>Number of random initializations. Not used of <code>in_r</code> is specified. Default is 20 and the random initialization which maximizes the likelihood is retained.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>maxiter</code></td>
+<td>
+<p>Maximum number of iterations (default 100). The algorithm stops if the number of iterations exceeds <code>maxiter</code> or if the difference of likelihood between two iterations is smaller than a threshold fixed to <code class="reqn">0.001 (max(LL)-min(LL))</code> where <code class="reqn">LL</code> is the vector of log-likelihoods at the successive iterations.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verb</code></td>
+<td>
+<p>Verbosity: print out the progression of the algorithm. If <code>verb=0</code>, there is no print, if <code>verb=1</code>, the progression is printed out. Default is 0.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>in_theta</code></td>
+<td>
+<p>Initial parameters (default NULL), same structure as the output of this function. The EM algorithm can be  initialized either with initial assignments or initial parameters values.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>plot</code></td>
+<td>
+<p>Displays plots to allow user to check that the slope heuristics can be applied confidently to select the conditional block structure of predictors, as in the <code>capushe-package</code> package. Default is TRUE.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The BLLiM model implemented in this function adresses the following non-linear mapping issue:
+</p>
+<p style="text-align: center;"><code class="reqn"> E(Y | X=x) = g(x),</code>
+</p>
+
+<p>where <code class="reqn">Y</code> is a L-vector of multivariate responses and <code class="reqn">X</code> is a large D-vector of covariates' profiles such that <code class="reqn">D \gg L</code>. As <code>gllim</code> and <code>sllim</code>, the <code>bllim</code> function aims at estimating the non linear regression function <code class="reqn">g</code>.
+</p>
+<p>First, the methods of this package are based on an inverse regression strategy. The inverse conditional relation <code class="reqn">p(X | Y)</code> is specified in a way that the forward relation of interest <code class="reqn">p(Y | X)</code> can be deduced in closed-from. Under some hypothesis on covariance structures, the large number <code class="reqn">D</code> of covariates is handled by this inverse regression trick, which acts as a dimension reduction technique. The number of parameters to estimate is therefore drastically reduced. Second, we propose to approximate the non linear <code class="reqn">g</code> regression function by a piecewise affine function. Therefore, a hidden discrete variable <code class="reqn">Z</code> is introduced, in order to divide the space into <code class="reqn">K</code> regions such that an affine model holds  between responses Y and variables X in each  region <code class="reqn">k</code>:
+</p>
+<p style="text-align: center;"><code class="reqn">X = \sum_{k=1}^K I_{Z=k} (A_k Y + b_k + E_k)</code>
+</p>
+
+<p>where <code class="reqn">A_k</code> is a <code class="reqn">D \times L</code> matrix of coeffcients for regression <code class="reqn">k</code>, <code class="reqn">b_k</code> is a D-vector of intercepts and <code class="reqn">E_k</code> is a Gaussian noise with covariance matrix <code class="reqn">\Sigma_k</code>. 
+</p>
+<p>BLLiM is defined as the following hierarchical Gaussian mixture model for the inverse conditional density <code class="reqn">(X | Y)</code>:
+</p>
+<p style="text-align: center;"><code class="reqn">p(X | Y=y,Z=k;\theta) = N(X; A_kx+b_k,\Sigma_k)</code>
+</p>
+
+<p style="text-align: center;"><code class="reqn">p(Y | Z=k; \theta) = N(Y; c_k,\Gamma_k)</code>
+</p>
+
+<p style="text-align: center;"><code class="reqn">p(Z=k)=\pi_k</code>
+</p>
+
+<p>where <code class="reqn">\Sigma_k</code> is a <code class="reqn">D \times D</code> block diagonal covariance structure automatically learnt from data. <code class="reqn">\theta</code> is the set of parameters <code class="reqn">\theta=(\pi_k,c_k,\Gamma_k,A_k,b_k,\Sigma_k)_{k=1}^K</code>.
+The forward conditional density of interest <code class="reqn">p(Y | X)</code> is deduced from these equations and is also a Gaussian mixture of regression model.
+</p>
+<p>For a given number of affine components (or clusters) K and a given block structure, the number of parameters to estimate is:
+</p>
+<p style="text-align: center;"><code class="reqn">(K-1)+ K(DL+D+L+ nbpar_{\Sigma}+L(L+1)/2)</code>
+</p>
+
+<p>where <code class="reqn">L</code> is the dimension of the response, <code class="reqn">D</code> is the dimension of covariates and <code class="reqn">nbpar_{\Sigma}</code> is the total number of parameters in the large covariance matrix <code class="reqn">\Sigma_k</code> in each cluster. This number of parameters depends on the number and size of blocks in each matrices. 
+</p>
+<p>Two hyperparameters must be estimated to run BLLiM: 
+</p>
+ 
+<ul>
+<li>
+<p> Number of mixtures components (or clusters) <code class="reqn">K</code>: we propose to use BIC criterion or slope heuristics as implemented in <code>capushe-package</code>
+</p>
+</li>
+<li>
+<p> For a given number of clusters K, the block structure of large covariance matrices specific of each cluster: the size and the number of blocks of each <code class="reqn">\Sigma_k</code> matrix is automatically learnt from data, using an extension of the shock procedure (see <code>shock-package</code>). This procedure is based on a successive thresholding of sample conditional covariance matrix within clusters, building a collection of block structure candidates. The final block structure is retained using slope heuristics. 
+</p>
+</li>
+</ul>
+<p>BLLiM is not only a prediction model but also an interpretable tool. For example, it is useful for the analysis of transcriptomic data. Indeed, if covariates are genes and response is a phenotype, the model provides clusters of individuals based on the relation between gene expression data and the phenotype, and also leads to infer a gene regulatory network specific for each cluster of individuals. 
+</p>
+
+
+<h3>Value</h3>
+
+<p>Returns a list with the following elements:
+</p>
+<table>
+<tr style="vertical-align: top;">
+<td><code>LLf</code></td>
+<td>
+<p>Final log-likelihood</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>LL</code></td>
+<td>
+<p>Log-likelihood value at each iteration of the EM algorithm</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pi</code></td>
+<td>
+<p>A vector of length <code>K</code> of mixture weights i.e. prior probabilities for each  component</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>c</code></td>
+<td>
+<p>An <code>(L x K)</code> matrix of means of responses (Y)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Gamma</code></td>
+<td>
+<p>An <code>(L x L x K)</code> array of <code>K</code> matrices of covariances of responses (Y) </p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>A</code></td>
+<td>
+<p>An <code>(D x L x K)</code> array of <code>K</code> matrices of linear transformation matrices</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>b</code></td>
+<td>
+<p>An <code>(D x K)</code> matrix in which affine transformation vectors are in columns</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Sigma</code></td>
+<td>
+<p>An <code>(D x D x K)</code> array of covariances of <code class="reqn">X</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>r</code></td>
+<td>
+<p>An <code>(N x K)</code> matrix of posterior probabilities</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>nbpar</code></td>
+<td>
+<p>The number of parameters estimated in the model</p>
+</td>
+</tr>
+</table>
+<h3>Author(s)</h3>
+
+<p>Emeline Perthame (emeline.perthame@pasteur.fr), Emilie Devijver (emilie.devijver@kuleuven.be), Melina Gallopin (melina.gallopin@u-psud.fr)
+</p>
+
+
+<h3>References</h3>
+
+<p>[1] E. Devijver, M. Gallopin, E. Perthame. Nonlinear network-based quantitative trait prediction from transcriptomic data. Submitted, 2017, available at <a href="https://arxiv.org/abs/1701.07899">https://arxiv.org/abs/1701.07899</a>.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xLLiM-package</code>, <code>emgm</code>, <code>gllim_inverse_map</code>,<code>capushe-package</code>,<code>shock-package</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(data.xllim)
+
+## Setting 5 components in the model
+K = 5
+
+## the model can be initialized by running an EM algorithm for Gaussian Mixtures (EMGM)
+r = emgm(data.xllim, init=K); 
+## and then the gllim model is estimated
+responses = data.xllim[1:2,] # 2 responses in rows and 100 observations in columns
+covariates = data.xllim[3:52,] # 50 covariates in rows and 100 observations in columns
+
+## if initialization is not specified, the model is automatically initialized by EMGM
+# mod = bllim(responses,covariates,in_K=K)
+
+## Prediction can be performed using prediction function gllim_inverse_map
+# pred = gllim_inverse_map(covariates,mod)$x_exp
+</code></pre>
+
+
+</div>

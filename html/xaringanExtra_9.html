@@ -1,0 +1,116 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>freezeframe</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>FreezeFrame</h2>
+
+<h3>Description</h3>
+
+<p>FreezeFrame starts any gifs on a slide when you turn to that slide. This
+helps This helps alleviate the awkward pause that can happen when you turn to
+a slide with a gif that has already started and you have to wait until it
+loops back around. You can also directly click on the gif to stop or start
+it.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">use_freezeframe(
+  selector = "img[src$=\"gif\"]",
+  trigger = c("click", "hover", "none"),
+  overlay = FALSE,
+  responsive = TRUE,
+  warnings = TRUE
+)
+
+html_dependency_freezeframe()
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>selector</code></td>
+<td>
+<p>The selector used to search for <code>.gifs</code> to freeze.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>trigger</code></td>
+<td>
+<p>The trigger event to start animation for non-touch devices.
+One of <code>"click"</code> (default), <code>"hover"</code> or <code>"none"</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>overlay</code></td>
+<td>
+<p>Whether or not to display a play icon on top of the paused
+image, default: <code>FALSE</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>responsive</code></td>
+<td>
+<p>Whether or not to make the image responsive (100% width),
+default: <code>TRUE</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>warnings</code></td>
+<td>
+<p>Whether or not to issue warnings in the browser console if
+an image doesn't appear to be a gif.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An <code>htmltools::tagList()</code> with the FreezeFrame dependencies, or an
+<code>htmltools::htmlDependency()</code>.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul>
+<li> <p><code>use_freezeframe()</code>: Adds FreezeFrame to your xaringan slides.
+</p>
+</li>
+<li> <p><code>html_dependency_freezeframe()</code>: Returns an <code>htmltools::htmlDependency()</code> with the
+FreezeFrame dependencies for use in xaringan and R Markdown documents.
+Most users will want to use <code>use_freezeframe()</code> instead.
+</p>
+</li>
+</ul>
+<h3>Usage</h3>
+
+<p>To add FreezeFrame to your <code>xaringan</code> presentation,
+add the following code chunk to your slides' R Markdown file.
+</p>
+<div class="sourceCode markdown"><pre>```{r xaringanExtra-freezeframe, echo=FALSE}
+xaringanExtra::use_freezeframe()
+```
+</pre></div>
+
+
+<h3>References</h3>
+
+<p><a href="http://ctrl-freaks.github.io/freezeframe.js/">http://ctrl-freaks.github.io/freezeframe.js/</a>,
+<a href="https://github.com/ctrl-freaks/freezeframe.js/">https://github.com/ctrl-freaks/freezeframe.js/</a>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">use_freezeframe()
+
+</code></pre>
+
+
+</div>

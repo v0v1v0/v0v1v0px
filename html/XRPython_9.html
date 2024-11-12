@@ -1,0 +1,51 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>isinstance</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Test if a Proxy Object is an Instance of a Python Type</h2>
+
+<h3>Description</h3>
+
+<p>Applies the Python function <code>isinstance()</code> to <code>object</code>.  NOTE:  this function should be used to test inheritance on the Python side,
+even if there are proxy classes for everything involved.  It is not true (with the present version of the package) that inheritance in Python
+corresponds to inheritance in R for the proxy classes.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">isinstance(object, type, .ev = RPython())
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>Any object.  The function returns <code>FALSE</code> without further testing if the object is not a proxy object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>type</code></td>
+<td>
+<p>A character string corresponding to the Python type (not to the name of a proxy class for the type).
+</p>
+<p>A Python error will result
+if there is no such type, or if <code>object</code> is a proxy from another language.
+The implementation diverges from a direct mapping into the Python <code>isinstance</code> to handle a Python bizarre for functions:  although <code>type(f)</code>
+causes you to think functions have the obvious type, that doesn't work in <code>isinstance</code>.  So the R code uses what works for this case.
+(Before we get too sarcastic, the problem is similar to that in R from primitives, making <code>class(f)</code> and <code>typeof(f)</code> confusing.)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.ev</code></td>
+<td>
+<p>an XRPython evaluator, by default and usually the current evaluator.</p>
+</td>
+</tr>
+</table>
+</div>

@@ -1,0 +1,43 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xml_path</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Retrieve the xpath to a node</h2>
+
+<h3>Description</h3>
+
+<p>This is useful when you want to figure out where nodes matching an
+xpath expression live in a document.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xml_path(x)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>A document, node, or node set.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A character vector.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">x &lt;- read_xml("&lt;foo&gt;&lt;bar&gt;&lt;baz /&gt;&lt;/bar&gt;&lt;baz /&gt;&lt;/foo&gt;")
+xml_path(xml_find_all(x, ".//baz"))
+</code></pre>
+
+
+</div>

@@ -1,0 +1,73 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>github_releases</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Get the tags of GitHub releases of a repository</h2>
+
+<h3>Description</h3>
+
+<p>Use the GitHub API (<code>github_api()</code>) to obtain the tags of the
+releases.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">github_releases(
+  repo,
+  tag = "",
+  pattern = "v[0-9.]+",
+  use_jsonlite = loadable("jsonlite")
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>repo</code></td>
+<td>
+<p>The repository name of the form <code>user/repo</code>, e.g.,
+<code>"yihui/xfun"</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tag</code></td>
+<td>
+<p>A tag as a character string. If provided, it will be returned if
+the tag exists. If <code>tag = "latest"</code>, the tag of the latest release is
+returned.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pattern</code></td>
+<td>
+<p>A regular expression to match the tags.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>use_jsonlite</code></td>
+<td>
+<p>Whether to use <span class="pkg">jsonlite</span> to parse the releases info.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A character vector of (GIT) tags.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+xfun::github_releases("yihui/xfun")
+xfun::github_releases("gohugoio/hugo")
+
+</code></pre>
+
+
+</div>

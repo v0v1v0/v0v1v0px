@@ -1,0 +1,133 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>clipboard</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Clipboard</h2>
+
+<h3>Description</h3>
+
+<p>Add a "Copy Code" button for one-click code chunk copying.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">use_clipboard(
+  button_text = "Copy Code",
+  success_text = "Copied!",
+  error_text = "Press Ctrl+C to Copy",
+  selector = NULL,
+  minified = TRUE
+)
+
+html_dependency_clipboardjs(minified = TRUE)
+
+html_dependency_clipboard()
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>button_text, success_text, error_text</code></td>
+<td>
+<p>Text (or HTML) shown in the copy
+button by default (<em>button</em>), on copy <em>success</em>, or in the event of an
+<em>error</em>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>selector</code></td>
+<td>
+<p>The CSS selector used to identify the elements that will
+receive the copy code button. If <code>NULL</code>, the extension will automatically
+choose the selector for <span class="pkg">xaringan</span> slides or general R Markdown.
+</p>
+<p>The CSS selector should identify the parent container that holds the
+content to be copied. The copy button will be added as the last element
+in this container, and then the text of every element inside the container
+identified by the selector, minus the copy button text, is copied to the
+clipboard.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>minified</code></td>
+<td>
+<p>Should the minified clipboardjs dependency be used?</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>To add <strong>clipboard</strong> to your xaringan presentation or R Markdown
+document, add the following code chunk to your slides’ R Markdown file.
+</p>
+<div class="sourceCode markdown"><pre>```{r xaringanExtra-clipboard, echo=FALSE}
+xaringanExtra::use_clipboard()
+```
+</pre></div>
+<p>You can also customize the text that is shown by default when hovering
+over a code chunk with the <code>button_text</code> argument. Use <code>success_text</code> to
+specify the text shown when the copy action works, or <code>error_text</code> for
+the text shown when the copy action fails. If the copy action fails, the
+text will still be selected, so the user can still manually press
+<code>Ctrl+C</code> to copy the code chunk.
+</p>
+<p>These options accept raw HTML strings, so you can achieve an icon-only
+appearance using FontAwesome icons:
+</p>
+<div class="sourceCode markdown"><pre>```{r xaringanExtra-clipboard, echo=FALSE}
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "&lt;i class=\"fa fa-clipboard\"&gt;&lt;/i&gt;",
+    success_text = "&lt;i class=\"fa fa-check\" style=\"color: #90BE6D\"&gt;&lt;/i&gt;",
+    error_text = "&lt;i class=\"fa fa-times-circle\" style=\"color: #F94144\"&gt;&lt;/i&gt;"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+</pre></div>
+
+
+<h3>Value</h3>
+
+<p>An <code>htmltools::tagList()</code> with the HTML dependencies required for
+<strong>clipboard</strong>.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul>
+<li> <p><code>use_clipboard()</code>: Adds <strong>clipboard</strong> to your xaringan slides or R
+Markdown HTML output.
+</p>
+</li>
+<li> <p><code>html_dependency_clipboardjs()</code>: Returns an <code>htmltools::htmlDependency()</code> with the
+<a href="https://clipboardjs.com/">clipboard.js</a> library. For expert use.
+</p>
+</li>
+<li> <p><code>html_dependency_clipboard()</code>: Returns an <code>htmltools::htmlDependency()</code> with the
+clipboard dependencies for use in xaringan and R Markdown documents. Most
+users will want to use <code>use_clipboard()</code> instead.
+</p>
+</li>
+</ul>
+<h3>References</h3>
+
+<p>https://clipboardjs.com/
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">use_clipboard()
+
+</code></pre>
+
+
+</div>

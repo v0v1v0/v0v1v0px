@@ -1,0 +1,110 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>U_it</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>
+Iteration of u control chart for attributes
+</h2>
+
+<h3>Description</h3>
+
+<p>Calculates the iteration i'th  for the control limits of  <em>c</em> chart using the results obtained in <code>c_gr</code> and previous <code>U_it</code> iteration.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">U_it(prev.results)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>prev.results</code></td>
+<td>
+
+<p>Is a list of previous results obtained by the <code>u_gr</code> function. In other cases, needs more than one iteration, to obtain the true control limits for <em>u</em> chart before take conclusions about the process.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>in.control</code></td>
+<td>
+<p>The <em>under control</em> row list for the <em>u</em> chart</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>out.control</code></td>
+<td>
+<p>The <em>out of control</em> row list for the <em>u </em> chart</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Iteraciones</code></td>
+<td>
+<p>The number of iterations, in this function always will be the first and the last one</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data.0</code></td>
+<td>
+<p>The original data frame</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data.1</code></td>
+<td>
+<p>Subsetting the data frame with <em>under control</em> rows </p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bin</code></td>
+<td>
+<p>The binary values for <em>out of control</em> equal to one and <em>under control</em> equal to zero</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Limites de Control Grafica <em>u</em></code></td>
+<td>
+<p>The <em>u</em> chart control limits vector</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Conclusion del proceso</code></td>
+<td>
+<p>The same results in a phrase as the <em>bin</em> values</p>
+</td>
+</tr>
+</table>
+<h3>Author(s)</h3>
+
+<p>Erick Marroquin
+</p>
+
+
+<h3>References</h3>
+
+<p>Montgomery, D.C. (2005) <em>Introduction to Statistical Quality Control</em>, 5th ed. New York: John Wiley &amp; Sons, ISBN 0-471-65631-3
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>p_gr</code>,  <code>np_gr</code>, <code>c_gr</code>, <code>u_gr</code>, <code>P_it</code>, <code>NP_it</code>, <code>C_it</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(udata2)
+r1&lt;-u_gr(udata2)
+r2&lt;-U_it(r1)
+</code></pre>
+
+
+</div>

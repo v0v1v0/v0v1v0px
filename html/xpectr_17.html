@@ -1,0 +1,88 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>prepare_insertion</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Prepare expectations for insertion</h2>
+
+<h3>Description</h3>
+
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="../help/figures/lifecycle-experimental.svg" alt="[Experimental]"></a>
+</p>
+<p>Collapses a <code>list</code>/<code>vector</code> of expectation strings and adds the specified indentation.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">prepare_insertion(
+  strings,
+  indentation = 0,
+  trim_left = FALSE,
+  trim_right = FALSE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>strings</code></td>
+<td>
+<p>Expectation strings. (List or Character)
+</p>
+<p>As returned with <code>gxs_*</code> functions with <code>out = "return"</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>indentation</code></td>
+<td>
+<p>Indentation to add. (Numeric)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>trim_left</code></td>
+<td>
+<p>Whether to trim whitespaces from the beginning of the collapsed string. (Logical)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>trim_right</code></td>
+<td>
+<p>Whether to trim whitespaces from the end of the collapsed string. (Logical)</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A string for insertion with <code>rstudioapi::insertText()</code>.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ludvig Renbo Olsen, <a href="mailto:r-pkgs@ludvigolsen.dk">r-pkgs@ludvigolsen.dk</a>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Attach packages
+library(xpectr)
+
+## Not run: 
+df &lt;- data.frame('a' = c(1, 2, 3), 'b' = c('t', 'y', 'u'),
+                 stringsAsFactors = FALSE)
+
+tests &lt;- gxs_selection("df", out = "return")
+for_insertion &lt;- prepare_insertion(tests)
+for_insertion
+rstudioapi::insertText(for_insertion)
+
+## End(Not run)
+</code></pre>
+
+
+</div>

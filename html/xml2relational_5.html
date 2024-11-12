@@ -1,0 +1,59 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xml2relational</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Package 'xml2relational'</h2>
+
+<h3>Description</h3>
+
+<p>Transforming a hierarchical XML document into a relational data
+model.
+</p>
+
+
+<h3>What is <code>xml2relational</code>
+</h3>
+
+<p>The <code>xml2relational</code> package is
+designed to 'flatten' XML documents with nested objects into relational
+dataframes. <code>xml2relational</code> takes an XML file as input and converts
+it into a set of dataframes (tables). The tables are linked among each
+other with foreign keys and can be exported as CSV or ready-to-use SQL code
+(<code>CREATE TABLE</code> for the data model, <code>INSERT INTO</code> for the data).
+</p>
+
+
+<h3>How to use <code>xml2relational</code>
+</h3>
+
+ <ul>
+<li>
+<p> First, use
+<code>toRelational()</code> to read in an XML file and to convert into a
+relational data model. </p>
+</li>
+<li>
+<p> This will give you a list of dataframes, one
+for each table in the relational data model. Tables are linked by foreign
+keys. You can specify the naming convention for the tables' primary and
+foreign keys as arguments in <code>toRelational()</code>. </p>
+</li>
+<li>
+<p> You can
+now export the data structures of the tables (or a selection of tables)
+using  <code>getCreateSQL()</code>. It support multiple SQL dialects, and
+you also provide syntax and data type information for additional SQL
+dialects. </p>
+</li>
+<li>
+<p> You can also export the data as SQL <code>INSERT</code>
+statements with the <code>getInsertSQL()</code>. If you only want to
+export the data as CSV use <code>savetofiles()</code> to save the
+dataframes produced by <code>toRelational()</code> as comma-separated
+files.
+</p>
+</li>
+</ul>
+</div>

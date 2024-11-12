@@ -1,0 +1,62 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>CodonPrecision</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Compute codon precision with the choice bias of rules below a threshold.</h2>
+
+<h3>Description</h3>
+
+<p>For automatic determination of the least codon precision for grammar evolution 
+with an upper threshold on the choice bias of for the substitution of all
+non-terminal symbols.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">CodonPrecision(cv, pCrit)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>cv</code></td>
+<td>
+<p>Choice vector of a context-free grammar.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pCrit</code></td>
+<td>
+<p>Threhold for choice bias.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Precision of codon.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Diagnostics: 
+<code>CodonChoiceBiasesDeprecated()</code>,
+<code>CodonChoiceBiases()</code>,
+<code>tLCM()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"> CodonPrecision(c(1, 2, 3, 5), 0.1)
+ CodonPrecision(c(1, 2, 3, 5), 0.01)
+
+</code></pre>
+
+
+</div>

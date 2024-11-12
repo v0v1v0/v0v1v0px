@@ -1,0 +1,93 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>load_workbook</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>load_workbook</h2>
+
+<h3>Description</h3>
+
+<p>Open the given filename and return the workbook
+</p>
+<p><a href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.reader.excel.html">https://openpyxl.readthedocs.io/en/stable/api/openpyxl.reader.excel.html</a>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">load_workbook(
+  filename,
+  read_only = FALSE,
+  keep_vba = FALSE,
+  data_only = FALSE,
+  keep_links = TRUE,
+  rich_text = FALSE,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>filename</code></td>
+<td>
+<p>filename string or a file-like object open in binary mode c.f., :class:'zipfile.ZipFile' :param read_only: optimised for reading, content cannot be edited</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>read_only</code></td>
+<td>
+<p>read_only bool</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>keep_vba</code></td>
+<td>
+<p>keep_vba preserve vba content (this does NOT mean you can use it)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data_only</code></td>
+<td>
+<p>data_only bool</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>keep_links</code></td>
+<td>
+<p>keep_links whether links to external workbooks should be preserved. The default is TRUE</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>rich_text</code></td>
+<td>
+<p>rich_text bool :rtype: :class:'openpyxl.workbook.Workbook' .. note:: When using lazy load, all worksheets will be :class:'openpyxl.worksheet.iter_worksheet.IterableWorksheet' and the returned workbook will be read-only.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments, i.e. kwargs.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An openpyxl Python object.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+tmp &lt;- write_xlsx(list(mysheet = iris))
+load_workbook(filename = tmp)
+
+## End(Not run)
+</code></pre>
+
+
+</div>

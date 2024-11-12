@@ -1,0 +1,111 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>msset</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Testing and correcting for small study effects of multivariate meta-analysis</h2>
+
+<h3>Description</h3>
+
+<p>Testing and correcting for small study effects of multivariate meta-analysis</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">msset(data, nm.y1, nm.s1, nm.y2, nm.s2, method, type, k)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>data</code></td>
+<td>
+<p>dataset</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>nm.y1</code></td>
+<td>
+<p>column name for outcome 1</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>nm.s1</code></td>
+<td>
+<p>column name for standard error of outcome 1</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>nm.y2</code></td>
+<td>
+<p>column name for outcome 2</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>nm.s2</code></td>
+<td>
+<p>column name for standard error of outcome 2</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>"nn.cl" indicating the score test for detecting small study effects of MMA</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>type</code></td>
+<td>
+<p>either "continuous" or "binary" indicating the type of outcomes</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>k</code></td>
+<td>
+<p>integer indicating the number of outcomes</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>This function returns the test statistics for testing small study effects of multivariate
+meta-analysis using regression method.</p>
+
+
+<h3>Value</h3>
+
+<p><code>msset.TS</code> returns the test statistic and p value of the score test.
+</p>
+
+
+<h3>A score test for detecting small study effects in multivariate meta-analysis</h3>
+
+<p>Small study effects occur when smaller studies show different, often larger, treatment effects than large ones, which may threaten the validity of systematic reviews and meta-analyses. Detecting small study effects in a multivariate meta-analysis setting remains an untouched research area. Hong et al. (2019) propose a pseudolikelihood-based score test for detecting small study effects in multivariate random-effects meta-analysis. 
+This is the first test for detecting small study effects in multivariate meta-analysis setting.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Chuan Hong</p>
+
+
+<h3>References</h3>
+
+<p>Hong, C., Salanti, G., Morton, S., Riley, R., Chu, H., Kimmel, S.E. and Chen Y. (2019). Testing small study effects in multivariate meta-analysis (Biometrics).
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(prostate)
+fit.msset=msset(data=prostate, nm.y1="y1", nm.s1="s1", nm.y2="y2", nm.s2="s2", 
+method = "nn.cl", type = "continuous", k=2)
+summary(fit.msset)
+</code></pre>
+
+
+</div>

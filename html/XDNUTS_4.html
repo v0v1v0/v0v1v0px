@@ -1,0 +1,219 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>set_parameters</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Function that regulates the specifications of the xdnuts function.</h2>
+
+<h3>Description</h3>
+
+<p>Function that regulates the specifications of the xdnuts function.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">set_parameters(
+  N_init1 = 50L,
+  N_adapt = 200L,
+  N_init2 = 75L,
+  burn_adapt_ratio = 0.1,
+  keep_warm_up = FALSE,
+  recycle_only_init = TRUE,
+  max_treedepth = 10L,
+  eps_jitter = 0.1,
+  L_jitter = 3L,
+  gamma = 0.05,
+  kappa = 0.75,
+  delta = NULL,
+  t0 = 10L,
+  M_type = "dense",
+  refresh = 0.1,
+  l_eps_init = NA_real_,
+  different_stepsize = FALSE,
+  mu = NA_real_,
+  M_cont = NULL,
+  M_disc = NULL
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>N_init1</code></td>
+<td>
+<p>an integer that regulates the number of samples used to
+adapt the step size.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>N_adapt</code></td>
+<td>
+<p>an integer that regulates the number of samples used to
+estimate the Mass Matrix with fixed step size.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>N_init2</code></td>
+<td>
+<p>an integer that regulates the number of samples used to
+adapt the step size after the estimation of the Mass Matrix.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>burn_adapt_ratio</code></td>
+<td>
+<p>a numeric scalar <code class="reqn">\in (0,1]</code> indicating the ratio of warm-up
+samples to discard in order to estimate the covariance matrix of the parameters.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>keep_warm_up</code></td>
+<td>
+<p>a logical scalar that determines whether the warm-up samples should be returned.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>recycle_only_init</code></td>
+<td>
+<p>a logical value which disables the recycling of the
+samples from each trajectory once the warm-up phase has terminated.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max_treedepth</code></td>
+<td>
+<p>an integer that regulates the maximum depth of
+the binary tree used to approximate Hamilton equation for the exploration
+of each energy level set of the phase space.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>eps_jitter</code></td>
+<td>
+<p>a numeric scalar which regulates the amount of jittering
+used to perturb the value of the step size for each iteration of the chain
+after the warm-up phase.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>L_jitter</code></td>
+<td>
+<p>an integer scalar that regulates the amount of jittering used to perturb the
+value of the trajectory length if this is specified to be constant.
+This occurs when the classic Hamiltonian Monte Carlo algorithm is used through the 
+<code>method = "HMC"</code> option in the xdnuts function. If <code>L_jitter</code> <code class="reqn">\geq 1</code>
+each trajectory length is sampled uniformly inside the interval [L - L_jitter , L + L_jitter].</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>gamma</code></td>
+<td>
+<p>a numeric value that, in the Nesterov Dual Averaging algorithm, regulates 
+the sensitivity of the step size updating scheme to fluctuations in the estimate of the 
+mean Metropolis acceptance probability.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>kappa</code></td>
+<td>
+<p>a numeric value that regulates the vanishing of Nesterov Dual Averaging
+algorithm for the estimation of the step size.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>delta</code></td>
+<td>
+<p>a vector containing the Metropolis acceptance probabilities, 
+including both the global and those related to potential differences. Default values are (0.8,0.6).
+If the second element of the vector is set to <code>NA</code>, then the step size calibration is conducted 
+solely through the global acceptance probabilities.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>t0</code></td>
+<td>
+<p>an integer value that makes Nesterov Dual Averaging
+algorithm for the estimation of the step size less sensitive to early iterations.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>M_type</code></td>
+<td>
+<p>a character value specifying the type of Mass Matrix to estimate:</p>
+
+<ul>
+<li>
+<p><code>"identity"</code> no Mass Matrix estimation is done.
+</p>
+</li>
+<li>
+<p><code>"diagonal"</code> a diagonal Mass Matrix is estimated during the warm-up phase.
+</p>
+</li>
+<li>
+<p><code>"dense"</code> a full dense Mass Matrix is estimated during the warm-up phase.
+</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>refresh</code></td>
+<td>
+<p>a numeric scalar bounded in <code class="reqn">(0,1)</code> which regulates the update frequency of
+the displayed sampling process state. Default values is 0.1, meaning every 10% of the total samples.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>l_eps_init</code></td>
+<td>
+<p>a numeric scalar containing the logarithm of the initial value for the step size
+used to approximate Hamilton differential equation for phase space exploration.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>different_stepsize</code></td>
+<td>
+<p>a boolean value indicating where the adaptation scheme should adapt different step size. 
+If <code>TRUE</code>, a global step size is adapted via Nesterov Dual Averaging algorithm. 
+At the same time, for each empirical reflection rate of each component treated as discontinuous the same
+algorithm is exploited and the difference between these is obtained through the updating of the discontinuous
+components Mass Matrix. Default value is <code>FALSE</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mu</code></td>
+<td>
+<p>a numeric scalar containing the value to which the step size is shrunken during the warm-up phase.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>M_cont</code></td>
+<td>
+<p>a vector of length-<code class="reqn">d</code> if <code>M_type = "diagonal"</code> or a <code class="reqn">d \times d</code> matrix
+if <code>M_type = "dense"</code> containing an initial estimate for the Mass Matrix
+(the inverse of the parameters covariance matrix).
+If you want to keep it fixed, they should specify <code>N_adapt = 0</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>M_disc</code></td>
+<td>
+<p>a vector of length-<code class="reqn">d</code> if <code>M_type = "diagonal"</code> or 
+<code>M_type = "dense"</code> containing an initial estimate for the Mass Matrix
+(the inverse of the parameters covariances).
+If one wants to keep it fixed, they should specify <code>N_adapt = 0</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>an object of class <code>control_xdnuts</code> containing a named list with all the above parameters.
+</p>
+
+
+</div>

@@ -1,0 +1,60 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>str_count</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>
+Count words in a text
+</h2>
+
+<h3>Description</h3>
+
+<p>Count words of characters in the string which satisfy a regular expression
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">  str_count(x, pattern, sep)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>input string</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pattern</code></td>
+<td>
+<p>regular expression</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sep</code></td>
+<td>
+<p>a string used to separate columns, default is "".</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>number</code></td>
+<td>
+<p>return a number of words that satisfies a regular expression</p>
+</td>
+</tr></table>
+<h3>Examples</h3>
+
+<pre><code class="language-R">  x = "file_1:b:$:carbonate:c:dimethylsulfide:coccoliths:co2:aragonite:calcite:"
+  str_count(x,pattern=":co2:",sep="")
+</code></pre>
+
+
+</div>

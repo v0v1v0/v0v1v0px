@@ -1,0 +1,104 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xgx_breaks_time</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Sets the default breaks for a time axis</h2>
+
+<h3>Description</h3>
+
+<p><code>xgx_breaks_time</code> sets the default breaks for a time axis, 
+given the units of the data and the units of the plot.
+It is inspired by scales::extended_breaks
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xgx_breaks_time(data_range, units_plot, number_breaks = 5)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>data_range</code></td>
+<td>
+<p>range of the data</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>units_plot</code></td>
+<td>
+<p>units to use in the plot</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>number_breaks</code></td>
+<td>
+<p>number of breaks to aim for (default is 5)</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>for the extended breaks function, weights is a set of 4 weights for
+</p>
+
+<ol>
+<li>
+<p> simplicity - how early in the Q order are you
+</p>
+</li>
+<li>
+<p> coverage - labelings that don't extend outside the data:
+range(data) / range(labels)
+</p>
+</li>
+<li>
+<p> density (previously granularity) - how close to the number of ticks 
+do you get (default is 5)
+</p>
+</li>
+<li>
+<p> legibility - has to do with fontsize and formatting to prevent 
+label overlap
+</p>
+</li>
+</ol>
+<h3>Value</h3>
+
+<p>numeric vector of breaks
+</p>
+
+
+<h3>References</h3>
+
+<p>Talbot, Justin, Sharon Lin, and Pat Hanrahan.
+"An extension of Wilkinson’s algorithm for positioning tick labels on axes."
+IEEE Transactions on visualization and 
+computer graphics 16.6 (2010): 1036-1043.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">xgx_breaks_time(c(0, 5), "h")
+xgx_breaks_time(c(0, 6), "h")
+xgx_breaks_time(c(-3, 5), "h")
+xgx_breaks_time(c(0, 24), "h")
+xgx_breaks_time(c(0, 12), "h")
+xgx_breaks_time(c(1, 4), "d")
+xgx_breaks_time(c(1, 12), "d")
+xgx_breaks_time(c(1, 14), "d")
+xgx_breaks_time(c(1, 50), "d")
+xgx_breaks_time(c(1000, 3000), "d")
+xgx_breaks_time(c(-21, 100), "d")
+xgx_breaks_time(c(-1, 10), "w")
+
+</code></pre>
+
+
+</div>

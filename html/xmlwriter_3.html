@@ -1,0 +1,67 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>as.character.xml_fragment</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Turn an xml_fragment into a character</h2>
+
+<h3>Description</h3>
+
+<p>This function turns an <code>xml_fragment</code> into a character string, using
+a performant c++ implementation.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S3 method for class 'xml_fragment'
+as.character(x, ...)
+
+## S3 method for class 'xml_doc'
+as.character(x, use_prolog = TRUE, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>object to be coerced or tested.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>further arguments passed to or from other methods.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>use_prolog</code></td>
+<td>
+<p>if <code>TRUE</code> the xml prolog with be included.
+To suppress the prolog string either remove set <code>use_prolog = FALSE</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>a <code>character</code> with the xml representation of the fragment.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other xml_fragment: 
+<code>add_child_fragment()</code>,
+<code>as_frag()</code>,
+<code>as_xml_nodeset()</code>,
+<code>data_frag()</code>,
+<code>frag()</code>,
+<code>xml_fragment()</code>
+</p>
+
+
+</div>

@@ -1,0 +1,175 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xp.boot.par.est</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Compare parameter estimates for covariate coefficients</h2>
+
+<h3>Description</h3>
+
+<p>This function creates a plot of the estimates for covariate coefficients,
+obtained from the first step (univariate testing) in each scm performed in
+the bootscm. When normalized for their standard deviation, these plots can
+be used to compare the strength of the covariate relationship. Coloring is
+based on the covariate being included in the final model (blue) not being
+included (red).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xp.boot.par.est(
+  bootgam.obj = NULL,
+  sd.norm = TRUE,
+  by.cov.type = FALSE,
+  abs.values = FALSE,
+  show.data = TRUE,
+  show.means = TRUE,
+  show.bias = TRUE,
+  dotpch = c(1, 19),
+  labels = NULL,
+  pch.mean = "|",
+  xlab = NULL,
+  ylab = NULL,
+  col = c(rgb(0.8, 0.5, 0.5), rgb(0.2, 0.2, 0.7), rgb(0.2, 0.2, 0.7), rgb(0.6, 0.6, 0.6)),
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>bootgam.obj</code></td>
+<td>
+<p>The object created using bootscm.import(), which hold the
+data for plotting.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sd.norm</code></td>
+<td>
+<p>Perform normalization of the covariate coefficients (default
+is TRUE). When TRUE, the estimated covariate coefficients will be multiplied
+by the standard deviation of the specific covariate (both for continuous and
+categorical covariates).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>by.cov.type</code></td>
+<td>
+<p>Split the plot for continuous and dichotomous covariates.
+Default is FALSE.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>abs.values</code></td>
+<td>
+<p>Show the covariate coefficient in absolute values. Default
+is FALSE.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>show.data</code></td>
+<td>
+<p>Show the actual covariate coefficients in the plot. Default
+is TRUE.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>show.means</code></td>
+<td>
+<p>Show the means of included covariates (blue) and all
+covariates (grey) in the plot. Default is TRUE.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>show.bias</code></td>
+<td>
+<p>Show estimated bias as text in the plot. Default is TRUE.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dotpch</code></td>
+<td>
+<p>The character used for plotting.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>labels</code></td>
+<td>
+<p>Custom labels for the parameter-covariate relationships,
+(character vector)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pch.mean</code></td>
+<td>
+<p>The character used for plotting the mean.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xlab</code></td>
+<td>
+<p>Custom x-axis label</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylab</code></td>
+<td>
+<p>Custom y-axis label</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col</code></td>
+<td>
+<p>The color scheme.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional plotting arguments may be passed to this function.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Optionally, estimated bias is plotted in the graph (as text). Bias is also
+shown by the difference in mean of parameter estimates when the covariate is
+included (blue diamond), as opposed to the mean of all parameter estimates
+(grey diamond)
+</p>
+<p>Note: For dichotomous covariates, the default PsN implementation is to use
+the most common covariate value as base, while the effect of the other
+value, is estimated by a theta. Xpose (bootscm.import) however recalculates
+the estimated parameters, to the parametrization in which the lowest value
+of the dichotomous covariate is the base (e.g. 0), and the estimated THETA
+denotes the proportional change, when the covariate has the other value
+(e.g. 1).
+</p>
+
+
+<h3>Value</h3>
+
+<p>No value returned.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ron Keizer
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+  xp.boot.par.est()
+
+</code></pre>
+
+
+</div>

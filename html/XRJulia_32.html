@@ -1,0 +1,85 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>largeVectors</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Internal Computations for Large Vectors</h2>
+
+<h3>Description</h3>
+
+<p>Internal Computations for Large Vectors
+</p>
+
+
+<h3>Sending Large Vectors between R and Julia</h3>
+
+<p>Large vectors will be slow to transfer as JSON, and may fail in Julia.  Internal computations have
+been added to transfer vectors of types real, integer, logical and character by more direct
+computations when they are large.  The computations and their implementation are
+described here.
+</p>
+<p>R and Julia both have the concept of numeric (floating point) and integer arrays whose elements have a consistent type and both implement
+these (following Fortran) as contiguous blocks in memory, augmented by length or dimension information.
+They also both have a mechanism for arrays of character strings, class <code>"character"</code> in R and array type
+<code>Array{String, 1}</code> in Julia.
+Julia has arrays for boolean data; R stores the corresponding <code>logical</code> as integers.
+</p>
+<p>JSON has no such concepts, so interface evaluators using the standard JSON form provided by 'XR' must send such data as a JSON list.  This will
+become inefficient for very large data from these classes.  Users have reported failure by Julia to
+parse the corresponding JSON.
+</p>
+<p>The 'XRJulia' package (as of version 0.7.9) implements special code to send vectors to Julia, by
+writing an intermediate file that Julia reads.  The actual text sent to Julia is a call to the
+relevant Julia function.  The code is triggered within the methods for the <code>asServerObject</code>
+function, so vectors should be transferred this way whether on their own or as part of a larger structure,
+such as an array or the column of a data frame.
+</p>
+<p>Similarly, large arrays to be retrieved in R by the <code>Get()</code> method or the optional argument <code>.get = TRUE</code>
+will be written to an intermediate file by Julia and read by R.
+</p>
+<p>As vectors become large, direct transfer becomes <em>much</em> faster.  On a not-very-powerful laptop,
+vectors of length <code>10^7</code> transfer in an elapsed time of a few seconds.  Character vectors are slightly
+slower than numeric, as explained below, but in all cases it would be hard to do much computation with
+the data that did not swamp the cost of transfer.  That said, as always it's more sensible to transfer
+data once and then use the corresponding proxy object in later calls.
+</p>
+
+
+<h3>Details</h3>
+
+<p>For all vectors, the method uses binary writes and reads, which are defined
+in both R and Julia.  No special computationss are needed for numeric, integer, complex and raw.
+For these, the R binary representation corresponds to array types in Julia.
+The special pseudo-value <code>NA</code> is defined for vectors in R, but no corresponding concept exists
+in Julia.  For numeric and complex vectors, the floating-point pattern <code>NaN</code> is used.
+For all other vectors, a warning is issued and either a numeric object or a special character string is used instead.
+</p>
+<p>For logicals, the internal representation in R uses integers.
+The Julia code when data is sent from R casts the integer array to a boolean array.
+On the return side, the Julia boolean array is converted to integer before writing.
+</p>
+<p>Character vectors take a little more work, partly because of a weirdness in binary writes
+for string arrays in Julia.  Where R character vectors can be written in binary form and then read
+back in, writing a <code>String</code> array in Julia omits the end-of-string character,
+effectively writing a single string, from which the array cannot
+be recovered.  Communicating the entire vector to Julia requires
+that the Julia side uses this information to split the single string resulting from the R binary write
+by matching the end-of-string character explicitly
+For sending back to R, the Julia code
+appends an end-of-string character to each string before writing the array to a file.  This produces the
+R format for a binary read of a character vector.
+</p>
+<p>Two fields in the evaluator object control details.
+A large object is defined as a vector of length greater than the integer field <code>largeObject</code>.
+Julia creates intermediate files for sending large arrays to R by appending sequenctial numbers to a
+character field <code>fileBase</code>.  By default, <code>largeObject</code> and  <code>fileBase</code> is obtained from
+<code>tempfile()</code> with pattern <code>"Julia"</code>. Note that all the files are removed at the end of
+the evaluation of the expression sending or getting the relevant objects.
+</p>
+<p>Since these fields must be known to the Julia evaluator, they should <em>not</em> be set directly—this will
+have no effect.  Instead call the function <code>juliaOptions()</code> with these parameter names.
+</p>
+
+
+</div>

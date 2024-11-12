@@ -1,0 +1,71 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaGpMutationFactory</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Configure the mutation function of a genetic algorithm.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaGpMutationFactory()</code> implements the selection
+of one of the mutation functions in this
+package by specifying a text string.
+The selection fails ungracefully (produces
+a runtime error), if the label does not match.
+The functions are specified locally.
+</p>
+<p>Current support:
+</p>
+
+<ol>
+<li>
+<p> "MutateGene" returns <code>xegaGpMutateAllGene()</code>.
+</p>
+</li>
+<li>
+<p> "MutateAllGene" returns <code>xegaGpMutateAllGene()</code>.
+</p>
+</li>
+<li>
+<p> "MutateFilterGene" returns <code>xegaGpMutateFilterGene()</code>.
+</p>
+</li>
+</ol>
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaGpMutationFactory(method = "MutateGene")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>String specifying the mutation function.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>Mutation function for genes.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Configuration: 
+<code>xegaGpCrossoverFactory()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">Mutate&lt;-xegaGpMutationFactory("MutateGene")
+gene1&lt;-xegaGpInitGene(lFxegaGpGene)
+gene1
+Mutate(gene1, lFxegaGpGene)
+</code></pre>
+
+
+</div>

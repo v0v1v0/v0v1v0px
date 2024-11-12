@@ -1,0 +1,107 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaGaReplicate2Gene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Replicates a gene.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaGaReplicate2Gene</code> replicates a gene
+by applying a gene reproduction pipeline 
+which uses crossover and
+mutation. The control flow is as follows:
+</p>
+
+<ul>
+<li>
+<p> A gene is selected from the population.
+Check if the crossover operation should be applied.
+(The check is <code>TRUE</code> with a probability of <code>crossrate</code>).
+If the check is <code>TRUE</code>:
+</p>
+
+<ul>
+<li>
+<p> Select a mating gene from the population.
+</p>
+</li>
+<li>
+<p> Perform the crossover operation.
+</p>
+</li>
+<li>
+<p> Apply mutation with a probability of <code>mutrate</code>.
+</p>
+</li>
+<li>
+<p> Return a list with both genes.
+</p>
+</li>
+</ul>
+</li>
+<li>
+<p> Apply mutation with a probability of <code>mutrate</code>.
+</p>
+</li>
+<li>
+<p> Return a list with a single gene.
+</p>
+</li>
+</ul>
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaGaReplicate2Gene(pop, fit, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>pop</code></td>
+<td>
+<p>A population of binary genes.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fit</code></td>
+<td>
+<p>Fitness vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>The local configuration of the genetic algorithm.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A list of either 1 or 2 binary genes.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Replication: 
+<code>xegaGaReplicateGene()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">lFxegaGaGene$CrossGene&lt;-xegaGaCross2Gene
+lFxegaGaGene$MutationRate&lt;-function(fit, lF) {0.001}
+names(lFxegaGaGene)
+pop10&lt;-lapply(rep(0,10), function(x) xegaGaInitGene(lFxegaGaGene))
+epop10&lt;-lapply(pop10, lFxegaGaGene$EvalGene, lF=lFxegaGaGene)
+fit10&lt;-unlist(lapply(epop10, function(x) {x$fit}))
+newgenes&lt;-xegaGaReplicate2Gene(pop10, fit10, lFxegaGaGene)
+
+</code></pre>
+
+
+</div>

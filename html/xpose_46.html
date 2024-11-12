@@ -1,0 +1,59 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>get_code</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Access model code</h2>
+
+<h3>Description</h3>
+
+<p>Access model code from an xpdb object.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">get_code(xpdb, .problem = NULL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>xpdb</code></td>
+<td>
+<p>An <code>xpose_data</code> object from which the model code will be extracted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.problem</code></td>
+<td>
+<p>The problem to be used, in addition, problem 0 is attributed to 
+general output (e.g. NM-TRAN warnings in NONMEM). By default returns the 
+entire code.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A tibble of the parsed model.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xpose_data</code>, <code>read_nm_model</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">parsed_model &lt;- get_code(xpdb_ex_pk)
+parsed_model
+
+</code></pre>
+
+
+</div>

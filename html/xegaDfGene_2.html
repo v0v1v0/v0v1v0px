@@ -1,0 +1,70 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>lFxegaDfGene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Generate local functions and objects</h2>
+
+<h3>Description</h3>
+
+<p><code>lFxegaDfGene</code> is 
+the list of functions containing
+a definition of all local objects required for the use
+of evaluation functions. We reference this object 
+as local configuration. When adding additional 
+functions, this list must be extended
+by the constant (functions) needed to configure them.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">lFxegaDfGene
+</code></pre>
+
+
+<h3>Format</h3>
+
+<p>An object of class <code>list</code> of length 30.
+</p>
+
+
+<h3>Details</h3>
+
+<p>We use the local configuration for: 
+</p>
+
+<ol>
+<li>
+<p>Replacing all constants with constant functions.
+</p>
+<p>Rationale: We need one formal argument (the local function list lF)
+and we can dispatch multiple functions. E.g.  <code>lF$verbose()</code>
+</p>
+</li>
+<li>    
+<p>We can dynamically bind a local function with a definition from a
+proper function factory. E.g., the selection methods 
+<code>lf$SelectGene</code> and <code>lF$SelectMate</code>.
+</p>
+</li>
+<li>
+<p> Gene representations require special functions to handle them:
+<code>lf$InitGene</code>, <code>lF$DecodeGene</code>, <code>lf$EvalGene</code>
+<code>lf$ReplicateGene</code>, ...
+</p>
+</li>
+</ol>
+<h3>See Also</h3>
+
+<p>Other Configuration: 
+<code>xegaDfCrossoverFactory()</code>,
+<code>xegaDfGeneMapFactory()</code>,
+<code>xegaDfMutationFactory()</code>,
+<code>xegaDfReplicationFactory()</code>,
+<code>xegaDfScaleFactorFactory()</code>
+</p>
+
+
+</div>

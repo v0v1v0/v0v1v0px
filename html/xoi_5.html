@@ -1,0 +1,79 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>countxo</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Estimate number of crossovers</h2>
+
+<h3>Description</h3>
+
+<p>Estimate the number of crossovers in each meiosis in a backcross.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">countxo(cross, chr = NULL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>cross</code></td>
+<td>
+<p>An object of class <code>cross</code>. (This must be a backcross.)
+See <code>qtl::read.cross()</code> for details.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>chr</code></td>
+<td>
+<p>Optional set of chromosomes across which to count crossovers.  If
+NULL, the total number of crossovers, genome-wide, is counted.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>This works only a backcross.  We use the internal function (within R/qtl)
+<code>locate.xo</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A vector with the estimated number of crossovers for each
+individual.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Karl W Broman, <a href="mailto:broman@wisc.edu">broman@wisc.edu</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>find.breaks()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+data(bssbsb)
+
+# estimated number of crossovers on chr 1
+nxo &lt;- countxo(bssbsb, chr=1)
+
+# estimated number of crossovers genome-wide
+nxo &lt;- countxo(bssbsb)
+
+</code></pre>
+
+
+</div>

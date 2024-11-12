@@ -1,0 +1,84 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>style_extra_css</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Add Extra CSS Styles</h2>
+
+<h3>Description</h3>
+
+<p>Adds css elements to target <code>outfile</code>, typically a xaringanthemer css file.
+The <code>css</code> argument takes a list of CSS classes and definitions (see examples below)
+and appends CSS rules to <code>outfile</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">style_extra_css(
+  css,
+  outfile = "xaringan-themer.css",
+  append = TRUE,
+  heading = "Extra CSS"
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>css</code></td>
+<td>
+<p>A named list of CSS definitions each containing a named list
+of CSS property-value pairs, i.e.
+<code>list(".class-id" = list("css-property" = "value"))</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>outfile</code></td>
+<td>
+<p>Customized xaringan CSS output file name, default is "xaringan-themer.css"</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>append</code></td>
+<td>
+<p>If <code>TRUE</code> output will be appended to <code>outfile</code>; otherwise,
+it will overwrite the contents of <code>outfile</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>heading</code></td>
+<td>
+<p>Heading added above extra CSS. Use <code>NULL</code> to disable.</p>
+</td>
+</tr>
+</table>
+<h3>css list</h3>
+
+<p>The <code>css</code> input must be a named list of css properties and values within a
+named list of class identifiers, for example
+<code>list(".class-id" = list("css-property" = "value"))</code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">style_extra_css(
+  outfile = stdout(),
+  css = list(
+    ".red" = list(color = "red"),
+    ".small" = list("font-size" = "90%"),
+    ".full-width" = list(
+      display = "flex",
+      width = "100%",
+      flex = "1 1 auto"
+    )
+  )
+)
+</code></pre>
+
+
+</div>

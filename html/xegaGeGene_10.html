@@ -1,0 +1,82 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>tLCM</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Computes the largest least common multiple of all prime factors 
+of the integers in the interval <code>1:m</code> for k-bit integers.</h2>
+
+<h3>Description</h3>
+
+<p>For 64 bit numbers, numerically stable up to <code>m==42</code>.
+The modulo rule in grammatical evolution assigns to the choices 
+of substitutions for a non-terminal slightly (biased) probabilities.
+For an integer coding, the least common multiple of all rule choices 
+from no choice (1) to the maximal number of substitutions of a non-terminal
+removes this bias completely. However, whenever the prime factors of the 
+least common multiple contain a prime different from <code>2</code>, 
+the bias cannot be removed completely for a binary gene coding. 
+However, each additional bit used for coding approximately halves the bias.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">tLCM(k)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>k</code></td>
+<td>
+<p>Number of bits.</p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+<p>This could be done with the help of 
+the function mLCM of the R-package <code>numbers</code>. 
+We implement this by enumerating the vector of prime factors  
+in <code>1:42</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A list of three elements:
+</p>
+
+<ul>
+<li> <p><code>$k</code>: The number of bits.
+</p>
+</li>
+<li> <p><code>$m</code>: Maximal number of substitutions for a non-terminal symbol
+in a grammar. 
+</p>
+</li>
+<li> <p><code>$mLCM</code>: Least common multiple of the prime factors of
+all rule choices from 1 to <code>$m</code>.
+</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p>Other Diagnostics: 
+<code>CodonChoiceBiasesDeprecated()</code>,
+<code>CodonChoiceBiases()</code>,
+<code>CodonPrecision()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">  tLCM(8)
+  tLCM(16)
+  tLCM(32)
+</code></pre>
+
+
+</div>

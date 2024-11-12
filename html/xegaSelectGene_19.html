@@ -1,0 +1,119 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>newTimer</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Timer for R code chunks.</h2>
+
+<h3>Description</h3>
+
+<p><code>newTimer</code> sets up a timer object with two 
+internal state variables, namely <code>count</code> 
+to count the number of timer calls and
+<code>tUsed</code> to calculate the total time spent in a code block
+between two timer calls.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">newTimer()
+</code></pre>
+
+
+<h3>Details</h3>
+
+
+<ul>
+<li> 
+<p>Generate a timer: 
+<code>a&lt;-newTimer()</code> sets up the timer <code>a</code>.
+The timer <code>a</code> supports three methods:
+</p>
+
+<ol>
+<li> <p><code>a()</code> or 
+<code>a("Measure")</code> or 
+<code>a(method="Measure")</code> 
+<strong>starts</strong> the timer when called 1st, 3rd, 5th, ... time
+and <strong>stops</strong> the timer 
+when called the 2nd, 4th, 6th, ... time.
+The calls can be manually inserted 
+before and after a block of R-code for profiling.
+</p>
+</li>
+<li> <p><code>a("TimeUsed")</code> or
+<code>a(method="TimeUsed")</code> returns the time used in seconds.
+</p>
+</li>
+<li> <p><code>a("Count")</code> or
+<code>a(method="Count")</code> returns the number of times 
+the function/block or R-code has been executed.
+</p>
+</li>
+</ol>
+</li>
+<li> 
+<p>The second way of usage is with the <code>Timed</code> function:  
+</p>
+
+<ol>
+<li>
+<p> Generate a timer: 
+<code>a&lt;-newTimer()</code> sets up the timer <code>a</code>.
+</p>
+</li>
+<li>
+<p> You convert a function <code>b</code> into a timed function
+<code>bTimed</code> by 
+<code>bTimed&lt;-Timed(a, b)</code>. 
+</p>
+</li>
+<li>
+<p> You use <code>bTimed</code> instead of <code>b</code>.
+</p>
+</li>
+<li>
+<p> At the end, you can query the aggregated time and 
+the aggregated number of executions by 
+<code>a("TimeUsed")</code> and 
+<code>a("Count")</code>, respectively. 
+</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3>Value</h3>
+
+<p><code>newTimer()</code> returns a timer function.
+</p>
+<p><code>a_timer_function()</code> returns the used time in seconds
+(invisible).
+</p>
+<p><code>a_timer_function("TimeUsed")</code> returns the used time in seconds.
+</p>
+<p><code>a_timer_function("Count")</code> returns the number of executions
+of a timed function and/or a timed block of R-Code in seconds.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Performance Measurement: 
+<code>Counted()</code>,
+<code>Timed()</code>,
+<code>newCounter()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">   a&lt;-newTimer() 
+   a(); Sys.sleep(2); a()
+   a("TimeUsed")
+   a("Count")
+</code></pre>
+
+
+</div>

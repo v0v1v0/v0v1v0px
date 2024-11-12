@@ -1,0 +1,180 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>moon_reader</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>An R Markdown output format for remark.js slides</h2>
+
+<h3>Description</h3>
+
+<p>This output format produces an HTML file that contains the Markdown source
+(knitted from R Markdown) and JavaScript code to render slides.
+<code>tsukuyomi()</code> is an alias of <code>moon_reader()</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">moon_reader(
+  css = c("default", "default-fonts"),
+  self_contained = FALSE,
+  seal = TRUE,
+  yolo = FALSE,
+  chakra = "https://remarkjs.com/downloads/remark-latest.min.js",
+  nature = list(),
+  anchor_sections = FALSE,
+  ...
+)
+
+tsukuyomi(...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>css</code></td>
+<td>
+<p>A vector of CSS file paths. Two default CSS files
+(‘<span class="file">default.css</span>’ and ‘<span class="file">default-fonts.css</span>’) are provided in this
+package, which was borrowed from <a href="https://remarkjs.com">https://remarkjs.com</a>. If the
+character vector <code>css</code> contains a value that does not end with
+<code>.css</code>, it is supposed to be a built-in CSS file in this package,
+e.g., for <code>css = c('default', 'extra.css')</code>), it means
+<code>default.css</code> in this package and a user-provided <code>extra.css</code>. To
+find out all built-in CSS files, use <code>xaringan:::list_css()</code>. With
+<span class="pkg">rmarkdown</span> &gt;= 2.8, Sass files (filenames ending with ‘<span class="file">.scss</span>’ or
+‘<span class="file">.sass</span>’) can also be used, and they will be processed by the
+<span class="pkg">sass</span> package, which needs to be installed.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>self_contained</code></td>
+<td>
+<p>Whether to produce a self-contained HTML file by
+embedding all external resources into the HTML file. See the ‘Note’
+section below.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>seal</code></td>
+<td>
+<p>Whether to generate a title slide automatically using the YAML
+metadata of the R Markdown document (if <code>FALSE</code>, you should write the
+title slide by yourself).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>yolo</code></td>
+<td>
+<p>Whether to insert the
+<a href="https://kbroman.wordpress.com/2014/08/28/the-mustache-photo/">Mustache
+Karl (TM)</a> randomly in the slides. <code>TRUE</code> means insert his picture on
+one slide, and if you want him to be on multiple slides, set <code>yolo</code> to
+a positive integer or a percentage (e.g. 0.3 means 30% of your slides will
+be the Mustache Karl). Alternatively, <code>yolo</code> can also be a list of the
+form <code>list(times = n, img = path)</code>: <code>n</code> is the number of times to
+show an image, and <code>path</code> is the path to an image (by default, it is
+Karl).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>chakra</code></td>
+<td>
+<p>A path to the remark.js library (can be either local or
+remote). Please note that if you use the default remote latest version of
+remark.js, your slides will not work when you do not have Internet access.
+They might also be broken after a newer version of remark.js is released.
+If these issues concern you, you should download remark.js locally (e.g.,
+via <code>summon_remark()</code>), and use the local version instead.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>nature</code></td>
+<td>
+<p>(Nature transformation) A list of configurations to be passed
+to <code>remark.create()</code>, e.g. <code>list(ratio = '16:9', navigation =
+list(click = TRUE))</code>; see
+<a href="https://github.com/gnab/remark/wiki/Configuration">https://github.com/gnab/remark/wiki/Configuration</a>. Besides the
+options provided by remark.js, you can also set <code>autoplay</code> to a number
+(the number of milliseconds) so the slides will be played every
+<code>autoplay</code> milliseconds; alternatively, <code>autoplay</code> can be a list
+of the form <code>list(interval = N, loop = TRUE)</code>, so the slides will go
+to the next page every <code>N</code> milliseconds, and optionally go back to the
+first page to restart the play when <code>loop = TRUE</code>. You can also set
+<code>countdown</code> to a number (the number of milliseconds) to include a
+countdown timer on each slide. If using <code>autoplay</code>, you can optionally
+set <code>countdown</code> to <code>TRUE</code> to include a countdown equal to
+<code>autoplay</code>. To alter the set of classes applied to the title slide,
+you can optionally set <code>titleSlideClass</code> to a vector of classes; the
+default is <code>c("center", "middle", "inverse")</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>anchor_sections, ...</code></td>
+<td>
+<p>For <code>tsukuyomi()</code>, arguments passed to
+<code>moon_reader()</code>; for <code>moon_reader()</code>, arguments passed to
+<code>rmarkdown::html_document()</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Tsukuyomi is a genjutsu to trap the target in an illusion on eye contact.
+</p>
+<p>If you are unfamiliar with CSS, please see the
+<a href="https://github.com/yihui/xaringan/wiki">xaringan wiki on Github</a>
+providing CSS slide modification examples.
+</p>
+
+
+<h3>Note</h3>
+
+<p>Do not stare at Karl's picture for too long after you turn on the
+<code>yolo</code> mode. I believe he has Sharingan.
+</p>
+<p>For the option <code>self_contained = TRUE</code>, it encodes images as base64
+data in the HTML output file. The image path should not contain the string
+<code>")"</code> when the image is written with the syntax <code style="white-space: pre;">⁠![](PATH)⁠</code> or
+<code style="white-space: pre;">⁠background-image: url(PATH)⁠</code>, and should not contain the string
+<code>"/&gt;"</code> when it is written with the syntax <code style="white-space: pre;">⁠&lt;img src="PATH" /&gt;⁠</code>.
+Rendering slides in the self-contained mode can be time-consuming when you
+have remote resources (such as images or JS libraries) in your slides
+because these resources need to be downloaded first. We strongly recommend
+that you download remark.js (via <code>summon_remark()</code>) and use a
+local copy instead of the default <code>chakra</code> argument when
+<code>self_contained = TRUE</code>, so remark.js does not need to be downloaded
+each time you compile your slides.
+</p>
+<p>When the slides are previewed via <code>xaringan::inf_mr()</code>,
+<code>self_contained</code> will be temporarily changed to <code>FALSE</code> even if
+the author of the slides set it to <code>TRUE</code>. This will make it faster to
+preview slides locally (by avoiding downloading remote resources explicitly
+and base64 encoding them). You can always click the Knit button in RStudio
+or call <code>rmarkdown::render()</code> to render the slides in the
+self-contained mode (these approaches will respect the
+<code>self_contained</code> setting).
+</p>
+<p>Each page has its own countdown timer (when the option <code>countdown</code> is
+set in <code>nature</code>), and the timer is (re)initialized whenever you
+navigate to a new page. If you need a global timer, you can use the
+presenter's mode (press <kbd>P</kbd>).
+</p>
+
+
+<h3>References</h3>
+
+<p><a href="https://naruto.fandom.com/wiki/Tsukuyomi">https://naruto.fandom.com/wiki/Tsukuyomi</a>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># rmarkdown::render('foo.Rmd', 'xaringan::moon_reader')
+</code></pre>
+
+
+</div>

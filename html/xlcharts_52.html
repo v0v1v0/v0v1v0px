@@ -1,0 +1,105 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>CellRange</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>CellRange</h2>
+
+<h3>Description</h3>
+
+<p>Represents a range in a sheet: title and coordinates.
+</p>
+<p><a href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.cell_range.html">https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.cell_range.html</a>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">CellRange(
+  range_string = NULL,
+  min_col = NULL,
+  min_row = NULL,
+  max_col = NULL,
+  max_row = NULL,
+  title = NULL,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>range_string</code></td>
+<td>
+<p>range_string</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>min_col</code></td>
+<td>
+<p>min_col</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>min_row</code></td>
+<td>
+<p>min_row</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max_col</code></td>
+<td>
+<p>max_col</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max_row</code></td>
+<td>
+<p>max_row</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>title</code></td>
+<td>
+<p>title</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments, i.e. kwargs.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>This object is used to perform operations on ranges, like: - shift, expand or shrink
+- union/intersection with another sheet range, We can check whether a range is: - equal or not equal to another,
+- disjoint of another,
+- contained in another. We can get: - the size of a range.
+- the range bounds (vertices)
+- the coordinates,
+- the string representation,
+</p>
+
+
+<h3>Value</h3>
+
+<p>An openpyxl Python object.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+CellRange(range_string = "A1")
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,77 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>AcceptBest</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Accepts only genes with equal or better fitness.</h2>
+
+<h3>Description</h3>
+
+<p>Change the gene by a genetic operator pipeline 
+and return the new gene only if the new gene 
+has at least the same fitness as the gene.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">AcceptBest(OperatorPipeline, gene, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>OperatorPipeline</code></td>
+<td>
+<p>Genetic operator pipeline.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>gene</code></td>
+<td>
+<p>Gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The fitness of genes never decreases.
+New genes with inferior fitness do not survive.
+</p>
+
+
+<h3>Value</h3>
+
+<p>The new gene, if it is at least as fit as <code>gene</code> else
+the old gene <code>gene</code>.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Acceptance Rule: 
+<code>AcceptIVMetropolis()</code>,
+<code>AcceptMetropolis()</code>,
+<code>AcceptNewGene()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">OPpipe1&lt;-function(g, lF){InitGene(lF)}
+g1&lt;-lFxegaGaGene$EvalGene(InitGene(lFxegaGaGene), lFxegaGaGene)
+g2&lt;-AcceptBest(OPpipe1, g1, lFxegaGaGene)
+identical(g1, g2)
+</code></pre>
+
+
+</div>

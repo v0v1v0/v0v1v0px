@@ -1,0 +1,327 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>ind.plots.cwres.qq</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Quantile-quantile plots of weighted residuals for each individual in an
+Xpose data object, for Xpose 4</h2>
+
+<h3>Description</h3>
+
+<p>This is a compound plot consisting of QQ plots of the distribution of
+weighted residuals (any weighted residual produced by NONMEM) for every
+individual in the dataset.  The function is a wrapper encapsulating
+arguments to the <code>xpose.plot.qq</code> function.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">ind.plots.cwres.qq(object, wres = "cwres", ...)
+
+ind.plots.wres.qq(
+  object,
+  main = "Default",
+  wres = "wres",
+  layout = c(4, 4),
+  inclZeroWRES = FALSE,
+  subset = xsubset(object),
+  scales = list(cex = 0.7, tck = 0.5),
+  aspect = "fill",
+  force.by.factor = TRUE,
+  ids = F,
+  as.table = TRUE,
+  type = "o",
+  pch = object@Prefs@Graph.prefs$pch,
+  col = object@Prefs@Graph.prefs$col,
+  cex = object@Prefs@Graph.prefs$cex,
+  abllty = object@Prefs@Graph.prefs$abllty,
+  abllwd = object@Prefs@Graph.prefs$abllwd,
+  ablcol = object@Prefs@Graph.prefs$ablcol,
+  prompt = FALSE,
+  main.cex = 0.9,
+  mirror = NULL,
+  max.plots.per.page = 1,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An xpose.data object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>wres</code></td>
+<td>
+<p>Which weighted residual should we plot? Defaults to the WRES.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Other arguments passed to <code>link{xpose.plot.qq}</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>The title of the plot.  If <code>"Default"</code> then a default title
+is plotted. Otherwise the value should be a string like <code>"my title"</code> or
+<code>NULL</code> for no plot title.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>layout</code></td>
+<td>
+<p>A list giving the layout of the graphs on the plot, in columns
+and rows. The default is 4x4.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>inclZeroWRES</code></td>
+<td>
+<p>Logical value indicating whether rows with WRES=0 is
+included in the plot. The default is FALSE.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>subset</code></td>
+<td>
+<p>A string giving the subset expression to be applied to the
+data before plotting. See <code>xsubset</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>scales</code></td>
+<td>
+<p>See <code>xpose.plot.qq</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>aspect</code></td>
+<td>
+<p>See <code>xpose.plot.qq</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>force.by.factor</code></td>
+<td>
+<p>See <code>xpose.plot.qq</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ids</code></td>
+<td>
+<p>See <code>xpose.plot.qq</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>as.table</code></td>
+<td>
+<p>See <code>xpose.plot.qq</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>type</code></td>
+<td>
+<p>1-character string giving the type of plot desired.  The
+following values are possible, for details, see 'plot': '"p"' for points,
+'"l"' for lines, '"o"' for over-plotted points and lines, '"b"', '"c"') for
+(empty if '"c"') points joined by lines, '"s"' and '"S"' for stair steps and
+'"h"' for histogram-like vertical lines.  Finally, '"n"' does not produce
+any points or lines.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pch</code></td>
+<td>
+<p>The plotting character, or symbol, to use. Specified as an
+integer. See R help on <code>points</code>. The default is an open circle.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col</code></td>
+<td>
+<p>The color for lines and points. Specified as an integer or a text
+string. A full list is obtained by the R command <code>colours()</code>. The
+default is blue (col=4).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cex</code></td>
+<td>
+<p>The amount by which plotting text and symbols should be scaled
+relative to the default. 'NULL' and 'NA' are equivalent to '1.0'.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>abllty</code></td>
+<td>
+<p>Line type of the line of identity.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>abllwd</code></td>
+<td>
+<p>Line width of the line of identity.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ablcol</code></td>
+<td>
+<p>Line colour of the line of identity.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>prompt</code></td>
+<td>
+<p>Specifies whether or not the user should be prompted to press
+RETURN between plot pages. Default is FALSE.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main.cex</code></td>
+<td>
+<p>The size of the title.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mirror</code></td>
+<td>
+<p>Mirror plots are not yet implemented in this function and this
+argument must contain a value of <code>NULL</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max.plots.per.page</code></td>
+<td>
+<p>Maximum number of plots per page</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Matrices of Q-Q plots of weighted residuals in each included individual are
+displayed.
+</p>
+<p>A wide array of extra options controlling Q-Q plots are available. See
+<code>xpose.plot.qq</code> for details.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Returns a compound plot comprising QQ plots of weighted residuals
+conditioned on individual.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul><li> <p><code>ind.plots.cwres.qq()</code>: Q-Q plots of conditional 
+weighted residuals for each individual
+</p>
+</li></ul>
+<h3>Author(s)</h3>
+
+<p>E. Niclas Jonsson, Mats Karlsson, Justin Wilkins &amp; Andrew Hooker
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xpose.plot.qq</code>, <code>xpose.panel.qq</code>,
+<code>qqplot</code>, <code>qqmath</code>,
+<code>xpose.prefs-class</code>, <code>xpose.data-class</code>
+</p>
+<p>Other specific functions: 
+<code>absval.cwres.vs.cov.bw()</code>,
+<code>absval.cwres.vs.pred()</code>,
+<code>absval.cwres.vs.pred.by.cov()</code>,
+<code>absval.iwres.cwres.vs.ipred.pred()</code>,
+<code>absval.iwres.vs.cov.bw()</code>,
+<code>absval.iwres.vs.idv()</code>,
+<code>absval.iwres.vs.ipred()</code>,
+<code>absval.iwres.vs.ipred.by.cov()</code>,
+<code>absval.iwres.vs.pred()</code>,
+<code>absval.wres.vs.cov.bw()</code>,
+<code>absval.wres.vs.idv()</code>,
+<code>absval.wres.vs.pred()</code>,
+<code>absval.wres.vs.pred.by.cov()</code>,
+<code>absval_delta_vs_cov_model_comp</code>,
+<code>addit.gof()</code>,
+<code>autocorr.cwres()</code>,
+<code>autocorr.iwres()</code>,
+<code>autocorr.wres()</code>,
+<code>basic.gof()</code>,
+<code>basic.model.comp()</code>,
+<code>cat.dv.vs.idv.sb()</code>,
+<code>cat.pc()</code>,
+<code>cov.splom()</code>,
+<code>cwres.dist.hist()</code>,
+<code>cwres.dist.qq()</code>,
+<code>cwres.vs.cov()</code>,
+<code>cwres.vs.idv()</code>,
+<code>cwres.vs.idv.bw()</code>,
+<code>cwres.vs.pred()</code>,
+<code>cwres.vs.pred.bw()</code>,
+<code>cwres.wres.vs.idv()</code>,
+<code>cwres.wres.vs.pred()</code>,
+<code>dOFV.vs.cov()</code>,
+<code>dOFV.vs.id()</code>,
+<code>dOFV1.vs.dOFV2()</code>,
+<code>data.checkout()</code>,
+<code>dv.preds.vs.idv()</code>,
+<code>dv.vs.idv()</code>,
+<code>dv.vs.ipred()</code>,
+<code>dv.vs.ipred.by.cov()</code>,
+<code>dv.vs.ipred.by.idv()</code>,
+<code>dv.vs.pred()</code>,
+<code>dv.vs.pred.by.cov()</code>,
+<code>dv.vs.pred.by.idv()</code>,
+<code>dv.vs.pred.ipred()</code>,
+<code>gof()</code>,
+<code>ind.plots()</code>,
+<code>ind.plots.cwres.hist()</code>,
+<code>ipred.vs.idv()</code>,
+<code>iwres.dist.hist()</code>,
+<code>iwres.dist.qq()</code>,
+<code>iwres.vs.idv()</code>,
+<code>kaplan.plot()</code>,
+<code>par_cov_hist</code>,
+<code>par_cov_qq</code>,
+<code>parm.vs.cov()</code>,
+<code>parm.vs.parm()</code>,
+<code>pred.vs.idv()</code>,
+<code>ranpar.vs.cov()</code>,
+<code>runsum()</code>,
+<code>wres.dist.hist()</code>,
+<code>wres.dist.qq()</code>,
+<code>wres.vs.idv()</code>,
+<code>wres.vs.idv.bw()</code>,
+<code>wres.vs.pred()</code>,
+<code>wres.vs.pred.bw()</code>,
+<code>xpose.VPC()</code>,
+<code>xpose.VPC.both()</code>,
+<code>xpose.VPC.categorical()</code>,
+<code>xpose4-package</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+ind.plots.cwres.qq(simpraz.xpdb,subset="ID&lt;18")
+
+</code></pre>
+
+
+</div>

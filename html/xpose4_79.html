@@ -1,0 +1,104 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>create.mirror</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Function to create mirror plots from the generic Xpose plotting commands</h2>
+
+<h3>Description</h3>
+
+<p>This function takes the generic plotting functions from Xpose 4 and calls
+them multiple times with the current arguments to the functions, changing
+the arguments as needed for mirror plotting.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">create.mirror(
+  fun,
+  arg.list,
+  mirror,
+  plotTitle,
+  fix.y.limits = TRUE,
+  fix.x.limits = TRUE,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>fun</code></td>
+<td>
+<p>The function name that we will call multiple times</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>arg.list</code></td>
+<td>
+<p>The arguments to that function</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mirror</code></td>
+<td>
+<p>The type of mirror plots desired (1 or 3 mirror plots can be
+created)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>plotTitle</code></td>
+<td>
+<p>The title for the plots</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fix.y.limits</code></td>
+<td>
+<p>Should we fix all the y axes to be the same?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fix.x.limits</code></td>
+<td>
+<p>Should we fix all the x axes to be the same?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>additional arguments passed to the function.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>mostly and internal function for Xpose
+</p>
+
+
+<h3>Value</h3>
+
+<p>a list of plots, or NULL.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Andrew Hooker
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xpose.plot.default</code>,
+<code>xpose.plot.histogram</code>, <code>xpose.plot.qq</code>,
+<code>xpose.plot.splom</code>
+</p>
+
+
+</div>

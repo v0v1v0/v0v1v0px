@@ -1,0 +1,116 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>edit_xmp</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Set/get xmp metadata</h2>
+
+<h3>Description</h3>
+
+<p><code>get_xmp()</code> gets xmp metadata from a file.
+<code>set_xmp()</code> sets xmp metadata for a file.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">get_xmp(filename, use_names = TRUE)
+
+get_xmp_exiftool(filename, use_names = TRUE)
+
+set_xmp(xmp, input, output = input)
+
+set_xmp_exiftool(xmp, input, output = input)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>filename</code></td>
+<td>
+<p>Filename(s) to extract xmp metadata from.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>use_names</code></td>
+<td>
+<p>If <code>TRUE</code> (default) use <code>filename</code> as the names of the result.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xmp</code></td>
+<td>
+<p>An <code>xmp()</code> object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>input</code></td>
+<td>
+<p>Input filename.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>output</code></td>
+<td>
+<p>Output filename.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p><code>get_xmp()</code> will try to use the following helper functions in the following order:
+</p>
+
+<ol><li> <p><code>get_xmp_exiftool()</code> which wraps <code>exiftool</code> command-line tool
+</p>
+</li></ol>
+<p><code>set_xmp()</code> will try to use the following helper functions in the following order:
+</p>
+
+<ol><li> <p><code>set_xmp_exiftool()</code> which wraps <code>exiftool</code> command-line tool
+</p>
+</li></ol>
+<h3>Value</h3>
+
+<p><code>get_xmp()</code> returns a list of <code>xmp()</code> objects.
+<code>set_xmp()</code> returns the (output) filename invisibly.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xmp()</code> for more information about xmp metadata objects.
+<code>supports_get_xmp()</code>, <code>supports_set_xmp()</code>, and <code>supports_exiftool()</code> to detect support for these features.  For more info about xmp metadata see <a href="https://www.exiftool.org/TagNames/XMP.html">https://www.exiftool.org/TagNames/XMP.html</a>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">  x &lt;- xmp(attribution_url = "https://example.com/attribution",
+           creator = "John Doe",
+           description = "An image caption",
+           date_created = Sys.Date(),
+           spdx_id = "CC-BY-4.0")
+  print(x)
+  print(x, mode = "google_images", xmp_only = TRUE)
+  print(x, mode = "creative_commons", xmp_only = TRUE)
+
+  if (supports_set_xmp() &amp;&amp;
+      supports_get_xmp() &amp;&amp;
+      capabilities("png") &amp;&amp;
+      requireNamespace("grid", quietly = TRUE)) {
+
+    f &lt;- tempfile(fileext = ".png")
+    png(f)
+    grid::grid.text("This is an image!")
+    invisible(dev.off())
+    set_xmp(x, f)
+    print(get_xmp(f)[[1]])
+  }
+</code></pre>
+
+
+</div>

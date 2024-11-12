@@ -1,0 +1,68 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>fit_screen</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Fit Slides to the Screen</h2>
+
+<h3>Description</h3>
+
+<p>This extension resizes the slides to match the browser window height and
+width. In other words, the slides are maximized to match the screen size.
+The primary use case for this extension is for when you want to show your
+slides in split screen, for example when demonstrating code in RStudio or
+another window. To enable fit-to-screen, press <strong>Alt</strong>/<strong>Option</strong> + <strong>F</strong> during the
+slideshow. To disable, reload the slides.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">use_fit_screen()
+
+html_dependency_fit_screen()
+</code></pre>
+
+
+<h3>Value</h3>
+
+<p>An<code>htmltools::tagList()</code> with the fit-to-screen dependency, or an
+<code>htmltools::htmlDependency()</code>.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul>
+<li> <p><code>use_fit_screen()</code>: Use the fit-to-screen extension in your xaringan slides.
+</p>
+</li>
+<li> <p><code>html_dependency_fit_screen()</code>: Returns an <code>htmltools::htmlDependency()</code> with the fit
+screen dependencies. Most users will want to use <code>use_fit_screen()</code>.
+</p>
+</li>
+</ul>
+<h3>Usage</h3>
+
+<p>To enable fit-to-screen, add the following code chunk to your
+slides:
+</p>
+<div class="sourceCode markdown"><pre>```{r xaringan-fit-screen, echo=FALSE}
+xaringanExtra::use_fit_screen()
+```
+</pre></div>
+<p>And then press <strong>Alt</strong>/<strong>Option</strong> + <strong>F</strong> at any point during your slide show to
+enable the extension.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">use_fit_screen()
+
+</code></pre>
+
+
+</div>

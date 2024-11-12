@@ -1,0 +1,64 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>substituteSymbol</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Codes the substitution of a non-terminal symbol by the symbols 
+derived by a production rule as a nested list.</h2>
+
+<h3>Description</h3>
+
+<p><code>substituteSymbol()</code> 
+generates a nested list with the non-terminal symbol as the root 
+(first list element) and the derived symbols as the second list element.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">substituteSymbol(rindex, PT)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>rindex</code></td>
+<td>
+<p>Rule index.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PT</code></td>
+<td>
+<p>Production table.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>2-element list.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Generate Derivation Tree: 
+<code>generateDerivationTree()</code>,
+<code>randomDerivationTree()</code>,
+<code>rndsubk()</code>,
+<code>rndsub()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">g&lt;-compileBNF(booleanGrammar())
+substituteSymbol(3, g$PT)
+
+</code></pre>
+
+
+</div>

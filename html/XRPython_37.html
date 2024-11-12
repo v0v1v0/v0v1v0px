@@ -1,0 +1,49 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>RPython</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>An Evaluator for the Python Interface.</h2>
+
+<h3>Description</h3>
+
+<p>Returns an evaluator for the Python interface.  Starts one on the first call, or if arguments are provided;
+providing argument <code>.makeNew = TRUE</code> will force a new evaluator.  Otherwise, the current evaluator is
+returned.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">RPython(...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>arguments to control whether a new evaluator is started.  Normally omitted.</p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+<p>See <code>PythonInterface</code> for details of the evaluator.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">if(okPython(TRUE)) {
+  ev &lt;- RPython()
+  xx &lt;- ev$Eval("[1, %s, 5]", pi)
+  xx
+  xx$append(4.5)
+  ev$Command("print %s", xx)
+}
+</code></pre>
+
+
+</div>

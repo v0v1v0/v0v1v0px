@@ -1,0 +1,103 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>predict_xtune</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Model predictions based on fitted <code>xtune</code> object</h2>
+
+<h3>Description</h3>
+
+<p><code>predict_xtune</code> produces predicted values fitting an xtune model to a new dataset
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">predict_xtune(object, newX, type = c("response", "class"), ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>Fitted 'xtune' model object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>newX</code></td>
+<td>
+<p>Matrix of values at which predictions are to be made.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>type</code></td>
+<td>
+<p>Type of prediction required. For "linear" models it gives the fitted values. Type "response" gives the fitted probability scores of each category for "binary" or "multiclass" outcome.  Type "class" applies to "binary" or "multiclass" models, and produces the class label corresponding to the maximum probability.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Not used</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p><code>coef</code> and <code>predict</code> methods are provided as a convenience to extract coefficients and make prediction. <code>predict_xtune</code> simply calculate the predicted value using the estimated coefficients returned by <code>xtune</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A vector of predictions
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xtune</code>, <code>coef_xtune</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## If no Z provided, perform Empirical Bayes tuning
+## simulate linear data
+set.seed(9)
+data(example)
+X &lt;- example$X
+Y &lt;- example$Y
+Z &lt;- example$Z
+
+
+fit.eb &lt;- xtune(X,Y)
+coef_xtune(fit.eb)
+predict_xtune(fit.eb,X)
+
+
+
+## Feature specific shrinkage based on external information Z:
+
+## simulate multi-categorical data
+data(example.multiclass)
+X &lt;- example.multiclass$X
+Y &lt;- example.multiclass$Y
+Z &lt;- example.multiclass$Z
+
+fit &lt;- xtune(X,Y,Z,family = "multiclass")
+
+
+## Coef and predict methods
+coef_xtune(fit)
+predict_xtune(fit,X, type = "class")
+
+</code></pre>
+
+
+</div>

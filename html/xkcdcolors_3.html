@@ -1,0 +1,78 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>nearest_named</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>
+Find nearest named color to a specified color.
+</h2>
+
+<h3>Description</h3>
+
+<p>Looks up the nearest (sufficiently popular) named color to the specified color
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">nearest_named(color, hex_only = FALSE, max_rank = -1, Lab=TRUE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>color</code></td>
+<td>
+
+<p>Vector of character strings or matrix of RGB values
+</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hex_only</code></td>
+<td>
+
+<p>if <code>TRUE</code> return only the hex string, otherwise all the data
+</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max_rank</code></td>
+<td>
+
+<p>Consider only the <code>max_rank</code> most popular colors.
+</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Lab</code></td>
+<td>
+
+<p>Use the 'Lab' color space if <code>TRUE</code>, otherwise RGB
+</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A hex string with the color, or a data frame
+</p>
+
+
+<h3>References</h3>
+
+<p><a href="http://blog.xkcd.com/2010/05/03/color-survey-results/">http://blog.xkcd.com/2010/05/03/color-survey-results/</a></p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">nearest_named("#8f7303")
+nearest_named("#8f7303",max_rank=100)
+nearest_named("#8f7303",max_rank=10)
+</code></pre>
+
+
+</div>

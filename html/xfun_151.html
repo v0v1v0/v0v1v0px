@@ -1,0 +1,54 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>yaml_body</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Partition the YAML metadata and the body in a document</h2>
+
+<h3>Description</h3>
+
+<p>Split a document into the YAML metadata (which starts with <code style="white-space: pre;">⁠---⁠</code> in the
+beginning of the document) and the body. The YAML metadata will be parsed.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">yaml_body(x, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>A character vector of the document content.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Arguments to be passed to <code>yaml_load()</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A list of components <code>yaml</code> (the parsed YAML data), <code>lines</code> (starting
+and ending line numbers of YAML), and <code>body</code> (a character vector of the
+body text). If YAML metadata does not exist in the document, the components
+<code>yaml</code> and <code>lines</code> will be missing.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">xfun::yaml_body(c("---", "title: Hello", "output: litedown::html_format", "---",
+    "", "Content."))
+</code></pre>
+
+
+</div>

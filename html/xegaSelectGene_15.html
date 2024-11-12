@@ -1,0 +1,77 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>newCounter</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Counter</h2>
+
+<h3>Description</h3>
+
+<p><code>newCounter</code> sets up a counter object with one 
+internal state variable, namely <code>count</code> 
+to count the number of counter calls.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">newCounter()
+</code></pre>
+
+
+<h3>Details</h3>
+
+<p>Generate a counter: 
+<code>a&lt;-newCounter()</code> sets up the counter <code>a</code>.
+The counter <code>a</code> supports three methods:
+</p>
+
+<ol>
+<li> <p><code>a()</code> or 
+<code>a("Measure")</code> or 
+<code>a(method="Measure")</code> 
+<strong>starts</strong> the timer when called 1st, 3rd, 5th, ... time
+and <strong>stops</strong> the timer 
+when called the 2nd, 4th, 6th, ... time.
+The calls can be manually inserted 
+before and after a block of R-code for profiling.
+</p>
+</li>
+<li> <p><code>a("Count")</code> or
+<code>a(method="Count")</code> returns the number of times 
+the function/block or R-code has been executed.
+</p>
+</li>
+</ol>
+<h3>Value</h3>
+
+<p><code>newCounter()</code> returns a counter function.
+</p>
+<p><code>a_counter_function()</code> returns the 
+number of times it has been called
+(invisible).
+</p>
+<p><code>a_counter_function("Show")</code> returns the number of executions
+of the <code>a_counter_function</code>.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Performance Measurement: 
+<code>Counted()</code>,
+<code>Timed()</code>,
+<code>newTimer()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">   a&lt;-newCounter() 
+   a(); a()
+   a("Show")
+</code></pre>
+
+
+</div>

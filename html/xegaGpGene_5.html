@@ -1,0 +1,95 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaGpCrossoverFactory</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Configure the crossover function of a grammar-based genetic algorithm.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaGpCrossoverFactory()</code> implements the selection
+of one of the crossover functions in this
+package by specifying a text string.
+The selection fails ungracefully (produces
+a runtime error), if the label does not match.
+The functions are specified locally.
+</p>
+<p>Current support:
+</p>
+
+<ol>
+<li>
+<p> Crossover functions with two kids:
+</p>
+
+<ol>
+<li>
+<p> "Cross2Gene"       returns <code>xegaGpAllCross2Gene()</code>.
+</p>
+</li>
+<li>
+<p> "AllCross2Gene"    returns <code>xegaGpAllCross2Gene()</code>.
+</p>
+</li>
+<li>
+<p> "FilterCross2Gene" returns <code>xegaGpFilterCross2Gene()</code>.
+</p>
+</li>
+</ol>
+</li>
+<li>
+<p> Crossover functions with one kid:
+</p>
+
+<ol>
+<li>
+<p> "AllCrossGene" returns <code>xegaGpAllCrossGene()</code>.
+</p>
+</li>
+<li>
+<p> "FilterCrossGene" returns <code>xegaGpFilterCrossGene()</code>.
+</p>
+</li>
+</ol>
+</li>
+</ol>
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaGpCrossoverFactory(method = "Cross2Gene")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>String specifying the crossover function.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>Crossover function for genes.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Configuration: 
+<code>xegaGpMutationFactory()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">XGeneTwo&lt;-xegaGpCrossoverFactory("Cross2Gene")
+XGeneOne&lt;-xegaGpCrossoverFactory("FilterCrossGene")
+gene1&lt;-xegaGpInitGene(lFxegaGpGene)
+gene2&lt;-xegaGpInitGene(lFxegaGpGene)
+XGeneTwo(gene1, gene2, lFxegaGpGene)
+XGeneOne(gene1, gene2, lFxegaGpGene)
+</code></pre>
+
+
+</div>

@@ -1,0 +1,177 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>cwres.wres.vs.pred</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Weighted residuals (WRES) and conditional WRES (CWRES) plotted against the
+population predictions (PRED)</h2>
+
+<h3>Description</h3>
+
+<p>Graphically compares WRES and CWRES as plotted against the
+population predictions.Conditional weighted residuals (CWRES) require 
+some extra steps to calculate. Either add <code>CWRES</code> to your NONMEM 
+table files or compute them using the information proveded in 
+<code>compute.cwres</code>. A wide array of extra options controlling 
+xyplots are available. See <code>xpose.plot.default</code> and 
+<code>xpose.panel.default</code> for details.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">cwres.wres.vs.pred(
+  object,
+  ylb = "Residuals",
+  abline = c(0, 0),
+  smooth = TRUE,
+  scales = list(),
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An xpose.data object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylb</code></td>
+<td>
+<p>A string giving the label for the y-axis. <code>NULL</code> if none.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>abline</code></td>
+<td>
+<p>Vector of arguments to the <code>panel.abline</code>
+function. No abline is drawn if <code>NULL</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>smooth</code></td>
+<td>
+<p>A <code>NULL</code> value indicates that no superposed line should
+be added to the graph. If <code>TRUE</code> then a smooth of the data will be
+superimposed.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>scales</code></td>
+<td>
+<p>scales is passed to  <code>xpose.plot.default</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Other arguments passed to <code>xpose.plot.default</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A compound xyplot.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Niclas Jonsson &amp; Andrew Hooker
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xpose.plot.default</code>,
+<code>xpose.panel.default</code>, <code>xyplot</code>,
+<code>xpose.prefs-class</code>, <code>xpose.data-class</code>,
+<code>compute.cwres</code>
+</p>
+<p>Other specific functions: 
+<code>absval.cwres.vs.cov.bw()</code>,
+<code>absval.cwres.vs.pred()</code>,
+<code>absval.cwres.vs.pred.by.cov()</code>,
+<code>absval.iwres.cwres.vs.ipred.pred()</code>,
+<code>absval.iwres.vs.cov.bw()</code>,
+<code>absval.iwres.vs.idv()</code>,
+<code>absval.iwres.vs.ipred()</code>,
+<code>absval.iwres.vs.ipred.by.cov()</code>,
+<code>absval.iwres.vs.pred()</code>,
+<code>absval.wres.vs.cov.bw()</code>,
+<code>absval.wres.vs.idv()</code>,
+<code>absval.wres.vs.pred()</code>,
+<code>absval.wres.vs.pred.by.cov()</code>,
+<code>absval_delta_vs_cov_model_comp</code>,
+<code>addit.gof()</code>,
+<code>autocorr.cwres()</code>,
+<code>autocorr.iwres()</code>,
+<code>autocorr.wres()</code>,
+<code>basic.gof()</code>,
+<code>basic.model.comp()</code>,
+<code>cat.dv.vs.idv.sb()</code>,
+<code>cat.pc()</code>,
+<code>cov.splom()</code>,
+<code>cwres.dist.hist()</code>,
+<code>cwres.dist.qq()</code>,
+<code>cwres.vs.cov()</code>,
+<code>cwres.vs.idv()</code>,
+<code>cwres.vs.idv.bw()</code>,
+<code>cwres.vs.pred()</code>,
+<code>cwres.vs.pred.bw()</code>,
+<code>cwres.wres.vs.idv()</code>,
+<code>dOFV.vs.cov()</code>,
+<code>dOFV.vs.id()</code>,
+<code>dOFV1.vs.dOFV2()</code>,
+<code>data.checkout()</code>,
+<code>dv.preds.vs.idv()</code>,
+<code>dv.vs.idv()</code>,
+<code>dv.vs.ipred()</code>,
+<code>dv.vs.ipred.by.cov()</code>,
+<code>dv.vs.ipred.by.idv()</code>,
+<code>dv.vs.pred()</code>,
+<code>dv.vs.pred.by.cov()</code>,
+<code>dv.vs.pred.by.idv()</code>,
+<code>dv.vs.pred.ipred()</code>,
+<code>gof()</code>,
+<code>ind.plots()</code>,
+<code>ind.plots.cwres.hist()</code>,
+<code>ind.plots.cwres.qq()</code>,
+<code>ipred.vs.idv()</code>,
+<code>iwres.dist.hist()</code>,
+<code>iwres.dist.qq()</code>,
+<code>iwres.vs.idv()</code>,
+<code>kaplan.plot()</code>,
+<code>par_cov_hist</code>,
+<code>par_cov_qq</code>,
+<code>parm.vs.cov()</code>,
+<code>parm.vs.parm()</code>,
+<code>pred.vs.idv()</code>,
+<code>ranpar.vs.cov()</code>,
+<code>runsum()</code>,
+<code>wres.dist.hist()</code>,
+<code>wres.dist.qq()</code>,
+<code>wres.vs.idv()</code>,
+<code>wres.vs.idv.bw()</code>,
+<code>wres.vs.pred()</code>,
+<code>wres.vs.pred.bw()</code>,
+<code>xpose.VPC()</code>,
+<code>xpose.VPC.both()</code>,
+<code>xpose.VPC.categorical()</code>,
+<code>xpose4-package</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">cwres.wres.vs.pred(simpraz.xpdb)
+</code></pre>
+
+
+</div>

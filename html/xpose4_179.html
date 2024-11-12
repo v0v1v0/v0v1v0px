@@ -1,0 +1,111 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>tabulate.parameters</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Tabulate the population parameter estimates</h2>
+
+<h3>Description</h3>
+
+<p>This function provides a summary of the model's parameter estimates and
+precision.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">tabulate.parameters(object, prompt = FALSE, outfile = NULL, dir = "")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An xpose.data object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>prompt</code></td>
+<td>
+<p>Ask before printing.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>outfile</code></td>
+<td>
+<p>file to output to (NULL means screen).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dir</code></td>
+<td>
+<p>Which directory is the NONMEM output file located. <code>""</code> means
+the current working directory <code>getwd()</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A table summarizing the parameters and their precision.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Niclas Jonsson, Andrew Hooker &amp; Justin Wilkins
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other data functions: 
+<code>add_transformed_columns</code>,
+<code>change_graphical_parameters</code>,
+<code>change_misc_parameters</code>,
+<code>compute.cwres()</code>,
+<code>data.checkout()</code>,
+<code>data_extract_or_assign</code>,
+<code>db.names()</code>,
+<code>export.graph.par()</code>,
+<code>export.variable.definitions()</code>,
+<code>import.graph.par()</code>,
+<code>import.variable.definitions()</code>,
+<code>make.sb.data()</code>,
+<code>nsim()</code>,
+<code>par_cov_summary</code>,
+<code>read.TTE.sim.data()</code>,
+<code>read.nm.tables()</code>,
+<code>read_NM_output</code>,
+<code>read_nm_table()</code>,
+<code>simprazExample()</code>,
+<code>xlabel()</code>,
+<code>xpose.data</code>,
+<code>xpose.print()</code>,
+<code>xpose4-package</code>,
+<code>xsubset()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+od = setwd(tempdir()) # move to a temp directory
+(cur.files &lt;- dir()) # current files in temp directory
+
+simprazExample(overwrite=TRUE) # write files
+(new.files &lt;- dir()[!(dir() %in% cur.files)])  # what files are new here?
+xpdb &lt;- xpose.data(1) # read in files to xpose database
+
+tabulate.parameters(xpdb)
+
+file.remove(new.files) # remove these files
+setwd(od)  # restore working directory
+
+</code></pre>
+
+
+</div>

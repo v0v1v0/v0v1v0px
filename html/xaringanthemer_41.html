@@ -1,0 +1,189 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>theme_xaringan_inverse</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>An Inverse Plot Theme for ggplot2 by xaringanthemer</h2>
+
+<h3>Description</h3>
+
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#maturing"><img src="../help/figures/lifecycle-maturing.svg" alt="[Maturing]"></a>
+</p>
+<p>A <span class="pkg">ggplot2</span> xaringanthemer plot theme to seamlessly match the "inverse"
+<span class="pkg">xaringan</span> slide colors and styles as styled by xaringanthemer. See
+<code>vignette("ggplot2-themes")</code> for more information and examples.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">theme_xaringan_inverse(
+  text_color = NULL,
+  background_color = NULL,
+  accent_color = NULL,
+  accent_secondary_color = NULL,
+  css_file = NULL,
+  set_ggplot_defaults = TRUE,
+  text_font = NULL,
+  text_font_use_google = NULL,
+  text_font_size = NULL,
+  title_font = NULL,
+  title_font_use_google = NULL,
+  title_font_size = NULL,
+  use_showtext = NULL
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>text_color</code></td>
+<td>
+<p>Color for text and foreground, inherits from <code>text_color</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>background_color</code></td>
+<td>
+<p>Color for background, inherits from
+<code>background_color</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>accent_color</code></td>
+<td>
+<p>Color for titles and accents, inherits from
+<code>header_color</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>accent_secondary_color</code></td>
+<td>
+<p>Color for secondary accents, inherits from
+<code>text_bold_color</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>css_file</code></td>
+<td>
+<p>Path to a <span class="pkg">xaringanthemer</span> CSS file, from which the
+theme variables and values will be inferred. In general, if you use the
+<span class="pkg">xaringathemer</span> defaults, you will not need to set this. This feature
+lets you create a <span class="pkg">ggplot2</span> theme for your <span class="pkg">xaringan</span> slides, even
+if you have only saved your theme CSS file and you aren't creating your
+CSS theme with <span class="pkg">xaringanthemer</span> in your slides' source file.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>set_ggplot_defaults</code></td>
+<td>
+<p>Should defaults be set for <span class="pkg">ggplot2</span> <em>geoms</em>?
+Defaults to TRUE. To restore ggplot's defaults, or the previously set geom
+defaults, see <code>theme_xaringan_restore_defaults()</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>text_font</code></td>
+<td>
+<p>Font to use for text elements, passed to
+<code>sysfonts::font_add_google()</code>, if available and <code>text_font_use_google</code> is
+<code>TRUE</code>. Inherits from <code>text_font_family</code>. If manually specified, can be a
+<code>google_font()</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>text_font_use_google</code></td>
+<td>
+<p>Is <code>text_font</code> available on <a href="https://fonts.google.com">Google Fonts</a>?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>text_font_size</code></td>
+<td>
+<p>Base text font size, inherits from <code>text_font_size</code>, or
+defaults to 11.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>title_font</code></td>
+<td>
+<p>Font to use for title elements, passed to
+<code>sysfonts::font_add_google()</code>, if available and <code>title_font_use_google</code> is
+<code>TRUE</code>. Inherits from <code>title_font_family</code>. If manually specified, can be a
+<code>google_font()</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>title_font_use_google</code></td>
+<td>
+<p>Is <code>title_font</code> available on <a href="https://fonts.google.com">Google Fonts</a>?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>title_font_size</code></td>
+<td>
+<p>Base text font size, inherits from <code>title_font_size</code>,
+or defaults to 14.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>use_showtext</code></td>
+<td>
+<p>If <code>TRUE</code> the <span class="pkg">showtext</span> package will be
+used to register Google fonts. Set to <code>FALSE</code> to disable this feature
+entirely, which may result in errors during plotting if the fonts used are
+not available locally. The default is <code>TRUE</code> when the <span class="pkg">showtext</span>
+package is installed.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A ggplot2 theme
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other xaringanthemer ggplot2 themes: 
+<code>theme_xaringan()</code>,
+<code>theme_xaringan_base()</code>,
+<code>theme_xaringan_set_defaults()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Requires ggplot2
+has_ggplot2 &lt;- requireNamespace("ggplot2", quietly = TRUE)
+
+if (has_ggplot2) {
+  # Because this is an example, we'll save the CSS to a temp file
+  path_to_css_file &lt;- tempfile(fileext = ".css")
+
+  # Create the xaringan theme: dark blue background with teal green accents
+  style_duo(
+    primary_color = "#002b36",
+    secondary_color = "#31b09e",
+    # Using basic fonts for this example, but the plot theme will
+    # automatically use your theme font if you use Google fonts
+    text_font_family = "sans",
+    header_font_family = "serif",
+    outfile = path_to_css_file
+  )
+
+  library(ggplot2)
+  ggplot(mpg) +
+    aes(cty, hwy) +
+    geom_point() +
+    ggtitle("Fuel Efficiency of Various Cars") +
+    # themed to match the inverse slides: teal background with dark blue text
+    theme_xaringan_inverse()
+}
+</code></pre>
+
+
+</div>

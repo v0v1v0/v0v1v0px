@@ -1,0 +1,76 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>ShapeStyle</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>ShapeStyle</h2>
+
+<h3>Description</h3>
+
+<p><a href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.drawing.geometry.html">https://openpyxl.readthedocs.io/en/stable/api/openpyxl.drawing.geometry.html</a>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">ShapeStyle(lnRef = NULL, fillRef = NULL, effectRef = NULL, fontRef = NULL, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>lnRef</code></td>
+<td>
+<p>lnRef</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fillRef</code></td>
+<td>
+<p>fillRef</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>effectRef</code></td>
+<td>
+<p>effectRef</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fontRef</code></td>
+<td>
+<p>fontRef</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments, i.e. kwargs.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An openpyxl Python object.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+ShapeStyle(
+lnRef = StyleMatrixReference(idx = 1L),
+fillRef = StyleMatrixReference(idx = 1L),
+effectRef = StyleMatrixReference(idx = 1L),
+fontRef = FontReference()
+)
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

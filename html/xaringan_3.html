@@ -1,0 +1,80 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>infinite_moon_reader</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Serve and live reload slides</h2>
+
+<h3>Description</h3>
+
+<p>Use the <span class="pkg">servr</span> package to serve and reload slides on change.
+<code>inf_mr()</code> and <code>mugen_tsukuyomi()</code> are aliases of
+<code>infinite_moon_reader()</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">infinite_moon_reader(moon, cast_from = ".", ...)
+
+inf_mr(moon, cast_from = ".", ...)
+
+mugen_tsukuyomi(moon, cast_from = ".", ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>moon</code></td>
+<td>
+<p>The input Rmd file path (if missing and in RStudio, the current
+active document is used).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cast_from</code></td>
+<td>
+<p>The root directory of the server.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Passed to <code>rmarkdown::render()</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The Rmd document is compiled continuously to trap the world in the Infinite
+Tsukuyomi. The genjutsu is cast from the directory specified by
+<code>cast_from</code>, and the Rinne Sharingan will be reflected off of the
+<code>moon</code>. Use <code>servr::daemon_stop()</code> to perform a genjutsu Kai and
+break the spell.
+</p>
+
+
+<h3>Note</h3>
+
+<p>This function is not really tied to the output format
+<code>moon_reader()</code>. You can use it to serve any single-HTML-file R
+Markdown output.
+</p>
+
+
+<h3>References</h3>
+
+<p><a href="https://naruto.fandom.com/wiki/Infinite_Tsukuyomi">https://naruto.fandom.com/wiki/Infinite_Tsukuyomi</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>servr::httw</code>
+</p>
+
+
+</div>

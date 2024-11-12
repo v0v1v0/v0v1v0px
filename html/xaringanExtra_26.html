@@ -1,0 +1,137 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>logo</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Add Logo</h2>
+
+<h3>Description</h3>
+
+<p><code>use_logo()</code> adds a logo to all of your slides. You can make the logo a
+clickable link and choose where on the page it is placed. You can also set
+which types of slides will not get the logo by default.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">use_logo(
+  image_url,
+  width = "110px",
+  height = "128px",
+  position = css_position(top = "1em", right = "1em"),
+  link_url = NULL,
+  exclude_class = c("title-slide", "inverse", "hide_logo")
+)
+
+html_dependency_logo(
+  link_url = NULL,
+  exclude_class = c("title-slide", "inverse", "hide_logo"),
+  inline = NULL
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>image_url</code></td>
+<td>
+<p>The URL to the image file of your logo. In general, either
+a full URL or the path to the image relative to your slides file.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>width</code></td>
+<td>
+<p>Width in CSS units of the logo</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>height</code></td>
+<td>
+<p>Height in CSS units of the logo</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>position</code></td>
+<td>
+<p>The position of the logo from the sides of the slide. Use
+<code>css_position()</code> to specify.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>link_url</code></td>
+<td>
+<p>Optional. If provided, your logo becomes a clickable link.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>exclude_class</code></td>
+<td>
+<p>The slide classes that should not receive the logo. By
+default, the title slide, inverse slides and slides with the <code>hide_logo</code>
+class are excluded.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>inline</code></td>
+<td>
+<p>In <code>html_dependency_logo()</code>, should the JS and CSS code to
+create the logo be returned inline (inside the rendered slides) or in
+separate CSS and JS documents attached as an html dependency? The default
+is to use inline for <span class="pkg">xaringan</span> version 0.16 or later.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An <code>htmltools::tagList()</code> with the Add Logo dependencies, or an
+<code>htmltools::htmlDependency()</code>.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul>
+<li> <p><code>use_logo()</code>: Adds logo to your xaringan slides.
+</p>
+</li>
+<li> <p><code>html_dependency_logo()</code>: Returns an <code>htmltools::htmlDependency()</code> with the tile
+view dependencies. Most users will want to use <code>use_logo()</code>.
+</p>
+</li>
+</ul>
+<h3>Usage</h3>
+
+<p>To add a logo to your xaringan presentation, add the
+following code chunk to your slides' R Markdown file.
+</p>
+<div class="sourceCode markdown"><pre>```{r xaringan-logo, echo=FALSE}
+xaringanExtra::use_logo(
+  image_url = "https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/xaringan.png"
+)
+```
+</pre></div>
+<p>See the documentation for <code>?use_logo</code> for more options regarding sizing
+and positioning. You can also make the logo a link using <code>link_url</code> and
+you can hide the logo for a particular slide by using the <code>hide_logo</code>
+slide class.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">xaringan_logo &lt;- file.path(
+  "https://raw.githubusercontent.com/rstudio/hex-stickers/master",
+  "PNG/xaringan.png"
+)
+use_logo(xaringan_logo)
+
+</code></pre>
+
+
+</div>

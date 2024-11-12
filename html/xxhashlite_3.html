@@ -1,0 +1,63 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xxhash_raw</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Calculate the hash of a raw vector or string</h2>
+
+<h3>Description</h3>
+
+<p>This performs a hash of the raw bytes - not of the serialized representation.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xxhash_raw(vec, algo = "xxh128", as_raw = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>vec</code></td>
+<td>
+<p>raw vector or single character string</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>algo</code></td>
+<td>
+<p>Select the specific xxhash algorithm. Default: 'xxh128'.
+(the latest algorithm in the xxhash family)
+Valid values: 'xxh32', 'xxh64', 'xxh128', 'xxh3'</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>as_raw</code></td>
+<td>
+<p>Return the hash as a raw vector of bytes instead of string?
+Default: FALSE.  If TRUE, then the raw bytes are returned in big-endian
+order - which is what <code>xxHash</code> considers the <em>canonical</em> form.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>String representation of hash. If <code>as_raw = TRUE</code> then a 
+raw vector is returned instead.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">vec &lt;- "hello"
+xxhash_raw(vec)
+vec &lt;- as.raw(c(0x01, 0x02, 0x99))
+xxhash_raw(vec)
+</code></pre>
+
+
+</div>

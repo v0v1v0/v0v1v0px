@@ -1,0 +1,63 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>CodonPrecisionWithThreshold</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Precision of a codon which has a choice bias below a probability threshold.</h2>
+
+<h3>Description</h3>
+
+<p>The choice bias is the sum of the absolute values of the 
+difference between a k equally probable choices and the 
+probability distribution of the modulo choice rule.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">CodonPrecisionWithThreshold(LHS, pCrit)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>LHS</code></td>
+<td>
+<p>The left-hand side of a grammar object <code>G</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pCrit</code></td>
+<td>
+<p>Threshold for the choice bias for single non-terminal.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>The precision of a codon which guarantees that the choice bias 
+for all nonterminals is below a probability threshold of
+<code>PCrit</code>.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Precision: 
+<code>MinCodonPrecision()</code>,
+<code>mLCMGCodonPrecision()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">NT&lt;-sample(5, 50, replace=TRUE)
+CodonPrecisionWithThreshold(NT, 0.1)
+CodonPrecisionWithThreshold(NT, 0.01)
+</code></pre>
+
+
+</div>

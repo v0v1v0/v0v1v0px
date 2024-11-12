@@ -1,0 +1,133 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>get_loo_fun</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Retrieve a loo function</h2>
+
+<h3>Description</h3>
+
+<p>This function returns the correct function needed to perform
+one of the leave-one-out cross-validations. It's primarily meant
+for internal use but can be useful when doing simulations.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">get_loo_fun(x, ...)
+
+## S4 method for signature 'tskrrHeterogeneous'
+get_loo_fun(
+  x,
+  exclusion = c("interaction", "row", "column", "both"),
+  replaceby0 = FALSE
+)
+
+## S4 method for signature 'tskrrHomogeneous'
+get_loo_fun(
+  x,
+  exclusion = c("edges", "vertices", "interaction", "both"),
+  replaceby0 = FALSE
+)
+
+## S4 method for signature 'linearFilter'
+get_loo_fun(x, replaceby0 = FALSE)
+
+## S4 method for signature 'character'
+get_loo_fun(
+  x = c("tskrrHeterogeneous", "tskrrHomogeneous", "linearFilter"),
+  ...
+)
+
+## S4 method for signature 'tskrrTune'
+get_loo_fun(x, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>a character value with the class or a <code>tskrr</code>
+or <code>linearFilter</code> object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>arguments passed to or from other methods.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>exclusion</code></td>
+<td>
+<p>a character value with possible values "interaction",
+"row", "column", "both" for heterogeneous models, and "edges", "vertices",
+"interaction" or "both" for homogeneous models.
+Defaults to "interaction". See details.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>replaceby0</code></td>
+<td>
+<p>a logical value indicating whether the interaction
+should be simply removed (<code>FALSE</code>) or replaced by 0 (<code>TRUE</code>).</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>This function can be used to select the correct loo function in
+a simulation or tuning algorithm, based on the model object you
+created. Depending on its class, the returned functions will have
+different arguments, so you should only use this if you know
+what you're doing and after you checked the actual returned
+functions in <code>loo_internal</code>.
+</p>
+<p>Using <code>replaceby0</code> only makes sense if you only remove the interaction.
+In all other cases, this argument is ignored.
+</p>
+<p>For the class <code>tskrrHomogeneous</code>, it doesn't make sense to
+remove rows or columns. If you chose this option, the function will
+throw an error. Removing edges corresponds to the setting "edges" or
+"interaction". Removing vertices corresponds to the setting "vertices" or
+"both". These terms can be used interchangeably.
+</p>
+<p>For the class <code>linearFilter</code> it only makes sense to exclude the
+interaction (i.e., a single cell). Therefore you do not have an argument
+<code>exclusion</code> for that method.
+</p>
+<p>For the classes <code>tskrrTune</code> and <code>tskrrImpute</code>,
+not specifying <code>exclusion</code> or <code>replaceby0</code> returns the used
+loo function. If you specify either of them,
+it will use the method for the appropriate model and return
+a new loo function.
+</p>
+
+
+<h3>Value</h3>
+
+<p>a function taking the arguments y, and possibly pred
+for calculating the leave-one-out cross-validation. For class
+<code>tskrrHeterogeneous</code>, the returned function also
+has an argument Hk and Hg, representing the hat matrix for the rows
+and the columns respectively. For class <code>tskrrHomogeneous</code>,
+only the extra argument Hk is available. For class <code>linearFilter</code>,
+the extra argument is called <code>alpha</code> and takes the alpha vector
+of that model.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>loo</code> for carrying out a leave on out crossvalidation,
+and <code>loo_internal</code> for more information on the internal
+functions one retrieves with this one.
+</p>
+
+
+</div>

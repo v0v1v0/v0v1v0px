@@ -1,0 +1,120 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>info_xSub</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Information on available xSub files</h2>
+
+<h3>Description</h3>
+
+<p>This function reports the availability of files on the <code>www.x-sub.org</code> server, and corresponding country codes and units of analysis. For additional info, see <code>www.x-sub.org/about/what-is-xsub</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">info_xSub(
+  details = FALSE,
+  sources_type = "individual",
+  data_type = "panel",
+  data_source = NULL,
+  country_iso3 = NULL,
+  country_name = NULL,
+  geo_window = NULL,
+  time_window = NULL,
+  dyad_type = NULL
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>details</code></td>
+<td>
+<p>Logical. If <code>details=TRUE</code>, function returns information on available units of analysis for each country.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sources_type</code></td>
+<td>
+<p>Type of data sources ("individual" or "multiple"). Character string.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data_type</code></td>
+<td>
+<p>Type of dataset ("event" or "panel"). Character string.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data_source</code></td>
+<td>
+<p>Subset results by data sources. Character string or vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>country_iso3</code></td>
+<td>
+<p>Subset results by country codes (ISO3). Character string or vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>country_name</code></td>
+<td>
+<p>Subset results by country name. Character string or vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>geo_window</code></td>
+<td>
+<p>Geographic window (if source_type="multiple"). Could be either of "1 km" or "5 km". Character string or vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>time_window</code></td>
+<td>
+<p>Time window (if source_type="multiple"). Could be either of "1 day" or "2 day". Character string or vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dyad_type</code></td>
+<td>
+<p>Time window (if source_type="multiple"). Could be either of "undirected" or "directed". Character string or vector.</p>
+</td>
+</tr>
+</table>
+<h3>See Also</h3>
+
+<p><code>get_xSub</code>, <code>get_xSub_multi</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># General info on data sources and countries
+info_xSub()
+
+# Available files for Pakistan
+info_xSub(country_name = "Pakistan")
+
+# Detailed info for Pakistan
+info_xSub(details=TRUE,country_name = "Pakistan")
+
+# Available files for SCAD data source
+info_xSub(data_source = "SCAD")
+
+# Available files for SCAD data source, event-level
+info_xSub(data_source = "SCAD", data_type = "event")
+
+# Multiple data sources, directed dyads
+info_xSub(sources_type = "multiple", dyad_type = "directed")
+
+# Multiple data sources, directed dyads, Russia
+info_xSub(sources_type = "multiple", dyad_type = "directed", country_name = "Russia")
+</code></pre>
+
+
+</div>

@@ -1,0 +1,70 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>makeProductionTable</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Produces a production table.</h2>
+
+<h3>Description</h3>
+
+<p><code>makeProductionTable()</code> produces a production table 
+from a specification of a BNF.   
+Warning: No error checking implemented.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">makeProductionTable(BNF, ST)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>BNF</code></td>
+<td>
+<p>A character string with the BNF.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ST</code></td>
+<td>
+<p>A symbol table.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A production table is a named list with elements 
+<code>$LHS</code> and <code>$RHS</code>:  
+</p>
+
+<ul>
+<li>
+<p> The left-hand side <code>LHS</code>
+of non-terminal identifiers. 
+</p>
+</li>
+<li>
+<p> The right-hand side <code>RHS</code> is represented as a 
+vector of vectors of numerical identifiers. 
+</p>
+</li>
+</ul>
+<p>The non-terminal identifier <code>LHS[i]</code> derives into <code>RHS[i]</code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">a&lt;-booleanGrammar()$BNF
+ST&lt;-makeSymbolTable(a)
+makeProductionTable(a,ST)
+
+</code></pre>
+
+
+</div>

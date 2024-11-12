@@ -1,0 +1,79 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>divide_chunk</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Divide chunk options from the code chunk body</h2>
+
+<h3>Description</h3>
+
+<p>Chunk options can be written in special comments (e.g., after <code style="white-space: pre;">⁠#|⁠</code> for R code
+chunks) inside a code chunk. This function partitions these options from the
+chunk body.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">divide_chunk(engine, code)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>engine</code></td>
+<td>
+<p>The name of the language engine (to determine the appropriate
+comment character).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>code</code></td>
+<td>
+<p>A character vector (lines of code).</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A list with the following items:
+</p>
+
+<ul>
+<li> <p><code>options</code>: The parsed options (if there are any) as a list.
+</p>
+</li>
+<li> <p><code>src</code>: The part of the input that contains the options.
+</p>
+</li>
+<li> <p><code>code</code>: The part of the input that contains the code.
+</p>
+</li>
+</ul>
+<h3>Note</h3>
+
+<p>Chunk options must be written on <em>continuous</em> lines (i.e., all lines
+must start with the special comment prefix such as <code style="white-space: pre;">⁠#|⁠</code>) at the beginning
+of the chunk body.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># parse yaml-like items
+yaml_like = c("#| label: mine", "#| echo: true", "#| fig.width: 8", "#| foo: bar",
+    "1 + 1")
+writeLines(yaml_like)
+xfun::divide_chunk("r", yaml_like)
+
+# parse CSV syntax
+csv_like = c("#| mine, echo = TRUE, fig.width = 8, foo = 'bar'", "1 + 1")
+writeLines(csv_like)
+xfun::divide_chunk("r", csv_like)
+</code></pre>
+
+
+</div>

@@ -1,0 +1,74 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>MergedCell</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>MergedCell</h2>
+
+<h3>Description</h3>
+
+<p>Describes the properties of a cell in a merged cell and helps to display the borders of the merged cell.
+</p>
+<p><a href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.cell.cell.html">https://openpyxl.readthedocs.io/en/stable/api/openpyxl.cell.cell.html</a>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">MergedCell(worksheet, row = NULL, column = NULL, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>worksheet</code></td>
+<td>
+<p>worksheet</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>row</code></td>
+<td>
+<p>row</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>column</code></td>
+<td>
+<p>column</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments, i.e. kwargs.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The value of a MergedCell is always NULL.
+</p>
+
+
+<h3>Value</h3>
+
+<p>An openpyxl Python object.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+wb &lt;- Workbook()
+MergedCell(worksheet = wb$active, row = 1L, column = 1L)
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

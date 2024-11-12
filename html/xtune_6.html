@@ -1,0 +1,58 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>gene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Simulated gene data to predict weight loss</h2>
+
+<h3>Description</h3>
+
+<p>The simulated <code>gene</code> data contains 50 observations, 200 predictors,
+and an continuous outcome, bone mineral density. The external information Z is four previous study results that identifies the biological importance of genes.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">data(gene)
+</code></pre>
+
+
+<h3>Format</h3>
+
+<p>The <code>gene</code> object is a list containing three elements:
+</p>
+
+<ul>
+<li>
+<p> GeneExpression: Matrix of gene expression predictors.
+</p>
+</li>
+<li>
+<p> bonedensity: Continuous outcome variable
+</p>
+</li>
+<li>
+<p> PreviousStudy: Whether each gene is identified by previous study results.
+</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p><code>diet</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(gene)
+X &lt;- gene$GeneExpression
+Y &lt;- gene$bonedensity
+Z &lt;- gene$PreviousStudy
+fit &lt;- xtune(X,Y,Z)
+fit$penalty.vector
+</code></pre>
+
+
+</div>

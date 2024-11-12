@@ -1,0 +1,46 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>last_data_problem</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Get last data problem</h2>
+
+<h3>Description</h3>
+
+<p>Used by several internal functions when the problem argument has not 
+been supplied by the user.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">last_data_problem(xpdb, simtab = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>xpdb</code></td>
+<td>
+<p>An xpose database object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>simtab</code></td>
+<td>
+<p>Logical if 'TRUE' the last simulation problem is returned. If 'FALSE' 
+the last estimation problem is returned.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>The last estimation problem when 'simtab = FALSE', 
+else the last simulation problem as an integer.
+</p>
+
+
+</div>

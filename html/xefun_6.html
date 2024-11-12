@@ -1,0 +1,64 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>date_bop</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>start/end date by period</h2>
+
+<h3>Description</h3>
+
+<p>The date of bop (beginning of period) or eop (end of period).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">date_bop(freq, x, workday = FALSE)
+
+date_eop(freq, x, workday = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>freq</code></td>
+<td>
+<p>the frequency of period. It supports weekly, monthly, quarterly and yearly.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>a date</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>workday</code></td>
+<td>
+<p>logical, whether to return the latest workday</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>date_bop returns the beginning date of period of corresponding x by frequency.
+</p>
+<p>date_eop returns the end date of period of corresponding x by frequency.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">date_bop('weekly', Sys.Date())
+date_eop('weekly', Sys.Date())
+
+date_bop('monthly', Sys.Date())
+date_eop('monthly', Sys.Date())
+
+</code></pre>
+
+
+</div>

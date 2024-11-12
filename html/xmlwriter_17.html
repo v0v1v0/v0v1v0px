@@ -1,0 +1,162 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xml_fragment</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Create an XML fragment</h2>
+
+<h3>Description</h3>
+
+<p>Create an XML fragment using readable R syntax, that can be used to create
+a string, an <code>xml2::xml_document</code> or as a building block for more complex XML documents.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xml_fragment(...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>nest named elements and characters to include in the fragment (see example)</p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+<p>An <code>xml_fragment</code> is built using:
+</p>
+
+<ul>
+<li>
+<p> named <code>frag</code> elements, each name is a tag name, and the value is the contents
+of the tag, e.g. <code>name = "value"</code> becomes <code style="white-space: pre;">⁠&lt;name&gt;value&lt;/name&gt;⁠</code>. The value
+can be a nested <code>frag</code> object, a character string or a numeric value.
+</p>
+</li>
+<li> <p><code>.attr</code> attributes, which is set on current element, or on the <code>frag</code> where
+it is specified
+</p>
+</li>
+<li>
+<p> unnamed elements, which are added as text nodes.
+</p>
+</li>
+<li> <p><code>data_frag()</code> function that can be used to convert a data.frame to an xml fragment,
+in which each row is a set of xml elements (columns).
+</p>
+</li>
+<li> <p><code>tag()</code> function that can be used to create a tag with attributes and (optional) text.
+</p>
+</li>
+</ul>
+<p>An <code>xml_doc</code> is a special case of an <code>xml_fragment</code> that contains exactly one
+root element, and errors when this is not the case.
+</p>
+<p>A resulting <code>xml_fragment</code> object can be converted to an <code>xml2::xml_document</code> with
+<code>xml2::as_xml_document()</code> or to a character string with <code>as.character()</code>. Both
+methods are fast using a performant c++ implementation.
+</p>
+
+
+<h3>Value</h3>
+
+<p>an <code>xml_fragment</code>, list object that can be converted to an <code>xml2::xml_document</code>
+or <code>character</code> string
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other xml_fragment: 
+<code>add_child_fragment()</code>,
+<code>as.character.xml_fragment()</code>,
+<code>as_frag()</code>,
+<code>as_xml_nodeset()</code>,
+<code>data_frag()</code>,
+<code>frag()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">doc &lt;- xml_fragment(
+  study = frag(
+    .attr = c(id="1"),
+    person = frag(
+      .attr = c(id = "p1"),
+      name = "John Doe",
+      age = 30
+    ),
+    person = frag(
+      name = "Jane Doe",
+      age = 25,
+      address = frag(street = "123 Main St", city = "Springfield"),
+      "This is a text node"
+    )
+  )
+)
+
+print(doc)
+if (require("xml2")){
+  as_xml_document(doc)
+}
+
+# you can create a function to generate an xml fragment:
+person_frag &lt;- function(name, age, id){
+  tag("person", id = id) / frag(
+    name = name,
+    age  = age,
+    address = frag(
+      street = "123 Main St",
+      city = "Springfield"
+    )
+  )
+}
+
+# xml_doc is a xml_fragment with the restriction of having one root element
+doc2 &lt;- xml_doc("study") / (
+  person_frag("John Doe", 30, "p1") +
+  person_frag("Jane Doe", 25, "p2")
+)
+
+print(doc2)
+
+if (require("xml2")){
+  as_xml_document(doc2)
+}
+
+# a fragment can have multiple root elements
+fgmt &lt;- person_frag("John Doe", 30, id = "p1") +
+  person_frag("Jane Doe", 25, id = "p2")
+
+
+print(fgmt)
+
+if (require("xml2")){
+  # as_xml_document won't work because it expects a single root element,
+  # so we retrieve a nodeset instead
+  as_xml_nodeset(fgmt)
+}
+
+iris_xml &lt;- xml_doc("fieldstudy", id = "iris", doi ="10.1111/j.1469-1809.1936.tb02137.x") /
+  frag(
+    source = "Fisher, R. A. (1936) The use of multiple measurements in
+taxonomic problems. Annals of Eugenics, 7, Part II, 179–188.",
+    data = data_frag(iris, row_tag = "obs")
+  )
+
+print(iris_xml, max_characters = 300)
+
+if (require("xml2")){
+  as_xml_document(iris_xml)
+}
+</code></pre>
+
+
+</div>

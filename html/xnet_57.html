@@ -1,0 +1,107 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>labels.tskrr</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Extract labels from a tskrr object</h2>
+
+<h3>Description</h3>
+
+<p>These functions allow you to extract the labels from a
+<code>tskrr</code> object. The function <code>labels</code> and the
+function <code>dimnames</code> are aliases and do the exact same
+thing. The functions <code>rownames</code> and <code>colnames</code> work like
+you would expect. Note that contrary to the latter two, <code>labels</code>
+will never return <code>NULL</code>. If no labels are found, it will construct
+labels using the prefixes defined in the argument <code>prefix</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S3 method for class 'tskrr'
+labels(
+  object,
+  prefix = if (is_homogeneous(object)) "row" else c("row", "col"),
+  ...
+)
+
+## S4 method for signature 'tskrr'
+labels(
+  object,
+  prefix = if (is_homogeneous(object)) "row" else c("row", "col"),
+  ...
+)
+
+## S4 method for signature 'tskrr'
+dimnames(x)
+
+## S4 method for signature 'tskrr'
+rownames(x, do.NULL = TRUE, prefix = "row")
+
+## S4 method for signature 'tskrr'
+colnames(x, do.NULL = TRUE, prefix = "col")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>a <code>tskrr</code> object</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>prefix</code></td>
+<td>
+<p>a prefix used for construction of the labels in case
+none are available. For <code>label</code>, a character vector of length 1 for
+homogeneous networks or of length 2 for heterogeneous networks.
+In case two values are given, the first is used for the rows and the second
+for the columns. Otherwise the only value is used for both. In the case of
+<code>rownames</code> and <code>colnames</code>, a single value.
+See also <code>row+colnames</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>arguments passed to/from other methods.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>a <code>tskrr</code> object</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>do.NULL</code></td>
+<td>
+<p>logical. If <code>FALSE</code> and labels are <code>NULL</code>,
+labels are created. If <code>TRUE</code>, the function returns <code>NULL</code> in
+the absence of labels.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>for <code>labels</code> and <code>dimnames</code>: a list with two elements <code>k</code> and
+<code>g</code>
+</p>
+
+
+<h3>Warning</h3>
+
+<p>If the original data didn't contain row- or column names for the
+label matrix, <code>rownames</code> and <code>colnames</code> will return
+<code>NULL</code>. Other functions will extract the automatically generated
+labels, so don't count on <code>rownames</code> and <code>colnames</code> if you
+want to predict output from other functions!
+</p>
+
+
+</div>

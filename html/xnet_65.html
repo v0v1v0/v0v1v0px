@@ -1,0 +1,118 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>loo</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Leave-one-out cross-validation for tskrr</h2>
+
+<h3>Description</h3>
+
+<p>Perform a leave-one-out cross-validation for two-step kernel
+ridge regression based on the shortcuts described in Stock et al, 2018.
+(<a href="http://doi.org/10.1093/bib/bby095">http://doi.org/10.1093/bib/bby095</a>).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">loo(x, ...)
+
+## S4 method for signature 'tskrrHeterogeneous'
+loo(
+  x,
+  exclusion = c("interaction", "row", "column", "both"),
+  replaceby0 = FALSE
+)
+
+## S4 method for signature 'tskrrHomogeneous'
+loo(
+  x,
+  exclusion = c("edges", "vertices", "interaction", "both"),
+  replaceby0 = FALSE
+)
+
+## S4 method for signature 'linearFilter'
+loo(x, replaceby0 = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>an object of class <code>tskrr</code> or
+<code>linearFilter</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>arguments passed to methods.
+See Details.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>exclusion</code></td>
+<td>
+<p>a character value with possible values "interaction",
+"row", "column", "both" for heterogeneous models, and "edges", "vertices",
+"interaction" or "both" for homogeneous models.
+Defaults to "interaction". See details.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>replaceby0</code></td>
+<td>
+<p>a logical value indicating whether the interaction
+should be simply removed (<code>FALSE</code>) or replaced by 0 (<code>TRUE</code>).</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The parameter <code>exclusion</code> defines what is left out.
+The value "interaction" means that a single interaction is removed.
+In the case of a homogeneous model, this can be interpreted as the
+removal of the interaction between two edges. The values "row" and
+"column" mean that all interactions for a row edge resp. a column
+edge are removed. The value "both" removes all interactions for
+a row and a column edge.
+</p>
+<p>In the case of a homogeneous model, "row" and "column" don't make sense
+and will be replaced by "both" with a warning. This can be interpreted
+as removing vertices, i.e. all interactions between one edge and
+all other edges. Alternatively one can use "edges" to remove edges and
+"vertices" to remove vertices. In the case of a homogeneous model,
+the setting "edges" translates to "interaction", and "vertices"
+translates to "both". For more information, see Stock et al. (2018).
+</p>
+<p>Replacing by 0 only makes sense when <code>exclusion = "interaction"</code> and the
+label matrix contains only 0 and 1 values. The function checks whether
+the conditions are fulfilled and if not, returns an error.
+</p>
+
+
+<h3>Value</h3>
+
+<p>a numeric matrix with the leave-one-out predictions for
+the model.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(drugtarget)
+
+mod &lt;- tskrr(drugTargetInteraction, targetSim, drugSim,
+             lambda = c(0.01,0.01))
+
+delta &lt;- loo(mod, exclusion = 'both') - response(mod)
+delta0 &lt;- loo(mod, replaceby0 = TRUE) - response(mod)
+
+</code></pre>
+
+
+</div>

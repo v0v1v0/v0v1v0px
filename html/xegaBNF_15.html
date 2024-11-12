@@ -1,0 +1,73 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>symb2id</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Convert a symbol to a numeric identifier.</h2>
+
+<h3>Description</h3>
+
+<p><code>symb2id()</code> converts a symbol to a numeric id.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">symb2id(sym, ST)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>sym</code></td>
+<td>
+<p>A character string with the symbol, e.g. &lt;fe&gt; or "NOT".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ST</code></td>
+<td>
+<p>A symbol table.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+
+<ul>
+<li>
+<p> A positive integer if the symbol exists or  
+</p>
+</li>
+<li>
+<p> an empty integer (<code>integer(0)</code>) 
+if the symbol does not exist.</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p>Other Utility Functions: 
+<code>derive()</code>,
+<code>id2symb()</code>,
+<code>isNonTerminal()</code>,
+<code>isTerminal()</code>,
+<code>rules()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">g&lt;-compileBNF(booleanGrammar())
+symb2id("&lt;fe&gt;", g$ST)
+symb2id("NOT", g$ST)
+symb2id("&lt;fe", g$ST)
+symb2id("NO", g$ST)
+identical(symb2id("NO", g$ST), integer(0))
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,56 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>Gray2Bin</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Map Gray code to binary.</h2>
+
+<h3>Description</h3>
+
+<p>Map Gray code to binary.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">Gray2Bin(x)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>Gray code (boolean vector).</p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+<p>Start with the highest order bit, and 
+<code>r[k-i]&lt;- xor(n[k], n[k-1])</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Binary code (boolean vector).
+</p>
+
+
+<h3>References</h3>
+
+<p>Gray, Frank (1953):
+Pulse Code Communication. US Patent 2 632 058.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"> Gray2Bin(c(1, 0, 0, 0))
+ Gray2Bin(c(1, 1, 1, 1))
+</code></pre>
+
+
+</div>

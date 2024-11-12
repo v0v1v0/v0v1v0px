@@ -1,0 +1,100 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>trimfill_rma</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Trim&amp;fill method for univariate meta analysis</h2>
+
+<h3>Description</h3>
+
+<p>Modified metafor::trimfill.rma.uni to avoid the invalid sqrt in k0 calculation when estimator == "Q0"
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">trimfill_rma(
+  x,
+  side,
+  estimator = "L0",
+  maxiter = 100,
+  method.trim = NULL,
+  method.fill = NULL,
+  verbose = FALSE,
+  ilim
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>an object of class "rma.uni".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>side</code></td>
+<td>
+<p>the same as in metafor::trimfill</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>estimator</code></td>
+<td>
+<p>the same as in metafor::trimfill</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>maxiter</code></td>
+<td>
+<p>the same as in metafor::trimfill</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>method.trim</code></td>
+<td>
+<p>the model used in rma.uni() for estimating the center when trimming studies, default is x$method</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>method.fill</code></td>
+<td>
+<p>the model used in rma.uni() for estimating the center after filling studies, default is x$method</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbose</code></td>
+<td>
+<p>the same as in metafor::trimfill</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ilim</code></td>
+<td>
+<p>limits for the imputed values as in metafor::trimfill. If unspecified, no limits are used.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>It is recommend using fixed-effects for method.trim and random-effects for method.fill when heterogeneity exists.
+</p>
+
+
+<h3>Value</h3>
+
+<p>the same as in metafor::trimfill
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Chongliang Luo, Yong Chen
+</p>
+
+
+</div>

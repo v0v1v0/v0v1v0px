@@ -1,0 +1,294 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>sllim</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>EM Algorithm for Student Locally Linear Mapping
+</h2>
+
+<h3>Description</h3>
+
+<p>EM Algorithm for Student Locally Linear Mapping
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">sllim(tapp,yapp,in_K,in_r=NULL,maxiter=100,Lw=0,cstr=NULL,verb=0,in_theta=NULL,
+ in_phi=NULL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>tapp</code></td>
+<td>
+<p>An <code>Lt x N</code> matrix of training responses with variables in rows and subjects in columns</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>yapp</code></td>
+<td>
+<p>An <code>D x N</code> matrix of training covariates with variables in rows and subjects in columns</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>in_K</code></td>
+<td>
+<p>Initial number of components</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>in_r</code></td>
+<td>
+<p>Initial assignments (default NULL)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>maxiter</code></td>
+<td>
+<p>Maximum number of iterations (default 100). The algorithm stops if the number of iterations exceeds <code>maxiter</code> or if the difference of likelihood between two iterations is smaller than a threshold (fixed to <code class="reqn">0.001(max(LL)-min(LL))</code> where <code class="reqn">LL</code> is the vector of successive log-likelihood values at each iteration). </p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Lw</code></td>
+<td>
+<p>Number of hidden components (default 0)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cstr</code></td>
+<td>
+<p>Constraints on <code class="reqn">X</code> covariance matrices. Must be a list as following <code>cstr=list(Sigma="i")</code> constraints <code class="reqn">\Sigma</code> to be diagonal and isotropic, which is the default. See details section hereafter to see the other available options to constraint the covariance matrix.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verb</code></td>
+<td>
+<p>Verbosity: print out the progression of the algorithm. If <code>verb=0</code>, there is no print, if <code>verb=1</code>, the progression is printed out. Default is 0.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>in_theta</code></td>
+<td>
+<p>Initial parameters (default NULL), same structure as the output of this function</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>in_phi</code></td>
+<td>
+<p>Initial parameters (default NULL), same structure as the output of this function</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>This function implements the robust counterpart of GLLiM model and should be applied when outliers are present in the data.
+</p>
+<p>The SLLiM model implemented in this function addresses the following non-linear mapping issue:
+</p>
+<p style="text-align: center;"><code class="reqn"> E(Y | X=x) = g(x),</code>
+</p>
+
+<p>where <code class="reqn">Y</code> is a L-vector of multivariate responses and <code class="reqn">X</code> is a large D-vector of covariates' profiles such that <code class="reqn">D \gg L</code>. The methods implemented in this package aims at estimating the non linear regression function <code class="reqn">g</code>.
+</p>
+<p>First, the methods of this package are based on an inverse regression strategy. The inverse conditional relation <code class="reqn">p(X | Y)</code> is specified in a way that the forward relation of interest <code class="reqn">p(Y | X)</code> can be deduced in closed-from. Under some hypothesis on covariance structures, the large number <code class="reqn">D</code> of covariates is handled by this inverse regression trick, which acts as a dimension reduction technique. The number of parameters to estimate is therefore drastically reduced. Second, we propose to approximate the non linear <code class="reqn">g</code> regression function by a piecewise affine function. Therefore, an hidden discrete variable <code class="reqn">Z</code> is introduced, in order to divide the space in <code class="reqn">K</code> regions such that an affine model holds between responses Y and variables X, in each  region <code class="reqn">k</code>:
+</p>
+<p style="text-align: center;"><code class="reqn">X = \sum_{k=1}^K I_{Z=k} (A_k Y + b_k + E_k)</code>
+</p>
+
+<p>where <code class="reqn">A_k</code> is a <code class="reqn">D \times L</code> matrix of coefficients for regression <code class="reqn">k</code>, <code class="reqn">b_k</code> is a D-vector of intercepts and <code class="reqn">E_k</code> is a noise with covariance matrix proportional to <code class="reqn">\Sigma_k</code>.
+</p>
+<p>SLLiM is defined as the following hierarchical generalized Student mixture model for the inverse conditional density <code class="reqn">p(X | Y)</code>:
+</p>
+<p style="text-align: center;"><code class="reqn">p(X=x | Y=y,Z=k; \theta,\phi) = S(x; A_kx+b_k,\Sigma_k,\alpha_k^x,\gamma_k^x)</code>
+</p>
+
+<p style="text-align: center;"><code class="reqn">p(Y=y | Z=k; \theta,\phi) = S(y; c_k,\Gamma_k,\alpha_k,1)</code>
+</p>
+
+<p style="text-align: center;"><code class="reqn">p(Z=k | \phi)=\pi_k</code>
+</p>
+
+<p>where <code class="reqn">(\theta,\phi)</code> are the sets of parameters  <code class="reqn">\theta=(c_k,\Gamma_k,A_k,b_k,\Sigma_k)_{k=1}^K</code> and <code class="reqn">\phi=(\pi_k,\alpha_k)_{k=1}^K</code>. In the previous expression, <code class="reqn">\alpha_k</code> and <code class="reqn">(\alpha_k^x,\gamma_k^x)</code> determine the heaviness of the tail of the generalized Student distribution, which gives robustness to the model. Note that <code class="reqn">\alpha_k^x=\alpha_k + L/2</code> and <code class="reqn">\gamma_k^x=1 + 1/2 \delta(y,c_k,\Gamma_k)</code> where <code class="reqn">\delta</code> is the Mahalanobis distance.
+The forward conditional density of interest can be deduced from these equations and is also a Student mixture of regressions model.
+</p>
+<p>Like <code>gllim</code>, <code>sllim</code> allows the addition of latent variables in order to account for correlation among covariates or if it is supposed that responses are only partially observed. Adding latent factors is known to improve prediction accuracy, if <code>Lw</code> is not too large with regard to the number of covariates. When latent factors are added, the dimension of the response is <code>L=Lt+Lw</code> and <code>L=Lt</code> otherwise.
+</p>
+<p>For SLLiM, the number of parameters to estimate is:
+</p>
+<p style="text-align: center;"><code class="reqn">(K-1)+ K(1+DL+D+L_t+ nbpar_{\Sigma}+nbpar_{\Gamma})</code>
+</p>
+
+<p>where <code class="reqn">L=L_w+L_t</code> and <code class="reqn">nbpar_{\Sigma}</code> (resp. <code class="reqn">nbpar_{\Gamma}</code>) is the number of parameters in each of the large (resp. small) covariance matrix <code class="reqn">\Sigma_k</code> (resp. <code class="reqn">\Gamma_k</code>). For example,
+</p>
+
+<ul>
+<li>
+<p> if the constraint on <code class="reqn">\Sigma_k</code> is <code>cstr$Sigma="i"</code>, then <code class="reqn">nbpar_{\Sigma}=1</code>,which is the default constraint in the <code>gllim</code> function
+</p>
+</li>
+<li>
+<p> if the constraint on <code class="reqn">\Sigma_k</code> is <code>cstr$Sigma="d"</code>, then <code class="reqn">nbpar_{\Sigma}=D</code>,
+</p>
+</li>
+<li>
+<p> if the constraint on <code class="reqn">\Sigma_k</code> is <code>cstr$Sigma=""</code>, then <code class="reqn">nbpar_{\Sigma}=D(D+1)/2</code>,
+</p>
+</li>
+<li>
+<p> if the constraint on <code class="reqn">\Sigma_k</code> is <code>cstr$Sigma="*"</code>, then <code class="reqn">nbpar_{\Sigma}=D(D+1)/(2K)</code>.
+</p>
+</li>
+</ul>
+<p>The rule to compute the number of parameters of <code class="reqn">\Gamma_k</code> is the same as <code class="reqn">\Sigma_k</code>, replacing D by <code class="reqn">L_t</code>. Currently the <code class="reqn">\Gamma_k</code> matrices are not constrained and <code class="reqn">nbpar_{\Gamma}=L_t(L_t+1)/2</code> because for indentifiability reasons the <code class="reqn">L_w</code> part is set to the identity matrix.
+</p>
+<p>The user must choose the number of mixtures components <code class="reqn">K</code> and, if needed, the number of latent factors <code class="reqn">L_w</code>. For small datasets (less than 100 observations), we suggest to select both <code class="reqn">(K,L_w)</code> by minimizing the BIC criterion. For larger datasets, to save computation time, we suggest to set <code class="reqn">L_w</code> using BIC while setting <code class="reqn">K</code> to an arbitrary value large enough to catch non linear relations between responses and covariates and small enough to have several observations (at least 10) in each clusters. Indeed, for large datasets, the number of clusters should not have a strong impact on the results while it is sufficiently large.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Returns a list with the following elements:
+</p>
+<table>
+<tr style="vertical-align: top;">
+<td><code>LLf</code></td>
+<td>
+<p>Final log-likelihood</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>LL</code></td>
+<td>
+<p>Log-likelihood value at each iteration of the EM algorithm</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>theta</code></td>
+<td>
+<p>A list containing the estimations of parameters as follows:</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>c</code></td>
+<td>
+<p>An <code>L x K</code> matrix of means of responses (Y) where <code>L=Lt+Lw</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Gamma</code></td>
+<td>
+<p>An <code>L x L x K</code> array of <code>K</code> matrices of covariances of responses (Y) where <code>L=Lt+Lw</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>A</code></td>
+<td>
+<p>An <code>D x L x K</code> array of <code>K</code> matrices of affine transformation matrices where <code>L=Lt+Lw</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>b</code></td>
+<td>
+<p>An <code>D x K</code> matrix in which affine transformation vectors are in columns</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Sigma</code></td>
+<td>
+<p>An <code>D x D x K</code> array of <code class="reqn">X</code> covariances</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>nbpar</code></td>
+<td>
+<p>The number of parameters estimated in the model</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>phi</code></td>
+<td>
+<p>A list containing the estimations of parameters as follows:</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>r</code></td>
+<td>
+<p>An <code>N x K</code> matrix of posterior probabilities</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pi</code></td>
+<td>
+<p>A vector of length <code>K</code> of mixture weights i.e. prior probabilities of all components</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>alpha</code></td>
+<td>
+<p>A vector of length <code>K</code> of degree of freedom parameters (heaviness of the tail) for each Student component</p>
+</td>
+</tr>
+</table>
+<h3>Author(s)</h3>
+
+<p>Emeline Perthame (emeline.perthame@inria.fr), Florence Forbes (florence.forbes@inria.fr), Antoine Deleforge (antoine.deleforge@inria.fr)
+</p>
+
+
+<h3>References</h3>
+
+<p>[1] A. Deleforge, F. Forbes, and R. Horaud. High-dimensional regression with Gaussian mixtures and partially-latent response variables. Statistics and Computing, 25(5):893–911, 2015.
+</p>
+<p>[2] E. Perthame, F. Forbes, and A. Deleforge. Inverse regression approach to robust nonlinear high-to-low dimensional mapping. Journal of Multivariate Analysis, 163(C):1–14, 2018. https://doi.org/10.1016/j.jmva.2017.09.009
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xLLiM-package</code>, <code>emgm</code>, <code>sllim_inverse_map</code>, <code>gllim</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(data.xllim)
+responses = data.xllim[1:2,] # 2 responses in rows and 100 observations in columns
+covariates = data.xllim[3:52,] # 50 covariates in rows and 100 observations in columns
+
+## Setting 5 components in the model
+K = 5
+
+## the model can be initialized by running an EM algorithm for Gaussian Mixtures (EMGM)
+r = emgm(rbind(responses, covariates), init=K); 
+## and then the sllim model is estimated
+mod = sllim(responses,covariates,in_K=K,in_r=r);
+
+## if initialization is not specified, the model is automatically initialized by EMGM
+## mod = sllim(responses,covariates,in_K=K)
+
+## Adding 1 latent factor 
+## mod = sllim(responses,covariates,in_K=K,in_r=r,Lw=1)
+
+## Some constraints on the covariance structure of \eqn{X} can be added
+## mod = sllim(responses,covariates,in_K=K,in_r=r,cstr=list(Sigma="i")) 
+# Isotropic covariance matrices
+# (same variance among covariates but different in each component)
+
+## mod = sllim(responses,covariates,in_K=K,in_r=r,cstr=list(Sigma="d")) 
+# Heteroskedastic covariance matrices
+# (variances are different among covariates and in each component)
+
+## mod = sllim(responses,covariates,in_K=K,in_r=r,cstr=list(Sigma="")) 
+# Unconstrained full covariance matrices
+
+## mod = sllim(responses,covariates,in_K=K,in_r=r,cstr=list(Sigma="*")) 
+# Full covariance matrices but equal for all components
+</code></pre>
+
+
+</div>

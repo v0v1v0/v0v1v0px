@@ -1,0 +1,44 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>grep_sub</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Perform replacement with <code>gsub()</code> on elements matched from <code>grep()</code>
+</h2>
+
+<h3>Description</h3>
+
+<p>This function is a shorthand of <code>gsub(pattern, replacement, grep(pattern, x, value = TRUE))</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">grep_sub(pattern, replacement, x, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>pattern, replacement, x, ...</code></td>
+<td>
+<p>Passed to <code>grep()</code> and
+<code>gsub()</code>.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A character vector.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># find elements that matches 'a[b]+c' and capitalize 'b' with perl regex
+xfun::grep_sub("a([b]+)c", "a\\U\\1c", c("abc", "abbbc", "addc", "123"), perl = TRUE)
+</code></pre>
+
+
+</div>

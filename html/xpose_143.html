@@ -1,0 +1,72 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>update_themes</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Create xpose theme</h2>
+
+<h3>Description</h3>
+
+<p>Create an xpose theme. This function will update the theme of an
+xpdb object. All plots generated with this xpdb will automatically use the
+defined xpose (<code>xp_theme</code>) and ggplot2 (<code>gg_theme</code>) themes.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">update_themes(xpdb = NULL, gg_theme = NULL, xp_theme = NULL, quiet)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>xpdb</code></td>
+<td>
+<p>An <code>xpose_data</code> object generated with
+<code>xpose_data</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>gg_theme</code></td>
+<td>
+<p>A complete ggplot2 theme object (e.g.
+<code>theme_classic</code>), a function returning a complete
+ggplot2 theme, or a change to the current <code>gg_theme</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xp_theme</code></td>
+<td>
+<p>A complete xpose theme object (e.g.
+<code>theme_xp_default</code>) or a list of modifications to the current
+<code>xp_theme</code> (e.g. <code>list(point_color = 'red', line_linetype =
+'dashed')</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>quiet</code></td>
+<td>
+<p>Logical, if <code>FALSE</code> messages are printed to the console.</p>
+</td>
+</tr>
+</table>
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Before default theme
+dv_vs_ipred(xpdb_ex_pk, facets = 'SEX')
+
+# Updating the gg_theme and xp_theme
+xpdb_ex_pk %&gt;%
+  update_themes(gg_theme = theme(legend.position = 'top'),
+                xp_theme = list(point_color = 'blue',
+                                line_color  = 'blue')) %&gt;%
+  dv_vs_ipred(facets = 'SEX')
+
+</code></pre>
+
+
+</div>

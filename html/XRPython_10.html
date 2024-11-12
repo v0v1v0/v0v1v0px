@@ -1,0 +1,79 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>list_Python-class</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Proxy Class for Python Lists</h2>
+
+<h3>Description</h3>
+
+<p>This class is a proxy for ordinary list objects in Python.  All the
+standard Python methods for such objects (e.g., <code>append()</code>) are
+available, but methods for R functions such as <code>]</code> are not
+implemented because Python operators do not behave functionally.
+Instead, additional methods are defined for the proxy lists, e.g.,
+<code>el(i)</code>.
+</p>
+
+
+<h3>Methods</h3>
+
+
+<dl>
+<dt><code>append(..., .ev = XRPython::RPython(), .get = NA)</code></dt>
+<dd>
+<p>Python Method: append()
+L.append(object) – append object to end</p>
+</dd>
+<dt><code>count(..., .ev = XRPython::RPython(), .get = NA)</code></dt>
+<dd>
+<p>Python Method: count()
+L.count(value) -&gt; integer – return number of occurrences of value</p>
+</dd>
+<dt><code>el(i, .ev = XRPython::RPython(), .get = NA)</code></dt>
+<dd>
+<p>Extract an element from the list (zero based indexing).
+The index will be coerced to integer (unless a proxy).</p>
+</dd>
+<dt><code>extend(..., .ev = XRPython::RPython(), .get = NA)</code></dt>
+<dd>
+<p>Python Method: extend()
+L.extend(iterable) – extend list by appending elements from the iterable</p>
+</dd>
+<dt><code>index(..., .ev = XRPython::RPython(), .get = NA)</code></dt>
+<dd>
+<p>Python Method: index()
+L.index(value, [start, [stop]]) -&gt; integer – return first index of value.
+Raises ValueError if the value is not present.</p>
+</dd>
+<dt><code>insert(..., .ev = XRPython::RPython(), .get = NA)</code></dt>
+<dd>
+<p>Python Method: insert()
+L.insert(index, object) – insert object before index</p>
+</dd>
+<dt><code>pop(..., .ev = XRPython::RPython(), .get = NA)</code></dt>
+<dd>
+<p>Python Method: pop()
+L.pop([index]) -&gt; item – remove and return item at index (default last).
+Raises IndexError if list is empty or index is out of range.</p>
+</dd>
+<dt><code>remove(..., .ev = XRPython::RPython(), .get = NA)</code></dt>
+<dd>
+<p>Python Method: remove()
+L.remove(value) – remove first occurrence of value.
+Raises ValueError if the value is not present.</p>
+</dd>
+<dt><code>reverse(..., .ev = XRPython::RPython(), .get = NA)</code></dt>
+<dd>
+<p>Python Method: reverse()
+L.reverse() – reverse *IN PLACE*</p>
+</dd>
+<dt><code>sort(..., .ev = XRPython::RPython(), .get = NA)</code></dt>
+<dd>
+<p>Python Method: sort()
+L.sort(cmp=None, key=None, reverse=False) – stable sort *IN PLACE*;
+cmp(x, y) -&gt; -1, 0, 1</p>
+</dd>
+</dl>
+</div>

@@ -1,0 +1,104 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xmlrpc</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Call the Remote Procedure</h2>
+
+<h3>Description</h3>
+
+<p>Call a reomte procedure with the <code>XML-RPC</code> protocol.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xmlrpc(url, method, params = list(), handle = NULL, opts = list(),
+  convert = TRUE, useragent = "xmlrpc", raise_error = TRUE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>url</code></td>
+<td>
+<p>a character string giving the url to the server.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>a character string giving the name of the method 
+to be invoked.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>params</code></td>
+<td>
+<p>a list containing the parmeters which are added to 
+the <code>XML</code> file sent via the remote procedure call.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>handle</code></td>
+<td>
+<p>a object of class <code>"curl_handle"</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>opts</code></td>
+<td>
+<p>a list of options passed to the function <code>"handle_setopt"</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>convert</code></td>
+<td>
+<p>a logical, if convert is <code>TRUE</code> (default)
+the <code>curl</code> response is converted else it is 
+left unchanged.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>useragent</code></td>
+<td>
+<p>a character string giving the name of the <code>"User-Agent"</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>raise_error</code></td>
+<td>
+<p>a logical controling the behavior if the status code
+of <code>curl_fetch_memory</code> signals an error.
+If <code>raise_error</code> is <code>TRUE</code> an error is raised,
+if <code>raise_error</code> is <code>FALSE</code> 
+no error is raised and an object inheriting from
+<code>c("fetch_error", error")} is returned.
+This object is the return value from \code{curl_fetch_memory}
+where just the class \code{c("fetch_error", error")</code>
+is added.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>the reponse of <code>curl</code> or the response converted to 
+<span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> objects.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+url &lt;- "https://www.neos-server.org"
+xmlrpc(url, "listAllSolvers")
+xmlrpc(url, "listSolversInCategory", params = list(category = "socp"))
+
+## End(Not run)
+</code></pre>
+
+
+</div>

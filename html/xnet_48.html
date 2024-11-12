@@ -1,0 +1,141 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>impute_tskrr.fit</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Impute values based on a two-step kernel ridge regression</h2>
+
+<h3>Description</h3>
+
+<p>This function provides an interface for the imputation of values
+based on a <code>tskrr</code> model and is the internal function
+used by <code>impute_tskrr</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">impute_tskrr.fit(y, Hk, Hg, naid = NULL, niter, tol, start, verbose)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>y</code></td>
+<td>
+<p>a label matrix</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Hk</code></td>
+<td>
+<p>a hat matrix for the rows (see also <code>eigen2hat</code>
+on how to calculate them from an eigen decomposition)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Hg</code></td>
+<td>
+<p>a hat matrix for the columns. For homogeneous networks, this
+should be Hk again.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>naid</code></td>
+<td>
+<p>an optional index with the values that have to be imputed,
+i.e. at which positions you find a <code>NA</code> value. It can be a vector
+with integers or a matrix with <code>TRUE</code>/<code>FALSE</code> values.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>niter</code></td>
+<td>
+<p>an integer giving the maximum number of iterations</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tol</code></td>
+<td>
+<p>a numeric value indicating the tolerance for convergence of
+the algorithm. It is the maximum sum of squared differences between
+to iteration steps.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>start</code></td>
+<td>
+<p>a numeric value indicating the value with which NA's are
+replaced in the first step of the algorithm. Defaults to 0.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbose</code></td>
+<td>
+<p>either a logical value, 1 or 2. <code>1</code> means "show the number
+of iterations and the final deviation", <code>2</code> means "show the deviation
+every 10 iterations". A value <code>TRUE</code> is read as <code>1</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>This function is mostly available for internal use. In most cases,
+it makes much more sense to use <code>impute_tskrr</code>, as that
+function returns an object one can work with. The function
+<code>impute_tskrr.fit</code> could be useful when doing simulations or
+creating fitting algorithms.
+</p>
+
+
+<h3>Value</h3>
+
+<p>a list with two elements:
+</p>
+
+<ul>
+<li>
+<p> a matrix <code>y</code> with the imputed values filled in.
+</p>
+</li>
+<li>
+<p> a numeric value <code>niter</code> with the amount of iterations
+</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+
+<ul>
+<li> <p><code>impute_tskrr</code> for the user-level function, and
+</p>
+</li>
+<li> <p><code>eigen2hat</code> for conversion of a eigen decomposition to
+a hat matrix.
+</p>
+</li>
+</ul>
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+data(drugtarget)
+
+K &lt;- eigen(targetSim)
+G &lt;- eigen(drugSim)
+
+Hk &lt;- eigen2hat(K$vectors, K$values, lambda = 0.01)
+Hg &lt;- eigen2hat(G$vectors, G$values, lambda = 0.05)
+
+drugTargetInteraction[c(3,17,123)] &lt;- NA
+
+res &lt;- impute_tskrr.fit(drugTargetInteraction, Hk, Hg,
+                        niter = 1000, tol = 10e-10,
+                        start = 0, verbose = FALSE)
+
+</code></pre>
+
+
+</div>

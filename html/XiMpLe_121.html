@@ -1,0 +1,135 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>XMLNode</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Constructor function for <code>XiMpLe_node</code> objects</h2>
+
+<h3>Description</h3>
+
+<p>Can be used to create XML nodes.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">XMLNode(
+  tag_name,
+  ...,
+  attrs,
+  shine,
+  namespace,
+  namespaceDefinitions,
+  .children = list(...)
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>tag_name</code></td>
+<td>
+<p>Character string, the tag name.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Optional children for the tag. Must be either objects of class <code>XiMpLe_node</code>
+or character strings, which are treated as attributes if they are named,
+and as simple text values otherwise.
+Use a named <code>character()</code> value for empty attributes.
+If this argument is empty,
+the tag will be treated as an empty tag. To force a closing tag, supply an empty
+string, i.e. <code>""</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>attrs</code></td>
+<td>
+<p>An optional named list of attributes. Will be appended to attributes already defined in
+the <code>...</code> argument.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>shine</code></td>
+<td>
+<p>A numeric integer value between 0 and 2,
+overwriting the <code>shine</code> value of, e.g., <code>pasteXML</code>
+for this particular node.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>namespace</code></td>
+<td>
+<p>Currently ignored.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>namespaceDefinitions</code></td>
+<td>
+<p>Currently ignored.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.children</code></td>
+<td>
+<p>Alternative way of specifying children,
+if you have them already as a list.
+This argument completely replaces values defined in the <code>...</code> argument.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>To generate a CDATA node, set <code>tag_name="![CDATA["</code>, to create a comment,
+set <code>tag_name="!--"</code>.
+</p>
+<p>Note that all defined attributes will silently be dropped if a text node,
+CDATA node or comment is generated.
+</p>
+
+
+<h3>Value</h3>
+
+<p>An object of class <code>XiMpLe_node</code>.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>XMLTree</code>,
+<code>pasteXML</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">(sample.XML.node &lt;- XMLNode("a",
+  attrs=list(
+    href="http://example.com",
+    target="_blank"
+  ),
+  .children="klick here!"
+))
+# This is equivalent
+(sample.XML.node2 &lt;- XMLNode("a",
+  "klick here!",
+  href="http://example.com",
+  target="_blank"
+))
+# As is this
+(sample.XML.node3 &lt;- XMLNode("a",
+  .children=list(
+    "klick here!",
+    href="http://example.com",
+    target="_blank"
+  )
+))
+</code></pre>
+
+
+</div>

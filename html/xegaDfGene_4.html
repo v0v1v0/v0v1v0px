@@ -1,0 +1,67 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaDfCrossGene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>One point crossover of 2 genes.</h2>
+
+<h3>Description</h3>
+
+<p><code>CrossGene</code> randomly determines a cut point.
+It combines the parameters before the cut point of the first gene
+with the parameters after the cut point from the second gene (kid 1).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaDfCrossGene(gg1, gg2, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>gg1</code></td>
+<td>
+<p>Real-coded gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>gg2</code></td>
+<td>
+<p>Real-coded gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration of the genetic algorithm.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Real-coded gene.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Crossover (1): 
+<code>xegaDfUCrossGene()</code>,
+<code>xegaDfUPCrossGene()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">gene1&lt;-xegaDfInitGene(lFxegaDfGene)
+gene2&lt;-xegaDfInitGene(lFxegaDfGene)
+gene3&lt;-xegaDfCrossGene(gene1, gene2, lFxegaDfGene)
+</code></pre>
+
+
+</div>

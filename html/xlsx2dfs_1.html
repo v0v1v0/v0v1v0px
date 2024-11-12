@@ -1,0 +1,65 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>dfs2xlsx</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Write a list of data frames into an excel file with each data frame in a new sheet and the list element name as its sheet name.</h2>
+
+<h3>Description</h3>
+
+<p>Write a list of data frames into an excel file with each data frame in a new sheet and the list element name as its sheet name.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">dfs2xlsx(dfs, fpath, rowNames = TRUE, colNames = TRUE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>dfs</code></td>
+<td>
+<p>A list of data frames (names in the list are the names of the sheets).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fpath</code></td>
+<td>
+<p>A character string representing path and filename of the output.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>rowNames</code></td>
+<td>
+<p>A boolean indicating whether the first column of a table in every sheet contains row names of the table.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>colNames</code></td>
+<td>
+<p>A boolean indicating whether the first line of a table in every sheet contains a header.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Nothing. Writes out data frames into specified Excel file.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">df1 &lt;- data.frame(A=c(1, 2), B=c(3, 4))
+df2 &lt;- data.frame(C=c(5, 6), D=c(7, 8))
+xlsx_fpath &lt;- file.path(tempdir(), "testout.xlsx")
+dfs2xlsx(withNames("sheet1", df1, "sheet2", df2), xlsx_fpath)
+file.remove(xlsx_fpath)
+</code></pre>
+
+
+</div>

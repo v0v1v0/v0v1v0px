@@ -1,0 +1,93 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>Rscript_call</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Call a function in a new R session via <code>Rscript()</code>
+</h2>
+
+<h3>Description</h3>
+
+<p>Save the argument values of a function in a temporary RDS file, open a new R
+session via <code>Rscript()</code>, read the argument values, call the function, and
+read the returned value back to the current R session.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">Rscript_call(
+  fun,
+  args = list(),
+  options = NULL,
+  ...,
+  wait = TRUE,
+  fail = sprintf("Failed to run '%s' in a new R session", deparse(substitute(fun))[1])
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>fun</code></td>
+<td>
+<p>A function, or a character string that can be parsed and evaluated
+to a function.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>args</code></td>
+<td>
+<p>A list of argument values.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>options</code></td>
+<td>
+<p>A character vector of options to passed to <code>Rscript()</code>, e.g.,
+<code>"--vanilla"</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>..., wait</code></td>
+<td>
+<p>Arguments to be passed to <code>system2()</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fail</code></td>
+<td>
+<p>The desired error message when an error occurred in calling the
+function. If the actual error message during running the function is
+available, it will be appended to this message.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>If <code>wait = TRUE</code>, the returned value of the function in the new R
+session. If <code>wait = FALSE</code>, three file paths will be returned: the first
+one stores <code>fun</code> and <code>args</code> (as a list), the second one is supposed to
+store the returned value of the function, and the third one stores the
+possible error message.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">factorial(10)
+# should return the same value
+xfun::Rscript_call("factorial", list(10))
+
+# the first argument can be either a character string or a function
+xfun::Rscript_call(factorial, list(10))
+
+# Run Rscript starting a vanilla R session
+xfun::Rscript_call(factorial, list(10), options = c("--vanilla"))
+</code></pre>
+
+
+</div>

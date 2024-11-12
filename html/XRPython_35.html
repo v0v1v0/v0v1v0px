@@ -1,0 +1,33 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>pythonTask</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Register an Evaluator Command or Expression at Initialization</h2>
+
+<h3>Description</h3>
+
+<p>An unevalated command or expression for the interface is supplied, typically using
+<code>quote()</code> or <code>substitute</code>.  When an evaluator from the class is created, this
+command will be evaluated.  Repeated calls to this function, to <code>serverAddToPath()</code>
+and to <code>serverImport()</code> will evaluate the corresponding requests, in the order in
+which the corresponding calls took place (typically in the source of a pacakage).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">pythonTask(command)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>command</code></td>
+<td>
+<p>an <em>unevaluated</em> command or expression for the evaluator.</p>
+</td>
+</tr></table>
+</div>

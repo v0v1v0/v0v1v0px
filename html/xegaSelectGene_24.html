@@ -1,0 +1,51 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>parm</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Factory for constants</h2>
+
+<h3>Description</h3>
+
+<p><code>parm</code> builds a constant function for <code>x</code>. 
+See Wickham (2019).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">parm(x)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>A constant.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>The constant function.
+</p>
+
+
+<h3>References</h3>
+
+<p>Wickham, Hadley (2019): Advanced R, CRC Press, Boca Raton.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">TournamentSize&lt;-parm(2)
+TournamentSize()
+Eps&lt;-parm(0.01)
+Eps()
+</code></pre>
+
+
+</div>

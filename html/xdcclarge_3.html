@@ -1,0 +1,100 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>cdcc_estimation</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>This function estimates the parameters(alpha,beta) and time-varying correlation matrices(Rt) of cDCC-GARCH model.</h2>
+
+<h3>Description</h3>
+
+<p>This function estimates the parameters(alpha,beta) and time-varying correlation matrices(Rt) of cDCC-GARCH model.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">cdcc_estimation(ini.para = c(0.05, 0.93), ht, residuals, method = c("COV",
+  "LS", "NLS"), ts = 1)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>ini.para</code></td>
+<td>
+<p>initial cDCC-GARCH parameters(alpha,beta) of optimization</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ht</code></td>
+<td>
+<p>matrix of conditional variance vectors</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>residuals</code></td>
+<td>
+<p>matrix of residual(de-mean) returns</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>shrinkage method of unconditional correlation matrix(Cov:sample,LS:Linear Shrinkage,NLS:NonLinear Shrinkage)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ts</code></td>
+<td>
+<p>ts how many time series are you taking(dufalut:1 latest value)</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>time-varying correlations(Rt) and the result of estimation
+</p>
+
+
+<h3>Note</h3>
+
+<p>Rt are vectorized values of the conditional correlation matrix(Rt) until time t(ts) for each row.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">  library(rugarch)
+  library(xdcclarge)
+  #load data
+  data(us_stocks)
+  n&lt;-3
+  Rtn&lt;-log(us_stocks[-1,1:n]/us_stocks[-nrow(us_stocks),1:n])
+  
+  # Step 1:GARCH Parameter Estimation with rugarch
+  spec = ugarchspec()
+  mspec = multispec( replicate(spec, n = n) )
+  fitlist = multifit(multispec = mspec, data = Rtn)
+  ht&lt;-sigma(fitlist)^2
+  residuals&lt;-residuals(fitlist)
+  
+  # Step 2:cDCC-GARCH Parameter Estimation with xdcclarge
+  cDCC&lt;-cdcc_estimation(ini.para=c(0.05,0.93) ,ht ,residuals)
+  #Time varying correlation matrix Rt at time t
+  (Rt&lt;-matrix(cDCC$cdcc_Rt,n,n))
+
+  ## Not run: 
+  #If you want Rt at time t-s,then
+  s&lt;-10
+  cDCC&lt;-cdcc_estimation(ini.para=c(0.05,0.93) ,ht ,residuals,ts = s)
+  matrix(cDCC$cdcc_Rt[s,],n,n)
+  
+## End(Not run)
+  
+</code></pre>
+
+
+</div>

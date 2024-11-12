@@ -1,0 +1,38 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>dumpProxyFunction</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Write A Proxy Function to a File or Connection</h2>
+
+<h3>Description</h3>
+
+<p>This function is called by the <code>$SaveProxyFunction()</code> method of an evaluator object.  It is exported
+for the convenience of packages inheriting from XR and would not normally be called by a user.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">dumpProxyFunction(file, object, objName = object@name, docText)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>file</code></td>
+<td>
+<p>the file or connection for writing the function text.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>object, objName, docText</code></td>
+<td>
+<p>arguments supplied by the evaluator method.</p>
+</td>
+</tr>
+</table>
+</div>

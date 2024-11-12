@@ -1,0 +1,72 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xadmixture</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Simulated Admixture Data</h2>
+
+<h3>Description</h3>
+
+<p>A dataset containing simulated admixture data of 600 observations.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xadmixture
+</code></pre>
+
+
+<h3>Format</h3>
+
+<p>A data frame with 600 rows and 8 variables: 
+</p>
+
+<dl>
+<dt><code>acc</code></dt>
+<dd>
+<p>Accession identifier</p>
+</dd>
+<dt><code>country</code></dt>
+<dd>
+<p>Country where plant material was collected</p>
+</dd>
+<dt><code>species</code></dt>
+<dd>
+<p>Name of species</p>
+</dd>
+<dt>
+<code>K1</code>,<code>K2</code>,<code>K3</code>,<code>K4</code>,<code>K5</code>
+</dt>
+<dd>
+<p>Admixture coefficients; expresses the proportions of the respective ancestries. Sum up to 1.</p>
+</dd>
+</dl>
+<h3>Source</h3>
+
+<p>Data simulated for this package; for code see: <a href="https://github.com/SpaceCowboy-71/xadmix/blob/main/data-raw/xadmixture.R">https://github.com/SpaceCowboy-71/xadmix/blob/main/data-raw/xadmixture.R</a>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># load simulated admixture data
+data("xadmixture")
+
+# create a subset of the data
+xadmixture_sub &lt;- admix_subset(xadmixture, 
+                       country = c("GBR", "FRA"),
+                       anc = c("K1", "K2"), 
+                       pct = c(0.02, 0.2))
+                       
+# generate a grouped &amp; sorted stacked barplot
+admix_barplot(xadmixture_sub, 
+         K = 4:ncol(xadmixture),
+         sortkey = "K1",
+         grouping = "country", 
+         palette = "turbo")   
+</code></pre>
+
+
+</div>

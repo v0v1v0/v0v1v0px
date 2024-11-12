@@ -1,0 +1,92 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xmr</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Generate the XMR data for any time-series data.</h2>
+
+<h3>Description</h3>
+
+<p>Used to calculate XMR data.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xmr(
+  df,
+  measure,
+  recalc = T,
+  reuse,
+  interval,
+  longrun,
+  shortrun,
+  testing,
+  prefer_longrun
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>df</code></td>
+<td>
+<p>The dataframe or tibble to calculate from.
+Data must be in a tidy format.
+At least one variable for time and one variable for measure.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>measure</code></td>
+<td>
+<p>The column containing the measure. Must be in numeric format.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>recalc</code></td>
+<td>
+<p>Logical: if you'd like it to recalculate bounds. Defaults to True</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>reuse</code></td>
+<td>
+<p>Logical: Should points be re-used in calculations? Defaults to False</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>interval</code></td>
+<td>
+<p>The interval you'd like to use to calculate the averages. 
+Defaults to 5.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>longrun</code></td>
+<td>
+<p>Used to determine rules for long run. First point is the 'n' of points used to recalculate with, and the second is to determine what qualifies as a long run. Default is c(5,8) which uses the first 5 points of a run of 8 to recalculate the bounds. If a single value is used, then that value is used twice i.e. c(6,6))</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>shortrun</code></td>
+<td>
+<p>Used to determine rules for a short run. The first point is the minimum number of points within the set to qualify a shortrun, and the second is the length of a possible set. Default is c(3,4) which states that 3 of 4 points need to pass the test to be used in a calculation. If a single value is used, then that value is used twice i.e. c(3,3))</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>testing</code></td>
+<td>
+<p>Logical to print test results</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>prefer_longrun</code></td>
+<td>
+<p>Logical if you want to first test for long-runs or for short-runs.</p>
+</td>
+</tr>
+</table>
+</div>

@@ -1,0 +1,61 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>dcc_correlations</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>This function get the correlation matrix (Rt) of estimated DCC-GARCH model.</h2>
+
+<h3>Description</h3>
+
+<p>This function get the correlation matrix (Rt) of estimated DCC-GARCH model.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">dcc_correlations(param, stdresids, uncR, ts)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>param</code></td>
+<td>
+<p>DCC-GARCH parameters(alpha,beta)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>stdresids</code></td>
+<td>
+<p>matrix of standrdized(De-GARCH) residual returns  (T by N)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>uncR</code></td>
+<td>
+<p>unconditional correlation matrix of stdresids  (N by N)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ts</code></td>
+<td>
+<p>ts how many time series are you taking</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>the correlation matrix (Rt) of estimated DCC-GARCH model (T by N^2)
+</p>
+
+
+<h3>Note</h3>
+
+<p>Rt are vectorized values of the conditional correlation matrix(Rt) until time t(ts) for each row.
+</p>
+
+
+</div>

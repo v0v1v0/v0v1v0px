@@ -1,0 +1,78 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaPermCrossoverFactory</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Configure the crossover function of a genetic algorithm.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaPermCrossoverFactory</code> implements the selection
+of one of the crossover functions in this
+package by specifying a text string.
+The selection fails ungracefully (produces
+a runtime error), if the label does not match.
+The functions are specified locally.
+</p>
+<p>Current support:
+</p>
+
+<ol>
+<li>
+<p> Crossover functions with two kids:
+</p>
+
+<ol><li>
+<p> "Cross2Gene" returns <code>xegaPermCross2Gene</code>.
+</p>
+</li></ol>
+</li>
+<li>
+<p> Crossover functions with one kid:
+</p>
+
+<ol><li>
+<p> "CrossGene" returns <code>xegaPermCrossGene</code>.
+</p>
+</li></ol>
+</li>
+</ol>
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaPermCrossoverFactory(method = "Cross2Gene")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>A string specifying the crossover function.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A crossover function for genes.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Configuration: 
+<code>lFxegaPermGene</code>,
+<code>xegaPermMutationFactory()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">XGene&lt;-xegaPermCrossoverFactory("Cross2Gene")
+gene1&lt;-xegaPermInitGene(lFxegaPermGene)
+gene2&lt;-xegaPermInitGene(lFxegaPermGene)
+XGene(gene1, gene2, lFxegaPermGene)
+</code></pre>
+
+
+</div>

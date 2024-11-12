@@ -1,0 +1,45 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>parse_arg</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Parse arguments from xpose to ggplot2 format</h2>
+
+<h3>Description</h3>
+
+<p>Transform arguments from xpose (e.g. point_color) 
+to ggplot2 (e.g. color) format.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">parse_arg(x = NULL, name)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>A list of xpose plot aesthetics.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>name</code></td>
+<td>
+<p>Name of the destination layer for the argument 
+parsing (e.g. point).</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>ggplot2 aesthetics for the layer defined in 'name'.
+</p>
+
+
+</div>

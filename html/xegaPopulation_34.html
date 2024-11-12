@@ -1,0 +1,73 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaEvalPopulation</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Evaluates a population of genes in a a problem environment</h2>
+
+<h3>Description</h3>
+
+<p><code>EvalPopulation()</code> evaluates a population
+of genes in a problem environment.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaEvalPopulation(pop, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>pop</code></td>
+<td>
+<p>Population of genes.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local function configuration.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Parallelization of the evaluation of fitness functions
+is possible by defining <code>lf$evalPopLapply</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>List of fitness values.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Population Layer: 
+<code>xegaBestGeneInPopulation()</code>,
+<code>xegaBestInPopulation()</code>,
+<code>xegaInitPopulation()</code>,
+<code>xegaLogEvalsPopulation()</code>,
+<code>xegaNextPopulation()</code>,
+<code>xegaObservePopulation()</code>,
+<code>xegaSummaryPopulation()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">pop10&lt;-xegaInitPopulation(10, lFxegaGaGene)
+lFxegaGaGene[["evalPopLapply"]]&lt;-ApplyFactory(method="Sequential") 
+fit&lt;-xegaEvalPopulation(pop10, lFxegaGaGene)
+
+</code></pre>
+
+
+</div>

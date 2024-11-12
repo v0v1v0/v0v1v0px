@@ -1,0 +1,46 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>enable_feature_message</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Messages for how to enable feature</h2>
+
+<h3>Description</h3>
+
+<p><code>enable_feature_message()</code> returns a character vector with the information
+needed to install the requested feature.
+Formatted for use with <code>rlang::abort()</code>, <code>rlang::warn()</code>, or <code>rlang::inform()</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">enable_feature_message(
+  feature = c("cat_pages", "get_bookmarks", "get_docinfo", "get_xmp", "n_pages",
+    "set_bookmarks", "set_docinfo", "set_xmp")
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>feature</code></td>
+<td>
+<p>Which <code>xmpdf</code> feature to give information for.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A character vector formatted for use with <code>rlang::abort()</code>, <code>rlang::warn()</code>, or <code>rlang::inform()</code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">  rlang::inform(enable_feature_message("get_bookmarks"))
+</code></pre>
+
+
+</div>

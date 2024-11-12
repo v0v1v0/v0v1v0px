@@ -1,0 +1,148 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>Element-class</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Element, A reference class representing an XML tag</h2>
+
+<h3>Description</h3>
+
+<p>An XML element. Methods allow the user to get and manipulate its child
+elements and content, directly access the element's textual content, and
+manipulate its attributes.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S4 method for signature 'Element'
+as.vector(x)
+
+## S4 method for signature 'Element'
+as.character(x)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>the object to convert</p>
+</td>
+</tr></table>
+<h3>Methods (by generic)</h3>
+
+
+<ul>
+<li> <p><code>as.vector</code>: as.vector(Element)
+</p>
+</li>
+<li> <p><code>as.character</code>: as.character(Element)
+</p>
+</li>
+</ul>
+<h3>Fields</h3>
+
+
+<dl>
+<dt><code>name</code></dt>
+<dd>
+<p>The local name of the element</p>
+</dd>
+<dt><code>contentList</code></dt>
+<dd>
+<p>all the children of this element</p>
+</dd>
+<dt><code>attributeList</code></dt>
+<dd>
+<p>a list of all the attributes belonging to this element</p>
+</dd>
+</dl>
+<h3>Methods</h3>
+
+
+<dl>
+<dt><code>addAttributes(attributes)</code></dt>
+<dd>
+<p>Add the supplied attributes to the attributeList of this Element</p>
+</dd>
+<dt><code>addContent(content)</code></dt>
+<dd>
+<p>Appends the child to the end of the content list. return the parent (the calling object)</p>
+</dd>
+<dt><code>contentIndex(content)</code></dt>
+<dd>
+<p>Find the position of the content in the contentList or -1 if not found</p>
+</dd>
+<dt><code>getAttribute(name)</code></dt>
+<dd>
+<p>Get an attribute value</p>
+</dd>
+<dt><code>getAttributes()</code></dt>
+<dd>
+<p>Get the list of attributes</p>
+</dd>
+<dt><code>getChild(name)</code></dt>
+<dd>
+<p>Return the first child element matching the name</p>
+</dd>
+<dt><code>getChildren()</code></dt>
+<dd>
+<p>Get all the child Elements belong to this Element</p>
+</dd>
+<dt><code>getContent()</code></dt>
+<dd>
+<p>Returns the full content of the element as a List that may contain objects of type Text, Element, Comment, ProcessingInstruction, CDATA, and EntityRef</p>
+</dd>
+<dt><code>getName()</code></dt>
+<dd>
+<p>Return the name of this Element</p>
+</dd>
+<dt><code>getText()</code></dt>
+<dd>
+<p>Return the text content of this element if any</p>
+</dd>
+<dt><code>hasAttributes()</code></dt>
+<dd>
+<p>return TRUE if this element has any attributes, otherwise FALSE</p>
+</dd>
+<dt><code>hasChildren()</code></dt>
+<dd>
+<p>Return TRUE if this element has any child Element nodes</p>
+</dd>
+<dt><code>hasContent()</code></dt>
+<dd>
+<p>return TRUE if this element has any content, otherwise FALSE</p>
+</dd>
+<dt><code>hasText()</code></dt>
+<dd>
+<p>Return TRUE if this element has a Text node</p>
+</dd>
+<dt><code>removeContent(content)</code></dt>
+<dd>
+<p>Remove the specified content from this element</p>
+</dd>
+<dt><code>removeContentAt(index)</code></dt>
+<dd>
+<p>Remove the content at the given index and return the content that was removed</p>
+</dd>
+<dt><code>setAttribute(name, value)</code></dt>
+<dd>
+<p>Add or replace an attribute, parameters will be converted to characters</p>
+</dd>
+<dt><code>setAttributes(attributes)</code></dt>
+<dd>
+<p>Replace the attributes with this named list, NULL or empty list will remove all attributes, all values will be converted to characters</p>
+</dd>
+<dt><code>setName(name)</code></dt>
+<dd>
+<p>Set the name of this Element</p>
+</dd>
+<dt><code>setText(text)</code></dt>
+<dd>
+<p>Replace all content with the text supplied</p>
+</dd>
+</dl>
+</div>

@@ -1,0 +1,64 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>Document-class</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Reference Class representing an XML document</h2>
+
+<h3>Description</h3>
+
+<p>The base container for the DOM
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S4 method for signature 'Document'
+as.vector(x)
+
+## S4 method for signature 'Document'
+as.character(x)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>the object to convert</p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+<p>Methods allow access to the root element as well as the
+DocType and other document-level information.
+</p>
+
+
+<h3>Methods (by generic)</h3>
+
+
+<ul>
+<li> <p><code>as.vector</code>: as.vector(Document)
+</p>
+</li>
+<li> <p><code>as.character</code>: as.character(Document)
+</p>
+</li>
+</ul>
+<h3>Methods</h3>
+
+
+<dl>
+<dt><code>getBaseURI()</code></dt>
+<dd>
+<p>return the URI from which this document was loaded</p>
+</dd>
+<dt><code>setBaseURI(uri)</code></dt>
+<dd>
+<p>Sets the effective URI from which this document was loaded</p>
+</dd>
+</dl>
+</div>

@@ -1,0 +1,86 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>modify_xpdb</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Add, remove or rename variables in an xpdb</h2>
+
+<h3>Description</h3>
+
+<p><code>mutate()</code> adds new variables and preserves existing ones. 
+<code>select()</code> keeps only the listed variables; <code>rename()</code> keeps all variables.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S3 method for class 'xpose_data'
+mutate(.data, ..., .problem, .source, .where)
+
+## S3 method for class 'xpose_data'
+select(.data, ..., .problem, .source, .where)
+
+## S3 method for class 'xpose_data'
+rename(.data, ..., .problem, .source, .where)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>.data</code></td>
+<td>
+<p>An xpose database object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Name-value pairs of expressions. Use <code>NULL</code> to drop a variable.
+</p>
+<p>These arguments are automatically quoted and evaluated in the 
+context of the data frame. They support unquoting and splicing. 
+See the dplyr vignette("programming") for an introduction to these concepts.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.problem</code></td>
+<td>
+<p>The problem from which the data will be modified</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.source</code></td>
+<td>
+<p>The source of the data in the xpdb. Can either be 'data' or an output 
+file extension e.g. 'phi'.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.where</code></td>
+<td>
+<p>A vector of element names to be edited in special (e.g. 
+<code>.where = c('vpc_dat', 'aggr_obs')</code> with vpc).</p>
+</td>
+</tr>
+</table>
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Mutate columns
+xpdb_ex_pk %&gt;% 
+ mutate(lnDV = log(DV), 
+        sim_count = irep(ID), 
+        .problem = 1) %&gt;% 
+ dv_vs_idv(aes(y = lnDV))
+ 
+# Rename/select columns
+xpdb_ex_pk %&gt;% 
+ select(ID:TAD, DV, EVID) %&gt;% 
+ rename(TSLD = TAD) %&gt;% 
+ dv_vs_idv(aes(x = TSLD))
+</code></pre>
+
+
+</div>

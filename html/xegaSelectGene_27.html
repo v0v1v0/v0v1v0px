@@ -1,0 +1,87 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>runSelectBenchmarks</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Script for testing all selection functions</h2>
+
+<h3>Description</h3>
+
+<p>Script for testing all selection functions
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">runSelectBenchmarks(lim = c(10, 100), both = TRUE, verbose = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>lim</code></td>
+<td>
+<p>Vector of population sizes.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>both</code></td>
+<td>
+<p>For <code>both=TRUE</code> the selection function 
+is benchmarked with and without transformation. 
+For <code>both=FALSE</code>, only the transformed selection functions
+are benchmarked.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbose</code></td>
+<td>
+<p>Boolean. Default: <code>FALSE</code>. 
+If <code>TRUE</code>, the function benchmarked and the population size 
+are printed to the console.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A data frame sorted in ascending order of the time of
+the last column. 
+The fastest selection methods come first.
+The first row contains the population sizes with which 
+the benchmark has been performed.
+The data frame has <code>1+length(lim)</code> columns:
+</p>
+
+<ul>
+<li>
+<p> "Benchmark": The name of the benchmarked selection 
+function. A "C" after the name indicates
+that the selection function has been 
+transformed into a lookup function.
+</p>
+</li>
+<li> <p><code>length(lim)</code> columns with the execution times in seconds.
+</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p>Other Benchmark Selection Functions: 
+<code>predictSelectTime()</code>,
+<code>runOneBenchmark()</code>,
+<code>selectBenchmark()</code>,
+<code>testSelectGene()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">runSelectBenchmarks(lim=c(10, 100), both=TRUE, verbose=TRUE)
+runSelectBenchmarks(lim=c(10, 100), both=FALSE)
+</code></pre>
+
+
+</div>

@@ -1,0 +1,74 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaGaCross2Gene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>One point crossover of 2 genes.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaGaCross2Gene</code> randomly determines a cut point.
+It combines the bits before the cut point of the first gene
+with the bits after the cut point from the second gene (kid 1).
+It combines the bits before the cut point of the second gene
+with the bits after the cut point from the first gene (kid 2).
+It returns 2  genes.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaGaCross2Gene(gg1, gg2, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>gg1</code></td>
+<td>
+<p>A binary gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>gg2</code></td>
+<td>
+<p>A binary gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>The local configuration of the genetic algorithm.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A list of 2 binary genes.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Crossover (2): 
+<code>xegaGaUCross2Gene()</code>,
+<code>xegaGaUPCross2Gene()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">gene1&lt;-xegaGaInitGene(lFxegaGaGene)
+gene2&lt;-xegaGaInitGene(lFxegaGaGene)
+xegaGaDecodeGene(gene1, lFxegaGaGene)
+xegaGaDecodeGene(gene2, lFxegaGaGene)
+newgenes&lt;-xegaGaCross2Gene(gene1, gene2, lFxegaGaGene)
+xegaGaDecodeGene(newgenes[[1]], lFxegaGaGene)
+xegaGaDecodeGene(newgenes[[2]], lFxegaGaGene)
+</code></pre>
+
+
+</div>

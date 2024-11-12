@@ -1,0 +1,96 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xhist</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>
+Graph <code>xhist</code>
+</h2>
+
+<h3>Description</h3>
+
+<p>The function <code>xhist</code> in x.ent is a graphical representation of the distribution of entities with time.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">  xhist(v = "")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>v</code></td>
+<td>
+<p>a value of entity or the relations between entities </p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+<p>Result after calling the function <code>xparse</code> has the following format:
+</p>
+
+<ol>
+<li>
+<p> file_name:entity:$:list_value_found
+</p>
+</li>
+<li>
+<p> ...
+</p>
+</li>
+<li>
+<p> file_name:entity1:entity2:...:$$:value_e1:value_e2:....:negation
+</p>
+</li>
+</ol>
+<p>Function <code>xhist</code> will convert the data format above to a data frame. The histogram uses this data frame to display graphs.
+The data frame format: 
+</p>
+
+<ol>
+<li>
+<p> column file : name of file
+</p>
+</li>
+<li>
+<p> column date : (format mm.yyyy)
+</p>
+</li>
+<li>
+<p> column value_date, this value is used for creating histogram
+</p>
+</li>
+<li>
+<p> column visible: if visible = 1 then this record will be used in histogram   
+</p>
+</li>
+</ol>
+<h3>Value</h3>
+
+<p>This function returns a data frame so that users can check or use it to create new graphs.
+</p>
+<table><tr style="vertical-align: top;">
+<td><code>dataframe</code></td>
+<td>
+<p>return a data frame</p>
+</td>
+</tr></table>
+<h3>See Also</h3>
+
+<p><code>xplot</code> type graphique plot<br><code>xshow</code> display the results of extracted data<br><code>xshow</code> display results
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">  xhist() #all documents
+  xhist(v="colza") #only documents contain "colza"
+  xhist(v="colza:altise") #only documents contain a relation "colza:altise"
+</code></pre>
+
+
+</div>

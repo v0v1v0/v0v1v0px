@@ -1,0 +1,85 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaDfUPCrossGene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Parameterized uniform crossover of 2 genes.</h2>
+
+<h3>Description</h3>
+
+<p><code>UPCrossGene</code> swaps alleles of both genes
+with a probability of <code>lF$UCrossSwap</code>. 
+It generate a random 
+mask which is used to build the new gene.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaDfUPCrossGene(gg1, gg2, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>gg1</code></td>
+<td>
+<p>Real-coded gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>gg2</code></td>
+<td>
+<p>Real-coded gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration of the genetic algorithm.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Real-coded gene.
+</p>
+
+
+<h3>References</h3>
+
+<p>Spears William and De Jong, Kenneth (1991):
+On the Virtues of Parametrized Uniform Crossover. 
+In: Belew, Richard K. and Booker, Lashon B. (Ed.)
+Proceedings of the Fourth International Conference on Genetic Algorithms,
+Morgan Kaufmann Publishers, Los Altos, California, pp. 230-236.
+(ISBN: 1-55860-208-9)
+</p>
+<p>Price, Kenneth V., Storn, Rainer M. and Lampinen, Jouni A. (2005)
+The Differential Evolution Algorithm (Chapter 2), pp. 37-134.
+In: Differential Evolution. A Practical Approach to Global Optimization.
+Springer, Berlin.
+&lt;doi:10.1007/3-540-31306-0&gt;
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Crossover (1): 
+<code>xegaDfCrossGene()</code>,
+<code>xegaDfUCrossGene()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">gene1&lt;-xegaDfInitGene(lFxegaDfGene)
+gene2&lt;-xegaDfInitGene(lFxegaDfGene)
+gene3&lt;-xegaDfUPCrossGene(gene1, gene2, lFxegaDfGene)
+</code></pre>
+
+
+</div>

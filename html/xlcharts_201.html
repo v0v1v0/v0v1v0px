@@ -1,0 +1,57 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>Image</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Image</h2>
+
+<h3>Description</h3>
+
+<p>Image in a spreadsheet. You must have the Pillow Python library
+installed, which can be installed using 'install_pillow()'.
+</p>
+<p><a href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.drawing.image.html">https://openpyxl.readthedocs.io/en/stable/api/openpyxl.drawing.image.html</a>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">Image(img, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>img</code></td>
+<td>
+<p>img</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments, i.e. kwargs.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An openpyxl Python object.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+install_pillow()
+image_path &lt;- system.file('extdata/logo.png',package='xlcharts')
+Image(img = image_path)
+
+## End(Not run)
+</code></pre>
+
+
+</div>

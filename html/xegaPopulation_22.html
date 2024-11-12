@@ -1,0 +1,93 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>MClapply</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>MultiCore apply of library parallel.</h2>
+
+<h3>Description</h3>
+
+<p>The evaluation of the fitness of the genes of the population
+is distributed to one worker on each core of the CPU of the 
+local machine.
+The package of <code>parallel</code> of base R is used.
+The number of cores is provided by <code>lF$Cores</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">MClapply(pop, EvalGene, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>pop</code></td>
+<td>
+<p>Population of genes.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>EvalGene</code></td>
+<td>
+<p>Function for evaluating a gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local function configuration which provides 
+all functions needed in <code>EvalGene()</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Be aware that
+</p>
+
+<ul>
+<li> <p><code>parallel::mclapply()</code> assumes that each function evaluation 
+needs approximately the same time.
+</p>
+</li>
+<li>
+<p> Best results are obtained if <code>popsize</code> modulo <code>cores-1</code> is 0.
+</p>
+</li>
+<li>
+<p> Does not work on Windows.
+</p>
+</li>
+</ul>
+<h3>Value</h3>
+
+<p>Fitness vector.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Execution Model: 
+<code>PparLapply()</code>,
+<code>futureLapply()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">library(parallelly) 
+if (supportsMulticore()){
+lFxegaGaGene$Cores&lt;-function() {2}
+pop&lt;-xegaInitPopulation(1000, lFxegaGaGene)
+popnew&lt;-MClapply(pop, lFxegaGaGene$EvalGene, lFxegaGaGene)
+}
+
+</code></pre>
+
+
+</div>

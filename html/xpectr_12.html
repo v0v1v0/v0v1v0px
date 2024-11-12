@@ -1,0 +1,157 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>insertExpectationsAddin</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Creates testthat tests for selected code</h2>
+
+<h3>Description</h3>
+
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="../help/figures/lifecycle-experimental.svg" alt="[Experimental]"></a>
+</p>
+<p>Inserts relevant <code>expect_*</code> tests based
+on the evaluation of the selected code.
+</p>
+<p>Example: If the selected code is the name of a <code>data.frame</code> object,
+it will create an <code>expect_equal</code>
+test for each column,
+along with a test of the column names.
+</p>
+<p>Currently supports side effects (<code>error</code>, <code>warning</code>s, <code>message</code>s),
+<code>data.frame</code>s, and <code>vector</code>s.
+</p>
+<p>List columns in <code>data.frame</code>s (like nested <code>tibble</code>s) are currently skipped.
+</p>
+<p>See <code>`Details`</code> for how to set a key command.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">insertExpectationsAddin(
+  selection = NULL,
+  insert = TRUE,
+  indentation = 0,
+  copy_env = FALSE
+)
+
+insertExpectationsCopyEnvAddin(
+  selection = NULL,
+  insert = TRUE,
+  indentation = 0,
+  copy_env = TRUE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>selection</code></td>
+<td>
+<p>String of code. (Character)
+</p>
+<p>E.g. <code>"stop('This gives an expect_error test')"</code>.
+</p>
+<p><strong>N.B.</strong> Mainly intended for testing the addin programmatically.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>insert</code></td>
+<td>
+<p>Whether to insert the expectations via
+<code>rstudioapi::insertText()</code>
+or return them. (Logical)
+</p>
+<p><strong>N.B.</strong> Mainly intended for testing the addin programmatically.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>indentation</code></td>
+<td>
+<p>Indentation of the selection. (Numeric)
+</p>
+<p><strong>N.B.</strong> Mainly intended for testing the addin programmatically.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>copy_env</code></td>
+<td>
+<p>Whether to work in a deep copy of the environment. (Logical)
+</p>
+<p>Side effects will be captured in copies of the copy, why two copies of the environment will
+exist at the same time.
+</p>
+<p>Disabled by default to save memory but is often preferable to enable,
+e.g. when the function changes non-local variables.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+
+
+<h4>How</h4>
+
+<p>Parses and evaluates the selected code string
+within the parent environment (or a deep copy thereof).
+Depending on the output, it creates a set of unit tests
+(like <code>expect_equal(data[["column"]], c(1,2,3))</code>),
+and inserts them instead of the selection.
+</p>
+
+
+
+<h4>How to set up a key command in RStudio</h4>
+
+<p>After installing the package.
+Go to:
+</p>
+<p><code>Tools &gt;&gt; Addins &gt;&gt; Browse Addins &gt;&gt; Keyboard Shortcuts</code>.
+</p>
+<p>Find <code>"Insert Expectations"</code> and press its field under <code>Shortcut</code>.
+</p>
+<p>Press desired key command, e.g. <code>Alt+E</code>.
+</p>
+<p>Press <code>Apply</code>.
+</p>
+<p>Press <code>Execute</code>.
+</p>
+
+
+
+<h3>Value</h3>
+
+<p>Inserts <code>testthat::expect_*</code>
+unit tests for the selected code.
+</p>
+<p>Returns <code>NULL</code> invisibly.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ludvig Renbo Olsen, <a href="mailto:r-pkgs@ludvigolsen.dk">r-pkgs@ludvigolsen.dk</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other expectation generators: 
+<code>gxs_function()</code>,
+<code>gxs_selection()</code>,
+<code>initializeGXSFunctionAddin()</code>
+</p>
+<p>Other addins: 
+<code>assertCollectionAddin()</code>,
+<code>dputSelectedAddin()</code>,
+<code>initializeGXSFunctionAddin()</code>,
+<code>initializeTestthatAddin()</code>,
+<code>navigateTestFileAddin()</code>,
+<code>wrapStringAddin()</code>
+</p>
+
+
+</div>

@@ -1,0 +1,81 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>Beta.X</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>
+X chart OC Curve
+</h2>
+
+<h3>Description</h3>
+
+<p>Calculates and plots the risk of not detecting shifts and the Average Run Length
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">Beta.X(k,n)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>k</code></td>
+<td>
+<p>A numeric vector, of length one, is the <em>k</em> standard deviations factor since the known mean</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>n</code></td>
+<td>
+<p>An integer, equal the sample size</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>beta</code></td>
+<td>
+<p>risk of not detecting shifts</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ARL</code></td>
+<td>
+<p>Average Run Lengh</p>
+</td>
+</tr>
+</table>
+<h3>Author(s)</h3>
+
+<p>Erick Marroquin
+</p>
+
+
+<h3>References</h3>
+
+<p>Montgomery, D.C. (2005) <em>Introduction to Statistical Quality Control</em>, 5th ed. New York: John Wiley &amp; Sons, ISBN 0-471-65631-3
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xrs_gr</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">Beta.X(k=1,n=5)
+Beta.X(k=0.5,n=5)
+Beta.X(k=1,n=3)
+</code></pre>
+
+
+</div>

@@ -1,0 +1,128 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>edit_rmd_template_str</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Edit a Rmd Template from xgx</h2>
+
+<h3>Description</h3>
+
+<p><code>edit_rmd_template_str</code> returns a path to the altered Rmd template
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">edit_rmd_template_str(
+  rmd_str = NULL,
+  mapping = NULL,
+  rmd_output_path = NULL,
+  data_path = NULL,
+  multiple_dosing = FALSE,
+  pk_cmt = NULL,
+  pd_cmt = NULL,
+  dose_cmt = NULL,
+  steady_state_day = NULL,
+  time_between_doses = NULL,
+  author_name = NULL,
+  add_datetime = TRUE,
+  show_explanation = TRUE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>rmd_str</code></td>
+<td>
+<p>A character string containing the Rmd template raw characters</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mapping</code></td>
+<td>
+<p>A list of column name mappings from the
+original (template) dataset column names
+to the corresponding columns in the new dataset</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>rmd_output_path</code></td>
+<td>
+<p>A custom output path for the generated Rmd file
+(This is typically left as 'NULL' in order to maintain the hierarchical directory structure of 'xgx_autoexplore_output'))</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data_path</code></td>
+<td>
+<p>Path (as a string) to the dataset that is to be analyzed</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>multiple_dosing</code></td>
+<td>
+<p>if FALSE use single ascending dose template, if TRUE use multiple</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pk_cmt</code></td>
+<td>
+<p>An integer denoting the "compartment" containing the PK data. The "CMT" column will typically
+have these integers, where each row may contain either PK or PD data, potentially of different types (continuous, ordinal, etc.)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pd_cmt</code></td>
+<td>
+<p>An integer denoting the "compartment" containing the PD data, of the desired type  (continuous, ordinal, etc.). The "CMT" column will typically
+have these integers, where each row may contain either PK or PD data</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dose_cmt</code></td>
+<td>
+<p>CMT associated with dosing event</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>steady_state_day</code></td>
+<td>
+<p>For multiple ascending dose, what day is steady state rich profile?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>time_between_doses</code></td>
+<td>
+<p>time interval between doses</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>author_name</code></td>
+<td>
+<p>The name of the author to be displayed on the template</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>add_datetime</code></td>
+<td>
+<p>Boolean indicating additon of a date stamp to the beginnning of the Rmd file</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>show_explanation</code></td>
+<td>
+<p>Boolean indicating if the additional explanations (text in between figures) are needed for the user.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A string of the new R markdown template
+</p>
+
+
+</div>

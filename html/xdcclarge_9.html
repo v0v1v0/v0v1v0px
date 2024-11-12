@@ -1,0 +1,67 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>dcc_gradient</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>This functions calculates numerical gradient of log-likelihood of DCC-GARCH model.</h2>
+
+<h3>Description</h3>
+
+<p>This functions calculates numerical gradient of log-likelihood of DCC-GARCH model.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">dcc_gradient(param, ht, residuals, stdresids, uncR, d = 1e-05)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>param</code></td>
+<td>
+<p>DCC-GARCH parameters(alpha,beta)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ht</code></td>
+<td>
+<p>matrix of conditional variance vectors (T by N)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>residuals</code></td>
+<td>
+<p>matrix of residual(de-mean) returns  (T by N)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>stdresids</code></td>
+<td>
+<p>matrix of standrdized(De-GARCH) residual returns  (T by N)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>uncR</code></td>
+<td>
+<p>unconditional correlation matrix of stdresids  (N by N)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>d</code></td>
+<td>
+<p>(log-lik(x+d) - log-lik(x))/d</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>numerical gradient of log-likelihood of DCC-GARCH model (vector)
+</p>
+
+
+</div>

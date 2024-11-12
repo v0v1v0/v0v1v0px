@@ -1,0 +1,51 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>asServerObjectMethods</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Julia methods for asServerObject()</h2>
+
+<h3>Description</h3>
+
+<p>The default method for JuliaObject is modelled on the overall default
+method in XR.
+</p>
+<p>For arrays, the method uses the reshape() function in Julia to create a suitable multi-way array.
+</p>
+<p>For "plain" lists, the method produces the Julia expression for a list or a dictionary;
+with other attributes, uses the .RClass form.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S4 method for signature 'ANY,JuliaObject'
+asServerObject(object, prototype)
+
+## S4 method for signature 'array,JuliaObject'
+asServerObject(object, prototype)
+
+## S4 method for signature 'list,JuliaObject'
+asServerObject(object, prototype)
+
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>The <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>prototype</code></td>
+<td>
+<p>The proxy for a prototype of the Julia object, supplied by the evaluator.</p>
+</td>
+</tr>
+</table>
+</div>

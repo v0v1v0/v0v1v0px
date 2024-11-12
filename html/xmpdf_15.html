@@ -1,0 +1,109 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>cat_pages</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Concatenate pdf documents together</h2>
+
+<h3>Description</h3>
+
+<p><code>cat_pages()</code> concatenates pdf documents together.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">cat_pages(input, output)
+
+cat_pages_gs(input, output)
+
+cat_pages_pdftk(input, output)
+
+cat_pages_qpdf(input, output)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>input</code></td>
+<td>
+<p>Filename(s) (pdf) to concatenate together</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>output</code></td>
+<td>
+<p>Filename (pdf) to save concatenated output to</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p><code>cat_pages()</code> will try to use the following helper functions in the following order:
+</p>
+
+<ol>
+<li> <p><code>cat_pages_qpdf()</code> which wraps <code>qpdf::pdf_combine()</code>
+</p>
+</li>
+<li> <p><code>cat_pages_pdftk()</code> which wraps <code>pdftk</code> command-line tool
+</p>
+</li>
+<li> <p><code>cat_pages_gs()</code> which wraps <code>ghostscript</code> command-line tool
+</p>
+</li>
+</ol>
+<h3>Value</h3>
+
+<p>The (output) filename invisibly.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>supports_cat_pages()</code>, <code>supports_gs()</code>, and <code>supports_pdftk()</code> to detect support for these features.
+<code>cat_bookmarks()</code> for generating bookmarks for concatenated files.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">if (supports_cat_pages() &amp;&amp; require("grid", quietly = TRUE)) {
+  # Create two different two-page pdf files
+  make_pdf &lt;- function(f, title) {
+    pdf(f, onefile = TRUE, title = title)
+    grid.text(paste(title, "Page 1"))
+    grid.newpage()
+    grid.text(paste(title, "Page 2"))
+    invisible(dev.off())
+  }
+  f1 &lt;- tempfile(fileext = "_doc1.pdf")
+  on.exit(unlink(f1))
+  make_pdf(f1, "Document 1")
+
+  f2 &lt;- tempfile(fileext = "_doc2.pdf")
+  on.exit(unlink(f2))
+  make_pdf(f2, "Document 2")
+
+  fc &lt;- tempfile(fileext = "_cat.pdf")
+  on.exit(unlink(fc))
+  cat_pages(c(f1, f2), fc)
+
+  # Use `cat_bookmarks()` to create pdf bookmarks for concatenated output files
+  if (supports_get_bookmarks() &amp;&amp; supports_set_bookmarks()) {
+     l &lt;- get_bookmarks(c(f1, f2))
+     bm &lt;- cat_bookmarks(l, "title")
+     set_bookmarks(bm, fc)
+     print(get_bookmarks(fc)[[1]])
+  }
+  unlink(f1)
+  unlink(f2)
+  unlink(fc)
+}
+</code></pre>
+
+
+</div>

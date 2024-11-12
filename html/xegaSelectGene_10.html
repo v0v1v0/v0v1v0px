@@ -1,0 +1,104 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>EvalGeneFactory</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Configure the evaluation function of a genetic algorithm.</h2>
+
+<h3>Description</h3>
+
+<p><code>EvalGeneFactory</code> implements the selection 
+of one of the evaluation functions for a gene 
+in this package by specifying a text string.
+The selection fails ungracefully (produces
+a runtime error) if the label does not match.
+The functions are specified locally.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">EvalGeneFactory(method = "EvalGeneU")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>Available methods are: 
+</p>
+
+<ul>
+<li>
+<p> "EvalGeneU": Evaluate gene (Default).
+Function <code>EvalGeneU</code>.
+</p>
+</li>
+<li>
+<p> "EvalGeneR": If the gene has been repaired by a decoder, 
+the gene is replaced by the repaired gene.
+Function <code>EvalGeneR</code>.
+</p>
+</li>
+<li>
+<p> "Deterministic": A gene which has been evaluated is 
+not reevaluated. 
+Function <code>EvalGeneDet</code>.
+</p>
+</li>
+<li>
+<p> "Stochastic": The fitness mean and 
+the fitness variance
+are incrementally updated.
+Genes remaining in the population over several
+generations, the fitness mean converges to the 
+expected mean.
+Function <code>EvalGeneStoch</code>.
+</p>
+</li>
+</ul>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>An evaluation function.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Configuration: 
+<code>DispersionMeasureFactory()</code>,
+<code>ScalingFactory()</code>,
+<code>SelectGeneFactory()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">set.seed(5)
+DeJongF4&lt;-DeJongF4Factory()
+lF&lt;-NewlFevalGenes(DeJongF4)
+EvalGene&lt;-EvalGeneFactory("EvalGeneU")
+g1&lt;-list(evaluated=FALSE, evalFail=FALSE, fit=0, gene1=c(1.0, -1.5))
+g1
+g2&lt;-EvalGene(g1, lF)
+g2
+EvalGene&lt;-EvalGeneFactory("Deterministic")
+g3&lt;-EvalGene(g2, lF)
+g3
+set.seed(5)
+EvalGene&lt;-EvalGeneFactory("Stochastic")
+g1&lt;-list(evaluated=FALSE, evalFail=FALSE, fit=0, gene1=c(1.0, -1.5))
+g1
+g2&lt;-EvalGene(g1, lF)
+g2
+g3&lt;-EvalGene(g2, lF)
+g3
+</code></pre>
+
+
+</div>

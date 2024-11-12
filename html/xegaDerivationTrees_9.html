@@ -1,0 +1,64 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>decodeDTsym</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Decodes a derivation tree into a list of the leaf symbols
+of the derivation tree.</h2>
+
+<h3>Description</h3>
+
+<p>Decodes a derivation tree into a list of the leaf symbols
+of the derivation tree.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">decodeDTsym(tree, ST)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>tree</code></td>
+<td>
+<p>Derivation tree.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ST</code></td>
+<td>
+<p>Symbol table.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>List of the leaf symbols of the derivation tree.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Decoder: 
+<code>decodeCDT()</code>,
+<code>decodeDT()</code>,
+<code>decodeTree()</code>,
+<code>leavesIncompleteDT()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">g&lt;-compileBNF(booleanGrammar())
+t1&lt;-generateDerivationTree(sym=g$Start,sample(100, 10, replace=TRUE), G=g)
+decodeDTsym(t1$tree, g$ST) 
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,69 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>prostate</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Comparison between overall survival and disease-free survival for prostate cancer</h2>
+
+<h3>Description</h3>
+
+<p>Results from five randomized clinical trials published between 1988 and 2011</p>
+
+
+<h3>Format</h3>
+
+<p>The data frame contains the following columns:
+</p>
+
+<dl>
+<dt>y1</dt>
+<dd>
+<p>log-hazard ratio estimates comparing combined therapy using Goserelin acetate with radiotherapy with respect to
+overall survival</p>
+</dd>
+<dt>s1</dt>
+<dd>
+<p>within-study standard error for outcome 1</p>
+</dd>
+<dt>y2</dt>
+<dd>
+<p>log-hazard ratio estimates comparing combined therapy using Goserelin acetate with radiotherapy with respect to
+disease-free survival</p>
+</dd>
+<dt>s2</dt>
+<dd>
+<p>within-study stamdard error for outcome 2</p>
+</dd>
+</dl>
+<h3>Note</h3>
+
+<p>The dataset <code>prostate</code> is used to conduct bivariate random-effects meta-analysis when the within-study correlations are unknown.
+</p>
+
+
+<h3>References</h3>
+
+<p>Chen, Y., Hong, C. and Riley, R. D. (2015). An alternative pseudolikelihood method for multivariate random-effects meta-analysis. Statistics in medicine, 34(3), 361-380.
+</p>
+<p>Sasse A, Sasse E, Carvalho A, Macedo L. Androgenic suppression combined with radiotherapy for the treatment of prostate
+adenocarcinoma: a systematic review. BMC cancer 2012; 12(1):54.
+30. 
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>mmeta</code>,
+<code>summary.mmeta</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(prostate)
+summary(prostate)
+</code></pre>
+
+
+</div>

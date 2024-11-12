@@ -1,0 +1,63 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>sgXInitGeneFactory</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Factory for configuring a gene dependent InitGene function.</h2>
+
+<h3>Description</h3>
+
+<p>Factory for configuring a gene dependent InitGene function.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">sgXInitGeneFactory(algorithm = "sga", method = "InitGene")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>algorithm</code></td>
+<td>
+<p>Algorithm. 
+Available: "sga", "sgde", "sgperm", "sge", sgp". 
+Default: "sga".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>Method. Default: "InitGene".</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>InitGene function from the correct package.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Configuration: 
+<code>sgXCrossoverFactory()</code>,
+<code>sgXDecodeGeneFactory()</code>,
+<code>sgXGeneMapFactory()</code>,
+<code>sgXMutationFactory()</code>,
+<code>sgXReplicationFactory()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">sgXInitGeneFactory(algorithm="sgperm")
+
+</code></pre>
+
+
+</div>

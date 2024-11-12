@@ -1,0 +1,312 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xpose.plot.qq</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>The generic Xpose functions for QQ plots</h2>
+
+<h3>Description</h3>
+
+<p>This is a wrapper function for the lattice <code>qqmath</code>
+function.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xpose.plot.qq(
+  x,
+  object,
+  inclZeroWRES = FALSE,
+  onlyfirst = FALSE,
+  samp = NULL,
+  aspect = object@Prefs@Graph.prefs$aspect,
+  scales = list(),
+  by = object@Prefs@Graph.prefs$condvar,
+  force.by.factor = FALSE,
+  ordby = object@Prefs@Graph.prefs$ordby,
+  byordfun = object@Prefs@Graph.prefs$byordfun,
+  shingnum = object@Prefs@Graph.prefs$shingnum,
+  shingol = object@Prefs@Graph.prefs$shingol,
+  strip = function(...) strip.default(..., strip.names = c(TRUE, TRUE)),
+  subset = xsubset(object),
+  main = xpose.create.title.hist(x, object, subset, ...),
+  xlb = "Quantiles of Normal",
+  ylb = paste("Quantiles of ", xlabel(x, object), sep = ""),
+  pch = object@Prefs@Graph.prefs$pch,
+  col = object@Prefs@Graph.prefs$col,
+  cex = object@Prefs@Graph.prefs$cex,
+  abllty = object@Prefs@Graph.prefs$abllty,
+  abllwd = object@Prefs@Graph.prefs$abllwd,
+  ablcol = object@Prefs@Graph.prefs$ablcol,
+  mirror = FALSE,
+  max.plots.per.page = 4,
+  mirror.aspect = "fill",
+  pass.plot.list = FALSE,
+  x.cex = NULL,
+  y.cex = NULL,
+  main.cex = NULL,
+  mirror.internal = list(strip.missing = missing(strip)),
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>A string or a vector of strings with the name(s) of the
+x-variable(s).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An "xpose.data" object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>inclZeroWRES</code></td>
+<td>
+<p>A logical value indicating whether rows with WRES=0
+should be plotted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>onlyfirst</code></td>
+<td>
+<p>A logical value indicating whether only the first row per
+individual should be included in the plot.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>samp</code></td>
+<td>
+<p>An integer between 1 and object@Nsim
+(see<code>xpose.data-class</code>) specifying which of the simulated data
+sets to extract from SData.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>aspect</code></td>
+<td>
+<p>The aspect ratio of the display (see
+<code>qqmath</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>scales</code></td>
+<td>
+<p>A list to be used for the <code>scales</code> argument in
+<code>qqmath</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>by</code></td>
+<td>
+<p>A string or a vector of strings with the name(s) of the
+conditioning variables.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>force.by.factor</code></td>
+<td>
+<p>Logical value. If TRUE, and <code>by</code> is not
+<code>NULL</code>, the variable specified by <code>by</code> is taken as categorical.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ordby</code></td>
+<td>
+<p>A string with the name of a variable to be used to reorder any
+factor conditioning variables (<code>by</code>). The variable is used in a call to
+the <code>reorder</code> function.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>byordfun</code></td>
+<td>
+<p>The name of the function to be used when reordering a factor
+conditioning variable (see argument <code>ordby</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>shingnum</code></td>
+<td>
+<p>The number of shingles ("parts") a continuous conditioning
+variable should be divided into.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>shingol</code></td>
+<td>
+<p>The amount of overlap between adjacent shingles (see argument
+<code>shingnum</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>strip</code></td>
+<td>
+<p>The name of the function to be used as the strip argument to
+the <code>xyplot</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>subset</code></td>
+<td>
+<p>A string giving the subset expression to be applied to the
+data before plotting. See <code>xsubset</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>A string giving the plot title or <code>NULL</code> if none.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xlb</code></td>
+<td>
+<p>A string giving the label for the x-axis. <code>NULL</code> if none.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylb</code></td>
+<td>
+<p>A string giving the label for the y-axis. <code>NULL</code> if none.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pch</code></td>
+<td>
+<p>Plotting symbol.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col</code></td>
+<td>
+<p>Color of plotting symbol.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cex</code></td>
+<td>
+<p>Amount to scale the plotting character by.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>abllty</code></td>
+<td>
+<p>Line type for qqline.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>abllwd</code></td>
+<td>
+<p>Line width for qqline.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ablcol</code></td>
+<td>
+<p>Color for qqline.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mirror</code></td>
+<td>
+<p>Should we create mirror plots from simulation data?  Value can
+be <code>FALSE</code>, <code>TRUE</code> or <code>1</code> for one mirror plot, or <code>3</code>
+for three mirror plots.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max.plots.per.page</code></td>
+<td>
+<p>The maximum number of plots per page that can be
+created with the mirror plots.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mirror.aspect</code></td>
+<td>
+<p>The aspect ratio of the plots used for mirror
+functionality.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pass.plot.list</code></td>
+<td>
+<p>Should we pass the list of plots created with mirror
+or should we print them directly.  Values can be <code>TRUE/FALSE</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x.cex</code></td>
+<td>
+<p>The size of the x-axis label.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>y.cex</code></td>
+<td>
+<p>The size of the y-axis label.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main.cex</code></td>
+<td>
+<p>The size of the title.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mirror.internal</code></td>
+<td>
+<p>an internal mirror argument used in
+<code>create.mirror</code>.  Checks if the <code>strip</code> argument from
+<code>qqmath</code> has been used.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Other arguments passed to <code>xpose.plot.qq</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Author(s)</h3>
+
+<p>E. Niclas Jonsson, Mats Karlsson, Andrew Hooker &amp; Justin Wilkins
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xpose.panel.qq</code>, <code>qqmath</code>,
+<code>panel.qqmathline</code>, <code>xpose.data-class</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Not run: 
+## xpdb5 is an Xpose data object
+## We expect to find the required NONMEM run and table files for run
+## 5 in the current working directory
+xpdb5 &lt;- xpose.data(5)
+
+## A QQ plot of WRES
+xpose.plot.qq("WRES", xpdb5) 
+
+## End(Not run)
+
+
+</code></pre>
+
+
+</div>

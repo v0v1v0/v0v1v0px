@@ -1,0 +1,210 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>change.xvardef</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Change Xpose variable definitions.</h2>
+
+<h3>Description</h3>
+
+<p>These functions allow for the changing of Xpose variable definitions like
+"idv" and "dv". These variable definitions are used to refer to columns of
+the observed data in a generic way, so that generic plotting functions can
+be created.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">change.xvardef(
+  object,
+  var = ".ask",
+  def = ".ask",
+  listall = TRUE,
+  classic = FALSE,
+  check.var = FALSE,
+  ...
+)
+
+change.xvardef(
+  object,
+  var,
+  listall = FALSE,
+  classic = FALSE,
+  check.var = FALSE,
+  ...
+) &lt;- value
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An <code>xpose.data</code> object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>var</code></td>
+<td>
+<p>The Xpose variable you would like to change or add to the current
+object. A one-element character vector (e.g. <code>"idv"</code>).  If
+<code>".ask"</code> the user will be prompted to input a value.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>def</code></td>
+<td>
+<p>A vector of column names from NONMEM table files
+(<code>names(object@Data)</code>) that should be associated with this variable
+(e.g. <code>c("TIME")</code>).  Multiple values are allowed. If <code>".ask"</code> the
+user will be prompted to input values.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>listall</code></td>
+<td>
+<p>Should the function list the database values?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>classic</code></td>
+<td>
+<p>Is the function being used from the classic interface.  This
+is an internal option.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>check.var</code></td>
+<td>
+<p>Should the variables be checked against the current
+variables in the object?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Items passed to functions within this function.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>value</code></td>
+<td>
+<p>a vector of values</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>If called from the the command line then this function returns an
+xpose database.  If called from the classic interface this function updates
+the current xpose database (.cur.db).
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul><li> <p><code>change.xvardef(
+  object,
+  var,
+  listall = FALSE,
+  classic = FALSE,
+  check.var = FALSE,
+  ...
+) &lt;- value</code>: Change the covariate scope of
+the xpose database object
+</p>
+</li></ul>
+<h3>Additional arguments</h3>
+
+<p><strong>The default xpose variables are:<br></strong>
+</p>
+ <dl>
+<dt>id</dt>
+<dd>
+<p>Individual identifier column in dataset</p>
+</dd>
+<dt>idlab</dt>
+<dd>
+<p>values used for plotting ID values on data points in plots</p>
+</dd>
+<dt>occ</dt>
+<dd>
+<p>The occasion variable</p>
+</dd> <dt>dv</dt>
+<dd>
+<p>The dv variable</p>
+</dd> <dt>pred</dt>
+<dd>
+<p>The
+pred variable</p>
+</dd> <dt>ipred</dt>
+<dd>
+<p>The ipred variable</p>
+</dd> <dt>wres</dt>
+<dd>
+<p>The wres
+variable</p>
+</dd> <dt>cwres</dt>
+<dd>
+<p>The cwres variable</p>
+</dd> <dt>res</dt>
+<dd>
+<p>The res variable</p>
+</dd>
+<dt>parms</dt>
+<dd>
+<p>The parameters in the database</p>
+</dd> <dt>covariates</dt>
+<dd>
+<p>The
+covariates in the database</p>
+</dd> <dt>ranpar</dt>
+<dd>
+<p>The random parameters in the
+database</p>
+</dd> </dl>
+<h3>Author(s)</h3>
+
+<p>Andrew Hooker
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xvardef</code>, <code>xpose.data</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Here we load the example xpose database 
+xpdb &lt;- simpraz.xpdb
+
+# Change the "id" variable to point to "PRED" in the xpose object
+xpdb &lt;- change.xvardef(xpdb,var="id",def="PRED")
+
+# Check the value of the "id" variable
+xvardef("id",xpdb)
+
+# Change the "idv" variable
+change.xvardef(xpdb,var="idv") &lt;- "TIME"
+
+# Change the covariate scope
+change.xvardef(xpdb,var="covariates") &lt;- c("SEX","AGE","WT")
+
+## Not run: 
+# Use the interactive capabilities of the function
+xpdb &lt;- change.xvardef(xpdb)
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,86 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>ExponentialAdditiveCooling</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Exponential additive cooling.</h2>
+
+<h3>Description</h3>
+
+<p>This schedule decreases in proportion to the
+inverse of <code>exp</code> raised to the 
+power of the temperature cycle in
+<code>lF$Generations()</code> (= number of generations) fractions 
+between the starting temperature <code>temp0</code>
+and the final temperature <code>tempN</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">ExponentialAdditiveCooling(k, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>k</code></td>
+<td>
+<p>Number of steps to discount.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Temperature is updated at the end of each generation
+in the main loop of the genetic algorithm.
+<code>lF$Temp0()</code> is the starting temperature.
+<code>lF$TempN()</code> is the final temperature.
+<code>lF$Generations()</code> is the number of generations (time).
+</p>
+
+
+<h3>Value</h3>
+
+<p>The temperature at time k.
+</p>
+
+
+<h3>References</h3>
+
+<p>The-Crankshaft Publishing (2023)
+A Comparison of Cooling Schedules for Simulated Annealing.
+&lt;https://what-when-how.com/artificial-intelligence/a-comparison-of-cooling-schedules-for-simulated-annealing-artificial-intelligence/&gt;
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Cooling: 
+<code>ExponentialMultiplicativeCooling()</code>,
+<code>LogarithmicMultiplicativeCooling()</code>,
+<code>PowerAdditiveCooling()</code>,
+<code>PowerMultiplicativeCooling()</code>,
+<code>TrigonometricAdditiveCooling()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">parm&lt;-function(x){function() {return(x)}}
+lF&lt;-list(Temp0=parm(100), TempN=parm(10), Generations=parm(50))
+ExponentialAdditiveCooling(0, lF)
+ExponentialAdditiveCooling(2, lF)
+</code></pre>
+
+
+</div>

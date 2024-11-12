@@ -1,0 +1,85 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>XMLTree</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Constructor function for XiMpLe.doc objects</h2>
+
+<h3>Description</h3>
+
+<p>Can be used to create full XML trees.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">XMLTree(..., xml = NULL, dtd = NULL, .children = list(...))
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Optional children for the XML tree. Must be either objects of class
+<code>XiMpLe_node</code> or character strings,
+which are treated as simple text values.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xml</code></td>
+<td>
+<p>A named list, XML declaration of the XML tree. Currently just pasted,
+no checking is done.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dtd</code></td>
+<td>
+<p>A named list,
+doctype definition of the XML tree. Valid elements are <code>doctype</code> (root element), <code>decl</code>
+("PUBLIC" or "SYSTEM"), <code>id</code> (the identifier) and <code>refer</code> (URI to .dtd).
+Currently just pasted, no checking is done.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.children</code></td>
+<td>
+<p>Alternative way of specifying children,
+if you have them already as a list.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An object of class <code>XiMpLe_doc</code>
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>XMLNode</code>,
+<code>pasteXML</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">sample.XML.a &lt;- XMLNode("a",
+  attrs=list(href="http://example.com", target="_blank"),
+  .children="klick here!")
+sample.XML.body &lt;- XMLNode("body", .children=list(sample.XML.a))
+sample.XML.html &lt;- XMLNode("html", .children=list(XMLNode("head", ""),
+  sample.XML.body))
+sample.XML.tree &lt;- XMLTree(sample.XML.html,
+  xml=list(version="1.0", encoding="UTF-8"),
+  dtd=list(doctype="html", decl="PUBLIC",
+    id="-//W3C//DTD XHTML 1.0 Transitional//EN",
+    refer="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"))
+</code></pre>
+
+
+</div>

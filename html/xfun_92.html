@@ -1,0 +1,44 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>parse_only</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Parse R code and do not keep the source</h2>
+
+<h3>Description</h3>
+
+<p>An abbreviation of <code>parse(keep.source = FALSE)</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">parse_only(code)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>code</code></td>
+<td>
+<p>A character vector of the R source code.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>R <code>expression()</code>s.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">library(xfun)
+parse_only("1+1")
+parse_only(c("y~x", "1:5 # a comment"))
+parse_only(character(0))
+</code></pre>
+
+
+</div>

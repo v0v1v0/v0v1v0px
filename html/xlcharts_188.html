@@ -1,0 +1,64 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>hash_password</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>hash_password</h2>
+
+<h3>Description</h3>
+
+<p>Create a password hash from a given string for protecting a worksheet
+</p>
+<p><a href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.utils.protection.html">https://openpyxl.readthedocs.io/en/stable/api/openpyxl.utils.protection.html</a>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">hash_password(plaintext_password = "", ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>plaintext_password</code></td>
+<td>
+<p>plaintext_password</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments, i.e. kwargs.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>only. This will not work for encrypting a workbook. This method is based on the algorithm provided by
+Daniel Rentz of OpenOffice and the PEAR package
+Spreadsheet_Excel_Writer by Xavier Noguer &lt;xnoguer@rezebra.com&gt;.
+See also http://blogs.msdn.com/b/ericwhite/archive/2008/02/23/the-legacy-hashing-algorithm-in-open-xml.aspx
+</p>
+
+
+<h3>Value</h3>
+
+<p>An openpyxl Python object.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+hash_password(plaintext_password = "password")
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

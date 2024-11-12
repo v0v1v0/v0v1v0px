@@ -1,0 +1,82 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaDfMutateGeneDE</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Mutate a gene (differential mutation).</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaDfMutateGeneDE</code> mutates a real-coded gene.
+The scale factor is given by Scalefactor().
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaDfMutateGeneDE(gene0, gene1, gene2, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>gene0</code></td>
+<td>
+<p>Real-coded gene (the base vector).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>gene1</code></td>
+<td>
+<p>Real-coded gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>gene2</code></td>
+<td>
+<p>Real-coded gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The difference of gene1 and gene2 is scaled by 
+ScaleFactor() and added to gene0.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Real-coded gene.
+</p>
+
+
+<h3>References</h3>
+
+<p>Price, Kenneth V., Storn, Rainer M. and Lampinen, Jouni A. (2005)
+The Differential Evolution Algorithm (Chapter 2), pp. 37-134.
+In: Differential Evolution. A Practical Approach to Global Optimization.
+Springer, Berlin.
+&lt;doi:10.1007/3-540-31306-0&gt;
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">gene0&lt;-xegaDfInitGene(lFxegaDfGene)
+gene1&lt;-xegaDfInitGene(lFxegaDfGene)
+gene2&lt;-xegaDfInitGene(lFxegaDfGene)
+gene&lt;-xegaDfMutateGeneDE(gene0, gene1, gene2, lFxegaDfGene)
+</code></pre>
+
+
+</div>

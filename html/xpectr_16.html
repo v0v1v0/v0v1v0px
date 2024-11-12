@@ -1,0 +1,81 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>num_total_elements</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Total number of elements</h2>
+
+<h3>Description</h3>
+
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="../help/figures/lifecycle-experimental.svg" alt="[Experimental]"></a>
+</p>
+<p>Unlists <code>`x`</code> recursively and finds the total number of elements.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">num_total_elements(x, deduplicated = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>List with elements.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>deduplicated</code></td>
+<td>
+<p>Whether to only count the unique elements. (Logical)</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Simple wrapper for
+<code>length(unlist(x, recursive = TRUE, use.names = FALSE))</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>The total number of elements in <code>`x`</code>.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ludvig Renbo Olsen, <a href="mailto:r-pkgs@ludvigolsen.dk">r-pkgs@ludvigolsen.dk</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other element descriptors: 
+<code>element_classes()</code>,
+<code>element_lengths()</code>,
+<code>element_types()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Attach packages
+library(xpectr)
+
+l &lt;- list(list(list(1, 2, 3), list(2, list(3, 2))),
+          list(1, list(list(2, 4), list(7, 1, list(3, 8)))),
+          list(list(2, 7, 8), list(10, 2, list(18, 1, 4))))
+
+num_total_elements(l)
+num_total_elements(l, deduplicated = TRUE)
+</code></pre>
+
+
+</div>

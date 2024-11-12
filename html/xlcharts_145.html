@@ -1,0 +1,94 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>ExcelReader</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>ExcelReader</h2>
+
+<h3>Description</h3>
+
+<p>Read an Excel package and dispatch the contents to the relevant modules
+</p>
+<p><a href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.reader.excel.html">https://openpyxl.readthedocs.io/en/stable/api/openpyxl.reader.excel.html</a>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">ExcelReader(
+  fn,
+  read_only = FALSE,
+  keep_vba = FALSE,
+  data_only = FALSE,
+  keep_links = TRUE,
+  rich_text = FALSE,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>fn</code></td>
+<td>
+<p>fn</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>read_only</code></td>
+<td>
+<p>read_only</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>keep_vba</code></td>
+<td>
+<p>keep_vba</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data_only</code></td>
+<td>
+<p>data_only</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>keep_links</code></td>
+<td>
+<p>keep_links</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>rich_text</code></td>
+<td>
+<p>rich_text</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments, i.e. kwargs.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An openpyxl Python object.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+tmp &lt;- write_xlsx(list(mysheet = iris))
+ExcelReader(fn = tmp)
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

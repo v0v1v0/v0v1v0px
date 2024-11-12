@@ -1,0 +1,51 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>wholebinary</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Encodes a number as a two row binary matrix and its sign</h2>
+
+<h3>Description</h3>
+
+<p>Auxiliary function used for generating expansion of a number,
+the binary expansion of length nc of the integer part is the first row 
+and the binary expansion of length nc of the fractional part
+is the second row of the matrix.
+The sign as appended into the final list object which the function
+returns.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">wholebinary(x, nc = 31)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>is a decimal number</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>nc</code></td>
+<td>
+<p>is the length of the binary expansion and defines the
+number of columns of the output matrix</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>This function generates a list with a binary matrix
+rmat
+with two rows and the sign sgn in a separate entry of the list.
+</p>
+
+
+</div>

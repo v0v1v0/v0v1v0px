@@ -1,0 +1,138 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>predict.tune_xrnet</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Predict function for "tune_xrnet" object</h2>
+
+<h3>Description</h3>
+
+<p>Extract coefficients or predict response in new data using
+fitted model from a <code>tune_xrnet</code> object. Note that we currently
+only support returning results that are in the original path(s).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S3 method for class 'tune_xrnet'
+predict(
+  object,
+  newdata = NULL,
+  newdata_fixed = NULL,
+  p = "opt",
+  pext = "opt",
+  type = c("response", "link", "coefficients"),
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>A <code>tune_xrnet</code> object</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>newdata</code></td>
+<td>
+<p>matrix with new values for penalized variables</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>newdata_fixed</code></td>
+<td>
+<p>matrix with new values for unpenalized variables</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>p</code></td>
+<td>
+<p>vector of penalty values to apply to predictor variables.
+Default is optimal value in tune_xrnet object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pext</code></td>
+<td>
+<p>vector of penalty values to apply to external data variables.
+Default is optimal value in tune_xrnet object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>type</code></td>
+<td>
+<p>type of prediction to make using the xrnet model, options
+include:
+</p>
+
+<ul>
+<li>
+<p> response
+</p>
+</li>
+<li>
+<p> link (linear predictor)
+</p>
+</li>
+<li>
+<p> coefficients
+</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>pass other arguments to xrnet function (if needed)</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>The object returned is based on the value of type as follows:
+</p>
+
+<ul>
+<li>
+<p> response: An array with the response predictions based on the data
+for each penalty combination
+</p>
+</li>
+<li>
+<p> link: An array with linear predictions based on the data for each
+penalty combination
+</p>
+</li>
+<li>
+<p> coefficients: A list with the coefficient estimates for each
+penalty combination. See <code>coef.xrnet</code>.
+</p>
+</li>
+</ul>
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(GaussianExample)
+
+## 5-fold cross validation
+cv_xrnet &lt;- tune_xrnet(
+  x = x_linear,
+  y = y_linear,
+  external = ext_linear,
+  family = "gaussian",
+  control = xrnet_control(tolerance = 1e-6)
+)
+
+## Get coefficients and predictions at optimal penalty combination
+coef_xrnet &lt;- predict(cv_xrnet, type = "coefficients")
+pred_xrnet &lt;- predict(cv_xrnet, newdata = x_linear, type = "response")
+</code></pre>
+
+
+</div>

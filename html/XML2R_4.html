@@ -1,0 +1,64 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>listsToObs</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Flatten nested list into a list of observations</h2>
+
+<h3>Description</h3>
+
+<p>This function flattens the nested list into a list of "observations" (that is, a list of matrices with one row).
+The names of the list that is returned reflects the XML ancestory of each observation.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">listsToObs(l, urls, append.value = TRUE, as.equiv = TRUE, url.map = TRUE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>l</code></td>
+<td>
+<p>list. Should be the output from nodesToList.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>urls</code></td>
+<td>
+<p>character vector the same length as <code>l</code>. Each element should map element of <code>l</code> to an XML file.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>append.value</code></td>
+<td>
+<p>logical. Should the XML value be appended to the observation?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>as.equiv</code></td>
+<td>
+<p>logical. Should observations from two different files (but the same ancestory) have the same name returned?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>url.map</code></td>
+<td>
+<p>logical. If TRUE, the 'url_key' column will contain a condensed url identifier (for each observation)
+and full urls will be stored in the "url_map" element. If FALSE, the full urls are included (for each observation) 
+as a 'url' column and no "url_map" is included.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A list where each element reflects one "observation".
+</p>
+
+
+</div>

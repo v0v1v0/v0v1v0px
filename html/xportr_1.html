@@ -1,0 +1,230 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xportr-package</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>The <code>xportr</code> package</h2>
+
+<h3>Description</h3>
+
+<p><code>xportr</code> is designed to be a clinical workflow friendly method for outputting
+CDISC complaint data sets in R, to XPT version 5 files. It was designed with
+options in mind to allow for flexible setting of options while allowing
+projects and system administrators to set sensible defaults for their
+organizations workflows. Below are a list of options that can be set to
+customize how <code>xportr</code> works in your environment.
+</p>
+
+
+<h3>xportr options</h3>
+
+
+<ul>
+<li>
+<p>xportr.df_domain_name - The name of the domain "name" column in dataset
+metadata. Default: "dataset"
+
+</p>
+</li>
+<li> 
+<p>xportr.df_label - The column noting the dataset label in dataset metadata.
+Default: "label"
+
+</p>
+</li>
+<li>
+<p>xportr.domain_name - The name of the domain "name" column in variable
+metadata. Default: "dataset"
+
+</p>
+</li>
+<li>
+<p>xportr.variable_name - The name of the variable "name" in variable
+metadata. Default: "variable"
+
+</p>
+</li>
+<li>
+<p>xportr.type_name - The name of the variable type column in variable
+metadata. Default: "type"
+
+</p>
+</li>
+<li>
+<p>xportr.label - The name of the variable label column in variable metadata.
+Default: "label"
+
+</p>
+</li>
+<li>
+<p>xportr.length - The name of the variable length column in variable
+metadata. Default: "length"
+
+</p>
+</li>
+<li>
+<p>xportr.order_name - The name of the variable order column in variable
+metadata. Default: "order"
+
+</p>
+</li>
+<li>
+<p>xportr.format_name - The name of the variable format column in variable
+metadata. Default: "format"
+
+</p>
+</li>
+<li>
+<p>xportr.format_verbose - The default argument for the 'verbose' argument for
+<code>xportr_format</code>. Default: "none"
+
+</p>
+</li>
+<li>
+<p>xportr.label_verbose - The default argument for the 'verbose' argument for
+<code>xportr_label</code>. Default: "none"
+
+</p>
+</li>
+<li>
+<p>xportr.length_verbose - The default argument for the 'verbose' argument for
+<code>xportr_length</code>. Default: "none"
+
+</p>
+</li>
+<li>
+<p>xportr.type_verbose - The default argument for the 'verbose' argument for
+<code>xportr_type</code>. Default: "none"
+
+</p>
+</li>
+<li>
+<p>xportr.character_types - The default character vector used to explicitly
+coerce R classes to character XPT types. Default:  "character"
+
+</p>
+</li>
+<li>
+<p>xportr.character_metadata_types - The default character vector used to explicitly
+coerce R classes to character XPT types. Default: c("character", "char",
+"text", "date", "posixct", "posixt", "datetime", "time", "partialdate",
+"partialtime", "partialdatetime", "incompletedatetime", "durationdatetime",
+"intervaldatetime")'
+
+</p>
+</li>
+<li>
+<p>xportr.numeric_metadata_types - The default character vector used to explicitly
+coerce R classes to numeric XPT types. Default: c("integer", "numeric", "num", "float")
+
+</p>
+</li>
+<li>
+<p>xportr.numeric_types - The default character vector used to explicitly
+coerce R classes to numeric XPT types. Default: c("integer", "float",
+"numeric", "posixct", "posixt", "time", "date")
+
+</p>
+</li>
+</ul>
+<h3>Updating Options</h3>
+
+
+<ul>
+<li>
+<p>For a single session, an option can be changed by
+<code style="white-space: pre;">⁠option(&lt;optionToChange&gt; = &lt;NewValue&gt;)⁠</code>
+</p>
+</li>
+<li>
+<p>To change an option for a single projects across sessions in that
+projects, place the options update in the <code>.Rprofile</code> in that project
+directory.
+</p>
+</li>
+<li>
+<p>To change an option for a user across all sessions, place the options
+update in the <code>.Rprofile</code> file in the users home directory.
+</p>
+</li>
+<li>
+<p>To change an option for all users in an R environment, place the
+options update in the <code>.Rprofile.site</code> file in the R home directory.
+</p>
+</li>
+</ul>
+<h3>Author(s)</h3>
+
+<p><strong>Maintainer</strong>: Eli Miller <a href="mailto:Eli.Miller@AtorusResearch.com">Eli.Miller@AtorusResearch.com</a> (<a href="https://orcid.org/0000-0002-2127-9456">ORCID</a>)
+</p>
+<p>Authors:
+</p>
+
+<ul>
+<li>
+<p> Ben Straub
+</p>
+</li>
+<li>
+<p> Zelos Zhu
+</p>
+</li>
+<li>
+<p> Ethan Brockmann
+</p>
+</li>
+<li>
+<p> Vedha Viyash
+</p>
+</li>
+<li>
+<p> Andre Verissimo
+</p>
+</li>
+<li>
+<p> Sophie Shapcott
+</p>
+</li>
+<li>
+<p> Celine Piraux
+</p>
+</li>
+<li>
+<p> Kangjie Zhang
+</p>
+</li>
+<li>
+<p> Adrian Chan
+</p>
+</li>
+<li>
+<p> Sadchla Mascary
+</p>
+</li>
+</ul>
+<p>Other contributors:
+</p>
+
+<ul><li>
+<p> Atorus/GSK JPT [copyright holder]
+</p>
+</li></ul>
+<h3>See Also</h3>
+
+<p>Useful links:
+</p>
+
+<ul>
+<li> <p><a href="https://atorus-research.github.io/xportr/">https://atorus-research.github.io/xportr/</a>
+</p>
+</li>
+<li> <p><a href="https://github.com/atorus-research/xportr">https://github.com/atorus-research/xportr</a>
+</p>
+</li>
+<li>
+<p> Report bugs at <a href="https://github.com/atorus-research/xportr/issues">https://github.com/atorus-research/xportr/issues</a>
+</p>
+</li>
+</ul>
+</div>

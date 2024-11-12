@@ -1,0 +1,79 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>element_classes</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Gets the class of each element</h2>
+
+<h3>Description</h3>
+
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="../help/figures/lifecycle-experimental.svg" alt="[Experimental]"></a>
+</p>
+<p>Applies <code>class()</code> to each element of <code>`x`</code> (without recursion). When
+<code>class()</code> returns multiple strings, the first class string is returned.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">element_classes(x, keep_names = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>List with elements.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>keep_names</code></td>
+<td>
+<p>Whether to keep existing names. (Logical)</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Gets first string in <code>class()</code> for all elements.
+</p>
+
+
+<h3>Value</h3>
+
+<p>The main class of each element.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ludvig Renbo Olsen, <a href="mailto:r-pkgs@ludvigolsen.dk">r-pkgs@ludvigolsen.dk</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other element descriptors: 
+<code>element_lengths()</code>,
+<code>element_types()</code>,
+<code>num_total_elements()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Attach packages
+library(xpectr)
+
+l &lt;- list("a" = c(1,2,3), "b" = "a", "c" = NULL)
+
+element_classes(l)
+element_classes(l, keep_names = TRUE)
+</code></pre>
+
+
+</div>

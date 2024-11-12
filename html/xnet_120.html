@@ -1,0 +1,66 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>tskrrHeterogeneous-class</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Class tskrrHeterogeneous</h2>
+
+<h3>Description</h3>
+
+<p>The class tskrrHeterogeneous is a subclass of the superclass
+<code>tskrr</code> specifically for
+heterogeneous networks.
+</p>
+
+
+<h3>Slots</h3>
+
+
+<dl>
+<dt><code>y</code></dt>
+<dd>
+<p>the matrix with responses</p>
+</dd>
+<dt><code>k</code></dt>
+<dd>
+<p>the eigen decomposition of the kernel matrix for the rows</p>
+</dd>
+<dt><code>lambda.k</code></dt>
+<dd>
+<p>the lambda value used for k</p>
+</dd>
+<dt><code>pred</code></dt>
+<dd>
+<p>the matrix with the predictions</p>
+</dd>
+<dt><code>g</code></dt>
+<dd>
+<p>the eigen decomposition of the kernel matrix for the columns</p>
+</dd>
+<dt><code>lambda.g</code></dt>
+<dd>
+<p>the lambda value used for g</p>
+</dd>
+<dt><code>has.hat</code></dt>
+<dd>
+<p>a logical value indicating whether the kernel hat matrices
+are stored in the object.</p>
+</dd>
+<dt><code>Hk</code></dt>
+<dd>
+<p>the kernel hat matrix for the rows.</p>
+</dd>
+<dt><code>Hg</code></dt>
+<dd>
+<p>the kernel hat matrix for the columns.</p>
+</dd>
+<dt><code>labels</code></dt>
+<dd>
+<p>a list with elements <code>k</code> and <code>g</code> (see
+<code>tskrr-class</code>).
+If any element is <code>NA</code>, the labels used
+are integers indicating the row resp column number.</p>
+</dd>
+</dl>
+</div>

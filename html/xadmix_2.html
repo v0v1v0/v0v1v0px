@@ -1,0 +1,112 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>admix_subset</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Admixture Data Subsetting</h2>
+
+<h3>Description</h3>
+
+<p>Subset function optimized for admixture data.
+Filters for the percentages of any number of ancestry (K) columns and prints progress. Also allows passing additional arguments to filter columns with.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">admix_subset(
+  data,
+  anc = NULL,
+  pct = NULL,
+  comparison = "greater",
+  quiet = FALSE,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>data</code></td>
+<td>
+<p>Data frame containing the admixture data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>anc</code></td>
+<td>
+<p>Vector of ancestry column names to use for pairwise subsetting with percentage vector. Must be of same length as the supplied percentage vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pct</code></td>
+<td>
+<p>Vector of percentage values to use for pairwise subsetting with ancestry column name vector. Only ancestries with values above the percentage are kept.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>comparison</code></td>
+<td>
+<p>What comparison operator to use for the subsetting. Can either be "greater" or "less"; default is "greater". Also accepts "gt", "lt", "&gt;" and "&lt;".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>quiet</code></td>
+<td>
+<p>Whether to print progress or not; default is "FALSE".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Variable number of additional vectors for subsetting. Looking at the column with argument name, keeps only those observations with values which are elements of the argument vector.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A subset of the provided data frame.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># load simulated admixture data
+data("xadmixture")
+
+# keep only observations with K1 &gt; 0.1 and K2 &gt; 0.01
+subset1 &lt;- admix_subset(xadmixture, 
+                        anc = c("K1", "K2"), 
+                        pct = c(0.1, 0.01))
+
+# keep only observations with K2 &lt; 0.4 and K3 &lt; 0.1
+subset2 &lt;- admix_subset(xadmixture, 
+                        anc = c("K2", "K3"), 
+                        pct = c(0.4, 0.1), 
+                        comparison = "less")
+
+# keep only observations with values "GBR" or "FRA" in column 
+# "country" and values "lorem" or "dolor" in column "species"
+subset3 &lt;- admix_subset(xadmixture, 
+                        country = c("GBR", "FRA"), 
+                        species = c("lorem", "dolor"))
+
+# keep only observations with K1 &gt; 0.1 and K4 &lt; 0.3, 
+# without printing progress; subsets can be chained 
+# using the pipe operator from package `magrittr` 
+library(magrittr)
+subset4 &lt;- admix_subset(xadmixture, 
+                        anc = "K1", 
+                        pct = 0.1, 
+                        quiet = TRUE) %&gt;% 
+ admix_subset(anc = "K4", 
+              pct = 0.3, 
+              comparison = "less", 
+              quiet = TRUE)
+</code></pre>
+
+
+</div>

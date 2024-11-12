@@ -1,0 +1,100 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>from_Server-class</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>A Class to Describe General Server Objects</h2>
+
+<h3>Description</h3>
+
+<p>Classes that inherit from this class are used to convert to R a server language
+object that is composed of named fields.  The corresponding R object will have
+conversions for the fields that can be accessed with the "$" operator.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S4 method for signature 'from_Server'
+initialize(.Object, ..., referenceClass = TRUE)
+
+## S4 method for signature 'from_Server'
+x$name
+
+## S4 method for signature 'from_Server'
+show(object)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>.Object, referenceClass</code></td>
+<td>
+<p>arguments supplied automatically.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>possible slots for subclasses</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x, name</code></td>
+<td>
+<p>the object and the field name</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>an object from some server class, converted by the <code>$Get()</code> method
+or an equivalent computation, such as supplying <code>.get = TRUE</code> to a proxy function
+call.</p>
+</td>
+</tr>
+</table>
+<h3>Methods (by generic)</h3>
+
+
+<ul>
+<li> <p><code>initialize</code>: performs some checks on the fields
+</p>
+</li>
+<li> <p><code>$</code>: extract a field.  The name must match a field in the
+data part.
+</p>
+</li>
+<li> <p><code>show</code>: automatic printing, currently just a list of field names.
+</p>
+</li>
+</ul>
+<h3>Slots</h3>
+
+
+<dl>
+<dt><code>serverClass</code></dt>
+<dd>
+<p>the name of the server language class</p>
+</dd>
+<dt><code>module</code></dt>
+<dd>
+<p>the name of the server language module</p>
+</dd>
+<dt><code>language</code></dt>
+<dd>
+<p>the name of the server language</p>
+</dd>
+<dt><code>fields</code></dt>
+<dd>
+<p>the names of the server language fields</p>
+</dd>
+<dt><code>data</code></dt>
+<dd>
+<p>the converted data for the server fields</p>
+</dd>
+</dl>
+</div>

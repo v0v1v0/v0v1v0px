@@ -1,0 +1,59 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>findCrossoverExample</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Prints a random example of crossover for a crossover method given 
+a random number seed.</h2>
+
+<h3>Description</h3>
+
+<p>The purpose of this function is to support the search 
+for examples for generating unit tests for crossover 
+functions whose behavior depends on random numbers.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">findCrossoverExample(FUN, s, verbose = TRUE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>FUN</code></td>
+<td>
+<p>String. Specification of crossover method.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>s</code></td>
+<td>
+<p>Integer. Seed of random number generator.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbose</code></td>
+<td>
+<p>Boolean. 
+If <code>TRUE</code> (default), print example to console.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>No return.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">findCrossoverExample(FUN="AllCross2Gene", s=2)
+</code></pre>
+
+
+</div>

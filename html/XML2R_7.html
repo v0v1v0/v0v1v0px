@@ -1,0 +1,49 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>urlsToDocs</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Parse XML Files into XML Documents</h2>
+
+<h3>Description</h3>
+
+<p>Essentially a recursive call to xmlParse.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">urlsToDocs(urls, local = FALSE, quiet = FALSE, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>urls</code></td>
+<td>
+<p>character vector. Either urls that point to an XML file online or a local XML file name.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>local</code></td>
+<td>
+<p>logical. Should urls be treated as paths to local files?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>quiet</code></td>
+<td>
+<p>logical. Print file name currently being parsed?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>arguments passed along to 'httr::GET'</p>
+</td>
+</tr>
+</table>
+</div>

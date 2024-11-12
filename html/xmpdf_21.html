@@ -1,0 +1,195 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>bookmarks</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Set/get pdf bookmarks</h2>
+
+<h3>Description</h3>
+
+<p><code>get_bookmarks()</code> gets pdf bookmarks from a file.
+<code>set_bookmarks()</code> sets pdf bookmarks for a file.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">get_bookmarks(filename, use_names = TRUE)
+
+get_bookmarks_pdftk(filename, use_names = TRUE)
+
+get_bookmarks_pdftools(filename, use_names = TRUE)
+
+set_bookmarks(bookmarks, input, output = input)
+
+set_bookmarks_pdftk(bookmarks, input, output = input)
+
+set_bookmarks_gs(bookmarks, input, output = input)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>filename</code></td>
+<td>
+<p>Filename(s) (pdf) to extract bookmarks from.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>use_names</code></td>
+<td>
+<p>If <code>TRUE</code> (default) use <code>filename</code> as the names of the result.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bookmarks</code></td>
+<td>
+<p>A data frame with bookmark information with the following columns:</p>
+
+<dl>
+<dt>title</dt>
+<dd>
+<p>Title for bookmark (mandatory, character)</p>
+</dd>
+<dt>page</dt>
+<dd>
+<p>Page number for bookmark (mandatory, integer)</p>
+</dd>
+<dt>level</dt>
+<dd>
+<p>Level of bookmark e.g. 1 top level, 2 second level, etc. (optional, integer).
+If missing will be inferred from <code>count</code> column else will be assumed to be <code>1L</code>.</p>
+</dd>
+<dt>count</dt>
+<dd>
+<p>Number of bookmarks immediately subordinate (optional, integer).
+Excludes subordinates of subordinates.
+Positive count indicates bookmark should start open while
+negative count indicates that this bookmark should start closed.
+If missing will be inferred from <code>level</code> column
+and (if specified) the <code>open</code> column else will be assumed to be <code>0L</code>.
+Note some pdf viewers quietly ignore the initially open/closed feature.</p>
+</dd>
+<dt>open</dt>
+<dd>
+<p>Whether the bookmark starts open or closed if it has
+subordinate bookmarks (optional, logical).
+If missing will default to open.
+Ignored if the <code>count</code> column is specified (instead use a negative count
+if the bookmark should start closed).
+Note some pdf viewers quietly ignore the initially open/closed feature.</p>
+</dd>
+<dt>fontface</dt>
+<dd>
+<p>Font face of the bookmark (optional, integer).
+If <code>NA_character_</code> or <code>NA_integer_</code> will be unset (defaults to "plain").
+"plain" or 1 is plain, "bold" or 2 is bold, "italic" or 3 is italic,
+Note many pdf viewers quietly ignore this feature.</p>
+</dd>
+<dt>color</dt>
+<dd>
+<p>Color of the bookmark (optional, character).
+If <code>NA_character_</code> will be unset (presumably defaults to "black").
+Note many pdf viewers quietly ignore this feature.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>input</code></td>
+<td>
+<p>Input pdf filename.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>output</code></td>
+<td>
+<p>Output pdf filename.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p><code>get_bookmarks()</code> will try to use the following helper functions in the following order:
+</p>
+
+<ol>
+<li> <p><code>get_bookmarks_pdftk()</code> which wraps <code>pdftk</code> command-line tool
+</p>
+</li>
+<li> <p><code>get_bookmarks_pdftools()</code> which wraps <code>pdftools::pdf_toc()</code>
+</p>
+</li>
+</ol>
+<p><code>set_bookmarks()</code> will try to use the following helper functions in the following order:
+</p>
+
+<ol>
+<li> <p><code>set_bookmarks_gs()</code> which wraps <code>ghostscript</code> command-line tool
+</p>
+</li>
+<li> <p><code>set_bookmarks_pdftk()</code> which wraps <code>pdftk</code> command-line tool
+</p>
+</li>
+</ol>
+<h3>Value</h3>
+
+<p><code>get_bookmarks()</code> returns a list of data frames with bookmark info (see <code>bookmarks</code> parameter for details about columns) plus "total_pages", "filename", and "title" attributes.
+<code>NA</code> values in the data frame indicates that the backend doesn't report information about this pdf feature.
+<code>set_bookmarks()</code> returns the (output) filename invisibly.
+</p>
+
+
+<h3>Known limitations</h3>
+
+
+<ul>
+<li> <p><code>get_bookmarks_pdftk()</code> doesn't report information about bookmarks color, fontface, and whether the bookmarks
+should start open or closed.
+</p>
+</li>
+<li> <p><code>get_bookmarks_pdftools()</code> doesn't report information about bookmarks page number,
+color, fontface, and whether the bookmarks should start open or closed.
+</p>
+</li>
+<li> <p><code>set_bookmarks_gs()</code> supports most bookmarks features including color and font face but
+only action supported is to view a particular page.
+</p>
+</li>
+<li> <p><code>set_bookmarks_pdftk()</code> only supports setting the title, page number, and level of bookmarks.
+</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p><code>supports_get_bookmarks()</code>, <code>supports_set_bookmarks()</code>, <code>supports_gs()</code>, and <code>supports_pdftk()</code> to detect support for these features.  For more info about the pdf bookmarks feature see <a href="https://opensource.adobe.com/dc-acrobat-sdk-docs/library/pdfmark/pdfmark_Basic.html#bookmarks-out">https://opensource.adobe.com/dc-acrobat-sdk-docs/library/pdfmark/pdfmark_Basic.html#bookmarks-out</a>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Create 2-page pdf using `pdf)` and add some bookmarks to it
+if (supports_set_bookmarks() &amp;&amp; supports_get_bookmarks() &amp;&amp; require("grid", quietly = TRUE)) {
+  f &lt;- tempfile(fileext = ".pdf")
+  pdf(f, onefile = TRUE)
+  grid.text("Page 1")
+  grid.newpage()
+  grid.text("Page 2")
+  invisible(dev.off())
+
+  print(get_bookmarks(f)[[1]])
+  
+
+  bookmarks &lt;- data.frame(title = c("Page 1", "Page 2"), page = c(1, 2))
+
+  set_bookmarks(bookmarks, f)
+  print(get_bookmarks(f)[[1]])
+  unlink(f)
+}
+</code></pre>
+
+
+</div>

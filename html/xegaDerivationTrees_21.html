@@ -1,0 +1,190 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>treeANL</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Builds an Attributed Node List (ANL) of a derivation tree.</h2>
+
+<h3>Description</h3>
+
+<p><code>treeANL()</code> recursively traverses a derivation tree
+and collects information about the derivation tree in an attributed
+node list (ANL).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">treeANL(
+  tree,
+  ST,
+  maxdepth = 5,
+  ANL = list(),
+  IL = list(),
+  count = 1,
+  depth = 1
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>tree</code></td>
+<td>
+<p>A derivation tree.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ST</code></td>
+<td>
+<p>A symbol table.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>maxdepth</code></td>
+<td>
+<p>Limit on the depth of a derivation tree.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ANL</code></td>
+<td>
+<p>Attributed node list (empty on invocation).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>IL</code></td>
+<td>
+<p>Index function list  (empty on invocation).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>count</code></td>
+<td>
+<p>Trail count (1 on invocation).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>depth</code></td>
+<td>
+<p>Derivation tree depth (1 on invocation).</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>An attributed <code>node</code> has the following elements:
+</p>
+
+<ul>
+<li> <p><code>$ID</code>:  Id in the symbol table <code>ST</code>.
+</p>
+</li>
+<li> <p><code>$NT</code>:  Is the symbol a non-terminal?
+</p>
+</li>
+<li> <p><code>$Pos</code>: Position in the trail.
+</p>
+</li>
+<li> <p><code>$Depth</code>:  Depth of node.
+</p>
+</li>
+<li> <p><code>$RDepth</code>: Residual depth for expansion.
+</p>
+</li>
+<li> <p><code>$subtreedepth</code>: Depth of subtree starting here.
+</p>
+</li>
+<li> <p><code>$Index</code>:  R index of the node in the derivation tree.
+Allows fast tree extraction and insertion.
+</p>
+</li>
+</ul>
+<p>These elements can be used e.g. 
+</p>
+
+<ul>
+<li>
+<p> for inserting and extracting subtrees 
+(<code>Pos</code> or  <code>node$Index</code>), 
+</p>
+</li>
+<li>
+<p> for checking
+the feasibility of subtree substitution (<code>ID</code>),
+</p>
+</li>
+<li>
+<p> for checking depth bounds 
+(<code>Depth</code>, <code>RDepth</code>, and <code>subtreedepth</code>),
+...
+</p>
+</li>
+</ul>
+<h3>Value</h3>
+
+<p>A list with three elements:
+</p>
+
+<ol>
+<li> <p><code>r$count</code>: The trail length (not needed).
+</p>
+</li>
+<li> <p><code>r$depth</code>: The derivation tree depth (not needed).
+</p>
+</li>
+<li> <p><code>r$ANL</code>:   The attributed node list is a list of nodes.
+Each node is represented as a list of the following attributes:
+</p>
+
+<ul>
+<li> <p><code>Node$ID</code>:  Id in the symbol table ST.
+</p>
+</li>
+<li> <p><code>Node$NT</code>:  Is the symbol a non-terminal?
+</p>
+</li>
+<li> <p><code>Node$Pos</code>: Position in the trail.
+</p>
+</li>
+<li> <p><code>Node$Depth</code>:  Depth of node.
+</p>
+</li>
+<li> <p><code>Node$RDepth</code>: Residual depth for expansion.
+</p>
+</li>
+<li> <p><code>Node$subtreedepth</code>: Depth of subtree starting here.
+</p>
+</li>
+<li> <p><code>Node$Index</code>:  R index of the node in the derivation tree.
+Allows fast tree extraction and insertion.
+</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3>See Also</h3>
+
+<p>Other Access Tree Parts: 
+<code>filterANLid()</code>,
+<code>filterANL()</code>,
+<code>treeChildren()</code>,
+<code>treeRoot()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">g&lt;-compileBNF(booleanGrammar())
+a&lt;-randomDerivationTree(g$Start, g)
+b&lt;-treeANL(a, g$ST)
+c&lt;-treeANL(a, g$ST, 10)
+d&lt;-treeANL(a, g$ST, maxdepth=10)
+
+</code></pre>
+
+
+</div>

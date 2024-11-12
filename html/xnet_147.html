@@ -1,0 +1,73 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>has_imputed_values</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Getters for tskrrImpute objects</h2>
+
+<h3>Description</h3>
+
+<p>The functions described here are convenience functions to get
+information out of a <code>tskrrImpute</code>
+object.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">has_imputed_values(x)
+
+which_imputed(x)
+
+is_imputed(x)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>a <code>tskrrImpute</code> object or
+an object inheriting from <code>tskrrImpute</code>.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>For <code>has_imputed_values</code>: a logical value indicating whether
+the model has imputed values. If <code>x</code> is not some form of a
+<code>tskrr</code> model, the function will return an error.
+</p>
+<p>For <code>which_imputed</code>: a integer vector with the positions
+for which the values are imputed.
+</p>
+<p>for <code>is_imputed</code>: a matrix of the same dimensions as the
+label matrix. It contains the value <code>FALSE</code> at positions that
+were not imputed, and <code>TRUE</code> at positions that were.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+data(drugtarget)
+
+mod &lt;- tskrr(drugTargetInteraction, targetSim, drugSim)
+
+naid &lt;- sample(length(drugTargetInteraction), 30)
+drugTargetInteraction[naid] &lt;- NA
+
+impmod &lt;- impute_tskrr(drugTargetInteraction, targetSim, drugSim)
+
+has_imputed_values(mod)
+has_imputed_values(impmod)
+
+# For illustration: extract imputed values
+id &lt;- is_imputed(impmod)
+fitted(impmod)[id]
+
+</code></pre>
+
+
+</div>

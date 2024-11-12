@@ -1,0 +1,75 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>between_sd</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Compute the standard deviation of between-group</h2>
+
+<h3>Description</h3>
+
+<p>This function calculates the standard deviation of between-group in a panel data.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">between_sd(data, variable, id = NULL, t = NULL, na.rm = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>data</code></td>
+<td>
+<p>A data.frame or pdata.frame object containing the panel data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>variable</code></td>
+<td>
+<p>The variable for which the standard deviation of between-group effects is calculated.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>id</code></td>
+<td>
+<p>(Optional) Name of the individual identifier variable.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>t</code></td>
+<td>
+<p>(Optional) Name of the time identifier variable.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>na.rm</code></td>
+<td>
+<p>Logical. Should missing values be removed? Default is FALSE.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>The standard deviation of between-group effects.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Example using pdata.frame
+data("Gasoline", package = "plm")
+Gas &lt;- pdata.frame(Gasoline, index = c("country", "year"), drop.index = TRUE)
+between_sd(Gas, variable = "lgaspcar")
+
+# Using regular data.frame with id and t specified
+data("Crime", package = "plm")
+between_sd(Crime, variable = "crmrte", id = "county", t = "year")
+
+</code></pre>
+
+
+</div>

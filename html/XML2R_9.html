@@ -1,0 +1,71 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>XML2R</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Parse XML files into (a list of) matrices or data frame(s)</h2>
+
+<h3>Description</h3>
+
+<p>This function is an experimental wrapper around XML2Obs. One should only use this function over XML2Obs if 
+keys already exist in the XML data and ancestory doesn't need to be altered.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">XML2R(urls, xpath, df = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>urls</code></td>
+<td>
+<p>character vector or list of urls that point to an XML file (or anything readable by xmlParse).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xpath</code></td>
+<td>
+<p>XML XPath expression that is passed to getNodeSet. If missing, the entire root and all descendents are captured and returned (ie, tables = "/").</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>df</code></td>
+<td>
+<p>logical. Should matrices be coerced into data frames?</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Returns list with one element for each relevant XML node. Each element contains a matrix by default.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>urlsToDocs, docsToNodes, nodesToList, listsToObs
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+urls2 &lt;- c("http://gd2.mlb.com/components/game/mlb/year_2013/mobile/346180.xml",
+           "http://gd2.mlb.com/components/game/mlb/year_2013/mobile/346188.xml")
+dat3 &lt;- XML2R(urls2)
+
+cens &lt;- "http://www.census.gov/developers/data/sf1.xml"
+census &lt;- XML2R(cens)
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

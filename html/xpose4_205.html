@@ -1,0 +1,84 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xp.incl.index.cov.comp</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Inclusion index individuals, compare between covariates.</h2>
+
+<h3>Description</h3>
+
+<p>A plot showing the range of inclusion indices for individuals for all
+covariates. This plot can be used to evaluate whether there were covariates
+which were more influenced by the constituency of the bootstrapped dataset
+than others.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xp.incl.index.cov.comp(
+  bootgam.obj = NULL,
+  boot.type = NULL,
+  main = NULL,
+  xlb = "Individual inclusion index",
+  ylb = "ID",
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>bootgam.obj</code></td>
+<td>
+<p>A bootgam or bootscm object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>boot.type</code></td>
+<td>
+<p>Either "bootgam" or "bootscm". Default is NULL, which means
+the user will be asked to make a choice.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>The title of the plot.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xlb</code></td>
+<td>
+<p>The label for the x-axis.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylb</code></td>
+<td>
+<p>The label for the y-axis.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional plotting parameters.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A lattice plot object is returned.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ron Keizer
+</p>
+
+
+</div>

@@ -1,0 +1,184 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xgrove</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Explanation groves</h2>
+
+<h3>Description</h3>
+
+<p>Compute surrogate groves to explain predictive machine learning model and analyze complexity vs. explanatory power.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xgrove(
+  model,
+  data,
+  ntrees = c(4, 8, 16, 32, 64, 128),
+  pfun = NULL,
+  remove.target = T,
+  shrink = 1,
+  b.frac = 1,
+  seed = 42,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>model</code></td>
+<td>
+<p>A model with corresponding predict function that returns numeric values.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data</code></td>
+<td>
+<p>Training data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ntrees</code></td>
+<td>
+<p>Sequence of integers: number of boosting trees for rule extraction.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pfun</code></td>
+<td>
+<p>Optional predict function <code>function(model, data)</code> returning a real number. Default is the <code>predict()</code> method of the <code>model</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>remove.target</code></td>
+<td>
+<p>Logical. If <code>TRUE</code> the name of the target variable is identified from <code>terms(model)</code> and automatically removed if this variable is still in <code>data</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>shrink</code></td>
+<td>
+<p>Sets the <code>shrinkage</code> argument for the internal call of <code>gbm</code>. As the <code>model</code> usually has a deterministic response 
+the default is 1 different to the default of <code>gbm</code> applied train a model based on data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>b.frac</code></td>
+<td>
+<p>Sets the <code>bag.fraction</code> argument for the internal call of <code>gbm</code>. As the <code>model</code> usually has a deterministic response 
+the default is 1 different to the default of <code>gbm</code> applied train a model based on data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>seed</code></td>
+<td>
+<p>Seed for the random number generator to ensure reproducible results (e.g. for the default <code>bag.fraction</code> &lt; 1 in boosting).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Further arguments to be passed to <code>gbm</code> or the <code>predict()</code> method of the <code>model</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>A surrogate grove is trained via gradient boosting using <code>gbm</code> on <code>data</code> with the predictions of using of the <code>model</code> as target variable.
+Note that <code>data</code> must not contain the original target variable! The boosting model is trained using stumps of depth 1.
+The resulting interpretation is extracted from <code>pretty.gbm.tree</code>. 
+The column <code>upper_bound_left</code> of the <code>rules</code> and the <code>groves</code> value of the output object contains 
+the split point for numeric variables denoting the uppoer bound of the left branch. Correspondingly, the 
+<code>levels_left</code> column contains the levels of factor variables assigned to the left branch. 
+The rule weights of the branches are given in the rightmost columns. The prediction of the grove is 
+obtained as the sum of the assigned weights over all rows.       
+Note that the training data must not contain the target variable. It can be either removed manually or will be removed automatically from <code>data</code> 
+if the argument <code>remove.target == TRUE</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>List of the results:
+</p>
+<table>
+<tr style="vertical-align: top;">
+<td><code>explanation</code></td>
+<td>
+<p>Matrix containing tree sizes, rules, explainability <code class="reqn">{\Upsilon}</code> and the correlation between the predictions of the explanation and the true model.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>rules</code></td>
+<td>
+<p>Summary of the explanation grove: Rules with identical splits are aggegated. For numeric variables any splits are merged if they lead to identical parititions of the training data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>groves</code></td>
+<td>
+<p>Rules of the explanation grove.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>model</code></td>
+<td>
+<p><code>gbm</code> model.</p>
+</td>
+</tr>
+</table>
+<h3>Author(s)</h3>
+
+<p><a href="mailto:gero.szepannek@web.de">gero.szepannek@web.de</a>
+</p>
+
+
+<h3>References</h3>
+
+
+<ul>
+<li> <p>Szepannek, G. and von Holt, B.H. (2023): Can’t see the forest for the trees – analyzing groves to explain random forests,
+Behaviormetrika, DOI: 10.1007/s41237-023-00205-2.
+</p>
+</li>
+<li> <p>Szepannek, G. and Luebke, K.(2023): How much do we see? On the explainability of partial dependence plots for credit risk scoring,
+Argumenta Oeconomica 50, DOI: 10.15611/aoe.2023.1.07.
+</p>
+</li>
+</ul>
+<h3>Examples</h3>
+
+<pre><code class="language-R">library(randomForest)
+library(pdp)
+data(boston)
+set.seed(42)
+rf &lt;- randomForest(cmedv ~ ., data = boston)
+data &lt;- boston[,-3] # remove target variable
+ntrees &lt;- c(4,8,16,32,64,128)
+xg &lt;- xgrove(rf, data, ntrees)
+xg
+plot(xg)
+
+# Example of a classification problem using the iris data.
+# A predict function has to be defined, here for the posterior probabilities of the class Virginica.  
+data(iris)
+set.seed(42)
+rf    &lt;- randomForest(Species ~ ., data = iris)
+data  &lt;- iris[,-5] # remove target variable
+
+pf &lt;- function(model, data){
+  predict(model, data, type = "prob")[,3]
+  }
+  
+xgrove(rf, data, pfun = pf)
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,84 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaPermCrossGene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Position based crossover of 2 genes.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaPermCrossGene</code> determines 
+a random subschedule of random length.
+</p>
+<p>It copies the random subschedule into a new gene.
+The rest of the positions of the new scheme is filled 
+with the elements of the other gene to complete the
+permutation.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaPermCrossGene(gg1, gg2, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>gg1</code></td>
+<td>
+<p>Permutation.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>gg2</code></td>
+<td>
+<p>Permutation.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration of the genetic algorithm.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A list of 2 permutations.
+</p>
+
+
+<h3>References</h3>
+
+<p>Syswerda, G. (1991): 
+Schedule Optimization Using Genetic Algorithms.
+In: Davis, L. (Ed.): 
+Handbook of Genetic Algorithms, Chapter 21, p. 343.
+Van Nostrand Reinhold, New York.
+(ISBN:0-442-00173-8)
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Crossover: 
+<code>xegaPermCross2Gene()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">gene1&lt;-xegaPermInitGene(lFxegaPermGene)
+gene2&lt;-xegaPermInitGene(lFxegaPermGene)
+xegaPermDecodeGene(gene1, lFxegaPermGene)
+xegaPermDecodeGene(gene2, lFxegaPermGene)
+newgenes&lt;-xegaPermCrossGene(gene1, gene2)
+xegaPermDecodeGene(newgenes[[1]], lFxegaPermGene)
+</code></pre>
+
+
+</div>

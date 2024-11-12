@@ -1,0 +1,92 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaDfInitGene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Initialize a real-coded gene.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaDfInitGene</code> generates a random real-coded gene 
+with a given length.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaDfInitGene(lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration of the genetic algorithm.</p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+<p>In the real-coded representation of 
+package <code>xegaDf</code>, <em>gene</em> is a list with 
+</p>
+
+<ol>
+<li> <p><code>$evaluated</code> Boolean: TRUE if the fitness is known.
+</p>
+</li>
+<li> <p><code>$fit</code>       The fitness of the genotype of 
+<code>$gene1</code>         
+</p>
+</li>
+<li> <p><code>$gene1</code>     a real vector (the genetopye).
+</p>
+</li>
+</ol>
+<p>This representation simplifies the implementation 
+af various optimizations
+and generalizations.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A real-coded gene (a named list):
+</p>
+
+<ul>
+<li> <p><code>$evaluated</code>: FALSE. See package <code>xegaEvalGene</code>.
+</p>
+</li>
+<li> <p><code>$evalFail</code>:  FALSE. Set by the error handler(s)
+in package <code>xegaEvalGene</code> 
+in the case of failure.
+</p>
+</li>
+<li> <p><code>$fit</code>:       Fitness.
+</p>
+</li>
+<li> <p><code>$gene1</code>:     A vector of reals.
+</p>
+</li>
+</ul>
+<h3>References</h3>
+
+<p>Price, Kenneth V., Storn, Rainer M. and Lampinen, Jouni A. (2005)
+The Differential Evolution Algorithm (Chapter 2), pp. 37-134. 
+In: Differential Evolution. A Practical Approach to Global Optimization.
+Springer, Berlin.
+&lt;doi:10.1007/3-540-31306-0&gt;
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">xegaDfInitGene(lFxegaDfGene)
+
+</code></pre>
+
+
+</div>

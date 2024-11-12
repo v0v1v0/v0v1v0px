@@ -1,0 +1,117 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>read_nm_table</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Read NONMEM table files produced from simulation.</h2>
+
+<h3>Description</h3>
+
+<p>The function reads in NONMEM table files produced from the <code>$SIM</code> line 
+in a NONMEM model file.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">read_nm_table(
+  nm_table,
+  only_obs = FALSE,
+  method = "default",
+  quiet = TRUE,
+  sim_num = FALSE,
+  sim_name = "NSIM"
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>nm_table</code></td>
+<td>
+<p>The NONMEM table file to read. A text string.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>only_obs</code></td>
+<td>
+<p>Should the non-observation lines in the data set be removed? 
+Currently filtered using the expected <code>MDV</code> column. <code>TRUE</code> or 
+<code>FALSE</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>The methods to use for reading the tables,  Can be "readr_1", "readr_2", readr_3" or "slow".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>quiet</code></td>
+<td>
+<p>Should the error message be verbose or not?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sim_num</code></td>
+<td>
+<p>Should a simulation number be added to simulation tables?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sim_name</code></td>
+<td>
+<p>What name should one use to name the column of the simulation number?</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Currently the function expects the <code>$TABLE</code> to have a header for each 
+new simulation. This means that the <code>NOHEADER</code> option or 
+<code>ONEHEADER</code> option in the table file is not allowed.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Returns a data frame of the simulated table with an added column for 
+the simulation number. The data frame is given class <code>c("tbl_df", 
+  "tbl", "data.frame")</code> for easy use with <code>dplyr</code>.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other data functions: 
+<code>add_transformed_columns</code>,
+<code>change_graphical_parameters</code>,
+<code>change_misc_parameters</code>,
+<code>compute.cwres()</code>,
+<code>data.checkout()</code>,
+<code>data_extract_or_assign</code>,
+<code>db.names()</code>,
+<code>export.graph.par()</code>,
+<code>export.variable.definitions()</code>,
+<code>import.graph.par()</code>,
+<code>import.variable.definitions()</code>,
+<code>make.sb.data()</code>,
+<code>nsim()</code>,
+<code>par_cov_summary</code>,
+<code>read.TTE.sim.data()</code>,
+<code>read.nm.tables()</code>,
+<code>read_NM_output</code>,
+<code>simprazExample()</code>,
+<code>tabulate.parameters()</code>,
+<code>xlabel()</code>,
+<code>xpose.data</code>,
+<code>xpose.print()</code>,
+<code>xpose4-package</code>,
+<code>xsubset()</code>
+</p>
+
+
+</div>

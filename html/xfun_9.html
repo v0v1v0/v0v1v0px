@@ -1,0 +1,54 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>base64_uri</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Generate the Data URI for a file</h2>
+
+<h3>Description</h3>
+
+<p>Encode the file in the base64 encoding, and add the media type. The data URI
+can be used to embed data in HTML documents, e.g., in the <code>src</code> attribute of
+the <code style="white-space: pre;">⁠&lt;img /&gt;⁠</code> tag.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">base64_uri(x, type = mime_type(x))
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>A file path.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>type</code></td>
+<td>
+<p>The MIME type of the file, e.g., <code>"image/png"</code> for a PNG image
+file.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A string of the form <code style="white-space: pre;">⁠data:&lt;media type&gt;;base64,&lt;data&gt;⁠</code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">logo = xfun:::R_logo()
+img = xfun::html_tag("img", src = xfun::base64_uri(logo), alt = "R logo")
+if (interactive()) xfun::html_view(img)
+</code></pre>
+
+
+</div>

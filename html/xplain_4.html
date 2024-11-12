@@ -1,0 +1,119 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xplain.overview</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>
+Summarizing the content of xplain XML files
+</h2>
+
+<h3>Description</h3>
+
+<p><code>xplain.overview</code> summarizes the content of an xplain XML file.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xplain.overview(xml, show.text=FALSE, preserve.seq=FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>xml</code></td>
+<td>
+
+<p>Path to the xplain XML file. Can be either a local path or an URL.
+</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>show.text</code></td>
+<td>
+
+<p>Indicates if the full interpretation/explanation texts shall be included in the summary (optional). Default: <code>FALSE</code>.
+</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>preserve.seq</code></td>
+<td>
+
+<p>Indicates if the overview results for the interpretation/explanation texts shall be shown in the same sequence as they appear in the XML file (optional). If <code>FALSE</code>, the results are sorted, e.g. by package, function, language and complexity level. Default: <code>FALSE</code>.
+</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A data frame summarizing the XML file. Each row corresponds to a <code>&lt;title&gt;</code> or <code>&lt;text&gt;</code> element in the xplain XML file.<br>
+The column structure is as follows:
+</p>
+
+<ul>
+<li> <p><b><code>Package</code></b>: The package to which the explained function belongs.
+</p>
+</li>
+<li> <p><b><code>Function</code></b>: The explained function.
+</p>
+</li>
+<li> <p><b><code>Type</code></b>: Indicates whether the element is a <code>&lt;title&gt;</code> or a <code>&lt;text&gt;</code> element.
+</p>
+</li>
+<li> <p><b><code>Language</code></b>: Language of the element (also considering inheritance from higher-level XML elements).
+</p>
+</li>
+<li> <p><b><code>Level</code></b>: Complexity level of the element (also considering inheritance from higher-level XML elements).
+</p>
+</li>
+<li> <p><b><code>Result object</code></b>: Element of the explained function's return object to which the <code>&lt;title&gt;</code> or  <code>&lt;text&gt;</code> element relates (if any).
+</p>
+</li>
+<li> <p><b><code>Iteration</code></b>: Type of iteration (if any). Value of the <code>foreach</code> attribute of the <code>&lt;text&gt;</code> element.
+</p>
+</li>
+<li> <p><b><code>Has R code</code></b>: Indicates if the <code>&lt;text&gt;</code> element includes R code.
+</p>
+</li>
+<li> <p><b><code>Uses return obj.</code></b>: Indicates if the <code>&lt;text&gt;</code> element refers to the explained function's return object.
+</p>
+</li>
+<li> <p><b><code>Text</code></b>: The text of the respective <code>&lt;text&gt;</code> or <code>&lt;title&gt;</code> element (including R code). This column is only included if <code>show.text=TRUE</code>.
+</p>
+</li>
+</ul>
+<p>To learn more about the structure of xplain XML files, go to the <code>xplain</code> help page or consult the <a href="https://www.zuckarelli.de/xplain/index.html">web tutorial</a>.
+</p>
+
+
+<h3>More material on the internet</h3>
+
+<p>Web tutorial on how to work with xplain: <a href="https://www.zuckarelli.de/xplain/index.html">https://www.zuckarelli.de/xplain/index.html</a><br>
+xplain cheat sheet: <a href="https://www.zuckarelli.de/xplain/xplain_cheatsheet.pdf">https://www.zuckarelli.de/xplain/xplain_cheatsheet.pdf</a>
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Joachim Zuckarelli, <a href="mailto:joachim@zuckarelli.de">joachim@zuckarelli.de</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xplain-package</code>, <code>xplain</code>, <code>xplain.getcall</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">xml.path &lt;- system.file("", "example_lm.xml", package = "xplain")
+xplain.overview(xml.path)
+</code></pre>
+
+
+</div>

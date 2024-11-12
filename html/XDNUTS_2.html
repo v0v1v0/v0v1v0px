@@ -1,0 +1,202 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>main_function</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Function to generate a Markov chain for both continuous and discontinuous posterior distributions.</h2>
+
+<h3>Description</h3>
+
+<p>The function allows to generate a single Markov Chain for sampling from both continuous and discontinuous
+posterior distributions using a plethora of algorithms. Classic Hamiltonian Monte Carlo (Duane et al. 1987) ,
+NUTS (Hoffman et al. 2014) and XHMC (Betancourt 2016) are embedded into the framework
+described in (Nishimura et al. 2020), which allows to deal with such posteriors.
+Furthermore, for each method, it is possible to recycle samples from the trajectories using
+the method proposed by (Nishimura and Dunson 2020).
+This is used to improve the estimation of the mass matrix during the warm-up phase
+without requiring significant additional computational costs.
+This function should not be used directly, but only through the user interface provided by xdnuts.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">main_function(
+  theta0,
+  nlp,
+  args,
+  k,
+  N,
+  K,
+  tau,
+  L,
+  thin,
+  chain_id,
+  verbose,
+  control
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>theta0</code></td>
+<td>
+<p>a vector of length-<code class="reqn">d</code> containing the starting point of the chain.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>nlp</code></td>
+<td>
+<p>a function object that takes three arguments:
+</p>
+<dl>
+<dt>par</dt>
+<dd>
+<p>a vector of length-<code class="reqn">d</code> containing the value of the parameters.</p>
+</dd>
+<dt>args</dt>
+<dd>
+<p>a list object that contains the necessary arguments, namely data and hyperparameters.</p>
+</dd>
+<dt>eval_nlp</dt>
+<dd>
+<p>a boolean value, <code>TRUE</code> for evaluating only the model\'s negative log posterior, 
+<code>FALSE</code> to evaluate the gradient with respect to the continuous components of the posterior.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>args</code></td>
+<td>
+<p>the necessary arguments to evaluate the negative log posterior and its gradient.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>k</code></td>
+<td>
+<p>the number of parameters that induce a discontinuity in the posterior distribution.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>N</code></td>
+<td>
+<p>integer containing the number of post warm-up samples to evaluate.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>K</code></td>
+<td>
+<p>integer containing the number of recycled samples from each trajectory during the warm-up phase or beyond.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tau</code></td>
+<td>
+<p>the threshold for the exhaustion termination criterion described in (Betancourt 2016).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>L</code></td>
+<td>
+<p>the desired length of the trajectory of classic Hamiltonian Monte Carlo algorithm.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>thin</code></td>
+<td>
+<p>integer containing the number of samples to discard in order to produce a final iteration of the chain.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>chain_id</code></td>
+<td>
+<p>the identification number of the chain.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbose</code></td>
+<td>
+<p>a boolean value that controls whether to print all the information regarding the sampling process.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>control</code></td>
+<td>
+<p>an object of class <code>control_xdnuts</code> containing the specifications for the algorithm.
+See the set_parameters function for detail.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>a named list containing: </p>
+
+<dl>
+<dt>values</dt>
+<dd>
+<p>a <code class="reqn">N \times d</code> matrix containing the sample from the
+target distribution (if convergence has been reached).</p>
+</dd>
+<dt>energy</dt>
+<dd>
+<p>a vector of length-<code class="reqn">N</code> containing the Markov Chain of the energy level sets.</p>
+</dd>
+<dt>step_size</dt>
+<dd>
+<p>a vector of length-<code class="reqn">N</code> containing the sampled step size used for each iteration.</p>
+</dd>
+<dt>step_length</dt>
+<dd>
+<p>a vector of length-<code class="reqn">N</code> containing the length of each trajectory of the chain.</p>
+</dd>
+<dt>alpha</dt>
+<dd>
+<p>a vector of length-<code class="reqn">k + 1</code> containing the estimate of the Metropolis acceptance probabilities.
+The first element of the vector is the estimated global acceptance probability. The remaining k elements are the 
+estimate rate of reflection for each parameters which travels coordinate-wise through some discontinuity.</p>
+</dd>
+<dt>warm_up</dt>
+<dd>
+<p>a <code class="reqn">N_{adapt} \times d</code> matrix containing the sample of the chain
+coming from the warm-up phase. If <code>keep_warm_up = FALSE</code> inside the <code>control</code>
+argument, nothing is returned.</p>
+</dd>
+<dt>div_trans</dt>
+<dd>
+<p>a <code class="reqn">M \times d</code> matrix containing the locations where a divergence has been 
+encountered during the integration of Hamilton equation. Hopefully <code class="reqn">M \ll N</code>, and even better if <code class="reqn">M = 0</code>.</p>
+</dd>
+<dt>M_cont</dt>
+<dd>
+<p>the Mass Matrix of the continuous components estimated during the warm-up phase.
+Based on the <code>M_type</code> value of the <code>control</code> arguments, this could be an empty object, a vector or a matrix.</p>
+</dd>
+<dt>M_disc</dt>
+<dd>
+<p>the Mass Matrix of the discontinuous components estimated during the warm-up phase.
+Based on the <code>M_type</code> value of the <code>control</code> arguments, this could be an empty object or a vector.</p>
+</dd>
+</dl>
+<h3>References</h3>
+
+<p>Betancourt M (2016).
+“Identifying the optimal integration time in Hamiltonian Monte Carlo.”
+<em>arXiv preprint arXiv:1601.00225</em>.<br><br> Duane S, Kennedy AD, Pendleton BJ, Roweth D (1987).
+“Hybrid monte carlo.”
+<em>Physics letters B</em>, <b>195</b>(2), 216–222.<br><br> Hoffman MD, Gelman A, others (2014).
+“The No-U-Turn sampler: adaptively setting path lengths in Hamiltonian Monte Carlo.”
+<em>J. Mach. Learn. Res.</em>, <b>15</b>(1), 1593–1623.<br><br> Nishimura A, Dunson D (2020).
+“Recycling Intermediate Steps to Improve Hamiltonian Monte Carlo.”
+<em>Bayesian Analysis</em>, <b>15</b>(4).
+ISSN 1936-0975, <a href="https://doi.org/10.1214/19-ba1171">doi:10.1214/19-ba1171</a>, <a href="http://dx.doi.org/10.1214/19-BA1171">http://dx.doi.org/10.1214/19-BA1171</a>.<br><br> Nishimura A, Dunson DB, Lu J (2020).
+“Discontinuous Hamiltonian Monte Carlo for discrete parameters and discontinuous likelihoods.”
+<em>Biometrika</em>, <b>107</b>(2), 365–380.
+</p>
+
+
+</div>

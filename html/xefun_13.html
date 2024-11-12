@@ -1,0 +1,53 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>reprate</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>char repetition rate</h2>
+
+<h3>Description</h3>
+
+<p>reprate estimates the max rate of character repetition.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">reprate(x, col)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>a character vector or a data frame.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col</code></td>
+<td>
+<p>a character column name.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>a numeric vector indicating the max rate of character repetition in the corresponding elements in argument x vector.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">x = c('a', 'aa', 'ab', 'aab', 'aaab')
+reprate(x)
+
+reprate(data.frame(x=x), 'x')
+
+</code></pre>
+
+
+</div>

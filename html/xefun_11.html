@@ -1,0 +1,62 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>ceiling2</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>rounding of numbers</h2>
+
+<h3>Description</h3>
+
+<p>The ceiling2 is ceiling of numeric values by digits. The floor2 is floor of numeric values by digits.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">ceiling2(x, digits = 1)
+
+floor2(x, digits = 1)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>a numeric vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>digits</code></td>
+<td>
+<p>integer indicating the number of significant digits.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>ceiling2 rounds the elements in x to the specified number of significant digits that is the smallest number not less than the corresponding elements.
+</p>
+<p>floor2 rounds the elements in x to the specified number of significant digits that is the largest number not greater than the corresponding elements.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">x = c(12345, 54.321)
+
+ceiling2(x)
+ceiling2(x, 2)
+ceiling2(x, 3)
+
+floor2(x)
+floor2(x, 2)
+floor2(x, 3)
+
+</code></pre>
+
+
+</div>

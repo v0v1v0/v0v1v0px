@@ -1,0 +1,70 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>permutations</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Getters for permtest objects</h2>
+
+<h3>Description</h3>
+
+<p>The functions described here are convenience functions to get
+information out of a <code>permtest</code>
+object.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">permutations(x)
+
+## S4 method for signature 'permtest'
+x[i]
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>a <code>permtest</code> object</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>i</code></td>
+<td>
+<p>either a numeric vector, a logical vector or a character
+vector with the elements that need extraction.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>the requested values
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>loss</code> to extract the original loss value.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+data(drugtarget)
+
+mod &lt;- tskrr(drugTargetInteraction, targetSim, drugSim)
+ptest &lt;- permtest(mod, fun = loss_auc)
+
+loss(ptest)
+ptest[c(2,3)]
+permutations(ptest)
+
+</code></pre>
+
+
+</div>

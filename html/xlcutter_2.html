@@ -1,0 +1,95 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xlsx_cutter</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Create a data.frame from a folder of non-rectangular excel files</h2>
+
+<h3>Description</h3>
+
+<p>Create a data.frame from a folder of non-rectangular excel files based on a
+defined custom template
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xlsx_cutter(
+  data_files,
+  template_file,
+  data_sheet = 1,
+  template_sheet = 1,
+  marker_open = "{{",
+  marker_close = "}}"
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>data_files</code></td>
+<td>
+<p>vector of paths to the xlsx files to parse</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>template_file</code></td>
+<td>
+<p>path to the template file to use as a model to parse the
+xlsx files in <code>data_folder</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data_sheet</code></td>
+<td>
+<p>sheet id to extract from the xlsx files</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>template_sheet</code></td>
+<td>
+<p>sheet id of the template file to use as a model to
+parse the xlsx files in <code>data_folder</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>marker_open, marker_close</code></td>
+<td>
+<p>character marker to mark the variables to
+extract in the <code>template_file</code></p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A rectangular <code>data.frame</code> with columns as defined in the template.
+Column types are determined automatically by <code>type.convert()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+data_files &lt;- list.files(
+  system.file("example", "timesheet", package = "xlcutter"),
+  pattern = "\\.xlsx$",
+  full.names = TRUE
+)
+
+template_file &lt;- system.file(
+  "example", "timesheet_template.xlsx",
+  package = "xlcutter"
+)
+
+xlsx_cutter(
+  data_files,
+  template_file
+)
+
+</code></pre>
+
+
+</div>

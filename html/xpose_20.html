@@ -1,0 +1,57 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>check_quo_vars</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Check quoted variables</h2>
+
+<h3>Description</h3>
+
+<p>Ensure that variables used in quos are present in the 
+data and return informative error messages otherwise.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">check_quo_vars(xpdb, ..., .source, .problem)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>xpdb</code></td>
+<td>
+<p>An xpose database object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Name-value pairs of expressions.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.source</code></td>
+<td>
+<p>The source of the data in the xpdb. Can either be 'data' or an output 
+file extension e.g. 'phi'.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.problem</code></td>
+<td>
+<p>The problem from which the data will be modified</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Silent if checks are successful, returns errors otherwise.
+</p>
+
+
+</div>

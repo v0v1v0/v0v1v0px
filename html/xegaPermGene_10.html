@@ -1,0 +1,83 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaPermMutateGene2Opt</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Mutate a gene (by a random 2-Opt move).</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaPermMutateGene2Opt</code> mutates a permutation.
+The per position mutation rate is given by MutationRate().
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaPermMutateGene2Opt(gene, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>gene</code></td>
+<td>
+<p>A Permutation.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration of the genetic algorithm.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>This operator is an implementation of the 2-Opt move
+due to Croes (1958).
+</p>
+<p>Two edges are exchanged, if the exchange improves the result.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A Permutation.
+</p>
+
+
+<h3>References</h3>
+
+<p>Croes, G. A. (1958): 
+A Method for Solving Traveling-Salesman Problems.
+Operations Research, 6(6), pp. 791-812.
+&lt;doi:10.1287/opre.6.6.791&gt;
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Mutation: 
+<code>xegaPermMutateGeneBestGreedy()</code>,
+<code>xegaPermMutateGeneGreedy()</code>,
+<code>xegaPermMutateGeneOrderBased()</code>,
+<code>xegaPermMutateGenekInversion()</code>,
+<code>xegaPermMutateGenekOptLK()</code>,
+<code>xegaPermMutateMix()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">gene1&lt;-xegaPermInitGene(lFxegaPermGene)
+xegaPermDecodeGene(gene1, lFxegaPermGene)
+gene&lt;-xegaPermMutateGene2Opt(gene1, lFxegaPermGene)
+xegaPermDecodeGene(gene, lFxegaPermGene)
+</code></pre>
+
+
+</div>

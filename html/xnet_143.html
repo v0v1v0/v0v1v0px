@@ -1,0 +1,88 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>valid_labels</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Test the correctness of the labels.</h2>
+
+<h3>Description</h3>
+
+<p>This function checks whether the labels between the Y, K, and G
+matrices make sense. This means that all the labels found as
+rownames for <code>y</code> can be found as rownames <em>and</em> column
+names of <code>k</code>, and all the colnames for <code>y</code> can be found
+as rownames <em>and</em> colnames of <code>g</code> (if provided).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">valid_labels(y, k, g = NULL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>y</code></td>
+<td>
+<p>the label matrix</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>k</code></td>
+<td>
+<p>the kernel matrix for the rows</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>g</code></td>
+<td>
+<p>the kernel matrix for the columns (optional). If not available,
+it takes the value <code>NULL</code></p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Compatible labels mean that it is unequivocally clear which
+rows and columns can be linked throughout the model. In case none
+of the matrices have row- or colnames, the labels are considered
+compatible. In all other cases, all matrices should have both row
+and column names. They should fulfill the following conditions:
+</p>
+
+<ul>
+<li>
+<p> the row- and column names of a kernel matrix must contain
+the same values in the same order. Otherwise, the matrix can't
+be symmetric.
+</p>
+</li>
+<li>
+<p> the rownames of <code>y</code> should correspond to the rownames
+of <code>k</code>
+</p>
+</li>
+<li>
+<p> the colnames of <code>y</code> should correspond to the colnames
+of <code>g</code> if it is supplied, or the colnames of <code>k</code> in
+case <code>g</code> is <code>NULL</code>
+</p>
+</li>
+</ul>
+<h3>Value</h3>
+
+<p><code>TRUE</code> if all labels are compatible, an error otherwise.
+</p>
+
+
+<h3>Note</h3>
+
+<p>This is a non-exported convenience function.
+</p>
+
+
+</div>

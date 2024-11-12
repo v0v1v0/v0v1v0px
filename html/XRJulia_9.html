@@ -1,0 +1,91 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>JuliaFunction-class</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Proxy Objects in R for Julia Functions</h2>
+
+<h3>Description</h3>
+
+<p>A class and generator function for proxies in R for Julia functions.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">JuliaFunction(...)
+
+## S4 method for signature 'JuliaFunction'
+initialize(name, module = "", evaluator =
+RJulia(, ...))
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>name, module</code></td>
+<td>
+<p>The name and module of the Julia function.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>evaluator</code></td>
+<td>
+<p>The evaluator object to use.  By default, and usually, the current evaluator
+is used, and one is started if none has been.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>For <code>RJulia</code>, the arguments as interpreted by the
+initialize method, so typically <code>name</code> and optionally
+<code>module</code>.  Remaining arguments are passed along to the next method.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>An object from this class is an R function that is a proxy for a function in Julia. Calls to the R function evaluate
+a call to the Julia function.  The arguments in the call are converted to equivalent Julia objects;
+these typically include proxy objects for results previously computed through the XRJulia interface.
+</p>
+
+
+<h3>Slots</h3>
+
+
+<dl>
+<dt><code>name</code></dt>
+<dd>
+<p>the name of the server language function</p>
+</dd>
+<dt><code>module</code></dt>
+<dd>
+<p>the name of the module, if that needs to be imported</p>
+</dd>
+<dt><code>evaluatorClass</code></dt>
+<dd>
+<p>the class for the evaluator, by default and usually, <code>JuliaInterface</code></p>
+</dd>
+</dl>
+<h3>Examples</h3>
+
+<pre><code class="language-R">  if(findJulia(test = TRUE) ) {
+    ## even so, the Julia may not be valid
+    ## so we catch any errors in the example, mainly to keep CRAN quiet
+    tryCatch( {set.seed(228)
+      x &lt;- matrix(rnorm(1000),20,5)
+      xm &lt;- juliaSend(x)
+      juliaCommand("using LinearAlgebra")
+      svdJ &lt;- JuliaFunction("svd")
+      sxm &lt;- svdJ(xm)
+      sxm
+    }, error = function(e) message("Julia Example error: " ,e$message))}
+</code></pre>
+
+
+</div>

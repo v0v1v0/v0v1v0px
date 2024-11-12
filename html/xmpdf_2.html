@@ -1,0 +1,54 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>as_docinfo</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Coerce to docinfo objects</h2>
+
+<h3>Description</h3>
+
+<p><code>as_docinfo()</code> coerces objects into a <code>docinfo()</code> object.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">as_docinfo(x, ...)
+
+## S3 method for class 'xmp'
+as_docinfo(x, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>An object that can reasonably be coerced to a <code>docinfo()</code> object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Further arguments passed to or from other methods.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A <code>docinfo()</code> object.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"> x &lt;- xmp(`dc:Creator` = "John Doe", `dc:Title` = "A Title")
+ as_docinfo(x)
+
+</code></pre>
+
+
+</div>

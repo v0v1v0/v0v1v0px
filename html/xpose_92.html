@@ -1,0 +1,82 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>parse_title</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Parse keywords in string based on values contained in an xpdb</h2>
+
+<h3>Description</h3>
+
+<p>Parse keywords in string based on values contained in an xpdb
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">parse_title(
+  string,
+  xpdb,
+  problem,
+  quiet,
+  extra_key = NULL,
+  extra_value = NULL,
+  ignore_key = NULL
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>string</code></td>
+<td>
+<p>A string containing keywords (e.g. '@nobs') to be parsed 
+(e.g. title, label, etc.) using values stored in the 'xpdb$summary'.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xpdb</code></td>
+<td>
+<p>An xpose database object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>problem</code></td>
+<td>
+<p>The $problem number to be used.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>quiet</code></td>
+<td>
+<p>Should messages be displayed to the console.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>extra_key</code></td>
+<td>
+<p>A vector of additional keywords not available in the 'xpdb$summary'.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>extra_value</code></td>
+<td>
+<p>A vector of values matching the order of 'extra_key'.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ignore_key</code></td>
+<td>
+<p>A vector of keywords to be ignored i.e. warnings will not be returned.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>The parsed 'string'.
+</p>
+
+
+</div>

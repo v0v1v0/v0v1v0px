@@ -1,0 +1,99 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaGpFilterCrossGene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Crossover of 2 derivation tree genes with node filter.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaGpFilterCrossGene()</code> swaps two randomly extracted 
+subtrees between 2 genes. Subtrees must have the same
+root in order to be compatible. The current implementation 
+performs at most <code>lF$maxtrials()</code> 
+attempts to find compatible
+subtrees. If this fails, the original gene is returned.
+Only nodes with a depth
+between <code>lF$MinMutInsertionDepth()</code> and
+<code>lF$MaxMutInsertionDepth()</code> are considered as
+candidate roots of derivation trees to be swapped 
+by crossover.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaGpFilterCrossGene(ng1, ng2, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>ng1</code></td>
+<td>
+<p>Derivation tree.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ng2</code></td>
+<td>
+<p>Derivation tree.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration of the genetic algorithm.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Crossover is controlled by three local parameters:
+</p>
+
+<ul>
+<li> <p><code>lF$MinCrossDepth()</code> and 
+<code>lF$MaxCrossDepth()</code> control the possible exchange points 
+for subtrees. The depth of the exchange node must be 
+between <code>lF$MinMutInsertionDepth()</code> and
+<code>lF$MaxMutInsertionDepth()</code>.
+</p>
+</li>
+<li> <p><code>lF$MaxTrials()</code>: Maximal number of trials to find 
+compatible subtrees. If compatible subtrees are not 
+found, the gene is returned unchanged.
+</p>
+</li>
+</ul>
+<h3>Value</h3>
+
+<p>List of 1 derivation tree.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Crossover: 
+<code>xegaGpAllCross2Gene()</code>,
+<code>xegaGpAllCrossGene()</code>,
+<code>xegaGpFilterCross2Gene()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">gene1&lt;-xegaGpInitGene(lFxegaGpGene)
+gene2&lt;-xegaGpInitGene(lFxegaGpGene)
+xegaGpDecodeGene(gene1, lFxegaGpGene)
+xegaGpDecodeGene(gene2, lFxegaGpGene)
+newgene&lt;-xegaGpFilterCrossGene(gene1, gene2,  lFxegaGpGene)
+xegaGpDecodeGene(newgene[[1]], lFxegaGpGene)
+
+</code></pre>
+
+
+</div>

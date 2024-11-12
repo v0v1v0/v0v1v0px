@@ -1,0 +1,285 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>chemnet</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>German Toxic Chemicals Policy Network in the 1980s (Volker Schneider)</h2>
+
+<h3>Description</h3>
+
+<p>The chemnet dataset contains network and attribute data and for the 
+30 most influential political actors with regard to toxic chemicals 
+regulation in Germany in 1983/1984. While the original dataset 
+contains up to 47 actors, this dataset contains the "complete 
+influence core" of mutually relevant actors. The data are 
+cross-sectional. There are no missing data; the response rate was 
+100 percent. Volker Schneider (University of Konstanz) collected 
+this dataset for his dissertation (Schneider 1988). The dataset was 
+later re-used for a journal publication on information exchange in 
+policy networks (Leifeld and Schneider 2012).
+</p>
+<p>The chemnet dataset contains network relations on 
+political/strategic and technical/scientific information exchange, 
+influence attribution, and membership in policy committees/forums, 
+as well as nodal attributes on the actor type and opinions about 
+the six most salient issues related to the political process that 
+was leading to a new chemicals law at the time being.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">data(chemnet)</code></pre>
+
+
+<h3>Format</h3>
+
+
+<dl>
+<dt><code>pol</code></dt>
+<dd>
+<p>is a directed 30 x 30 adjancency matrix 
+indicating which row actor sends political/strategic information 
+to which column actor. <code>1</code> indicates an information exchange 
+tie, and <code>0</code> indicates the absence of a network tie.</p>
+</dd>
+<dt><code>scito</code></dt>
+<dd>
+<p>is a directed 30 x 30 adjacency matrix 
+indicating which row actor sends technical/scientific information 
+to which column actor. <code>1</code> indicates an information exchange 
+tie, and <code>0</code> indicates the absence of a network tie. In 
+contrast to political/strategic information exchange, two separate 
+survey questions were asked about technical/scientific information 
+exchange: sending information, and receiving information. The two 
+matrices contain the same relation but one time from the sender's
+perspective and one time from the receiver's perspective. By 
+combining the two matrices, one can create a "confirmed" 
+technical/scientific information exchange relation. The 
+<code>scito</code> matrix contains ties from the sender's perspective.</p>
+</dd>
+<dt><code>scifrom</code></dt>
+<dd>
+<p>is a directed 30 x 30 adjacency matrix 
+indicating which row actor receives technical/scientific 
+information from which column actor. <code>1</code> indicates an 
+information exchange tie, and <code>0</code> indicates the absence of a 
+network tie. In contrast to political/strategic information 
+exchange, two separate survey questions were asked about 
+technical/scientific information exchange: sending information, 
+and receiving information. The two matrices contain the same 
+relation but one time from the sender's perspective and one time 
+from the receiver's perspective. By combining the two matrices, 
+one can create a "confirmed" technical/scientific information 
+exchange relation. The <code>scifrom</code> matrix contains ties from 
+the receiver's perspective.</p>
+</dd>
+<dt><code>infrep</code></dt>
+<dd>
+<p>is a directed 30 x 30 adjancency matrix 
+indicating which row actor deems which column actor "particularly 
+influential". <code>1</code> indicates such a tie, and <code>0</code> 
+indicates the absence of an influence attribution tie.</p>
+</dd>
+<dt><code>committee</code></dt>
+<dd>
+<p>is a 30 x 20 two-mode (bipartite) network 
+matrix indicating which row actor is a member of which policy 
+committee/forum (as indicated by the column labels). <code>1</code> 
+indicates a membership tie, and <code>0</code> indicates 
+non-membership.</p>
+</dd>
+<dt><code>types</code></dt>
+<dd>
+<p>is a one-column data.frame where the 
+<code>type</code> variable contains the actor type of each node. The 
+following values are possible:</p>
+</dd>
+</dl>
+<ul>
+<li>
+<p><code>gov</code> (government actor, e.g., a federal ministry)
+</p>
+</li>
+<li>
+<p><code>ig</code> (interest group
+</p>
+</li>
+<li>
+<p><code>io</code> (international organization)
+</p>
+</li>
+<li>
+<p><code>par</code> (political party)
+</p>
+</li>
+<li>
+<p><code>sci</code> (scientific organization)
+</p>
+</li>
+</ul>
+<dl>
+<dt>intpos</dt>
+<dd>
+<p>is a 30 x 6 matrix containing the interest positions 
+of the 30 political actors on the six most salient political 
+issues related to a pending new chemicals law. <code>-1</code> indicates 
+a negative stance, i.e., the actor rejects the proposal; <code>1</code> 
+indicates a positive stance, i.e., the actor supports the 
+proposal; and <code>0</code> indicates a neutral or absent opinion.</p>
+</dd>
+</dl>
+<h3>Source</h3>
+
+<p>The data were collected using paper-based questionnaires. The 
+questionnaires were administered in personal interviews (PAPI). 
+Further information, including the actual survey, data on 
+additional actors, the full names of the policy committees/forums, 
+and the full list of unabbreviated actor names can be found online 
+at <a href="http://hdl.handle.net/1902.1/17004">http://hdl.handle.net/1902.1/17004</a> in the replication 
+archive of Leifeld and Schneider (2012).
+</p>
+
+<ul>
+<li>
+<p>Replication archive: <a href="http://hdl.handle.net/1902.1/17004">http://hdl.handle.net/1902.1/17004</a>
+</p>
+</li>
+<li>
+<p>AJPS publication: <a href="http://dx.doi.org/10.1111/j.1540-5907.2011.00580.x">http://dx.doi.org/10.1111/j.1540-5907.2011.00580.x</a>
+</p>
+</li>
+</ul>
+<p>The dataset is publicly available. Questions about the data or the 
+original study should be directed to Volker Schneider 
+(volker.schneider@uni-konstanz.de), the author of the original study 
+and person who collected the data.
+</p>
+
+
+<h3>References</h3>
+
+<p>Leifeld, Philip and Volker Schneider (2012): Information Exchange 
+in Policy Networks. <em>American Journal of Political Science</em> 
+53(3): 731–744. <a href="http://dx.doi.org/10.1111/j.1540-5907.2011.00580.x">http://dx.doi.org/10.1111/j.1540-5907.2011.00580.x</a>.
+</p>
+<p>Schneider, Volker (1988): <em>Politiknetzwerke der 
+Chemikalienkontrolle. Eine Analyse einer transnationalen 
+Politikentwicklung</em>. Walter de Gruyter: Berlin/New York.
+</p>
+<p>Schneider, Volker and Philip Leifeld (2009): Ueberzeugungssysteme, 
+Diskursnetzwerke und politische Kommunikation: Ein zweiter Blick auf 
+die deutsche Chemikalienkontrolle der 1980er Jahre. In: Volker 
+Schneider, Frank Janning, Philip Leifeld and Thomas Malang (editors): 
+<em>Politiknetzwerke. Modelle, Anwendungen und Visualisierungen</em>. 
+Pages 139–158. Wiesbaden: VS Verlag fuer Sozialwissenschaften. 
+<a href="http://dx.doi.org/10.1007%2F978-3-531-91883-9_6">http://dx.doi.org/10.1007%2F978-3-531-91883-9_6</a>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+# Replication code for Leifeld and Schneider (2012), AJPS.
+# Note that the estimates can only be reproduced approximately 
+# due to internal changes in the statnet package.
+
+# preparatory steps
+library("statnet")
+library("xergm")
+library("texreg")
+seed &lt;- 12345
+set.seed(seed)
+data("chemnet")
+
+# create confirmed network relation
+sci &lt;- scito * t(scifrom)  # equation 1 in the AJPS paper
+prefsim &lt;- dist(intpos, method = "euclidean")  # equation 2
+prefsim &lt;- max(prefsim) - prefsim  # equation 3
+prefsim &lt;- as.matrix(prefsim)
+committee &lt;- committee %*% t(committee)  # equation 4
+diag(committee) &lt;- 0 # the diagonal has no meaning
+types &lt;- types[, 1]  # convert to vector
+
+# create network objects and store attributes
+nw.pol &lt;- network(pol) # political/stratgic information exchange
+set.vertex.attribute(nw.pol, "orgtype", types)
+set.vertex.attribute(nw.pol, "betweenness", 
+    betweenness(nw.pol)) # centrality
+
+nw.sci &lt;- network(sci) # technical/scientific information exchange
+set.vertex.attribute(nw.sci, "orgtype", types)
+set.vertex.attribute(nw.sci, "betweenness", 
+    betweenness(nw.sci)) # centrality
+
+# ERGM: model 1 in the AJPS paper; only preference similarity
+model1 &lt;- ergm(nw.pol ~ edges + edgecov(prefsim), 
+    control = control.ergm(seed = seed))
+summary(model1)
+
+# ERGM: model 2 in the AJPS paper; complete model
+model2 &lt;- ergm(nw.pol ~ 
+    edges + 
+    edgecov(prefsim) + 
+    mutual + 
+    nodemix("orgtype", base = -7) + 
+    nodeifactor("orgtype", base = -1) + 
+    nodeofactor("orgtype", base = -5) + 
+    edgecov(committee) + 
+    edgecov(nw.sci) + 
+    edgecov(infrep) + 
+    gwesp(0.1, fixed = TRUE) + 
+    gwdsp(0.1, fixed = TRUE), 
+    control = control.ergm(seed = seed)
+)
+summary(model2)
+
+# ERGM: model 3 in the AJPS paper; only preference similarity
+model3 &lt;- ergm(nw.sci ~ edges + edgecov(prefsim), 
+    control = control.ergm(seed = seed))
+summary(model3)
+
+# ERGM: model 4 in the AJPS paper; complete model
+model4 &lt;- ergm(nw.sci ~ 
+    edges + 
+    edgecov(prefsim) + 
+    mutual + 
+    nodemix("orgtype", base = -7) + 
+    nodeifactor("orgtype", base = -1) + 
+    nodeofactor("orgtype", base = -5) + 
+    edgecov(committee) + 
+    edgecov(nw.pol) + 
+    edgecov(infrep) + 
+    gwesp(0.1, fixed = TRUE) + 
+    gwdsp(0.1, fixed = TRUE), 
+    control = control.ergm(seed = seed)
+)
+summary(model4)
+
+# regression table using the texreg package
+screenreg(list(model1, model2, model3, model4))
+
+# goodness of fit using the btergm package
+gof2 &lt;- gof(model2, roc = FALSE, pr = FALSE)
+gof2  # print gof output
+plot(gof2)  # visual inspection of GOF
+
+gof4 &lt;- gof(model4, roc = FALSE, pr = FALSE)
+gof4
+plot(gof4)
+
+# MCMC diagnostics
+pdf("diagnostics2.pdf")
+mcmc.diagnostics(model2)
+dev.off()
+
+pdf("diagnostics4.pdf")
+mcmc.diagnostics(model4)
+dev.off()
+
+## End(Not run)
+</code></pre>
+
+
+</div>

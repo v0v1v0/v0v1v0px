@@ -1,0 +1,276 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaBNF</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Package xegaBNF</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaBNF</code> implements a grammar compiler for context-free languages
+specified in BNF and a few utility functions. 
+The grammar compiler 
+generates a grammar object. 
+This object used by the package
+<code>xegaDerivationTrees</code>, as well as for grammar-based genetic 
+programming (<code>xegaGpGene</code>) and grammatical evolution 
+(<code>xegaGeGene</code>.
+</p>
+
+
+<h3>BNF (Backus-Naur Form)</h3>
+
+<p>Grammars of context-free languages are represented 
+in Backus-Naur Form (BNF). See e.g. Backus et al. (1962).
+</p>
+<p>The BNF is a meta-language for specifying the syntax of context-free 
+languages. The BNF provides 
+</p>
+
+<ol>
+<li>
+<p> non-terminal symbols,
+</p>
+</li>
+<li>
+<p> terminal symbols, and
+</p>
+</li>
+<li>
+<p> meta-symbols of the BNF. 
+</p>
+</li>
+</ol>
+<p>A non-terminal symbol has the following form:
+<code>&lt;pattern&gt;</code>, where pattern is an arbitrary sequence of letters, numbers, 
+and symbols.  
+</p>
+<p>A terminal symbol has the following form:
+<code>"pattern"</code>, where pattern is an arbitrary sequence of letters, numbers, 
+and symbols. 
+</p>
+<p>The BNF has three meta symbols, namely <code>::=</code>, <code>|</code>, and <code>;</code> 
+which are used for the specification of production (substitution) rules. 
+<code>::=</code> separates the left-hand side of the rule from the right-hand
+side of the rule. <code>;</code> indicates the end of a production rule.
+<code>|</code> separates the symbol sequences of a compound production rule. 
+A production rule has the following form:
+</p>
+<p><code>LHS ::= RHS;</code>
+</p>
+<p>where <code>LHS</code> is a single non-terminal symbol and 
+<code>RHS</code> is either a simple symbol sequence or a compound symbol 
+sequence.
+</p>
+<p>A production rule with a simple symbol sequence 
+specifies the substitution of 
+the non-terminal symbol on the <code>LHS</code> by the symbol sequence of 
+the <code>RHS</code>. 
+</p>
+<p>A production rule with a compound symbol sequence 
+specifies the substitution of 
+the non-terminal symbol on the <code>LHS</code> by one of the symbol sequences of 
+the <code>RHS</code>.
+</p>
+
+
+<h3>Editing BNFs</h3>
+
+<p>The BNF may be stored in ASCII text files and edited with standard editors.
+</p>
+
+
+<h3>The Internal Representation of a Grammar Object</h3>
+
+<p>A grammar object is represented as a named list:
+</p>
+
+<ul>
+<li>
+<p> $name contains the filename of the BNF.
+</p>
+</li>
+<li>
+<p> $ST   the symbol table.
+</p>
+</li>
+<li>
+<p> $PT   the production table.
+</p>
+</li>
+<li>
+<p> $Start the start symbol of the grammar.
+</p>
+</li>
+<li>
+<p> $SPT  a short production table without recursive rules. 
+</p>
+</li>
+</ul>
+<h3>The Compilation Process</h3>
+
+<p>The main steps of the compilation process are:
+</p>
+
+<ol>
+<li>
+<p> Store the filename.
+</p>
+</li>
+<li>
+<p> Make the symbol table. See <code>makeSymbolTable</code>.
+</p>
+</li>
+<li>
+<p> Make the production table. See <code>makeProductionTable</code>.
+</p>
+</li>
+<li>
+<p> Extract the start symbol. See <code>makeStartSymbol</code>.
+</p>
+</li>
+<li>
+<p> Compile a short production table. See <code>compileShortPT</code>.
+</p>
+</li>
+<li>
+<p> Return the grammar.</p>
+</li>
+</ol>
+<h3>The User-Interface of the Compiler</h3>
+
+<p><code>compileBNF(g)</code> where <code>g</code> is a character string with a BNF.
+</p>
+
+
+<h3>Utility Functions for xegaX-Packages</h3>
+
+ 
+<ul>
+<li>
+<p> isTerminal, isNonTerminal: For testing the symbol type of 
+identifiers in a grammar object.
+</p>
+</li>
+<li>
+<p> rules, derives: For choosing rules and for substitutions.
+</p>
+</li>
+</ul>
+<h3>The Architecture of the xegaX-Packages</h3>
+
+<p>The xegaX-packages are a family of R-packages which implement 
+eXtended Evolutionary and Genetic Algorithms (xega).  
+The architecture has 3 layers, 
+namely the user interface layer,
+the population layer, and the gene layer: 
+</p>
+
+<ul>
+<li>
+<p>The user interface layer (package <code>xega</code>) 
+provides a function call interface and configuration support
+for several algorithms: genetic algorithms (sga), 
+permutation-based genetic algorithms (sgPerm), 
+derivation-free algorithms as e.g. differential evolution (sgde), 
+grammar-based genetic programming (sgp) and grammatical evolution
+(sge). 
+</p>
+</li>
+<li>
+<p>The population layer (package <code>xegaPopulation</code>) contains
+population related functionality as well as support for 
+population statistics dependent adaptive mechanisms and parallelization.
+</p>
+</li>
+<li> 
+<p>The gene layer is split into a representation-independent and 
+a representation-dependent part:
+</p>
+
+<ol>
+<li> 
+<p>The representation indendent part (package <code>xegaSelectGene</code>)
+is responsible for variants of selection operators, evaluation 
+strategies for genes, as well as profiling and timing capabilities.        
+</p>
+</li>
+<li> 
+<p>The representation dependent part consists of the following packages: 
+</p>
+
+<ul>
+<li> <p><code>xegaGaGene</code> for binary coded genetic algorithms.
+</p>
+</li>
+<li> <p><code>xegaPermGene</code> for permutation-based genetic algorithms.
+</p>
+</li>
+<li> <p><code>xegaDfGene</code> for derivation free algorithms as e.g. 
+differential evolution.
+</p>
+</li>
+<li> <p><code>xegaGpGene</code> for grammar-based genetic algorithms.
+</p>
+</li>
+<li> <p><code>xegaGeGene</code> for grammatical evolution algorithms.
+</p>
+</li>
+</ul>
+<p>The packages <code>xegaDerivationTrees</code> and <code>xegaBNF</code> support
+the last two packages:
+</p>
+
+<ul>
+<li> <p><code>xegaBNF</code> essentially provides a grammar compiler.
+</p>
+</li>
+<li> <p><code>xegaDerivationTrees</code> implements an abstract data type for derivation trees.
+</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3>Copyright</h3>
+
+<p>(c) 2023 Andreas Geyer-Schulz
+</p>
+
+
+<h3>License</h3>
+
+<p>MIT
+</p>
+
+
+<h3>URL</h3>
+
+<p>&lt;https://github.com/ageyerschulz/xegaBNF&gt;
+</p>
+
+
+<h3>Installation</h3>
+
+<p>From CRAN by <code>install.packages('xegaBNF')</code>
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Andreas Geyer-Schulz
+</p>
+
+
+<h3>References</h3>
+
+<p>Backus, J. W., Bauer, F. L., Green, J., Katz, C., McCarthy, J., 
+Naur, Peter, Perlis, A. J., Ruthishauser, H.,  and Samelson, K.
+(1962)
+Revised Report on the Algorithmic Language ALGOL 60, IFIP, Rome.
+</p>
+
+
+</div>

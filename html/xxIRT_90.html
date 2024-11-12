@@ -1,0 +1,73 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>estimate_helpers</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Helper functions of Model Estimation</h2>
+
+<h3>Description</h3>
+
+<p>miscellaneous helper functions for estimating IRT models
+</p>
+<p><code>estimate_nr_iteration</code> updates the parameters using the newton-raphson method
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">estimate_nr_iteration(param, free, dv, h_max, lr, bound)
+
+model_polytomous_3dindex(u)
+
+model_polytomous_3dresponse(u)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>param</code></td>
+<td>
+<p>the parameter being estimated</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>free</code></td>
+<td>
+<p>TRUE to freely estimate specific parameters</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dv</code></td>
+<td>
+<p>the first and second derivatives</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>h_max</code></td>
+<td>
+<p>the maximum value of h</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lr</code></td>
+<td>
+<p>the learning rate</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bound</code></td>
+<td>
+<p>the lower and upper bounds of the parameter</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>u</code></td>
+<td>
+<p>the observed response, 2d matrix, values start from 0</p>
+</td>
+</tr>
+</table>
+</div>

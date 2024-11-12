@@ -1,0 +1,235 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>plot.tskrr</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>plot a heatmap of the predictions from a tskrr model</h2>
+
+<h3>Description</h3>
+
+<p>This function plots a heatmap of the fitted values in a
+<code>tskrr</code> model. The function is loosely based on
+<code>heatmap</code>, but uses a different mechanism and adds
+a legend by default.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S3 method for class 'tskrr'
+plot(
+  x,
+  dendro = c("both", "row", "col", "none"),
+  which = c("fitted", "loo", "response", "residuals"),
+  exclusion = c("interaction", "row", "column", "both"),
+  replaceby0 = FALSE,
+  nbest = 0,
+  rows,
+  cols,
+  col = rev(heat.colors(20)),
+  breaks = NULL,
+  legend = TRUE,
+  main = NULL,
+  xlab = NULL,
+  ylab = NULL,
+  labRow = NULL,
+  labCol = NULL,
+  margins = c(5, 5),
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>a tskrr model</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dendro</code></td>
+<td>
+<p>a character value indicating whether a dendrogram
+should be constructed.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>which</code></td>
+<td>
+<p>a character value indicating whether the fitted values,
+the leave-one-out values, the original response values  or the
+residuals should be plotted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>exclusion</code></td>
+<td>
+<p>if <code>which = "loo"</code>, this argument is passed to
+<code>loo</code> for the exclusion settings</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>replaceby0</code></td>
+<td>
+<p>if <code>which = "loo"</code>, this argument is passed to
+<code>loo</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>nbest</code></td>
+<td>
+<p>a single integer value indicating the amount of best values
+that should be selected. If <code>0</code>, all data is shown.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>rows</code></td>
+<td>
+<p>a numeric or character vector indicating which rows should be
+selected from the model.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cols</code></td>
+<td>
+<p>a numeric or character vector indicating which columns should be
+selected from the model.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col</code></td>
+<td>
+<p>a vector with colors to be used for plotting</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>breaks</code></td>
+<td>
+<p>a single value specifying the number of
+breaks (must be 1 more than number of colors), or a numeric
+vector with the breaks used for the color code. If <code>NULL</code>,
+the function tries to find evenly spaced breaks.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>legend</code></td>
+<td>
+<p>a logical value indicating whether or not the legend should
+be added to the plot.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>a character value with a title for the plot</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xlab</code></td>
+<td>
+<p>a character label for the X axis</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylab</code></td>
+<td>
+<p>a character label for the Y axis</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>labRow</code></td>
+<td>
+<p>a character vector with labels to be used on the rows.
+Note that these labels are used as is (possibly reordered to match
+the dendrogram). They can replace the labels from the model. Set to
+<code>NA</code> to remove the row labels.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>labCol</code></td>
+<td>
+<p>the same as <code>labRow</code> but then for the columns.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>margins</code></td>
+<td>
+<p>a numeric vector with 2 values indicating the margins to
+be used for the row and column labels (cfr <code>par("mar")</code>)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>currently ignored</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The function can select a part of the model for plotting. Either you
+specify <code>rows</code> and <code>cols</code>, or you specify <code>nbest</code>.
+If <code>nbest</code> is specified, <code>rows</code> and <code>cols</code> are ignored.
+The n highest values are looked up in the plotted values, and only
+the rows and columns related to these values are shown then. This
+allows for a quick selection of the highest predictions.
+</p>
+<p>Dendrograms are created by converting the kernel matrices to
+a distance, using
+</p>
+<p>d(x,y) = K(x,x)^2 + K(y,y)^2 - 2*K(x,y)
+</p>
+<p>with K being the kernel function. The resulting distances are
+clustered using <code>hclust</code> and converted to a
+dendrogram using <code>as.dendrogram</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>an invisible list with the following elements:
+</p>
+
+<ul>
+<li> <p><code>val</code>: the values plotted
+</p>
+</li>
+<li> <p><code>ddK</code>: if a row dendrogram was requested, the row dendrogram
+</p>
+</li>
+<li> <p><code>ddG</code>: if a column dendrogram was requested,
+the column dendrogram
+</p>
+</li>
+<li> <p><code>breaks</code>: the breaks used for the color codes
+</p>
+</li>
+<li> <p><code>col</code>: the colors used
+</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p><code>tskrr</code>, <code>tune</code> and
+<code>link{impute_tskrr}</code> to construct tskrr models.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(drugtarget)
+mod &lt;- tskrr(drugTargetInteraction, targetSim, drugSim)
+
+plot(mod)
+plot(mod, dendro = "row", legend = FALSE)
+plot(mod, col = rainbow(20), dendro = "none", which = "residuals")
+plot(mod, labCol = NA, labRow = NA, margins = c(0.2,0.2))
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,84 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>savetofiles</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Saving the relational data</h2>
+
+<h3>Description</h3>
+
+<p>Saves a list of dataframes created from an XML source with
+<code>toRelational()</code> to CSV files, one file per dataframe (i.e.
+table in the relational data model). File names are identical to the
+dataframe/table names.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">savetofiles(ldf, dir, sep = ",", dec = ".")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>ldf</code></td>
+<td>
+<p>A <strong>l</strong>ist of <strong>d</strong>ata<strong>f</strong>rames created by
+<code>toRelational()</code> (the data tables transformed from XML to a
+relational schema).#' @param dir Directory where the files will be stored.
+Default is the current working directory.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dir</code></td>
+<td>
+<p>The directory to save the CSV files in. Per default the working directory.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sep</code></td>
+<td>
+<p>Character symbol to separate fields in the CSV fil, comma by
+default.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dec</code></td>
+<td>
+<p>Decimal separator used for numeric fields in the CSV file, point
+by default.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>No return vaue.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other xml2relational: 
+<code>getCreateSQL()</code>,
+<code>getInsertSQL()</code>,
+<code>toRelational()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Find path to custmers.xml example file in package directory
+path &lt;- system.file("", "customers.xml", package = "xml2relational")
+db &lt;- toRelational(path)
+
+savetofiles(db, dir = tempdir())
+
+
+</code></pre>
+
+
+</div>

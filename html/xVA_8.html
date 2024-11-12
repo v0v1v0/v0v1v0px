@@ -1,0 +1,88 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>CalcSimulatedExposure</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Calculated the Simulated Exposure Profile</h2>
+
+<h3>Description</h3>
+
+<p>Calculates the simulated exposure profile (EE, NEE, PFE, EEE) by use of the Hull-White model. Two sets of results are provided:
+one after taking into account the marging agreement and one assuming that there is no marging agreement present
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">CalcSimulatedExposure(
+  discount_factors,
+  time_points,
+  spot_curve,
+  CSA,
+  trades,
+  sim_data,
+  framework
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>discount_factors</code></td>
+<td>
+<p>The discount curve derived from the spot curve</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>time_points</code></td>
+<td>
+<p>The timepoints that the analysis is performed on</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>spot_curve</code></td>
+<td>
+<p>The curve derived from interpolating the market spot rates</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>CSA</code></td>
+<td>
+<p>The margin agreement</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>trades</code></td>
+<td>
+<p>The list of the trade objects</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sim_data</code></td>
+<td>
+<p>A list containing simulation-related data (model parameters and number of simulation)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>framework</code></td>
+<td>
+<p>regulatory framework can be 'IMM','SACCR','CEM'</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A list containing the exposure profile (both collateralized and uncollateralized)
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Tasos Grivas &lt;tasos@openriskcalculator.com&gt;
+</p>
+
+
+</div>

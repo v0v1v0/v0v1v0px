@@ -1,0 +1,342 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaGpGene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Package xegaGpGene.</h2>
+
+<h3>Description</h3>
+
+<p>Genetic operations for grammar-based genetic algorithms.
+</p>
+
+
+<h3>Details</h3>
+
+<p>For derivation tree genes, the <code>xegaGpGene</code> package provides
+</p>
+
+<ul>
+<li>
+<p> Gene initiatilization.
+</p>
+</li>
+<li>
+<p> Decoding of parameters.
+</p>
+</li>
+<li>
+<p> Mutation functions as well as a function factory for configuration.
+</p>
+</li>
+<li>
+<p> Crossover functions as well as a function factory for configuration.
+Crossover functions can be restricted by depth or by the non-terminal 
+symbols which are allowed as roots of the subtrees which are exchanged 
+between 2 genes.
+We provide two families of crossover functions:
+</p>
+
+<ol>
+<li>
+<p> Crossover functions with two kids:
+Crossover preserves the genetic information in the gene pool.
+</p>
+</li>
+<li>
+<p> Crossover functions with one kid:
+These functions allow the construction of evaluation pipelines
+for genes. One advantage of this is a simple control structure 
+at the population level.
+</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3>Derivation Tree Gene Representation</h3>
+
+<p>A derivation tree gene is a named list:
+</p>
+
+<ul>
+<li> <p><code>$gene1</code>:     The gene must be a complete derivation tree.
+</p>
+</li>
+<li> <p><code>$fit</code>:       The fitness value of the gene
+(for EvalGeneDet() and EvalGeneU()) or
+the mean fitness (for stochastic functions
+evaluated with EvalGeneStoch()).
+</p>
+</li>
+<li> <p><code>$evaluated</code>: Boolean. Has the gene been evaluated?
+</p>
+</li>
+<li> <p><code>$evalFail</code>:  Boolean. Has the evaluation of the gene failed?
+</p>
+</li>
+<li> <p><code>$var</code>:       The variance of the fitness 
+of all evaluations of a gene is updated
+after each evaluation of a gene.
+(For stochastic functions.)
+</p>
+</li>
+<li> <p><code>$sigma</code>:     The standard deviation of the fitness of 
+all evaluations of a gene.
+(For stochastic functions.)
+</p>
+</li>
+<li> <p><code>$obs:</code>       The number evaluations of a gene.
+(For stochastic functions.)
+</p>
+</li>
+</ul>
+<h3>Abstract Interface of Problem Environment</h3>
+
+<p>A problem environment <code>penv</code> must provide:
+</p>
+
+<ul><li> <p><code>$f(word, gene, lF)</code>: 
+Function with a word of a language as first argument
+which the fitness of the gene.
+</p>
+</li></ul>
+<h3>Abstract Interface of Mutation Functions</h3>
+
+<p>Each mutation function has the following function signature:
+</p>
+<p><code>newGene&lt;-Mutate(gene, lF)</code>
+</p>
+<p>All local parameters of the mutation function configured are 
+expected in the local function list lF.
+</p>
+
+
+<h3>Local Constants of Mutation Functions</h3>
+
+<p>The local constants of a mutation function determine the 
+the behavior of the function. 
+</p>
+
+<table>
+<tr>
+<td style="text-align: right;"> 
+<strong>Constant</strong> </td>
+<td style="text-align: center;"> <strong>Default</strong> </td>
+<td style="text-align: left;"> <strong>Used in</strong> </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+<code>lF$MaxMutDepth()</code> </td>
+<td style="text-align: center;"> 3  </td>
+<td style="text-align: left;"> xegaGpMutateAllGene(), </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                        </td>
+<td style="text-align: center;"> 3  </td>
+<td style="text-align: left;"> xegaGpMutateFilterGene() </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+<code>lF$MinMutInsertiontDepth()</code> </td>
+<td style="text-align: center;"> 3  </td>
+<td style="text-align: left;"> xegaGpMutateFilterGene() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+<code>lF$MaxMutInsertiontDepth()</code> </td>
+<td style="text-align: center;"> 4  </td>
+<td style="text-align: left;"> xegaGpMutateFilterGene() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+</td>
+</tr>
+</table>
+<h3>Abstract Interface of Crossover Functions</h3>
+
+<p>The signatures of the abstract interface to the 2 families 
+of crossover functions are:
+</p>
+<p><code>ListOfTwoGenes&lt;-Crossover2(gene1, gene2, lF)</code> 
+</p>
+<p><code>ListOfOneGene&lt;-Crossover(gene1, gene2, lF)</code>
+</p>
+<p>All local parameters of the crossover function configured are 
+expected in the local function list lF.
+</p>
+
+
+<h3>Local Constants of Crossover Functions</h3>
+
+
+<table>
+<tr>
+<td style="text-align: right;"> 
+<strong>Constant</strong> </td>
+<td style="text-align: center;"> <strong>Default</strong> </td>
+<td style="text-align: left;"> <strong>Used in</strong> </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+<code>lF$MinCrossDepth()</code> </td>
+<td style="text-align: center;"> 1  </td>
+<td style="text-align: left;"> xegaGpFilterCross2Gene(),  </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                          </td>
+<td style="text-align: center;">    </td>
+<td style="text-align: left;"> xegaGpFilterCrossGene(),  </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+<code>lF$MaxCrossDepth()</code> </td>
+<td style="text-align: center;"> 7  </td>
+<td style="text-align: left;"> xegaGpFilterCross2Gene(),  </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                          </td>
+<td style="text-align: center;">    </td>
+<td style="text-align: left;"> xegaGpFilterCrossGene(),  </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+<code>lF$MaxTrials()</code>     </td>
+<td style="text-align: center;"> 5  </td>
+<td style="text-align: left;"> xegaGpAllCross2Gene()  </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                          </td>
+<td style="text-align: center;">    </td>
+<td style="text-align: left;"> xegaGpAllCrossGene(),  </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                          </td>
+<td style="text-align: center;">    </td>
+<td style="text-align: left;"> xegaGpFilter2CrossGene(),  </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                          </td>
+<td style="text-align: center;">    </td>
+<td style="text-align: left;"> xegaGpFilterCrossGene(),  </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+</td>
+</tr>
+</table>
+<h3>The Architecture of the xegaX-Packages</h3>
+
+<p>The xegaX-packages are a family of R-packages which implement 
+eXtended Evolutionary and Genetic Algorithms (xega).  
+The architecture has 3 layers, 
+namely the user interface layer,
+the population layer, and the gene layer: 
+</p>
+
+<ul>
+<li>
+<p>The user interface layer (package <code>xega</code>) 
+provides a function call interface and configuration support
+for several algorithms: genetic algorithms (sga), 
+permutation-based genetic algorithms (sgPerm), 
+derivation free algorithms as e.g. differential evolution (sgde), 
+grammar-based genetic programming (sgp) and grammatical evolution
+(sge). 
+</p>
+</li>
+<li>
+<p>The population layer (package <code>xegaPopulation</code>) contains
+population related functionality as well as support for 
+population statistics dependent adaptive mechanisms and parallelization.
+</p>
+</li>
+<li> 
+<p>The gene layer is split in a representation independent and 
+a representation dependent part:
+</p>
+
+<ol>
+<li> 
+<p>The representation indendent part (package <code>xegaSelectGene</code>)
+is responsible for variants of selection operators, evaluation 
+strategies for genes, as well as profiling and timing capabilities.        
+</p>
+</li>
+<li> 
+<p>The representation dependent part consists of the following packages: 
+</p>
+
+<ul>
+<li> <p><code>xegaGaGene</code> for binary coded genetic algorithms.
+</p>
+</li>
+<li> <p><code>xegaPermGene</code> for permutation-based genetic algorithms.
+</p>
+</li>
+<li> <p><code>xegaDfGene</code> for derivation free algorithms as e.g. 
+differential evolution.
+</p>
+</li>
+<li> <p><code>xegaGpGene</code> for grammar-based genetic algorithms.
+</p>
+</li>
+<li> <p><code>xegaGeGene</code> for grammatical evolution algorithms.
+</p>
+</li>
+</ul>
+<p>The packages <code>xegaDerivationTrees</code> and <code>xegaBNF</code> support
+the last two packages:
+<code>xegaBNF</code> essentially provides a grammar compiler and 
+<code>xegaDerivationTrees</code> an abstract data type for derivation trees.
+</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3>Copyright</h3>
+
+<p>(c) 2023 Andreas Geyer-Schulz
+</p>
+
+
+<h3>License</h3>
+
+<p>MIT
+</p>
+
+
+<h3>URL</h3>
+
+<p>&lt;https://github.com/ageyerschulz/xegaGpGene&gt;
+</p>
+
+
+<h3>Installation</h3>
+
+<p>From CRAN by <code>install.packages('xegaGpGene')</code>
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Andreas Geyer-Schulz
+</p>
+
+
+<h3>References</h3>
+
+<p>Geyer-Schulz, Andreas (1997):
+<em>Fuzzy Rule-Based Expert Systems and Genetic Machine Learning</em>,
+Physica, Heidelberg.
+(ISBN:978-3-7908-0830-X)
+</p>
+
+
+</div>

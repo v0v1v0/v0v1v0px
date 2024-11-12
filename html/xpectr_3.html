@@ -1,0 +1,117 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>capture_side_effects</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Capture side effects</h2>
+
+<h3>Description</h3>
+
+<p>Captures <code>error</code>s, <code>warning</code>s, and <code>message</code>s from an expression.
+</p>
+<p>In case of an <code>error</code>, no other side effects are captured.
+</p>
+<p>Simple wrapper for <code>testthat</code>'s
+<code>capture_error()</code>,
+<code>capture_warnings()</code> and
+<code>capture_messages()</code>.
+</p>
+<p>Note: Evaluates <code>expr</code> up to three times.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">capture_side_effects(
+  expr,
+  envir = NULL,
+  copy_env = FALSE,
+  reset_seed = FALSE,
+  disable_crayon = TRUE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>expr</code></td>
+<td>
+<p>Expression.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>envir</code></td>
+<td>
+<p>Environment to evaluate in. Defaults to
+<code>parent.frame()</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>copy_env</code></td>
+<td>
+<p>Whether to use deep copies of the environment when capturing side effects. (Logical)
+</p>
+<p>Disabled by default to save memory but is often preferable to enable, e.g. when the function
+alters non-local variables before throwing its <code>error</code>/<code>warning</code>/<code>message</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>reset_seed</code></td>
+<td>
+<p>Whether to reset the random state on exit. (Logical)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>disable_crayon</code></td>
+<td>
+<p>Whether to disable <code>crayon</code> formatting.
+This can remove ANSI characters from the messages. (Logical)</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p><code>named list</code> with the side effects.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ludvig Renbo Olsen, <a href="mailto:r-pkgs@ludvigolsen.dk">r-pkgs@ludvigolsen.dk</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other capturers: 
+<code>capture_parse_eval_side_effects()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Attach packages
+library(xpectr)
+
+fn &lt;- function(raise = FALSE){
+  message("Hi! I'm Kevin, your favorite message!")
+  warning("G'Day Mam! I'm a warning to the world!")
+  message("Kevin is ma name! Yesss!")
+  warning("Hopefully the whole world will see me :o")
+  if (isTRUE(raise)){
+    stop("Lord Evil Error has arrived! Yeehaaa")
+  }
+  "the output"
+}
+
+capture_side_effects(fn())
+capture_side_effects(fn(raise = TRUE))
+capture_side_effects(fn(raise = TRUE), copy_env = TRUE)
+
+</code></pre>
+
+
+</div>

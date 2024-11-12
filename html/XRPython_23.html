@@ -1,0 +1,48 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>PythonFunction-class</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Proxy Objects in R for Python Functions</h2>
+
+<h3>Description</h3>
+
+<p>A class and generator function for proxies in R for Python functions.
+</p>
+
+
+<h3>Details</h3>
+
+<p>An object from this class is an R function that is a proxy for a function in Python. Calls to the R function evaluate
+a call to the Python function.  The arguments in the call are converted to equivalent Python objects;
+these typically include proxy objects for results previously computed through the XRPython interface.
+</p>
+
+
+<h3>Slots</h3>
+
+
+<dl>
+<dt><code>name</code></dt>
+<dd>
+<p>the name of the server language function</p>
+</dd>
+<dt><code>module</code></dt>
+<dd>
+<p>the name of the module, if that needs to be imported</p>
+</dd>
+<dt><code>evaluatorClass</code></dt>
+<dd>
+<p>the class for the evaluator, by default and usually, <code>PythonInterface</code></p>
+</dd>
+<dt><code>serverDoc</code></dt>
+<dd>
+<p>the docstring from Python, if any.</p>
+</dd>
+<dt><code>serverArgs</code></dt>
+<dd>
+<p>the Python argument names (not currently used).</p>
+</dd>
+</dl>
+</div>

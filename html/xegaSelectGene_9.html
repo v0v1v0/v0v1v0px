@@ -1,0 +1,76 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>EvalGeneDet</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Evaluates a gene in a deterministic problem environment.</h2>
+
+<h3>Description</h3>
+
+<p><code>EvalGeneDet</code> evaluates a gene in
+a problem environment if it has not been evaluated yet.
+The repeated evaluations of a gene are omitted.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">EvalGeneDet(gene, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>gene</code></td>
+<td>
+<p>A gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>The local configuration of the genetic algorithm.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>If the evaluation of the fitness function of the 
+problem environment fails, we catch the error and 
+return <code>NA</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A gene (with <code>$evaluated==TRUE</code>).
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Evaluation Functions: 
+<code>EvalGeneR()</code>,
+<code>EvalGeneStoch()</code>,
+<code>EvalGeneU()</code>,
+<code>EvalGene()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">Parabola2D&lt;-Parabola2DFactory()
+lF&lt;-NewlFevalGenes(Parabola2D)
+g1&lt;-list(evaluated=FALSE, fit=0, gene1=c(1.0, -1.5))
+g2&lt;-list(evaluated=FALSE, fit=0, gene1=c(0.0, 0.0))
+g1a&lt;-EvalGeneDet(g1, lF)
+EvalGeneDet(g1a, lF)
+g2a&lt;-EvalGeneDet(g2, lF)
+EvalGeneDet(g2a, lF)
+</code></pre>
+
+
+</div>

@@ -1,0 +1,321 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>getCreateSQL</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Exporting the relational data model and data to a database</h2>
+
+<h3>Description</h3>
+
+<p>Produces ready-to-run SQL <code>INSERT</code> statements to import the
+data transformed with <code>toRelational()</code> into a SQL database.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">getCreateSQL(
+  ldf,
+  sql.style = "MySQL",
+  tables = NULL,
+  prefix.primary = "ID_",
+  prefix.foreign = "FKID_",
+  line.break = "\n",
+  datatype.func = NULL,
+  one.statement = FALSE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>ldf</code></td>
+<td>
+<p>A <strong>l</strong>ist of <strong>d</strong>ata<strong>f</strong>rames created by
+<code>toRelational()</code> (the data tables transformed from XML to a
+relational schema).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sql.style</code></td>
+<td>
+<p>The SQL flavor that the produced <code>CREATE</code> statements
+will follow. The supported SQL styles are <code>"MySQL"</code>,
+<code>"TransactSQL"</code> and <code>"Oracle"</code>. You can add your own SQL flavor
+by providing a dataframe with the required information instead of the name
+of one of the predefined SQL flavors as value for <code>sql.style</code>. See the
+Details section for more information on working with different SQL flavors.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tables</code></td>
+<td>
+<p>A character vector with the names of the tables for whichs SQL
+<code>CREATE</code> statements will be produced. If null (default) <code>CREATE</code>
+statements will be produced for all tables in in the relational data model
+of <code>ldf</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>prefix.primary</code></td>
+<td>
+<p>The prefix that is used in the relational data model of
+<code>ldf</code> to identify primary keys. <code>"ID_"</code> by default.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>prefix.foreign</code></td>
+<td>
+<p>The prefix that is used in the relational data model of
+<code>ldf</code> to identify foreign keys. <code>"FKID_"</code> by default.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>line.break</code></td>
+<td>
+<p>Line break character that is added to the end of each
+<code>CREATE</code> statement (apart from the semicolon that is added
+automatically). Default is <code>"\n"</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>datatype.func</code></td>
+<td>
+<p>A function that is used to determine the data type of
+the table fields. The function must take the field/column from the data
+table (basically the result of <code>SELCT field FROM table</code>)
+as its sole argument and return a character vector providing the data type.
+If null (default), the built-in mechanism will be used to determine the
+data type.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>one.statement</code></td>
+<td>
+<p>Determines whether all <code>CREATE</code> statements will be
+returned as one piece of SQL code (<code>one.statement = TRUE</code>) or if each
+<code>CREATE</code> statement will be stored in a separate element of the return
+vector.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>If you want to produce SQL <code>CREATE</code> statements that follow a
+different SQL dialect than one of the built-in SQL flavors (i.e. MySQL,
+TransactSQL and Oracle) you can provide the necessary information to
+<code>getCreateSQL()</code> via the <code>sql.style</code> argument. In this case the
+<code>sql.style</code> argument needs to be a dataframe with the folling fields:
+</p>
+
+<table>
+<tr>
+<td style="text-align: left;"> Column </td>
+<td style="text-align: left;"> Type </td>
+<td style="text-align: left;"> Description </td>
+<td style="text-align: left;"> Example </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+  <code>Style</code> </td>
+<td style="text-align: left;"> <code>character</code> </td>
+<td style="text-align: left;"> Name of the SQL flavor. </td>
+<td style="text-align: left;">
+  <code>"MySQL"</code>  </td>
+</tr>
+<tr>
+<td style="text-align: left;"> <code>NormalField</code> </td>
+<td style="text-align: left;"> <code>character</code> </td>
+<td style="text-align: left;"> Template
+  string for a normal, nullable field. </td>
+<td style="text-align: left;"> <code>"%FIELDNAME% %DATATYPE%"</code>
+  </td>
+</tr>
+<tr>
+<td style="text-align: left;"> <code>NormalFieldNotNull</code> </td>
+<td style="text-align: left;"> <code>character</code> </td>
+<td style="text-align: left;"> Template string
+  for non-nullable field. </td>
+<td style="text-align: left;"> <code>"%FIELDNAME% %DATATYPE% NOT NULL"</code> </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+  <code>PrimaryKey</code> </td>
+<td style="text-align: left;"> <code>character</code> </td>
+<td style="text-align: left;"> Template string for the
+  definition of a primary key. </td>
+<td style="text-align: left;"> <code>"PRIMARY KEY (%FIELDNAME%)"</code> </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+  <code>ForeignKey</code> </td>
+<td style="text-align: left;"> <code>character</code> </td>
+<td style="text-align: left;"> Template string for the
+  definition of a foreign key. <code>"FOREIGN KEY (%FIELDNAME%) REFERENCES
+  %REFTABLE%(%REFPRIMARYKEY%)"</code>  </td>
+</tr>
+<tr>
+<td style="text-align: left;"> <code>PrimaryKeyDefSeparate</code> </td>
+<td style="text-align: left;">
+  <code>logical</code> </td>
+<td style="text-align: left;"> Indicates if primary key needs additional definition
+  like a any other field.  </td>
+<td style="text-align: left;"> <code>TRUE</code>  </td>
+</tr>
+<tr>
+<td style="text-align: left;"> <code>ForeignKeyDefSeparate</code>
+  </td>
+<td style="text-align: left;"> <code>logical</code> </td>
+<td style="text-align: left;"> Indicates if foreign key needs additional
+  definition like a any other field. </td>
+<td style="text-align: left;"> <code>TRUE</code> </td>
+</tr>
+<tr>
+<td style="text-align: left;"> <code>Int</code> </td>
+<td style="text-align: left;">
+  </td>
+<td style="text-align: left;"> <code>character</code> </td>
+<td style="text-align: left;"> Name of integer data type. <code>"INT"</code>  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+  <code>Int.MaxSize</code> </td>
+<td style="text-align: left;"> <code>numeric</code> </td>
+<td style="text-align: left;"> Size limit of integer data
+  type.  </td>
+<td style="text-align: left;"> <code>4294967295</code>  </td>
+</tr>
+<tr>
+<td style="text-align: left;"> <code>BigInt</code> </td>
+<td style="text-align: left;"> <code>character</code> </td>
+<td style="text-align: left;">
+  Name of data type for integers larger than the size limit of the normal
+  integer data type. </td>
+<td style="text-align: left;"> <code>"BIGINT"</code> </td>
+</tr>
+<tr>
+<td style="text-align: left;"> <code>Decimal</code> </td>
+<td style="text-align: left;">
+  <code>character</code> </td>
+<td style="text-align: left;"> Name of data type for floating point numbers. </td>
+<td style="text-align: left;">
+  <code>"DECIMAL"</code>  </td>
+</tr>
+<tr>
+<td style="text-align: left;"> <code>VarChar</code> </td>
+<td style="text-align: left;"> <code>character</code> </td>
+<td style="text-align: left;"> Name of
+  data type for variable-size character fields. </td>
+<td style="text-align: left;"> <code>"VARCHAR"</code>  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+  <code>VarChar.MaxSize</code> </td>
+<td style="text-align: left;"> <code>numeric</code> </td>
+<td style="text-align: left;"> Size limit of variable-size
+  character data type.</td>
+<td style="text-align: left;"> <code>65535</code> </td>
+</tr>
+<tr>
+<td style="text-align: left;"> <code>Text</code> </td>
+<td style="text-align: left;"> <code>character</code>
+  </td>
+<td style="text-align: left;"> Name of data type for string data larger than the size limit of the
+  variable-size character data type. </td>
+<td style="text-align: left;"> <code>"TEXT"</code> </td>
+</tr>
+<tr>
+<td style="text-align: left;"> </td>
+</tr>
+<tr>
+<td style="text-align: left;"> <code>Date</code>
+  </td>
+<td style="text-align: left;"> <code>character</code> </td>
+<td style="text-align: left;"> Name of data type date data. </td>
+<td style="text-align: left;"> <code>"DATE"</code>
+  </td>
+</tr>
+<tr>
+<td style="text-align: left;"> <code>Time</code> </td>
+<td style="text-align: left;"> <code>character</code> </td>
+<td style="text-align: left;"> Name of data type time data </td>
+<td style="text-align: left;">
+  <code>"TIME"</code> </td>
+</tr>
+<tr>
+<td style="text-align: left;"> <code>Date</code> </td>
+<td style="text-align: left;"> <code>character</code> </td>
+<td style="text-align: left;"> Name of data
+  type for combined date and time data. </td>
+<td style="text-align: left;"> <code>"TIMESTAMP"</code>  </td>
+</tr>
+<tr>
+<td style="text-align: left;">  </td>
+</tr>
+</table>
+<p>In the template strings you can use the following placeholders, as you also
+see from the MySQL example in the table: </p>
+ <ol>
+<li>
+<p><code>%FIELDNAME%</code>: Name of the field to be defined. </p>
+</li>
+<li>
+<p><code>%DATATYPE%</code>: Datatype of the field to be defined. </p>
+</li>
+<li>
+<p><code>%REFTABLE%</code>: Table referenced by a foreign key. </p>
+</li>
+<li>
+<p><code>%REFPRIMARYKEY%</code>: Name of the primary key field of the table
+referenced by a foreign key. </p>
+</li>
+</ol>
+<p> When you use your own defintion of an SQL
+flavor, then <code>sql.style</code> must be a one-row dataframe providing the
+fields described in the table above.
+</p>
+<p>You can use the <code>datatype.func</code> argument to provide your own function
+to determine how the data type of a field is derived from the values in
+that field. In this case, the values of the columns <code>Int</code>,
+<code>Int.MaxSize</code>, <code>VarChar</code>, <code>VarChar.MaxSize</code>, <code>Decimal</code>
+and <code>Text</code> in the <code>sql.style</code> dataframe are ignored. They are
+used by the built-in mechanism to determine data types. Providing your own
+function allows you to determine data types in a more differentiated way,
+if you like. The function that is provided needs to take a vectors of
+values as its argument and needs to provide the SQL data type of these
+values as a one-element character vector.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A character vector with exactly one element (if argument
+<code>one.statement = TRUE</code>) or with one element per <code>CREATE</code>
+statement.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other xml2relational: 
+<code>getInsertSQL()</code>,
+<code>savetofiles()</code>,
+<code>toRelational()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Find path to custmers.xml example file in package directory
+path &lt;- system.file("", "customers.xml", package = "xml2relational")
+db &lt;- toRelational(path)
+
+sql.code &lt;- getCreateSQL(db, "TransactSQL", "address")
+
+</code></pre>
+
+
+</div>

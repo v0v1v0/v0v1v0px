@@ -1,0 +1,90 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>update</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Update a tskrr object with a new lambda</h2>
+
+<h3>Description</h3>
+
+<p>This function allows you to refit a <code>tskrr</code> with a
+new lambda. It can be used to do manual tuning/cross-validation.
+If the object has the hat matrices stored, these are updated
+as well.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">update(object, ...)
+
+## S4 method for signature 'tskrrHomogeneous'
+update(object, lambda)
+
+## S4 method for signature 'tskrrHeterogeneous'
+update(object, lambda)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>a <code>tskrr</code> object</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>arguments passed to methods</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lambda</code></td>
+<td>
+<p>a numeric vector with one or two values for the
+hyperparameter lambda. If two values are given, the first one is
+used for the k matrix and the second for the g matrix.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>an updated <code>tskrr</code> object
+fitted with the new lambdas.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(drugtarget)
+
+mod &lt;- tskrr(drugTargetInteraction, targetSim, drugSim)
+
+# Update with the same lambda
+mod2 &lt;- update(mod, lambda = 1e-3)
+
+# Use different lambda for rows and columns
+mod3 &lt;- update(mod, lambda = c(0.01,0.001))
+
+# A model with the hat matrices stored
+lambda &lt;- c(0.001,0.01)
+modkeep &lt;- tskrr(drugTargetInteraction, targetSim, drugSim, keep = TRUE)
+Hk_1 &lt;- hat(modkeep, which = "row")
+modkeep2 &lt;- update(modkeep, lambda = lambda)
+Hk_2 &lt;- hat(modkeep2, which = "row")
+
+# Calculate new hat matrix by hand:
+decomp &lt;- get_eigen(modkeep, which = "row")
+Hk_byhand &lt;- eigen2hat(decomp$vectors,
+                       decomp$values,
+                       lambda = lambda[1])
+identical(Hk_2, Hk_byhand)
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,115 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>data_opt</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Create options for data import</h2>
+
+<h3>Description</h3>
+
+<p>Provide a list of options to the general plotting functions such as 
+<code>xplot_scatter</code> in order to create appropriate data input for ggplot2.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">data_opt(
+  .problem = NULL,
+  .subprob = NULL,
+  .method = NULL,
+  .source = "data",
+  simtab = FALSE,
+  filter = NULL,
+  tidy = FALSE,
+  index_col = NULL,
+  value_col = NULL,
+  post_processing = NULL
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>.problem</code></td>
+<td>
+<p>The problem to be used, by default returns the last one.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.subprob</code></td>
+<td>
+<p>The subproblem to be used, by default returns the last one.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.method</code></td>
+<td>
+<p>The estimation method to be used, by default returns the last one.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.source</code></td>
+<td>
+<p>Define the location of the data in the xpdb. Should be either 'data' 
+to use the output tables or the name of an output file attached to the xpdb.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>simtab</code></td>
+<td>
+<p>Only used when 'data' is defined as the source and '.problem' is default. Should the data be coming 
+from an estimation or a simulation table.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>filter</code></td>
+<td>
+<p>A function used to filter the data e.g. filter = function(x) x[x$TIME &gt; 20, ] where x is the data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tidy</code></td>
+<td>
+<p>Logical, whether the data should be transformed to tidy data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>index_col</code></td>
+<td>
+<p>Only used when 'tidy' is defined a <code>TRUE</code> and <code>value_col</code> is <code>NULL</code>. 
+Column names to use as index when tidying the data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>value_col</code></td>
+<td>
+<p>Only used when 'tidy' is defined a <code>TRUE</code> and <code>index_col</code> is <code>NULL</code>. 
+Column names to be stacked when tidying the data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>post_processing</code></td>
+<td>
+<p>A function used to modify the data after it has been tidied up e.g. post_processing = function(x) 
+dplyr::mutate(.data = x, variable = as.factor(.$variable)) where x is the tidy data.</p>
+</td>
+</tr>
+</table>
+<h3>See Also</h3>
+
+<p><code>xplot_distrib</code> <code>xplot_qq</code> <code>xplot_scatter</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data_opt(.problem = 1, .source = 'data', simtab = TRUE)
+
+</code></pre>
+
+
+</div>

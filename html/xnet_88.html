@@ -1,0 +1,85 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>loss_functions</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>loss functions</h2>
+
+<h3>Description</h3>
+
+<p>These functions can be used as loss functions in <code>tune</code>.
+Currently, two functions are provided: a function calculating the
+classic mean squared error (<code>loss_mse</code>) and a function
+calculating 1 - AUC (<code>loss_auc</code>).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">loss_mse(Y, LOO, na.rm = FALSE)
+
+loss_auc(Y, LOO)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>Y</code></td>
+<td>
+<p>the label matrix with observed responses</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>LOO</code></td>
+<td>
+<p>the leave-one-out crossvalidation (or predictions if you
+must). This one can be calculated by the function <code>loo</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>na.rm</code></td>
+<td>
+<p>a logical value</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The AUC is calculated by sorting the <code>Y</code> matrix based on
+the order of the values in the <code>LOO</code> matrix. The false and true
+positive rates are calculated solely based on that ordering, which
+allows for values in <code>LOO</code> outside the range [0,1]. It's
+a naive implementation which is good enough for tuning, but
+shouldn't be used as a correct value for 1 - auc in case the
+values in <code>LOO</code> are outside the range [0,1].
+</p>
+
+
+<h3>Note</h3>
+
+<p>The function <code>loss_auc</code> should only be used for a <code>Y</code>
+matrix that contains solely the values 0 and 1.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>tune</code> for application of the loss function
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+x &lt;- c(1,0,0,1,0,0,1,0,1)
+y &lt;- c(0.8,-0.1,0.2,0.2,0.4,0.01,1.12,0.9,0.9)
+loss_mse(x,y)
+loss_auc(x,y)
+
+</code></pre>
+
+
+</div>

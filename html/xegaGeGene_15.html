@@ -1,0 +1,85 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaGeGeneMapMod</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Map the bit strings of a binary gene to parameters in the interval
+<code>1:2^k</code>.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaGeGeneMapMod()</code> maps the bit strings of a binary string 
+to integers in the interval <code>1</code> to 
+<code>lF$CodonPrecision()</code>. 
+Bit vectors are mapped into equispaced numbers in the interval.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaGeGeneMapMod(gene, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>gene</code></td>
+<td>
+<p>Binary gene (the genotype).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The modulo rule of grammatical evolution produces (slightly)
+biased choices of rules with this mapping. The bias goes to 
+zero as <code>lF$CodonPrecision()</code> <code>&gt;&gt;</code> number of rules 
+to choose from.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Integer vector.
+</p>
+
+
+<h3>References</h3>
+
+<p>Keijzer, M., O'Neill, M., Ryan, C. and Cattolico, M. (2002)
+Grammatical Evolution Rules: The Mod and the Bucket Rule,
+pp. 123-130. 
+In: Foster, J. A., Lutton, E., Miller, J., Ryan, C. and 
+Tettamanzi, A. (Eds.): Genetic Programming.
+Lecture Notes in Computer Science, Vol.2278, 
+Springer, Heidelberg. 
+&lt;doi:10.1007/3-540-45984-7_12&gt;
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Decoder: 
+<code>xegaGeDecodeGene()</code>,
+<code>xegaGeGeneMapmLCM()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">gene&lt;-xegaGeInitGene(lFxegaGeGene)
+xegaGeGeneMapMod(gene$gene1, lFxegaGeGene)
+
+</code></pre>
+
+
+</div>

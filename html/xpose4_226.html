@@ -1,0 +1,292 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xpose.gam</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Stepwise GAM search for covariates on a parameter (Xpose 4)</h2>
+
+<h3>Description</h3>
+
+<p>Function takes an Xpose object and performs a generalized additive model
+(GAM) stepwise search for influential covariates on a single model parameter.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xpose.gam(
+  object,
+  parnam = xvardef("parms", object)[1],
+  covnams = xvardef("covariates", object),
+  trace = TRUE,
+  scope = NULL,
+  disp = object@Prefs@Gam.prefs$disp,
+  start.mod = object@Prefs@Gam.prefs$start.mod,
+  family = "gaussian",
+  wts.data = object@Data.firstonly,
+  wts.col = NULL,
+  steppit = object@Prefs@Gam.prefs$steppit,
+  subset = xsubset(object),
+  onlyfirst = object@Prefs@Gam.prefs$onlyfirst,
+  medianNorm = object@Prefs@Gam.prefs$medianNorm,
+  nmods = object@Prefs@Gam.prefs$nmods,
+  smoother1 = object@Prefs@Gam.prefs$smoother1,
+  smoother2 = object@Prefs@Gam.prefs$smoother2,
+  smoother3 = object@Prefs@Gam.prefs$smoother3,
+  smoother4 = object@Prefs@Gam.prefs$smoother4,
+  arg1 = object@Prefs@Gam.prefs$arg1,
+  arg2 = object@Prefs@Gam.prefs$arg2,
+  arg3 = object@Prefs@Gam.prefs$arg3,
+  arg4 = object@Prefs@Gam.prefs$arg4,
+  excl1 = object@Prefs@Gam.prefs$excl1,
+  excl2 = object@Prefs@Gam.prefs$excl2,
+  excl3 = object@Prefs@Gam.prefs$excl3,
+  excl4 = object@Prefs@Gam.prefs$excl4,
+  extra = object@Prefs@Gam.prefs$extra,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An xpose.data object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>parnam</code></td>
+<td>
+<p>ONE (and only one) model parameter name.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>covnams</code></td>
+<td>
+<p>Covariate names to test on parameter.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>trace</code></td>
+<td>
+<p>TRUE if you want GAM output to screen.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>scope</code></td>
+<td>
+<p>Scope of the GAM search.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>disp</code></td>
+<td>
+<p>If dispersion should be used in the GAM object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>start.mod</code></td>
+<td>
+<p>Starting model.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>family</code></td>
+<td>
+<p>Assumption for the parameter distribution.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>wts.data</code></td>
+<td>
+<p>Weights on the least squares fitting of parameter vs.
+covariate. Often one can use the variances of the individual parameter
+values as weights. This data frame must have column with name ID and any
+subset variable as well as the variable defined by the <code>wts.col</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>wts.col</code></td>
+<td>
+<p>Which column in the <code>wts.data</code> to use.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>steppit</code></td>
+<td>
+<p>TRUE for stepwise search, false for no search.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>subset</code></td>
+<td>
+<p>Subset on data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>onlyfirst</code></td>
+<td>
+<p>TRUE if only the first row of each individual's data is to
+be used.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>medianNorm</code></td>
+<td>
+<p>Normalize to the median of parameter and covariates.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>nmods</code></td>
+<td>
+<p>Number of models to examine.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>smoother1</code></td>
+<td>
+<p>Smoother for each model.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>smoother2</code></td>
+<td>
+<p>Smoother for each model.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>smoother3</code></td>
+<td>
+<p>Smoother for each model.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>smoother4</code></td>
+<td>
+<p>Smoother for each model.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>arg1</code></td>
+<td>
+<p>Argument for model 1.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>arg2</code></td>
+<td>
+<p>Argument for model 2.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>arg3</code></td>
+<td>
+<p>Argument for model 3.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>arg4</code></td>
+<td>
+<p>Argument for model 4.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>excl1</code></td>
+<td>
+<p>Covariate exclusion from model 1.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>excl2</code></td>
+<td>
+<p>Covariate exclusion from model 2.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>excl3</code></td>
+<td>
+<p>Covariate exclusion from model 3.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>excl4</code></td>
+<td>
+<p>Covariate exclusion from model 4.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>extra</code></td>
+<td>
+<p>Extra exclusion criteria.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Used to pass arguments to more basic functions.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Returned is a <code>step.Gam</code> object. In this object 
+the step-wise-selected model is returned, with up to two additional 
+components. There is an "anova" component 
+corresponding to the steps taken in the search, as well as a 
+"keep" component if the "keep=" argument was supplied in the call.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>E. Niclas Jonsson, Mats Karlsson, Andrew Hooker &amp; Justin Wilkins
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>step.gam</code>
+</p>
+<p>Other GAM functions: 
+<code>GAM_summary_and_plot</code>,
+<code>xp.get.disp()</code>,
+<code>xp.scope3()</code>,
+<code>xpose.bootgam()</code>,
+<code>xpose4-package</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Run a GAM using the example xpose database 
+gam_ka &lt;- xpose.gam(simpraz.xpdb, parnam="KA")
+
+## Summarize GAM
+xp.summary(gam_ka)
+
+## GAM residuals of base model vs. covariates
+xp.plot(gam_ka)
+
+## An Akaike plot of the results
+xp.akaike.plot(gam_ka)
+
+## Studentized residuals
+xp.ind.stud.res(gam_ka)
+
+## Individual influence on GAM fit
+xp.ind.inf.fit(gam_ka)
+
+## Individual influence on GAM terms
+xp.ind.inf.terms(gam_ka)
+
+## Individual parameters to GAM fit
+xp.cook(gam_ka)
+
+</code></pre>
+
+
+</div>

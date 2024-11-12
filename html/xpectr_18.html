@@ -1,0 +1,85 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>render_toc</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Render Table of Contents</h2>
+
+<h3>Description</h3>
+
+<p>From: https://gist.github.com/gadenbuie/c83e078bf8c81b035e32c3fc0cf04ee8
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">render_toc(
+  filename,
+  toc_header_name = "Table of Contents",
+  base_level = NULL,
+  toc_depth = 3
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>filename</code></td>
+<td>
+<p>Name of RMarkdown or Markdown document</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>toc_header_name</code></td>
+<td>
+<p>The table of contents header name. If specified, any
+header with this format will not be included in the TOC. Set to <code>NULL</code> to
+include the TOC itself in the TOC (but why?).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>base_level</code></td>
+<td>
+<p>Starting level of the lowest header level. Any headers
+prior to the first header at the base_level are dropped silently.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>toc_depth</code></td>
+<td>
+<p>Maximum depth for TOC, relative to base_level. Default is
+<code>toc_depth = 3</code>, which results in a TOC of at most 3 levels.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>A simple function to extract headers from an RMarkdown or Markdown document
+and build a table of contents. Returns a markdown list with links to the
+headers using pandoc header identifiers.
+</p>
+<p>WARNING: This function only works with hash-tag headers.
+</p>
+<p>Because this function returns only the markdown list, the header for the
+Table of Contents itself must be manually included in the text. Use
+<code>toc_header_name</code> to exclude the table of contents header from the TOC, or
+set to <code>NULL</code> for it to be included.
+</p>
+
+
+<h3>Usage</h3>
+
+<p>Just drop in a chunk where you want the toc to appear (set <code>echo=FALSE</code>):
+</p>
+<div class="sourceCode"><pre># Table of Contents
+
+```{r echo=FALSE}
+render_toc("/path/to/the/file.Rmd")
+```
+</pre></div>
+
+
+</div>

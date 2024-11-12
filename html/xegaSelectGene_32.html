@@ -1,0 +1,89 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>SelectDuel</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Deterministic duel.</h2>
+
+<h3>Description</h3>
+
+<p><code>SelectDuel</code> implements selection
+by a tournament between 2
+randomly selected genes. The best gene always wins.
+This is the version of tournament selection 
+with the least selection pressure.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">SelectDuel(fit, lF, size = 1)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>fit</code></td>
+<td>
+<p>Fitness vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>size</code></td>
+<td>
+<p>Number of selected genes. Default: 1.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>This is an O(n) implementation of tournament selection with 
+a tournament size of 2.
+</p>
+<p>A special case of tournament selection.
+</p>
+
+
+<h3>Value</h3>
+
+<p>The index vector of the selected genes.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Selection Functions: 
+<code>SelectLRSelective()</code>,
+<code>SelectLinearRankTSR()</code>,
+<code>SelectPropFitDiffM()</code>,
+<code>SelectPropFitDiffOnln()</code>,
+<code>SelectPropFitDiff()</code>,
+<code>SelectPropFitM()</code>,
+<code>SelectPropFitOnln()</code>,
+<code>SelectPropFit()</code>,
+<code>SelectSTournament()</code>,
+<code>SelectSUS()</code>,
+<code>SelectTournament()</code>,
+<code>SelectUniformP()</code>,
+<code>SelectUniform()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">fit&lt;-sample(10, 15, replace=TRUE)
+SelectDuel(fit, NewlFselectGenes()) 
+SelectDuel(fit, NewlFselectGenes(), length(fit)) 
+</code></pre>
+
+
+</div>

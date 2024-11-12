@@ -1,0 +1,84 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>estimateVariance</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Estimate noise variance given predictor X and continuous outcome Y.</h2>
+
+<h3>Description</h3>
+
+<p><code>estimateVariance</code> estimate noise variance.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">estimateVariance(X, Y, n_rep = 5)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>X</code></td>
+<td>
+<p>predictor matrix of dimension <code class="reqn">n</code> by <code class="reqn">p</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Y</code></td>
+<td>
+<p>continuous outcome vector of length <code class="reqn">n</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>n_rep</code></td>
+<td>
+<p>number of repeated estimation. Default is 10.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The <code>estimateSigma</code> function from selectiveInference is used repeatedly to estimate noise variance.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Estimated noise variance of X and Y.
+</p>
+
+
+<h3>References</h3>
+
+<p>Stephen Reid, Jerome Friedman, and Rob Tibshirani (2014). A study of error variance estimation in lasso regression. arXiv:1311.5274.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>selectiveInference
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## simulate some data
+set.seed(9)
+n = 30
+p = 10
+sigma.square = 1
+X = matrix(rnorm(n*p),n,p)
+beta = c(2,-2,1,-1,rep(0,p-4))
+Y = X%*%beta + rnorm(n,0,sqrt(sigma.square))
+
+## estimate sigma square
+sigma.square.est = estimateVariance(X,Y)
+sigma.square.est
+</code></pre>
+
+
+</div>

@@ -1,0 +1,135 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>summary.XDNUTS</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Function to print the summary of an XDNUTS model.</h2>
+
+<h3>Description</h3>
+
+<p>Function to print the summary of an XDNUTS model.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S3 method for class 'XDNUTS'
+summary(
+  object,
+  ...,
+  q.val = c(0.05, 0.25, 0.5, 0.75, 0.95),
+  which = NULL,
+  which_chains = NULL,
+  digits = 5
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>an object of class <code>XDNUTS</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>additional arguments to customize the summary.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>q.val</code></td>
+<td>
+<p>desired quantiles of the posterior distribution for each coordinate.
+Default values are <code>0.05,0.25,0.5,0.75,0.95</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>which</code></td>
+<td>
+<p>either a numerical vector indicating the index of the parameters of interest or a string </p>
+
+<dl>
+<dt><code>which = 'continuous'</code></dt>
+<dd>
+<p>for plotting the first <code class="reqn">d-k</code> parameters.</p>
+</dd>
+<dt><code>which = 'discontinuous'</code></dt>
+<dd>
+<p>for plotting the last <code class="reqn">k</code> parameters.</p>
+</dd>
+</dl>
+<p>where both <code class="reqn">d</code> and <code class="reqn">k</code> are elements contained in the output of the function xdnuts.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>which_chains</code></td>
+<td>
+<p>a numerical vector indicating the index of the chains of interest.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>digits</code></td>
+<td>
+<p>number of digits in the summary table.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>a list containing a data frame named <code>stats</code> with the following columns: </p>
+<dl>
+<dt>mean</dt>
+<dd>
+<p>the mean of the posterior distribution.</p>
+</dd>
+<dt>sd</dt>
+<dd>
+<p>the standard deviation of the posterior distribution.</p>
+</dd>
+<dt>q.val</dt>
+<dd>
+<p>the desired quantiles of the posterior distribution.</p>
+</dd>
+<dt>ESS</dt>
+<dd>
+<p>the Effective Sample Size for each marginal distribution.</p>
+</dd>
+<dt>R_hat</dt>
+<dd>
+<p>the Potential Scale Reduction Factor of Gelman (Gelman and Rubin 1992), only if multiple chains are available.</p>
+</dd>
+<dt>R_hat_upper_CI</dt>
+<dd>
+<p>the upper confidence interval for the latter, only if multiple chains are available.</p>
+</dd>
+</dl>
+<p>Other quantities returned are:</p>
+
+<dl>
+<dt>Gelman.Test</dt>
+<dd>
+<p>the value of the multivariate Potential Scale Reduction Factor test (Gelman and Rubin 1992).</p>
+</dd>
+<dt>BFMI</dt>
+<dd>
+<p>the value of the empirical Bayesian Fraction of Information Criteria (Betancourt 2016). 
+A value below 0.2 indicates a bad random walk behavior in the energy Markov Chain, mostly due to a suboptimal
+specification of the momentum parameters probability density.</p>
+</dd>
+</dl>
+<h3>References</h3>
+
+<p>Betancourt M (2016).
+“Diagnosing suboptimal cotangent disintegrations in Hamiltonian Monte Carlo.”
+<em>arXiv preprint arXiv:1604.00695</em>.<br><br> Gelman A, Rubin DB (1992).
+“Inference from iterative simulation using multiple sequences.”
+<em>Statistical science</em>, <b>7</b>(4), 457–472.
+</p>
+
+
+</div>

@@ -1,0 +1,84 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>ExponentialMultiplicativeCooling</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Exponential multiplicative cooling.</h2>
+
+<h3>Description</h3>
+
+<p>The temperature at time k is the net present value 
+of the starting temperature. The discount factor 
+is <code>lF$Alpha()</code>. 
+<code>lF$Alpha()</code> should be in <code>[0, 1]</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">ExponentialMultiplicativeCooling(k, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>k</code></td>
+<td>
+<p>Number of steps to discount.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Temperature is updated at the end of each generation
+in the main loop of the genetic algorithm.
+<code>lF$Temp0()</code> is the starting temperature.
+<code>lF$Alpha()</code> is the discount factor.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Temperature at time k.
+</p>
+
+
+<h3>References</h3>
+
+<p>Kirkpatrick, S., Gelatt, C. D. J, and Vecchi, M. P. (1983):
+Optimization by Simulated Annealing. 
+Science, 220(4598): 671-680.
+&lt;doi:10.1126/science.220.4598.671&gt;
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Cooling: 
+<code>ExponentialAdditiveCooling()</code>,
+<code>LogarithmicMultiplicativeCooling()</code>,
+<code>PowerAdditiveCooling()</code>,
+<code>PowerMultiplicativeCooling()</code>,
+<code>TrigonometricAdditiveCooling()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">parm&lt;-function(x){function() {return(x)}}
+lF&lt;-list(Temp0=parm(100), Alpha=parm(0.99))
+ExponentialMultiplicativeCooling(0, lF)
+ExponentialMultiplicativeCooling(2, lF)
+</code></pre>
+
+
+</div>

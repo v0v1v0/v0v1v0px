@@ -1,0 +1,243 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaDfGene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Package xegaDfGene.</h2>
+
+<h3>Description</h3>
+
+<p>Genetic operations for real-coded genetic and evolutionary algorithms.
+</p>
+
+
+<h3>Details</h3>
+
+<p>For real-coded genes, the <code>xegaDfGene</code> package provides
+</p>
+
+<ul>
+<li>
+<p> Gene initialization.
+</p>
+</li>
+<li>
+<p> Decoding of parameters.
+</p>
+</li>
+<li>
+<p> Scaling functions as a function factory for configuration.
+</p>
+</li>
+<li>
+<p> Mutation functions as well as a function factory for configuration.
+</p>
+</li>
+<li>
+<p> Crossover functions as well as a function factory for configuration.
+</p>
+</li>
+<li>
+<p> Replication functions as well as a function factory for configuration. 
+</p>
+</li>
+</ul>
+<p>Current support: 
+Functions for differential evolution (de). See Price et al. (2005).
+</p>
+
+
+<h3>Real-Coded Gene Representation</h3>
+
+<p>A real-coded gene is a named list:
+</p>
+
+<ul>
+<li>
+<p> $gene1      the gene must be a vector of reals.
+</p>
+</li>
+<li>
+<p> $fit        the fitness value of the gene
+(for EvalGeneDet and EvalGeneU) or
+the mean fitness (for stochastic functions
+evaluated with EvalGeneStoch).
+</p>
+</li>
+<li>
+<p> $evaluated  has the gene been evaluated?
+</p>
+</li>
+<li>
+<p> $evalFail   has the evaluation of the gene failed?
+</p>
+</li>
+<li>
+<p> $var        the cumulative variance of the fitness 
+of all evaluations of a gene.
+(For stochastic functions)
+</p>
+</li>
+<li>
+<p> $sigma      the standard deviation of the fitness of 
+all evaluations of a gene.
+(For stochastic functions)
+</p>
+</li>
+<li>
+<p> $obs        the number evaluations of a gene.
+(For stochastic functions)
+</p>
+</li>
+</ul>
+<h3>Abstract Interface of Problem Environment</h3>
+
+<p>We reuse the abstract interface of a problem environment 
+for binary-coded genes. The number of parameters 
+is given by <code>length(penv$bitlength())</code>.
+</p>
+<p>A problem environment <code>penv</code> must provide:
+</p>
+
+<ul>
+<li> <p><code>$f(parameters, gene, lF)</code>: 
+Function with a real parameter vector as first argument 
+which returns a gene 
+with evaluated fitness.
+</p>
+</li>
+<li>
+<p> $genelength(): The number of bits of the binary coded
+real parameter vector. Used in <code>InitGene</code>.
+</p>
+</li>
+<li>
+<p> $bitlength(): A vector specifying the number of bits 
+used for coding each real parameter.
+If <code>penv$bitlength()[1]</code> is <code>20</code>, 
+then <code>parameters[1]</code> is coded by 20 bits.
+Used in <code>GeneMap</code>.
+</p>
+</li>
+<li>
+<p> $lb(): The lower bound vector of each parameter.
+Used in <code>GeneMap</code>.
+</p>
+</li>
+<li>
+<p> $ub(): The upper bound vector of each paremeter.
+Used in <code>GeneMap</code>.
+</p>
+</li>
+</ul>
+<h3>The Architecture of the xegaX-Packages</h3>
+
+<p>The xegaX-packages are a family of R-packages which implement 
+eXtended Evolutionary and Genetic Algorithms (xega).  
+The architecture has 3 layers, 
+namely the user interface layer,
+the population layer, and the gene layer: 
+</p>
+
+<ul>
+<li>
+<p>The user interface layer (package <code>xega</code>) 
+provides a function call interface and configuration support
+for several algorithms: genetic algorithms (sga), 
+permutation-based genetic algorithms (sgPerm), 
+derivation-free algorithms as e.g. differential evolution (sgde), 
+grammar-based genetic programming (sgp) and grammatical evolution
+(sge). 
+</p>
+</li>
+<li>
+<p>The population layer (package <code>xegaPopulation</code>) contains
+population-related functionality as well as support for 
+population statistics dependent adaptive mechanisms and parallelization.
+</p>
+</li>
+<li> 
+<p>The gene layer is split in a representation-independent and 
+a representation-dependent part:
+</p>
+
+<ol>
+<li> 
+<p>The representation-independent part (package <code>xegaSelectGene</code>)
+is responsible for variants of selection operators, evaluation 
+strategies for genes, as well as profiling and timing capabilities.        
+</p>
+</li>
+<li> 
+<p>The representation-dependent part consists of the following packages: 
+</p>
+
+<ul>
+<li> <p><code>xegaGaGene</code> for binary coded genetic algorithms.
+</p>
+</li>
+<li> <p><code>xegaPermGene</code> for permutation-based genetic algorithms.
+</p>
+</li>
+<li> <p><code>xegaDfGene</code> for derivation-free algorithms as e.g. 
+differential evolution.
+</p>
+</li>
+<li> <p><code>xegaGpGene</code> for grammar-based genetic algorithms.
+</p>
+</li>
+<li> <p><code>xegaGeGene</code> for grammatical evolution algorithms.
+</p>
+</li>
+</ul>
+<p>The packages <code>xegaDerivationTrees</code> and <code>xegaBNF</code> support
+the last two packages:
+<code>xegaBNF</code> essentially provides a grammar compiler, and 
+<code>xegaDerivationTrees</code> is an abstract data type for derivation trees.
+</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3>Copyright</h3>
+
+<p>(c) 2023 Andreas Geyer-Schulz
+</p>
+
+
+<h3>License</h3>
+
+<p>MIT
+</p>
+
+
+<h3>&lt;URL</h3>
+
+<p>https://github.com/ageyerschulz/xegaDfGene&gt;
+</p>
+
+
+<h3>Installation</h3>
+
+<p>From CRAN by <code>install.packages('xegaDfGene')</code>
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Andreas Geyer-Schulz
+</p>
+
+
+<h3>References</h3>
+
+<p>Price, Kenneth V., Storn, Rainer M. and Lampinen, Jouni A. (2005)
+The Differential Evolution Algorithm (Chapter 2), pp. 37-134. 
+In: Differential Evolution. A Practical Approach to Global Optimization.
+Springer, Berlin.
+&lt;doi:10.1007/3-540-31306-0&gt;
+</p>
+
+
+</div>

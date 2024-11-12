@@ -1,0 +1,102 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>AcceptIVMetropolis</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Individually Adaptive Metropolis Acceptance Rule.</h2>
+
+<h3>Description</h3>
+
+<p>Change the gene by a genetic operator pipeline.
+Always accept new genes with fitness improvement.
+For maximizing fitness
+accept genes with lower fitness with probability
+<code>(runif(1)&lt;exp(-(fitness-newfitness)*beta/Temperature)</code>
+and reduce temperature with a cooling schedule.
+For each gene, the temperature is corrected upward by a term 
+whose size is proportional to 
+the difference between the fitness of the current best gene 
+in the population and the fitness of the gene.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">AcceptIVMetropolis(OperatorPipeline, gene, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>OperatorPipeline</code></td>
+<td>
+<p>Genetic operator pipeline.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>gene</code></td>
+<td>
+<p>Gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The temperature is updated at the end of each generation
+in the main loop of the genetic algorithm.
+</p>
+
+
+<h3>Value</h3>
+
+<p>The new gene if it has at least equal performance as the old gene 
+else the old gene.
+</p>
+
+
+<h3>References</h3>
+
+<p>Locatelli, M. (2000):
+Convergence of a Simulated Annealing Algorithm for 
+Continuous Global Optimization.
+Journal of Global Optimization, 18:219-233.
+&lt;doi:10.1023/A:1008339019740&gt;
+</p>
+<p>The-Crankshaft Publishing (2023):
+A Comparison of Cooling Schedules for Simulated Annealing.
+&lt;URL:https://what-when-how.com/artificial-intelligence/a-comparison-of-cooling-schedules-for-simulated-annealing-artificial-intelligence/&gt;
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Acceptance Rule: 
+<code>AcceptBest()</code>,
+<code>AcceptMetropolis()</code>,
+<code>AcceptNewGene()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">parm&lt;-function(x){function() {return(x)}}
+lFxegaGaGene$Beta&lt;-parm(1)
+lFxegaGaGene$TempK&lt;-parm(10)
+set.seed(2)
+OPpipe1&lt;-function(g, lF){InitGene(lF)}
+g1&lt;-lFxegaGaGene$EvalGene(InitGene(lFxegaGaGene), lFxegaGaGene)
+lFxegaGaGene$CBestFitness&lt;-parm(g1$fit)
+g2&lt;-AcceptMetropolis(OPpipe1, g1, lFxegaGaGene)
+</code></pre>
+
+
+</div>

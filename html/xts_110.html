@@ -1,0 +1,107 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>split.xts</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Divide into Groups by Time</h2>
+
+<h3>Description</h3>
+
+<p>Creates a list of xts objects split along time periods.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S3 method for class 'xts'
+split(x, f = "months", drop = FALSE, k = 1, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>An xts object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>f</code></td>
+<td>
+<p>A character vector describing the period to split by.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>drop</code></td>
+<td>
+<p>Ignored by <code>split.xts()</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>k</code></td>
+<td>
+<p>Number of periods to aggregate into each split. See details.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Further arguments passed to other methods.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>A quick way to break up a large xts object by standard time periods; e.g.
+'months', 'quarters', etc.
+</p>
+<p><code>endpoints()</code> is used to find the start and end of each period (or
+k-periods). See that function for valid arguments.
+</p>
+<p>The inputs are passed to <code>split.zoo()</code> when <code>f</code> is not a character vector.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A list of xts objects.
+</p>
+
+
+<h3>Note</h3>
+
+<p><code>aggregate.zoo()</code> is more flexible, though not as fast for xts
+objects.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Jeffrey A. Ryan
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>endpoints()</code>, <code>split.zoo()</code>, <code>aggregate.zoo()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+data(sample_matrix)
+x &lt;- as.xts(sample_matrix)
+
+
+split(x)
+split(x, f="weeks")
+split(x, f="weeks", k=4)
+
+</code></pre>
+
+
+</div>

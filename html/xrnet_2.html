@@ -1,0 +1,116 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>coef.xrnet</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Get coefficient estimates from "xrnet" model object.</h2>
+
+<h3>Description</h3>
+
+<p>Returns coefficients from 'xrnet' model. Note that we currently
+only support returning coefficient estimates that are in the original
+path(s).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S3 method for class 'xrnet'
+coef(object, p = NULL, pext = NULL, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>A <code>xrnet</code> object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>p</code></td>
+<td>
+<p>vector of penalty values to apply to predictor variables.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pext</code></td>
+<td>
+<p>vector of penalty values to apply to external data variables.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>pass other arguments to xrnet function (if needed).</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A list with coefficient estimates at each of the requested penalty
+combinations.
+</p>
+<table>
+<tr style="vertical-align: top;">
+<td><code>beta0</code></td>
+<td>
+<p>matrix of first-level intercepts indexed by penalty values, NULL
+if no first-level intercept in original model fit.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>betas</code></td>
+<td>
+<p>3-dimensional array of first-level penalized coefficients
+indexed by penalty values.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>gammas</code></td>
+<td>
+<p>3-dimensional array of first-level non-penalized coefficients
+indexed by penalty values, NULL if unpen NULL in original model fit.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>alpha0</code></td>
+<td>
+<p>matrix of second-level intercepts indexed by penalty values,
+NULL if no second-level intercept in original model fit.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>alphas</code></td>
+<td>
+<p>3-dimensional array of second-level external data coefficients
+indexed by penalty values, NULL if external NULL in original model fit.</p>
+</td>
+</tr>
+</table>
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(GaussianExample)
+
+fit_xrnet &lt;- xrnet(
+  x = x_linear,
+  y = y_linear,
+  external = ext_linear,
+  family = "gaussian"
+)
+
+lambda1 &lt;- fit_xrnet$penalty[10]
+lambda2 &lt;- fit_xrnet$penalty_ext[10]
+
+coef_xrnet &lt;- coef(
+  fit_xrnet,
+  p = lambda1,
+  pext = lambda2,
+)
+</code></pre>
+
+
+</div>

@@ -1,0 +1,59 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>findJulia</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Find a Julia Executable</h2>
+
+<h3>Description</h3>
+
+<p>This function looks for an executable Julia application in the local operating system.  The location can be prespecified by
+setting environment variable <code>JULIA_BIN</code>; otherwise, the function looks in various conventional locations
+and if that doesn't work, runs a shell command to look for <code>julia</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">findJulia(test = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>test</code></td>
+<td>
+<p>Should the function test for the existence of the application.  Default <code>FALSE</code>. Calling with
+<code>TRUE</code> is useful to bullet-proof examples or tests for the absence of Julia. If the test search succeeds,
+the location is saved in environment variable <code>JULIA_BIN</code>.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>The location as a character string, unless <code>test</code> is <code>TRUE</code>, in which case success or failure
+is returned, and the location found (or the empty string) is saved as the environment variable.
+Note that in this case, <code>FALSE</code> is returned if the Julia package <code>JSON</code> has not been added.
+</p>
+<p>If <code>test</code> is <code>FALSE</code>, failure to find a Julia
+in the current system is an error.
+</p>
+
+
+<h3>On Mac OS X</h3>
+
+<p>Installing Julia in the usual way does not put the command line version in a
+standard location, but instead in a folder under <code>/Applications</code>.
+Assuming one wants to have Julia available from the command line,
+creating a symbolic link to it in <code>/usr/local/bin</code> is a standard approach.
+If the current version of Julia is <code>0.6</code>:
+</p>
+<p><code>sudo ln -s /Applications/Julia-0.6.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia</code>
+</p>
+<p>If for some reason you did not want this to be available,  set the shell variable
+<code>JULIA_BIN</code> to the first file in the command, the one in <code>/Applications</code>.
+</p>
+
+
+</div>

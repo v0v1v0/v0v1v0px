@@ -1,0 +1,36 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>collapse_obs</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Collapse a list of observations into a list of tables.</h2>
+
+<h3>Description</h3>
+
+<p>This function aggregates all observations with a similar name into a common table. Note that observations 
+with a particular name don't need consistent variables (any missing information is filled with NAs).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">collapse_obs(obs)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>obs</code></td>
+<td>
+<p>list of observations.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>Returns list with one element for each relevant XML node. Each element contains a matrix.
+</p>
+
+
+</div>

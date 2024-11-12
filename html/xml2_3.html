@@ -1,0 +1,56 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>as_xml_document</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Coerce a R list to xml nodes.</h2>
+
+<h3>Description</h3>
+
+<p>This turns an R list into the equivalent XML document. Not all R lists will
+produce valid XML, in particular there can only be one root node and all
+child nodes need to be named (or empty) lists. R attributes become XML
+attributes and R names become XML node names.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">as_xml_document(x, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>A document, node, or node set.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Needed for compatibility with generic. Unused.</p>
+</td>
+</tr>
+</table>
+<h3>Examples</h3>
+
+<pre><code class="language-R">as_xml_document(list(x = list()))
+
+# Nesting multiple nodes
+as_xml_document(list(foo = list(bar = list(baz = list()))))
+
+# attributes are stored as R attributes
+as_xml_document(list(foo = structure(list(), id = "a")))
+as_xml_document(list(foo = list(
+  bar = structure(list(), id = "a"),
+  bar = structure(list(), id = "b")
+)))
+</code></pre>
+
+
+</div>

@@ -1,0 +1,132 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xoprob</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Distribution of number of crossovers</h2>
+
+<h3>Description</h3>
+
+<p>Calculates the probability of 0, 1, 2, or &gt;2 crossovers for a chromosome of
+a given length, for the gamma model.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xoprob(
+  nu,
+  L = 103,
+  max.conv = 25,
+  integr.tol = 0.00000001,
+  max.subd = 1000,
+  min.subd = 10
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>nu</code></td>
+<td>
+<p>The interference parameter in the gamma model.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>L</code></td>
+<td>
+<p>Length of the chromosome (in cM).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max.conv</code></td>
+<td>
+<p>Maximum limit for summation in the convolutions to get
+inter-crossover distance distribution from the inter-chiasma distance
+distributions.  This should be greater than the maximum number of chiasmata
+on the 4-strand bundle.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>integr.tol</code></td>
+<td>
+<p>Tolerance for convergence of numerical integration.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max.subd</code></td>
+<td>
+<p>Maximum number of subdivisions in numerical integration.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>min.subd</code></td>
+<td>
+<p>Minimum number of subdivisions in numerical integration.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Let <code class="reqn">f(x;\nu)</code> denote the density of a gamma random variable
+with parameters shape=<code class="reqn">\nu</code> and rate=<code class="reqn">2\nu</code>, and let
+<code class="reqn">f_k(x;\nu)</code> denote the density of a gamma random variable
+with parameters shape=<code class="reqn">k \nu</code> and rate=<code class="reqn">2\nu</code>.
+</p>
+<p>The distribution of the distance from one crossover to the next is
+<code class="reqn">f^*(x;\nu) = \sum_{k=1}^{\infty} f_k(x;\nu)/2^k</code>.
+</p>
+<p>The distribution of the distance from the start of the chromosome to the
+first crossover is <code class="reqn">g^*(x;\nu) = 1 - F^*(x;\nu)</code> where <code class="reqn">F^*</code> is the cdf of <code class="reqn">f^*</code>.
+</p>
+<p>We calculate the desired probabilities by numerical integration.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A vector of length 4, giving the probabilities of 0, 1, 2, or &gt;2
+crossovers, respectively, on a chromosome of length <code>L</code> cM.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Karl W Broman, <a href="mailto:broman@wisc.edu">broman@wisc.edu</a>
+</p>
+
+
+<h3>References</h3>
+
+<p>Broman, K. W. and Weber, J. L. (2000) Characterization of human
+crossover interference. <em>Am. J. Hum. Genet.</em> <strong>66</strong>, 1911–1926.
+</p>
+<p>Broman, K. W., Rowe, L. B., Churchill, G. A. and Paigen, K. (2002) Crossover
+interference in the mouse. <em>Genetics</em> <strong>160</strong>, 1123–1131.
+</p>
+<p>McPeek, M. S. and Speed, T. P. (1995) Modeling interference in genetic
+recombination.  <em>Genetics</em> <strong>139</strong>, 1031–1044.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>location.given.one()</code>, <code>first.given.two()</code>,
+<code>distance.given.two()</code>, <code>joint.given.two()</code>,
+<code>ioden()</code>, <code>firstden()</code>, <code>gammacoi()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+xoprob(1, L=103)
+xoprob(4.3, L=103)
+
+</code></pre>
+
+
+</div>

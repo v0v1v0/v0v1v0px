@@ -1,0 +1,83 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>is_tuned</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Getters for tskrrTune objects</h2>
+
+<h3>Description</h3>
+
+<p>The functions described here are convenience functions to get
+information out of a <code>tskrrTune</code>
+object.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">is_tuned(x)
+
+get_grid(x)
+
+get_loss_values(x)
+
+has_onedim(x)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>a <code>tskrrTune</code> object or an
+object inheriting from <code>tskrrTune</code>.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>For <code>is_tuned</code>: a logical value indicating whether the
+model is tuned.
+</p>
+<p>For <code>get_grid</code> a list with the elements <code>k</code> and
+possibly <code>g</code>, each containing the different lambdas tried in
+the tuning for the row and column kernel matrices respectively.
+</p>
+<p>For <code>get_loss_values</code> a matrix with the calculated
+loss values. Note that each row represents the result for one
+lambda value related to the row kernel matrix K. For heterogeneous
+models, every column represents the result for one lambda related
+to the column kernel matrix G.
+</p>
+<p>for <code>is_onedim</code> a single logical value telling whether the
+grid search in the object was onedimensional.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+data(drugtarget)
+
+mod &lt;- tskrr(drugTargetInteraction, targetSim, drugSim)
+tuned &lt;- tune(mod, ngrid = 10)
+
+is_tuned(mod)
+is_tuned(tuned)
+
+# Basic visualization of the grid.
+
+gridvals &lt;- get_grid(tuned)
+z &lt;- get_loss_values(tuned)
+
+## Not run: 
+image(gridvals$k,gridvals$g,log(z), log = 'xy',
+xlab = "lambda k", ylab = "lambda g")
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

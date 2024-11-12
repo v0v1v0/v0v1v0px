@@ -1,0 +1,61 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>calcDefCapital</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Calculates the Default Capital Charge</h2>
+
+<h3>Description</h3>
+
+<p>Calculates the default capital charge using the advanced IRB methodology and the stressed R
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">calcDefCapital(trades, EAD, reg_data, effective_maturity)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>trades</code></td>
+<td>
+<p>The full list of the Trade Objects</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>EAD</code></td>
+<td>
+<p>The Exposure-At-Default of the trades as per the selected regulatory framework</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>reg_data</code></td>
+<td>
+<p>A list containing data related to the regulatory calculations (for example the regulatory probability-of-default, the regulatory loss-given-default etc)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>effective_maturity</code></td>
+<td>
+<p>The effective maturity of the trades of the netting set</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>The default capital charge
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Tasos Grivas &lt;tasos@openriskcalculator.com&gt;
+</p>
+
+
+</div>

@@ -1,0 +1,78 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>rules</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Returns all indices of rules applicable for a non-terminal identifier.</h2>
+
+<h3>Description</h3>
+
+<p><code>rules()</code> finds 
+all applicable production rules
+for a non-terminal identifier.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">rules(Id, LHS)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>Id</code></td>
+<td>
+<p>A numerical identifier.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>LHS</code></td>
+<td>
+<p>The left-hand side of a production table.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+
+<ul>
+<li>
+<p> A vector of indices of all applicable rules 
+in the production table or
+</p>
+</li>
+<li>
+<p> an empty integer (<code>integer(0)</code>), 
+if the numerical identifier is not found 
+in the left-hand side of the production table.</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p>Other Utility Functions: 
+<code>derive()</code>,
+<code>id2symb()</code>,
+<code>isNonTerminal()</code>,
+<code>isTerminal()</code>,
+<code>symb2id()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">a&lt;-booleanGrammar()$BNF
+ST&lt;-makeSymbolTable(a)
+PT&lt;-makeProductionTable(a,ST)
+rules(5, PT$LHS)
+rules(8, PT$LHS)
+rules(9, PT$LHS)
+rules(1, PT$LHS)
+
+</code></pre>
+
+
+</div>

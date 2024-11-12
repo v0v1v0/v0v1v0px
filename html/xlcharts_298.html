@@ -1,0 +1,69 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>save_workbook</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>save_workbook</h2>
+
+<h3>Description</h3>
+
+<p>Save the given workbook on the filesystem under the name filename.
+</p>
+<p><a href="https://openpyxl.readthedocs.io/en/latest/api/openpyxl.writer.excel.html">https://openpyxl.readthedocs.io/en/latest/api/openpyxl.writer.excel.html</a>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">save_workbook(workbook, filename, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>workbook</code></td>
+<td>
+<p>workbook</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>filename</code></td>
+<td>
+<p>filename</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments, i.e. kwargs.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>:param workbook: the workbook to save
+:type workbook: :class:'openpyxl.workbook.Workbook' :param filename: the path to which save the workbook
+:type filename: string :rtype: bool
+</p>
+
+
+<h3>Value</h3>
+
+<p>An openpyxl Python object.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+save_workbook(workbook = wb, filename = tempfile())
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

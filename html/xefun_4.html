@@ -1,0 +1,58 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>cols_type</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>columns by type</h2>
+
+<h3>Description</h3>
+
+<p>The columns name of a data frame by given data types.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">cols_type(dt, type)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>dt</code></td>
+<td>
+<p>a data frame.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>type</code></td>
+<td>
+<p>a string of data types, available values including character, numeric, double, integer, logical, factor, datetime.</p>
+</td>
+</tr>
+</table>
+<h3>Examples</h3>
+
+<pre><code class="language-R">dt = data.frame(a = sample(0:9, 6), b = sample(letters, 6),
+                c = Sys.Date()-1:6, d = Sys.time() - 1:6)
+dt
+# numeric columns
+cols_type(dt, 'numeric')
+# or
+cols_type(dt, 'n')
+
+# numeric and character columns
+cols_type(dt, c('character', 'numeric'))
+# or
+cols_type(dt, c('c', 'n'))
+
+# date time columns
+cols_type(dt, 'datetime')
+
+</code></pre>
+
+
+</div>

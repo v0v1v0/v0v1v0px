@@ -1,0 +1,60 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>hat</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Return the hat matrix of a tskrr model</h2>
+
+<h3>Description</h3>
+
+<p>This function returns the hat matrix or hat matrices of
+a tskrr model. <code>xnet</code> creates an S4 generic for <code>hat</code>
+and links the default method to the <code>hat</code> function
+of <code>stats</code>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">hat(x, ...)
+
+## S4 method for signature 'tskrrHeterogeneous'
+hat(x, which = c("row", "column"))
+
+## S4 method for signature 'tskrrHomogeneous'
+hat(x, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>a tskrr model</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>arguments passed to other methods.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>which</code></td>
+<td>
+<p>a character value with possible values "row" or
+"column" to indicate which should be returned. For homogeneous
+models, this parameter is ignored.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>the requested hat matrix of the model.
+</p>
+
+
+</div>

@@ -1,0 +1,95 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>DelayedPFactory</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Factory for a 2-dimensional quadratic parabola with delayed execution.</h2>
+
+<h3>Description</h3>
+
+<p>This list of functions sets up the problem environment
+for a 2-dimensional
+quadratic parabola with a delayed execution of 0.1s.
+This function aims to test strategies
+of distributed/parallel execution of functions.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">DelayedPFactory()
+</code></pre>
+
+
+<h3>Details</h3>
+
+<p>The factory contains examples of all functions 
+which form the interface of a problem environment to
+the simple genetic algorithm with binary-coded genes
+of package <code>xega</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A problem environment represented as a list of functions:
+</p>
+
+<ul>
+<li> <p><code>$name()</code>: The name of the problem environment.
+</p>
+</li>
+<li> <p><code>$bitlength()</code>: The vector of the number of bits of 
+each parameter of the function.
+</p>
+</li>
+<li> <p><code>$genelength()</code>: The number of bits of the gene.
+</p>
+</li>
+<li> <p><code>$lb()</code>: The vector of lower bounds of the parameters.
+</p>
+</li>
+<li> <p><code>$ub()</code>: The vector of upper bounds of the parameters.
+</p>
+</li>
+<li> <p><code>$f(parm, gene=0, lF=0)</code>): The fitness function. 
+</p>
+</li>
+</ul>
+<p>Additional elements:
+</p>
+
+<ul>
+<li> <p><code>$describe()</code>: Print a description of the problem environment to the console.
+</p>
+</li>
+<li> <p><code>$solution()</code>: The solution structure. A named list with <code>minimum</code>, <code>maximum</code> and
+2 lists of equivalent solutions: <code>minpoints</code>, <code>maxpoints</code>. 
+</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p>Parabola2D
+</p>
+<p>Other Problem Environments: 
+<code>DeJongF4Factory()</code>,
+<code>Parabola2DEarlyFactory()</code>,
+<code>Parabola2DErrFactory()</code>,
+<code>Parabola2DFactory()</code>,
+<code>envXOR</code>,
+<code>lau15</code>,
+<code>newEnvXOR()</code>,
+<code>newTSP()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">DelayedP&lt;-DelayedPFactory()
+DelayedP$f(c(2.2, 1.0))
+</code></pre>
+
+
+</div>

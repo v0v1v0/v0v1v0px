@@ -1,0 +1,69 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>derive</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Derives the identifier list which expands the non-terminal identifier.</h2>
+
+<h3>Description</h3>
+
+<p><code>derives()</code> returns the identifier list which expands 
+a non-terminal identifier.
+Warning: No error checking implemented.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">derive(RuleIndex, RHS)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>RuleIndex</code></td>
+<td>
+<p>An index (integer) in the production table.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>RHS</code></td>
+<td>
+<p>The right-hand side of the production table.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A vector of numerical identifiers.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Utility Functions: 
+<code>id2symb()</code>,
+<code>isNonTerminal()</code>,
+<code>isTerminal()</code>,
+<code>rules()</code>,
+<code>symb2id()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">a&lt;-booleanGrammar()$BNF
+ST&lt;-makeSymbolTable(a)
+PT&lt;-makeProductionTable(a,ST)
+derive(1, PT$RHS)
+derive(2, PT$RHS)
+derive(3, PT$RHS)
+derive(5, PT$RHS)
+
+</code></pre>
+
+
+</div>

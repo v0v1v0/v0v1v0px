@@ -1,0 +1,71 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>linear_filter</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Fit a linear filter over a label matrix</h2>
+
+<h3>Description</h3>
+
+<p>This function fits a linear filter over a label matrix. It calculates
+the row, column and total means, and uses those to construct the linear
+filter.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">linear_filter(y, alpha = 0.25, na.rm = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>y</code></td>
+<td>
+<p>a label matrix</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>alpha</code></td>
+<td>
+<p>a vector with 4 alpha values, or a single alpha value
+which then is used for all 4 alphas.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>na.rm</code></td>
+<td>
+<p>a logical value indicating whether missing values should
+be removed before calculating the row-, column- and total means.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>If there are missing values and they are removed before calculating the
+means, a warning is issued. If <code>na.rm = FALSE</code> and there are
+missing values present, the outcome is, by definition, a matrix filled
+with NA values.
+</p>
+
+
+<h3>Value</h3>
+
+<p>an object of class <code>linearFilter</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(drugtarget)
+linear_filter(drugTargetInteraction, alpha = 0.25)
+linear_filter(drugTargetInteraction, alpha = c(0.1,0.1,0.4,0.4))
+
+</code></pre>
+
+
+</div>

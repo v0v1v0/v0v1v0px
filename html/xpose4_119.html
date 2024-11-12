@@ -1,0 +1,73 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>addid</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Generic internal functions for Xpose 4</h2>
+
+<h3>Description</h3>
+
+<p>These are internal functions relating to the Xpose generic functions.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">addid(
+  x,
+  y,
+  ids = ids,
+  idsmode = NULL,
+  idsext = 0.05,
+  idscex = 0.7,
+  idsdir = "both",
+  gridmode = TRUE
+)
+
+computePI(
+  x,
+  y,
+  object,
+  limits = object@Prefs@Graph.prefs$PIlimits,
+  logy = FALSE,
+  logx = FALSE,
+  onlyfirst = FALSE,
+  inclZeroWRES = FALSE,
+  PI.subset = NULL,
+  subscripts
+)
+
+create.rand(data, object, frac, seed = NULL)
+
+create.strat.rand(data, object, x, y, frac, dilci, seed = NULL)
+
+eq.xpose(x, number = 6, overlap = 0.5)
+
+get.refrunno(database = ".ref.db")
+
+xpose.stack(data, object, select, rep, subset = NULL, ...)
+</code></pre>
+
+
+<h3>Details</h3>
+
+<p>These are internal Xpose functions, for adding ID numbers, computing
+prediction intervals, randomization, stacking, and binning. They are not
+intended for direct use.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Internal helper functions for the generic Xpose functions.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Justin Wilkins and Andrew Hooker
+</p>
+
+
+</div>

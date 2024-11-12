@@ -1,0 +1,178 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>plotRsdAcf</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2> ~~ Methods for Function <code>plotRsdAcf</code> in Package <span class="pkg">x12</span> ~~</h2>
+
+<h3>Description</h3>
+
+<p>Plot of the (partial) autocorrelations of the (squared) residuals with function <code>plotRsdAcf</code> in package <span class="pkg">x12</span>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S4 method for signature 'x12Output'
+plotRsdAcf(x, which="acf",
+				xlab="Lag", ylab="ACF",
+				main="default", col_acf="darkgrey", lwd_acf=4,
+				col_ci="blue", lt_ci=2, ylim="default", ...)
+## S4 method for signature 'x12Single'
+plotRsdAcf(x, which="acf",
+				xlab="Lag", ylab="ACF",
+				main="default", col_acf="darkgrey", lwd_acf=4,
+				col_ci="blue", lt_ci=2, ylim="default", ...)
+				
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>object of class <code>x12Output-class</code> or <code>x12Single-class</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>which</code></td>
+<td>
+<p>character specifying the type of autocorrelation of
+the residuals that should be plotted, i.e. the autocorrelations or partial autocorrelations 
+of the residuals or the autocorrelations of the squared residuals (<code>"acf"</code>, <code>"pacf"</code>, <code>"acf2"</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xlab</code></td>
+<td>
+<p>label of the x-axis.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylab</code></td>
+<td>
+<p>label of the y-axis.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>plot title.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col_acf</code></td>
+<td>
+<p>color of the autocorrelations.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lwd_acf</code></td>
+<td>
+<p>line width of the autocorrelations.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col_ci</code></td>
+<td>
+<p>color of the +- 2 standard error limits.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lt_ci</code></td>
+<td>
+<p>line type of the +- 2 standard error limits.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylim</code></td>
+<td>
+<p>range of the y-axis.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>ignored.</p>
+</td>
+</tr>
+</table>
+<h3>Methods</h3>
+
+
+<dl>
+<dt><code>signature(x = "x12Output")</code></dt>
+<dd>
+
+</dd>
+<dt><code>signature(x = "x12Single")</code></dt>
+<dd>
+
+</dd>
+</dl>
+<h3>Author(s)</h3>
+
+<p>Alexander Kowarik, Angelika Meraner</p>
+
+
+<h3>See Also</h3>
+
+<p><code>x12</code>,
+<code>plot</code>,
+<code>plotSpec</code>,
+<code>plotSeasFac</code></p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+s &lt;- new("x12Single",ts=AirPassengers,tsName="air")
+s &lt;- setP(s,list(estimate=TRUE,regression.variables="AO1950.1",outlier.types="all",
+  outlier.critical=list(LS=3.5,TC=2.5),backcast_years=1/2))
+s &lt;- x12(s)
+#w/o outliers
+plot(s@x12Output,sa=TRUE,trend=TRUE,original=FALSE)
+plot(s)
+#with (all) outliers
+plot(s,showAllout=TRUE,sa=TRUE,trend=TRUE,log_transform=TRUE,lwd_out=1,pch_ao=4)
+plot(s,showAllout=TRUE,sa=TRUE,trend=TRUE,original=FALSE,showAlloutLines=TRUE,
+  col_tc="purple")#,log_transform=TRUE)#,lwd_out=3)
+#with showOut
+plot(s,showOut="AO1960.Jun",sa=FALSE,trend=FALSE,annComp=TRUE,log_transform=TRUE)
+plot(s,showOut="AO1958.Mar",sa=TRUE,trend=TRUE,annComp=TRUE,annCompTrend=FALSE)
+plot(s,showOut="AO1950.Jun",annComp=FALSE,cex_out=3,pch_ao=19,col_ao="orange")
+plot(s,showOut="TC1954.Feb")
+plot(s,showOut="TC1954.Feb",col_tc="green3")
+
+#w/o legend
+plot(s,showAllout=TRUE,plot_legend=FALSE)
+plot(s,plot_legend=FALSE)
+plot(s,showOut="AO1950.1",plot_legend=FALSE,lwd_out=2,col_ao="purple")
+plot(s,showOut="TC1954.Feb",col_tc="orange",col_ao="magenta",plot_legend=FALSE)
+plot(s,showOut="AO1950.1",col_tc="orange",col_ao="magenta",plot_legend=FALSE)
+
+#Forecasts &amp; Backcasts
+plot(s,forecast=TRUE)
+plot(s,backcast=TRUE,showLine=TRUE)
+plot(s,backcast=TRUE,forecast=TRUE,showCI=FALSE)
+plot(s,forecast=TRUE,points_fc=TRUE,col_fc="purple",lty_fc=2,lty_original=3,lwd_fc=0.9,
+  lwd_ci=2)
+plot(s,sa=TRUE,plot_legend=FALSE)
+
+#Seasonal Factors and SI Ratios
+plotSeasFac(s)
+#Spectra
+plotSpec(s)
+plotSpec(s,highlight=FALSE)
+#Autocorrelations of the Residuals
+plotRsdAcf(s)
+plotRsdAcf(s,col_acf="black",lwd_acf=1)
+
+## End(Not run)
+</code></pre>
+
+
+</div>

@@ -1,0 +1,46 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>irep</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Add simulation counter</h2>
+
+<h3>Description</h3>
+
+<p>Add a column containing a simulation counter (irep). A new simulation is counted everytime
+a value in x is lower than its previous value.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">irep(x, quiet = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>The column to be used for computing simulation number, usually the ID column.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>quiet</code></td>
+<td>
+<p>Logical, if <code>FALSE</code> messages are printed to the console.</p>
+</td>
+</tr>
+</table>
+<h3>Examples</h3>
+
+<pre><code class="language-R">xpdb_ex_pk_2 &lt;- xpdb_ex_pk %&gt;% 
+ mutate(sim_id = irep(ID), .problem = 2)
+
+</code></pre>
+
+
+</div>

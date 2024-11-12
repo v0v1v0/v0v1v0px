@@ -1,0 +1,49 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>url_escape</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Escape and unescape urls.</h2>
+
+<h3>Description</h3>
+
+<p>Escape and unescape urls.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">url_escape(x, reserved = "")
+
+url_unescape(x)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>A character vector of urls.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>reserved</code></td>
+<td>
+<p>A string containing additional characters to avoid escaping.</p>
+</td>
+</tr>
+</table>
+<h3>Examples</h3>
+
+<pre><code class="language-R">url_escape("a b c")
+url_escape("a b c", "")
+
+url_unescape("a%20b%2fc")
+url_unescape("%C2%B5")
+</code></pre>
+
+
+</div>

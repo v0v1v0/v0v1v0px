@@ -1,0 +1,76 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>writeBNF</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Write BNF into text file.</h2>
+
+<h3>Description</h3>
+
+<p><code>writeBNF()</code> writes a character string into a textfile.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">writeBNF(g, fn = NULL, eol = "\n")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>g</code></td>
+<td>
+<p>A named list with $filename and  $BNF as a character string.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fn</code></td>
+<td>
+<p>A file name. Default: NULL.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>eol</code></td>
+<td>
+<p>End-of-line symbol(s). Default: <code>"\n"</code></p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The user writes the BNF to a text file which he edits.
+The newline symbols are inserted after each substitution variant 
+and after each production rule to improve the readability 
+of the grammar by the user.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Invisible NULL.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other File I/O: 
+<code>newBNF()</code>,
+<code>readBNF()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">g&lt;-booleanGrammar()
+fn&lt;-tempfile()
+writeBNF(g, fn)
+g1&lt;-readBNF(fn, eol="\n")
+unlink(fn)
+</code></pre>
+
+
+</div>

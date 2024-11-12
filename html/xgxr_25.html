@@ -1,0 +1,224 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xgx_auto_explore</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Produce an xgx-styled report the given dataset using xgx R markdown templates,
+or a user-provided R markdown template.  (Note: The R markdown template provided must
+be formatted in a similar manner to that of the xgx R markdown templates to work.)
+The working directory will contain a new directory ('xgx_autoexplore_output') after running this function,
+which will contain a directory for the dataset, and futher a directory for the type of analysis / R markdown template.</h2>
+
+<h3>Description</h3>
+
+<p><code>xgx_auto_explore</code> returns an HTML and PDF document with plots
+describing the provided dataset
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xgx_auto_explore(
+  data_path = NULL,
+  mapping = list(),
+  author_name = NULL,
+  multiple_dosing = FALSE,
+  pk_cmt = NULL,
+  pd_cmt = NULL,
+  pd_data_type = NULL,
+  dose_cmt = NULL,
+  steady_state_day = NULL,
+  time_between_doses = NULL,
+  rmd_template_name = NULL,
+  rmd_template_path = NULL,
+  rmd_output_path = NULL,
+  pdf_output_path = NULL,
+  html_output_path = NULL,
+  add_datetime = TRUE,
+  show_explanation = TRUE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>data_path</code></td>
+<td>
+<p>Path (as a string) to the dataset that is to be analyzed</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mapping</code></td>
+<td>
+<p>A list of column name mappings from the
+original (template) dataset column names
+to the corresponding columns in the new dataset.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>author_name</code></td>
+<td>
+<p>The name of the author to be displayed on the template</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>multiple_dosing</code></td>
+<td>
+<p>Whether or not to use a "Multiple" or "Single" Ascending dose template</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pk_cmt</code></td>
+<td>
+<p>An integer denoting the "compartment" containing the PK data. The "CMT" column will typically
+have these integers, where each row may contain PK, PD, dosing or other events/observations data</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pd_cmt</code></td>
+<td>
+<p>An integer denoting the "compartment" containing the PD data, 
+of the desired type  (continuous, ordinal, etc.). The "CMT" column will typically
+have these integers, where each row may contain PK, PD, dosing or other events/observations data</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pd_data_type</code></td>
+<td>
+<p>The type of PD data - acceptable values exist in the following list: 
+["binary","continuous","count","ordinal","real_example","receptor_occupancy","time_to_event"]</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dose_cmt</code></td>
+<td>
+<p>Integer denoting the compartment for dosing records</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>steady_state_day</code></td>
+<td>
+<p>used to denote the day of rich sampling of PK at steady state</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>time_between_doses</code></td>
+<td>
+<p>dosing interval, has units to match the time variable of the dataset</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>rmd_template_name</code></td>
+<td>
+<p>A custom output name for the generated Rmd file</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>rmd_template_path</code></td>
+<td>
+<p>A user provided custom template (as a string)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>rmd_output_path</code></td>
+<td>
+<p>A custom output path for the generated Rmd file
+(This is typically left as 'NULL' in order to maintain the hierarchical directory structure of 'xgx_autoexplore_output'))</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pdf_output_path</code></td>
+<td>
+<p>A custom output path for the generated PDF file
+(This is typically left as 'NULL' in order to maintain the hierarchical directory structure of 'xgx_autoexplore_output'))</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>html_output_path</code></td>
+<td>
+<p>A custom output path for the generated HTML file
+(This is typically left as 'NULL' in order to maintain the hierarchical directory structure of 'xgx_autoexplore_output'))</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>add_datetime</code></td>
+<td>
+<p>Boolean indicating additon of a date stamp to the beginnning of the Rmd file</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>show_explanation</code></td>
+<td>
+<p>Boolean indicating if the additional explanations (text in between figures) are needed for the user.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>This function can be used quickly to explore your data by generating 
+overview plots before constructing non-linear mixed effects models.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+author_name = "Your Name Here"
+show_explanation = FALSE
+
+## Not run: 
+# Try out the nonlinear_pkpd dataset with the
+# Multiple Ascending Dose PK Rmd template
+data_path &lt;- "~/nonlinear_pkpd.csv"
+
+# Specify the mapping of column names
+mapping &lt;- list(
+  "TIME" = "TIM2",
+  "NOMTIME" = "NT",
+  "EVID" = 0,
+  "CENS" = 0,
+  "DOSE" = "MGKG",
+  "TRTACT" = "TRT",
+  "LIDV_NORM" = "LIDV/MGKG",
+  "LIDV_UNIT" = "UNIT",
+  "PROFDAY" = 1,
+  "SEX" = 0,
+  "WEIGHTB" = 0)
+
+
+# 5 contains the PK Concentration in this dataset
+pk_cmt = 5
+# We don't need PD right now
+pd_cmt = NULL
+pd_data_type = NULL
+
+
+dose_cmt = 1
+steady_state_day = c(0, 6)
+time_between_doses = 24
+multiple_dosing = TRUE
+
+output_directory = tempdir()
+
+xgx_auto_explore(data_path = data_path,
+                 mapping = mapping,
+                 author_name = author_name,
+                 pk_cmt = pk_cmt,
+                 pd_cmt = pd_cmt,
+                 dose_cmt = dose_cmt,
+                 steady_state_day = steady_state_day,
+                 time_between_doses = time_between_doses,
+                 multiple_dosing = multiple_dosing,
+                 pd_data_type = pd_data_type,
+                 rmd_output_path = output_directory,
+                 show_explanation = show_explanation)
+
+## End(Not run)
+    
+</code></pre>
+
+
+</div>

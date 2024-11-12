@@ -1,0 +1,79 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>recrate2scanone</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Convert recrate to scanone format</h2>
+
+<h3>Description</h3>
+
+<p>Convert the result of <code>est.recrate()</code> to the format
+output by R/qtl's <code>qtl::scanone()</code> function.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">recrate2scanone(recrate, phymap = NULL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>recrate</code></td>
+<td>
+<p>A list of results from <code>est.recrate()</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>phymap</code></td>
+<td>
+<p>A list of vectors of Mbp positions of markers</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A data frame with class <code>"scanone"</code>, in the format output by <code>qtl::scanone()</code>.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Karl W Broman, <a href="mailto:broman@wisc.edu">broman@wisc.edu</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>est.recrate()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">pmap &lt;- sim.map(100, n.mar=51, anchor=TRUE, include.x=FALSE, eq.spacing=TRUE)
+
+# simulate cross
+x &lt;- sim.cross(pmap, type="bc", n.ind=501)
+
+# estimate map for that cross
+emap &lt;- est.map(x)
+
+# empirical estimate of recombination rate
+rr &lt;- est.recrate(emap[[1]], pmap[[1]], window=5)
+
+# make it a list (one component per chromosome, but here just the one chromosome)
+rr &lt;- list("1"=rr)
+
+# convert to scanone output and plot
+rr_scanone &lt;- recrate2scanone(rr)
+plot(rr_scanone)
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,95 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>prm_table</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Display a parameter estimates to the console</h2>
+
+<h3>Description</h3>
+
+<p>Display parameter estimates from an xpdb object to the console.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">prm_table(
+  xpdb,
+  .problem = NULL,
+  .subprob = NULL,
+  .method = NULL,
+  digits = 4,
+  transform = TRUE,
+  show_all = FALSE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>xpdb</code></td>
+<td>
+<p>An <code>xpose_data</code> object from which the model output file data will be extracted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.problem</code></td>
+<td>
+<p>The problem to be used, by default returns the last one for each file.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.subprob</code></td>
+<td>
+<p>The subproblem to be used, by default returns the last one for each file.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.method</code></td>
+<td>
+<p>The estimation method to be used, by default returns the last one for each file</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>digits</code></td>
+<td>
+<p>The number of significant digits to be displayed.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>transform</code></td>
+<td>
+<p>Should diagonal OMEGA and SIGMA elements be transformed to standard deviation and 
+off diagonal elements be transformed to correlations.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>show_all</code></td>
+<td>
+<p>Logical, whether the 0 fixed off-diagonal elements should be removed from the output.</p>
+</td>
+</tr>
+</table>
+<h3>See Also</h3>
+
+<p><code>get_prm</code>,
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+# Store the parameter table
+prm &lt;- get_prm(xpdb_ex_pk, .problem = 1)
+
+# Display parameters to the console
+prm_table(xpdb_ex_pk, .problem = 1)
+
+## End(Not run)
+</code></pre>
+
+
+</div>

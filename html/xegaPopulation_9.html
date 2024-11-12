@@ -1,0 +1,85 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>CoolingFactory</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Configure the cooling schedule of the acceptance 
+function of a genetic algorithm.</h2>
+
+<h3>Description</h3>
+
+<p><code>CoolingFactory()</code> implements selection
+of a cooling schedule method.
+</p>
+<p>Current support:
+</p>
+
+<ol>
+<li>
+<p> "ExponentialMultiplicative" returns 
+<code>ExponentialMultiplicativeCooling</code>. (Default)
+</p>
+</li>
+<li>
+<p> "LogarithmicMultiplicative" returns 
+<code>LogarithmicMultiplicativeCooling</code>.
+</p>
+</li>
+<li>
+<p> "PowerMultiplicative" returns 
+<code>PowerMultiplicativeCooling</code>.
+<code>coolingPower=1</code> specifies linear multiplicative cooling,  
+<code>coolingPower=2</code> specifies quadratic multiplicative cooling.
+</p>
+</li>
+<li>
+<p> "PowerAdditive" returns 
+<code>PowerAdditiveCooling</code>.
+<code>coolingPower=1</code> specifies linear additive cooling,  
+<code>coolingPower=2</code> specifies quadratic additive cooling.
+</p>
+</li>
+<li>
+<p> "ExponentialAdditive" returns 
+<code>ExponentialAdditiveCooling</code>.
+</p>
+</li>
+<li>
+<p> "TrigonometricAdditive" returns 
+<code>TrigonometricAdditiveCooling</code>.
+</p>
+</li>
+</ol>
+<h3>Usage</h3>
+
+<pre><code class="language-R">CoolingFactory(method = "ExponentialMultiplicative")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>A string specifying the cooling schedule.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A cooling schedule.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Configuration: 
+<code>AcceptFactory()</code>,
+<code>ApplyFactory()</code>,
+<code>CrossRateFactory()</code>,
+<code>MutationRateFactory()</code>,
+<code>xegaConfiguration()</code>
+</p>
+
+
+</div>

@@ -1,0 +1,121 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>response,tskrr-method</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Getters for tskrr objects</h2>
+
+<h3>Description</h3>
+
+<p>The functions described here are convenience functions to get
+information out of a <code>tskrr</code> object.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S4 method for signature 'tskrr'
+response(x, ...)
+
+## S4 method for signature 'tskrrHomogeneous'
+lambda(x)
+
+## S4 method for signature 'tskrrHeterogeneous'
+lambda(x)
+
+is_tskrr(x)
+
+is_homogeneous(x)
+
+is_heterogeneous(x)
+
+symmetry(x)
+
+get_eigen(x, which = c("row", "column"))
+
+get_kernelmatrix(x, which = c("row", "column"))
+
+has_hat(x)
+
+get_kernel(x, which = c("row", "column"))
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>a <code>tskrr</code> object or an
+object inheriting from <code>tskrr</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>arguments passed to other methods.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>which</code></td>
+<td>
+<p>a character value indicating whether the eigen decomposition
+for the row kernel matrix or the column kernel matrix should be returned.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>For <code>response</code>: the original label matrix
+</p>
+<p>For <code>lambda</code>: a named numeric vector with one resp both lambda
+values used in the model. The names are "k" and "g" respectively.
+</p>
+<p>For <code>is_tskrr</code> a logical value indicating whether the
+object is a <code>tskrr</code> object
+</p>
+<p>For <code>is_homogeneous</code> a logical value indicating whether the
+tskrr model is a homogeneous one.
+</p>
+<p>For <code>is_heterogeneous</code> a logical value indicating whether the
+tskrr model is a heterogeneous one.
+</p>
+<p>For <code>symmetry</code> a character value indicating the symmetry
+for a <code>homogeneous model</code>. If
+the model is not homogeneous, <code>NA</code> is returned.
+</p>
+<p>For <code>get_eigen</code> the eigen decomposition of the requested
+kernel matrix.
+</p>
+<p>For <code>get_kernelmatrix</code> the original kernel matrix
+for the rows or columns.
+</p>
+<p>For <code>has_hat</code> a logical value indicating whether
+the tskrr model contains the kernel hat matrices.
+</p>
+
+
+<h3>Warning</h3>
+
+<p>The function <code>get_kernel</code> is deprecated.
+Use <code>get_kernelmatrix</code> instead.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(drugtarget)
+
+mod &lt;- tskrr(drugTargetInteraction, targetSim, drugSim)
+is_homogeneous(mod)
+
+EigR &lt;- get_eigen(mod)
+EigC &lt;- get_eigen(mod, which = 'column')
+lambda(mod)
+
+</code></pre>
+
+
+</div>

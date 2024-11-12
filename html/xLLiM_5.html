@@ -1,0 +1,74 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>data.xllim.trueparameters</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>True parameters used to simulate the datasets <code>data.xllim</code> and <code>data.xllim.test</code>
+</h2>
+
+<h3>Description</h3>
+
+<p><code>data.xllim.trueparameters</code> is a list containing the true parameters of the GLLiM model used to generate the datasets <code>data.xllim</code> and <code>data.xllim.test</code>. We set the number of covariates to D=50, number of responses to L=2 and we simulated a GLLiM model with K=5 components. 
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">data(data.xllim.trueparameters)</code></pre>
+
+
+<h3>Format</h3>
+
+<p>A list with the following elements
+</p>
+
+<dl>
+<dt>pi</dt>
+<dd>
+<p>A vector of length <code>K</code> of mixture weights i.e. prior probabilities for each  component</p>
+</dd>
+<dt>c</dt>
+<dd>
+<p>An <code>(L x K)</code> matrix of means of responses (X)</p>
+</dd>
+<dt>Gamma</dt>
+<dd>
+<p>An <code>(L x L x K)</code> array of <code>K</code> matrices of covariances of responses (X)</p>
+</dd>
+<dt>A</dt>
+<dd>
+<p>An <code>(D x L x K)</code> array of <code>K</code> matrices of linear transformation matrices</p>
+</dd>
+<dt>b</dt>
+<dd>
+<p>An <code>(D x K)</code> matrix in which affine transformation vectors are in columns</p>
+</dd>
+<dt>Sigma</dt>
+<dd>
+<p>An <code>(D x D x K)</code> array of covariances of <code class="reqn">Y</code></p>
+</dd>
+</dl>
+<p><code>data.xllim.trueparameters</code> has the same that the values returned by <code>gllim</code> function.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xLLiM-package</code>, <code>data.xllim</code>, <code>gllim_inverse_map</code>, <code>sllim_inverse_map</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">  data(data.xllim.trueparameters)
+  ## data.xllim.trueparameters$pi # A vector with K=5 elements
+  ## data.xllim.trueparameters$c # A matrix with dimension L=2 x K=5
+  ## data.xllim.trueparameters$Gamma # An array with dimension L=2 x L=2 x K=5
+  ## data.xllim.trueparameters$A # An array with dimension D=50 x L=2 x K=5
+  ## data.xllim.trueparameters$b # A matrix with dimension D=50 x K=5
+  ## data.xllim.trueparameters$Sigma # An array with dimension D=50 x D=50 x K=5
+</code></pre>
+
+
+</div>

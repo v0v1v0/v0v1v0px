@@ -1,0 +1,111 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaConfiguration</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Remembers R command command with which algorithm has been called.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaConfiguration()</code> returns the command with which
+the genetic algorithm has been called. 
+For replicating computational experiments with 
+genetic algorithms.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaConfiguration(GAname, penv, grammar, env)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>GAname</code></td>
+<td>
+<p>Name of genetic algorithm's main function.
+(Currently: "Run").</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>penv</code></td>
+<td>
+<p>The expression for the problem environment <code>penv</code>.
+Use: <code>substitute(penv)</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>grammar</code></td>
+<td>
+<p>The grammar <code>grammar</code>.
+Use: <code>substitute(grammar)</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>env</code></td>
+<td>
+<p>Environment with variable value bindings.
+Use: <code>environment()</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A named list with the following elements:
+</p>
+
+<ul>
+<li> <p><code>$GAconf</code>: 
+A text string with the call of the genetic algorithm
+(the function we want to capture the call).
+</p>
+</li>
+<li> <p><code>$GAenv</code>:   The environment with the arguments bound to the 
+values when the genetic algorithm was called.
+</p>
+</li>
+</ul>
+<h3>Warning</h3>
+
+
+<ul>
+<li>
+<p>$GAenv is correct only for simple arguments (strings or numbers) 
+not for complex objects like problem environments.
+</p>
+</li>
+<li> 
+<p><code>future.apply::future_lapply()</code> is configured by a plan 
+statement which must be issued before calling the genetic 
+algorithm. At the moment, the plan chosen is not remembered.
+</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p>Other Configuration: 
+<code>AcceptFactory()</code>,
+<code>ApplyFactory()</code>,
+<code>CoolingFactory()</code>,
+<code>CrossRateFactory()</code>,
+<code>MutationRateFactory()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">GA&lt;-function(pe, grammar=NULL, nope=1.5, sle="test", ok=TRUE) 
+{xegaConfiguration("GA", substitute(pe), substitute(grammar), environment())}
+Para&lt;-5
+GA(Para)
+Cube&lt;-7
+GA(Cube, 2, 3, 4)
+
+</code></pre>
+
+
+</div>

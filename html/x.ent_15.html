@@ -1,0 +1,81 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xtest</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>
+Test each pair relations
+</h2>
+
+<h3>Description</h3>
+
+<p>We recommend four testings distribution to compare two samples:
+</p>
+
+<ol>
+<li>
+<p> Kolmogorov Smirnov test
+</p>
+</li>
+<li>
+<p> Wilcoxon signed rank test 
+</p>
+</li>
+<li>
+<p> Student's t test
+</p>
+</li>
+<li>
+<p> Compare Groups of Growth Curves
+</p>
+</li>
+</ol>
+<h3>Usage</h3>
+
+<pre><code class="language-R">  xtest(v1, v2)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>v1</code></td>
+<td>
+<p>a vector of the first entity</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>v2</code></td>
+<td>
+<p>a vector of the second entity</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The function <code>xtest</code> will combine the values in the first entity with the values in the second entity, each pair relations will be looking in documents. If this relationship exists, it will bring a value 1 otherwise 0  
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Tien T. Phan
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>ks.test</code> Kolmogorov Smirnov test<br><code>wilcox.test</code> Wilcoxon signed rank test<br><code>t.test</code> Student's t test<br><code>compareGrowthCurves</code> Compare Groups of Growth Curves<br></p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">  #get all values of entity bioagressor
+  b &lt;- as.vector(xdata_value("b")[["value"]]) 
+  xtest("colza",b)
+</code></pre>
+
+
+</div>

@@ -1,0 +1,105 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>SelectPropFitDiffM</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Selection proportional to fitness differences.</h2>
+
+<h3>Description</h3>
+
+<p><code>SelectPropFitDiffM</code> implements selection
+proportional to fitness differences.
+It selects a gene from the population
+with a probability proportional to the fitness
+difference to the gene with minimal fitness.
+The fitness of survival of the gene with 
+minimal fitness is set by <code>lF$Eps()</code> 
+to <code>0.01</code> per default.
+See equation (7.45) Andreas Geyer-Schulz (1997), p. 205.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">SelectPropFitDiffM(fit, lF, size = 1)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>fit</code></td>
+<td>
+<p>Fitness vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>size</code></td>
+<td>
+<p>Number of selected genes. Default: 1.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>The index vector of the selected genes.
+</p>
+
+
+<h3>Warning</h3>
+
+<p><code>outer</code> uses <code class="reqn">O(n^2)</code> memory cells.
+</p>
+
+
+<h3>Note</h3>
+
+<p><code>SelectPopFitDiff</code> is a dynamic scaling function.
+</p>
+
+
+<h3>References</h3>
+
+<p>Andreas Geyer-Schulz (1997):
+<em>Fuzzy Rule-Based Expert Systems and Genetic Machine Learning</em>,
+Physica, Heidelberg.
+&lt;978-3-7908-0830-X&gt;
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Selection Functions: 
+<code>SelectDuel()</code>,
+<code>SelectLRSelective()</code>,
+<code>SelectLinearRankTSR()</code>,
+<code>SelectPropFitDiffOnln()</code>,
+<code>SelectPropFitDiff()</code>,
+<code>SelectPropFitM()</code>,
+<code>SelectPropFitOnln()</code>,
+<code>SelectPropFit()</code>,
+<code>SelectSTournament()</code>,
+<code>SelectSUS()</code>,
+<code>SelectTournament()</code>,
+<code>SelectUniformP()</code>,
+<code>SelectUniform()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">fit&lt;-sample(10, 15, replace=TRUE)
+SelectPropFitDiffM(fit, NewlFselectGenes()) 
+SelectPropFitDiffM(fit, NewlFselectGenes(), length(fit)) 
+</code></pre>
+
+
+</div>

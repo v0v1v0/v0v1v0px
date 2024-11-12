@@ -1,0 +1,344 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xpose.panel.histogram</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Default histogram panel function for Xpose 4</h2>
+
+<h3>Description</h3>
+
+<p>This is the histogram panel function for Xpose 4. This is not intended to be
+ised outside the <code>xpose.plot.histogram</code> function. Most of the arguments
+take their default values from xpose.data object but this can be overridden
+by supplying them as argument to <code>xpose.plot.histogram</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xpose.panel.histogram(
+  x,
+  object,
+  breaks = NULL,
+  dens = TRUE,
+  hidlty = object@Prefs@Graph.prefs$hidlty,
+  hidcol = object@Prefs@Graph.prefs$hidcol,
+  hidlwd = object@Prefs@Graph.prefs$hidlwd,
+  hiborder = object@Prefs@Graph.prefs$hiborder,
+  hilty = object@Prefs@Graph.prefs$hilty,
+  hicol = object@Prefs@Graph.prefs$hicol,
+  hilwd = object@Prefs@Graph.prefs$hilwd,
+  math.dens = NULL,
+  vline = NULL,
+  vllwd = 3,
+  vllty = 1,
+  vlcol = "grey",
+  hline = NULL,
+  hllwd = 3,
+  hllty = 1,
+  hlcol = "grey",
+  bins.per.panel.equal = TRUE,
+  showMean = FALSE,
+  meanllwd = 3,
+  meanllty = 1,
+  meanlcol = "orange",
+  showMedian = FALSE,
+  medianllwd = 3,
+  medianllty = 1,
+  medianlcol = "black",
+  showPCTS = FALSE,
+  PCTS = c(0.025, 0.975),
+  PCTSllwd = 2,
+  PCTSllty = hidlty,
+  PCTSlcol = "black",
+  vdline = NULL,
+  vdllwd = 3,
+  vdllty = 1,
+  vdlcol = "red",
+  ...,
+  groups
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>Name(s) of the x-variable.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An xpose.data object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>breaks</code></td>
+<td>
+<p>The breakpoints for the histogram.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dens</code></td>
+<td>
+<p>Density plot on top of histogram?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hidlty</code></td>
+<td>
+<p>Density line type.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hidcol</code></td>
+<td>
+<p>Color of density line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hidlwd</code></td>
+<td>
+<p>Width of density line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hiborder</code></td>
+<td>
+<p>Colour of the bar borders.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hilty</code></td>
+<td>
+<p>Line type for the bar borders.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hicol</code></td>
+<td>
+<p>Fill colour for the bars.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hilwd</code></td>
+<td>
+<p>Width for the bar borders.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>math.dens</code></td>
+<td>
+<p>Should a density line be drawn.  Values are <code>NULL</code> or
+<code>TRUE</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>vline</code></td>
+<td>
+<p><code>NULL</code> or a vector of locations for the vertical lines to
+be drawn.  For example, <code>vline=c(50,60)</code> will draw two vertical lines.
+The function <code>panel.abline</code> is used.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>vllwd</code></td>
+<td>
+<p>Line width of the vertical lines defined with <code>vline</code>. Can
+be a vector or a single value, for example <code>vllwd=2</code> or
+<code>vllwd=c(2,3)</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>vllty</code></td>
+<td>
+<p>Line type of the vertical lines defined with <code>vline</code>. Can
+be a vector or a single value, for example <code>vllty=1</code> or
+<code>vllty=c(1,2)</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>vlcol</code></td>
+<td>
+<p>Line color of the vertical lines defined with <code>vline</code>. Can
+be a vector or a single value, for example <code>vlcol="red"</code> or
+<code>vllty=c("red","blue")</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hline</code></td>
+<td>
+<p><code>NULL</code> or a vector of locations for the horizontal lines
+to be drawn.  For example, <code>hline=c(50,60)</code> will draw two horizontal
+lines. The function <code>panel.abline</code> is
+used.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hllwd</code></td>
+<td>
+<p>Line width of the horizontal lines defined with <code>hline</code>.
+Can be a vector or a single value, for example <code>hllwd=2</code> or
+<code>hllwd=c(2,3)</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hllty</code></td>
+<td>
+<p>Line type of the horizontal lines defined with <code>hline</code>.
+Can be a vector or a single value, for example <code>hllty=1</code> or
+<code>hllty=c(1,2)</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hlcol</code></td>
+<td>
+<p>Line color of the horizontal lines defined with <code>hline</code>.
+Can be a vector or a single value, for example <code>hlcol="red"</code> or
+<code>hllty=c("red","blue")</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bins.per.panel.equal</code></td>
+<td>
+<p>Allow for different bins in different panels for
+continuous data? TRUE or FALSE.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>showMean</code></td>
+<td>
+<p>Should the mean of the data in the histogram be shown?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>meanllwd</code></td>
+<td>
+<p>Line width of mean line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>meanllty</code></td>
+<td>
+<p>The line type for the mean</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>meanlcol</code></td>
+<td>
+<p>Color for the mean line</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>showMedian</code></td>
+<td>
+<p>Should the median of the data for the histogram be shown
+as a vertical line?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>medianllwd</code></td>
+<td>
+<p>line width of median line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>medianllty</code></td>
+<td>
+<p>line type of median line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>medianlcol</code></td>
+<td>
+<p>color of median line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>showPCTS</code></td>
+<td>
+<p>Should percentiles of the data for the histogram be shown?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PCTS</code></td>
+<td>
+<p>A vector of percentiles to show.  Can be any length.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PCTSllwd</code></td>
+<td>
+<p>line width of percentiles.  Can be a vector of same length
+as <code>PCTS</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PCTSllty</code></td>
+<td>
+<p>Line type of the percentiles.  Can be a vector of same
+length as <code>PCTS</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PCTSlcol</code></td>
+<td>
+<p>Color of the percentiles.  Can be a vector of same length as
+<code>PCTS</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>vdline</code></td>
+<td>
+<p>vertical line different for each histogram. Must be a vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>vdllwd</code></td>
+<td>
+<p>line widths</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>vdllty</code></td>
+<td>
+<p>line types</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>vdlcol</code></td>
+<td>
+<p>line colors</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Other arguments that may be needed in the function.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>groups</code></td>
+<td>
+<p>used to pass the conditioning variable into this function.</p>
+</td>
+</tr>
+</table>
+<h3>Author(s)</h3>
+
+<p>Andrew Hooker, Mats Karlsson, Justin Wilkins &amp; E. Niclas Jonsson
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xpose.data-class</code>, Cross-references above.
+</p>
+
+
+</div>

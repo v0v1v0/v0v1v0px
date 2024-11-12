@@ -1,0 +1,283 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xpose4-package</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>The Xpose Package</h2>
+
+<h3>Description</h3>
+
+<p>Xpose is an R-based model building aid for population analysis using NONMEM. 
+It facilitates data set checkout, exploration and visualization, model 
+diagnostics, candidate covariate identification and model comparison.
+</p>
+
+
+<h3>Details</h3>
+
+<p>Xpose takes output from NONMEM output and/or PsN output and generates graphs
+or other analyses. It is assumed that each NONMEM run can be uniquely
+identified by a run number (see section below for how to generate the
+appropriate input to Xpose). Xpose is implemented using the lattice graphics
+library.
+</p>
+<p>The Xpose package can be divided up into six subsections (functions
+associated with each of the different subsections are linked in the "See
+Also" section): 
+</p>
+ 
+<dl>
+<dt>Data Functions</dt>
+<dd>
+<p>Functions for managing the
+input data and manipulating the Xpose database.</p>
+</dd> 
+<dt>Generic Functions</dt>
+<dd>
+<p>Generic wrapper functions around the lattice 
+functions. These functions can be invoked by the user but require quite 
+detailed instructions to generate the desired output.</p>
+</dd> 
+<dt>Specific Functions</dt>
+<dd>
+<p>These functions are single purpose functions 
+that generate specific output given only the Xpose database as input. The 
+behavior can, to some extent, be influenced by the user.</p>
+</dd>
+<dt>Classic Functions</dt>
+<dd>
+<p>Xpose has a text based menu interface to make it
+simple for the user to invoke the Xpose specific functions. This interface is
+called Xpose Classic. Given the limitations a text based interface imposes,
+Xpose Classic is not very flexible but may be useful for quick assessment of
+a model and for learning to use Xpose.</p>
+</dd>
+<dt>PsN Functions</dt>
+<dd>
+<p>These functions are the interface between Xpose and 
+PsN, i.e. they do not post-process NONMEM output but rather PsN output.</p>
+</dd>
+<dt>GAM Functions</dt>
+<dd>
+<p>Functions take an Xpose object and performs a generalized additive model
+(GAM) stepwise search for influential covariates on a single model parameter.</p>
+</dd>
+</dl>
+<h3>How to make NONMEM generate input to Xpose</h3>
+
+<p>Xpose recognizes NONMEM 
+runs, and files associated to a particular run, though the run number. 
+This is a number that is used in the name of NONMEM model files, output
+files and table files.  The fundamental input to Xpose is one or more
+NONMEM table files.  These table files should be named as below followed by
+the run number, for example xptab1 for run number 1.  Xpose looks for files
+according to the following pattern, where * is your run number:
+</p>
+<p><b>sdtab*</b> Standard table file, containing ID, IDV, DV, PRED, IPRED, 
+WRES, IWRES, RES, IRES, etc.
+</p>
+<p><b>patab*</b> Parameter table, containing model parameters - THETAs, ETAs 
+and EPSes
+</p>
+<p><b>catab*</b> Categorical covariates, e.g. SEX, RACE
+</p>
+<p><b>cotab*</b> Continuous covariates, e.g. WT, AGE
+</p>
+<p><b>extra*, mutab*, mytab*, xptab*, cwtab*</b> Other variables you might
+need to have available to Xpose
+</p>
+<p><b>run*.mod</b> Model specification file
+</p>
+<p><b>run*.lst</b> NONMEM output
+</p>
+<p>Strictly, only one table file is needed for xpose (for example sdtab* or 
+xptab*).  However, using patab*, cotab*, catab* will influence the way that
+Xpose interprets the data and are recommended to get full benefit from 
+Xpose.
+</p>
+<p>You can use code in NONMEM similar to the following to generate the tables 
+you need.  NONMEM automatically appends DV, PRED, WRES and RES unless 
+NOAPPEND is specified.  Don't forget to leave at least one blank line at
+the end of the NONMEM model specification file.
+</p>
+<p><code>$TABLE ID TIME IPRED IWRES EVID MDV NOPRINT ONEHEADER FILE=sdtab1</code> 
+<code>$TABLE ID CL V2 KA K SLP KENZ NOPRINT ONEHEADER FILE=patab1</code> 
+<code>$TABLE ID WT HT AGE BMI PKG NOPRINT ONEHEADER FILE=cotab1</code> 
+<code>$TABLE ID SEX SMOK ALC NOPRINT ONEHEADER FILE=catab1</code>
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>E. Niclas Jonsson, Mats Karlsson, Justin Wilkins and Andrew Hooker
+</p>
+
+
+<h3>References</h3>
+
+<p><a href="https://uupharmacometrics.github.io/PsN/">PsN</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Useful links:
+</p>
+
+<ul>
+<li> <p><a href="https://uupharmacometrics.github.io/xpose4/">https://uupharmacometrics.github.io/xpose4/</a>
+</p>
+</li>
+<li> <p><a href="https://github.com/UUPharmacometrics/xpose4">https://github.com/UUPharmacometrics/xpose4</a>
+</p>
+</li>
+<li>
+<p> Report bugs at <a href="https://github.com/UUPharmacometrics/xpose4/issues">https://github.com/UUPharmacometrics/xpose4/issues</a>
+</p>
+</li>
+</ul>
+<p>Other data functions: 
+<code>add_transformed_columns</code>,
+<code>change_graphical_parameters</code>,
+<code>change_misc_parameters</code>,
+<code>compute.cwres()</code>,
+<code>data.checkout()</code>,
+<code>data_extract_or_assign</code>,
+<code>db.names()</code>,
+<code>export.graph.par()</code>,
+<code>export.variable.definitions()</code>,
+<code>import.graph.par()</code>,
+<code>import.variable.definitions()</code>,
+<code>make.sb.data()</code>,
+<code>nsim()</code>,
+<code>par_cov_summary</code>,
+<code>read.TTE.sim.data()</code>,
+<code>read.nm.tables()</code>,
+<code>read_NM_output</code>,
+<code>read_nm_table()</code>,
+<code>simprazExample()</code>,
+<code>tabulate.parameters()</code>,
+<code>xlabel()</code>,
+<code>xpose.data</code>,
+<code>xpose.print()</code>,
+<code>xsubset()</code>
+</p>
+<p>Other generic functions: 
+<code>gof()</code>,
+<code>xpose.multiple.plot</code>
+</p>
+<p>Other specific functions: 
+<code>absval.cwres.vs.cov.bw()</code>,
+<code>absval.cwres.vs.pred()</code>,
+<code>absval.cwres.vs.pred.by.cov()</code>,
+<code>absval.iwres.cwres.vs.ipred.pred()</code>,
+<code>absval.iwres.vs.cov.bw()</code>,
+<code>absval.iwres.vs.idv()</code>,
+<code>absval.iwres.vs.ipred()</code>,
+<code>absval.iwres.vs.ipred.by.cov()</code>,
+<code>absval.iwres.vs.pred()</code>,
+<code>absval.wres.vs.cov.bw()</code>,
+<code>absval.wres.vs.idv()</code>,
+<code>absval.wres.vs.pred()</code>,
+<code>absval.wres.vs.pred.by.cov()</code>,
+<code>absval_delta_vs_cov_model_comp</code>,
+<code>addit.gof()</code>,
+<code>autocorr.cwres()</code>,
+<code>autocorr.iwres()</code>,
+<code>autocorr.wres()</code>,
+<code>basic.gof()</code>,
+<code>basic.model.comp()</code>,
+<code>cat.dv.vs.idv.sb()</code>,
+<code>cat.pc()</code>,
+<code>cov.splom()</code>,
+<code>cwres.dist.hist()</code>,
+<code>cwres.dist.qq()</code>,
+<code>cwres.vs.cov()</code>,
+<code>cwres.vs.idv()</code>,
+<code>cwres.vs.idv.bw()</code>,
+<code>cwres.vs.pred()</code>,
+<code>cwres.vs.pred.bw()</code>,
+<code>cwres.wres.vs.idv()</code>,
+<code>cwres.wres.vs.pred()</code>,
+<code>dOFV.vs.cov()</code>,
+<code>dOFV.vs.id()</code>,
+<code>dOFV1.vs.dOFV2()</code>,
+<code>data.checkout()</code>,
+<code>dv.preds.vs.idv()</code>,
+<code>dv.vs.idv()</code>,
+<code>dv.vs.ipred()</code>,
+<code>dv.vs.ipred.by.cov()</code>,
+<code>dv.vs.ipred.by.idv()</code>,
+<code>dv.vs.pred()</code>,
+<code>dv.vs.pred.by.cov()</code>,
+<code>dv.vs.pred.by.idv()</code>,
+<code>dv.vs.pred.ipred()</code>,
+<code>gof()</code>,
+<code>ind.plots()</code>,
+<code>ind.plots.cwres.hist()</code>,
+<code>ind.plots.cwres.qq()</code>,
+<code>ipred.vs.idv()</code>,
+<code>iwres.dist.hist()</code>,
+<code>iwres.dist.qq()</code>,
+<code>iwres.vs.idv()</code>,
+<code>kaplan.plot()</code>,
+<code>par_cov_hist</code>,
+<code>par_cov_qq</code>,
+<code>parm.vs.cov()</code>,
+<code>parm.vs.parm()</code>,
+<code>pred.vs.idv()</code>,
+<code>ranpar.vs.cov()</code>,
+<code>runsum()</code>,
+<code>wres.dist.hist()</code>,
+<code>wres.dist.qq()</code>,
+<code>wres.vs.idv()</code>,
+<code>wres.vs.idv.bw()</code>,
+<code>wres.vs.pred()</code>,
+<code>wres.vs.pred.bw()</code>,
+<code>xpose.VPC()</code>,
+<code>xpose.VPC.both()</code>,
+<code>xpose.VPC.categorical()</code>
+</p>
+<p>Other classic functions: 
+<code>xpose4()</code>
+</p>
+<p>Other PsN functions: 
+<code>boot.hist()</code>,
+<code>bootscm.import()</code>,
+<code>npc.coverage()</code>,
+<code>randtest.hist()</code>,
+<code>read.npc.vpc.results()</code>,
+<code>read.vpctab()</code>,
+<code>xpose.VPC()</code>,
+<code>xpose.VPC.both()</code>,
+<code>xpose.VPC.categorical()</code>
+</p>
+<p>Other GAM functions: 
+<code>GAM_summary_and_plot</code>,
+<code>xp.get.disp()</code>,
+<code>xp.scope3()</code>,
+<code>xpose.bootgam()</code>,
+<code>xpose.gam()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Not run: 
+# run the classic interface
+library(xpose4)
+xpose4()
+  
+# command line interface  
+library(xpose4)
+xpdb &lt;- xpose.data(5)
+basic.gof(xpdb)
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,546 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaGaGene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Package xegaGaGene.</h2>
+
+<h3>Description</h3>
+
+<p>Genetic operations for binary coded genetic algorithms.
+</p>
+
+
+<h3>Details</h3>
+
+<p>For an introduction to this class of algorithms, see Goldberg, D. (1989).
+</p>
+<p>For binary-coded genes, the <code>xegaGaGene</code> package provides
+</p>
+
+<ul>
+<li>
+<p> Gene initiatilization.
+</p>
+</li>
+<li>
+<p> Decoding of parameters as well as a function factory for configuration.
+</p>
+</li>
+<li>
+<p> Mutation functions as well as a function factory for configuration.
+</p>
+</li>
+<li>
+<p> Crossover functions as well as a function factory for configuration.
+We provide two families of crossover functions:
+</p>
+
+<ol>
+<li>
+<p> Crossover functions with two kids:
+Crossover preserves the genetic information in the gene pool.
+</p>
+</li>
+<li>
+<p> Crossover functions with one kid:
+These functions allow the construction of gene evaluation pipelines.
+One advantage of this is a simple control structure 
+at the population level.
+</p>
+</li>
+<li>
+<p> Gene replication functions as well as a function factory for 
+configuration. The replication functions implement control flows
+for sequences of gene operations. For <code>xegaReplicateGene</code>, 
+an acceptance step has been added. Simulated annealing algorithms
+can be configured e.g. by configuring uniform random selection combined
+with a Metropolis Acceptance Rule and a suitable cooling schedule.
+</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3>Binary Gene Representation</h3>
+
+<p>A binary gene is a named list:
+</p>
+
+<ul>
+<li>
+<p> $gene1      the gene must be a binary vector.
+</p>
+</li>
+<li>
+<p> $fit        the fitness value of the gene
+(for EvalGeneDet and EvalGeneU) or
+the mean fitness (for stochastic functions
+evaluated with EvalGeneStoch).
+</p>
+</li>
+<li>
+<p> $evaluated  has the gene been evaluated?
+</p>
+</li>
+<li>
+<p> $evalFail   has the evaluation of the gene failed?
+</p>
+</li>
+<li>
+<p> $var        the cumulative variance of the fitness 
+of all evaluations of a gene.
+(For stochastic functions)
+</p>
+</li>
+<li>
+<p> $sigma      the standard deviation of the fitness of 
+all evaluations of a gene.
+(For stochastic functions)
+</p>
+</li>
+<li>
+<p> $obs        the number of evaluations of a gene.
+(For stochastic functions)
+</p>
+</li>
+</ul>
+<h3>Abstract Interface of Problem Environment</h3>
+
+<p>A problem environment <code>penv</code> must provide:
+</p>
+
+<ul>
+<li> <p><code>$f(parameters, gene, lF)</code>: 
+Function with a real parameter vector as first argument 
+which returns a gene 
+with evaluated fitness.
+</p>
+</li>
+<li>
+<p> $genelength(): The number of bits of the binary-coded
+real parameter vector. Used in <code>InitGene</code>.
+</p>
+</li>
+<li>
+<p> $bitlength(): A vector specifying the number of bits 
+used for coding each real parameter.
+If <code>penv$bitlength()[1]</code> is <code>20</code>, 
+then <code>parameters[1]</code> is coded by 20 bits.
+Used in <code>GeneMap</code>.
+</p>
+</li>
+<li>
+<p> $lb(): The lower bound vector of each parameter.
+Used in <code>GeneMap</code>.
+</p>
+</li>
+<li>
+<p> $ub(): The upper bound vector of each parameter.
+Used in <code>GeneMap</code>.
+</p>
+</li>
+</ul>
+<h3>Abstract Interface of Mutation Functions</h3>
+
+<p>Each mutation function has the following function signature:
+</p>
+<p>newGene&lt;-Mutate(gene, lF) 
+</p>
+<p>All local parameters of the mutation function configured are 
+expected in the local function list lF.
+</p>
+
+
+<h3>Local Constants of Mutation Functions</h3>
+
+<p>The local constants of a mutation function determine 
+the behavior of the function. 
+</p>
+
+<table>
+<tr>
+<td style="text-align: right;"> 
+<strong>Constant</strong> </td>
+<td style="text-align: center;"> <strong>Default</strong> </td>
+<td style="text-align: left;"> <strong>Used in</strong> </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$BitMutationRate1 </td>
+<td style="text-align: center;"> 0.005          </td>
+<td style="text-align: left;"> MutateGene </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                    </td>
+<td style="text-align: center;">                </td>
+<td style="text-align: left;"> IVAdaptiveMutateGene </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$BitMutationRate2 </td>
+<td style="text-align: center;"> 0.01           </td>
+<td style="text-align: left;"> IVAdaptiveMutateGene </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$CutoffFit        </td>
+<td style="text-align: center;"> 0.5            </td>
+<td style="text-align: left;"> IVADaptiveMutateGene </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+</td>
+</tr>
+</table>
+<h3>Abstract Interface of Crossover Functions</h3>
+
+<p>The signatures of the abstract interface to the 2 families 
+of crossover functions are:
+</p>
+<p>ListOfTwoGenes&lt;-Crossover2(gene1, gene2, lF) 
+</p>
+<p>ListOfOneGene&lt;-Crossover(gene1, gene2, lF) 
+</p>
+<p>All local parameters of the crossover function configured are 
+expected in the local function list lF.
+</p>
+
+
+<h3>Local Constants of Crossover Functions</h3>
+
+<p>The local constants of a crossover function determine the 
+the behavior of the function. 
+</p>
+
+<table>
+<tr>
+<td style="text-align: right;"> 
+<strong>Constant</strong> </td>
+<td style="text-align: center;"> <strong>Default</strong> </td>
+<td style="text-align: left;"> <strong>Used in</strong> </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$UCrossSwap     </td>
+<td style="text-align: center;"> 0.2              </td>
+<td style="text-align: left;"> UPCross2Gene </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                    </td>
+<td style="text-align: center;">                </td>
+<td style="text-align: left;"> UPCrossGene </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+</td>
+</tr>
+</table>
+<h3>Abstract Interface of Gene Replication Functions</h3>
+
+<p>The signatures of the abstract interface to the 2 
+gene replication functions are:
+</p>
+<p>ListOfTwoGenes&lt;-Replicate2Gene(gene1, gene2, lF) 
+</p>
+<p>ListOfOneGene&lt;-ReplicateGene(gene1, gene2, lF)
+</p>
+
+
+<h3>Configuration and Constants of Replication Functions</h3>
+
+<p><strong>Configuration for ReplicateGene (1 Kid, Default).</strong>
+</p>
+
+<table>
+<tr>
+<td style="text-align: right;"> 
+<strong>Function</strong> </td>
+<td style="text-align: center;"> <strong>Default</strong> </td>
+<td style="text-align: left;"> Configured By </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$SelectGene     </td>
+<td style="text-align: center;"> SelectSUS        </td>
+<td style="text-align: left;"> SelectGeneFactory </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$SelectMate     </td>
+<td style="text-align: center;"> SelectSUS        </td>
+<td style="text-align: left;"> SelectGeneFactory </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$CrossGene      </td>
+<td style="text-align: center;"> CrossGene        </td>
+<td style="text-align: left;"> xegaGaCrossoverFactory </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+lF$MutateGene     </td>
+<td style="text-align: center;"> MutateGene       </td>
+<td style="text-align: left;"> xegaGaMutationFactory </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+lF$Accept         </td>
+<td style="text-align: center;"> AcceptNewGene    </td>
+<td style="text-align: left;"> AcceptFactory </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+</td>
+</tr>
+</table>
+<p><strong>Configuration for Replicate2Gene (2 Kids).</strong>
+</p>
+
+<table>
+<tr>
+<td style="text-align: right;"> 
+<strong>Function</strong> </td>
+<td style="text-align: center;"> <strong>Default</strong> </td>
+<td style="text-align: left;"> Configured By </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$SelectGene     </td>
+<td style="text-align: center;"> SelectSUS        </td>
+<td style="text-align: left;"> SelectGeneFactory </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$SelectMate     </td>
+<td style="text-align: center;"> SelectSUS        </td>
+<td style="text-align: left;"> SelectGeneFactory </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$CrossGene      </td>
+<td style="text-align: center;"> CrossGene        </td>
+<td style="text-align: left;"> xegaGaCrossoverFactory </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+lF$MutateGene     </td>
+<td style="text-align: center;"> MutateGene       </td>
+<td style="text-align: left;"> xegaGaMutationFactory </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+</td>
+</tr>
+</table>
+<p><strong>Global Constants.</strong>
+</p>
+<p>Global constants specify the probability that a mutation or
+crossover operator is applied to a gene.
+In the xega-architecture, these rates can be configured to be 
+adaptive.
+</p>
+
+<table>
+<tr>
+<td style="text-align: right;"> 
+<strong>Constant</strong> </td>
+<td style="text-align: center;"> <strong>Default</strong> </td>
+<td style="text-align: left;"> <strong>Used in</strong> </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$MutationRate   </td>
+<td style="text-align: center;"> 1.0 (static)     </td>
+<td style="text-align: left;"> xegaGaReplicateGene </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                  </td>
+<td style="text-align: center;">                  </td>
+<td style="text-align: left;"> xegaGaReplicate2Gene </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$CrossRate      </td>
+<td style="text-align: center;"> 0.2 (static)     </td>
+<td style="text-align: left;"> xegaGaReplicateGene </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                  </td>
+<td style="text-align: center;">                  </td>
+<td style="text-align: left;"> xegaGaReplicate2Gene </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+</td>
+</tr>
+</table>
+<p><strong>Local Constants.</strong>
+</p>
+
+<table>
+<tr>
+<td style="text-align: right;"> 
+<strong>Constant</strong> </td>
+<td style="text-align: center;"> <strong>Default</strong> </td>
+<td style="text-align: left;"> <strong>Used in</strong> </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$BitMutationRate1 </td>
+<td style="text-align: center;"> 0.005          </td>
+<td style="text-align: left;"> MutateGene </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                    </td>
+<td style="text-align: center;">                </td>
+<td style="text-align: left;"> IVAdaptiveMutateGene </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$BitMutationRate2 </td>
+<td style="text-align: center;"> 0.01           </td>
+<td style="text-align: left;"> IVAdaptiveMutateGene </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$CutoffFit        </td>
+<td style="text-align: center;"> 0.5            </td>
+<td style="text-align: left;"> IVADaptiveMutateGene </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+lF$UCrossSwap     </td>
+<td style="text-align: center;"> 0.2              </td>
+<td style="text-align: left;"> UPCross2Gene </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                    </td>
+<td style="text-align: center;">                </td>
+<td style="text-align: left;"> UPCrossGene </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+</td>
+</tr>
+</table>
+<p>In the xega-architecture, these rates can be configured to be 
+adaptive.
+</p>
+
+
+<h3>The Architecture of the xegaX-Packages</h3>
+
+<p>The xegaX-packages are a family of R-packages which implement 
+eXtended Evolutionary and Genetic Algorithms (xega).  
+The architecture has 3 layers, 
+namely the user interface layer,
+the population layer, and the gene layer: 
+</p>
+
+<ul>
+<li>
+<p>The user interface layer (package <code>xega</code>) 
+provides a function call interface and configuration support
+for several algorithms: genetic algorithms (sga), 
+permutation-based genetic algorithms (sgPerm), 
+derivation-free algorithms as e.g. differential evolution (sgde), 
+grammar-based genetic programming (sgp) and grammatical evolution
+(sge). 
+</p>
+</li>
+<li>
+<p>The population layer (package <code>xegaPopulation</code>) contains
+population-related functionality as well as support for 
+population statistics dependent adaptive mechanisms and parallelization.
+</p>
+</li>
+<li> 
+<p>The gene layer is split into a representation-independent and 
+a representation-dependent part:
+</p>
+
+<ol>
+<li> 
+<p>The representation indendent part (package <code>xegaSelectGene</code>)
+is responsible for variants of selection operators, evaluation 
+strategies for genes, as well as profiling and timing capabilities.        
+</p>
+</li>
+<li> 
+<p>The representation dependent part consists of the following packages: 
+</p>
+
+<ul>
+<li> <p><code>xegaGaGene</code> for binary coded genetic algorithms.
+</p>
+</li>
+<li> <p><code>xegaPermGene</code> for permutation-based genetic algorithms.
+</p>
+</li>
+<li> <p><code>xegaDfGene</code> for derivation-free algorithms as e.g. 
+differential evolution.
+</p>
+</li>
+<li> <p><code>xegaGpGene</code> for grammar-based genetic algorithms.
+</p>
+</li>
+<li> <p><code>xegaGeGene</code> for grammatical evolution algorithms.
+</p>
+</li>
+</ul>
+<p>The packages <code>xegaDerivationTrees</code> and <code>xegaBNF</code> support
+the last two packages:
+<code>xegaBNF</code> essentially provides a grammar compiler, and 
+<code>xegaDerivationTrees</code> is an abstract data type for derivation trees.
+</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3>Copyright</h3>
+
+<p>(c) 2023 Andreas Geyer-Schulz
+</p>
+
+
+<h3>License</h3>
+
+<p>MIT
+</p>
+
+
+<h3>URL</h3>
+
+<p>&lt;https://github.com/ageyerschulz/xegaGaGene&gt;
+</p>
+
+
+<h3>Installation</h3>
+
+<p>From CRAN by <code>install.packages('xegaGaGene')</code>
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Andreas Geyer-Schulz
+</p>
+
+
+<h3>References</h3>
+
+<p>Goldberg, David E. (1989)
+Genetic Algorithms in Search, Optimization and Machine Learning.
+Addison-Wesley, Reading. 
+(ISBN:0-201-15767-5)
+</p>
+
+
+</div>

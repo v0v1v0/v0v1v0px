@@ -1,0 +1,66 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaPermInitGene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Initialize a gene with a permutation of integers</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaPermInitGene</code> generates a random permutation 
+with a given length n.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaPermInitGene(lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration of the genetic algorithm.</p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+<p>In the permutation representation of 
+package <code>xegaPerm</code>, <em>gene</em> is a list with 
+</p>
+
+<ol>
+<li> <p><code>$evaluated</code>: Boolean: TRUE if the fitness is known.
+</p>
+</li>
+<li> <p><code>$fit</code>:       The fitness of the genotype of 
+<code>$gene1</code>.         
+</p>
+</li>
+<li> <p><code>$gene1</code>:     The permutation (the genetopye).
+</p>
+</li>
+</ol>
+<p>This representation makes several code optimizations
+and generalizations easier.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A permutation gene.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">xegaPermInitGene(lFxegaPermGene)
+
+</code></pre>
+
+
+</div>

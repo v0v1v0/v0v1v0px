@@ -1,0 +1,44 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>read_xes</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>read_xes</h2>
+
+<h3>Description</h3>
+
+<p>Extracts eventlog from a xes-file.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">read_xes(xesfile = file.choose(), validate = TRUE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>xesfile</code></td>
+<td>
+<p>Reference to a .xes file, conforming to the xes-standard.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>validate</code></td>
+<td>
+<p>When 'TRUE' some basic checks are run on the contents of the event log such as that activity instances are not connected to more than one case or activity.
+Using 'FALSE' improves the performance by skipping those checks and allows to import  XES files that do not conform to bupaR requirements.</p>
+</td>
+</tr>
+</table>
+<h3>See Also</h3>
+
+<p><a href="http://www.xes-standard.org/">http://www.xes-standard.org/</a>
+</p>
+
+
+</div>

@@ -1,0 +1,69 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>transform_prm</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Mean and variance of tranformed parameters</h2>
+
+<h3>Description</h3>
+
+<p>The function calculates the mean and variance of function of parameters
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">transform_prm(formula, mu, sigma, method = "delta", samples = 1000)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>formula</code></td>
+<td>
+<p>A formula describing the transformation.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mu</code></td>
+<td>
+<p>Vector of mean values for the variables in formula.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sigma</code></td>
+<td>
+<p>Covariance matrix for the variables in formula.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>A string indicating which method to use for the calculation.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>samples</code></td>
+<td>
+<p>Number of Monte-Carlo samples for method "mc"</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A list with entries 'mean', 'variance' and 'rse'
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Mean, variance and rse for sqrt of variable with mean 1 and variance 0.01
+transform_prm(~sqrt(a), mu = c(a = 1), sigma = c(a = 0.01))
+
+</code></pre>
+
+
+</div>

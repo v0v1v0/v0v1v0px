@@ -1,0 +1,89 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>CodonChoiceBiases</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Biases in Rule Choice.</h2>
+
+<h3>Description</h3>
+
+<p>Measures the biases in rule choice for each non-terminal.
+Statistics computed:
+</p>
+
+<ul>
+<li>
+<p> dP: Difference in probability  
+between random choice with equal 
+probability and modulo rule with a codon 
+<code>precision</code>.
+</p>
+</li>
+<li>
+<p> dH: Difference in entropy  
+between random choice with equal 
+probability and modulo rule with a codon 
+<code>precision</code>.
+</p>
+</li>
+</ul>
+<h3>Usage</h3>
+
+<pre><code class="language-R">CodonChoiceBiases(cv, precision)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>cv</code></td>
+<td>
+<p>Choice vector of grammar.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>precision</code></td>
+<td>
+<p>Number of bits of codon.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Data frame with the following columns
+</p>
+
+<ul>
+<li> <p><code>$precision</code>: Number of bits.
+</p>
+</li>
+<li> <p><code>$cv</code>:   i-th element of choice vector.
+</p>
+</li>
+<li> <p><code>$dp</code>:   Deviation from choice with equal probability for <code>$precision</code>.
+</p>
+</li>
+<li> <p><code>$dH</code>:   Entropy difference between choice with equal probability 
+and biased choice for <code>$precision</code>.
+</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p>Other Diagnostics: 
+<code>CodonChoiceBiasesDeprecated()</code>,
+<code>CodonPrecision()</code>,
+<code>tLCM()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"> CodonChoiceBiases(c(1, 2, 3, 5), 3)
+ CodonChoiceBiases(c(1, 2, 3, 5), 5)
+</code></pre>
+
+
+</div>

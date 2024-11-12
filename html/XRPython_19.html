@@ -1,0 +1,150 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>functions</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Function Versions of Methods for Python Interface evaluators.</h2>
+
+<h3>Description</h3>
+
+<p>These functions allow application code to invoke evaluator methods for essentially all basic computations.   Usually, they access
+the current Python evaluator, starting one if none exists.  For details, see the documentation for the corresponding method, under
+PythonInterface.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">pythonSend(object, evaluator = XR::getInterface(.PythonInterfaceClass))
+
+pythonEval(expr, ..., evaluator = XR::getInterface(.PythonInterfaceClass))
+
+pythonCommand(expr, ..., evaluator = XR::getInterface(.PythonInterfaceClass))
+
+pythonCall(fun, ..., evaluator = XR::getInterface(.PythonInterfaceClass))
+
+pythonGet(object, evaluator = XR::getInterface(.PythonInterfaceClass))
+
+pythonSource(file, ..., evaluator = XR::getInterface(.PythonInterfaceClass))
+
+pythonDefine(text, file, ...,
+  evaluator = XR::getInterface(.PythonInterfaceClass))
+
+pythonSerialize(object, file, append = FALSE,
+  evaluator = XR::getInterface(.PythonInterfaceClass))
+
+pythonUnserialize(file, all = FALSE,
+  evaluator = XR::getInterface(.PythonInterfaceClass))
+
+pythonName(object)
+
+pythonShell(..., evaluator = XR::getInterface(.PythonInterfaceClass))
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>For <code>pythonSend()</code>, an R object, to be sent to Python.  For <code>pythonGet()</code>,
+<code>pythonSerialize()</code> and <code>pythonNqme()</code>, a proxy object for
+a Python object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>evaluator</code></td>
+<td>
+<p>The evaluator object to use.  By default, and usually, the current evaluator
+is used, and one is started if none has been.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>expr</code></td>
+<td>
+<p>A string for a Python expression or command, with C-style fields (<code>"%s"</code>) to be substituted for the following arguments, if any.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>For the evaluation functions: Objects, either R objects to be converted or proxies for Python objects previously computed.
+For other functions, specialized arguments for the corresponding method.
+In particular, <code>.get=</code> for controlling whether the computed result should be converted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fun</code></td>
+<td>
+<p>the string name of the function; a module name must be included in the string if the function has
+not been explicitly imported from that module.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>file</code></td>
+<td>
+<p>A filename or an open connection, for reading or writing depending on the function</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>text</code></td>
+<td>
+<p>the definition as text (supply argument  file= instead  to read it from a file)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>append</code></td>
+<td>
+<p>should the serializing text be appended to a file; otherwise the file will be truncated on opening.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>all</code></td>
+<td>
+<p>should the unserialized object be a list of all serialized objects on the file?</p>
+</td>
+</tr>
+</table>
+<h3>Functions</h3>
+
+
+<ul>
+<li> <p><code>pythonSend</code>: sends the <code>object</code> to Python, converting it via methods for
+<code>asServerObject</code> and returns a proxy for the converted object.
+</p>
+</li>
+<li> <p><code>pythonEval</code>: evaluates the <code>expr</code> string subsituting the arguments.
+</p>
+</li>
+<li> <p><code>pythonCommand</code>: evaluates the <code>expr</code> string subsituting the arguments; used for a command that is not
+an expression.
+</p>
+</li>
+<li> <p><code>pythonCall</code>: call the function in Python, with arguments given.
+</p>
+</li>
+<li> <p><code>pythonGet</code>: converts the proxy object that is its argument to an <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> object.
+</p>
+</li>
+<li> <p><code>pythonSource</code>: evaluate the file of Python source.
+</p>
+</li>
+<li> <p><code>pythonDefine</code>: define a Python function
+</p>
+</li>
+<li> <p><code>pythonSerialize</code>: serialize the <code>object</code> in Python, via <code>pickle</code>
+</p>
+</li>
+<li> <p><code>pythonUnserialize</code>: unserialize the file in Python, via <code>pickle</code>
+</p>
+</li>
+<li> <p><code>pythonName</code>: return the name by which this proxy object was assigned in Python
+</p>
+</li>
+<li> <p><code>pythonShell</code>: Start an interactive Python shell.  See the chapter file in the documentation, section 14.3.
+</p>
+</li>
+</ul>
+</div>

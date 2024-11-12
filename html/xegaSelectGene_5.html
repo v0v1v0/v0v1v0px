@@ -1,0 +1,92 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>DispersionMeasureFactory</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Configure dispersion measure.</h2>
+
+<h3>Description</h3>
+
+<p><code>DispersionMeasureFactory</code> returns a function 
+for the dispersion measure as specified by a label.
+If an invalid label is 
+specified, the configuration fails.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">DispersionMeasureFactory(method = "var")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>A dispersion measure.
+</p>
+
+<ul>
+<li>
+<p>  "var": Variance (Default).
+</p>
+</li>
+<li>
+<p> "std": Standard deviation.
+</p>
+</li>
+<li>
+<p> "mad": Median absolute deviation (<code>mad(vec, constant=1)</code>).
+</p>
+</li>
+<li>
+<p> "cv": Coefficient of variation". 
+</p>
+</li>
+<li>
+<p> "range": Range.
+</p>
+</li>
+<li>
+<p> "iqr": Inter quartile range 
+(approximated by the lower and upper hinge of <code>fivenum</code>). 
+</p>
+</li>
+</ul>
+<p>If an invalid label is 
+specified, the configuration fails.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A function which computes the dispersion measure from the vector of 
+population statistics produced by <code>xegaObservePopulation</code>
+of package <code>xegaPopulation</code>.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Configuration: 
+<code>EvalGeneFactory()</code>,
+<code>ScalingFactory()</code>,
+<code>SelectGeneFactory()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">require(stats)
+fit&lt;-sample(30, 20, replace=TRUE)
+populationStats&lt;-c(mean(fit), fivenum(fit), var(fit), mad(fit, constant=1))
+dm&lt;-DispersionMeasureFactory("var")
+dm(populationStats)
+dm&lt;-DispersionMeasureFactory("range")
+dm(populationStats)
+</code></pre>
+
+
+</div>

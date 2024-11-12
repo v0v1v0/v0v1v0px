@@ -1,0 +1,125 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>provide_file</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Manage static files in project directory</h2>
+
+<h3>Description</h3>
+
+<p>Copies or overwrites files from a source directory to your project directory. Can be used
+to make sure that files you are referencing in your generated XML code are present and up to date.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">provide_file(rel, to, from, overwrite = TRUE, mode = "0777", quiet = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>rel</code></td>
+<td>
+<p>Relative path of file as to be used in HTML.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>to</code></td>
+<td>
+<p>Full path to the project directory where files should be copied to.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>from</code></td>
+<td>
+<p>Full path to the directory where the file can be found under its <code>rel_path</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>overwrite</code></td>
+<td>
+<p>Logical, whether existing files should be re-written or kept in place.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mode</code></td>
+<td>
+<p>Permissions for newly created directories below <code>to</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>quiet</code></td>
+<td>
+<p>Logical,
+whether you would like to see a message when files are copied or already exist.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The function returns the relative path that was given as its first argument,
+e.g. it can be used
+inside <code>XMLNode</code> to add relative paths to arguments while also copying the referenced file
+to the given output directory, keeping the relative path.
+</p>
+<p>It can be useful to write a simple wrapper around this function to set the relevant <code>from</code>
+and <code>to</code> paths for a project (see examples).
+</p>
+
+
+<h3>Value</h3>
+
+<p>When called, the file is copied from the <code>from</code> to the <code>to</code> directory,
+including the relative path given by <code>rel</code>. Missing target directories below <code>to</code>
+are created on-the-fly. If successful,
+the function finally returns an invisible character
+string identical to <code>rel</code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+# a direct call that would copy the file ~/webpage/v1/static/css/bootstrap.min.css
+# to the project directory as /tmp/static/css/bootstrap.min.css
+# and include "static/css/bootstrap.min.css" in the &lt;link&gt; tag
+my_HTML &lt;- XMLNode(
+  "link",
+  rel="stylesheet",
+  type="text/css",
+  href=provide_file(
+    rel="static/css/bootstrap.min.css",
+    to="/tmp",
+    from="~/webpage/v1"
+  )
+)
+
+# for larger projects, a wrapper function might become handy
+prov &lt;- function(
+  rel,
+  to="/tmp",
+  from="~/webpage/v1",
+  overwrite=TRUE,
+  mode="0777"
+){
+  provide_file(rel=rel, to=to, from=from, overwrite=overwrite, mode=mode)
+}
+# let's combine it with a shortcut function for &lt;link&gt;
+gen_tag_functions("link")
+# now this code produces the same result as the direct call above
+my_HTML2 &lt;- link_(
+  rel="stylesheet",
+  type="text/css",
+  href=prov("static/css/bootstrap.min.css")
+)
+
+## End(Not run)
+</code></pre>
+
+
+</div>

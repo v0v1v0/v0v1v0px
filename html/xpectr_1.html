@@ -1,0 +1,119 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>assertCollectionAddin</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Inserts code for a checkmate assert collection</h2>
+
+<h3>Description</h3>
+
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="../help/figures/lifecycle-experimental.svg" alt="[Experimental]"></a>
+</p>
+<p>RStudio Addin:
+Inserts code for initializing and reporting a
+<code>checkmate assert collection</code>.
+</p>
+<p>See <code>`Details`</code> for how to set a key command.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">assertCollectionAddin(add_comments = TRUE, insert = TRUE, indentation = NULL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>add_comments</code></td>
+<td>
+<p>Whether to add comments around. (Logical)
+</p>
+<p>This makes it easy for a user to create their own addin without the comments.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>insert</code></td>
+<td>
+<p>Whether to insert the code via
+<code>rstudioapi::insertText()</code>
+or return it. (Logical)
+</p>
+<p><strong>N.B.</strong> Mainly intended for testing the addin programmatically.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>indentation</code></td>
+<td>
+<p>Indentation of the code. (Numeric)
+</p>
+<p><strong>N.B.</strong> Mainly intended for testing the addin programmatically.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+
+
+<h4>How to set up a key command in RStudio</h4>
+
+<p>After installing the package.
+Go to:
+</p>
+<p><code>Tools &gt;&gt; Addins &gt;&gt; Browse Addins &gt;&gt; Keyboard Shortcuts</code>.
+</p>
+<p>Find <code>"Insert checkmate AssertCollection Code"</code> and press its field under <code>Shortcut</code>.
+</p>
+<p>Press desired key command, e.g. <code>Alt+C</code>.
+</p>
+<p>Press <code>Apply</code>.
+</p>
+<p>Press <code>Execute</code>.
+</p>
+
+
+
+<h3>Value</h3>
+
+<p>Inserts the following (excluding the <code>----</code>):
+</p>
+<p><code>----</code>
+</p>
+<p><code># Check arguments ####</code>
+</p>
+<p><code>assert_collection &lt;- checkmate::makeAssertCollection()</code>
+</p>
+<p><code># checkmate::assert_ , add = assert_collection)</code>
+</p>
+<p><code>checkmate::reportAssertions(assert_collection)</code>
+</p>
+<p><code># End of argument checks ####</code>
+</p>
+<p><code>----</code>
+</p>
+<p>Returns <code>NULL</code> invisibly.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ludvig Renbo Olsen, <a href="mailto:r-pkgs@ludvigolsen.dk">r-pkgs@ludvigolsen.dk</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other addins: 
+<code>dputSelectedAddin()</code>,
+<code>initializeGXSFunctionAddin()</code>,
+<code>initializeTestthatAddin()</code>,
+<code>insertExpectationsAddin()</code>,
+<code>navigateTestFileAddin()</code>,
+<code>wrapStringAddin()</code>
+</p>
+
+
+</div>

@@ -1,0 +1,72 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>re_name</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Rename rows of a list</h2>
+
+<h3>Description</h3>
+
+<p>Sometimes, certain nodes in an XML ancestory may want to be neglected
+before any keys are created (see add_key) or observations are aggregated (see collapse).
+This function takes a list of "observations" (that is, a list of matrices with one row) and 
+alters the names of that list. Note that any information lost from changing names is saved 
+in a new column whose name is specified by <code>diff.name</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">re_name(obs, namez, equiv, diff.name = "diff_name", rename.as, quiet = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>obs</code></td>
+<td>
+<p>list. Should be the output from XML2Obs (or listsToObs).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>namez</code></td>
+<td>
+<p>must be equivalent to <code>names(obs)</code>. Intended use is to avoid unneccessarily repeating that operation.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>equiv</code></td>
+<td>
+<p>character vector with the appropriate (unique) names that should be regarded "equivalent".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>diff.name</code></td>
+<td>
+<p>character string used for naming the variable that is appended to any observations whose name was overwritten. 
+The value for this variable is the difference in from the original name and the overwritten name.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>rename.as</code></td>
+<td>
+<p>character string to override naming of observations that are renamed.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>quiet</code></td>
+<td>
+<p>logical. Include message about how observations are being renamed?</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A list of "observations".
+</p>
+
+
+</div>

@@ -1,0 +1,115 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xrnet_control</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Control function for xrnet fitting</h2>
+
+<h3>Description</h3>
+
+<p>Control function for <code>xrnet</code> fitting.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xrnet_control(
+  tolerance = 1e-08,
+  max_iterations = 1e+05,
+  dfmax = NULL,
+  pmax = NULL,
+  lower_limits = NULL,
+  upper_limits = NULL
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>tolerance</code></td>
+<td>
+<p>positive convergence criterion. Default is 1e-08.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max_iterations</code></td>
+<td>
+<p>maximum number of iterations to run coordinate
+gradient descent across all penalties before returning an error.
+Default is 1e+05.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dfmax</code></td>
+<td>
+<p>maximum number of variables allowed in model. Default is
+<code class="reqn">ncol(x) + ncol(unpen) + ncol(external) + intercept[1] + intercept[2]</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pmax</code></td>
+<td>
+<p>maximum number of variables with nonzero coefficient estimate.
+Default is <code class="reqn">min(2 * dfmax + 20, ncol(x) + ncol(unpen) + ncol(external)
++ intercept[2])</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lower_limits</code></td>
+<td>
+<p>vector of lower limits for each coefficient. Default is
+-Inf for all variables.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>upper_limits</code></td>
+<td>
+<p>vector of upper limits for each coefficient. Default is
+Inf for all variables.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A list object with the following components:
+</p>
+<table>
+<tr style="vertical-align: top;">
+<td><code>tolerance</code></td>
+<td>
+<p>The coordinate descent stopping criterion.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dfmax</code></td>
+<td>
+<p>The maximum number of variables that will be allowed in the
+model.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pmax</code></td>
+<td>
+<p>The maximum number of variables with nonzero coefficient
+estimate.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lower_limits</code></td>
+<td>
+<p>Feature-specific numeric vector of lower bounds for
+coefficient estimates</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>upper_limits</code></td>
+<td>
+<p>Feature-specific numeric vector of upper bounds for
+coefficient estimates</p>
+</td>
+</tr>
+</table>
+</div>

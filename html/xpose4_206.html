@@ -1,0 +1,128 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xp.incl.index.cov.ind</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Individual inclusion index</h2>
+
+<h3>Description</h3>
+
+<p>This function will generate a plot of individual inclusion indexes for a
+specific covariate, which can be used to identify influential
+individuals for inclusion of that covariate. The index for an individual is calculated as
+the observed number of inclusions of that individual when the specific
+covariate was included minus the expected number of inclusions (based
+on the total bootstrap inclusions), divided by expected.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xp.incl.index.cov.ind(
+  bootgam.obj = NULL,
+  boot.type = NULL,
+  cov.name = NULL,
+  main = NULL,
+  ylb = "ID",
+  xlb = "Individual inclusion index",
+  return_plot = TRUE,
+  results.tab = NULL,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>bootgam.obj</code></td>
+<td>
+<p>A bootgam or bootscm object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>boot.type</code></td>
+<td>
+<p>Either "bootgam" or "bootscm". Default is NULL, which means the user
+will be asked to make a choice.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cov.name</code></td>
+<td>
+<p>The name of the covariate for which to create the plot.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>The title of the plot.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylb</code></td>
+<td>
+<p>The label for the x-axis.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xlb</code></td>
+<td>
+<p>The label for the y-axis.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>return_plot</code></td>
+<td>
+<p>Should a plot object be returned?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>results.tab</code></td>
+<td>
+<p>Supply your own results table.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional plotting parameters.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A lattice plot object is returned.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ron Keizer
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other bootgam: 
+<code>xp.daic.npar.plot()</code>,
+<code>xp.dofv.npar.plot()</code>,
+<code>xp.inc.cond.stab.cov()</code>,
+<code>xp.inc.ind.cond.stab.cov()</code>,
+<code>xp.inc.stab.cov()</code>,
+<code>xp.incl.index.cov()</code>
+</p>
+<p>Other bootscm: 
+<code>bootscm.import()</code>,
+<code>xp.daic.npar.plot()</code>,
+<code>xp.dofv.npar.plot()</code>,
+<code>xp.inc.cond.stab.cov()</code>,
+<code>xp.inc.ind.cond.stab.cov()</code>,
+<code>xp.inc.stab.cov()</code>,
+<code>xp.incl.index.cov()</code>
+</p>
+
+
+</div>

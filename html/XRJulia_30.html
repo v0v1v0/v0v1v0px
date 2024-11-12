@@ -1,0 +1,182 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>functions</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Function Versions of Methods for Julia Interface evaluators.</h2>
+
+<h3>Description</h3>
+
+<p>Function Versions of Methods for Julia Interface evaluators.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">juliaSource(..., evaluator = RJulia())
+
+juliaAddToPath(directory = "julia",
+  package = utils::packageName(topenv(parent.frame())), pos = NA,
+  evaluator = RJulia(.makeNew = FALSE), where = topenv(parent.frame()))
+
+juliaUsing(module, evaluator)
+
+juliaImport(..., evaluator)
+
+juliaSend(object, evaluator = XR::getInterface(.JuliaInterfaceClass))
+
+juliaGet(object, evaluator = XR::getInterface(.JuliaInterfaceClass))
+
+juliaPrint(object, ..., evaluator = XRJulia::RJulia())
+
+juliaEval(expr, ..., evaluator = XR::getInterface(.JuliaInterfaceClass))
+
+juliaCommand(expr, ...,
+  evaluator = XR::getInterface(.JuliaInterfaceClass))
+
+juliaCall(expr, ..., evaluator = XR::getInterface(.JuliaInterfaceClass))
+
+juliaSerialize(object, file, append = FALSE,
+  evaluator = XR::getInterface(.JuliaInterfaceClass))
+
+juliaUnserialize(file, all = FALSE,
+  evaluator = XR::getInterface(.JuliaInterfaceClass))
+
+juliaName(object)
+
+juliaImport(..., evaluator)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>arguments to the corresponding method for an evaluator object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>evaluator</code></td>
+<td>
+<p>The evaluator object to use.  By default, and usually, the current evaluator
+is used, and one is started if none has been.  But see the note under <code>juliaImport</code> for the load actions created in special cases.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>directory</code></td>
+<td>
+<p>the directory to add, defaults to "julia"</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>package, pos</code></td>
+<td>
+<p>arguments to the method, usually omitted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>where</code></td>
+<td>
+<p>for the load action, omitted if called from a package source file.
+Otherwise, must be the environment in which a load action can take place.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>module</code></td>
+<td>
+<p>String identifying a Julia module.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>A proxy in R for a Julia object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>expr</code></td>
+<td>
+<p>A string that should be legal when parsed and evaluated in Julia.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>file, append, all</code></td>
+<td>
+<p>Arguments to the evalutor's serialize and unserialize methods. See the reference,
+Chapter 10.</p>
+</td>
+</tr>
+</table>
+<h3>Functions</h3>
+
+
+<ul>
+<li> <p><code>juliaSource</code>: evaluate the file of Julia source.
+</p>
+</li>
+<li> <p><code>juliaAddToPath</code>: adds the directory specified to the search path for Julia modules.
+If called from the source directory of a package during installation, sets up
+a load action for that package.  If you want to add the path to all
+evaluators in <em>this</em> session, call the function before creating an evaluator.
+Otherwise, the action applies only to the specified evaluator or,
+by default, to the current evaluator.
+</p>
+</li>
+<li> <p><code>juliaUsing</code>: the "using" form of Julia imports:  the module is imported with all exports exposed.
+</p>
+</li>
+<li> <p><code>juliaImport</code>: adds the module information specified to the modules imported for future Julia evaluator objects.
+</p>
+<p>Add the module to the table of imports for Julia evaluators, and import it to the current evaluator
+if there is one.
+If called from the source directory of a package during installation, both <code>juliaImport</code>
+and <code>juliaAddToPath()</code> set up
+a load action for that package.  The functional versions, not the methods themselves, should
+be called from package source files to ensure that the load actions are created.
+Note that calling either function before any evaluator has been generated
+will install that call as a setup action for all XRJulia evaluators.
+</p>
+</li>
+<li> <p><code>juliaSend</code>: sends the <code>object</code> to Julia, converting it via methods for
+<code>asServerObject</code> and returns a proxy for the converted object.
+</p>
+</li>
+<li> <p><code>juliaGet</code>: converts the proxy object that is its argument to an <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> object.
+</p>
+</li>
+<li> <p><code>juliaPrint</code>: Print an object in Julia.  Either one object or several arguments as would
+be given to the Eval() method.
+</p>
+</li>
+<li> <p><code>juliaEval</code>: evaluates the <code>expr</code> string subsituting the arguments.  See the corresponding evaluator
+method for details.
+</p>
+</li>
+<li> <p><code>juliaCommand</code>: evaluates the <code>expr</code> string subsituting the arguments; used for a command that is not
+an expression.
+</p>
+</li>
+<li> <p><code>juliaCall</code>: call the function in Julia, with arguments given; expr is the string name of the function
+</p>
+</li>
+<li> <p><code>juliaSerialize</code>: serialize the <code>object</code> in Julia
+</p>
+</li>
+<li> <p><code>juliaUnserialize</code>: unserialize the file in Julia
+</p>
+</li>
+<li> <p><code>juliaName</code>: return the name by which this proxy object was assigned in Julia
+</p>
+</li>
+<li> <p><code>juliaImport</code>: Import a Julia module or add a directory to the Julia Search Path
+If called from the source directory of a package during installation, both <code>juliaImport</code>
+and <code>juliaAddToPath()</code> also set up
+a load action for that package.  The functional versions, not the methods themselves, should
+be called from package source files to ensure that the load actions are created.
+</p>
+</li>
+</ul>
+</div>

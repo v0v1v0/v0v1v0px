@@ -1,0 +1,73 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>choose_dark_or_light</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Choose dark or light color</h2>
+
+<h3>Description</h3>
+
+<p>Takes a color input as <code>x</code> and returns either the black or white color (or
+expression) if dark or light text should be used over the input color for
+best contrast. Follows W3C Recommendations.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">choose_dark_or_light(x, black = "#000000", white = "#FFFFFF")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>The background color (hex)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>black</code></td>
+<td>
+<p>Text or foreground color, e.g. "#222" or
+<code>substitute(darken_color(x, 0.8))</code>, if black text provides the best contrast.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>white</code></td>
+<td>
+<p>Text or foreground color or expression, e.g. "#EEE" or
+<code>substitute(lighten_color(x, 0.8))</code>, if white text provides the best contrast.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>The <code>black</code> color or <code>white</code> color according to which color provides
+the greates contrast with the input color.
+</p>
+
+
+<h3>References</h3>
+
+<p><a href="https://stackoverflow.com/a/3943023/2022615">https://stackoverflow.com/a/3943023/2022615</a>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">light_green &lt;- "#c4d6b0"
+contrast_green &lt;- choose_dark_or_light(light_green)
+dark_purple &lt;- "#381d2a"
+contrast_purple &lt;- choose_dark_or_light(dark_purple)
+
+if (requireNamespace("scales", quietly = TRUE)) {
+  scales::show_col(c(light_green, contrast_green, dark_purple, contrast_purple))
+}
+</code></pre>
+
+
+</div>

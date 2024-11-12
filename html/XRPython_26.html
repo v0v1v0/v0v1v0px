@@ -1,0 +1,91 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>PythonInterface-class</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>An Interface to Python</h2>
+
+<h3>Description</h3>
+
+<p>The <code>"PythonInterface"</code> class provides an evaluator for computations in Python, following the structure
+in the XR  package.  Proxy functions and classes allow use of the interface with no explicit
+reference to the evaluator.  The function <code>RPython()</code> returns an evaluator object.
+</p>
+
+
+<h3>Details</h3>
+
+<p>The class extends the <code>"Interface"</code> class in the XR package and has the same fields.
+Python-specific methods use the rPython low-level interface.  See the Chapter from the
+“Extending R” book in the documents for this package for details.
+</p>
+
+
+<h3>Methods</h3>
+
+
+<dl>
+<dt><code>Define(text, file)</code></dt>
+<dd>
+<p>Define a Python function from a character vector, 'text' or by reading the text
+from a file via readLines().  Character vectors are taken to represent lines of Python code
+in a function definiition.  The method returns a proxy function with a name inferred from
+the first line of the text.</p>
+</dd>
+<dt><code>Import(module, ...)</code></dt>
+<dd>
+<p>The Python version of this method replaces the general version in XR with the "import" or
+"from ... import" directives in Python as appropriate.  Returns the 'reticulate' version of the module object, which can be used directly.</p>
+</dd>
+<dt><code>initialize(...)</code></dt>
+<dd>
+<p>The Python version, with special defaults for prototypeObject and modules</p>
+</dd>
+<dt><code>PythonCommand(strings)</code></dt>
+<dd>
+<p>A low-level command execution, needed for initializing.  Normally should not be used by applications
+since it does no error checking; use $Command() instead.</p>
+</dd>
+<dt><code>ServerAddToPath(serverDirectory, serverPos)</code></dt>
+<dd>
+<p>The Python version using sys.path.append()</p>
+</dd>
+<dt><code>ServerClassDef(Class, module = "", example = TRUE)</code></dt>
+<dd>
+<p>The Python version using PythonClassDef()</p>
+</dd>
+<dt><code>ServerEval(strings, key = "", get = NA)</code></dt>
+<dd>
+<p>The Python version using value_for_R()</p>
+</dd>
+<dt><code>ServerFunctionDef(name, module = "")</code></dt>
+<dd>
+<p>The Python version using PythonFunction()</p>
+</dd>
+<dt><code>ServerRemove(key)</code></dt>
+<dd>
+<p>The Python version using del_for_R())</p>
+</dd>
+<dt><code>ServerSerialize(key, file)</code></dt>
+<dd>
+<p>Serializing and unserializing in the Python interface use the pickle structure in Python.
+Serialization does not rely on the R equivalent object.</p>
+</dd>
+<dt><code>ServerUnserialize(file, all = FALSE)</code></dt>
+<dd>
+<p>The Python unserialize using unpickle</p>
+</dd>
+<dt><code>Shell(endCode = "exit", prompt = "Py&gt;: ", cont = "Py+: ")</code></dt>
+<dd>
+<p>Starts an interactive Python shell.  Each line of input must be a complete Python expression
+or command, which will be evaluated in the same context as $Eval() expressions.
+To continue over multiple lines, end all but the last with an unescaped backslash.
+The argument 'endCode' is the string to type to leave the shell, by default "exit".</p>
+</dd>
+<dt><code>Source(filename)</code></dt>
+<dd>
+<p>The $Source() method uses the Python function execfile() and therefore is quite efficient.</p>
+</dd>
+</dl>
+</div>

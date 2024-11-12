@@ -1,0 +1,54 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>treeSize</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Measures the number of symbols in a derivation tree.</h2>
+
+<h3>Description</h3>
+
+<p><code>treeSize()</code> returns the number of symbols in a 
+derivation tree.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">treeSize(tree)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>tree</code></td>
+<td>
+<p>Derivation tree.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>Integer. Number of symbols in a derivation tree.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Measures of Tree Attributes: 
+<code>treeLeaves()</code>,
+<code>treeListDepth()</code>,
+<code>treeNodes()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">g&lt;-compileBNF(booleanGrammar())
+a&lt;-randomDerivationTree(g$Start, g)
+treeSize(a) 
+
+</code></pre>
+
+
+</div>

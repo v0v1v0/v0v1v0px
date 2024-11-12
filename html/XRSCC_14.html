@@ -1,0 +1,117 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>NP_it</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>
+Iteration of np control chart for attributes
+</h2>
+
+<h3>Description</h3>
+
+<p>Calculates the iteration i'th for the control limits of  <em>p</em> chart using the results obtained in <code>np_gr</code> or further NP_it iterations.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">NP_it(prev.results)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>prev.results</code></td>
+<td>
+
+<p>Is a list of previous results obtained by the <code>np_gr</code> function. In other cases, needs more than one iteration, to obtain the true control limits for <em>np</em> chart before take conclusions about the process.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>in.control</code></td>
+<td>
+<p>The <em>under control</em> row list for the <em>np</em>  chart in this iteration</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>out.control</code></td>
+<td>
+<p>The <em>out of control</em> row list for the <em>np</em>  chart</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Iteraciones</code></td>
+<td>
+<p>The number of iterations, It is assumed to be the second or later</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data.n</code></td>
+<td>
+<p>The fixed sample size</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data.0</code></td>
+<td>
+<p>The original data frame</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data.1</code></td>
+<td>
+<p>The <em>under control</em> subset after iteration</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bin</code></td>
+<td>
+<p>The binary values for <em>out of control</em> equal to one and <em>under control</em> equal to zero</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Limites de Control Grafica  <em>np</em></code></td>
+<td>
+<p>The <em>np</em> chart control limits vector</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Conclusion del proceso</code></td>
+<td>
+<p>The same results in a phrase as the <em>bin</em> values</p>
+</td>
+</tr>
+</table>
+<h3>Author(s)</h3>
+
+<p>Erick Marroquin
+</p>
+
+
+<h3>References</h3>
+
+<p>Montgomery, D.C. (2005) <em>Introduction to Statistical Quality Control</em>, 5th ed. New York: John Wiley &amp; Sons, ISBN 0-471-65631-3
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>p_gr</code>,  <code>np_gr</code>, <code>c_gr</code>, <code>u_gr</code>, <code>P_it</code>, <code>C_it</code>,  <code>U_it</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(bottles)
+r1&lt;-np_gr(bottles, n=100)
+r2&lt;-NP_it(r1)
+r3&lt;-NP_it(r2)
+</code></pre>
+
+
+</div>

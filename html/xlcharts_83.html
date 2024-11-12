@@ -1,0 +1,151 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>ColumnDimension</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>ColumnDimension</h2>
+
+<h3>Description</h3>
+
+<p>Information about the display properties of a column.
+</p>
+<p><a href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.dimensions.html">https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.dimensions.html</a>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">ColumnDimension(
+  worksheet,
+  index = "A",
+  width = 13L,
+  bestFit = FALSE,
+  hidden = FALSE,
+  outlineLevel = 0L,
+  outline_level = NULL,
+  collapsed = FALSE,
+  style = NULL,
+  min = NULL,
+  max = NULL,
+  customWidth = FALSE,
+  visible = NULL,
+  auto_size = NULL,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>worksheet</code></td>
+<td>
+<p>worksheet</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>index</code></td>
+<td>
+<p>index</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>width</code></td>
+<td>
+<p>width</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bestFit</code></td>
+<td>
+<p>bestFit</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hidden</code></td>
+<td>
+<p>hidden</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>outlineLevel</code></td>
+<td>
+<p>outlineLevel</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>outline_level</code></td>
+<td>
+<p>outline_level</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>collapsed</code></td>
+<td>
+<p>collapsed</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>style</code></td>
+<td>
+<p>style</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>min</code></td>
+<td>
+<p>min</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max</code></td>
+<td>
+<p>max</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>customWidth</code></td>
+<td>
+<p>customWidth</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>visible</code></td>
+<td>
+<p>visible</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>auto_size</code></td>
+<td>
+<p>auto_size</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments, i.e. kwargs.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An openpyxl Python object.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+wb &lt;- Workbook()
+ws &lt;- wb$active
+ColumnDimension(worksheet = ws)
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

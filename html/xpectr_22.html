@@ -1,0 +1,107 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>stop_if</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Simple side effect functions</h2>
+
+<h3>Description</h3>
+
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="../help/figures/lifecycle-experimental.svg" alt="[Experimental]"></a>
+</p>
+<p>If the <code>`condition`</code> is <code>TRUE</code>,
+generate <code>error</code>/<code>warning</code>/<code>message</code> with the supplied message.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">stop_if(condition, message = NULL, sys.parent.n = 0L)
+
+warn_if(condition, message = NULL, sys.parent.n = 0L)
+
+message_if(condition, message = NULL, sys.parent.n = 0L)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>condition</code></td>
+<td>
+<p>The condition to check. (Logical)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>message</code></td>
+<td>
+<p>Message. (Character)
+</p>
+<p>Note: If <code>NULL</code>, the <code>`condition`</code> will be used as message.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sys.parent.n</code></td>
+<td>
+<p>The number of generations to go back when calling the message function.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>When <code>`condition`</code> is <code>FALSE</code>, they return <code>NULL</code> invisibly.
+</p>
+<p>When <code>`condition`</code> is <code>TRUE</code>:
+</p>
+
+
+<h4>stop_if()</h4>
+
+<p>Throws error with the supplied message.
+</p>
+
+
+
+<h4>warn_if()</h4>
+
+<p>Throws warning with the supplied message.
+</p>
+
+
+
+<h4>message_if()</h4>
+
+<p>Generates message with the supplied message.
+</p>
+
+
+
+<h3>Value</h3>
+
+<p>Returns <code>NULL</code> invisibly.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ludvig Renbo Olsen, <a href="mailto:r-pkgs@ludvigolsen.dk">r-pkgs@ludvigolsen.dk</a>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Attach packages
+library(xpectr)
+## Not run: 
+a &lt;- 0
+stop_if(a == 0, "'a' cannot be 0.")
+warn_if(a == 0, "'a' was 0.")
+message_if(a == 0, "'a' was so kind to be 0.")
+
+## End(Not run)
+</code></pre>
+
+
+</div>

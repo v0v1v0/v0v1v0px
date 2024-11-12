@@ -1,0 +1,96 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>as_tuned</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>convert tskrr models</h2>
+
+<h3>Description</h3>
+
+<p>These functions allow converting models that inherit from the
+<code>tskrr</code> and
+<code>tskrrTune</code> class into each other,
+keeping track of whether the model is homogeneous or heterogeneous.
+The dots argument allows specifying values for possible extra slots
+when converting from <code>tskrr</code> to <code>tskrrTune</code>.
+More information on these slots can be found
+on the help page of <code>tskrrTune</code>.
+<strong>These functions are not exported.</strong>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">as_tuned(x, ...)
+
+as_tskrr(x, ...)
+
+## S4 method for signature 'tskrrHomogeneous'
+as_tuned(x, ...)
+
+## S4 method for signature 'tskrrHeterogeneous'
+as_tuned(x, ...)
+
+## S4 method for signature 'tskrrTune'
+as_tskrr(x)
+
+## S4 method for signature 'tskrrImpute'
+as_tskrr(x)
+
+## S4 method for signature 'tskrr'
+as_tskrr(x)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>a model of class <code>tskrr</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>values for the extra slots defined by
+the class <code>tskrrTune</code></p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>For <code>as_tuned</code>:
+a <code>tskrrTune</code> object of
+the proper class (homogeneous or heterogeneous)
+</p>
+<p>For <code>as_tskrr</code>: an object of class
+<code>tskrrHomogeneous</code> or
+<code>tskrrHeterogeneous</code> depending
+on whether the original object was homogeneous or heterogeneous.
+</p>
+
+
+<h3><b>Warning</b></h3>
+
+<p>This functions do NOT tune a model. they are used internally to
+make the connection between both types in the methods.
+</p>
+
+
+<h3>See Also</h3>
+
+
+<ul>
+<li> <p><code>tune</code> for actually tuning a model.
+</p>
+</li>
+<li> <p><code>tskrrTune</code> for
+names and possible values of the slots passed through
+...
+</p>
+</li>
+</ul>
+</div>

@@ -1,0 +1,128 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xVACalculator</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Calculates the xVA values</h2>
+
+<h3>Description</h3>
+
+<p>Calculates the xVA values (CVA, DVA, FVA, FBA, MVA, KVA)
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xVACalculator(
+  trades,
+  CSA,
+  collateral,
+  sim_data,
+  reg_data,
+  credit_curve_PO,
+  credit_curve_cpty,
+  funding_curve,
+  spot_rates,
+  cpty_LGD,
+  PO_LGD,
+  no_simulations
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>trades</code></td>
+<td>
+<p>The full list of the Trade Objects</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>CSA</code></td>
+<td>
+<p>The margin agreement with the counterparty</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>collateral</code></td>
+<td>
+<p>The amount of collateral currently exchanged with the counterparty</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sim_data</code></td>
+<td>
+<p>A list containing data related to the calculation of simulated exposures (for example the model parameters and the number of simulations)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>reg_data</code></td>
+<td>
+<p>A list containing data related to the regulatory calculations (for example the 'ccr_framework' member variable can be 'IMM','SACCR','CEM')</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>credit_curve_PO</code></td>
+<td>
+<p>The credit curve of the processing organization</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>credit_curve_cpty</code></td>
+<td>
+<p>The credit curve of the processing organization</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>funding_curve</code></td>
+<td>
+<p>A curve containing the credit spread for the funding of the collateral</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>spot_rates</code></td>
+<td>
+<p>The spot rates curve</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cpty_LGD</code></td>
+<td>
+<p>The loss-given-default of the counterparty</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PO_LGD</code></td>
+<td>
+<p>The loss-given-default of the processing organization</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>no_simulations</code></td>
+<td>
+<p>if true, no simulated exposure will be generated and the regulatory framework should be SA-CCR</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A list containing the xVA values and the cva capital charge
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Tasos Grivas &lt;tasos@openriskcalculator.com&gt;
+</p>
+
+
+<h3>References</h3>
+
+<p>Gregory J., The xVA Challenge, 2015, Wiley
+</p>
+
+
+</div>

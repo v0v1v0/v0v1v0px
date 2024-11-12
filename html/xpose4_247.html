@@ -1,0 +1,688 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xpose.VPC</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Visual Predictive Check (VPC) using XPOSE</h2>
+
+<h3>Description</h3>
+
+<p>This Function is used to create a VPC in xpose using the output from the 
+<code>vpc</code> command in Pearl Speaks NONMEM (PsN).  The function reads in the 
+output files created by PsN and creates a plot from the data.  The dependent 
+variable, independent variable and conditioning variable are automatically 
+determined from the PsN files.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xpose.VPC(
+  vpc.info = "vpc_results.csv",
+  vpctab = dir(pattern = "^vpctab")[1],
+  object = NULL,
+  ids = FALSE,
+  type = "p",
+  by = NULL,
+  PI = NULL,
+  PI.ci = "area",
+  PI.ci.area.smooth = FALSE,
+  PI.real = TRUE,
+  subset = NULL,
+  main = "Default",
+  main.sub = NULL,
+  main.sub.cex = 0.85,
+  inclZeroWRES = FALSE,
+  force.x.continuous = FALSE,
+  funy = NULL,
+  logy = FALSE,
+  ylb = "Default",
+  verbose = FALSE,
+  PI.x.median = TRUE,
+  PI.rug = "Default",
+  PI.identify.outliers = TRUE,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>vpc.info</code></td>
+<td>
+<p>The results file from the <code>vpc</code> command in PsN. for 
+example ‘<span class="file">vpc_results.csv</span>’, or if the file is in a separate directory 
+‘<span class="file">./vpc_dir1/vpc_results.csv</span>’.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>vpctab</code></td>
+<td>
+<p>The ‘<span class="file">vpctab</span>’ from the <code>vpc</code> command in PsN.  For 
+example ‘<span class="file">vpctab5</span>’, or if the file is in a separate directory 
+‘<span class="file">./vpc_dir1/vpctab5</span>’.  Can be <code>NULL</code>.  The default looks in the 
+current working directory and takes the first file that starts with 
+‘<span class="file">vpctab</span>’ that it finds.  Note that this default can result in the 
+wrong files being read if there are multiple ‘<span class="file">vpctab</span>’ files in the 
+directory. One of <code>object</code> or <code>vpctab</code> is required.  If both are 
+present then the information from the <code>vpctab</code> will over-ride the 
+xpose data object <code>object</code> (i.e. the values from the vpctab will 
+replace any matching values in the <code>object\@Data</code> portion of the xpose
+data object).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An xpose data object. Created from <code>xpose.data</code>. 
+One of <code>object</code> or <code>vpctab</code> is required.  If both are present 
+then the information from the <code>vpctab</code> will over-ride the xpose data 
+object <code>object</code> (i.e. the values from the vpctab will replace any 
+matching values in the <code>object\@Data</code> portion of the xpose data 
+object).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ids</code></td>
+<td>
+<p>A logical value indicating whether text ID labels should be used 
+as plotting symbols (the variable used for these symbols indicated by the 
+<code>idlab</code> xpose data variable). Can be <code>FALSE</code> or <code>TRUE</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>type</code></td>
+<td>
+<p>Character string describing the way the points in the plot will 
+be displayed. For more details, see <code>plot</code>. Use 
+<code>type="n"</code> if you don't want observations in the plot.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>by</code></td>
+<td>
+<p>A string or a vector of strings with the name(s) of the 
+conditioning variables. For example <code>by = c("SEX","WT")</code>.  Because the
+function automatically determines the conditioning variable from the PsN 
+input file specified in <code>vpc.info</code>, the <code>by</code> command can control 
+if separate plots are created for each condition (<code>by=NULL</code>), or if a 
+conditioning plot should be created (<code>by="WT"</code> for example).  If the 
+<code>vpc.info</code> file has a conditioning variable then <code>by</code> must match 
+that variable.  If there is no conditioning variable in <code>vpc.info</code> 
+then the <code>PI</code> for each conditioned plot will be the <code>PI</code> for the 
+entire data set (not only for the conditioning subset).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI</code></td>
+<td>
+<p>Either "lines", "area" or "both" specifying whether prediction 
+intervals (as lines, a shaded area or both) should be added to the plot. 
+<code>NULL</code> means no prediction interval.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci</code></td>
+<td>
+<p>Plot the confidence interval for the simulated data's
+percentiles for each bin (for each simulated data set compute the
+percentiles for each bin, then, from all of the percentiles from all of the
+simulated datasets compute the 95% CI of these percentiles). Values can be
+<code>"both"</code>, <code>"area"</code> or <code>"lines"</code>. These CIs can be used to
+asses the <code>PI.real</code> values for model misspecification. Note that with
+few observations per bin the CIs will be approximate because the 
+percentiles in each bin will be approximate. For example, the 95th 
+percentile of 4 data points will always be the largest of the 4 data 
+points.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.area.smooth</code></td>
+<td>
+<p>Should the "area" for <code>PI.ci</code> be smoothed to
+match the "lines" argument? Allowed values are <code>TRUE/FALSE</code>. The "area"
+is set by default to show the bins used in the <code>PI.ci</code> computation.  By
+smoothing, information is lost and, in general, the confidence intervals
+will be smaller than they are in reality.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.real</code></td>
+<td>
+<p>Plot the percentiles of the real data in the various bins. 
+values can be NULL or TRUE.  Note that for a bin with few actual 
+observations the percentiles will be approximate.  For example, the 95th 
+percentile of 4 data points will always be the largest of the 4 data 
+points.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>subset</code></td>
+<td>
+<p>A string giving the subset expression to be applied to the data
+before plotting. See <code>xsubset</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>A string giving the plot title or <code>NULL</code> if none. 
+<code>"Default"</code> creates a default title.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main.sub</code></td>
+<td>
+<p>Used for names above each plot when using multiple plots. 
+Should be a vector <code>c("Group 1","Group 2")</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main.sub.cex</code></td>
+<td>
+<p>The size of the <code>main.sub</code> titles.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>inclZeroWRES</code></td>
+<td>
+<p>Logical value indicating whether rows with WRES=0 is 
+included in the plot.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>force.x.continuous</code></td>
+<td>
+<p>Logical value indicating whether x-values should be
+converted to continuous variables, even if they are defined as factors.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>funy</code></td>
+<td>
+<p>String of function to apply to Y data. For example "abs"</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>logy</code></td>
+<td>
+<p>Logical value indicating whether the y-axis should be 
+logarithmic, base 10.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylb</code></td>
+<td>
+<p>Label for the y-axis</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbose</code></td>
+<td>
+<p>Should warning messages and other diagnostic information be 
+passed to screen? (TRUE or FALSE)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.x.median</code></td>
+<td>
+<p>Should the x-location of percentile lines in a bin be 
+marked at the median of the x-values? (<code>TRUE</code> or <code>FALSE</code>)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.rug</code></td>
+<td>
+<p>Should there be markings on the plot showing where the binning intervals 
+for the VPC are 
+(or the locations of the independent variable used for each VPC calculation if binning is not used)?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.identify.outliers</code></td>
+<td>
+<p>Should outlying percentiles of the real data be highlighted? (TRUE of FALSE)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Other arguments passed to <code>xpose.panel.default</code>, 
+<code>xpose.plot.default</code> and others. Please see these functions for
+more descriptions of what you can do.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A plot or a list of plots.
+</p>
+
+
+<h3>Additional arguments</h3>
+
+<p>Below are some of the additional arguments that can control the look and 
+feel of the VPC.  See 
+<code>xpose.panel.default</code> for all potential options.
+</p>
+<p><strong>Additional graphical elements available in the VPC plots.<br></strong>
+</p>
+
+<dl>
+<dt> PI.mirror = NULL, TRUE or AN.INTEGER.VALUE</dt>
+<dd>
+<p>Plot the percentiles of 
+one simulated data set in each bin. <code>TRUE</code> takes the first mirror from
+‘<span class="file">vpc_results.csv</span>’ and <code>AN.INTEGER.VALUE</code> can be <code>1, 2, 
+  ...{} n</code> where <code>n</code> is the number of mirror's output in the 
+‘<span class="file">vpc_results.csv</span>’ file.</p>
+</dd> 
+<dt> PI.limits = c(0.025, 0.975)</dt>
+<dd>
+<p>A vector of two 
+values that describe the limits of the prediction interval that should be 
+displayed.  These limits should be found in the ‘<span class="file">vpc_results.csv</span>’ 
+file. These limits are also used as the percentages for the <code>PI.real, 
+  PI.mirror</code> and <code>PI.ci</code>.  However, the confidence interval in 
+<code>PI.ci</code> is always the one defined in the ‘<span class="file">vpc_results.csv</span>’ file.</p>
+</dd>
+</dl>
+<p><strong>Additional options to control the look and feel of the <code>PI</code>. 
+See See <code>grid.polygon</code> and <code>plot</code> 
+for more details.<br></strong>
+</p>
+ <dl>
+<dt> PI.arcol</dt>
+<dd>
+<p>The color of the <code>PI</code> area</p>
+</dd> <dt> 
+PI.up.lty</dt>
+<dd>
+<p>The upper line type. can be "dotted" or "dashed", etc.</p>
+</dd> <dt> 
+PI.up.type</dt>
+<dd>
+<p>The upper type used for plotting.  Defaults to a line.</p>
+</dd> <dt> 
+PI.up.col</dt>
+<dd>
+<p>The upper line color</p>
+</dd> <dt> PI.up.lwd</dt>
+<dd>
+<p>The upper line width</p>
+</dd> 
+<dt> PI.down.lty</dt>
+<dd>
+<p>The lower line type. can be "dotted" or "dashed", etc.</p>
+</dd>
+<dt> PI.down.type</dt>
+<dd>
+<p>The lower type used for plotting. Defaults to a line.</p>
+</dd>
+<dt> PI.down.col</dt>
+<dd>
+<p>The lower line color</p>
+</dd> <dt> PI.down.lwd</dt>
+<dd>
+<p>The lower 
+line width</p>
+</dd> <dt> PI.med.lty</dt>
+<dd>
+<p>The median line type. can be "dotted" or 
+"dashed", etc.</p>
+</dd> <dt> PI.med.type</dt>
+<dd>
+<p>The median type used for plotting. 
+Defaults to a line.</p>
+</dd> <dt> PI.med.col</dt>
+<dd>
+<p>The median line color</p>
+</dd> <dt> 
+PI.med.lwd</dt>
+<dd>
+<p>The median line width</p>
+</dd> </dl>
+<p><strong>Additional options to control the look and feel of the 
+<code>PI.ci</code>. See See <code>grid.polygon</code> and 
+<code>plot</code> for more details.<br></strong>
+</p>
+ <dl>
+<dt> PI.ci.up.arcol</dt>
+<dd>
+<p>The color of the upper <code>PI.ci</code>.</p>
+</dd> 
+<dt> PI.ci.med.arcol</dt>
+<dd>
+<p>The color of the median <code>PI.ci</code>.</p>
+</dd> <dt> 
+PI.ci.down.arcol</dt>
+<dd>
+<p>The color of the lower <code>PI.ci</code>.</p>
+</dd> <dt> 
+PI.ci.up.lty</dt>
+<dd>
+<p>The upper line type. can be "dotted" or "dashed", etc.</p>
+</dd> 
+<dt> PI.ci.up.type</dt>
+<dd>
+<p>The upper type used for plotting.  Defaults to a 
+line.</p>
+</dd> <dt> PI.ci.up.col</dt>
+<dd>
+<p>The upper line color</p>
+</dd> <dt> PI.ci.up.lwd</dt>
+<dd>
+<p>The 
+upper line width</p>
+</dd> <dt> PI.ci.down.lty</dt>
+<dd>
+<p>The lower line type. can be 
+"dotted" or "dashed", etc.</p>
+</dd> <dt> PI.ci.down.type</dt>
+<dd>
+<p>The lower type used for
+plotting.  Defaults to a line.</p>
+</dd> <dt> PI.ci.down.col</dt>
+<dd>
+<p>The lower line 
+color</p>
+</dd> <dt> PI.ci.down.lwd</dt>
+<dd>
+<p>The lower line width</p>
+</dd> <dt> 
+PI.ci.med.lty</dt>
+<dd>
+<p>The median line type. can be "dotted" or "dashed", etc.</p>
+</dd> 
+<dt> PI.ci.med.type</dt>
+<dd>
+<p>The median type used for plotting.  Defaults to a 
+line.</p>
+</dd> <dt> PI.ci.med.col</dt>
+<dd>
+<p>The median line color</p>
+</dd> <dt> 
+PI.ci.med.lwd</dt>
+<dd>
+<p>The median line width</p>
+</dd> <dt>PI.ci.area.smooth</dt>
+<dd>
+<p>Should the 
+"area" for <code>PI.ci</code> be smoothed to match the "lines" argument? Allowed 
+values are <code>TRUE/FALSE</code>. The "area" is set by default to show the bins
+used in the <code>PI.ci</code> computation.  By smoothing, information is lost 
+and, in general, the confidence intervals will be smaller than they are in 
+reality.</p>
+</dd> </dl>
+<p><strong>Additional options to control the look and feel of the 
+<code>PI.real</code>. See See <code>grid.polygon</code> and 
+<code>plot</code> for more details.<br></strong>
+</p>
+ <dl>
+<dt> PI.real.up.lty</dt>
+<dd>
+<p>The upper line type. can be "dotted" or 
+"dashed", etc.</p>
+</dd> <dt> PI.real.up.type</dt>
+<dd>
+<p>The upper type used for plotting. 
+Defaults to a line.</p>
+</dd> <dt> PI.real.up.col</dt>
+<dd>
+<p>The upper line color</p>
+</dd> <dt> 
+PI.real.up.lwd</dt>
+<dd>
+<p>The upper line width</p>
+</dd> <dt> PI.real.down.lty</dt>
+<dd>
+<p>The lower 
+line type. can be "dotted" or "dashed", etc.</p>
+</dd> <dt> PI.real.down.type</dt>
+<dd>
+<p>The
+lower type used for plotting.  Defaults to a line.</p>
+</dd> <dt> 
+PI.real.down.col</dt>
+<dd>
+<p>The lower line color</p>
+</dd> <dt> PI.real.down.lwd</dt>
+<dd>
+<p>The lower 
+line width</p>
+</dd> <dt> PI.real.med.lty</dt>
+<dd>
+<p>The median line type. can be "dotted" 
+or "dashed", etc.</p>
+</dd> <dt> PI.real.med.type</dt>
+<dd>
+<p>The median type used for 
+plotting.  Defaults to a line.</p>
+</dd> <dt> PI.real.med.col</dt>
+<dd>
+<p>The median line 
+color</p>
+</dd> <dt> PI.real.med.lwd</dt>
+<dd>
+<p>The median line width</p>
+</dd> </dl>
+<p><strong>Additional options to control the look and feel of the 
+<code>PI.mirror</code>. See See <code>plot</code> for more 
+details.<br></strong>
+</p>
+ <dl>
+<dt>PI.mirror.up.lty</dt>
+<dd>
+<p>The upper line type. can be "dotted" or 
+"dashed", etc.</p>
+</dd> <dt> PI.mirror.up.type</dt>
+<dd>
+<p>The upper type used for plotting.
+Defaults to a line.</p>
+</dd> <dt> PI.mirror.up.col</dt>
+<dd>
+<p>The upper line color</p>
+</dd> <dt> 
+PI.mirror.up.lwd</dt>
+<dd>
+<p>The upper line width</p>
+</dd> <dt> PI.mirror.down.lty</dt>
+<dd>
+<p>The 
+lower line type. can be "dotted" or "dashed", etc.</p>
+</dd> <dt> 
+PI.mirror.down.type</dt>
+<dd>
+<p>The lower type used for plotting.  Defaults to a 
+line.</p>
+</dd> <dt> PI.mirror.down.col</dt>
+<dd>
+<p>The lower line color</p>
+</dd> <dt> 
+PI.mirror.down.lwd</dt>
+<dd>
+<p>The lower line width</p>
+</dd> <dt> PI.mirror.med.lty</dt>
+<dd>
+<p>The 
+median line type. can be "dotted" or "dashed", etc.</p>
+</dd> <dt> 
+PI.mirror.med.type</dt>
+<dd>
+<p>The median type used for plotting.  Defaults to a 
+line.</p>
+</dd> <dt> PI.mirror.med.col</dt>
+<dd>
+<p>The median line color</p>
+</dd> <dt> 
+PI.mirror.med.lwd</dt>
+<dd>
+<p>The median line width</p>
+</dd> </dl>
+<h3>Author(s)</h3>
+
+<p>Andrew Hooker
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>read.vpctab</code> <code>read.npc.vpc.results</code> 
+<code>xpose.panel.default</code> <code>xpose.plot.default</code>
+</p>
+<p>Other PsN functions: 
+<code>boot.hist()</code>,
+<code>bootscm.import()</code>,
+<code>npc.coverage()</code>,
+<code>randtest.hist()</code>,
+<code>read.npc.vpc.results()</code>,
+<code>read.vpctab()</code>,
+<code>xpose.VPC.both()</code>,
+<code>xpose.VPC.categorical()</code>,
+<code>xpose4-package</code>
+</p>
+<p>Other specific functions: 
+<code>absval.cwres.vs.cov.bw()</code>,
+<code>absval.cwres.vs.pred()</code>,
+<code>absval.cwres.vs.pred.by.cov()</code>,
+<code>absval.iwres.cwres.vs.ipred.pred()</code>,
+<code>absval.iwres.vs.cov.bw()</code>,
+<code>absval.iwres.vs.idv()</code>,
+<code>absval.iwres.vs.ipred()</code>,
+<code>absval.iwres.vs.ipred.by.cov()</code>,
+<code>absval.iwres.vs.pred()</code>,
+<code>absval.wres.vs.cov.bw()</code>,
+<code>absval.wres.vs.idv()</code>,
+<code>absval.wres.vs.pred()</code>,
+<code>absval.wres.vs.pred.by.cov()</code>,
+<code>absval_delta_vs_cov_model_comp</code>,
+<code>addit.gof()</code>,
+<code>autocorr.cwres()</code>,
+<code>autocorr.iwres()</code>,
+<code>autocorr.wres()</code>,
+<code>basic.gof()</code>,
+<code>basic.model.comp()</code>,
+<code>cat.dv.vs.idv.sb()</code>,
+<code>cat.pc()</code>,
+<code>cov.splom()</code>,
+<code>cwres.dist.hist()</code>,
+<code>cwres.dist.qq()</code>,
+<code>cwres.vs.cov()</code>,
+<code>cwres.vs.idv()</code>,
+<code>cwres.vs.idv.bw()</code>,
+<code>cwres.vs.pred()</code>,
+<code>cwres.vs.pred.bw()</code>,
+<code>cwres.wres.vs.idv()</code>,
+<code>cwres.wres.vs.pred()</code>,
+<code>dOFV.vs.cov()</code>,
+<code>dOFV.vs.id()</code>,
+<code>dOFV1.vs.dOFV2()</code>,
+<code>data.checkout()</code>,
+<code>dv.preds.vs.idv()</code>,
+<code>dv.vs.idv()</code>,
+<code>dv.vs.ipred()</code>,
+<code>dv.vs.ipred.by.cov()</code>,
+<code>dv.vs.ipred.by.idv()</code>,
+<code>dv.vs.pred()</code>,
+<code>dv.vs.pred.by.cov()</code>,
+<code>dv.vs.pred.by.idv()</code>,
+<code>dv.vs.pred.ipred()</code>,
+<code>gof()</code>,
+<code>ind.plots()</code>,
+<code>ind.plots.cwres.hist()</code>,
+<code>ind.plots.cwres.qq()</code>,
+<code>ipred.vs.idv()</code>,
+<code>iwres.dist.hist()</code>,
+<code>iwres.dist.qq()</code>,
+<code>iwres.vs.idv()</code>,
+<code>kaplan.plot()</code>,
+<code>par_cov_hist</code>,
+<code>par_cov_qq</code>,
+<code>parm.vs.cov()</code>,
+<code>parm.vs.parm()</code>,
+<code>pred.vs.idv()</code>,
+<code>ranpar.vs.cov()</code>,
+<code>runsum()</code>,
+<code>wres.dist.hist()</code>,
+<code>wres.dist.qq()</code>,
+<code>wres.vs.idv()</code>,
+<code>wres.vs.idv.bw()</code>,
+<code>wres.vs.pred()</code>,
+<code>wres.vs.pred.bw()</code>,
+<code>xpose.VPC.both()</code>,
+<code>xpose.VPC.categorical()</code>,
+<code>xpose4-package</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Not run: 
+library(xpose4)
+
+xpose.VPC()
+
+## to be more clear about which files should be read in
+vpc.file &lt;- "vpc_results.csv"
+vpctab &lt;- "vpctab5"
+xpose.VPC(vpc.info=vpc.file,vpctab=vpctab)
+
+## with lines and a shaded area for the prediction intervals
+xpose.VPC(vpc.file,vpctab=vpctab,PI="both")
+
+## with the percentages of the real data
+xpose.VPC(vpc.file,vpctab=vpctab,PI.real=T)
+
+## with mirrors (if supplied in 'vpc.file')
+xpose.VPC(vpc.file,vpctab=vpctab,PI.real=T,PI.mirror=5)
+
+## with CIs
+xpose.VPC(vpc.file,vpctab=vpctab,PI.real=T,PI.ci="area")
+xpose.VPC(vpc.file,vpctab=vpctab,PI.real=T,PI.ci="area",PI=NULL)
+
+## stratification (if 'vpc.file' is stratified)
+cond.var &lt;- "WT"
+xpose.VPC(vpc.file,vpctab=vpctab)
+xpose.VPC(vpc.file,vpctab=vpctab,by=cond.var)
+xpose.VPC(vpctab=vpctab,vpc.info=vpc.file,PI="both",by=cond.var,type="n")
+
+## with no data points in the plot
+xpose.VPC(vpc.file,vpctab=vpctab,by=cond.var,PI.real=T,PI.ci="area",PI=NULL,type="n")
+
+## with different DV and IDV, just read in new files and plot
+vpc.file &lt;- "vpc_results.csv"
+vpctab &lt;- "vpctab5"
+cond.var &lt;- "WT"
+xpose.VPC(vpctab=vpctab,vpc.info=vpc.file,PI="both",by=cond.var)
+xpose.VPC(vpctab=vpctab,vpc.info=vpc.file,PI="both")
+
+## to use an xpose data object instead of vpctab
+##
+## In this example
+## we expect to find the required NONMEM run and table files for run
+## 5 in the current working directory
+runnumber &lt;- 5
+xpdb &lt;- xpose.data(runnumber)
+xpose.VPC(vpc.file,object=xpdb)
+
+## to read files in a directory different than the current working directory 
+vpc.file &lt;- "./vpc_strat_WT_4_mirror_5/vpc_results.csv"
+vpctab &lt;- "./vpc_strat_WT_4_mirror_5/vpctab5"
+xpose.VPC(vpc.info=vpc.file,vpctab=vpctab)
+
+## to rearrange order of factors in VPC plot
+xpdb@Data$SEX &lt;- factor(xpdb@Data$SEX,levels=c("2","1"))
+xpose.VPC(by="SEX",object=xpdb)
+
+
+## End(Not run)
+
+
+</code></pre>
+
+
+</div>

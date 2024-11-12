@@ -1,0 +1,99 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>supports</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Detect support for features</h2>
+
+<h3>Description</h3>
+
+<p><code>supports_get_bookmarks()</code>, <code>supports_set_bookmarks()</code>,
+<code>supports_get_docinfo()</code>, <code>supports_set_docinfo()</code>,
+<code>supports_get_xmp()</code>, <code>supports_set_xmp()</code>,
+<code>supports_cat_pages()</code>, and <code>supports_n_pages()</code>
+detects support for the functions
+<code>get_bookmarks()</code>, <code>set_bookmarks()</code>,
+<code>get_docinfo()</code>, <code>set_docinfo()</code>,
+<code>get_xmp()</code>, <code>set_xmp()</code>,
+<code>cat_pages()</code>, and <code>n_pages()</code> respectively.
+<code>supports_exiftool()</code>, <code>supports_gs()</code> and <code>supports_pdftk()</code>
+detects support for the command-line tools
+<code>exiftool</code>, <code>ghostscript</code> and <code>pdftk</code> respectively as used by various lower-level functions.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">supports_get_bookmarks()
+
+supports_set_bookmarks()
+
+supports_get_docinfo()
+
+supports_set_docinfo()
+
+supports_get_xmp()
+
+supports_set_xmp()
+
+supports_cat_pages()
+
+supports_n_pages()
+
+supports_exiftool()
+
+supports_gs()
+
+supports_pdftk()
+</code></pre>
+
+
+<h3>Details</h3>
+
+
+<ul>
+<li> <p><code>supports_exiftool()</code> detects support for the command-line tool <code>exiftool</code> which is
+required for <code>get_docinfo_exiftool()</code>, <code>get_xmp_exiftool()</code>, <code>set_xmp_exiftool()</code>, and <code>n_pages_exiftool()</code>.
+</p>
+</li>
+<li> <p><code>supports_gs()</code> detects support for the command-line tool <code>ghostscript</code> which is
+required for <code>set_docinfo_gs()</code>, <code>set_bookmarks_gs()</code>, <code>cat_pages_gs()</code>, and <code>n_pages_gs()</code>.
+</p>
+</li>
+<li> <p><code>supports_pdftk()</code> detects support for the command-line tool <code>pdftk</code> which is
+required for <code>get_bookmarks_pdftk()</code>, <code>set_bookmarks_pdftk()</code>,
+<code>get_docinfo_pdftk()</code>, <code>set_docinfo_pdftk()</code>, <code>cat_pages_pdftk()</code>, and <code>n_pages_pdftk()</code>.
+</p>
+</li>
+<li> <p><code>requireNamespace("pdftools", quietly = TRUE)</code> detects support for the R packages <code>pdftools</code>
+which is required for <code>get_bookmarks_pdftools()</code> and <code>get_docinfo_pdftools()</code>.
+</p>
+</li>
+<li> <p><code>requireNamespace("qpdf", quietly = TRUE)</code> detects support for the R packages <code>qpdf</code>
+which is required for <code>cat_pages_qpdf()</code> and <code>n_pages_qpdf()</code>.
+</p>
+</li>
+</ul>
+<h3>Examples</h3>
+
+<pre><code class="language-R">  # Detect for higher-level features
+  supports_get_docinfo()
+  supports_set_docinfo()
+  supports_get_bookmarks()
+  supports_set_bookmarks()
+  supports_get_xmp()
+  supports_set_xmp()
+  supports_cat_pages()
+  supports_n_pages()
+
+  # Detect support for lower-level helper features
+  supports_exiftool()
+  supports_gs()
+  supports_pdftk()
+  print(requireNamespace("pdftools", quietly = TRUE))
+  print(requireNamespace("qpdf", quietly = TRUE))
+</code></pre>
+
+
+</div>

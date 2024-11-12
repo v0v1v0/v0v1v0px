@@ -1,0 +1,142 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>read.npc.vpc.results</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Read the results file from a Numerical or Visual Predictive Check run in PsN</h2>
+
+<h3>Description</h3>
+
+<p>This function reads in a results file from running either the PsN command
+<code>vpc</code> or <code>npc</code>.  The function then parses the file and passes the
+result to plotting functions.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">read.npc.vpc.results(
+  vpc.results = NULL,
+  npc.results = NULL,
+  verbose = FALSE,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>vpc.results</code></td>
+<td>
+<p>The name of the results file from running the PsN command
+<code>vcp</code>.  Often this is named ‘<span class="file">vpc_results.csv</span>’.  If the file is in
+a directory different then the working directory then you can define a
+relative or absolute path to the file by, for example,
+‘<span class="file">./vpc_strat_WT_4_mirror_5/vpc_results.csv</span>’.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>npc.results</code></td>
+<td>
+<p>The name of the results file from running the PsN command
+<code>npc</code>.  Often this is named ‘<span class="file">npc_results.csv</span>’.  relative or
+absolute paths to the file are allowed as for <code>vpc.results</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbose</code></td>
+<td>
+<p>Text messages passed to screen or not.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>arguments passed to other functions.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>One of <code>vpc.results</code> or <code>npc.results</code> are necessary.  If both or
+none are defined then the function does nothing and a <code>NULL</code> is
+returned from the function.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A list of values is returned.  </p>
+<table>
+<tr style="vertical-align: top;">
+<td><code>model.file </code></td>
+<td>
+<p>The model file
+that PsN ran either the <code>npc</code> or <code>vpc</code> with</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dv.var </code></td>
+<td>
+<p>The
+dependent variable used in the calculations.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>idv.var </code></td>
+<td>
+<p>The
+independent variable used in the calculations. <code>NULL</code> if
+<code>npc.results</code> is used.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>num.tables </code></td>
+<td>
+<p>The number of separate
+tables in the results file.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>by.interval </code></td>
+<td>
+<p>The conditioning interval
+for the stratification variable, only returned if <code>vpc.results</code> is
+used.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>result.tables </code></td>
+<td>
+<p>The results tables from the results file.  this
+is a list.</p>
+</td>
+</tr>
+</table>
+<h3>Author(s)</h3>
+
+<p>Andrew Hooker
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xpose.VPC</code> <code>npc.coverage</code>
+</p>
+<p>Other PsN functions: 
+<code>boot.hist()</code>,
+<code>bootscm.import()</code>,
+<code>npc.coverage()</code>,
+<code>randtest.hist()</code>,
+<code>read.vpctab()</code>,
+<code>xpose.VPC()</code>,
+<code>xpose.VPC.both()</code>,
+<code>xpose.VPC.categorical()</code>,
+<code>xpose4-package</code>
+</p>
+
+
+</div>

@@ -1,0 +1,75 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>MetropolisTable</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Metropolis acceptance probability table.</h2>
+
+<h3>Description</h3>
+
+<p>Metropolis acceptance probability table.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">MetropolisTable(d = 1, beta = 2, temperature = 1000, alpha = 0.9, steps = 1000)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>d</code></td>
+<td>
+<p>Distance between the fitness of the old and the new gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>beta</code></td>
+<td>
+<p>Constant.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>temperature</code></td>
+<td>
+<p>Temperature.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>alpha</code></td>
+<td>
+<p>Cooling constant in [0, 1].</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>steps</code></td>
+<td>
+<p>Number of steps.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Data frame with the columns alpha, beta, temperature, 
+d (distance between fitness), and probability of acceptance.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Diagnostic: 
+<code>MetropolisAcceptanceProbability()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">MetropolisTable(d=2, beta=2, temperature=10, alpha=0.99, steps=10)
+</code></pre>
+
+
+</div>

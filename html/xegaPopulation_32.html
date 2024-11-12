@@ -1,0 +1,134 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaBestInPopulation</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Best solution in the population.</h2>
+
+<h3>Description</h3>
+
+<p><code>BestInPopulation()</code> extracts the best
+individual of a population and
+reports fitness, value, genotype, and phenotype:
+</p>
+
+<ol>
+<li>
+<p><code>fitness</code>:  The fitness value of the genetic algorithm.
+</p>
+</li>
+<li>
+<p><code>value</code>:   The function value of the problem environment.
+</p>
+</li>
+<li>
+<p><code>genotype</code>:  The gene representation.
+</p>
+</li>
+<li>  
+<p><code>phenotype</code>: The problem representation.
+E.g. a parameter list, a program, ...
+</p>
+</li>
+</ol>
+<p>We report one of the best solutions.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaBestInPopulation(pop, fit, lF, allsolutions = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>pop</code></td>
+<td>
+<p>Population of genes.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fit</code></td>
+<td>
+<p>Vector of fitness values of <code>pop</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local function configuration.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>allsolutions</code></td>
+<td>
+<p>If TRUE, also return a list of all solutions.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Named list with the following elements:
+</p>
+
+<ul>
+<li> <p><code>$name</code>:     The name of the problem environment.
+</p>
+</li>
+<li> <p><code>$fitness</code>:  The fitness value of the best solution.
+</p>
+</li>
+<li> <p><code>$val</code>:      The evaluted best gene. 
+</p>
+</li>
+<li> <p><code>$numberOfSolutions</code>:   The number of solutions.
+</p>
+</li>
+<li> <p><code>$genotype</code>:    The best gene.
+</p>
+</li>
+<li> <p><code>$phenotype</code>:   The parameters of the solution
+(the decoded gene).
+</p>
+</li>
+<li> <p><code>$phenotypeValue</code>:  The value of the
+function of the parameters of the solution
+(the decoded gene).
+</p>
+</li>
+<li> <p><code>$allgenotypes</code>:  The genotypes of all best solutions.
+(allsolutions==TRUE)
+</p>
+</li>
+<li> <p><code>$allphenotypes</code>:  The phenotypes of all best solutions.
+(allsolutions==TRUE)
+</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p>Other Population Layer: 
+<code>xegaBestGeneInPopulation()</code>,
+<code>xegaEvalPopulation()</code>,
+<code>xegaInitPopulation()</code>,
+<code>xegaLogEvalsPopulation()</code>,
+<code>xegaNextPopulation()</code>,
+<code>xegaObservePopulation()</code>,
+<code>xegaSummaryPopulation()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">pop10&lt;-xegaInitPopulation(10, lFxegaGaGene)
+epop10&lt;-xegaEvalPopulation(pop10, lFxegaGaGene)
+xegaBestInPopulation(epop10$pop, epop10$fit, lFxegaGaGene)
+
+</code></pre>
+
+
+</div>

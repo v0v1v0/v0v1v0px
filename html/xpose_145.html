@@ -1,0 +1,116 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>vpc_data</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Visual predictive checks data</h2>
+
+<h3>Description</h3>
+
+<p>Generate visual predictive checks (VPC) data
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">vpc_data(
+  xpdb,
+  opt,
+  stratify,
+  vpc_type = c("continuous", "categorical", "censored", "time-to-event"),
+  psn_folder = NULL,
+  psn_bins = FALSE,
+  obs_problem = NULL,
+  sim_problem = NULL,
+  quiet
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>xpdb</code></td>
+<td>
+<p>An xpose database object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>opt</code></td>
+<td>
+<p>A list of options regarding binning, pi and ci computation. 
+For more information see <code>vpc_opt</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>stratify</code></td>
+<td>
+<p>Either a character string or a formula to stratify the data. For 'categorical' vpcs the 
+stratification fixed to the different categories.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>vpc_type</code></td>
+<td>
+<p>A string specifying the type of VPC to be created, can be one of: 
+'continuous', 'categorical', 'censored' or 'time-to-event'.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>psn_folder</code></td>
+<td>
+<p>Specify a PsN-generated VPC-folder.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>psn_bins</code></td>
+<td>
+<p>Only used with argument <code>psn_folder</code>. If <code>TRUE</code> bins will be inputed from the 
+PsN vpc_bins.txt file. If <code>FALSE</code> (default) bins will be re-calculated in R. Note that when 
+<code>psn_bins = TRUE</code> only the first bin array will be used and applied to all panels as it is not 
+currently possible to define per panel binning in xpose. In addition when <code>psn_bins = TRUE</code> is 
+used along with <code>vpc(smooth = FALSE)</code> the observations lines may not be centered in the bins. 
+Check the output carefully.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>obs_problem</code></td>
+<td>
+<p>Alternative to the option 'psn_folder'. The $problem number to 
+be used for observations. By default returns the last estimation problem.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sim_problem</code></td>
+<td>
+<p>Alternative to the option 'psn_folder'. The $problem number to 
+be used for simulations. By default returns the last simulation problem.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>quiet</code></td>
+<td>
+<p>Logical, if <code>FALSE</code> messages are printed to the console.</p>
+</td>
+</tr>
+</table>
+<h3>See Also</h3>
+
+<p><code>vpc</code> <code>vpc_opt</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+xpdb_ex_pk %&gt;% 
+ vpc_data() %&gt;% 
+ vpc()
+
+## End(Not run)
+</code></pre>
+
+
+</div>

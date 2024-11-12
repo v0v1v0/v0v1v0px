@@ -1,0 +1,154 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xportr_write</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Write xpt v5 transport file</h2>
+
+<h3>Description</h3>
+
+<p>Writes a local data frame into SAS transport file of version 5. The SAS
+transport format is an open format, as is required for submission of the data
+to the FDA.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xportr_write(
+  .df,
+  path,
+  max_size_gb = NULL,
+  metadata = NULL,
+  domain = NULL,
+  strict_checks = FALSE,
+  label = deprecated()
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>.df</code></td>
+<td>
+<p>A data frame to write.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>path</code></td>
+<td>
+<p>Path where transport file will be written. File name sans will be
+used as <code>xpt</code> name.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max_size_gb</code></td>
+<td>
+<p>Maximum size in GB of the exported file(s). If size of xpt file exceeds the specified maximum,
+it will split the data frame into multiple exported chunk(s).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>metadata</code></td>
+<td>
+<p>A data frame containing dataset. See 'Metadata' section for
+details.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>domain</code></td>
+<td>
+<p>Appropriate CDISC dataset name, e.g. ADAE, DM. Used to subset
+the metadata object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>strict_checks</code></td>
+<td>
+<p>If TRUE, xpt validation will report errors and not write
+out the dataset. If FALSE, xpt validation will report warnings and continue
+with writing out the dataset. Defaults to FALSE</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>label</code></td>
+<td>
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated"><img src="../help/figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a> Previously used to to set the Dataset label.
+Use the <code>metadata</code> argument to set the dataset label.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+
+<ul>
+<li>
+<p> Variable and dataset labels are stored in the "label" attribute.
+</p>
+</li>
+<li>
+<p> SAS format are stored in the "SASformat" attribute.
+</p>
+</li>
+<li>
+<p> SAS type are based on the <code>metadata</code> attribute.
+</p>
+</li>
+</ul>
+<h3>Value</h3>
+
+<p>A data frame. <code>xportr_write()</code> returns the input data invisibly.
+</p>
+
+
+<h3>Metadata</h3>
+
+<p>The argument passed in the 'metadata' argument can either
+be a metacore object, or a data.frame containing the data listed below. If
+metacore is used, no changes to options are required.
+</p>
+<p>For data.frame 'metadata' arguments two columns must be present:
+</p>
+
+<ol>
+<li>
+<p> Domain Name - passed as the 'xportr.df_domain_name' option. Default:
+"dataset". This is the column subset by the 'domain' argument in the
+function.
+</p>
+</li>
+<li>
+<p> Label Name - passed as the 'xportr.df_label' option. Default:
+"label". Character values to update the 'label' attribute of the
+dataframe This is passed to <code>haven::write_xpt</code> to note the label.
+</p>
+</li>
+</ol>
+<h3>Examples</h3>
+
+<pre><code class="language-R">adsl &lt;- data.frame(
+  SUBL = as.character(123, 456, 789),
+  DIFF = c("a", "b", "c"),
+  VAL = c("1", "2", "3"),
+  PARAM = c("param1", "param2", "param3")
+)
+
+var_spec &lt;- data.frame(
+  dataset = "adsl",
+  label = "Subject-Level Analysis Dataset",
+  data_label = "ADSL"
+)
+xportr_write(adsl,
+  path = paste0(tempdir(), "/adsl.xpt"),
+  domain = "adsl",
+  metadata = var_spec,
+  strict_checks = FALSE
+)
+
+</code></pre>
+
+
+</div>

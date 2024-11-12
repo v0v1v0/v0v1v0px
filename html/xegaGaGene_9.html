@@ -1,0 +1,65 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaGaGeneMap</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Map the bit strings of a binary gene to parameters in an interval.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaGaGenemap</code> maps the bit strings of a binary string 
+to parameters in an interval.
+Bit vectors are mapped into equispaced numbers in the interval.
+Examples: Optimization of problems with real-valued 
+parameter vectors.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaGaGeneMap(gene, penv)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>gene</code></td>
+<td>
+<p>A binary gene (the genotype).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>penv</code></td>
+<td>
+<p>A problem environment.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>The decoded gene (the phenotype).
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Decoder: 
+<code>xegaGaDecodeGene()</code>,
+<code>xegaGaGeneMapGray()</code>,
+<code>xegaGaGeneMapIdentity()</code>,
+<code>xegaGaGeneMapPerm()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">gene&lt;-xegaGaInitGene(lFxegaGaGene)
+xegaGaGeneMap(gene$gene1, lFxegaGaGene$penv)
+
+</code></pre>
+
+
+</div>

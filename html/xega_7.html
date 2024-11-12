@@ -1,0 +1,110 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>sgXCrossoverFactory</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Factory for configuring a gene dependent Crossover function.</h2>
+
+<h3>Description</h3>
+
+<p><code>sgXCrossoverFactory()</code> selects 
+</p>
+
+<ol>
+<li>
+<p> the algorithm specific crossover factory and 
+</p>
+</li>
+<li>
+<p> the method in this factory. 
+</p>
+</li>
+</ol>
+<h3>Usage</h3>
+
+<pre><code class="language-R">sgXCrossoverFactory(algorithm = "sga", method = "CrossGene")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>algorithm</code></td>
+<td>
+<p>Specifies algorithm. 
+Available: "sga", "sgde", "sgperm", "sge", sgp". 
+Default: "sga".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>Crossover method.  Algorithm (gene representation) 
+dependent. Default: <code>Crossgene()</code>. 
+Must be available in the gene specific 
+crossover factories.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The available methods for each algorithm are: 
+</p>
+
+<ul>
+<li>
+<p> "sga": 
+"Cross2Gene", "UCross2Gene", "UPCross2Gene",
+"CrossGene", "UCrossGene", "UPCrossGene".
+</p>
+</li>
+<li>
+<p> "sge": 
+"Cross2Gene", "UCross2Gene", "UPCross2Gene",
+"CrossGene", "UCrossGene", "UPCrossGene".
+</p>
+</li>
+<li>
+<p> "sgp": 
+"CrossGene", "Cross2Gene".
+</p>
+</li>
+<li>
+<p> "sgde": 
+"CrossGene", "UCrossGene", "UPCrossGene".
+</p>
+</li>
+<li>
+<p> "sgperm": 
+"CrossGene", "Cross2Gene".
+</p>
+</li>
+</ul>
+<h3>Value</h3>
+
+<p>Crossover Crossover function from the crossover factory of 
+the selected package.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Configuration: 
+<code>sgXDecodeGeneFactory()</code>,
+<code>sgXGeneMapFactory()</code>,
+<code>sgXInitGeneFactory()</code>,
+<code>sgXMutationFactory()</code>,
+<code>sgXReplicationFactory()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">sgXCrossoverFactory(algorithm="sga", method="CrossGene")
+
+</code></pre>
+
+
+</div>

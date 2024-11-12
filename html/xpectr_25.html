@@ -1,0 +1,67 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>suppress_mw</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Suppress warnings and messages</h2>
+
+<h3>Description</h3>
+
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="../help/figures/lifecycle-experimental.svg" alt="[Experimental]"></a>
+</p>
+<p>Run expression wrapped in both
+<code>suppressMessages()</code> and
+<code>suppressWarnings()</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">suppress_mw(expr)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>expr</code></td>
+<td>
+<p>Any expression to run within <code>suppressMessages()</code> and
+<code>suppressWarnings()</code>.</p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+<p><code>suppressWarnings(suppressMessages(expr))</code>
+</p>
+
+
+<h3>Value</h3>
+
+<p>The output of <code>expr</code>.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ludvig Renbo Olsen, <a href="mailto:r-pkgs@ludvigolsen.dk">r-pkgs@ludvigolsen.dk</a>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Attach packages
+library(xpectr)
+
+fn &lt;- function(a, b){
+  warning("a warning")
+  message("a message")
+  a + b
+}
+
+suppress_mw(fn(1, 5))
+</code></pre>
+
+
+</div>

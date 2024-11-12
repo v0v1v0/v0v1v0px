@@ -1,0 +1,123 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xlabel</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Extract and set labels for Xpose data items.</h2>
+
+<h3>Description</h3>
+
+<p>This function extracts and sets label definitions in Xpose data objects.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xlabel(x, object)
+
+xlabel(object) &lt;- value
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>Name of the variable to assign a label to.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An <code>xpose.data</code> object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>value</code></td>
+<td>
+<p>A two element vector of which the first element is the name of
+the variable and the second the label</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p><code>x</code> should be a string exactly matching the name of a column in the
+data.frame in the Data slot of an xpose.data object. The name of columns
+defined through xpose variable definitions (see <code>xpose.data</code>)
+can be extracted using the <code>xvardef</code> function and to be used in the
+<code>xlabel</code> function, e.g. <code>xlabel(xvardef("dv",object),object)</code>,
+which would give the label for the <code>dv</code> variable.
+</p>
+
+
+<h3>Value</h3>
+
+<p>The label of the specified column.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul><li> <p><code>xlabel(object) &lt;- value</code>: sets label definitions in Xpose data objects.  assigned value should be a two-element vector 
+of which the first element is the name of
+the variable and the second the label
+</p>
+</li></ul>
+<h3>Author(s)</h3>
+
+<p>Niclas Jonsson
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xpose.prefs-class</code>, <code>xvardef</code>
+</p>
+<p>Other data functions: 
+<code>add_transformed_columns</code>,
+<code>change_graphical_parameters</code>,
+<code>change_misc_parameters</code>,
+<code>compute.cwres()</code>,
+<code>data.checkout()</code>,
+<code>data_extract_or_assign</code>,
+<code>db.names()</code>,
+<code>export.graph.par()</code>,
+<code>export.variable.definitions()</code>,
+<code>import.graph.par()</code>,
+<code>import.variable.definitions()</code>,
+<code>make.sb.data()</code>,
+<code>nsim()</code>,
+<code>par_cov_summary</code>,
+<code>read.TTE.sim.data()</code>,
+<code>read.nm.tables()</code>,
+<code>read_NM_output</code>,
+<code>read_nm_table()</code>,
+<code>simprazExample()</code>,
+<code>tabulate.parameters()</code>,
+<code>xpose.data</code>,
+<code>xpose.print()</code>,
+<code>xpose4-package</code>,
+<code>xsubset()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+xpdb &lt;- simpraz.xpdb
+
+## Display label for dependent variable in the Xpose data object
+xlabel("DV", xpdb)
+
+## Set label for dependent variable
+xlabel(xpdb) &lt;- c("DV", "Concentration (mg/L)")
+xlabel("DV", xpdb) # how has this chnaged?
+</code></pre>
+
+
+</div>

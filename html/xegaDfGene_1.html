@@ -1,0 +1,52 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>ConstScaleFactor</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Constant scale factor for differential evolution.</h2>
+
+<h3>Description</h3>
+
+<p>Constant scale factor for differential evolution.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">ConstScaleFactor(lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A constant scale factor.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other ScaleFactor: 
+<code>UniformRandomScaleFactor()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">parm&lt;-function(x){function() {return(x)}}
+lF&lt;-list()
+lF$ScaleFactor1&lt;-parm(0.90)
+ConstScaleFactor(lF)
+ConstScaleFactor(lF)
+</code></pre>
+
+
+</div>

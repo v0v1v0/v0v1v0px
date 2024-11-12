@@ -1,0 +1,63 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>MetropolisAcceptanceProbability</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Metropolis acceptance probability.</h2>
+
+<h3>Description</h3>
+
+<p>Metropolis acceptance probability.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">MetropolisAcceptanceProbability(d, beta, temperature)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>d</code></td>
+<td>
+<p>Distance between the fitness of the old and the new gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>beta</code></td>
+<td>
+<p>Constant.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>temperature</code></td>
+<td>
+<p>Temperature.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Acceptance probability.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Diagnostic: 
+<code>MetropolisTable()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">MetropolisAcceptanceProbability(d=0, beta=1, temperature=10)
+MetropolisAcceptanceProbability(d=1, beta=1, temperature=10)
+</code></pre>
+
+
+</div>

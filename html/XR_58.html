@@ -1,0 +1,50 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>proxyName</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Return the Server Language Name Corresponding to a Proxy Object</h2>
+
+<h3>Description</h3>
+
+<p>Interface evaluators pass constructed names to the server language evaluator, arranged
+to be unique within and between evaluators.  This function returns the name when given a
+proxy object.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">proxyName(x)
+
+## S4 method for signature 'AssignedProxy'
+proxyName(x)
+
+## S4 method for signature 'ProxyClassObject'
+proxyName(x)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>an object returned from some computation in the server  as a proxy
+for that server object.  May be from a proxy class, but doesn't need to be.</p>
+</td>
+</tr></table>
+<h3>Methods (by class)</h3>
+
+
+<ul>
+<li> <p><code>AssignedProxy</code>: for this class, the name is the object (which extends class
+"character")
+</p>
+</li>
+<li> <p><code>ProxyClassObject</code>: this class has a proxy object as a field.
+</p>
+</li>
+</ul>
+</div>

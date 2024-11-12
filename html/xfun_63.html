@@ -1,0 +1,45 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>is_blank</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Test if a character vector consists of blank strings</h2>
+
+<h3>Description</h3>
+
+<p>Return a logical vector indicating if elements of a character vector are
+blank (white spaces or empty strings).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">is_blank(x)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>A character vector.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p><code>TRUE</code> for blank elements, or <code>FALSE</code> otherwise.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">xfun::is_blank("")
+xfun::is_blank("abc")
+xfun::is_blank(c("", "  ", "\n\t"))
+xfun::is_blank(c("", " ", "abc"))
+</code></pre>
+
+
+</div>

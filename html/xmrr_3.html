@@ -1,0 +1,96 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xmr_chart</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Generate the XMR chart for XMR data</h2>
+
+<h3>Description</h3>
+
+<p>Useful for diagnostics on xmr, and just visualizing the data.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xmr_chart(
+  dataframe,
+  time,
+  measure,
+  boundary_linetype = "dashed",
+  central_linetype = "dotted",
+  boundary_colour = "#d02b27",
+  point_colour = "#7ECBB5",
+  point_size = 2,
+  line_width = 0.5,
+  text_size = 9
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>dataframe</code></td>
+<td>
+<p>Output from xmR()</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>time</code></td>
+<td>
+<p>Time column</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>measure</code></td>
+<td>
+<p>Measure</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>boundary_linetype</code></td>
+<td>
+<p>Type of line for upper and lower boundary lines. Defaults to "dashed".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>central_linetype</code></td>
+<td>
+<p>Type of line for central line. Defaults to "dotted".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>boundary_colour</code></td>
+<td>
+<p>Colour of line for upper and lower boundary lines. Defaults to "#d02b27".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>point_colour</code></td>
+<td>
+<p>Colour of points. Defaults to "#7ECBB5".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>point_size</code></td>
+<td>
+<p>Size of points. Defaults to 2.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>line_width</code></td>
+<td>
+<p>Width of lines. Defaults to 0.5.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>text_size</code></td>
+<td>
+<p>Size of chart text. Defaults to 9.</p>
+</td>
+</tr>
+</table>
+</div>

@@ -1,0 +1,40 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>NewlFselectGenes</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Generate local functions and objects.</h2>
+
+<h3>Description</h3>
+
+<p><code>NewlFselectGenes</code> returns 
+the list of functions which contains 
+a definition of all local objects required for the use
+of selection functions. We reference this object 
+as local configuration. When adding additional 
+selection functions, this must be extended
+by the constant (functions) needed to configure them.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">NewlFselectGenes()
+</code></pre>
+
+
+<h3>Value</h3>
+
+<p>Local configuration <code>lF</code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">lF&lt;-NewlFselectGenes()
+lF$Max()
+</code></pre>
+
+
+</div>

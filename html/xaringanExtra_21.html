@@ -1,0 +1,180 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>search</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Search</h2>
+
+<h3>Description</h3>
+
+<p>Search gives you a way to quickly search for text on slides.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">use_search(
+  position = c("bottom-left", "bottom-right", "top-left", "top-right"),
+  case_sensitive = FALSE,
+  show_icon = FALSE,
+  auto_search = TRUE
+)
+
+html_dependency_search(
+  position = c("bottom-left", "bottom-right", "top-left", "top-right"),
+  case_sensitive = FALSE,
+  show_icon = FALSE,
+  auto_search = TRUE
+)
+
+style_search(
+  icon_fill = "rgba(128, 128, 128, 0.5)",
+  input_background = "rgb(204, 204, 204)",
+  input_foreground = "black",
+  input_border = "1px solid rgb(249, 38, 114)",
+  match_background = "rgb(38, 220, 249)",
+  match_foreground = "black",
+  match_current_background = "rgb(38, 249, 68)",
+  match_current_foreground = "black",
+  selector = ".search"
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>position</code></td>
+<td>
+<p>Where to place the search box.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>case_sensitive</code></td>
+<td>
+<p>If <code>FALSE</code>, ignores case of search and text.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>show_icon</code></td>
+<td>
+<p>Show the icon to open or close the search?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>auto_search</code></td>
+<td>
+<p>Search on each keystroke (<code>TRUE</code>) or on enter (<code>FALSE</code>)?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>icon_fill</code></td>
+<td>
+<p>Color of search icon</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>input_background</code></td>
+<td>
+<p>Color of search input box background</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>input_foreground</code></td>
+<td>
+<p>Color of text in search input box</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>input_border</code></td>
+<td>
+<p>Border style of search input box</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>match_background</code></td>
+<td>
+<p>Color of match background (not current)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>match_foreground</code></td>
+<td>
+<p>Color of match text (not current)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>match_current_background</code></td>
+<td>
+<p>Color of current match background</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>match_current_foreground</code></td>
+<td>
+<p>Color of current match text</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>selector</code></td>
+<td>
+<p>CSS selector specifying which search bar to update (for
+advanced or unusual uses only)</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An <code>htmltools::tagList()</code> with the search dependencies, or an
+<code>htmltools::htmlDependency()</code>.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul>
+<li> <p><code>use_search()</code>: Adds search to your xaringan slides.
+</p>
+</li>
+<li> <p><code>html_dependency_search()</code>: Returns an <code>htmltools::htmlDependency()</code> with the search
+dependencies. Most users will want to use <code>use_search()</code>.
+</p>
+</li>
+<li> <p><code>style_search()</code>: Style the search input.
+</p>
+</li>
+</ul>
+<h3>Usage</h3>
+
+<p>To add search to your xaringan presentation, add the
+following code chunk to your slides' R Markdown file.
+</p>
+<div class="sourceCode markdown"><pre>```{r xaringan-search, echo=FALSE}
+xaringanExtra::use_search()
+```
+</pre></div>
+
+
+<h3>Author(s)</h3>
+
+<p>Original implementation by André Restivo
+</p>
+
+
+<h3>References</h3>
+
+<p><a href="https://github.com/arestivo/remark.search">https://github.com/arestivo/remark.search</a>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">use_search()
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,126 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>style_banner</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Style Banner</h2>
+
+<h3>Description</h3>
+
+<p>Change the banner style properties for a specific selector. By default, the
+changes apply to all banners, but by setting <code>selector</code> you can apply style
+changes to the banners of specific slide styles. For example, to set the
+styles for inverse slides, use <code>selector = ".inverse"</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">style_banner(
+  text_color = NULL,
+  background_color = NULL,
+  padding_horizontal = NULL,
+  padding_vertical = NULL,
+  height = NULL,
+  width = NULL,
+  font_size = NULL,
+  font_family = NULL,
+  z_index = NULL,
+  selector = ":root"
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>text_color</code></td>
+<td>
+<p>The color of text in the banners which may be overridden by
+other styles, e.g. link color, etc. The default value inherits from the
+primary text color of the slide.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>background_color</code></td>
+<td>
+<p>The color of the banner background. By default
+the background is transparent.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>padding_horizontal, padding_vertical</code></td>
+<td>
+<p>The inner padding of the banner.
+By default no padding is applied in the vertical direction, but <code style="white-space: pre;">⁠2em⁠</code> of
+padding is applied horizontally. If anything, you probably only want to
+change the value of <code>padding_horizontal</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>height</code></td>
+<td>
+<p>The height of the banner in a valid CSS unit.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>width</code></td>
+<td>
+<p>The maximum width of each column in the banner. You can set the
+width for all columns with a single valid CSS unit, or you may provide a
+vector of CSS units, named <code>"left"</code>, <code>"center"</code>, or <code>"right"</code> or provided
+in that order.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>font_size, font_family</code></td>
+<td>
+<p>The font size and family of the text in the
+banner. The default font size is <code style="white-space: pre;">⁠0.7em⁠</code> and the default family inherits
+from the primary text of the slide.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>z_index</code></td>
+<td>
+<p>The z-index of the banner. By default this value is 0 so that
+all other content appears over the banner. To ensure the banner appears
+<em>above slide content</em>, you can set <code>z_index</code> to something greater than 0.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>selector</code></td>
+<td>
+<p>A CSS selector, e.g. <code>".inverse"</code>, where the styles set in
+this call should be applied. Typically, you'll either set these styles for
+all banners using the default <code>selector</code>, or you'll want to customize the
+banner appearance for particular slide classes. Note that you can call
+<code>style_banner()</code> as many times as you want in your slides, but you'll want
+to change the <code>selector</code> for each call.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Returns a <code style="white-space: pre;">⁠&lt;style&gt;⁠</code> tag with the banner styles for <code>selector</code> as
+HTML via <code>htmltools::HTML()</code>.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>use_banner()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">style_banner(text_color = "red")
+style_banner(text_color = "white", background_color = "red")
+
+</code></pre>
+
+
+</div>

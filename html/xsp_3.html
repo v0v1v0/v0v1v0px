@@ -1,0 +1,44 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>chiSqPeriodogramPlot</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Draw a graph of chi-square periodogram</h2>
+
+<h3>Description</h3>
+
+<p>Draw a graph of chi-square periodogram
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">chiSqPeriodogramPlot(chiSqPrdgmDF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>chiSqPrdgmDF</code></td>
+<td>
+<p>data frame containing three column (testPerVec, Qp.act, Qp.sig)</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>ggplot object
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">oscillation &lt;- sin(seq(0, 2 * pi * 10, by = 2 * pi / 1440))
+oscillation.df &lt;- data.frame(dateTime = 1:length(oscillation), value = oscillation)
+chiSqPeriodogramPlot(chiSqPeriodogram(oscillation.df))
+
+</code></pre>
+
+
+</div>

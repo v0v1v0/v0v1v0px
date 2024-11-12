@@ -1,0 +1,96 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>html_tag</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Tools for HTML tags</h2>
+
+<h3>Description</h3>
+
+<p>Given a tag name, generate an HTML tag with optional attributes and content.
+<code>html_tag()</code> can be viewed as a simplified version of <code>htmltools::tags</code>,
+<code>html_value()</code> adds classes on the value so that it will be treated as raw
+HTML (not escaped by <code>html_tag()</code>), <code>html_escape()</code> escapes special
+characters in HTML, and <code>html_view()</code> launches a browser or viewer to view
+the HTML content.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">html_tag(.name, .content = NULL, .attrs = NULL, ...)
+
+html_value(x)
+
+html_escape(x, attr = FALSE)
+
+html_view(x, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>.name</code></td>
+<td>
+<p>The tag name.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.content</code></td>
+<td>
+<p>The content between opening and closing tags. Ignored for
+void tags such as <code style="white-space: pre;">⁠&lt;img&gt;⁠</code>. Special characters such as <code>&amp;</code>, <code>&lt;</code>, and <code>&gt;</code>
+will be escaped unless the value was generated from <code>html_value()</code>. The
+content can be either a character vector or a list. If it is a list, it may
+contain both normal text and HTML content.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.attrs</code></td>
+<td>
+<p>A named list of attributes.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>For <code>html_tag()</code>, named arguments as an alternative way to provide
+attributes. For <code>html_view()</code>, other arguments to be passed to <code>new_app()</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>A character vector to be treated as raw HTML content for
+<code>html_value()</code>, escaped for <code>html_escape()</code>, and viewed for <code>html_view()</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>attr</code></td>
+<td>
+<p>Whether to escape <code style="white-space: pre;">⁠\r⁠</code> and <code style="white-space: pre;">⁠\n⁠</code> (which should be escaped for tag
+attributes).</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A character string.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">xfun::html_tag("a", "&lt;R Project&gt;", href = "https://www.r-project.org", target = "_blank")
+xfun::html_tag("br")
+xfun::html_tag("a", xfun::html_tag("strong", "R Project"), href = "#")
+xfun::html_tag("a", list("&lt;text&gt;", xfun::html_tag("b", "R Project")), href = "#")
+xfun::html_escape("\" quotes \" &amp; brackets &lt; &gt;")
+xfun::html_escape("\" &amp; &lt; &gt; \r \n", attr = TRUE)
+</code></pre>
+
+
+</div>

@@ -1,0 +1,91 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>prev-methods</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2> ~~ Methods for Function <code>prev</code> and <code>cleanArchive</code> in Package <span class="pkg">x12</span> ~~</h2>
+
+<h3>Description</h3>
+
+<p>Function <code>prev</code> in package <span class="pkg">x12</span> reverts to previous parameter settings and output.<br>
+Function <code>cleanHistory</code> resets <code>x12OldParameter</code> and <code>x12OldOutput</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S4 method for signature 'x12Single'
+prev(object,n=NULL)
+## S4 method for signature 'x12Batch'
+prev(object,index=NULL,n=NULL)
+## S4 method for signature 'x12Single'
+cleanHistory(object)
+## S4 method for signature 'x12Batch'
+cleanHistory(object,index=NULL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>object of class <code>x12Single-class</code> or <code>x12Batch-class</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>n</code></td>
+<td>
+<p>index corresponding to a previous run.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>index</code></td>
+<td>
+<p>index corresponding to (an) object(s) of class <code>"x12Single"</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Methods</h3>
+
+
+<dl>
+<dt><code>signature(object = "x12Single")</code></dt>
+<dd>
+
+</dd>
+<dt><code>signature(object = "x12Batch")</code></dt>
+<dd>
+
+</dd>
+</dl>
+<h3>Note</h3>
+
+<p>cleanHistory is deprecated and cleanArchive should be used instead.</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Alexander Kowarik</p>
+
+
+<h3>See Also</h3>
+
+<p><code>x12</code></p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(AirPassengersX12)
+summary(AirPassengersX12)
+# a maximum of 10 previous x12 runs are added to the summary
+summary(AirPassengersX12,oldOutput=10)
+#the x12Parameter and x12Output of the x12Single is set to the previous run of x12
+Ap=prev(AirPassengersX12)
+summary(AirPassengersX12,oldOutput=10)
+</code></pre>
+
+
+</div>

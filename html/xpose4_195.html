@@ -1,0 +1,83 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xp.distr.mod.size</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Plot of model size distribution for a bootgam or bootscm</h2>
+
+<h3>Description</h3>
+
+<p>This function creates a kernel smoothed plot of the number of covariates
+included in the final model in each gam/scm in the bootgam/bootscm
+procedure.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xp.distr.mod.size(
+  bootgam.obj = NULL,
+  boot.type = NULL,
+  main = NULL,
+  bw = 0.5,
+  xlb = NULL,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>bootgam.obj</code></td>
+<td>
+<p>The bootgam or bootscm object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>boot.type</code></td>
+<td>
+<p>Either "bootgam" or "bootscm". Default is NULL, which means
+the user will be asked to make a choice.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>Plot title.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bw</code></td>
+<td>
+<p>The smoothing bandwidth to be used for the kernel.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xlb</code></td>
+<td>
+<p>The x-axis label.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional plotting parameter may be passed to this function.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A lattice plot object will be returned.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ron Keizer
+</p>
+
+
+</div>

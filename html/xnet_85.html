@@ -1,0 +1,131 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>loss</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Calculate or extract the loss of a tskrr model</h2>
+
+<h3>Description</h3>
+
+<p>This function allows calculating the loss of a tskrr model using
+either one of the functions defined in <code>loss_functions</code>
+or a custom user function. If the model inherits from class
+<code>tskrrTune</code> and no additional arguments
+are given, the loss is returned for the settings used when tuning.
+The function can also be used to extract the original loss from a
+<code>permtest</code> object.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">loss(x, ...)
+
+## S4 method for signature 'tskrr'
+loss(
+  x,
+  fun = loss_mse,
+  exclusion = c("interaction", "row", "column", "both"),
+  replaceby0 = FALSE,
+  predictions = FALSE,
+  ...
+)
+
+## S4 method for signature 'tskrrTune'
+loss(
+  x,
+  fun = loss_mse,
+  exclusion = c("interaction", "row", "column", "both"),
+  replaceby0 = FALSE,
+  predictions = FALSE,
+  ...
+)
+
+## S4 method for signature 'permtest'
+loss(x, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>a model that inherits from class
+<code>tskrr</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>extra arguments passed to the loss function in <code>fun</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fun</code></td>
+<td>
+<p>a function to be used for calculating the loss. This
+can also be a character value giving the name of one of the loss
+functions provided in the package</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>exclusion</code></td>
+<td>
+<p>a character value with possible values "interaction",
+"row", "column" or "both".
+See also <code>loo</code> for more information.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>replaceby0</code></td>
+<td>
+<p>a logical value indicating whether the interaction
+should be simply removed (<code>FALSE</code>) or replaced by 0 (<code>TRUE</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>predictions</code></td>
+<td>
+<p>a logical value to indicate whether the
+predictions should be used instead of leave one out crossvalidation.
+If set to <code>TRUE</code>, the other arguments are ignored.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>a numeric value with the calculated loss
+</p>
+
+
+<h3>See Also</h3>
+
+
+<ul>
+<li> <p><code>loss_functions</code> for possible loss functions
+</p>
+</li>
+<li> <p><code>tune</code> for tuning a model based on loss functions
+</p>
+</li>
+</ul>
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(drugtarget)
+
+mod &lt;- tskrr(drugTargetInteraction, targetSim, drugSim)
+
+loss(mod, fun = loss_auc)
+
+tuned &lt;- tune(mod, fun = loss_auc)
+
+loss(tuned)
+loss(tuned, fun = loss_mse)
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,57 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>misclassification</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Calculate misclassification error</h2>
+
+<h3>Description</h3>
+
+<p><code>misclassification</code> calculate misclassification error between predicted class and true class
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">misclassification(pred, true)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>pred</code></td>
+<td>
+<p>Predicted class</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>true</code></td>
+<td>
+<p>Actual class</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Misclassification error for binary or multiclass outcome.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>To calculate the Area Under the Curve (AUC) for binary or multiclass outcomes, please refer to the <code>pROC</code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">Y1 &lt;- rbinom(10,1,0.5)
+Y2 &lt;- rnorm(10,1,0.5)
+misclassification(Y1,Y2)
+</code></pre>
+
+
+</div>

@@ -1,0 +1,126 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>XML2Obs</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Parse XML files into a list of "observations"</h2>
+
+<h3>Description</h3>
+
+<p>This function takes a collection of urls that point to XML files and coerces the relevant info into a list of observations.
+An "observation" is defined as a matrix with one row. An observation can also be thought of as a single instance of 
+XML attributes (and value) for a particular level in the XML hierarchy. The names of the list reflect the XML node 
+ancestory for which each observation was extracted from.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">XML2Obs(
+  urls,
+  xpath,
+  append.value = TRUE,
+  as.equiv = TRUE,
+  url.map = FALSE,
+  local = FALSE,
+  quiet = FALSE,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>urls</code></td>
+<td>
+<p>character vector. Either urls that point to an XML file online or a local XML file name.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xpath</code></td>
+<td>
+<p>XML XPath expression that is passed to getNodeSet. If missing, the entire root and all descendents are captured and returned (ie, tables = "/").</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>append.value</code></td>
+<td>
+<p>logical. Should the XML value be appended for relevant observations?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>as.equiv</code></td>
+<td>
+<p>logical. Should observations from two different files (but the same ancestory) have the same name returned?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>url.map</code></td>
+<td>
+<p>logical. If TRUE, the 'url_key' column will contain a condensed url identifier (for each observation)
+and full urls will be stored in the "url_map" element. If FALSE, the full urls are included (for each observation) 
+as a 'url' column and no "url_map" is included.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>local</code></td>
+<td>
+<p>logical. Should urls be treated as paths to local files?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>quiet</code></td>
+<td>
+<p>logical. Print file name currently being parsed?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>arguments passed along to 'httr::GET'</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>It's worth noting that a "url_key" column is appended to each observation to help track the origin of each observation.
+The value of the "url_key" column is not the actual file name, but a simplified identifier to avoid unnecessarily repeating 
+long file names for each observation. For this reason, an addition element (named "url_map") is added to the list of observations
+in case the actual file named want to be used.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A list of "observations" and (possibly) the "url_map" element.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>urlsToDocs, docsToNodes, nodesToList, listsToObs
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Not run: 
+urls &lt;- c("http://gd2.mlb.com/components/game/mlb/year_2013/mobile/346180.xml",
+           "http://gd2.mlb.com/components/game/mlb/year_2013/mobile/346188.xml")
+obs &lt;- XML2Obs(urls)
+table(names(obs))
+
+# parses local files as well
+players &lt;- system.file("extdata", "players.xml", package = "XML2R")
+obs2 &lt;- XML2Obs(players, local = TRUE)
+table(names(obs2))
+
+## End(Not run)
+</code></pre>
+
+
+</div>

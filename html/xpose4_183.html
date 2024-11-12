@@ -1,0 +1,140 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>wres.vs.cov</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Weighted residuals (WRES) plotted against covariates, for Xpose 4</h2>
+
+<h3>Description</h3>
+
+<p>This creates a stack of plots of weighted residuals (WRES) plotted against
+covariates, and is a specific function in Xpose 4. It is a wrapper
+encapsulating arguments to the <code>xpose.plot.default</code> and
+<code>xpose.plot.histogram</code> functions. Most of the options take their
+default values from xpose.data object but may be overridden by supplying
+them as arguments.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">wres.vs.cov(
+  object,
+  ylb = "WRES",
+  smooth = TRUE,
+  type = "p",
+  main = "Default",
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An xpose.data object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylb</code></td>
+<td>
+<p>A string giving the label for the y-axis. <code>NULL</code> if none.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>smooth</code></td>
+<td>
+<p>A <code>NULL</code> value indicates that no superposed line should
+be added to the graph. If <code>TRUE</code> then a smooth of the data will be
+superimposed.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>type</code></td>
+<td>
+<p>1-character string giving the type of plot desired.  The
+following values are possible, for details, see 'plot': '"p"' for points,
+'"l"' for lines, '"o"' for over-plotted points and lines, '"b"', '"c"') for
+(empty if '"c"') points joined by lines, '"s"' and '"S"' for stair steps and
+'"h"' for histogram-like vertical lines.  Finally, '"n"' does not produce
+any points or lines.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>The title of the plot.  If <code>"Default"</code> then a default title
+is plotted. Otherwise the value should be a string like <code>"my title"</code> or
+<code>NULL</code> for no plot title.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Other arguments passed to <code>link{xpose.plot.default}</code> or
+<code>link{xpose.plot.histogram}</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Weighted residuals (WRES) are plotted against each covariate present, as
+specified in <code>object@Prefs@Xvardef$covariates</code>, creating a stack of
+plots.
+</p>
+<p>A wide array of extra options controlling xyplots and histograms are
+available. See <code>xpose.plot.default</code> and
+<code>xpose.plot.histogram</code> for details.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Returns a stack of xyplots and histograms of CWRES versus
+covariates.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>E. Niclas Jonsson, Mats Karlsson, Andrew Hooker &amp; Justin Wilkins
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xpose.plot.default</code>,
+<code>xpose.plot.histogram</code>, <code>xyplot</code>,
+<code>histogram</code>, <code>xpose.prefs-class</code>,
+<code>xpose.data-class</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Not run: 
+## We expect to find the required NONMEM run and table files for run
+## 5 in the current working directory
+xpdb5 &lt;- xpose.data(5)
+
+## Here we load the example xpose database 
+data(simpraz.xpdb)
+xpdb &lt;- simpraz.xpdb
+
+## A vanilla plot
+wres.vs.cov(xpdb)
+
+## Custom colours and symbols, IDs
+wres.vs.cov(xpdb, cex=0.6, pch=3, col=1, ids=TRUE)
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

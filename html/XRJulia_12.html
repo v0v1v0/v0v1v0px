@@ -1,0 +1,43 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>juliaClassDef</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Information about a Julia Class</h2>
+
+<h3>Description</h3>
+
+<p>The Julia class definition information is computed, and converted to R.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">juliaClassDef(Class, module = "", ..., .ev = RJulia())
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>Class, module</code></td>
+<td>
+<p>Strings identifying the Julia composite type and optionally, the module containing it.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>..., .ev</code></td>
+<td>
+<p>Don't supply these, <code>.ev</code> defaults to the current Julia interface evaluator.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>the Julia definition of the specified class, optionally from the module.
+</p>
+
+
+</div>

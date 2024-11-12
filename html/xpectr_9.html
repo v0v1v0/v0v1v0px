@@ -1,0 +1,333 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>gxs_selection</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Generate testhat expectations from selection</h2>
+
+<h3>Description</h3>
+
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="../help/figures/lifecycle-experimental.svg" alt="[Experimental]"></a>
+</p>
+<p>Based on the selection (string of code), a set of <code>testthat</code> <code>expect_*</code>
+statements are generated.
+</p>
+<p>Example: If the selected code is the name of a <code>data.frame</code> object,
+it will create an <code>expect_equal</code>
+test for each column, along with a test of the column names,
+types and classes, dimensions, grouping keys, etc.
+</p>
+<p>See supported objects in <code>details</code>.
+</p>
+<p>When testing a function that alters non-local variables, consider enabling <code>`copy_env`</code>.
+</p>
+<p>Feel free to suggest useful tests etc. in a GitHub issue!
+</p>
+<p>Addin: <code>insertExpectationsAddin()</code>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">gxs_selection(
+  selection,
+  indentation = 0,
+  tolerance = "1e-4",
+  round_to_tolerance = TRUE,
+  strip = TRUE,
+  sample_n = 30,
+  envir = NULL,
+  copy_env = FALSE,
+  assign_output = TRUE,
+  seed = 42,
+  test_id = NULL,
+  add_wrapper_comments = TRUE,
+  add_test_comments = TRUE,
+  start_with_newline = TRUE,
+  end_with_newline = TRUE,
+  out = "insert"
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>selection</code></td>
+<td>
+<p>String of code. (Character)
+</p>
+<p>E.g. <code>"stop('This gives an expect_error test')"</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>indentation</code></td>
+<td>
+<p>Indentation of the selection. (Numeric)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tolerance</code></td>
+<td>
+<p>The tolerance for numeric tests as a string, like <code>"1e-4"</code>. (Character)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>round_to_tolerance</code></td>
+<td>
+<p>Whether to round numeric elements to the specified tolerance. (Logical)
+</p>
+<p>This is currently applied to numeric columns and vectors (excluding some lists).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>strip</code></td>
+<td>
+<p>Whether to insert
+<code>strip_msg()</code> and
+<code>strip()</code>
+in tests of side effects. (Logical)
+</p>
+<p>Sometimes testthat tests have differences in punctuation and newlines on different
+systems. By stripping both the error message and the expected message of non-alphanumeric symbols,
+we can avoid such failed tests.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sample_n</code></td>
+<td>
+<p>The number of elements/rows to sample. Set to <code>NULL</code> to avoid sampling.
+</p>
+<p>Inserts <code>smpl()</code> in the generated tests when sampling was used. A seed is
+set internally, setting <code>sample.kind</code> as <code>"Rounding"</code> to ensure compatibility with <code>R</code> versions
+<code>&lt; 3.6.0</code>.
+</p>
+<p>The order of the elements/rows is kept intact. No replacement is used, why no oversampling will
+take place.
+</p>
+<p>When testing a big <code>data.frame</code>, sampling the rows can help keep the test files somewhat readable.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>envir</code></td>
+<td>
+<p>Environment to evaluate in. Defaults to
+<code>parent.frame()</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>copy_env</code></td>
+<td>
+<p>Whether to work in a deep copy of the environment. (Logical)
+</p>
+<p>Side effects will be captured in copies of the copy, why two copies of the environment will
+exist at the same time.
+</p>
+<p>Disabled by default to save memory but is often preferable to enable,
+e.g. when the function changes non-local variables.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>assign_output</code></td>
+<td>
+<p>Whether to assign the output of a function call or long selection
+to a variable. This will avoid recalling the function and decrease cluttering. (Logical)
+</p>
+<p>Heuristic: when the <code>`selection`</code> isn't of a string and contains a parenthesis, it is considered a function call.
+A selection with more than 30 characters will be assigned as well.
+</p>
+<p>The tests themselves can be more difficult to interpret, as you will
+have to look at the assignment to see the object that is being tested.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>seed</code></td>
+<td>
+<p><code>seed</code> to set. (Whole number)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>test_id</code></td>
+<td>
+<p>Number to append to assignment names. (Whole number)
+</p>
+<p>For instance used to create the <code>"output_"</code> name: <code>output_&lt;test_id&gt;</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>add_wrapper_comments</code></td>
+<td>
+<p>Whether to add intro and outro comments. (Logical)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>add_test_comments</code></td>
+<td>
+<p>Whether to add comments for each test. (Logical)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>start_with_newline, end_with_newline</code></td>
+<td>
+<p>Whether to have a newline in the beginning/end. (Logical)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>out</code></td>
+<td>
+<p>Either <code>"insert"</code> or <code>"return"</code>.
+</p>
+
+
+<h4>"insert" (Default)</h4>
+
+<p>Inserts the expectations via
+<code>rstudioapi::insertText()</code>.
+</p>
+
+
+
+<h4>"return"</h4>
+
+<p>Returns the expectations in a <code>list</code>.
+</p>
+<p>These can be prepared for insertion with
+<code>prepare_insertion()</code>.
+</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The following "types" are currently supported or intended to be supported in the future.
+Please suggest more types and tests in a GitHub issue!
+</p>
+<p>Note: A set of fallback tests will be generated for unsupported objects.
+</p>
+
+<table>
+<tr>
+<td style="text-align: right;">
+<strong>Type</strong> </td>
+<td style="text-align: right;"> <strong>Supported</strong> </td>
+<td style="text-align: right;"> <strong>Notes</strong> </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+Side effects </td>
+<td style="text-align: right;"> Yes </td>
+<td style="text-align: right;"> Errors, warnings, and messages. </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+Vector </td>
+<td style="text-align: right;"> Yes </td>
+<td style="text-align: right;"> Lists are treated differently, depending on their structure. </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+Factor </td>
+<td style="text-align: right;"> Yes </td>
+<td style="text-align: right;"> </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+Data Frame </td>
+<td style="text-align: right;"> Yes </td>
+<td style="text-align: right;"> List columns (like nested tibbles) are currently skipped. </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+Matrix </td>
+<td style="text-align: right;"> Yes </td>
+<td style="text-align: right;"> Supported but could be improved. </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+Formula </td>
+<td style="text-align: right;"> Yes </td>
+<td style="text-align: right;"> </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+Function </td>
+<td style="text-align: right;"> Yes </td>
+<td style="text-align: right;"> </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+<code>NULL</code> </td>
+<td style="text-align: right;"> Yes </td>
+<td style="text-align: right;"> </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+Array </td>
+<td style="text-align: right;"> No </td>
+<td style="text-align: right;"> </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+Dates </td>
+<td style="text-align: right;"> No </td>
+<td style="text-align: right;"> Base and <code>lubridate</code>. </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+ggplot2 </td>
+<td style="text-align: right;"> No </td>
+<td style="text-align: right;"> This may be a challenge, but would be cool!</td>
+</tr>
+<tr>
+<td style="text-align: right;">
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Either <code>NULL</code> or the unprepared expectations as a <code>character vector</code>.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ludvig Renbo Olsen, <a href="mailto:r-pkgs@ludvigolsen.dk">r-pkgs@ludvigolsen.dk</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other expectation generators: 
+<code>gxs_function()</code>,
+<code>initializeGXSFunctionAddin()</code>,
+<code>insertExpectationsAddin()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Attach packages
+library(xpectr)
+
+## Not run: 
+df &lt;- data.frame('a' = c(1, 2, 3), 'b' = c('t', 'y', 'u'),
+                 stringsAsFactors = FALSE)
+
+gxs_selection("stop('This gives an expect_error test!')")
+gxs_selection("warning('This gives a set of side effect tests!')")
+gxs_selection("message('This also gives a set of side effect tests!')")
+gxs_selection("stop('This: tests the -&gt; punctuation!')", strip = FALSE)
+gxs_selection("sum(1, 2, 3, 4)")
+gxs_selection("df")
+
+tests &lt;- gxs_selection("df", out = "return")
+for_insertion &lt;- prepare_insertion(tests)
+rstudioapi::insertText(for_insertion)
+
+## End(Not run)
+</code></pre>
+
+
+</div>

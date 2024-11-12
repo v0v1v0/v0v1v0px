@@ -1,0 +1,62 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>mLCMGCodonPrecision</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>mLCMG precision of codon.</h2>
+
+<h3>Description</h3>
+
+<p>mLCMG precision of codon.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">mLCMGCodonPrecision(LHS, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>LHS</code></td>
+<td>
+<p>Vector of Integers. The left-hand side of a grammar object <code>G</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Unused. Needed for common abstract interface of 
+precision functions.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Integer. The precision of a codon whose upper bound is larger than 
+least common multiple of the prime factors of the 
+vector of the available rules 
+for each non-terminal of a grammar.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Precision: 
+<code>CodonPrecisionWithThreshold()</code>,
+<code>MinCodonPrecision()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">NT&lt;-sample(5, 50, replace=TRUE)
+mLCMGCodonPrecision(NT)
+</code></pre>
+
+
+</div>

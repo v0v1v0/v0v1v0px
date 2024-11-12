@@ -1,0 +1,503 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaPopulation</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Package xegaPopulation.</h2>
+
+<h3>Description</h3>
+
+<p>Population level functions
+</p>
+
+
+<h3>Details</h3>
+
+<p>The <code>xegaPopulation</code> package provides the representation independent
+functions of the population level of the simple genetic 
+algorithm xegaX packages: 
+</p>
+
+<ul>
+<li>
+<p> File xegaPopulation.R:
+</p>
+
+<ul>
+<li>
+<p> Initializing a population of genes.
+</p>
+</li>
+<li>
+<p> Getting the indices of the best genes in a population of genes
+for getting the best solution(s) in a population of genes.
+</p>
+</li>
+<li>
+<p> Configurable summary report of population fitness statistics.
+</p>
+</li>
+<li>
+<p> Observation of the summary statistics of a population of genes.
+</p>
+</li>
+<li>
+<p> Logging of the phenotype and the value of the phenotype.
+</p>
+</li>
+</ul>
+</li>
+<li>
+<p> File xegaNextPopulation.R:
+</p>
+
+<ul>
+<li>
+<p> Computation of the next population of genes.
+</p>
+</li>
+<li>
+<p> Evaluation of the next population of genes.
+</p>
+</li>
+</ul>
+<p><strong>Future</strong>: Improved support for parallelization suggests a 
+different division of labor: 
+</p>
+
+<ul>
+<li>
+<p> Construct a list of abstract task descriptions 
+with one element per gene.
+</p>
+</li>
+<li>
+<p> Provide for a parallel execution of these task descriptions. 
+This requires changes in the structuring of the 
+operator pipelines and the replicate gene functions 
+for the different gene representations and algorithms.
+</p>
+</li>
+<li>
+<p> Performance improvement depends on the gene representation 
+and on the use of function evaluations in the genetic 
+machinery. For example, for the TSP problem, 
+function evaluations 
+are embedded into most of the mutation operators.
+</p>
+</li>
+</ul>
+</li>
+<li>
+<p> File acceptance.R: 
+Acceptance rules for new genes and a function factory for configuring
+them. 
+</p>
+</li>
+<li>
+<p> File cooling.R: Cooling schedules for temperature reduction.
+</p>
+</li>
+<li>
+<p> File localAdaptivity.R: Unused. 
+Move to gene dependent packages planned.
+</p>
+</li>
+<li>
+<p> File adaptivityCrossover.R: 
+Functions constant and adaptive crossover rates. 
+</p>
+</li>
+<li>
+<p> File adaptivityMutation.R:
+Functions constant and adaptive mutation rates. 
+</p>
+</li>
+<li>
+<p> File parModel.R: Execution models for parallelization.
+</p>
+
+<ul>
+<li>
+<p> "Sequential": Configures lapply as <code>lapply()</code>.
+</p>
+</li>
+<li>
+<p> "MultiCore": Configures lapply as <code>parallel::mclapply()</code>.
+The number of cores is set by <code>lF$Core()</code>. 
+</p>
+</li>
+</ul>
+</li>
+<li>
+<p> File configuration.R: Documenting how the algorithm was called.
+Support for the replication of computational
+experiments (replicate and replay).
+</p>
+</li>
+</ul>
+<h3>Interface of Acceptance Rules</h3>
+
+<p><code>newGene&lt;-accept(OperatorPipeline, gene, lF)</code>
+</p>
+
+<ol>
+<li>
+<p> Accept all new genes: Identity function. For genetic algorithms.
+</p>
+</li>
+<li>
+<p> Accept best: Accepts the gene with the highest fitness.
+For greedy and randomized greedy algorithms
+(hill-climbing algorithms).
+</p>
+</li>
+<li>
+<p> The Metropolis and the individually variable Metropolis rule:
+If the new gene gene is better, accept it.
+If the old gene is better, make a biased random choice. 
+The probability of accepting a decrease in fitness depends on 
+the fitness distance between genes, a constant beta for scaling 
+the exponential decay and a temperature parameter and for 
+the individually variable Metropolis rule a correction term 
+which depends on the distance to the best known fitness of the run. 
+</p>
+</li>
+</ol>
+<p><strong>Constants for Acceptance Rules.</strong>
+</p>
+
+<table>
+<tr>
+<td style="text-align: right;"> 
+<strong>Constant</strong> </td>
+<td style="text-align: center;"> <strong>Default</strong> </td>
+<td style="text-align: left;"> <strong>Used in</strong> </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$Beta()         </td>
+<td style="text-align: center;">  ?    </td>
+<td style="text-align: left;"> AcceptMetropolis() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                  </td>
+<td style="text-align: center;">       </td>
+<td style="text-align: left;"> AcceptIVMetropolis() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$TempK()        </td>
+<td style="text-align: center;">  ?    </td>
+<td style="text-align: left;"> AcceptMetropolis() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                  </td>
+<td style="text-align: center;">       </td>
+<td style="text-align: left;"> AcceptIVMetropolis() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$lFCBestFitness() </td>
+<td style="text-align: center;"> None </td>
+<td style="text-align: left;"> AcceptIVMetropolis() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+</td>
+</tr>
+</table>
+<h3>Interface of Cooling Schedules</h3>
+
+<p><code>Temperature&lt;-cooling(k, lF)</code>
+</p>
+<p>Cooling schedules convert the progress of the time in the algorithm
+(measured in generations) into a temperature.
+The temperature influences the probability of accepting a gene
+with less fitness than its parent gene.
+</p>
+<p><strong>Constants for Cooling Schedules.</strong>
+</p>
+
+<table>
+<tr>
+<td style="text-align: right;"> 
+<strong>Constant</strong> </td>
+<td style="text-align: center;"> <strong>Default</strong> </td>
+<td style="text-align: left;"> <strong>Used in</strong> </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$Alpha()         </td>
+<td style="text-align: center;">  ?    </td>
+<td style="text-align: left;"> ExponentialMultiplicativeCooling() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                   </td>
+<td style="text-align: center;">  ?    </td>
+<td style="text-align: left;"> LogarithmicMultiplicativeCooling() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                   </td>
+<td style="text-align: center;">  ?    </td>
+<td style="text-align: left;"> PowerMultiplicativeCooling() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$Temp0()         </td>
+<td style="text-align: center;">  ?    </td>
+<td style="text-align: left;"> ExponentialMultiplicativeCooling() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                   </td>
+<td style="text-align: center;">  ?    </td>
+<td style="text-align: left;"> LogarithmicMultiplicativeCooling() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                   </td>
+<td style="text-align: center;">  ?    </td>
+<td style="text-align: left;"> PowerMultiplicativeCooling() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                   </td>
+<td style="text-align: center;">  ?    </td>
+<td style="text-align: left;"> PowerAdditiveCooling() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                   </td>
+<td style="text-align: center;">  ?    </td>
+<td style="text-align: left;"> ExponentialAdditiveCooling() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                   </td>
+<td style="text-align: center;">  ?    </td>
+<td style="text-align: left;"> TrigonometricAdditiveCooling() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$TempN()         </td>
+<td style="text-align: center;">  ?    </td>
+<td style="text-align: left;"> PowerAdditiveCooling() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                   </td>
+<td style="text-align: center;">  ?    </td>
+<td style="text-align: left;"> ExponentialAdditiveCooling() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                   </td>
+<td style="text-align: center;">  ?    </td>
+<td style="text-align: left;"> TrigonometricAdditiveCooling() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$CoolingPower()  </td>
+<td style="text-align: center;">  ?    </td>
+<td style="text-align: left;"> PowerMultiplicativeCooling() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                   </td>
+<td style="text-align: center;">  ?    </td>
+<td style="text-align: left;"> PowerAdditiveCooling() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$Generations()   </td>
+<td style="text-align: center;">       </td>
+<td style="text-align: left;"> PowerAdditiveCooling() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                   </td>
+<td style="text-align: center;">       </td>
+<td style="text-align: left;"> ExponentialAdditiveCooling() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                   </td>
+<td style="text-align: center;">  ?    </td>
+<td style="text-align: left;"> TrigonometricAdditiveCooling() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+</td>
+</tr>
+</table>
+<h3>Interface of Rates</h3>
+
+<p><code>rate&lt;-rateFunction(fit, lF)</code>
+</p>
+<p>Crossover and mutation rate functions may be adaptive.
+The interface allows for dependencies of the rate 
+on fitness and constants in the local configuration.
+</p>
+<p><strong>Constants for Adaptive Crossover and Mutation Rates</strong>
+</p>
+
+<table>
+<tr>
+<td style="text-align: right;"> 
+<strong>Constant</strong>  </td>
+<td style="text-align: center;"> <strong>Default</strong> </td>
+<td style="text-align: left;"> <strong>Used in</strong> </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$CrossRate1()    </td>
+<td style="text-align: center;">  ?    </td>
+<td style="text-align: left;"> IACRate() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$CrossRate2()    </td>
+<td style="text-align: center;">  ?    </td>
+<td style="text-align: left;"> IACRate() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$MutationRate1() </td>
+<td style="text-align: center;">       </td>
+<td style="text-align: left;"> IAMRate() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$MutationRate2() </td>
+<td style="text-align: center;">       </td>
+<td style="text-align: left;"> IAMRate() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$CutoffFit()     </td>
+<td style="text-align: center;">  ?    </td>
+<td style="text-align: left;"> IACRate() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$CBestFitness()  </td>
+<td style="text-align: center;">       </td>
+<td style="text-align: left;"> IACRate() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                   </td>
+<td style="text-align: center;">       </td>
+<td style="text-align: left;"> IAMRate() </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+</td>
+</tr>
+</table>
+<h3>The Architecture of the xegaX-Packages</h3>
+
+<p>The xegaX-packages are a family of R-packages which implement 
+eXtended Evolutionary and Genetic Algorithms (xega).  
+The architecture has 3 layers, 
+namely the user interface layer,
+the population layer, and the gene layer: 
+</p>
+
+<ul>
+<li>
+<p>The user interface layer (package <code>xega</code>) 
+provides a function call interface and configuration support
+for several algorithms: genetic algorithms (sga), 
+permutation-based genetic algorithms (sgPerm), 
+derivation free algorithms as e.g. differential evolution (sgde), 
+grammar-based genetic programming (sgp) and grammatical evolution
+(sge). 
+</p>
+</li>
+<li>
+<p>The population layer (package <code>xegaPopulation</code>) contains
+population related functionality as well as support for 
+population statistics dependent adaptive mechanisms and parallelization.
+</p>
+</li>
+<li> 
+<p>The gene layer is split in a representation independent and 
+a representation dependent part:
+</p>
+
+<ol>
+<li> 
+<p>The representation indendent part (package <code>xegaSelectGene</code>)
+is responsible for variants of selection operators, evaluation 
+strategies for genes, as well as profiling and timing capabilities.        
+</p>
+</li>
+<li> 
+<p>The representation dependent part consists of the following packages: 
+</p>
+
+<ul>
+<li> <p><code>xegaGaGene</code> for binary coded genetic algorithms.
+</p>
+</li>
+<li> <p><code>xegaPermGene</code> for permutation-based genetic algorithms.
+</p>
+</li>
+<li> <p><code>xegaDfGene</code> for derivation free algorithms as e.g. 
+differential evolution.
+</p>
+</li>
+<li> <p><code>xegaGpGene</code> for grammar-based genetic algorithms.
+</p>
+</li>
+<li> <p><code>xegaGeGene</code> for grammatical evolution algorithms.
+</p>
+</li>
+</ul>
+<p>The packages <code>xegaDerivationTrees</code> and <code>xegaBNF</code> support
+the last two packages:
+<code>xegaBNF</code> essentially provides a grammar compiler and 
+<code>xegaDerivationTrees</code> an abstract data type for derivation trees.
+</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3>Copyright</h3>
+
+<p>(c) 2023 Andreas Geyer-Schulz
+</p>
+
+
+<h3>License</h3>
+
+<p>MIT
+</p>
+
+
+<h3>URL</h3>
+
+<p>https://github.com/ageyerschulz/xegaPopulation
+</p>
+
+
+<h3>Installation</h3>
+
+<p>From CRAN by <code>install.packages('xegaPopulation')</code>
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Andreas Geyer-Schulz
+</p>
+
+
+</div>

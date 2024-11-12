@@ -1,0 +1,62 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>infor_table</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Information table.</h2>
+
+<h3>Description</h3>
+
+<p><code>infor_table</code> returns information table of estimated coefficients/hazard ratio, confidence interval and P value.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">infor_table(x, snp, covar_n, MAF_value, model)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>An output from continuous/binary/survival model.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>snp</code></td>
+<td>
+<p>Single SNP name.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>covar_n</code></td>
+<td>
+<p>Covariate names.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>MAF_value</code></td>
+<td>
+<p>A minimum value of minor allele frequency.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>model</code></td>
+<td>
+<p>Model type.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Information table. If linear or binary model is chosen, it returns estimated coefficients, 
+confidence interval and P value. If survival model is chosen, it returns hazard ratio, confidence interval and P value.
+</p>
+
+
+</div>

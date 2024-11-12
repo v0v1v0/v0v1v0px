@@ -1,0 +1,69 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>gg_themes</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>An additional set of themes for ggplot2</h2>
+
+<h3>Description</h3>
+
+<p>An additional set of complete ggplot2 themes intended to make ggplot2 more readable 
+when used in presentation or publications. These themes also bring the <code>legend_position</code> option
+without having to call the ggplot2 theme() function to modify a complete theme.
+</p>
+
+<ul>
+<li> <p><code>theme_bw2</code>: Black and white theme inspired by a theme from Gunnar Yngman.
+</p>
+</li>
+<li> <p><code>theme_readable</code>: Light grey theme, with dimmed background and grid lines 
+intended to bring the focus on the data.
+</p>
+</li>
+</ul>
+<h3>Usage</h3>
+
+<pre><code class="language-R">theme_bw2(base_size = 11, base_family = "", legend_position = "right")
+
+theme_readable(base_size = 11, base_family = "", legend_position = "right")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>base_size</code></td>
+<td>
+<p>Base font size.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>base_family</code></td>
+<td>
+<p>Base font family.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>legend_position</code></td>
+<td>
+<p>The position of legends defined as 'none', 'left', 
+'right', 'bottom', 'top', or a two-element numeric vector.</p>
+</td>
+</tr>
+</table>
+<h3>Examples</h3>
+
+<pre><code class="language-R"># With the gg_theme theme_readable() (default)
+dv_vs_ipred(xpdb_ex_pk, facets = 'SEX')
+
+# With the gg_theme theme_bw2()
+xpdb_ex_pk %&gt;% 
+ update_themes(gg_theme = theme_bw2()) %&gt;% 
+ dv_vs_ipred(facets = 'SEX')
+ 
+</code></pre>
+
+
+</div>

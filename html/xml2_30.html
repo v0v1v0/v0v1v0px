@@ -1,0 +1,37 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xml_cdata</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Construct a cdata node</h2>
+
+<h3>Description</h3>
+
+<p>Construct a cdata node
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xml_cdata(content)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>content</code></td>
+<td>
+<p>The CDATA content, does not include <code style="white-space: pre;">⁠&lt;![CDATA[⁠</code></p>
+</td>
+</tr></table>
+<h3>Examples</h3>
+
+<pre><code class="language-R">x &lt;- xml_new_root("root")
+xml_add_child(x, xml_cdata("&lt;d/&gt;"))
+as.character(x)
+</code></pre>
+
+
+</div>

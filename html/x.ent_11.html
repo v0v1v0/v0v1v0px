@@ -1,0 +1,114 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xplot</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>
+Graph <code>xplot</code>
+</h2>
+
+<h3>Description</h3>
+
+<p>Graph <code>xplot</code>, this graph compares the appearance of entities or relations during one period
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">  xplot(v1 = "", v2 = "", t = "")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>v1</code></td>
+<td>
+<p>O or 1 entity1 value </p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>v2</code></td>
+<td>
+<p>a vector of entity2 value</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>t</code></td>
+<td>
+<p>a time value, format (mm.yyyy) or inteval of time value, for example: t=c("02.2010","02.2012")</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Result after calling the function <code>xparse</code> has the following format:
+</p>
+
+<ol>
+<li>
+<p> file_name:entity:$:list_value_found
+</p>
+</li>
+<li>
+<p> ...
+</p>
+</li>
+<li>
+<p> file_name:entity1:entity2:...:$$:value_e1:value_e2:....:negation
+</p>
+</li>
+</ol>
+<p>Function <code>xplot</code> will convert the data format above to a data frame. The <code>xplot</code> uses this data frame to display graphs.
+The data frame format: 
+</p>
+
+<ol>
+<li>
+<p> column file : name of file
+</p>
+</li>
+<li>
+<p> column date : (format mm.yyyy)
+</p>
+</li>
+<li>
+<p> column value_date, this value is used for creating graph
+</p>
+</li>
+<li>
+<p> column visible: if visible = 1 then this record will be used in graph  
+</p>
+</li>
+<li>
+<p> column value of entite <code>v1</code> or <code>v2</code> or <code>v1</code> combined with <code>v2</code>
+</p>
+</li>
+</ol>
+<h3>Value</h3>
+
+<p>This function returns a data frame so that users can check or use it to create new graphs.
+</p>
+<table><tr style="vertical-align: top;">
+<td><code>dataframe</code></td>
+<td>
+<p>return a data frame</p>
+</td>
+</tr></table>
+<h3>See Also</h3>
+
+<p><code>xhist</code> type graphique histogram<br><code>xprop</code> type graphique propotion<br><code>xshow</code> displays results of extracted data<br></p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">  xplot(v1="colza")
+  xplot(v1="colza",v2=c("altice","rouille"))
+  xplot(v1="colza",v2=c("altice","rouille"),t="09.2010")
+  xplot(v1="colza",v2=c("altice","rouille"),t=c("09.2010","02.2011"))
+</code></pre>
+
+
+</div>

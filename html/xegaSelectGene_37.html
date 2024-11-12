@@ -1,0 +1,100 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>SelectPropFitDiff</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Selection proportional to fitness differences.</h2>
+
+<h3>Description</h3>
+
+<p><code>SelectPropFitDiff</code> implements selection
+proportional to fitness differences.
+It selects a gene out of the population
+with a probability proportional to the fitness
+difference to the gene with minimal fitness.
+The fitness of survival of the gene with 
+minimal fitness is set by <code>lF$Eps()</code> 
+to <code>0.01</code> per default.
+See equation (7.45) Andreas Geyer-Schulz (1997), p. 205.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">SelectPropFitDiff(fit, lF, size = 1)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>fit</code></td>
+<td>
+<p>Fitness vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>size</code></td>
+<td>
+<p>Number of selected genes. Default: 1.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>The index vector of the selected genes.
+</p>
+
+
+<h3>Note</h3>
+
+<p><code>SelectPopFitDiff</code> is a dynamic scaling function.
+Complexity: <code class="reqn">O(n^2)</code>.
+</p>
+
+
+<h3>References</h3>
+
+<p>Geyer-Schulz, Andreas (1997):
+<em>Fuzzy Rule-Based Expert Systems and Genetic Machine Learning</em>,
+Physica, Heidelberg.
+(ISBN:978-3-7908-0830-X)
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Selection Functions: 
+<code>SelectDuel()</code>,
+<code>SelectLRSelective()</code>,
+<code>SelectLinearRankTSR()</code>,
+<code>SelectPropFitDiffM()</code>,
+<code>SelectPropFitDiffOnln()</code>,
+<code>SelectPropFitM()</code>,
+<code>SelectPropFitOnln()</code>,
+<code>SelectPropFit()</code>,
+<code>SelectSTournament()</code>,
+<code>SelectSUS()</code>,
+<code>SelectTournament()</code>,
+<code>SelectUniformP()</code>,
+<code>SelectUniform()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">fit&lt;-sample(10, 15, replace=TRUE)
+SelectPropFitDiff(fit, NewlFselectGenes()) 
+SelectPropFitDiff(fit, NewlFselectGenes(), length(fit)) 
+</code></pre>
+
+
+</div>

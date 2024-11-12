@@ -1,0 +1,73 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaGaReplicationFactory</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Configure the replication function of a genetic algorithm.</h2>
+
+<h3>Description</h3>
+
+<p><code>ReplicationFactory</code> implements the selection
+of a replication method. 
+</p>
+<p>Current support:
+</p>
+
+<ol>
+<li>
+<p> "Kid1" returns <code>ReplicateGene</code>.
+</p>
+</li>
+<li>
+<p> "Kid2" returns <code>Replicate2Gene</code>.
+</p>
+</li>
+</ol>
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaGaReplicationFactory(method = "Kid1")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>A string specifying the replication function.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A replication function for genes.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Configuration: 
+<code>lFxegaGaGene</code>,
+<code>xegaGaCrossoverFactory()</code>,
+<code>xegaGaGeneMapFactory()</code>,
+<code>xegaGaMutationFactory()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">lFxegaGaGene$CrossGene&lt;-xegaGaCrossGene
+lFxegaGaGene$MutationRate&lt;-function(fit, lF) {0.001}
+lFxegaGaGene$Accept&lt;-function(OperatorPipeline, gene, lF) {gene}
+Replicate&lt;-xegaGaReplicationFactory("Kid1")
+pop10&lt;-lapply(rep(0,10), function(x) xegaGaInitGene(lFxegaGaGene))
+epop10&lt;-lapply(pop10, lFxegaGaGene$EvalGene, lF=lFxegaGaGene)
+fit10&lt;-unlist(lapply(epop10, function(x) {x$fit}))
+newgenes1&lt;-Replicate(pop10, fit10, lFxegaGaGene)
+lFxegaGaGene$CrossGene&lt;-xegaGaCross2Gene
+Replicate&lt;-xegaGaReplicationFactory("Kid2")
+newgenes2&lt;-Replicate(pop10, fit10, lFxegaGaGene)
+</code></pre>
+
+
+</div>

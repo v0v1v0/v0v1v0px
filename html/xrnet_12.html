@@ -1,0 +1,312 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xrnet</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Fit hierarchical regularized regression model</h2>
+
+<h3>Description</h3>
+
+<p>Fits hierarchical regularized regression model that enables the
+incorporation of external data for predictor variables. Both the predictor
+variables and external data can be regularized by the most common penalties
+(lasso, ridge, elastic net). Solutions are computed across a two-dimensional
+grid of penalties (a separate penalty path is computed for the predictors and
+external variables). Currently support regularized linear and logistic
+regression, future extensions to other outcomes (i.e. Cox regression) will be
+implemented in the next major update.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xrnet(
+  x,
+  y,
+  external = NULL,
+  unpen = NULL,
+  family = c("gaussian", "binomial"),
+  penalty_main = define_penalty(),
+  penalty_external = define_penalty(),
+  weights = NULL,
+  standardize = c(TRUE, TRUE),
+  intercept = c(TRUE, FALSE),
+  control = list()
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>predictor design matrix of dimension <code class="reqn">n x p</code>, matrix options
+include:
+</p>
+
+<ul>
+<li>
+<p> matrix
+</p>
+</li>
+<li>
+<p> big.matrix
+</p>
+</li>
+<li>
+<p> filebacked.big.matrix
+</p>
+</li>
+<li>
+<p> sparse matrix (dgCMatrix)
+</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>y</code></td>
+<td>
+<p>outcome vector of length <code class="reqn">n</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>external</code></td>
+<td>
+<p>(optional) external data design matrix of dimension
+<code class="reqn">p x q</code>,
+matrix options include:
+</p>
+
+<ul>
+<li>
+<p> matrix
+</p>
+</li>
+<li>
+<p> sparse matrix (dgCMatrix)
+</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>unpen</code></td>
+<td>
+<p>(optional) unpenalized predictor design matrix, matrix options
+include:
+</p>
+
+<ul><li>
+<p> matrix
+</p>
+</li></ul>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>family</code></td>
+<td>
+<p>error distribution for outcome variable, options include:
+</p>
+
+<ul>
+<li>
+<p> "gaussian"
+</p>
+</li>
+<li>
+<p> "binomial"
+</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>penalty_main</code></td>
+<td>
+<p>specifies regularization object for x. See
+<code>define_penalty</code> for more details.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>penalty_external</code></td>
+<td>
+<p>specifies regularization object for external. See
+<code>define_penalty</code> for more details.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>weights</code></td>
+<td>
+<p>optional vector of observation-specific weights. Default is 1
+for all observations.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>standardize</code></td>
+<td>
+<p>indicates whether x and/or external should be
+standardized. Default is c(TRUE, TRUE).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>intercept</code></td>
+<td>
+<p>indicates whether an intercept term is included for x
+and/or external. Default is c(TRUE, FALSE).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>control</code></td>
+<td>
+<p>specifies xrnet control object. See
+<code>xrnet_control</code> for more details.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>This function extends the coordinate descent algorithm of the
+R package <code>glmnet</code> to allow the type of regularization (i.e. ridge,
+lasso) to be feature-specific. This extension is used to enable fitting
+hierarchical regularized regression models, where external information for
+the predictors can be included in the <code>external=</code> argument. In addition,
+elements of the R package <code>biglasso</code> are utilized to enable the use of
+standard R matrices, memory-mapped matrices from the <code>bigmemory</code>
+package, or sparse matrices from the <code>Matrix</code> package.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A list of class <code>xrnet</code> with components:
+</p>
+<table>
+<tr style="vertical-align: top;">
+<td><code>beta0</code></td>
+<td>
+<p>matrix of first-level intercepts indexed by penalty values</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>betas</code></td>
+<td>
+<p>3-dimensional array of first-level penalized coefficients
+indexed by penalty values</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>gammas</code></td>
+<td>
+<p>3-dimensional array of first-level non-penalized coefficients
+indexed by penalty values</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>alpha0</code></td>
+<td>
+<p>matrix of second-level intercepts indexed by penalty values</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>alphas</code></td>
+<td>
+<p>3-dimensional array of second-level external data coefficients
+indexed by penalty values</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>penalty</code></td>
+<td>
+<p>vector of first-level penalty values</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>penalty_ext</code></td>
+<td>
+<p>vector of second-level penalty values</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>family</code></td>
+<td>
+<p>error distribution for outcome variable</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>num_passes</code></td>
+<td>
+<p>total number of passes over the data in the coordinate
+descent algorithm</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>status</code></td>
+<td>
+<p>error status for xrnet fitting</p>
+</td>
+</tr>
+</table>
+<ul>
+<li>
+<p> 0 = OK
+</p>
+</li>
+<li>
+<p> 1 = Error/Warning
+</p>
+</li>
+</ul>
+<table><tr style="vertical-align: top;">
+<td><code>error_msg</code></td>
+<td>
+<p>description of error</p>
+</td>
+</tr></table>
+<h3>References</h3>
+
+<p>Jerome Friedman, Trevor Hastie, Robert Tibshirani (2010).
+Regularization Paths for Generalized Linear Models via Coordinate Descent.
+Journal of Statistical Software, 33(1), 1-22. URL
+http://www.jstatsoft.org/v33/i01/.
+</p>
+<p>Zeng, Y., and Breheny, P. (2017).
+The biglasso Package: A Memory- and Computation-Efficient Solver for Lasso
+Model Fitting with Big Data in R. arXiv preprint arXiv:1701.05936. URL
+https://arxiv.org/abs/1701.05936.
+</p>
+<p>Michael J. Kane, John Emerson, Stephen Weston (2013).
+Scalable Strategies for Computing with Massive Data.
+Journal of Statistical Software, 55(14), 1-19. URL
+http://www.jstatsoft.org/v55/i14/.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">### hierarchical regularized linear regression ###
+data(GaussianExample)
+
+## define penalty for predictors and external variables
+## default is ridge for predictors and lasso for external
+## see define_penalty() function for more details
+
+penMain &lt;- define_penalty(0, num_penalty = 20)
+penExt &lt;- define_penalty(1, num_penalty = 20)
+
+## fit model with defined regularization
+fit_xrnet &lt;- xrnet(
+  x = x_linear,
+  y = y_linear,
+  external = ext_linear,
+  family = "gaussian",
+  penalty_main = penMain,
+  penalty_external = penExt
+)
+</code></pre>
+
+
+</div>

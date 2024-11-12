@@ -1,0 +1,65 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaBestGeneInPopulation</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Extracts indices of best genes in population.</h2>
+
+<h3>Description</h3>
+
+<p><code>BestGeneInPopulation()</code> extracts the indices of
+the best genes in the population.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaBestGeneInPopulation(fit)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>fit</code></td>
+<td>
+<p>Fitness vector of a population of genes.</p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+<p>You might use:   
+<code>which(max(fit)==fit)</code>. But this is slower!
+</p>
+
+
+<h3>Value</h3>
+
+<p>List of the indices of the best genes in the population.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Population Layer: 
+<code>xegaBestInPopulation()</code>,
+<code>xegaEvalPopulation()</code>,
+<code>xegaInitPopulation()</code>,
+<code>xegaLogEvalsPopulation()</code>,
+<code>xegaNextPopulation()</code>,
+<code>xegaObservePopulation()</code>,
+<code>xegaSummaryPopulation()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">pop10&lt;-xegaInitPopulation(10, lFxegaGaGene)
+epop10&lt;-xegaEvalPopulation(pop10, lFxegaGaGene)
+xegaBestGeneInPopulation(epop10$fit)
+
+</code></pre>
+
+
+</div>

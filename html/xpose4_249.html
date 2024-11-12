@@ -1,0 +1,350 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xpose.VPC.categorical</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Xpose visual predictive check for categorical data.</h2>
+
+<h3>Description</h3>
+
+<p>Xpose visual predictive check for categorical data (binary, ordered
+categorical and count data).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xpose.VPC.categorical(
+  vpc.info = "vpc_results.csv",
+  vpctab = dir(pattern = "^vpctab")[1],
+  object = NULL,
+  subset = NULL,
+  main = "Default",
+  main.sub = "Default",
+  main.sub.cex = 0.85,
+  real.col = 4,
+  real.lty = "b",
+  real.cex = 1,
+  real.lwd = 1,
+  median.line = FALSE,
+  median.col = "darkgrey",
+  median.lty = 1,
+  ci.lines = FALSE,
+  ci.col = "blue",
+  ci.lines.col = "darkblue",
+  ci.lines.lty = 3,
+  xlb = "Default",
+  ylb = "Proportion of Total",
+  force.x.continuous = FALSE,
+  level.to.plot = NULL,
+  max.plots.per.page = 1,
+  rug = TRUE,
+  rug.col = "orange",
+  censored = FALSE,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>vpc.info</code></td>
+<td>
+<p>Name of PSN file to use.  File will come from <code>VPC</code>
+command in PsN.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>vpctab</code></td>
+<td>
+<p>Name of vpctab file produced from PsN.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>Xpose data object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>subset</code></td>
+<td>
+<p>Subset of data to look at.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>Title for plot.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main.sub</code></td>
+<td>
+<p>Used for names above each plot when using multiple plots.
+Should be a vector, e.g. <code>c("title 1","title 2")</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main.sub.cex</code></td>
+<td>
+<p>Size of <code>main.sub</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>real.col</code></td>
+<td>
+<p>Color of real line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>real.lty</code></td>
+<td>
+<p>Real line type.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>real.cex</code></td>
+<td>
+<p>Size of real line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>real.lwd</code></td>
+<td>
+<p>Width of real line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>median.line</code></td>
+<td>
+<p>Dray a median line?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>median.col</code></td>
+<td>
+<p>Color of median line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>median.lty</code></td>
+<td>
+<p>median line type.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ci.lines</code></td>
+<td>
+<p>Lines marking confidence interval?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ci.col</code></td>
+<td>
+<p>Color of CI area.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ci.lines.col</code></td>
+<td>
+<p>Color of CI lines.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ci.lines.lty</code></td>
+<td>
+<p>Type of CI lines.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xlb</code></td>
+<td>
+<p>X-axis label.  If other than "default"" passed directly to
+<code>xyplot</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylb</code></td>
+<td>
+<p>Y-axis label. Passed directly to <code>xyplot</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>force.x.continuous</code></td>
+<td>
+<p>For the x variable to be continuous.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>level.to.plot</code></td>
+<td>
+<p>Which levels of the variable to plot. Smallest level is
+1, largest is number_of_levels.  For example, with 4 levels, the largest
+level would be 4, the smallest would be 1.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max.plots.per.page</code></td>
+<td>
+<p>The number of plots per page.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>rug</code></td>
+<td>
+<p>Should there be markings on the plot showing where the intervals
+for the VPC are?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>rug.col</code></td>
+<td>
+<p>Color of the rug.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>censored</code></td>
+<td>
+<p>Is this censored data?  Censored data can be both below and
+above the limit of quantification.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional information passed to function.</p>
+</td>
+</tr>
+</table>
+<h3>Author(s)</h3>
+
+<p>Andrew C. Hooker
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xpose.VPC.both</code>.
+</p>
+<p>Other specific functions: 
+<code>absval.cwres.vs.cov.bw()</code>,
+<code>absval.cwres.vs.pred()</code>,
+<code>absval.cwres.vs.pred.by.cov()</code>,
+<code>absval.iwres.cwres.vs.ipred.pred()</code>,
+<code>absval.iwres.vs.cov.bw()</code>,
+<code>absval.iwres.vs.idv()</code>,
+<code>absval.iwres.vs.ipred()</code>,
+<code>absval.iwres.vs.ipred.by.cov()</code>,
+<code>absval.iwres.vs.pred()</code>,
+<code>absval.wres.vs.cov.bw()</code>,
+<code>absval.wres.vs.idv()</code>,
+<code>absval.wres.vs.pred()</code>,
+<code>absval.wres.vs.pred.by.cov()</code>,
+<code>absval_delta_vs_cov_model_comp</code>,
+<code>addit.gof()</code>,
+<code>autocorr.cwres()</code>,
+<code>autocorr.iwres()</code>,
+<code>autocorr.wres()</code>,
+<code>basic.gof()</code>,
+<code>basic.model.comp()</code>,
+<code>cat.dv.vs.idv.sb()</code>,
+<code>cat.pc()</code>,
+<code>cov.splom()</code>,
+<code>cwres.dist.hist()</code>,
+<code>cwres.dist.qq()</code>,
+<code>cwres.vs.cov()</code>,
+<code>cwres.vs.idv()</code>,
+<code>cwres.vs.idv.bw()</code>,
+<code>cwres.vs.pred()</code>,
+<code>cwres.vs.pred.bw()</code>,
+<code>cwres.wres.vs.idv()</code>,
+<code>cwres.wres.vs.pred()</code>,
+<code>dOFV.vs.cov()</code>,
+<code>dOFV.vs.id()</code>,
+<code>dOFV1.vs.dOFV2()</code>,
+<code>data.checkout()</code>,
+<code>dv.preds.vs.idv()</code>,
+<code>dv.vs.idv()</code>,
+<code>dv.vs.ipred()</code>,
+<code>dv.vs.ipred.by.cov()</code>,
+<code>dv.vs.ipred.by.idv()</code>,
+<code>dv.vs.pred()</code>,
+<code>dv.vs.pred.by.cov()</code>,
+<code>dv.vs.pred.by.idv()</code>,
+<code>dv.vs.pred.ipred()</code>,
+<code>gof()</code>,
+<code>ind.plots()</code>,
+<code>ind.plots.cwres.hist()</code>,
+<code>ind.plots.cwres.qq()</code>,
+<code>ipred.vs.idv()</code>,
+<code>iwres.dist.hist()</code>,
+<code>iwres.dist.qq()</code>,
+<code>iwres.vs.idv()</code>,
+<code>kaplan.plot()</code>,
+<code>par_cov_hist</code>,
+<code>par_cov_qq</code>,
+<code>parm.vs.cov()</code>,
+<code>parm.vs.parm()</code>,
+<code>pred.vs.idv()</code>,
+<code>ranpar.vs.cov()</code>,
+<code>runsum()</code>,
+<code>wres.dist.hist()</code>,
+<code>wres.dist.qq()</code>,
+<code>wres.vs.idv()</code>,
+<code>wres.vs.idv.bw()</code>,
+<code>wres.vs.pred()</code>,
+<code>wres.vs.pred.bw()</code>,
+<code>xpose.VPC()</code>,
+<code>xpose.VPC.both()</code>,
+<code>xpose4-package</code>
+</p>
+<p>Other PsN functions: 
+<code>boot.hist()</code>,
+<code>bootscm.import()</code>,
+<code>npc.coverage()</code>,
+<code>randtest.hist()</code>,
+<code>read.npc.vpc.results()</code>,
+<code>read.vpctab()</code>,
+<code>xpose.VPC()</code>,
+<code>xpose.VPC.both()</code>,
+<code>xpose4-package</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Not run: 
+library(xpose4)
+
+## move to the directory where results from PsN
+## are found
+cur.dir &lt;- getwd()
+setwd(paste(cur.dir,"/binary/vpc_36",sep=""))
+
+xpose.VPC.categorical(level.to.plot=1,max.plots.per.page=4)
+xpose.VPC.categorical(level.to.plot=1,max.plots.per.page=4,by="DOSE")
+
+## ordered categorical plots
+setwd(paste(cur.dir,"/ordered_cat/vpc_45",sep=""))
+xpose.VPC.categorical()
+
+
+## count
+setwd(paste(cur.dir,"/count/vpc65b",sep=""))
+xpose.VPC.categorical()
+
+setwd(paste(cur.dir,"/count/vpc65a",sep=""))
+xpose.VPC.categorical()
+
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

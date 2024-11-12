@@ -1,0 +1,265 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>tune</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>tune the lambda parameters for a tskrr</h2>
+
+<h3>Description</h3>
+
+<p>This function lets you tune the lambda parameter(s) of a two-step
+kernel ridge regression model for optimal performance. You can either
+tune a previously fitted <code>tskrr</code> model, or pass the
+label matrix and kernel matrices to fit and tune a model in
+one go.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S4 method for signature 'tskrrHomogeneous'
+tune(
+  x,
+  lim = c(1e-04, 1),
+  ngrid = 10,
+  lambda = NULL,
+  fun = loss_mse,
+  exclusion = "edges",
+  replaceby0 = FALSE,
+  onedim = TRUE,
+  ...
+)
+
+## S4 method for signature 'tskrrHeterogeneous'
+tune(
+  x,
+  lim = c(1e-04, 1),
+  ngrid = 10,
+  lambda = NULL,
+  fun = loss_mse,
+  exclusion = "interaction",
+  replaceby0 = FALSE,
+  onedim = FALSE,
+  ...
+)
+
+## S4 method for signature 'matrix'
+tune(
+  x,
+  k,
+  g = NULL,
+  lim = c(1e-04, 1),
+  ngrid = 10,
+  lambda = NULL,
+  fun = loss_mse,
+  exclusion = "interaction",
+  replaceby0 = FALSE,
+  testdim = TRUE,
+  testlabels = TRUE,
+  symmetry = c("auto", "symmetric", "skewed"),
+  keep = FALSE,
+  onedim = is.null(g),
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>a <code>tskrr</code> object representing a two step
+kernel ridge regression model.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lim</code></td>
+<td>
+<p>a vector with 2 values that give the boundaries for the domain
+in which lambda is searched, or possibly a list with 2 elements. See details</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ngrid</code></td>
+<td>
+<p>a single numeric value giving the number of points
+in a single dimension of the grid, or possibly a list with 2 elements.
+See details.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lambda</code></td>
+<td>
+<p>a vector with the lambdas that need checking for
+homogeneous networks, or possibly a list with two elements for
+heterogeneous networks. See Details. Defaults to
+<code>NULL</code>, which means that the function constructs the search grid
+from the other arguments.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fun</code></td>
+<td>
+<p>a loss function that takes the label matrix Y and the
+result of the crossvalidation LOO as input. The function name can
+be passed as a character string as well.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>exclusion</code></td>
+<td>
+<p>a character value with possible values "interaction",
+"row", "column", "both" for heterogeneous models, and "edges", "vertices",
+"interaction" or "both" for homogeneous models.
+Defaults to "interaction". See details.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>replaceby0</code></td>
+<td>
+<p>a logical value indicating whether the interaction
+should be simply removed (<code>FALSE</code>) or replaced by 0 (<code>TRUE</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>onedim</code></td>
+<td>
+<p>a logical value indicating whether the search should be
+done in a single dimension. See details.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>arguments to be passed to the loss function</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>k</code></td>
+<td>
+<p>a kernel matrix for the rows</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>g</code></td>
+<td>
+<p>an optional kernel matrix for the columns</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>testdim</code></td>
+<td>
+<p>a logical value indicating whether symmetry
+and the dimensions of the kernel(s) should be tested.
+Defaults to <code>TRUE</code>, but for large matrices
+putting this to <code>FALSE</code> will speed up the function.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>testlabels</code></td>
+<td>
+<p>a logical value indicating wether the row- and column
+names of the matrices have to be checked for consistency. Defaults to
+<code>TRUE</code>, but for large matrices putting this to <code>FALSE</code> will
+speed up the function.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>symmetry</code></td>
+<td>
+<p>a character value with the possibilities
+"auto", "symmetric" or "skewed". In case of a homogeneous fit, you
+can either specify whether the label matrix is symmetric or
+skewed, or you can let the function decide (option "auto").</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>keep</code></td>
+<td>
+<p>a logical value indicating whether the kernel hat
+matrices should be stored in the model object. Doing so makes the
+model object quite larger, but can speed up predictions in
+some cases. Defaults to <code>FALSE</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>This function currently only performs a simple grid search for all
+(combinations of) lambda values. If no specific lambda values are
+provided, then the function uses <code>create_grid</code> to
+create an evenly spaced (on a logarithmic scale) grid.
+</p>
+<p>In the case of a heterogeneous network, you can specify different values
+for the two parameters that need tuning. To do so, you need to
+provide a list with the settings for every parameter to the arguments
+<code>lim</code>, <code>ngrid</code> and/or <code>lambda</code>. If you
+try this for a homogeneous network, the function will return an error.
+</p>
+<p>Alternatively, you can speed up the grid search by searching in a
+single dimension. When <code>onedim = TRUE</code>, the search for a
+heterogeneous network will only consider cases where both lambda values
+are equal.
+</p>
+<p>The arguments <code>exclusion</code> and <code>replaceby0</code> are used by
+the function <code>get_loo_fun</code> to find the correct
+leave-one-out function.
+</p>
+<p>By default, the function uses standard mean squared error based on
+the cross-validation results as a measure for optimization. However, you
+can provide a custom function if needed, as long as it takes
+two matrices as input: <code>Y</code> being the observed interactions and
+<code>LOO</code> being the result of the chosen cross-validation.
+</p>
+
+
+<h3>Value</h3>
+
+<p>a model of class <code>tskrrTune</code>
+</p>
+
+
+<h3>See Also</h3>
+
+
+<ul>
+<li> <p><code>loo</code>, <code>loo_internal</code> and
+<code>get_loo_fun</code> for more information on how leave one out
+validation works.
+</p>
+</li>
+<li> <p><code>tskrr</code> for fitting a twostep kernel ridge regression.
+</p>
+</li>
+<li> <p><code>loss_functions</code> for different loss functions.
+</p>
+</li>
+</ul>
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(drugtarget)
+
+mod &lt;- tskrr(drugTargetInteraction, targetSim, drugSim)
+tuned &lt;- tune(mod, lim = c(0.1,1), ngrid = list(5,10),
+              fun = loss_auc)
+
+## Not run: 
+
+# This is just some visualization of the matrix
+# It can be run safely.
+gridvals &lt;- get_grid(tuned)
+z &lt;- get_loss_values(tuned)        # loss values
+
+image(gridvals$k,gridvals$g,z, log = 'xy',
+      xlab = "lambda k", ylab = "lambda g",
+      col = rev(heat.colors(20)))
+
+
+## End(Not run)
+</code></pre>
+
+
+</div>

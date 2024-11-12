@@ -1,0 +1,93 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaPermMutateGeneOrderBased</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Mutate a gene (generalized order based mutation).</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaPermMutateGene</code> mutates a permutation.
+The per position mutation rate is given by 
+<code>lF$BitMutationRate1()</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaPermMutateGeneOrderBased(gene, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>gene</code></td>
+<td>
+<p>A Permutation.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration of the genetic algorithm.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>This operator is an implementation of a generalized 
+order based mutation operator (Syswerda, 1991).
+</p>
+
+<ol>
+<li>
+<p> The indices of a random subschedule are extracted.
+</p>
+</li>
+<li>
+<p> The subschedule is extracted, permuted, and reinserted.
+</p>
+</li>
+</ol>
+<h3>Value</h3>
+
+<p>A Permutation.
+</p>
+
+
+<h3>References</h3>
+
+<p>Syswerda, G. (1991): 
+Schedule Optimization Using Genetic Algorithms.
+In: Davis, L. (Ed.): 
+Handbook of Genetic Algorithms, Chapter 21, pp. 332-349.
+Van Nostrand Reinhold, New York.
+(ISBN:0-442-00173-8)
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Mutation: 
+<code>xegaPermMutateGene2Opt()</code>,
+<code>xegaPermMutateGeneBestGreedy()</code>,
+<code>xegaPermMutateGeneGreedy()</code>,
+<code>xegaPermMutateGenekInversion()</code>,
+<code>xegaPermMutateGenekOptLK()</code>,
+<code>xegaPermMutateMix()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">gene1&lt;-xegaPermInitGene(lFxegaPermGene)
+xegaPermDecodeGene(gene1, lFxegaPermGene)
+gene&lt;-xegaPermMutateGeneOrderBased(gene1, lFxegaPermGene)
+xegaPermDecodeGene(gene, lFxegaPermGene)
+</code></pre>
+
+
+</div>

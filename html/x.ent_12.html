@@ -1,0 +1,102 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xprop</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>
+Graph <code>xprop</code>
+</h2>
+
+<h3>Description</h3>
+
+<p>This visualization is  a type of 100% stacked histograme. The graph <code>xprop</code> shows the distribution of the relationship between entities in the corpus. The total of the bar represents 100%.  
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">  xprop(v1,v2,type=1)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>v1</code></td>
+<td>
+<p> a vector of values</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>v2</code></td>
+<td>
+<p> a vector of values</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>type</code></td>
+<td>
+<p> type of graph</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>After calling the function <code>xparse</code>, the result has the following format:
+</p>
+
+<ol>
+<li>
+<p> file_name:entity:$:list_value_found
+</p>
+</li>
+<li>
+<p> ...
+</p>
+</li>
+<li>
+<p> file_name:entity1:entity2:...:$$:value_e1:value_e2:....:negation
+</p>
+</li>
+</ol>
+<p>Function <code>xprop</code> will convert the data format above to a data frame such as:
+</p>
+
+<ol>
+<li>
+<p> a list of columns that call the values of v2. Those columns will contain a value 0 or 1.
+</p>
+</li>
+<li>
+<p> a column has a name "cat" - categorie.
+</p>
+</li>
+<li>
+<p> a column has a name "val" - value.
+<br> Each line discribes the relevant information between values of vector <code>v1</code> and values of vector <code>v2</code>. If there exists a relationship between a value of <code>v1</code> with a value of <code>v2</code> then the column of value v2 will be 1, the column "cat" carrying value is the value of <code>v2</code> and the column "val" has the value current of v1.   
+</p>
+</li>
+</ol>
+<h3>Author(s)</h3>
+
+<p>Tien T. Phan
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xhist</code> type graphique histogram<br><code>xplot</code> type graphique plot<br></p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">  xprop(v1=c("chou","colza"),v2=c("mouche du chou","rouille"))
+  v1 = as.vector(xdata_value("p")[["value"]])
+  v2 = as.vector(xdata_value("b")[["value"]])
+  xprop(v1,v2,type=2)
+</code></pre>
+
+
+</div>

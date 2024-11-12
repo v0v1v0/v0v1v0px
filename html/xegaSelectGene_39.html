@@ -1,0 +1,112 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>SelectPropFitDiffOnln</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Selection proportional to fitness differences O(n ln(n)).</h2>
+
+<h3>Description</h3>
+
+<p><code>SelectPropFitDiffOnln</code> implements selection
+proportional to fitness differences. Negative fitness
+vectors are shifted to <code class="reqn">R^+</code>.
+The default of the function <code>lf$Offset</code> is <code>1</code>. 
+Holland's schema theorem uses this selection function.
+See John Holland (1975) for further information.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">SelectPropFitDiffOnln(fit, lF, size = 1)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>fit</code></td>
+<td>
+<p>Fitness vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>size</code></td>
+<td>
+<p>Number of selected genes. Default: 1.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>This is a fast implementation which gives exactly the same 
+results as the functions <code>SelectPropFitDiff</code> 
+and <code>SelectPropDiffFitM</code>.
+Its runtime is <code class="reqn">O(n . ln(n))</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>The index vector of the selected genes.
+</p>
+
+
+<h3>Credits</h3>
+
+<p>The code of this function has been adapted by 
+Fabian Aisenbrey.
+</p>
+
+
+<h3>Warning</h3>
+
+<p>There is a potential slow for-loop in the code.
+</p>
+
+
+<h3>References</h3>
+
+<p>Holland, John (1975): 
+<em>Adaptation in Natural and Artificial Systems</em>,  
+The University of Michigan Press, Ann Arbor.
+(ISBN:0-472-08460-7)
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Selection Functions: 
+<code>SelectDuel()</code>,
+<code>SelectLRSelective()</code>,
+<code>SelectLinearRankTSR()</code>,
+<code>SelectPropFitDiffM()</code>,
+<code>SelectPropFitDiff()</code>,
+<code>SelectPropFitM()</code>,
+<code>SelectPropFitOnln()</code>,
+<code>SelectPropFit()</code>,
+<code>SelectSTournament()</code>,
+<code>SelectSUS()</code>,
+<code>SelectTournament()</code>,
+<code>SelectUniformP()</code>,
+<code>SelectUniform()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">fit&lt;-sample(10, 15, replace=TRUE)
+SelectPropFitDiffOnln(fit, NewlFselectGenes()) 
+SelectPropFitOnln(fit, NewlFselectGenes(), length(fit)) 
+</code></pre>
+
+
+</div>

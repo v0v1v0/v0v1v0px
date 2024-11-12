@@ -1,0 +1,638 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaSelectGene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Package xegaSelectGene.</h2>
+
+<h3>Description</h3>
+
+<p>Selection functions for genetic algorithms.
+</p>
+
+
+<h3>Details</h3>
+
+<p>The <code>selectGene</code> package provides selection and scaling functions
+for genetic algorithms. 
+All functions of this package are independent of the gene 
+representation. 
+</p>
+
+<ul>
+<li>
+<p> Scaling functions and dispersion measures are in scaling.R
+</p>
+</li>
+<li>
+<p> Selection functions are in selectGene.R.
+For selection functions, a transformation to index access 
+functions is provided (a limited form of function continuation).
+</p>
+</li>
+<li>
+<p> Benchmark functions for selection functions are in 
+selectGeneBenchmark.R.
+Except for uniform selection, the continuation form of
+selection functions should be used.
+</p>
+</li>
+<li>
+<p> Evaluation functions are in evalGene.R.
+</p>
+</li>
+<li>
+<p> Counting and timing of function executions  
+are provided by transformation functions in timer.R
+</p>
+</li>
+<li>
+<p> Problem environments for examples and unit tests for
+</p>
+
+<ul>
+<li>
+<p> function optimization:
+DeJongF4.R (stochastic functions) and Parabola2D.R 
+(delayed execution for benchmarking of parallelism,
+deterministic function,
+deterministic function with early termination check, 
+function with random failures)
+</p>
+</li>
+<li>
+<p> combinatorial optimization: 
+newTSP.R (for the traveling salesman problem).
+</p>
+</li>
+<li>
+<p> boolean function learning:
+newXOR.R (for the XOR problem).
+</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Interface Scaling Functions</h3>
+
+<p>All scaling functions must implement
+the following abstract interface:
+</p>
+<p><code>function name</code>(<code>fit</code>, <code>lF</code>)
+</p>
+<p><strong>Parameters</strong>
+</p>
+
+<ul>
+<li> <p><code>fit</code>  A fitness vector. 
+</p>
+</li>
+<li> <p><code>lF</code>   Local configuration.
+</p>
+</li>
+</ul>
+<p><strong>Return Value</strong>
+</p>
+<p>Scaled fitness vector.
+</p>
+
+
+<h3>Interface Dispersion Measures</h3>
+
+<p>All dispersion measure functions must implement
+the following abstract interface:
+</p>
+<p><code>function name</code>(<code>popstatvec</code>)
+</p>
+<p><strong>Parameters</strong>
+</p>
+
+<ul><li> <p><code>popstatvec</code>  Vector of population statistics. 
+</p>
+<p>The internal state of the genetic algorithm is described 
+by a matrix of the history of population statistics.
+Each row consists of 8 population statistics
+(mean, min, Q1, median, Q3, max, var, mad). 
+A row is a vector of population statistics.  
+</p>
+</li></ul>
+<p><strong>Return Value</strong>
+</p>
+<p>Dispersion measure (real).
+</p>
+
+
+<h3>Interface Selection Functions</h3>
+
+<p>All selection functions must implement
+the following abstract interface:
+</p>
+<p><code>function name</code>(<code>fit</code>, <code>lF</code>, <code>size</code>)
+</p>
+<p><strong>Parameters</strong>
+</p>
+
+<ul>
+<li> <p><code>fit</code>  a vector of fitness values.
+</p>
+</li>
+<li> <p><code>lF</code>   a local function list.
+</p>
+</li>
+<li> <p><code>size</code> the number of indices returned.
+</p>
+</li>
+</ul>
+<p><strong>Return Value</strong>
+</p>
+<p>A vector of indices of length <code>size</code>.
+</p>
+<p>All selection functions are implemented
+WITHOUT a default assignment to <code>lF</code>.
+</p>
+<p>A missing configuration should raise an error!
+</p>
+<p>The default value of <code>size</code> is <code>1</code>.
+</p>
+
+
+<h3>Constants</h3>
+
+<p>Some scaling and selection functions use constants which should 
+be configured. 
+We handle these constants by 
+constant functions created by <code>parm(constant)</code>.
+We store all of these functions in the list of 
+local functions <code>lF</code>.
+The rationale is to reduce the number of parameters
+of selection functions and to provide a uniform 
+interface for selection functions.
+</p>
+
+
+<h3>Table of Scaling Constants</h3>
+
+
+<table>
+<tr>
+<td style="text-align: right;"> 
+<strong>Constant</strong>   </td>
+<td style="text-align: center;"> <strong>Default</strong> </td>
+<td style="text-align: left;"> <strong>Used in</strong> </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$Offset           </td>
+<td style="text-align: center;"> 1                </td>
+<td style="text-align: left;"> ScaleFitness </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+lF$ScalingExp       </td>
+<td style="text-align: center;"> 1                </td>
+<td style="text-align: left;"> ScalingFitness,  </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+                    </td>
+<td style="text-align: center;">                  </td>
+<td style="text-align: left;"> ThresholdScaleFitness  </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$ScalingExp2      </td>
+<td style="text-align: center;"> 1                </td>
+<td style="text-align: left;"> ThresholdScaleFitness  </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$ScalingThreshold </td>
+<td style="text-align: center;"> 1                </td>
+<td style="text-align: left;"> ThresholdScaleFitness  </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$RDMWeight        </td>
+<td style="text-align: center;"> 1.0              </td>
+<td style="text-align: left;"> ContinuousScaleFitness  </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$DRMin            </td>
+<td style="text-align: center;"> 0.5              </td>
+<td style="text-align: left;"> DispersionRatio  </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$DRMax            </td>
+<td style="text-align: center;"> 2.0              </td>
+<td style="text-align: left;"> DispersionRatio  </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$ScalingDelay     </td>
+<td style="text-align: center;"> 1                </td>
+<td style="text-align: left;"> DispersionRatio  </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+</td>
+</tr>
+</table>
+<table>
+<tr>
+<td style="text-align: right;"> 
+<strong>State Variable</strong> </td>
+<td style="text-align: center;"> <strong>Start Value</strong> </td>
+<td style="text-align: left;"> <strong>Used in</strong> </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$RDM           </td>
+<td style="text-align: center;"> 1.0                </td>
+<td style="text-align: left;"> ThresholdScaleFitness </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+                 </td>
+<td style="text-align: center;">                    </td>
+<td style="text-align: left;"> ContinuousScaleFitness </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+                 </td>
+<td style="text-align: center;">                    </td>
+<td style="text-align: left;"> xega::RunGA </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+</td>
+</tr>
+</table>
+<h3>Table of Selection Constants</h3>
+
+
+<table>
+<tr>
+<td style="text-align: right;"> 
+<strong>Constant</strong> </td>
+<td style="text-align: center;"> <strong>Default</strong> </td>
+<td style="text-align: left;"> <strong>Used in</strong> </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$SelectionContinuation </td>
+<td style="text-align: center;"> TRUE </td>
+<td style="text-align: left;"> xegaPopulation::xegaNextPopulation </td>
+</tr>
+<tr>
+<td style="text-align: right;"> 
+lF$Offset           </td>
+<td style="text-align: center;"> 1                </td>
+<td style="text-align: left;"> SelectPropFitOnLn </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+                    </td>
+<td style="text-align: center;">                  </td>
+<td style="text-align: left;"> SelectPropFit </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+                    </td>
+<td style="text-align: center;">                  </td>
+<td style="text-align: left;"> SelectPropFitM </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+                    </td>
+<td style="text-align: center;">                  </td>
+<td style="text-align: left;"> SelectPropFitDiffOnLn </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+                    </td>
+<td style="text-align: center;">                  </td>
+<td style="text-align: left;"> SelectPropFitDiff </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+                    </td>
+<td style="text-align: center;">                  </td>
+<td style="text-align: left;"> SUS </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+                    </td>
+<td style="text-align: center;">                  </td>
+<td style="text-align: left;"> SelectLinearRankTSR </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+lF$eps              </td>
+<td style="text-align: center;"> 0.01             </td>
+<td style="text-align: left;"> SelectPropFitDiffM </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+lF$TournamentSize   </td>
+<td style="text-align: center;"> 2                </td>
+<td style="text-align: left;"> Tournament </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+                    </td>
+<td style="text-align: center;">                  </td>
+<td style="text-align: left;"> SelectTournament </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+                    </td>
+<td style="text-align: center;">                  </td>
+<td style="text-align: left;"> STournament </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+                    </td>
+<td style="text-align: center;">                  </td>
+<td style="text-align: left;"> SelectSTournament </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+lF$SelectionBias    </td>
+<td style="text-align: center;"> 1.5              </td>
+<td style="text-align: left;"> SelectLRSelective </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+lF$MaxTSR           </td>
+<td style="text-align: center;"> 1.5              </td>
+<td style="text-align: left;"> SelectLinearRankTSR 
+</td>
+</tr>
+</table>
+<h3>Parallel/Distributed Execution</h3>
+
+<p>All selection functions in this package return
+</p>
+
+<ol>
+<li>
+<p> the index of a selected gene.
+The configured selection function is executed each time
+a gene must be selected in the gene replication process.
+This allows a parallelization/distribution of the
+complete gene replication process and the fitness evaluation.
+However, the price to pay is a recomputation of the selection
+algorithms for each gene and each mate (which may be costly).
+The execution time of Baker's SUS function explodes
+when used in this way.
+</p>
+</li>
+<li>
+<p> a vector of indices of the selected genes.
+We compute
+a vector of indices for genes and their mates,
+and we replace the selection function with a
+quasi-continuation function
+with precomputed indices
+which when called, returns the next index.
+The selection computation is executed once for each generation
+without costly recomputation.
+The cost of selecting a gene and its mate is the cost of indexing 
+an integer in a vector.
+This version is faster for almost all selection functions
+(Sequential computation).
+</p>
+<p>The parallelization of quasi-continuation function is not yet implemented. 
+</p>
+</li>
+</ol>
+<h3>Constant Functions for Configuration</h3>
+
+<p>The following constant functions are expected to be in the local function list lF.
+</p>
+
+<ul>
+<li> <p><code>Offset()</code> in <code>SelectPropFit</code>:
+Since all fitness values must be larger than 0,
+in case of negative fitness values, <code>Offset()</code> 
+is the value of the minimum fitness value (default: 1).
+</p>
+</li>
+<li> <p><code>Eps()</code> in <code>SelectPropFitDiff</code>:
+<code>Eps()</code> is a very small value to eliminate 
+differences of 0.
+</p>
+</li>
+<li> <p><code>TournamentSize()</code> in <code>SelectTournament</code>:
+Specifies the size of the tournament. Per default: 2.
+</p>
+</li>
+<li> <p><code>SelectionBias()</code> in <code>SelectLinearRank</code>.
+This constant must be larger than 1.0 and usually
+should be set at most to 2.0.
+Increasing <code>SelectionBias()</code>
+increases selection pressure.
+Beyond 2.0, there is the danger of premature convergence.
+</p>
+</li>
+</ul>
+<h3>Performance Measurement</h3>
+
+<p>The file <code>Timer.R</code>:  Functions for timing and counting.
+</p>
+<p>The file <code>selectGeneBenchmark.R</code>: A benchmark of selection functions.
+</p>
+
+
+<h3>Interface Function Evaluation and Methods</h3>
+
+<p>All evaluation functions must implement
+the following abstract interface:
+</p>
+<p><code>function name</code>(<code>gene</code>, <code>lF</code>)
+</p>
+<p><strong>Parameters</strong>
+</p>
+
+<ul>
+<li> <p><code>gene</code>  a gene. 
+</p>
+</li>
+<li> <p><code>lF</code>   a local function list.
+</p>
+</li>
+</ul>
+<p><strong>Return Value</strong>
+</p>
+<p>A gene.
+</p>
+<p>The file <code>evalGene.R</code> contains different function evaluation methods.
+</p>
+
+<ol>
+<li> <p><code>EvalGeneU</code> evaluates a gene unconditionally. (Default.)
+</p>
+</li>
+<li> <p><code>EvalGeneR</code> evaluates a gene unconditionally
+and allows the repair of the gene by the decoder.
+</p>
+</li>
+<li> <p><code>EvalGeneDet</code> memoizes the evaluation of a gene in the 
+in the gene. Genes are evaluated only once.
+This leads to a performance improvement for
+deterministic functions.
+</p>
+</li>
+<li> <p><code>EvalGeneStoch</code> computes an incremental average of 
+the value of a gene.
+The average converges to the true value as the number 
+of repeated evaluations of a gene increases.
+</p>
+</li>
+</ol>
+<h3>Gene Representation</h3>
+
+<p>A gene is a named list:
+</p>
+
+<ul>
+<li>
+<p> $gene1      the gene.
+</p>
+</li>
+<li>
+<p> $fit        the fitness value of the gene
+(for EvalGeneDet and EvalGeneU) or
+the mean fitness (for stochastic functions
+evaluated with EvalGeneStoch).
+</p>
+</li>
+<li>
+<p> $evaluated  has the gene been evaluated?
+</p>
+</li>
+<li>
+<p> $evalFail   has the evaluation of the gene failed?
+</p>
+</li>
+<li>
+<p> $var        the cumulative variance of the fitness 
+of all evaluations of a gene.
+(For stochastic functions)
+</p>
+</li>
+<li>
+<p> $sigma      the standard deviation of the fitness of 
+all evaluations of a gene.
+(For stochastic functions)
+</p>
+</li>
+<li>
+<p> $obs        the number of evaluations of a gene.
+(For stochastic functions)
+</p>
+</li>
+</ul>
+<h3>The Architecture of the xegaX-Packages</h3>
+
+<p>The xegaX-packages are a family of R-packages which implement 
+eXtended Evolutionary and Genetic Algorithms (xega).  
+The architecture has 3 layers, 
+namely the user interface layer,
+the population layer, and the gene layer: 
+</p>
+
+<ul>
+<li>
+<p>The user interface layer (package <code>xega</code>) 
+provides a function call interface and configuration support
+for several algorithms: genetic algorithms (sga), 
+permutation-based genetic algorithms (sgPerm), 
+derivation-free algorithms as e.g. differential evolution (sgde), 
+grammar-based genetic programming (sgp) and grammatical evolution
+(sge). 
+</p>
+</li>
+<li>
+<p>The population layer (package <code>xegaPopulation</code>) contains
+population-related functionality as well as support for 
+population statistics dependent adaptive mechanisms and parallelization.
+</p>
+</li>
+<li> 
+<p>The gene layer is split into a representation-independent and 
+a representation-dependent part:
+</p>
+
+<ol>
+<li> 
+<p>The representation-indendent part (package <code>xegaSelectGene</code>)
+is responsible for variants of selection operators, evaluation 
+strategies for genes, and profiling and timing capabilities.        
+</p>
+</li>
+<li> 
+<p>The representation-dependent part consists of the following packages: 
+</p>
+
+<ul>
+<li> <p><code>xegaGaGene</code> for binary coded genetic algorithms.
+</p>
+</li>
+<li> <p><code>xegaPermGene</code> for permutation-based genetic algorithms.
+</p>
+</li>
+<li> <p><code>xegaDfGene</code> for derivation-free algorithms as e.g. 
+differential evolution.
+</p>
+</li>
+<li> <p><code>xegaGpGene</code> for grammar-based genetic algorithms.
+</p>
+</li>
+<li> <p><code>xegaGeGene</code> for grammatical evolution algorithms.
+</p>
+</li>
+</ul>
+<p>The packages <code>xegaDerivationTrees</code> and <code>xegaBNF</code> support
+the last two packages:
+<code>xegaBNF</code> essentially provides a grammar compiler, and 
+<code>xegaDerivationTrees</code> is an abstract data type for derivation trees.
+</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3>Copyright</h3>
+
+<p>(c) 2023 Andreas Geyer-Schulz
+</p>
+
+
+<h3>License</h3>
+
+<p>MIT
+</p>
+
+
+<h3>URL</h3>
+
+<p>&lt;https://github.com/ageyerschulz/xegaSelectGene&gt;
+</p>
+
+
+<h3>Installation</h3>
+
+<p>From CRAN by <code>install.packages('xegaSelectGene')</code>
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Andreas Geyer-Schulz
+</p>
+
+
+</div>

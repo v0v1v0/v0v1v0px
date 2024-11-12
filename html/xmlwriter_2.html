@@ -1,0 +1,64 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>add_child_fragment</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Add a child fragment to an existing xml_fragment</h2>
+
+<h3>Description</h3>
+
+<p>Add a child fragment to an existing xml_fragment.
+The child fragment can be a named <code>frag</code> element in which case the name
+is used as the tag name, an unnamed element in which case the element
+is added as a text node. This functionality is equivalent with the <code>/</code> operator.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">add_child_fragment(x, ..., .frag = frag(...))
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>an <code>xml_fragment()</code> object</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>nest named elements and characters to include in the fragment (see example)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.frag</code></td>
+<td>
+<p>an xml_fragment to add as a child, overrides the ... argument</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>the original <code>xml_fragment()</code> with the child added.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other xml_fragment: 
+<code>as.character.xml_fragment()</code>,
+<code>as_frag()</code>,
+<code>as_xml_nodeset()</code>,
+<code>data_frag()</code>,
+<code>frag()</code>,
+<code>xml_fragment()</code>
+</p>
+
+
+</div>

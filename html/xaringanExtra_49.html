@@ -1,0 +1,446 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>panelset</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Panelset</h2>
+
+<h3>Description</h3>
+
+<p>A panelset designed for showing off code, but useful for anything really.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">use_panelset(in_xaringan = NULL)
+
+style_panelset_tabs(
+  foreground = NULL,
+  background = NULL,
+  ...,
+  active_foreground = NULL,
+  active_background = NULL,
+  active_border_color = NULL,
+  hover_background = NULL,
+  hover_foreground = NULL,
+  hover_border_color = NULL,
+  focus_ring = NULL,
+  separator_color = NULL,
+  tabs_border_bottom = NULL,
+  tabs_sideways_max_width = NULL,
+  inactive_opacity = NULL,
+  font_family = NULL,
+  selector = ":root"
+)
+
+style_panelset(...)
+
+html_dependency_panelset()
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>in_xaringan</code></td>
+<td>
+<p>Set to <code>TRUE</code> if rendering in xaringan slides or <code>FALSE</code>
+if using panelset elsewhere. This determines the style of knitr hook that
+is registered to enable the <code>panelset</code> chunk option.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>foreground</code></td>
+<td>
+<p>The text color of a non-active panel tab, default is
+<code>currentColor</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>background, active_background, hover_background</code></td>
+<td>
+<p>Background colors for
+panel tabs; in-active tabs, active tab, hovered tab. The default values are
+all <code>unset</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Ignored or passed from <code>style_panelset()</code> to <code>style_panelset_tabs()</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>active_foreground</code></td>
+<td>
+<p>The text color of an active, as in selected, panel
+tab. Default is <code>currentColor</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>active_border_color, hover_border_color</code></td>
+<td>
+<p>The color of the top border of
+a tab when it is active or the color of the bottom border of a tab when it
+is hovered or focused. Defaults are <code>currentColor</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hover_foreground</code></td>
+<td>
+<p>The text color of a hovered panel tab. Default is
+<code>currentColor</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>focus_ring</code></td>
+<td>
+<p>The outline style for the tab focus ring.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>separator_color, tabs_border_bottom</code></td>
+<td>
+<p>The border color between the tabs
+and content. Default is <code style="white-space: pre;">⁠#ddd⁠</code>. <code>tabs_border_bottom</code> is superseded by
+<code>separator_color</code> but is kept for backwards compatibility.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tabs_sideways_max_width</code></td>
+<td>
+<p>The maximum width of the tabs in sideways
+mode. The default value is <code style="white-space: pre;">⁠25%⁠</code>. A value between 25% and 33% is
+recommended. The tabs can only ever be at most 50% of the container width.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>inactive_opacity</code></td>
+<td>
+<p>The opacity of inactive panel tabs, default is <code>0.5</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>font_family</code></td>
+<td>
+<p>The font family to be used for the panel tabs text.
+Default is a monospace system font stack.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>selector</code></td>
+<td>
+<p>The CSS selector used to choose which panelset is being
+styled. In most cases, you can use the default selector to style all
+panelsets on the page. When <code>selector</code> is <code>NULL</code>, <code>style_panelset()</code> will
+return the styles without wrapping them in a <code style="white-space: pre;">⁠&lt;style&gt;⁠</code> tag so they can be
+used in inline styles.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An <code>htmltools::tagList()</code> with the panelset dependencies, or an
+<code>htmltools::htmlDependency()</code>.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul>
+<li> <p><code>use_panelset()</code>: Adds panelset to your xaringan slides.
+</p>
+</li>
+<li> <p><code>style_panelset_tabs()</code>: Style the panelset. Returns an <span class="pkg">htmltools</span> <code style="white-space: pre;">⁠&lt;style&gt;⁠</code>
+tag.
+</p>
+</li>
+<li> <p><code>style_panelset()</code>: Deprecated, renamed <code>style_panelset_tabs()</code>.
+</p>
+</li>
+<li> <p><code>html_dependency_panelset()</code>: Returns an <code>htmltools::htmlDependency()</code> with the tile
+view dependencies. Most users will want to use <code>use_panelset()</code>.
+</p>
+</li>
+</ul>
+<h3>Usage</h3>
+
+<p>To add panelset to your xaringan presentation, add the
+following code chunk to your slides' R Markdown file.
+</p>
+<div class="sourceCode markdown"><pre>```{r xaringan-panelset, echo=FALSE}
+xaringanExtra::use_panelset()
+```
+
+.panelset[
+.panel[.panel-name[app.R]
+
+```r
+hist(runif(100))
+```
+]
+
+.panel[.panel-name[About]
+
+Take a look at the R code in that other panel.
+]
+]
+</pre></div>
+
+
+<h3>Sideways Panelsets</h3>
+
+<p>As an alternative to the “tabs above content” view, you can also use
+<em>sideways</em> panelsets where the tabs appear beside the tabbed content.
+</p>
+<p>To choose this effect, add the <code>.sideways</code> class to <code>.panelset</code> in your
+slides or R Markdown text.
+</p>
+<div class="sourceCode markdown"><pre>.panelset.sideways[
+.panel[.panel-name[ui.R]
+```r
+# shiny ui code here...
+```
+]
+
+.panel[.panel-name[server.R]
+```r
+function(input, output, session) {
+  # shiny server code here...
+}
+```
+]
+]
+</pre></div>
+<p>By default in sideways-mode, the tabs will appear on the left side. You
+can choose to place the tabs on the right side by including both
+<code>.sideways</code> and <code>.right</code> with <code>.panelset</code>.
+</p>
+<div class="sourceCode markdown"><pre>.panelset.sideways.right[
+.panel[.panel-name[ui.R]
+```r
+# shiny ui code here...
+```
+]
+
+.panel[.panel-name[server.R]
+```r
+function(input, output, session) {
+  # shiny server code here...
+}
+```
+]
+]
+</pre></div>
+
+
+<h3>Style Panelset</h3>
+
+<p>To customize the appearance of your panels, you can use
+<code>style_panelset_tabs()</code> called directly in an R chunk in your slides.
+</p>
+<div class="sourceCode markdown"><pre>```{r echo=FALSE}
+style_panelset_tabs(foreground = "honeydew", background = "seagreen")
+```
+</pre></div>
+<p>The panelset uses opacity to soften the in-active tabs to increase the
+chances that the tabs will work with your slide theme. If you decide to
+change your tab colors or to use solid colored tabs, you’ll likely want
+to set <code>inactive_opacity = 1</code> in <code>style_panelset()</code> (or the
+corresponding <code>--panel-tab-inactive-opacity</code> CSS variable).
+</p>
+<p>Behind the scenes, <code>style_panelset_tabs()</code> updates the values of <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*">custom CSS properties</a>
+that define the panelset appearance. If you’d rather work with CSS, the
+default values of these properties are shown in the CSS code below. You
+can copy the whole CSS block to your slides and modify the values to
+customize the style to fit your presentation.
+</p>
+<div class="sourceCode markdown"><pre>```{css echo=FALSE}
+.panelset {
+   --panel-tab-foreground: currentColor;
+   --panel-tab-background: unset;
+   --panel-tab-active-foreground: currentColor;
+   --panel-tab-active-background: unset;
+   --panel-tab-active-border-color: currentColor;
+   --panel-tab-hover-foreground: currentColor;
+   --panel-tab-hover-background: unset;
+   --panel-tab-hover-border-color: currentColor;
+   --panel-tab-inactive-opacity: 0.5;
+   --panel-tabs-border-bottom: #ddd;
+   --panel-tab-font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+}
+```
+</pre></div>
+
+
+<h3>Usage in R Markdown</h3>
+
+<p>Panelset works in all R Markdown HTML outputs like HTML reports and
+<a href="https://bookdown.org/yihui/blogdown/">blogdown</a> webpages!
+</p>
+<p>Panelset works in the same way as <code>rmarkdown</code>’s
+<a href="https://bookdown.org/yihui/rmarkdown-cookbook/html-tabs.html">tabset</a>
+feature, albeit with fewer style options, but the trade-off is that it
+works in a wider range of document types. Generally, as long as the
+output is HTML, panelset should work.
+</p>
+<p>Another advantage of panelset is that it enables deeplinking: the
+currently shown tab is encoded in the URL automatically, allowing users
+to link to open tabs. Users can also right click on a panel’s tab and
+select <em>Copy Link</em> to link directly to a specific panel’s tab, which
+will appear in view when visiting the copied link.
+</p>
+<p>With standard R Markdown,
+i.e. <code>rmarkdown::html_document()</code>, you can
+use the following template.
+</p>
+<div class="sourceCode markdown"><pre># Panelset In R Markdown! {.panelset}
+
+## Tab One
+
+Amet enim aptent molestie vulputate pharetra
+vulputate primis et vivamus semper.
+
+## Tab Two
+
+### Sub heading one
+
+Sit etiam malesuada arcu fusce ullamcorper
+interdum proin tincidunt curabitur felis?
+
+## Tab Three
+
+Adipiscing mauris egestas vitae pretium 
+ad dignissim dictumst platea!
+
+# Another section
+
+This content won't appear in a panel.
+</pre></div>
+<p>In other, less-standard R Markdown HTML formats, you can use pandoc’s
+<a href="https://pandoc.org/MANUAL.html#extension-fenced_divs">fenced divs</a>.
+</p>
+<div class="sourceCode markdown"><pre>::::: {.panelset}
+
+::: {.panel}
+[First Tab]{.panel-name}
+
+Lorem sed non habitasse nulla donec egestas magna
+enim posuere fames ante diam!
+:::
+
+::: {.panel}
+[Second Tab]{.panel-name}
+
+Consectetur ligula taciti neque scelerisque gravida
+class pharetra netus lobortis quisque mollis iaculis.
+:::
+
+:::::
+</pre></div>
+<p>Alternatively, you can also use raw HTML.
+</p>
+<div class="sourceCode html"><pre>&lt;div class="panelset"&gt;
+  &lt;div class="panel"&gt;
+    &lt;div class="panel-name"&gt;First Tab&lt;/div&gt;
+    &lt;!-- Panel content --&gt;
+    &lt;p&gt;Lorem ipsum, etc, etc&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="panel"&gt;
+    &lt;div class="panel-name"&gt;Second Tab&lt;/div&gt;
+    &lt;!-- Panel content --&gt;
+    &lt;p&gt;Lorem ipsum, etc, etc&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre></div>
+
+
+<h3>Panelset knitr Chunks</h3>
+
+<p>A common use-case for <strong>panelset</strong> is to show the code and its output in
+separate tabs. For example, you might want to first show the code to
+create a plot in the first tab, with the plot itself in a second tab. On
+slides where space is constrained, this approach can be useful.
+</p>
+<p>To help facilitate this process, <strong>panelset</strong> provides a <code>panelset</code>
+chunk option. When set to <code>TRUE</code>, the code is included in a panel tab
+named <em>Code</em> and the output is included in a panel tab named <em>Output</em>.
+Note that you still need to wrap this chunk in a panelset-creating
+container.
+</p>
+<div class="sourceCode markdown"><pre>.panelset[
+```{r panelset = TRUE}
+list(
+  normal = rnorm(10),
+  uniform = runif(10),
+  cauchy = rcauchy(10)
+)
+```
+]
+</pre></div>
+<p>You can also set the <code>panelset</code> chunk option to a named vector, where
+the <code>source</code> item is the tab name for the source code and the <code>output</code>
+item is the tab name for the code output.
+</p>
+<div class="sourceCode markdown"><pre>```{r panelset = c(source = "ggplot2", output = "Plot")}
+ggplot(Orange) +
+  aes(x = age, y = circumference, colour = Tree) +
+  geom_point() +
+  geom_line() +
+  guides(colour = FALSE) +
+  theme_bw()
+```
+</pre></div>
+<p>When your code contains multiple expressions and outputs, you may also
+want to set the <code>results = "hold"</code> chunk option. Currently, knitr uses
+<code>results = "markup"</code> as the default, in which case each code expression
+and output pair will generate a pair of tabs.
+</p>
+<div class="sourceCode markdown"><pre>```{r panelset = TRUE, results="hold"}
+print("Oak is strong and also gives shade.")
+print("The lake sparkled in the red hot sun.")
+```
+</pre></div>
+<p>Finally, panelset chunks also work in R Markdown documents, but they
+must be encapsulated in <code style="white-space: pre;">⁠&lt;div class="panelset"&gt;⁠</code> and <code style="white-space: pre;">⁠&lt;/div&gt;⁠</code>
+</p>
+<div class="sourceCode markdown"><pre>&lt;div class="panelset"&gt;
+
+```{r panelset = TRUE}
+print("Oak is strong and also gives shade.")
+```
+
+&lt;/div&gt;
+</pre></div>
+<p>or appear inside a section with the panelset class.
+</p>
+<div class="sourceCode markdown"><pre>### A Random Sentence {.panelset}
+
+```{r panelset = TRUE}
+print("Oak is strong and also gives shade.")
+```
+</pre></div>
+<p>[
+</p>
+<div class="sourceCode {r panelset = TRUE}"><pre>list(
+  normal = rnorm(10),
+  uniform = runif(10),
+  cauchy = rcauchy(10)
+)
+</pre></div>
+<p>]: R:%0A%60%60%60%7Br%20panelset%20=%20TRUE%7D%0Alist(%0A%20%20normal%20=%20rnorm(10),%0A%20%20uniform%20=%20runif(10),%0A%20%20cauchy%20=%20rcauchy(10)%0A)%0A%60%60%60%0A
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">use_panelset()
+
+</code></pre>
+
+
+</div>

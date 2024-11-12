@@ -1,0 +1,55 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>CalcPD</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Calculates the Probablity of Default</h2>
+
+<h3>Description</h3>
+
+<p>Calculates the probablity of the default on specific time points by using the spread of the corresponding credit curve and the loss given default
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">CalcPD(spread, LGD, time_points)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>spread</code></td>
+<td>
+<p>The spread based on the credit curve</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>LGD</code></td>
+<td>
+<p>The loss-given-default</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>time_points</code></td>
+<td>
+<p>The timepoints that the analysis is performed on</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A vector containing the probablity of default on the specified timepoints
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Tasos Grivas &lt;tasos@openriskcalculator.com&gt;
+</p>
+
+
+</div>

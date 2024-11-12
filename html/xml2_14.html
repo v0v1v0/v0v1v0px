@@ -1,0 +1,45 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>url_parse</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Parse a url into its component pieces.</h2>
+
+<h3>Description</h3>
+
+<p>Parse a url into its component pieces.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">url_parse(x)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>A character vector of urls.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A dataframe with one row for each element of <code>x</code> and
+columns: scheme, server, port, user, path, query, fragment.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">url_parse("http://had.co.nz/")
+url_parse("http://had.co.nz:1234/")
+url_parse("http://had.co.nz:1234/?a=1&amp;b=2")
+url_parse("http://had.co.nz:1234/?a=1&amp;b=2#def")
+</code></pre>
+
+
+</div>

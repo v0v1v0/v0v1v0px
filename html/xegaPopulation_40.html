@@ -1,0 +1,98 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaSummaryPopulation</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Provide elementary summary statistics of the fitness of the population.</h2>
+
+<h3>Description</h3>
+
+<p><code>SummaryPopulation()</code> reports
+on the fitness and the value of the best solution
+in the population.
+</p>
+<p>The value of <code>lF$Verbose()</code> controls the
+information displayed:
+</p>
+ 
+<ol>
+<li> <p><code>== 0</code>: Nothing is displayed.
+</p>
+</li>
+<li> <p><code>== 1</code>: 1 point per generation.
+</p>
+</li>
+<li> <p><code>&gt; 1</code>: Max(fit), number of solutions, indices.
+</p>
+</li>
+<li> <p><code>&gt; 2</code>: and population fitness statistics.
+</p>
+</li>
+<li> <p><code>&gt; 3</code>: and 1 solution.
+</p>
+</li>
+</ol>
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaSummaryPopulation(pop, fit, lF, iter = 0)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>pop</code></td>
+<td>
+<p>Population of genes.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fit</code></td>
+<td>
+<p>Vector of fitness values of <code>pop</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local function configuration.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>iter</code></td>
+<td>
+<p>The generation. Default: <code>0</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>The number <code>0</code>.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Population Layer: 
+<code>xegaBestGeneInPopulation()</code>,
+<code>xegaBestInPopulation()</code>,
+<code>xegaEvalPopulation()</code>,
+<code>xegaInitPopulation()</code>,
+<code>xegaLogEvalsPopulation()</code>,
+<code>xegaNextPopulation()</code>,
+<code>xegaObservePopulation()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">pop10&lt;-xegaInitPopulation(10, lFxegaGaGene)
+epop10&lt;-xegaEvalPopulation(pop10, lFxegaGaGene)
+rc&lt;-xegaSummaryPopulation(epop10$pop, epop10$fit, lFxegaGaGene, iter=12)
+
+</code></pre>
+
+
+</div>

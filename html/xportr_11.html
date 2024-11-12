@@ -1,0 +1,100 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xportr_df_label</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Assign Dataset Label</h2>
+
+<h3>Description</h3>
+
+<p>Assigns dataset label from a dataset level metadata to a given data frame.
+This is stored in the 'label' attribute of the dataframe.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xportr_df_label(.df, metadata = NULL, domain = NULL, metacore = deprecated())
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>.df</code></td>
+<td>
+<p>A data frame of CDISC standard.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>metadata</code></td>
+<td>
+<p>A data frame containing dataset. See 'Metadata' section for
+details.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>domain</code></td>
+<td>
+<p>Appropriate CDISC dataset name, e.g. ADAE, DM. Used to subset
+the metadata object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>metacore</code></td>
+<td>
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated"><img src="../help/figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a> Previously used to pass
+metadata now renamed with <code>metadata</code></p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Data frame with label attributes.
+</p>
+
+
+<h3>Metadata</h3>
+
+<p>The argument passed in the 'metadata' argument can either
+be a metacore object, or a data.frame containing the data listed below. If
+metacore is used, no changes to options are required.
+</p>
+<p>For data.frame 'metadata' arguments two columns must be present:
+</p>
+
+<ol>
+<li>
+<p> Domain Name - passed as the 'xportr.df_domain_name' option. Default:
+"dataset". This is the column subset by the 'domain' argument in the
+function.
+</p>
+</li>
+<li>
+<p> Label Name - passed as the 'xportr.df_label' option. Default:
+"label". Character values to update the 'label' attribute of the
+dataframe This is passed to <code>haven::write_xpt</code> to note the label.
+</p>
+</li>
+</ol>
+<h3>Examples</h3>
+
+<pre><code class="language-R">adsl &lt;- data.frame(
+  USUBJID = c(1001, 1002, 1003),
+  SITEID = c(001, 002, 003),
+  AGE = c(63, 35, 27),
+  SEX = c("M", "F", "M")
+)
+
+metadata &lt;- data.frame(
+  dataset = c("adsl", "adae"),
+  label = c("Subject-Level Analysis", "Adverse Events Analysis")
+)
+
+adsl &lt;- xportr_df_label(adsl, metadata, domain = "adsl")
+</code></pre>
+
+
+</div>

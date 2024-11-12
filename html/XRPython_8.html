@@ -1,0 +1,68 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>ipython</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Write a File of Python Commands to Test Package Modules in Python</h2>
+
+<h3>Description</h3>
+
+<p>A file of python commands will be written that set up an interactive Python session
+having imported the contents from a file (module) of python code in an R package.
+Typically, uploading such a file to <code>ipython</code> notebook allows the python code, along with additional or modified code, to
+be tested directly without interfacing from R.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">ipython(file, package, module = "", ..., RPython = TRUE,
+  folder = "python")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>file</code></td>
+<td>
+<p>A file name or open write connection.  The python commands generated will be written to this file.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>package</code></td>
+<td>
+<p>The R package containing the relevent module</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>module</code></td>
+<td>
+<p>The file (module) to be imported.  Specifically, a command <code>"from ... import *"</code> will be generated.
+Omit this argument or supply it as <code>""</code> to suppress this command, in which case explicit commands should be provided.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional python commands to be appended to the output file.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>RPython</code></td>
+<td>
+<p>Should the path include the XRPython code, default <code>TRUE</code>, which is usually what you want.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>folder</code></td>
+<td>
+<p>The name of the folder in the installed package; the default is the suggested <code>"python"</code>; that is, the installed
+version of folder <code>"inst/python"</code> in the source for the package.  Note that it's the installed version; changes to the source
+code must be installed to show up in the output.</p>
+</td>
+</tr>
+</table>
+</div>

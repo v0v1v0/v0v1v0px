@@ -1,0 +1,77 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>x12path</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Function to interact with the environment x12env</h2>
+
+<h3>Description</h3>
+
+<p><code>"x12env"</code> is used to store the x12path and x13path (and more for the GUI).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">x12env
+x12path(path=NULL)
+
+putd(x,value)
+getd(x, mode="any")
+rmd(x)
+existd(x, mode="any")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>path</code></td>
+<td>
+<p>The path to the X12 or X13 binaries.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>a character for the name</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>value</code></td>
+<td>
+<p>value that should be assigned to the object with name x.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mode</code></td>
+<td>
+<p>the mode or type of object sought</p>
+</td>
+</tr>
+</table>
+<h3>Author(s)</h3>
+
+<p>Alexander Kowarik</p>
+
+
+<h3>See Also</h3>
+
+<p><code>get</code>, <code>assign</code>, <code>exists</code>, <code>x12</code></p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">  ## Not run: 
+  x12path()
+  x12path("d:/x12/x12a.exe")
+  x12path()
+  getd("x12path")
+  
+## End(Not run)
+</code></pre>
+
+
+</div>

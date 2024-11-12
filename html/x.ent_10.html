@@ -1,0 +1,74 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xparse</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Call script Perl for extracting data from corpus</h2>
+
+<h3>Description</h3>
+
+<p>Call script Perl for extracting data from corpus. Before you run, you must configure a configuration file ini.json in the folder config as: dictionaries, graphs of grammar (Use tools Unitex for creating)...
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xparse(json_path = "",verbose=FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>json_path</code></td>
+<td>
+<p>path of configuration file (*.json)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbose</code></td>
+<td>
+<p>logical. Should R report extra information on progress? Set to TRUE by the command-line option –verbose.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Input: dictionaries, grammars (build with software Unitex).
+Output: a result file of every entity and relation
+</p>
+
+
+<h3>Value</h3>
+
+<p>Result file includes:
+</p>
+<table>
+<tr style="vertical-align: top;">
+<td><code>comp1</code></td>
+<td>
+<p>data of every entity such as: file1:entity1:$:data1:data2:</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>comp2</code></td>
+<td>
+<p>data of every relation of every entity for example: file1:entity1:entity2:$$:data1:data2:1</p>
+</td>
+</tr>
+</table>
+<h3>See Also</h3>
+
+<p><code>xshow</code> display results
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">  xparse()
+</code></pre>
+
+
+</div>

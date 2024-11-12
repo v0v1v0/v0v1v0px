@@ -1,0 +1,90 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>simprazExample</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Function to create files for the simulated prazosin example in Xpose</h2>
+
+<h3>Description</h3>
+
+<p>Creates NONMEM data, model and output files for a model of prazosin using
+simulated data.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">simprazExample(overwrite = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>overwrite</code></td>
+<td>
+<p>Logical. Should the function overwrite files with the same
+names already in the current working directory?</p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+<p>Creates files in the current working directory named: run1.ext run1.lst
+run1.mod simpraz.dta xptab1
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Niclas Jonsson and Andrew Hooker
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other data functions: 
+<code>add_transformed_columns</code>,
+<code>change_graphical_parameters</code>,
+<code>change_misc_parameters</code>,
+<code>compute.cwres()</code>,
+<code>data.checkout()</code>,
+<code>data_extract_or_assign</code>,
+<code>db.names()</code>,
+<code>export.graph.par()</code>,
+<code>export.variable.definitions()</code>,
+<code>import.graph.par()</code>,
+<code>import.variable.definitions()</code>,
+<code>make.sb.data()</code>,
+<code>nsim()</code>,
+<code>par_cov_summary</code>,
+<code>read.TTE.sim.data()</code>,
+<code>read.nm.tables()</code>,
+<code>read_NM_output</code>,
+<code>read_nm_table()</code>,
+<code>tabulate.parameters()</code>,
+<code>xlabel()</code>,
+<code>xpose.data</code>,
+<code>xpose.print()</code>,
+<code>xpose4-package</code>,
+<code>xsubset()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+od = setwd(tempdir()) # move to a temp directory
+(cur.files &lt;- dir()) # current files in temp directory
+
+simprazExample(overwrite=TRUE) # write files
+
+(new.files &lt;- dir()[!(dir() %in% cur.files)])  # what files are new here?
+
+file.remove(new.files) # remove these files
+setwd(od)  # restore working directory
+
+</code></pre>
+
+
+</div>

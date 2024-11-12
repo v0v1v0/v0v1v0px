@@ -1,0 +1,96 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>est.recrate</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Estimate recombination rate</h2>
+
+<h3>Description</h3>
+
+<p>Obtain a smoothed estimate of the recombination rate along a chromosome,
+using the cM and Mbp position of markers.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">est.recrate(genmap, phymap, pos = NULL, window = 5)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>genmap</code></td>
+<td>
+<p>Vector of cM positions of markers, or a list of such vectors.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>phymap</code></td>
+<td>
+<p>Vector of Mbp positions of markers, or a list of such vectors;
+same length as <code>genmap</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pos</code></td>
+<td>
+<p>Vector of positions at which the recombination rate should be
+estimated, or a list of such vectors.  If NULL, we use the physical
+marker positions plus a grid with 4 positions per Mbp.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>window</code></td>
+<td>
+<p>Length of sliding window (in Mbp).</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>We assume constant recombination rate within each marker interval.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A data.frame containing the positions and estimate recombination
+rates.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Karl W Broman, <a href="mailto:broman@wisc.edu">broman@wisc.edu</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>est.coi()</code>, <code>intensity()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># create equally-spaced map
+pmap &lt;- sim.map(100, n.mar=51, anchor=TRUE, include.x=FALSE, eq.spacing=TRUE)
+
+# simulate cross
+x &lt;- sim.cross(pmap, type="bc", n.ind=501)
+
+# estimate map for that cross
+emap &lt;- est.map(x)
+
+# empirical estimate of recombination rate
+rr &lt;- est.recrate(emap[[1]], pmap[[1]], window=5)
+plot(rr, type="l", lwd=2)
+
+</code></pre>
+
+
+</div>

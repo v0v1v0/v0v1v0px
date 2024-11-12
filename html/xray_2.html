@@ -1,0 +1,77 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>anomalies</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Analyze a dataset and search for anomalies</h2>
+
+<h3>Description</h3>
+
+<p>If any anomalous columns are found, they are reported as a warning and returned in a data.frame. To interpret the output, we are getting these anomalies:
+</p>
+
+<ul>
+<li>
+<p> NA values: NA
+</p>
+</li>
+<li>
+<p> 0 values: Zero
+</p>
+</li>
+<li>
+<p> Blank strings: Blank
+</p>
+</li>
+<li>
+<p> Infinite numbers: Inf
+</p>
+</li>
+</ul>
+<h3>Usage</h3>
+
+<pre><code class="language-R">anomalies(data_analyze, anomaly_threshold = 0.8, distinct_threshold = 2)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>data_analyze</code></td>
+<td>
+<p>a data frame or tibble to analyze</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>anomaly_threshold</code></td>
+<td>
+<p>the minimum percentage of anomalous rows for the column to be problematic</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>distinct_threshold</code></td>
+<td>
+<p>the minimum amount of distinct values the column has to have to not be problematic, usually you want to keep this at it's default value.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>All of these value are reported in columns prefixed by q (quantity), indicating the rows with the anomaly, and p (percentage), indicating percent of total rows with the anomaly.
+</p>
+<p>And, also any columns with only one distinct value, which means the column doesn't bring information to the table (If all rows are equal, why bother having that column?). We report the number of distinct values in qDistinct.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+library(xray)
+anomalies(mtcars, anomaly_threshold=0.5)
+
+</code></pre>
+
+
+</div>

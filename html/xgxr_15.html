@@ -1,0 +1,57 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>predictdf.polr</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Prediction data frame for polr</h2>
+
+<h3>Description</h3>
+
+<p>Get predictions with standard errors into data frame for use with geom_smooth
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S3 method for class 'polr'
+predictdf(model, xseq, se, level)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>model</code></td>
+<td>
+<p>object returned from polr</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xseq</code></td>
+<td>
+<p>sequence of x values for which to compute the smooth</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>se</code></td>
+<td>
+<p>if TRUE then confidence intervals are returned</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>level</code></td>
+<td>
+<p>confidence level for confidence intervals</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p><code>predictdf.polr</code> is used by xgx_geom_smooth when method = "polr" 
+to calculate confidence intervals via bootstraps.
+</p>
+
+
+</div>

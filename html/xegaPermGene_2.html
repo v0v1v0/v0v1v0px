@@ -1,0 +1,64 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>lFxegaPermGene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Generate local functions and objects.</h2>
+
+<h3>Description</h3>
+
+<p><code>lFxegaPermGene</code> is a list of functions 
+which contains a definition of all local objects 
+required for the use of genetic operators with the 
+We refer to this object as local configuration.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">lFxegaPermGene
+</code></pre>
+
+
+<h3>Format</h3>
+
+<p>An object of class <code>list</code> of length 21.
+</p>
+
+
+<h3>Details</h3>
+
+<p>We use the local function list (the local configuration) for 
+</p>
+
+<ol>
+<li>
+<p>replacing all constants by constant functions.
+</p>
+<p>Rationale: We need one formal argument (the local function list lF)
+and we can dispatch multiple functions. E.g.  <code>lF$verbose()</code>
+</p>
+</li>
+<li>    
+<p>for dynamically binding a local function with a definition from a
+proper function factory. E.g. the selection methods 
+<code>lf$SelectGene</code> and <code>SelectMate</code>.
+</p>
+</li>
+<li>
+<p> for gene representation specific special functions:
+<code>lf$InitGene</code>, <code>lF$DecodeGene</code>, <code>lf$EvalGene</code>
+<code>lf$ReplicateGene</code>, ...
+</p>
+</li>
+</ol>
+<h3>See Also</h3>
+
+<p>Other Configuration: 
+<code>xegaPermCrossoverFactory()</code>,
+<code>xegaPermMutationFactory()</code>
+</p>
+
+
+</div>

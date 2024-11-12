@@ -1,0 +1,52 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xcolors</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>
+List the XKCD survey colors
+</h2>
+
+<h3>Description</h3>
+
+<p>Lists (a subset of) the 949 colors consistently identified in the XKCD web color survey.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xcolors(max_rank = -1)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>max_rank</code></td>
+<td>
+
+<p>If positive, restrict to the top (most frequently named) <code>max_rank</code> colors.
+</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>Vector of character strings
+</p>
+
+
+<h3>References</h3>
+
+<p><a href="http://blog.xkcd.com/2010/05/03/color-survey-results/">http://blog.xkcd.com/2010/05/03/color-survey-results/</a></p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">xcolors(10)
+name2color(xcolors(10))
+barplot(rep(1,10),col=name2color(xcolors(10)))
+</code></pre>
+
+
+</div>

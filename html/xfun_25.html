@@ -1,0 +1,42 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>dir_exists</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Test the existence of files and directories</h2>
+
+<h3>Description</h3>
+
+<p>These are wrapper functions of [<code style="white-space: pre;">⁠utils::file_test()]⁠</code> to test the
+existence of directories and files. Note that <code>file_exists()</code> only tests
+files but not directories, which is the main difference between
+<code>file.exists()</code> in base R. If you use are using the R version
+3.2.0 or above, <code>dir_exists()</code> is the same as <code>dir.exists()</code>
+in base R.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">dir_exists(x)
+
+file_exists(x)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>A vector of paths.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A logical vector.
+</p>
+
+
+</div>

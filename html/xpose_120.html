@@ -1,0 +1,160 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>set_vars</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Set variable type, label or units</h2>
+
+<h3>Description</h3>
+
+<p>Function designed to change the type, label or unit associated with variables.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">set_var_types(xpdb, .problem = NULL, ..., auto_factor = TRUE, quiet)
+
+set_var_labels(xpdb, .problem = NULL, ..., quiet)
+
+set_var_units(xpdb, .problem = NULL, ..., quiet)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>xpdb</code></td>
+<td>
+<p>An <code>xpose_data</code> object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.problem</code></td>
+<td>
+<p>The problem number to which the edits will be applied.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Specifications of the edits to be made to the xpdb index. Edits are made as 
+type and variable pairs e.g. idv = 'TAD' will assign TAD to the type idv (independent variable).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>auto_factor</code></td>
+<td>
+<p>With <code>set_var_types</code> only. If <code>TRUE</code> new columns assigned to the type 'catcov' will be converted to
+factor.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>quiet</code></td>
+<td>
+<p>Logical, if <code>FALSE</code> messages are printed to the console.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An xpose_data object
+</p>
+
+
+<h3>Recognized variable types</h3>
+
+
+<ul>
+<li>
+<p> a: Compartments' amount
+</p>
+</li>
+<li>
+<p> amt: Dose amount
+</p>
+</li>
+<li>
+<p> catcov: Categorical covariate
+</p>
+</li>
+<li>
+<p> contcov: Continuous covariate
+</p>
+</li>
+<li>
+<p> dv: Dependent variable
+</p>
+</li>
+<li>
+<p> dvid: DV identifier
+</p>
+</li>
+<li>
+<p> eta: Eta
+</p>
+</li>
+<li>
+<p> evid: Event identifier
+</p>
+</li>
+<li>
+<p> id: Subject identifier
+</p>
+</li>
+<li>
+<p> idv: Independent variable
+</p>
+</li>
+<li>
+<p> ipred: Individual model predictions
+</p>
+</li>
+<li>
+<p> mdv: Missing dependent variable
+</p>
+</li>
+<li>
+<p> na: Not attributed
+</p>
+</li>
+<li>
+<p> occ: Occasion flag
+</p>
+</li>
+<li>
+<p> param: Model parameter
+</p>
+</li>
+<li>
+<p> pred: Typical model predictions
+</p>
+</li>
+<li>
+<p> res: Residuals
+</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p><code>list_vars</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Change variable type
+xpdb_2 &lt;- set_var_types(xpdb_ex_pk, .problem = 1, idv = 'TAD')
+
+# Change labels
+xpdb_2 &lt;- set_var_labels(xpdb_2, .problem = 1, ALAG1 = 'Lag time', CL = 'Clearance', V = 'Volume')
+
+# Change units
+xpdb_2 &lt;- set_var_units(xpdb_2, .problem = 1, ALAG1 = 'h', CL = 'L/h', V = 'L')
+
+</code></pre>
+
+
+</div>

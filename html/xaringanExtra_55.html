@@ -1,0 +1,93 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>tachyons</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Tachyons</h2>
+
+<h3>Description</h3>
+
+<p>Tachyons is a collection of CSS utility classes that works beautifully with
+<span class="pkg">xaringan</span> presentations using the 'remarkjs“ class syntax.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">use_tachyons(minified = TRUE)
+
+html_dependency_tachyons(minified = TRUE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>minified</code></td>
+<td>
+<p>Use the minified Tachyons css file? Default is <code>TRUE</code>.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>An <code>htmltools::tagList()</code> with the tachyons dependencies, or an
+<code>htmltools::htmlDependency()</code>.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul>
+<li> <p><code>use_tachyons()</code>: Adds tachyons to your xaringan slides.
+</p>
+</li>
+<li> <p><code>html_dependency_tachyons()</code>: Returns an <code>htmltools::htmlDependency()</code> with the tile
+view dependencies. Most users will want to use <code>use_tachyons()</code>.
+</p>
+</li>
+</ul>
+<h3>Usage</h3>
+
+<p>To add tachyons to your xaringan presentation, add the
+following code chunk to your slides' R Markdown file.
+</p>
+<div class="sourceCode markdown"><pre>```{r xaringan-tachyons, echo=FALSE}
+xaringanExtra::use_tachyons()
+```
+</pre></div>
+<p>Tachyons provides small, single-purpose CSS classes that are easily composed
+to achieve larger functionality and styles. In the <a href="https://github.com/gnab/remark/wiki/Markdown#content-classes">remarkjs content classes syntax</a>, you
+can compose classes by chaining them together. For example, the following
+markdown produces a box with a washed green background (<code>.bg-washed-green</code>),
+a dark green border (<code>.b--dark-green</code>) on all sides (<code>.ba</code>) with line width
+2 (<code>.bw2</code>) and border radius (<code>.br3</code>). The box has a shadow (<code>.shadow-5</code>)
+and medium-large horizontal padding (<code>.ph4</code>) with a large top margin
+(<code>.mt5</code>).
+</p>
+<div class="sourceCode markdown"><pre>.bg-washed-green.b--dark-green.ba.bw2.br3.shadow-5.ph4.mt5[
+The only way to write good code is to write tons of bad code first.
+Feeling shame about bad code stops you from getting to good code
+
+.tr[
+— Hadley Wickham
+]]
+</pre></div>
+
+
+<h3>References</h3>
+
+<p><a href="http://tachyons.io/">tachyons</a>,
+<a href="https://roperzh.github.io/tachyons-cheatsheet/">Tachyons Cheat Sheet</a>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">use_tachyons()
+
+</code></pre>
+
+
+</div>

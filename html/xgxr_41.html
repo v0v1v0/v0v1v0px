@@ -1,0 +1,102 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xgx_scale_y_percentchangelog10</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>percentchangelog10 transform for the y scale.</h2>
+
+<h3>Description</h3>
+
+<p><code>xgx_scale_y_percentchangelog10</code> and <code>xgx_scale_x_percentchangelog10</code> are designed 
+to be used with percent change (PCHG) from baseline data (on a scale of -1 to +Inf).
+Common examples include 
+It is used when you have a wide range of data on a percent change scale, 
+especially data close to -100
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xgx_scale_y_percentchangelog10(
+  breaks = NULL,
+  minor_breaks = NULL,
+  labels = NULL,
+  accuracy = 1,
+  n_breaks = 7,
+  ...
+)
+
+xgx_scale_x_percentchangelog10(
+  breaks = NULL,
+  minor_breaks = NULL,
+  labels = NULL,
+  accuracy = 1,
+  n_breaks = 7,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>breaks</code></td>
+<td>
+<p>if NULL, then default is to use a variant of 
+2^(labeling::extended(log2(PCHG + 1))) - 1, where PCHG represents the range of the data</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>minor_breaks</code></td>
+<td>
+<p>if NULL, then default is to use nicely spaced log10(PCHG + 1) minor breaks</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>labels</code></td>
+<td>
+<p>if NULL, then the default is to use scales::percent_format()</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>accuracy</code></td>
+<td>
+<p>accuracy to use with scales::percent_format(), if NULL, 
+then the default is set to 1</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>n_breaks</code></td>
+<td>
+<p>number of desired breaks, if NULL, then the default is set to 7</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>other parameters passed to 
+<code>scale_y_continuous</code></p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>ggplot2 compatible scale object
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">dat1 &lt;- data.frame(x = rnorm(100), PCHG = exp(rnorm(100)) - 1)
+
+ggplot2::ggplot(dat1, ggplot2::aes(x = x, y = PCHG)) +
+  ggplot2::geom_point() +
+  xgx_theme() +
+  xgx_scale_y_percentchangelog10()
+ 
+</code></pre>
+
+
+</div>

@@ -1,0 +1,69 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xkcdaxis</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Plot the axis</h2>
+
+<h3>Description</h3>
+
+<p>This function plots the axis
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xkcdaxis(xrange, yrange, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>xrange</code></td>
+<td>
+<p>The range of the X axe.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>yrange</code></td>
+<td>
+<p>The range of the Y axe.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Other arguments.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>It plots the axis of the graph.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A layer with the axis.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+xrange &lt;- range(mtcars$mpg)
+yrange &lt;- range(mtcars$wt)
+p &lt;- ggplot() +
+     geom_point(aes(mpg, wt), data=mtcars) +
+     xkcdaxis(xrange,yrange)
+p
+
+## End(Not run)
+</code></pre>
+
+
+</div>

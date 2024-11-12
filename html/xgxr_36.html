@@ -1,0 +1,52 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xgx_minor_breaks_log10</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Sets the default minor_breaks for log10 scales</h2>
+
+<h3>Description</h3>
+
+<p><code>xgx_minor_breaks_log10</code> sets nice minor_breaks for log10 scale.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xgx_minor_breaks_log10(data_range)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>data_range</code></td>
+<td>
+<p>range of the data</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>numeric vector of breaks
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">xgx_minor_breaks_log10(c(1, 1000))
+xgx_minor_breaks_log10(c(0.001, 100))
+xgx_minor_breaks_log10(c(1e-4, 1e4))
+xgx_minor_breaks_log10(c(1e-9, 1e9))
+xgx_minor_breaks_log10(c(1, 2))
+xgx_minor_breaks_log10(c(1, 5))
+xgx_minor_breaks_log10(c(1, 10))
+xgx_minor_breaks_log10(c(1, 100))
+xgx_minor_breaks_log10(c(1, 1.01))
+xgx_minor_breaks_log10(c(1, 1.0001))
+print(xgx_minor_breaks_log10(c(1, 1.000001)), digits = 10)
+
+</code></pre>
+
+
+</div>

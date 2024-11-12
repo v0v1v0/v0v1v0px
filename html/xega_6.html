@@ -1,0 +1,51 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>Parabola2DEarly</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Problem environment for a 2-dimensional quadratic parabola.</h2>
+
+<h3>Description</h3>
+
+<p>An example of a problem environment with an 
+early termination condition.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">Parabola2DEarly
+</code></pre>
+
+
+<h3>Format</h3>
+
+<p>An object of class <code>list</code> of length 9.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A problem environment (see Parabola2D).
+<code>Parabola2DEarly$terminate(solution, lF)</code> 
+is a test function which returns true if the <code>solution</code> 
+is in an epsilon environment of a known solution. 
+To invoke this function, use <code>Run( ..., early=TRUE, ...)</code>.
+The epsilon which determines 
+the length of the interval as a fraction
+of the known optimal solution is configured by  
+e.g. <code>Run( ..., terminationEps=0.001, ...)</code>.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Problem Environment: 
+<code>NewEnvXOR()</code>,
+<code>Parabola2D</code>,
+<code>lau15</code>
+</p>
+
+
+</div>

@@ -1,0 +1,76 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xbrlSECdev01</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>"Mutable state" function that exposes "methods" that analyze a
+US SEC submission.</h2>
+
+<h3>Description</h3>
+
+<p><code>xbrlSECtmp</code> is a "mutable state" function (see
+<code>XBRL</code>). It exposes the method
+<code>showPresentationHierarchy</code>. It is a work in progress.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xbrlSECdev01(xbrl.vars)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>xbrl.vars</code></td>
+<td>
+<p>list of variables returned by <code>xbrlDoAll</code></p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+
+<ul><li>
+<p>showPresentationHierarchy(showLabels=TRUE, showFacts=FALSE,
+file="") Shows a tree of the presentations provided.
+</p>
+</li></ul>
+<h3>Value</h3>
+
+<p>a list of "methods"</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Roberto Bertolusso and Marek Kimmel
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xbrlDoAll</code>, <code>xbrlParse</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+## Setting stringsAsFactors = FALSE is highly recommended
+## to avoid data frames to create factors from character vectors.
+options(stringsAsFactors = FALSE)
+
+## XBRL instance file to be analyzed, accessed
+## directly from SEC website:
+inst &lt;- "https://www.sec.gov/Archives/edgar/data/21344/000002134413000050/ko-20130927.xml"
+
+xbrl.vars &lt;- xbrlDoAll(inst)
+xbrl.sec &lt;- xbrlSECdev01(xbrl.vars)
+xbrl.sec$showPresentationHierarchy(showLabels=TRUE, showFacts=TRUE)
+
+## End(Not run)
+</code></pre>
+
+
+</div>

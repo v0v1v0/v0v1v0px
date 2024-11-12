@@ -1,0 +1,70 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xportr_split</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Deprecated - Split xpt file output</h2>
+
+<h3>Description</h3>
+
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated"><img src="../help/figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a>
+</p>
+<p>This function is <em>deprecated</em>. Please use the argument
+<code>max_gb_size</code> in the function xportr_write()' instead.
+</p>
+<p>Per the FDA Study Data Technical Conformance
+Guide(https://www.fda.gov/media/88173/download) section 3.3.2, dataset files
+sizes shouldn't exceed 5 GB. If datasets are large enough, they should be
+split based on a variable. For example, laboratory readings in <code>ADLB</code> can be
+split by <code>LBCAT</code> to split up hematology and chemistry data.
+</p>
+<p>This function will tell <code>xportr_write()</code> to split the data frame based on the
+variable passed in <code>split_by</code>. When written, the file name will be prepended
+with a number for uniqueness. These files should be noted in the Reviewer Guides per
+CDISC guidance to note how you split your files.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xportr_split(.df, split_by = NULL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>.df</code></td>
+<td>
+<p>A data frame of CDISC standard.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>split_by</code></td>
+<td>
+<p>A quoted variable that will be passed to <code>base::split()</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A data frame with an additional attribute added so <code>xportr_write()</code>
+knows how to split the data frame.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+adlb &lt;- data.frame(
+  USUBJID = c(1001, 1002, 1003),
+  LBCAT = c("HEMATOLOGY", "HEMATOLOGY", "CHEMISTRY")
+)
+
+adlb &lt;- xportr_split(adlb, "LBCAT")
+</code></pre>
+
+
+</div>

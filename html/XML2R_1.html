@@ -1,0 +1,63 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>add_key</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Add a key to connect parents to descendants</h2>
+
+<h3>Description</h3>
+
+<p>This function creates a mapping from parent observations to it's descendants (which useful for merging/joining tables).
+Either an existing value in the parent observation can be <code>recycle</code>d to it's descendants or a new column 
+will be created (if <code>recycle</code> is missing).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">add_key(obs, parent, recycle, key.name, quiet = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>obs</code></td>
+<td>
+<p>list. Should be the output from listsToObs.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>parent</code></td>
+<td>
+<p>character string. Should be present in the names of <code>obs</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>recycle</code></td>
+<td>
+<p>character string that matches a variable name among <code>parent</code> observations.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>key.name</code></td>
+<td>
+<p>The desired column name of the newly generated key.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>quiet</code></td>
+<td>
+<p>logical. Include message about the keys being generated?</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A list of observations.
+</p>
+
+
+</div>

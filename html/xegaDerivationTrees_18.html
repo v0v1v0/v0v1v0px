@@ -1,0 +1,69 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>rndsubk</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Transforms a non-terminal symbol into a 1-level derivation tree 
+for a given k.</h2>
+
+<h3>Description</h3>
+
+<p><code>rndsubk()</code> expands a non-terminal by a derivation
+specified by k and returns a 1-level derivation tree.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">rndsubk(sym, k, PT)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>sym</code></td>
+<td>
+<p>Non-terminal symbol.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>k</code></td>
+<td>
+<p>Codon (An integer).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PT</code></td>
+<td>
+<p>Production table.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>1-level derivation tree.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Generate Derivation Tree: 
+<code>generateDerivationTree()</code>,
+<code>randomDerivationTree()</code>,
+<code>rndsub()</code>,
+<code>substituteSymbol()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">g&lt;-compileBNF(booleanGrammar())
+rndsubk(g$Start, 207, g$PT)
+
+</code></pre>
+
+
+</div>

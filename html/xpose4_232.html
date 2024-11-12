@@ -1,0 +1,393 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xpose.panel.bw</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Default box-and-whisker panel function for Xpose 4</h2>
+
+<h3>Description</h3>
+
+<p>This is the box-and-whisker panel function for Xpose 4. This is not intended
+to be used outside the <code>xpose.plot.bw</code> function.  Most of the arguments
+take their default values from xpose.data object but this can be overridden
+by supplying them as arguments to <code>xpose.plot.bw</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xpose.panel.bw(
+  x,
+  y,
+  object,
+  subscripts,
+  groups = NULL,
+  inclZeroWRES = FALSE,
+  onlyfirst = FALSE,
+  samp = NULL,
+  xvarnam = NULL,
+  yvarnam = NULL,
+  type = object@Prefs@Graph.prefs$type,
+  col = object@Prefs@Graph.prefs$col,
+  pch = object@Prefs@Graph.prefs$pch,
+  cex = object@Prefs@Graph.prefs$cex,
+  lty = object@Prefs@Graph.prefs$lty,
+  fill = object@Prefs@Graph.prefs$col,
+  ids = NULL,
+  idsmode = object@Prefs@Graph.prefs$idsmode,
+  idsext = object@Prefs@Graph.prefs$idsext,
+  idscex = object@Prefs@Graph.prefs$idscex,
+  idsdir = object@Prefs@Graph.prefs$idsdir,
+  bwhoriz = object@Prefs@Graph.prefs$bwhoriz,
+  bwratio = object@Prefs@Graph.prefs$bwratio,
+  bwvarwid = object@Prefs@Graph.prefs$bwvarwid,
+  bwdotpch = object@Prefs@Graph.prefs$bwdotpch,
+  bwdotcol = object@Prefs@Graph.prefs$bwdotcol,
+  bwdotcex = object@Prefs@Graph.prefs$bwdotcex,
+  bwreccol = object@Prefs@Graph.prefs$bwreccol,
+  bwrecfill = object@Prefs@Graph.prefs$bwrecfill,
+  bwreclty = object@Prefs@Graph.prefs$bwreclty,
+  bwreclwd = object@Prefs@Graph.prefs$bwreclwd,
+  bwumbcol = object@Prefs@Graph.prefs$bwumbcol,
+  bwumblty = object@Prefs@Graph.prefs$bwumblty,
+  bwumblwd = object@Prefs@Graph.prefs$bwumblwd,
+  bwoutcol = object@Prefs@Graph.prefs$bwoutcol,
+  bwoutcex = object@Prefs@Graph.prefs$bwoutcex,
+  bwoutpch = object@Prefs@Graph.prefs$bwoutpch,
+  grid = object@Prefs@Graph.prefs$grid,
+  logy = FALSE,
+  logx = FALSE,
+  force.x.continuous = TRUE,
+  binvar = NULL,
+  bins = 10,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>Name(s) of the x-variable.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>y</code></td>
+<td>
+<p>Name(s) of the y-variable.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An xpose.data object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>subscripts</code></td>
+<td>
+<p>The standard Trellis subscripts argument (see
+<code>xyplot</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>groups</code></td>
+<td>
+<p>Name of the variable used for superpose plots.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>inclZeroWRES</code></td>
+<td>
+<p>Logical value indicating whether rows with WRES=0 is
+included in the plot.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>onlyfirst</code></td>
+<td>
+<p>Logical value indicating whether only the first row per
+individual is included in the plot.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>samp</code></td>
+<td>
+<p>An integer between 1 and object@Nsim
+(see<code>xpose.data-class</code>) specifying which of the simulated data
+sets to extract from SData.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xvarnam</code></td>
+<td>
+<p>Character string with the name of the x-variable.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>yvarnam</code></td>
+<td>
+<p>Character string with the name of the y-variable.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>type</code></td>
+<td>
+<p>Character value indicating the type of display to use:
+"l"=lines, "p"=points, "b"=both points and lines.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col</code></td>
+<td>
+<p>Colour of lines and plot symbols.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pch</code></td>
+<td>
+<p>Plot character to use.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cex</code></td>
+<td>
+<p>Size of the plot characters.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lty</code></td>
+<td>
+<p>Line type.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fill</code></td>
+<td>
+<p>Fill colour.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ids</code></td>
+<td>
+<p>Character value with the name of the variable to label data
+points with.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>idsmode</code></td>
+<td>
+<p>Determines the way text labels are added to plots.
+<code>NULL</code> means that only extreme points are labelled. Non-<code>NULL</code>
+means all data points are labelled. (See <code>link{xpose.plot.default}</code>)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>idsext</code></td>
+<td>
+<p>See <code>link{xpose.plot.bw}</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>idscex</code></td>
+<td>
+<p>Size of text labels.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>idsdir</code></td>
+<td>
+<p>A value of "both" (the default) means that both high and low
+extreme points are labelled while "up" and "down" labels the high and low
+extreme points respectively. See <code>xpose.plot.bw</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwhoriz</code></td>
+<td>
+<p>logical value indicating whether box and whiskers should be
+horizontal or not. The default is FALSE.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwratio</code></td>
+<td>
+<p>Ratio of box height to inter-box space. The default is 1.5.
+An argument for <code>panel.bwplot</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwvarwid</code></td>
+<td>
+<p>Logical. If TRUE, widths of boxplots are proportional to the
+number of points used in creating it. The default is FALSE. An argument for
+<code>panel.bwplot</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwdotpch</code></td>
+<td>
+<p>Graphical parameter controlling the dot plotting character
+'bwdotpch="|"' is treated specially, by replacing the dot with a line. The
+default is 16. An argument for <code>panel.bwplot</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwdotcol</code></td>
+<td>
+<p>Graphical parameter controlling the dot colour - an integer
+or string. See 'col'. The default is black. An argument for
+<code>panel.bwplot</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwdotcex</code></td>
+<td>
+<p>The amount by which plotting text and symbols should be
+scaled relative to the default. 'NULL' and 'NA' are equivalent to '1.0'. An
+argument for <code>panel.bwplot</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwreccol</code></td>
+<td>
+<p>The colour to use for the box rectangle - an integer or
+string.  The default is blue. See <code>trellis.par.get</code> and
+"box.rectangle".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwrecfill</code></td>
+<td>
+<p>The colour to use for filling the box rectangle - an
+integer or string. The default is transparent (none). See
+<code>trellis.par.get</code> and "box.rectangle".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwreclty</code></td>
+<td>
+<p>The line type for the box rectangle - an integer or string.
+The default is solid. See <code>trellis.par.get</code> and
+"box.rectangle".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwreclwd</code></td>
+<td>
+<p>The width of the lines for the box rectangle - an integer.
+The default is 1. See <code>trellis.par.get</code> and
+"box.rectangle".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwumbcol</code></td>
+<td>
+<p>The colour to use for the umbrellas - an integer or string.
+The default is blue. See <code>trellis.par.get</code> and
+"box.umbrella".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwumblty</code></td>
+<td>
+<p>The line type for the umbrellas - an integer or string. The
+default is solid.See <code>trellis.par.get</code> and
+"box.umbrella".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwumblwd</code></td>
+<td>
+<p>the width of the lines for the umbrellas - an integer. The
+default is 1. See <code>trellis.par.get</code> and "box.umbrella".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwoutcol</code></td>
+<td>
+<p>The colour to use for the outliers - an integer or string.
+The default is blue. See <code>trellis.par.get</code> and
+"box.symbol".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwoutcex</code></td>
+<td>
+<p>The amount by which outlier points should be scaled relative
+to the default. 'NULL' and 'NA' are equivalent to '1.0'. The default is 0.8.
+See <code>trellis.par.get</code> and "box.symbol".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwoutpch</code></td>
+<td>
+<p>The plotting character, or symbol, to use for outlier
+points.  Specified as an integer. See R help on 'points'. The default is an
+open circle. See <code>trellis.par.get</code> and "box.symbol".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>grid</code></td>
+<td>
+<p>logical value indicating whether a visual reference grid should
+be added to the graph. (Could use arguments for line type, color etc).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>logy</code></td>
+<td>
+<p>Logical value indicating whether the y-axis should be
+logarithmic.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>logx</code></td>
+<td>
+<p>Logical value indicating whether the x-axis should be
+logarithmic.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>force.x.continuous</code></td>
+<td>
+<p>Logical value indicating whether x-values should
+be taken as continuous, even if categorical.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>binvar</code></td>
+<td>
+<p>Variable to be used for binning.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bins</code></td>
+<td>
+<p>The number of bins to be used. The default is 10.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Other arguments that may be needed in the function.</p>
+</td>
+</tr>
+</table>
+<h3>Author(s)</h3>
+
+<p>E. Niclas Jonsson, Mats Karlsson, Andrew Hooker &amp; Justin Wilkins
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xpose.data-class</code>, Cross-references above.
+</p>
+
+
+</div>

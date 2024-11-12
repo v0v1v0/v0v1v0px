@@ -1,0 +1,68 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>slide_tone</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Slide Tone</h2>
+
+<h3>Description</h3>
+
+<p>Slide tone plays a subtle sound when you change slides.The tones increase in
+pitch for each slide from a low C to a high C note. The tone pitch stays the
+same for incremental slides.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">use_slide_tone()
+
+html_dependency_slide_tone()
+</code></pre>
+
+
+<h3>Value</h3>
+
+<p>An <code>htmltools::tagList()</code> with the slide tone dependencies, or an
+htmltools::htmlDependency.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul>
+<li> <p><code>use_slide_tone()</code>: Adds slide tone to your xaringan slides.
+</p>
+</li>
+<li> <p><code>html_dependency_slide_tone()</code>: Returns an htmltools::htmlDependency with the tile
+view dependencies. Most users will want to use <code>use_slide_tone()</code>.
+</p>
+</li>
+</ul>
+<h3>Usage</h3>
+
+<p>To add slide tone to your xaringan presentation, add the
+following code chunk to your slides' R Markdown file.
+</p>
+<div class="sourceCode markdown"><pre>```{r xaringan-slide-tone, echo=FALSE}
+xaringanExtra::use_slide_tone()
+```
+</pre></div>
+
+
+<h3>References</h3>
+
+<p><a href="https://tonejs.github.io/">tone.js</a>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">use_slide_tone()
+
+</code></pre>
+
+
+</div>

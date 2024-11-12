@@ -1,0 +1,78 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaGpMutateAllGene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Mutate a gene.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaGpMutateAllGene()</code> 
+replaces a randomly selected subtree by
+a random derivation tree with the same root symbol 
+with small probability.
+All non-terminal nodes are considered as insertion points.
+Depth-bounds are respected.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaGpMutateAllGene(g, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>g</code></td>
+<td>
+<p>Derivation tree.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration of the genetic algorithm.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Mutation is controlled by one local parameter: 
+</p>
+
+<ol><li> <p><code>lF$MaxMutDepth()</code> controls the maximal depth of 
+of the new random generation tree.
+</p>
+</li></ol>
+<p>This version of the genetic operator skips the filter loop.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Derivation tree.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Mutation: 
+<code>xegaGpMutateFilterGene()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">gene1&lt;-xegaGpInitGene(lFxegaGpGene)
+xegaGpDecodeGene(gene1, lFxegaGpGene)
+gene&lt;-xegaGpMutateAllGene(gene1, lFxegaGpGene)
+xegaGpDecodeGene(gene, lFxegaGpGene)
+
+</code></pre>
+
+
+</div>

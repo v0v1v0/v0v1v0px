@@ -1,0 +1,99 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>futureLapply</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Future apply of R-package <code>future.apply</code>.</h2>
+
+<h3>Description</h3>
+
+<p>The <code>lapply()</code> function is redefined as as 
+<code>future.apply::future_lapply()</code>.
+Henrik Bengtsson recommends that the configuration of the 
+parallel/distributed programming environment should be kept 
+outside the package and left to the user. 
+The advantage is that the user may take advantage of all 
+parallel/distributed available backends for the Future API.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">futureLapply(pop, EvalGene, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>pop</code></td>
+<td>
+<p>Population of genes.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>EvalGene</code></td>
+<td>
+<p>Function for evaluating a gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local function factory which provides 
+all functions needed in <code>EvalGene</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Be aware that
+</p>
+
+<ul>
+<li> <p><code>future_lapply()</code> assumes that each function evaluation 
+need approximately the same time.
+</p>
+</li>
+<li>
+<p> Best results are obtained 
+if <code>popsize</code> modulo <code>workers</code> is <code>0</code>.
+</p>
+</li>
+</ul>
+<h3>Value</h3>
+
+<p>Fitness vector.
+</p>
+
+
+<h3>References</h3>
+
+<p>Bengtsson H (2021). “A Unifying Framework for Parallel and 
+Distributed Processing in R using Futures.” 
+The R Journal, 13(2), 208–227. &lt;doi:10.32614/RJ-2021-048&gt;
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Execution Model: 
+<code>MClapply()</code>,
+<code>PparLapply()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">pop&lt;-xegaInitPopulation(1000, lFxegaGaGene)
+library(future)
+plan(multisession, workers=2)
+popnew&lt;-futureLapply(pop, lFxegaGaGene$EvalGene, lFxegaGaGene)
+plan(sequential)
+
+</code></pre>
+
+
+</div>

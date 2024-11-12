@@ -1,0 +1,122 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>export.graph.par</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Exports Xpose graphics settings to a file.</h2>
+
+<h3>Description</h3>
+
+<p>This function exports graphics settings for a specified Xpose data object to
+a file.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">export.graph.par(object)
+
+xpose.write(object, file = "xpose.ini")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An <code>xpose.data</code> object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>file</code></td>
+<td>
+<p>The file to contain exported Xpose settings.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>This function exports the graphics settings (contents of
+object@Prefs@Graph.prefs) for a given <code>xpose.data</code> object to a file,
+typically 'xpose.ini'. It is a wrapper for <code>xpose.write</code>. Note that the
+file format is not the same as is used in
+<code>import.variable.definitions</code> and
+<code>export.variable.definitions</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Null.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul><li> <p><code>xpose.write()</code>: export graphics settings for a specified Xpose data object to
+a file.
+</p>
+</li></ul>
+<h3>Author(s)</h3>
+
+<p>Niclas Jonsson &amp; Justin Wilkins
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>import.graph.par</code>, <code>xpose.prefs-class</code>
+</p>
+<p>Other data functions: 
+<code>add_transformed_columns</code>,
+<code>change_graphical_parameters</code>,
+<code>change_misc_parameters</code>,
+<code>compute.cwres()</code>,
+<code>data.checkout()</code>,
+<code>data_extract_or_assign</code>,
+<code>db.names()</code>,
+<code>export.variable.definitions()</code>,
+<code>import.graph.par()</code>,
+<code>import.variable.definitions()</code>,
+<code>make.sb.data()</code>,
+<code>nsim()</code>,
+<code>par_cov_summary</code>,
+<code>read.TTE.sim.data()</code>,
+<code>read.nm.tables()</code>,
+<code>read_NM_output</code>,
+<code>read_nm_table()</code>,
+<code>simprazExample()</code>,
+<code>tabulate.parameters()</code>,
+<code>xlabel()</code>,
+<code>xpose.data</code>,
+<code>xpose.print()</code>,
+<code>xpose4-package</code>,
+<code>xsubset()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Not run: 
+## xpdb5 is an Xpose data object
+## We expect to find the required NONMEM run and table files for run
+## 5 in the current working directory
+xpdb5 &lt;- xpose.data(5)
+
+## For a filename prompt
+export.graph.par(xpdb5)
+
+## Command-line driven
+xpose.write(xpdb5, "c:/XposeSettings/mytheme.ini")
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

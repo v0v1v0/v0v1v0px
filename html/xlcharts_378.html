@@ -1,0 +1,71 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>WorksheetCopy</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>WorksheetCopy</h2>
+
+<h3>Description</h3>
+
+<p>Copy the values, styles, dimensions, merged cells, margins, and
+</p>
+<p><a href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.copier.html">https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.copier.html</a>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">WorksheetCopy(source_worksheet, target_worksheet, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>source_worksheet</code></td>
+<td>
+<p>source_worksheet</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>target_worksheet</code></td>
+<td>
+<p>target_worksheet</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments, i.e. kwargs.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>print/page setup from one worksheet to another within the same
+workbook.
+</p>
+
+
+<h3>Value</h3>
+
+<p>An openpyxl Python object.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+wb &lt;- Workbook()
+ws1 &lt;- wb$active
+ws2 &lt;- wb$create_sheet("Mysheet")
+WorksheetCopy(source_worksheet = ws1, target_worksheet = ws2)
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

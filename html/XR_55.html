@@ -1,0 +1,62 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>ProxyFunction-class</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>A Class for Proxy Functions</h2>
+
+<h3>Description</h3>
+
+<p>A class for functions in R that call functions in a server language.  The arguments in a call are converted to
+equivalent server language objects, via <code>asServerObject()</code>.  These usually include proxy
+objects in R for results previously computed through the same interface evaluator.
+</p>
+
+
+<h3>Details</h3>
+
+<p>This class is always subclassed for a particular server language.  Proxy functions for that
+language will use a corresponding evaluator to find metadata about the server function.
+</p>
+
+
+<h3>Slots</h3>
+
+
+<dl>
+<dt><code>.Data</code></dt>
+<dd>
+<p>the function</p>
+</dd>
+<dt><code>name</code></dt>
+<dd>
+<p>the name of the server language function</p>
+</dd>
+<dt><code>module</code></dt>
+<dd>
+<p>the name of the module, if that needs to be imported</p>
+</dd>
+<dt><code>evaluatorClass</code></dt>
+<dd>
+<p>the class for the evaluator, identifying which server lanaguage is involved.</p>
+</dd>
+<dt><code>serverDoc</code></dt>
+<dd>
+<p>documentation for the server language function</p>
+</dd>
+<dt><code>serverArgs</code></dt>
+<dd>
+<p>the formal arguments of the server language function, if known</p>
+</dd>
+</dl>
+<h3>References</h3>
+
+<p>Chambers, John M. (2016)
+<em>Extending R</em>,
+Chapman &amp; Hall/CRC.
+( Chapter 13, discussing this package, is included in the package: <a href="../doc/Chapter_XR.pdf">../doc/Chapter_XR.pdf</a>.)
+</p>
+
+
+</div>

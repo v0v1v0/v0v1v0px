@@ -1,0 +1,164 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>predict.tskrr</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>predict method for tskrr fits</h2>
+
+<h3>Description</h3>
+
+<p>Obtains the predictions from a <code>tskrr</code> model for new data.
+To get the predictions on the training data,
+use the function <code>fitted</code>
+or set both <code>k</code> and <code>g</code> to <code>NULL</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S3 method for class 'tskrr'
+predict(object, k = NULL, g = NULL, testdim = TRUE, ...)
+
+## S4 method for signature 'tskrr'
+predict(object, k = NULL, g = NULL, testdim = TRUE, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>an object of class <code>tskrr</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>k</code></td>
+<td>
+<p>a new K matrix or <code>NULL</code>. if <code>NULL</code>, the fitted
+values on the training data are returned.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>g</code></td>
+<td>
+<p>a new G matrix or <code>NULL</code>. If <code>NULL</code>, K is used
+for both.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>testdim</code></td>
+<td>
+<p>a logical value indicating whether the dimensions should
+be checked prior to the calculation. You can set this to <code>FALSE</code> but
+you might get more obscure errors if dimensions don't match.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>arguments passed to or from other methods</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Predictions can be calculated between new vertices and the vertices
+used to train the model, between new sets of vertices, or both. Which
+predictions are given, depends on the kernel matrices passed to the
+function.
+</p>
+<p>In any case, both the K and G matrix need the kernel values for
+every combination of the new vertices and the vertices used to
+train the model. This is illustrated for both homogeneous and
+heterogeneous networks in the examples.
+</p>
+<p>To predict the links between a new set of vertices and the training
+vertices, you need to provide the kernel matrix for either the K
+or the G set of vertices. If you want to predict the mutual links
+between two new sets of vertices, you have to provide both the
+K and the G matrix. This is particularly important for homogeneous
+networks: if you only supply the <code>k</code> argument, you will get
+predictions for the links between the new vertices and the vertices
+on which the model is trained. So in order to get the
+mutual links between the new vertices, you need to provide the kernel
+matrix as the value for both the <code>k</code> and the <code>g</code> argument.
+</p>
+
+
+<h3>Value</h3>
+
+<p>a matrix with predicted values.
+</p>
+
+
+<h3>Warning</h3>
+
+<p>This function is changed in version 0.1.9 so it's more consistent
+in how it expects the K and G matrices to be ordered. Up to version
+0.1.8 the new vertices should be on the rows for the K matrix and on
+the columns for the G matrix. This lead to confusion.
+</p>
+<p>If you're using old code, you'll get an error pointing this out.
+You need to transpose the G matrix in the old code to make it work
+with the new version.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>tskrr</code> and <code>tskrrTune</code> for
+fitting the models.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Predictions for homogeneous networks
+
+data(proteinInteraction)
+
+idnew &lt;- sample(nrow(Kmat_y2h_sc), 20)
+
+trainY &lt;- proteinInteraction[-idnew,-idnew]
+trainK &lt;- Kmat_y2h_sc[-idnew,-idnew]
+
+testK &lt;- Kmat_y2h_sc[idnew, - idnew]
+
+mod &lt;- tskrr(trainY, trainK, lambda = 0.1)
+# Predict interaction between test vertices
+predict(mod, testK, testK)
+
+# Predict interaction between test and train vertices
+predict(mod, testK)
+predict(mod, g = testK)
+
+## Predictions for heterogeneous networks
+data("drugtarget")
+
+idnewK &lt;- sample(nrow(targetSim), 10)
+idnewG &lt;- sample(ncol(drugSim), 10)
+
+trainY &lt;- drugTargetInteraction[-idnewK, -idnewG]
+trainK &lt;- targetSim[-idnewK, -idnewK]
+trainG &lt;- drugSim[-idnewG, -idnewG]
+
+testK &lt;- targetSim[idnewK, -idnewK]
+testG &lt;- drugSim[idnewG, -idnewG]
+
+mod &lt;- tskrr(trainY, trainK, trainG, lambda = 0.01)
+
+# Predictions for new targets on drugs in model
+predict(mod, testK)
+# Predictions for new drugs on targets in model
+predict(mod, g = testG)
+# Predictions for new drugs and targets
+predict(mod, testK, testG)
+
+</code></pre>
+
+
+</div>

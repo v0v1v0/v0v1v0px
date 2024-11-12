@@ -1,0 +1,116 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>plot_grid</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Plot the grid of a tuned tskrr model</h2>
+
+<h3>Description</h3>
+
+<p>With this function, you can visualize the grid search for optimal
+lambdas from a <code>tskrrTune</code> object.
+In the case of two-dimensional grid search, this function plots a
+contour plot on a grid, based on the functions <code>image</code>
+and <code>contour</code>. For one-dimensional grid search, the function
+creates a single line plot.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">plot_grid(
+  x,
+  addlambda = TRUE,
+  lambdapars = list(col = "red"),
+  log = TRUE,
+  opts.contour = list(nlevels = 10),
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>an object that inherits from
+<code>tskrrTune</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>addlambda</code></td>
+<td>
+<p>a logical value indicating whether the
+lambda with the minimum loss should be added to the plot.
+In case of a one dimensional plot, this adds a colored
+vertical line. In the case of a two dimensional plot, this
+adds a colored point at the minimum.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lambdapars</code></td>
+<td>
+<p>a list with named <code>par</code> values
+passed to the function <code>abline</code> or
+<code>points</code> for plotting the best lambda value when
+<code>addmin = TRUE</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>log</code></td>
+<td>
+<p>a logical value indicating whether the lambdas should be
+plotted at a log scale (the default) or not.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>opts.contour</code></td>
+<td>
+<p>options passed to the function
+<code>contour</code> for 2D grid plots. Ignored for 1D
+grid plots.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>arguments passed to other functions. For a one
+dimensional plot, this will be the function <code>plot</code></p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p><code>NULL</code> invisibly
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+data(drugtarget)
+
+## One dimensional tuning
+tuned1d &lt;- tune(drugTargetInteraction, targetSim, drugSim,
+                lim = c(1e-4,2), ngrid = 40,
+                fun = loss_auc, onedim = TRUE)
+
+plot_grid(tuned1d)
+plot_grid(tuned1d, lambdapars = list(col = "green",
+                                     lty = 1, lwd = 2),
+          log = FALSE, las = 2, main = "1D tuning")
+
+## Two dimensional tuning
+tuned2d &lt;- tune(drugTargetInteraction, targetSim, drugSim,
+                lim = c(1e-4,10), ngrid = 20,
+                fun = loss_auc)
+
+plot_grid(tuned2d)
+
+</code></pre>
+
+
+</div>

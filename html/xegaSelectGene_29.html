@@ -1,0 +1,90 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>ScalingFactory</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Scaling Factory</h2>
+
+<h3>Description</h3>
+
+<p>Scaling Factory
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">ScalingFactory(method = "NoScaling")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>A scaling method. Available methods are:
+</p>
+ 
+<ul>
+<li>
+<p> "NoScaling": Identity (Default).       
+</p>
+</li>
+<li>
+<p> "ConstantScaling": <code>fit^k</code> with constant exponent.
+Function <code>ConstantScaling</code>.
+</p>
+</li>
+<li>
+<p> "ThresholdScaling": 
+If the dispersion ratio is larger than <code>1+threshold</code>, 
+use a constant scaling exponent with a value below 1 
+(decrease of selection pressure).
+Function <code>ThresholdScaling</code>.
+</p>
+</li>
+<li>
+<p> If the dispersion ratio is lower than <code>1-threshold</code>, 
+use a constant scaling exponent with a value above 1
+(increase of selection pressure).
+</p>
+</li>
+<li>
+<p> "ContinuousScaling": Use weighted dispersion ratio 
+as scaling exponent.
+Function <code>ContinuousScaling</code>.
+</p>
+</li>
+</ul>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A scaling function.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Configuration: 
+<code>DispersionMeasureFactory()</code>,
+<code>EvalGeneFactory()</code>,
+<code>SelectGeneFactory()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">fit&lt;-sample(10, 20, replace=TRUE)
+lF&lt;-list()
+lF$ScalingExp&lt;-parm(2)
+Scale&lt;-ScalingFactory()
+fit
+Scale(fit, lF)
+Scale&lt;-ScalingFactory("ConstantScaling")
+Scale(fit, lF)
+</code></pre>
+
+
+</div>

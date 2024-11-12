@@ -1,0 +1,68 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>range_boundaries</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>range_boundaries</h2>
+
+<h3>Description</h3>
+
+<p>Convert a range string into a list of boundaries:
+</p>
+<p><a href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.utils.cell.html">https://openpyxl.readthedocs.io/en/stable/api/openpyxl.utils.cell.html</a>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">range_boundaries(range_string, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>range_string</code></td>
+<td>
+<p>range_string</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments, i.e. kwargs.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>(min_col, min_row, max_col, max_row)
+Cell coordinates will be converted into a range with the cell at both end
+</p>
+
+
+<h3>Value</h3>
+
+<p>An list.
+</p>
+
+
+<h3>Convert a range string into a tuple of boundaries</h3>
+
+<p>(min_col, min_row, max_col, max_row) Cell coordinates will be converted into a range with the cell at both end
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+range_boundaries(range_string = "A")
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

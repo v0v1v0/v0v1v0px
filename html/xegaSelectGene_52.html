@@ -1,0 +1,65 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>Tournament</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Deterministic tournament of size <code>k</code>.</h2>
+
+<h3>Description</h3>
+
+<p><code>Tournament</code> is implemented in two steps:
+</p>
+
+<ol>
+<li>
+<p>A subset of size k of the population is selected with uniform probability.
+</p>
+</li>
+<li>
+<p>A gene is selected with probability proportional to fitness.
+</p>
+</li>
+</ol>
+<h3>Usage</h3>
+
+<pre><code class="language-R">Tournament(fit, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>fit</code></td>
+<td>
+<p>Fitness vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>In each generation, the worst gene in a population dies.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Index of the best candidate.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">fit&lt;-sample(10, 15, replace=TRUE)
+Tournament(fit, NewlFselectGenes()) 
+</code></pre>
+
+
+</div>

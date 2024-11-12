@@ -1,0 +1,138 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>Low-level functions</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Set of low-level functions to parse an XBRL file and extract
+information from it.</h2>
+
+<h3>Description</h3>
+
+<p><code>xbrlParse</code> performs the parsing of the document. It returns a
+pointer to external memory used by the low-level
+functions. <code>xbrlFree</code> releases the external memory used.
+</p>
+<p><code>xbrlGetSchemaName</code> is used on an instance document to extract the
+name of the associated schema. <code>xbrlGetLinkbaseNames</code> and
+<code>xbrlGetImportNames</code> are used on a taxonomy document to extract the
+names of linked documents during the process of discovery.
+</p>
+<p><code>xbrlProcessXXX</code> functions are used to extract information from
+taxonomy and instance files in the form of data frames.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## Use on any XBRL file
+xbrlParse(file)
+xbrlFree(doc)
+
+## Use on an instance file
+xbrlGetSchemaName(doc)
+
+## Use on a taxonomy file
+xbrlGetLinkbaseNames(doc)
+xbrlGetImportNames(doc)
+
+xbrlProcessElements(doc)
+xbrlProcessLabels(doc)
+xbrlProcessArcs(doc, arcType)
+
+## Use on a schema file
+xbrlProcessRoles(doc)
+
+## Use on an instance file
+xbrlProcessContexts(doc)
+xbrlProcessFacts(doc)
+xbrlProcessUnits(doc)
+xbrlProcessFootnotes(doc)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>file</code></td>
+<td>
+<p>the name of the XBRL document. It can be a URL or local file name</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>doc</code></td>
+<td>
+<p>pointer to external memory, returned by <code>xbrlParse</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>arcType</code></td>
+<td>
+<p>Either "presentation", "calculation", or "definition"</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p><code>xbrlParse</code> returns an external pointer.
+</p>
+<p><code>xbrlFree</code> returns NULL.
+</p>
+<p><code>xbrlGetSchemaName</code>, <code>xbrlGetLinkbaseNames</code> and
+<code>xbrlGetImportNames</code> return a character vector
+</p>
+<p><code>xbrlProcessXXX</code> returns a data.frame
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Roberto Bertolusso and Marek Kimmel
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xbrlDoAll</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+## Setting stringsAsFactors = FALSE is highly recommended
+## to avoid data frames to create factors from character vectors.
+options(stringsAsFactors = FALSE)
+
+## XBRL instance file to be analyzed.
+## NOTE: in this case, inst needs to be a local file, or accessible
+##       as http (not https).
+inst &lt;- "ko-20130927.xml"
+## Parse the instance (doc is an pointer to
+## external memory that needs to be freed after use):
+doc &lt;- xbrlParse(inst)
+## Get a data frame with facts:
+fct &lt;- xbrlProcessFacts(doc)
+## Get a data frame with contexts:
+cts &lt;- xbrlProcessContexts(doc)
+## Get a data frame with units:
+unt &lt;- xbrlProcessUnits(doc)
+sch &lt;- xbrlGetSchemaName(doc)
+## Free the external memory used:
+xbrlFree(doc)
+
+dname &lt;- dirname(inst)
+## Parse the schema file:
+docS &lt;- xbrlParse(paste0(dname,"/",sch))
+## Get roles:
+rls &lt;- xbrlProcessRoles(docS)
+head(rls)
+## Free the external memory used:
+xbrlFree(docS)
+
+## End(Not run)
+</code></pre>
+
+
+</div>

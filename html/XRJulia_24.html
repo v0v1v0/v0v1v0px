@@ -1,0 +1,54 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>juliaOptions</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Get and/or Set Internal Option Parameters in the Julia Evaluator</h2>
+
+<h3>Description</h3>
+
+<p>The Julia code for an evaluator maintains a dictionary, <code>RJuliaParams</code>, of named parameters used to control
+various evaluation details.  These and any other desired options can be queried and/or set by calls to <code>juliaOptions</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">juliaOptions(..., .ev = XRJulia::RJulia())
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>arguments to the corresponding method for an evaluator object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.ev</code></td>
+<td>
+<p>The evaluator object to use.  By default, and usually, the current evaluator.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The function behaves essentially like the <code>options()</code> function in R itself, returning a list of the current entries
+corresponding to unnamed character arguments and setting the parameters named to the value in the corresponding named argument
+to <code>juliaOptions</code>.
+If no parameter corresponding to a name has been set, requesting the corresponding returned value is <code>nothing</code>, <code>NULL</code> in R.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A named list of those parameters requested (as unnamed character string arguments).  If none, an empty list.
+Note that options are always returned converted to R, not as proxyies.
+</p>
+
+
+</div>

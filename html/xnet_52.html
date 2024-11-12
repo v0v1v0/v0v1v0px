@@ -1,0 +1,68 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>valid_dimensions</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Functions to check matrices</h2>
+
+<h3>Description</h3>
+
+<p>These functions allow you to check whether the dimensions of the
+label matrix and the kernel matrix (matrices) are compatible.
+<code>valid_dimensions</code> checks whether both k and g are square matrices,
+whether y has as many rows as k and whether y has as many columns as g.
+<code>is_square</code> checks whether both dimensions are the same.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">valid_dimensions(y, k, g = NULL)
+
+is_square(x)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>y</code></td>
+<td>
+<p>a label matrix</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>k</code></td>
+<td>
+<p>a kernel matrix</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>g</code></td>
+<td>
+<p>an optional second kernel matrix or <code>NULL</code> otherwise.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>any matrix</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>a logical value indicating whether the dimensions of the
+matrices are compatible for a two step kernel ridge regression.
+</p>
+
+
+<h3>Note</h3>
+
+<p>The function <code>is_square</code> is not exported
+</p>
+
+
+</div>

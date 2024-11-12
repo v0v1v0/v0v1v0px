@@ -1,0 +1,91 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>asServerObject</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Generate a Server Language Expression corresponding to an R Object</h2>
+
+<h3>Description</h3>
+
+<p>Returns a string that can be inserted into a server language expression.
+When parsed and evaluated by the server evaluator, the result
+will be the appropriate object or data.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">asServerObject(object, prototype)
+
+## S4 method for signature 'name'
+asServerObject(object, prototype)
+
+## S4 method for signature 'AssignedProxy'
+asServerObject(object, prototype)
+
+## S4 method for signature 'ProxyFunction'
+asServerObject(object, prototype)
+
+## S4 method for signature 'ProxyClassObject'
+asServerObject(object, prototype)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>The <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>prototype</code></td>
+<td>
+<p>The proxy for a prototype of the server language object wanted.
+When called from the 'AsServerObject()' method of an evaluator, this argument is supplied
+automatically from a class of objects for that evaluator, allowing methods to be defined
+specialized to the various interface evalutor classes.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Methods for proxy objects and proxy class objects
+will produce the name under which they were assigned.
+The default method uses JSON to encode the object as a string and expects the server side
+interface to have a function objectFromJSON() to decode the string.
+</p>
+
+
+<h3>Methods (by class)</h3>
+
+
+<ul>
+<li> <p><code>name</code>: class "name" is used to pass unquoted strings, in case your
+interface code did an explicit assign (but that's discouraged).
+</p>
+</li>
+<li> <p><code>AssignedProxy</code>: Proxy objects are just passed as their character string, although
+a particular interface class could do something different, like refer to a table.
+</p>
+</li>
+<li> <p><code>ProxyFunction</code>: a proxy function just turns into its server language name.
+</p>
+</li>
+<li> <p><code>ProxyClassObject</code>: an object from a proxy class will be replaced by the name of the referenced object
+</p>
+</li>
+</ul>
+<h3>References</h3>
+
+<p>Chambers, John M. (2016)
+<em>Extending R</em>,
+Chapman &amp; Hall/CRC.
+( Chapter 13, discussing this package, is included in the package: <a href="../doc/Chapter_XR.pdf">../doc/Chapter_XR.pdf</a>.)
+</p>
+
+
+</div>

@@ -1,0 +1,398 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>gxs_function</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Generate testhat expectations for argument values in a function</h2>
+
+<h3>Description</h3>
+
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="../help/figures/lifecycle-experimental.svg" alt="[Experimental]"></a>
+</p>
+<p>Based on a set of supplied values for each function argument,
+a set of <code>testthat</code> <code>expect_*</code> statements are generated.
+</p>
+<p><strong>Included tests</strong>: The first value supplied for an argument
+is considered the <em>valid baseline</em> value. For each argument, we
+create tests for each of the supplied values, where the other arguments
+have their baseline value.
+</p>
+<p>When testing a function that alters non-local variables, consider enabling <code>`copy_env`</code>.
+</p>
+<p>See supported objects in <code>details</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">gxs_function(
+  fn,
+  args_values,
+  extra_combinations = NULL,
+  check_nulls = TRUE,
+  indentation = 0,
+  tolerance = "1e-4",
+  round_to_tolerance = TRUE,
+  strip = TRUE,
+  sample_n = 30,
+  envir = NULL,
+  copy_env = FALSE,
+  assign_output = TRUE,
+  seed = 42,
+  add_wrapper_comments = TRUE,
+  add_test_comments = TRUE,
+  start_with_newline = TRUE,
+  end_with_newline = TRUE,
+  out = "insert",
+  parallel = FALSE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>fn</code></td>
+<td>
+<p>Function to create tests for.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>args_values</code></td>
+<td>
+<p>The arguments and the values to create tests for.
+Should be supplied as a named list of lists, like the following:
+</p>
+<p><code>args_values = list(</code>
+</p>
+<p><code>"x1" = list(1, 2, 3), </code>
+</p>
+<p><code>"x2" = list("a", "b", "c")</code>
+</p>
+<p><code>)</code>
+</p>
+<p>The first value for each argument (referred to as the 'baseline' value) should be valid
+(not throw an <code>error/</code><code>message</code>/<code>warning</code>).
+</p>
+<p><strong>N.B.</strong> This is not checked but should lead to more meaningful tests.
+</p>
+<p><strong>N.B.</strong> Please define the list directly in the function call.
+This is currently necessary.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>extra_combinations</code></td>
+<td>
+<p>Additional combinations to test. List of lists, where
+each combination is a named sublist.
+</p>
+<p>E.g. the following two combinations:
+</p>
+<p><code>extra_combinations = list(</code>
+</p>
+<p><code>list("x1" = 4, "x2" = "b"),</code>
+</p>
+<p><code>list("x1" = 7, "x2" = "c")</code>
+</p>
+<p><code>)</code>
+</p>
+<p><strong>N.B.</strong> Unspecified arguments gets the baseline value.
+</p>
+<p>If you find yourself adding many combinations,
+an additional <code>gxs_function()</code> call with different baseline values
+might be preferable.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>check_nulls</code></td>
+<td>
+<p>Whether to try all arguments with <code>NULL</code>. (Logical)
+</p>
+<p>When enabled, you don't need to add <code>NULL</code> to your <code>`args_values`</code>,
+unless it should be the baseline value.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>indentation</code></td>
+<td>
+<p>Indentation of the selection. (Numeric)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tolerance</code></td>
+<td>
+<p>The tolerance for numeric tests as a string, like <code>"1e-4"</code>. (Character)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>round_to_tolerance</code></td>
+<td>
+<p>Whether to round numeric elements to the specified tolerance. (Logical)
+</p>
+<p>This is currently applied to numeric columns and vectors (excluding some lists).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>strip</code></td>
+<td>
+<p>Whether to insert
+<code>strip_msg()</code> and
+<code>strip()</code>
+in tests of side effects. (Logical)
+</p>
+<p>Sometimes testthat tests have differences in punctuation and newlines on different
+systems. By stripping both the error message and the expected message of non-alphanumeric symbols,
+we can avoid such failed tests.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sample_n</code></td>
+<td>
+<p>The number of elements/rows to sample. Set to <code>NULL</code> to avoid sampling.
+</p>
+<p>Inserts <code>smpl()</code> in the generated tests when sampling was used. A seed is
+set internally, setting <code>sample.kind</code> as <code>"Rounding"</code> to ensure compatibility with <code>R</code> versions
+<code>&lt; 3.6.0</code>.
+</p>
+<p>The order of the elements/rows is kept intact. No replacement is used, why no oversampling will
+take place.
+</p>
+<p>When testing a big <code>data.frame</code>, sampling the rows can help keep the test files somewhat readable.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>envir</code></td>
+<td>
+<p>Environment to evaluate in. Defaults to
+<code>parent.frame()</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>copy_env</code></td>
+<td>
+<p>Whether each combination should be tested in a deep copy of the environment. (Logical)
+</p>
+<p>Side effects will be captured in copies of the copy, why two copies of the environment will
+exist at the same time.
+</p>
+<p>Disabled by default to save memory but is often preferable to enable,
+e.g. when the function changes non-local variables.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>assign_output</code></td>
+<td>
+<p>Whether to assign the output of a function call or long selection
+to a variable. This will avoid recalling the function and decrease cluttering. (Logical)
+</p>
+<p>Heuristic: when the <code>`selection`</code> isn't of a string and contains a parenthesis, it is considered a function call.
+A selection with more than 30 characters will be assigned as well.
+</p>
+<p>The tests themselves can be more difficult to interpret, as you will
+have to look at the assignment to see the object that is being tested.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>seed</code></td>
+<td>
+<p><code>seed</code> to set. (Whole number)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>add_wrapper_comments</code></td>
+<td>
+<p>Whether to add intro and outro comments. (Logical)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>add_test_comments</code></td>
+<td>
+<p>Whether to add comments for each test. (Logical)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>start_with_newline, end_with_newline</code></td>
+<td>
+<p>Whether to have a newline in the beginning/end. (Logical)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>out</code></td>
+<td>
+<p>Either <code>"insert"</code> or <code>"return"</code>.
+</p>
+
+
+<h4>"insert" (Default)</h4>
+
+<p>Inserts the expectations via
+<code>rstudioapi::insertText()</code>.
+</p>
+
+
+
+<h4>"return"</h4>
+
+<p>Returns the expectations in a <code>list</code>.
+</p>
+<p>These can be prepared for insertion with
+<code>prepare_insertion()</code>.
+</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>parallel</code></td>
+<td>
+<p>Whether to parallelize the generation of expectations. (Logical)
+</p>
+<p>Requires a registered parallel backend. Like with <code>doParallel::registerDoParallel</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The following "types" are currently supported or intended to be supported in the future.
+Please suggest more types and tests in a GitHub issue!
+</p>
+<p>Note: A set of fallback tests will be generated for unsupported objects.
+</p>
+
+<table>
+<tr>
+<td style="text-align: right;">
+<strong>Type</strong> </td>
+<td style="text-align: right;"> <strong>Supported</strong> </td>
+<td style="text-align: right;"> <strong>Notes</strong> </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+Side effects </td>
+<td style="text-align: right;"> Yes </td>
+<td style="text-align: right;"> Errors, warnings, and messages. </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+Vector </td>
+<td style="text-align: right;"> Yes </td>
+<td style="text-align: right;"> Lists are treated differently, depending on their structure. </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+Factor </td>
+<td style="text-align: right;"> Yes </td>
+<td style="text-align: right;"> </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+Data Frame </td>
+<td style="text-align: right;"> Yes </td>
+<td style="text-align: right;"> List columns (like nested tibbles) are currently skipped. </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+Matrix </td>
+<td style="text-align: right;"> Yes </td>
+<td style="text-align: right;"> Supported but could be improved. </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+Formula </td>
+<td style="text-align: right;"> Yes </td>
+<td style="text-align: right;"> </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+Function </td>
+<td style="text-align: right;"> Yes </td>
+<td style="text-align: right;"> </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+<code>NULL</code> </td>
+<td style="text-align: right;"> Yes </td>
+<td style="text-align: right;"> </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+Array </td>
+<td style="text-align: right;"> No </td>
+<td style="text-align: right;"> </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+Dates </td>
+<td style="text-align: right;"> No </td>
+<td style="text-align: right;"> Base and <code>lubridate</code>. </td>
+</tr>
+<tr>
+<td style="text-align: right;">
+ggplot2 </td>
+<td style="text-align: right;"> No </td>
+<td style="text-align: right;"> This may be a challenge, but would be cool!</td>
+</tr>
+<tr>
+<td style="text-align: right;">
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Either <code>NULL</code> or the unprepared expectations as a <code>character vector</code>.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ludvig Renbo Olsen, <a href="mailto:r-pkgs@ludvigolsen.dk">r-pkgs@ludvigolsen.dk</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other expectation generators: 
+<code>gxs_selection()</code>,
+<code>initializeGXSFunctionAddin()</code>,
+<code>insertExpectationsAddin()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Attach packages
+library(xpectr)
+
+## Not run: 
+fn &lt;- function(x, y, z){
+  if (x&gt;3) stop("'x' &gt; 3")
+  if (y&lt;0) warning("'y'&lt;0")
+  if (z==10) message("'z' was 10!")
+  x + y + z
+}
+
+# Create expectations
+# Note: define the list in the call
+gxs_function(fn,
+             args_values = list(
+               "x" = list(2, 4, NA),
+               "y" = list(0, -1),
+               "z" = list(5, 10))
+             )
+
+# Add additional combinations
+gxs_function(fn,
+             args_values = list(
+               "x" = list(2, 4, NA),
+               "y" = list(0, -1),
+               "z" = list(5, 10)),
+             extra_combinations = list(
+               list("x" = 4, "z" = 10),
+               list("y" = 1, "z" = 10))
+             )
+
+## End(Not run)
+</code></pre>
+
+
+</div>

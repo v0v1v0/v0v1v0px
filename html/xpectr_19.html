@@ -1,0 +1,61 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>set_test_seed</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Set random seed for unit tests</h2>
+
+<h3>Description</h3>
+
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="../help/figures/lifecycle-experimental.svg" alt="[Experimental]"></a>
+</p>
+<p>In order for tests to be compatible with <code>R</code> versions <code>&lt; 3.6.0</code>,
+we set the <code>sample.kind</code> argument in <code>set.seed()</code>
+to <code>"Rounding"</code> when using <code>R</code> versions <code>&gt;= 3.6.0</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">set_test_seed(seed = 42, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>seed</code></td>
+<td>
+<p>Random <code>seed</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Named arguments to <code>set.seed()</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Initially contributed by R. Mark Sharp (github: @rmsharp).
+</p>
+
+
+<h3>Value</h3>
+
+<p><code>NULL</code>.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ludvig Renbo Olsen, <a href="mailto:r-pkgs@ludvigolsen.dk">r-pkgs@ludvigolsen.dk</a>
+</p>
+<p>R. Mark Sharp
+</p>
+
+
+</div>

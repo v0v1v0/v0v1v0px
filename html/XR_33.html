@@ -1,0 +1,48 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>InterfaceCondition-class</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Classes of objects representing errors or other conditions in a server language</h2>
+
+<h3>Description</h3>
+
+<p>Errors and warnings generated in evaluating an expression in the server language will
+be returned to R as objects from one of these classes.
+The interface evaluator will normally throw an error for <code>"InterfaceError"</code> and
+issue a warning for <code>"InterfaceWarning"</code>.
+</p>
+
+
+<h3>Slots</h3>
+
+
+<dl>
+<dt><code>message</code></dt>
+<dd>
+<p>The character string message from the server language evaluator.</p>
+</dd>
+<dt><code>value</code></dt>
+<dd>
+<p>In the case of a warning, the object to return after issuing the condition.</p>
+</dd>
+<dt><code>expr</code></dt>
+<dd>
+<p>The expression sent to the server language that produced the condition.</p>
+</dd>
+<dt><code>evaluator</code></dt>
+<dd>
+<p>The interface evaluator object receiving the condition.</p>
+</dd>
+</dl>
+<h3>References</h3>
+
+<p>Chambers, John M. (2016)
+<em>Extending R</em>,
+Chapman &amp; Hall/CRC.
+( Chapter 13, discussing this package, is included in the package: <a href="../doc/Chapter_XR.pdf">../doc/Chapter_XR.pdf</a>.)
+</p>
+
+
+</div>

@@ -1,0 +1,67 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>MergeCell</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>MergeCell</h2>
+
+<h3>Description</h3>
+
+<p>Represents a range in a sheet: title and coordinates.
+</p>
+<p><a href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.merge.html">https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.merge.html</a>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">MergeCell(ref = NULL, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>ref</code></td>
+<td>
+<p>ref</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments, i.e. kwargs.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>This object is used to perform operations on ranges, like: - shift, expand or shrink
+- union/intersection with another sheet range, We can check whether a range is: - equal or not equal to another,
+- disjoint of another,
+- contained in another. We can get: - the size of a range.
+- the range bounds (vertices)
+- the coordinates,
+- the string representation,
+</p>
+
+
+<h3>Value</h3>
+
+<p>An openpyxl Python object.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+MergeCell(ref = "A1")
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

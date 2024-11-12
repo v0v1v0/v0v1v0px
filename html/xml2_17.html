@@ -1,0 +1,82 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>write_xml</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Write XML or HTML to disk.</h2>
+
+<h3>Description</h3>
+
+<p>This writes out both XML and normalised HTML. The default behavior will
+output the same format which was read. If you want to force output pass
+<code>option = "as_xml"</code> or <code>option = "as_html"</code> respectively.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">write_xml(x, file, ...)
+
+## S3 method for class 'xml_document'
+write_xml(x, file, ..., options = "format", encoding = "UTF-8")
+
+write_html(x, file, ...)
+
+## S3 method for class 'xml_document'
+write_html(x, file, ..., options = "format", encoding = "UTF-8")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>A document or node to write to disk. It's not possible to
+save nodesets containing more than one node.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>file</code></td>
+<td>
+<p>Path to file or connection to write to.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>additional arguments passed to methods.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>options</code></td>
+<td>
+<p>default: ‘format’.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>encoding</code></td>
+<td>
+<p>The character encoding to use in the document. The default
+encoding is ‘UTF-8’. Available encodings are specified at
+<a href="http://xmlsoft.org/html/libxml-encoding.html#xmlCharEncoding">http://xmlsoft.org/html/libxml-encoding.html#xmlCharEncoding</a>.</p>
+</td>
+</tr>
+</table>
+<h3>Examples</h3>
+
+<pre><code class="language-R">h &lt;- read_html("&lt;p&gt;Hi!&lt;/p&gt;")
+
+tmp &lt;- tempfile(fileext = ".xml")
+write_xml(h, tmp, options = "format")
+readLines(tmp)
+
+# write formatted HTML output
+write_html(h, tmp, options = "format")
+readLines(tmp)
+</code></pre>
+
+
+</div>

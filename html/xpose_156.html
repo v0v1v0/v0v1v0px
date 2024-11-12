@@ -1,0 +1,63 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xp_geoms</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Generic ggplot2 layer for 'xpose_plots'</h2>
+
+<h3>Description</h3>
+
+<p>Generic wrapper around ggplot2 layer functions.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xp_geoms(mapping = NULL, xp_theme, name, ggfun, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>mapping</code></td>
+<td>
+<p>ggplot2 aesthetics for the target layer.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xp_theme</code></td>
+<td>
+<p>An 'xpose_theme' object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>name</code></td>
+<td>
+<p>Name of the destination layer for the argument 
+parsing (e.g. point).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ggfun</code></td>
+<td>
+<p>Name of the ggplot2 layer function to be called.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments to be parsed and passed to the 
+destination layer.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Output of the 'ggfun' call.
+</p>
+
+
+</div>

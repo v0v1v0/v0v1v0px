@@ -1,0 +1,153 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaGaReplicateGene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Replicates a gene.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaGaReplicateGene</code> replicates a gene
+by applying a gene reproduction pipeline 
+which uses crossover and
+mutation. 
+The control flow may have the following steps:
+</p>
+
+<ul>
+<li>
+<p> A gene is selected from the population.
+Check if the crossover operation should be applied.
+(The check is <code>TRUE</code> with a probability of <code>crossrate</code>).
+If the check is <code>TRUE</code>:
+</p>
+
+<ul>
+<li>
+<p> Select a mating gene from the population.
+</p>
+</li>
+<li>
+<p> Perform the crossover operation.
+</p>
+</li>
+<li>
+<p> Apply mutation with a probability of <code>mutrate</code>.
+</p>
+</li>
+<li>
+<p> Return a list one gene.
+</p>
+</li>
+</ul>
+</li>
+<li>
+<p> Apply mutation with a probability of <code>mutrate</code>.
+</p>
+</li>
+<li>
+<p> Accept gene. For genetic algorithms: Identity.
+</p>
+</li>
+<li>
+<p> Return a list with a single gene.
+</p>
+</li>
+</ul>
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaGaReplicateGene(pop, fit, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>pop</code></td>
+<td>
+<p>Population of binary genes.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fit</code></td>
+<td>
+<p>Fitness vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration of the genetic algorithm.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p><code>xegaGaReplicateGene</code> implements the control flow 
+by a dynamic definition of the operator pipeline depending
+on the random choices for mutation and crossover:
+</p>
+
+<ol>
+<li>
+<p> A gene <code>g</code> is selected and the boolean variables <code>mut</code>
+and <code>cross</code> are set to <code>runif(1)&lt;rate</code>. 
+</p>
+</li>
+<li>
+<p> The local function for the operator pipeline <code>OPpip(g, lF)</code>
+is defined by the truth values of <code>cross</code> and <code>mut</code>:
+</p>
+      
+<ol>
+<li> <p><code>(cross==FALSE) &amp; (mut==FALSE)</code>: 
+Identity function. 
+</p>
+</li>
+<li> <p><code>(cross==TRUE) &amp; (mut==TRUE)</code>: 
+Mate selection,  crossover, mutation. 
+</p>
+</li>
+<li> <p><code>(cross==TRUE) &amp; (mut==FALSE)</code>: 
+Mate selection, crossover. 
+</p>
+</li>
+<li> <p><code>(cross==FALSE) &amp; (mut==TRUE)</code>: 
+Mutation. 
+</p>
+</li>
+</ol>
+</li>
+<li>
+<p>  Perform the operator pipeline and accept the result.
+</p>
+</li>
+</ol>
+<h3>Value</h3>
+
+<p>A list of one gene.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Replication: 
+<code>xegaGaReplicate2Gene()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">lFxegaGaGene$CrossGene&lt;-xegaGaCrossGene
+lFxegaGaGene$MutationRate&lt;-function(fit, lF) {0.001}
+lFxegaGaGene$Accept&lt;-function(OperatorPipeline, gene, lF) {gene}
+pop10&lt;-lapply(rep(0,10), function(x) xegaGaInitGene(lFxegaGaGene))
+epop10&lt;-lapply(pop10, lFxegaGaGene$EvalGene, lF=lFxegaGaGene)
+fit10&lt;-unlist(lapply(epop10, function(x) {x$fit}))
+newgenes&lt;-xegaGaReplicateGene(pop10, fit10, lFxegaGaGene)
+</code></pre>
+
+
+</div>

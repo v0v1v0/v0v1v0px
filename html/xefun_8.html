@@ -1,0 +1,65 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>date_from</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>start date by range</h2>
+
+<h3>Description</h3>
+
+<p>The date before a specified date by date_range.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">date_from(date_range, to = Sys.Date(), default_from = "1000-01-01")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>date_range</code></td>
+<td>
+<p>date range, available value including nd, nm, mtd, qtd, ytd, ny, max.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>to</code></td>
+<td>
+<p>a date, default is current system date.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>default_from</code></td>
+<td>
+<p>the default date when date_range is sett to max</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>It returns the start date of a date_range with a specified end date.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">date_from(3)
+date_from('3d')
+
+date_from('3m')
+date_from('3q')
+date_from('3y')
+
+date_from('mtd')
+date_from('qtd')
+date_from('ytd')
+
+</code></pre>
+
+
+</div>

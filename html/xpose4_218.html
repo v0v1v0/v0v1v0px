@@ -1,0 +1,172 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xpose.bootgam</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Title</h2>
+
+<h3>Description</h3>
+
+<p>Title
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xpose.bootgam(
+  object,
+  n = n,
+  id = object@Prefs@Xvardef$id,
+  oid = "OID",
+  seed = NULL,
+  parnam = xvardef("parms", object)[1],
+  covnams = xvardef("covariates", object),
+  conv.value = object@Prefs@Bootgam.prefs$conv.value,
+  check.interval = as.numeric(object@Prefs@Bootgam.prefs$check.interval),
+  start.check = as.numeric(object@Prefs@Bootgam.prefs$start.check),
+  algo = object@Prefs@Bootgam.prefs$algo,
+  start.mod = object@Prefs@Bootgam.prefs$start.mod,
+  liif = as.numeric(object@Prefs@Bootgam.prefs$liif),
+  ljif.conv = as.numeric(object@Prefs@Bootgam.prefs$ljif.conv),
+  excluded.ids = as.numeric(object@Prefs@Bootgam.prefs$excluded.ids),
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An xpose.data object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>n</code></td>
+<td>
+<p>number of bootstrap iterations</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>id</code></td>
+<td>
+<p>column name of id</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>oid</code></td>
+<td>
+<p>create a new column with the original ID data</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>seed</code></td>
+<td>
+<p>random seed</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>parnam</code></td>
+<td>
+<p>ONE (and only one) model parameter name.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>covnams</code></td>
+<td>
+<p>Covariate names to test on parameter.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>conv.value</code></td>
+<td>
+<p>Convergence value</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>check.interval</code></td>
+<td>
+<p>How often to check the convergence</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>start.check</code></td>
+<td>
+<p>When to start checking</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>algo</code></td>
+<td>
+<p>Which algorithm to use</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>start.mod</code></td>
+<td>
+<p>which start model</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>liif</code></td>
+<td>
+<p>The liif value</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ljif.conv</code></td>
+<td>
+<p>The convergence value for the liif</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>excluded.ids</code></td>
+<td>
+<p>ID values to exclude.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Used to pass arguments to more basic functions.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>a list of results from the bootstrap of the GAM.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other GAM functions: 
+<code>GAM_summary_and_plot</code>,
+<code>xp.get.disp()</code>,
+<code>xp.scope3()</code>,
+<code>xpose.gam()</code>,
+<code>xpose4-package</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Not run: 
+## filter out occasion as a covariate as only one value
+all_covs &lt;- xvardef("covariates",simpraz.xpdb)
+some_covs &lt;- all_covs[!(all_covs %in% "OCC") ] 
+
+## here only running n=5 replicates to see that things work
+##   use something like n=100 for resonable results
+boot_gam_obj &lt;- xpose.bootgam(simpraz.xpdb,5,parnam="KA",covnams=some_covs,seed=1234)
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

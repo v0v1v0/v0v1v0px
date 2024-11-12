@@ -1,0 +1,75 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>valueFromServer</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Convert the String Returned by a Server Language Interface to an R Object.</h2>
+
+<h3>Description</h3>
+
+<p>This is the conversion mechanism for results returned from a server language interface.
+By default, JSON is used to decode the string.  Otherwise the result of the basic
+decoding should be provided as argument <code>object</code>.
+Should be called by the implementation of ServerEval for individual interface classes.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">valueFromServer(string, key, get, evaluator, object)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>string</code></td>
+<td>
+<p>the string to be passed to JSON.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>key</code></td>
+<td>
+<p>the key if a proxy was allowed, otherwise the empty string.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>get</code></td>
+<td>
+<p>the logical controling whether a proxy or a converted value was wanted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>evaluator</code></td>
+<td>
+<p>the evaluator object that issued the server language expression.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>If JSON is not used, the call from the server language method should provide the
+elementary conversion of the result (without using <code>asRObject()</code> and the string argument
+should be omitted.  If JSON is used, <code>object</code> should be computed by default from JSON.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>the R object implied by the server result.
+</p>
+
+
+<h3>References</h3>
+
+<p>Chambers, John M. (2016)
+<em>Extending R</em>,
+Chapman &amp; Hall/CRC.
+( Chapter 13, discussing this package, is included in the package: <a href="../doc/Chapter_XR.pdf">../doc/Chapter_XR.pdf</a>.)
+</p>
+
+
+</div>

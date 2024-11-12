@@ -1,0 +1,81 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>LogarithmicMultiplicativeCooling</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Logarithmic multiplicative cooling.</h2>
+
+<h3>Description</h3>
+
+<p>This schedule decreases by the inverse proportion of the
+natural logarithm 
+of <code>k</code>. <code>lF$Alpha()</code> should be larger than 1.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">LogarithmicMultiplicativeCooling(k, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>k</code></td>
+<td>
+<p>Number of steps to discount.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Temperature is updated at the end of each generation
+in the main loop of the genetic algorithm.
+<code>lF$Temp0()</code> is the starting temperature.
+<code>lF$Alpha()</code> is a scaling factor.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Temperature at time k.
+</p>
+<p>Aarts, E., and Korst, J. (1989):
+Simulated Annealing and Boltzmann Machines.
+A Stochastic Approach to Combinatorial Optimization and
+Neural Computing.
+John Wiley &amp; Sons, Chichester.
+(ISBN:0-471-92146-7)
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Cooling: 
+<code>ExponentialAdditiveCooling()</code>,
+<code>ExponentialMultiplicativeCooling()</code>,
+<code>PowerAdditiveCooling()</code>,
+<code>PowerMultiplicativeCooling()</code>,
+<code>TrigonometricAdditiveCooling()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">parm&lt;-function(x){function() {return(x)}}
+lF&lt;-list(Temp0=parm(100), Alpha=parm(1.01))
+LogarithmicMultiplicativeCooling(0, lF)
+LogarithmicMultiplicativeCooling(2, lF)
+</code></pre>
+
+
+</div>

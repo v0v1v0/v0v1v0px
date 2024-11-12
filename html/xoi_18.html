@@ -1,0 +1,173 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>joint.given.two</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Crossover locations given there are two</h2>
+
+<h3>Description</h3>
+
+<p>Calculates the joint density of the crossover locations on a random meiotic
+product, given that there are precisely two crossovers, for the gamma model.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">joint.given.two(
+  nu,
+  L = 103,
+  x = NULL,
+  y = NULL,
+  n = 20,
+  max.conv = 25,
+  integr.tol = 0.00000001,
+  max.subd = 1000,
+  min.subd = 10
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>nu</code></td>
+<td>
+<p>The interference parameter in the gamma model.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>L</code></td>
+<td>
+<p>The length of the chromsome in cM.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>If specified, locations of the first crossover.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>y</code></td>
+<td>
+<p>If specified, locations of the second crossover.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>n</code></td>
+<td>
+<p>Number of points at which to calculate the density.  The points
+will be evenly distributed between 0 and <code>L</code>. Ignored if <code>x</code> and
+<code>y</code> are specified.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max.conv</code></td>
+<td>
+<p>Maximum limit for summation in the convolutions to get
+inter-crossover distance distribution from the inter-chiasma distance
+distributions.  This should be greater than the maximum number of chiasmata
+on the 4-strand bundle.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>integr.tol</code></td>
+<td>
+<p>Tolerance for convergence of numerical integration.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max.subd</code></td>
+<td>
+<p>Maximum number of subdivisions in numerical integration.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>min.subd</code></td>
+<td>
+<p>Minimum number of subdivisions in numerical integration.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Let <code class="reqn">f(x;\nu)</code> denote the density of a gamma random variable
+with parameters shape=<code class="reqn">\nu</code> and rate=<code class="reqn">2\nu</code>, and let
+<code class="reqn">f_k(x;\nu)</code> denote the density of a gamma random variable
+with parameters shape=<code class="reqn">k \nu</code> and rate=<code class="reqn">2\nu</code>.
+</p>
+<p>The distribution of the distance from one crossover to the next is
+<code class="reqn">f^*(x;\nu) = \sum_{k=1}^{\infty} f_k(x;\nu)/2^k</code>.
+</p>
+<p>The distribution of the distance from the start of the chromosome to the
+first crossover is <code class="reqn">g^*(x;\nu) = 1 - F^*(x;\nu)</code> where <code class="reqn">F^*</code> is the cdf of <code class="reqn">f^*</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A data frame with three columns: <code>x</code> and <code>y</code> are the
+locations (between 0 and <code>L</code>, in cM) at which the density was
+calculated and <code>f</code> is the density.
+</p>
+
+
+<h3>Warning</h3>
+
+<p><strong>We sometimes have difficulty with the numerical
+integrals.  You may need to use large <code>min.subd</code> (e.g. 25) to get
+accurate results.</strong>
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Karl W Broman, <a href="mailto:broman@wisc.edu">broman@wisc.edu</a>
+</p>
+
+
+<h3>References</h3>
+
+<p>Broman, K. W. and Weber, J. L. (2000) Characterization of human
+crossover interference. <em>Am. J. Hum. Genet.</em> <strong>66</strong>, 1911–1926.
+</p>
+<p>Broman, K. W., Rowe, L. B., Churchill, G. A. and Paigen, K. (2002) Crossover
+interference in the mouse. <em>Genetics</em> <strong>160</strong>, 1123–1131.
+</p>
+<p>McPeek, M. S. and Speed, T. P. (1995) Modeling interference in genetic
+recombination.  <em>Genetics</em> <strong>139</strong>, 1031–1044.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>location.given.one()</code>, <code>distance.given.two()</code>,
+<code>first.given.two()</code>, <code>ioden()</code>, <code>firstden()</code>,
+<code>xoprob()</code>, <code>gammacoi()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+# Calculate the distribution of the average of the crossover locations,
+# given that there are two and that they are separated by 20 cM
+# (for a chromosome of length 200 cM)
+L &lt;- 200
+d &lt;- 20
+x &lt;- seq(0, L-d, by=0.5)
+y &lt;- x+d
+
+f &lt;- joint.given.two(4.3, L=L, x, y)
+f$f &lt;- f$f / distance.given.two(4.3, L, d)$f
+plot((f$x+f$y)/2, f$f, type="l", xlim=c(0, L), ylim=c(0,max(f$f)),
+     lwd=2, xlab="Average location", ylab="Density")
+abline(v=c(d/2,L-d/2), h=1/(L-d), lty=2, lwd=2)
+
+</code></pre>
+
+
+</div>

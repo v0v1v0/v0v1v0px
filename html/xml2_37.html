@@ -1,0 +1,66 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xml_dtd</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Construct a document type definition</h2>
+
+<h3>Description</h3>
+
+<p>This is used to create simple document type definitions. If you need to
+create a more complicated definition with internal subsets it is recommended
+to parse a string directly with <code>read_xml()</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xml_dtd(name = "", external_id = "", system_id = "")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>name</code></td>
+<td>
+<p>The name of the declaration</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>external_id</code></td>
+<td>
+<p>The external ID of the declaration</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>system_id</code></td>
+<td>
+<p>The system ID of the declaration</p>
+</td>
+</tr>
+</table>
+<h3>Examples</h3>
+
+<pre><code class="language-R">r &lt;- xml_new_root(
+  xml_dtd(
+    "html",
+    "-//W3C//DTD XHTML 1.0 Transitional//EN",
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+  )
+)
+
+# Use read_xml directly for more complicated DTD
+d &lt;- read_xml(
+  '&lt;!DOCTYPE doc [
+&lt;!ELEMENT doc (#PCDATA)&gt;
+&lt;!ENTITY foo " test "&gt;
+]&gt;
+&lt;doc&gt;This is a valid document &amp;foo; !&lt;/doc&gt;'
+)
+</code></pre>
+
+
+</div>

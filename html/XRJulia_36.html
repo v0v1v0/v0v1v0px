@@ -1,0 +1,43 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>setJuliaClass</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Define a Proxy Julia Class (Composite Type)</h2>
+
+<h3>Description</h3>
+
+<p>Given the name and optionally the module for a Julia composite type, defines an R proxy
+class with the same fields as the Julia type.  By default, uses metadata from Julia to
+find the fields.  If the call supplies the desired field names explicitly, metadata is
+not used.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">setJuliaClass(juliaType, module = "", fields = character(),
+  where = topenv(parent.frame()), proxyObjectClass = "JuliaObject",
+  ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>juliaType, module</code></td>
+<td>
+<p>Strings identifying the composite type and optionally the module containing it. In normal use,
+metadata from Julia is used to find the definition of the type.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fields, where, proxyObjectClass, ...</code></td>
+<td>
+<p>Overriding arguments that should not be used by direct calls from package source code.</p>
+</td>
+</tr>
+</table>
+</div>

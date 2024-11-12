@@ -1,0 +1,67 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>decodeCDT</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Converts a complete derivation tree into a program.</h2>
+
+<h3>Description</h3>
+
+<p><code>decodeCDT()</code> returns a program
+(a text string with the terminal symbol string).
+If the derivation tree still has non-terminal leaves,
+the non-terminal leaves are omitted.
+The program produces a syntax error.
+The program can not be repaired.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">decodeCDT(tree, ST)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>tree</code></td>
+<td>
+<p>Derivation tree.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ST</code></td>
+<td>
+<p>Symbol table.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Program.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Decoder: 
+<code>decodeDTsym()</code>,
+<code>decodeDT()</code>,
+<code>decodeTree()</code>,
+<code>leavesIncompleteDT()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">g&lt;-compileBNF(booleanGrammar())
+a&lt;-randomDerivationTree(g$Start, g)
+decodeCDT(a, g$ST) 
+
+</code></pre>
+
+
+</div>

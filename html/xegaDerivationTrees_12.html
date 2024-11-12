@@ -1,0 +1,127 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>filterANLid</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Filter an Attributed Node List (ANL) of a derivation tree by a symbol identifier.</h2>
+
+<h3>Description</h3>
+
+<p><code>filterANLid()</code> deletes all nodes whose <code>node$ID</code> does not match 
+<code>node$ID</code>.
+If the resulting list is empty, a list of length 0 is returned.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">filterANLid(ANL, nodeID = 1)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>ANL</code></td>
+<td>
+<p>Attributed node list.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>nodeID</code></td>
+<td>
+<p>Integer. The identifier of a symbol.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>An attributed <code>node</code> has the following elements:
+</p>
+
+<ul>
+<li> <p><code>$ID</code>:  Id in the symbol table <code>ST</code>.
+</p>
+</li>
+<li> <p><code>$NT</code>:  Is the symbol a non-terminal?
+</p>
+</li>
+<li> <p><code>$Pos</code>: Position in the trail.
+</p>
+</li>
+<li> <p><code>$Depth</code>:  Depth of node.
+</p>
+</li>
+<li> <p><code>$RDepth</code>: Residual depth for expansion.
+</p>
+</li>
+<li> <p><code>$subtreedepth</code>: Depth of subtree starting here.
+</p>
+</li>
+<li> <p><code>$Index</code>:  R index of the node in the derivation tree.
+Allows fast tree extraction and insertion.
+</p>
+</li>
+</ul>
+<p>For the implementation of crossover and mutation, we expect a non-terminal symbol identifier.
+</p>
+
+
+<h3>Value</h3>
+
+<p>An attributed node list with nodes whose depths are in 
+<code>minb:maxb</code>. 
+Each node is represented as a list of the following attributes:
+</p>
+
+<ul>
+<li> <p><code>Node$ID</code>:  Id in the symbol table ST.
+</p>
+</li>
+<li> <p><code>Node$NT</code>:  Is the symbol a non-terminal?
+</p>
+</li>
+<li> <p><code>Node$Pos</code>: Position in the trail.
+</p>
+</li>
+<li> <p><code>Node$Depth</code>:  Depth of node.
+</p>
+</li>
+<li> <p><code>Node$RDepth</code>: Residual depth for expansion.
+</p>
+</li>
+<li> <p><code>Node$subtreedepth</code>: Depth of subtree starting here.
+</p>
+</li>
+<li> <p><code>Node$Index</code>:  R index of the node in the derivation tree.
+Allows fast tree extraction and insertion.
+</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p>Other Access Tree Parts: 
+<code>filterANL()</code>,
+<code>treeANL()</code>,
+<code>treeChildren()</code>,
+<code>treeRoot()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">g&lt;-compileBNF(booleanGrammar())
+set.seed(111)
+a&lt;-randomDerivationTree(g$Start, g, maxdepth=10)
+b&lt;-treeANL(a, g$ST)
+c&lt;-filterANLid(b, nodeID=5)
+d&lt;-filterANLid(b, nodeID=6)
+e&lt;-filterANLid(b, nodeID=7)
+f&lt;-filterANLid(b, nodeID=8)
+
+</code></pre>
+
+
+</div>

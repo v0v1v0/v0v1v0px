@@ -1,0 +1,85 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>we_rules</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>
+Estimates the first four Western Electric Rules for detecting patterns
+</h2>
+
+<h3>Description</h3>
+
+<p>Estimates the first four Western Electric Rules for detecting patterns, starting with under control X chart obtained in the sequence <code>xrs_gr</code>, <code>X_it</code>, <code>R_it</code> functions. At the same time, plots the X chart including the zones above and below the central limit. For last, a binary value for each rule is presented if at least one rule is violated, '1' for 'yes', 0 for 'no'.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">we_rules(prev.results)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>prev.results</code></td>
+<td>
+<p>Its a list of previous results obtained by the <code>xrs_gr</code> function in the first iteration, or a list of results obtained in further iterations by the <code>X_it</code>, and if necessary by the <code>R_it</code> function.
+</p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+<p>The previous results may say that the process is under control, but, it's a conclusion concerning the first Western Electric rule only.
+</p>
+
+
+<h3>Value</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>Resultados de analisis</code></td>
+<td>
+<p>A phrarse saying the process is or not under control</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Las siguientes reglas tienen al menos un grupo que viola la regla</code></td>
+<td>
+<p>The conclussion about the Western Electric rules from 1 to 4, showing a binary response, '1' for 'yes', 0 for 'no'.</p>
+</td>
+</tr>
+</table>
+<h3>Author(s)</h3>
+
+<p>Erick Marroquin
+</p>
+
+
+<h3>References</h3>
+
+<p>Montgomery, D.C. (2005) <em>Introduction to Statistical Quality Control</em>, 5th ed. New York: John Wiley &amp; Sons, ISBN 0-471-65631-3
+</p>
+<p>SMALL, Bonnie B. (1956) <em>Statistical Quality Control Handbook</em>, 2th ed. Easton : Western Electric Co, Inc.
+</p>
+<p>yhat <em>The Yhat Blog. Machine Learning, Data Science, Engineering</em>, [On line] http://blog.yhathq.com/posts/quality-control-in-r.html
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xrs_gr</code>,  <code>X_it</code>,   <code>R_it</code>,  <code>Cp_X</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(qqsugar)
+results1&lt;-xrs_gr(qqsugar)
+results2&lt;-R_it(results1)
+we_rules(results2)
+</code></pre>
+
+
+</div>

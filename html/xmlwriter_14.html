@@ -1,0 +1,160 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xmlbuilder</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Create a fast feed-forward XML builder</h2>
+
+<h3>Description</h3>
+
+<p>This function creates an XML builder that allows you to create XML documents in a feed-forward manner.
+<code>xmlbuilder</code> returns an object that has methods to create XML elements, text nodes, comments, and more.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xmlbuilder(
+  allow_fragments = TRUE,
+  use_prolog = !allow_fragments,
+  strict = FALSE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>allow_fragments</code></td>
+<td>
+<p>logical. Should a warning be issued if the XML document has multiple root elements?
+Set to <code>FALSE</code> to suppress when creating multiple xml fragments.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>use_prolog</code></td>
+<td>
+<p>logical. Should the XML prolog be included in the output?
+Default is <code>TRUE</code>, which generate an UTF-8 xml prolog.
+Set to <code>FALSE</code> if you want to generate an xml fragment or manually prepend the prolog.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>strict</code></td>
+<td>
+<p>logical. Should the builder check for dangling nodes, default is <code>FALSE</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+
+<ul>
+<li> <p><code style="white-space: pre;">⁠$start(tag, ...)⁠</code> (or <code style="white-space: pre;">⁠$start_element⁠</code>) starts an element with a given tag and attributes.
+</p>
+</li>
+<li> <p><code style="white-space: pre;">⁠$end()⁠</code> (or <code style="white-space: pre;">⁠$end_element⁠</code>) ends the current element.
+</p>
+</li>
+<li> <p><code style="white-space: pre;">⁠$element(tag, text, ...)⁠</code> creates an element with a given tag, text, and attributes.
+</p>
+</li>
+<li> <p><code style="white-space: pre;">⁠$text(text)⁠</code> creates a text node.
+</p>
+</li>
+<li> <p><code style="white-space: pre;">⁠$fragment(..., .attr)⁠</code> writes an xml fragment to the.
+</p>
+</li>
+<li> <p><code style="white-space: pre;">⁠$comment(comment)⁠</code> creates a comment node.
+</p>
+</li>
+<li> <p><code style="white-space: pre;">⁠$to_xml_string()⁠</code> returns the XML document or fragments(s) as a character vector.
+</p>
+</li>
+</ul>
+<h3>Value</h3>
+
+<p>An object of class 'xmlbuilder
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">b &lt;-xmlbuilder()
+
+b$start("root")
+  b$element("child1", "text1", attr1 = "value1")
+  b$element("child2", "text2", attr2 = "value2")
+  b$start("child3", attr3 = "value3")
+    b$text("text3")
+    b$element("child4", "text3", attr4 = "value4")
+  b$end("child3")
+b$end("root")
+
+print(b)
+
+if (require("xml2")) {
+  # a builder can be converted to an xml_document using
+  doc &lt;- as_xml_document(b)
+
+  # or equivalentlty
+  doc &lt;-
+    b$to_xml_string() |&gt;
+    read_xml()
+}
+
+# build some xml fragments
+fms &lt;- xmlbuilder(allow_fragments = TRUE)
+
+fms$start("person", id = "1")
+  fms$element("name", "John Doe")
+  fms$element("age", 30)
+fms$end("person")
+
+fms$start("person", id = "2")
+  fms$element("name", "Jane Doe")
+  fms$element("age", 25)
+fms$end("person")
+
+fms$start("person", id = "3")
+  fms$element("name", "Jim Doe")
+  fms$element("age", 35)
+fms$end("person")
+
+s &lt;- fms$to_xml_string()
+as.character(fms)
+length(s) # three fragments
+
+# print xml string of the second fragment
+print(s[2])
+
+if (require("xml2")){
+  # convert to xml_nodes
+  nodes &lt;- fms$to_xml_node_list()
+  length(nodes) # three nodes
+  # show the second xml_node
+  print(nodes[[2]])
+}
+
+# use fragments
+xb &lt;- xmlbuilder()
+
+xb$start("study")
+xb$fragment(
+  person = frag(
+    name = "John Doe",
+    age = 30
+  ),
+  person = frag(
+    name = "Jane Doe",
+    age = 25
+  )
+)
+xb$end("study")
+xb
+</code></pre>
+
+
+</div>

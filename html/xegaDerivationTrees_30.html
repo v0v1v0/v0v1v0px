@@ -1,0 +1,142 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaDerivationTrees</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Package xegaDerivationTrees</h2>
+
+<h3>Description</h3>
+
+<p>Derivation Trees
+</p>
+
+
+<h3>Details</h3>
+
+<p>The implementation of a data type for derivation trees.
+</p>
+<p>The derivation tree operations for generating complete random subtrees and for
+for subtree extraction and insertion are formally introduced in Geyer-Schulz (1997)
+and used for implementing mutation and crossover operations. 
+</p>
+<p>Efficient selection of random subtrees is implemented by building a list of annotated 
+tree nodes by a left-right depth-first tree traversal. For each node, the R-index 
+to access the subtree is built and stored in the node. The R-index element of a node 
+allows subtree extraction and insertion operations with the cost of the R-index operation.  
+In addition, filtering operations the node list by different criteria (min depth, max depth, and 
+non-terminal symbol type) allow the implementation of flexible and
+configurable crossover and mutation operations.
+</p>
+
+
+<h3>The Architecture of the xegaX-Packages</h3>
+
+<p>The xegaX-packages are a family of R-packages which implement 
+eXtended Evolutionary and Genetic Algorithms (xega).  
+The architecture has 3 layers, 
+namely the user interface layer,
+the population layer, and the gene layer: 
+</p>
+
+<ul>
+<li>
+<p>The user interface layer (package <code>xega</code>) 
+provides a function call interface and configuration support
+for several algorithms: genetic algorithms (sga), 
+permutation-based genetic algorithms (sgPerm), 
+derivation-free algorithms as e.g. differential evolution (sgde), 
+grammar-based genetic programming (sgp) and grammatical evolution
+(sge). 
+</p>
+</li>
+<li>
+<p>The population layer (package <code>xegaPopulation</code>) contains
+population-related functionality as well as support for 
+adaptive mechanisms which depend on population statistics. 
+In addition, support for parallel evaluation of genes is implemented here.
+</p>
+</li>
+<li> 
+<p>The gene layer is split in a representation-independent and 
+a representation-dependent part:
+</p>
+
+<ol>
+<li> 
+<p>The representation-indendent part (package <code>xegaSelectGene</code>)
+is responsible for variants of selection operators, evaluation 
+strategies for genes, as well as profiling and timing capabilities.        
+</p>
+</li>
+<li> 
+<p>The representation-dependent part consists of the following packages: 
+</p>
+
+<ul>
+<li> <p><code>xegaGaGene</code> for binary-coded genetic algorithms.
+</p>
+</li>
+<li> <p><code>xegaPermGene</code> for permutation-based genetic algorithms.
+</p>
+</li>
+<li> <p><code>xegaDfGene</code> for derivation-free algorithms. For example, 
+differential evolution.
+</p>
+</li>
+<li> <p><code>xegaGpGene</code> for grammar-based genetic algorithms.
+</p>
+</li>
+<li> <p><code>xegaGeGene</code> for grammatical evolution algorithms.
+</p>
+</li>
+</ul>
+<p>The packages <code>xegaDerivationTrees</code> and <code>xegaBNF</code> support
+the last two packages:
+<code>xegaBNF</code> essentially provides a grammar compiler, and 
+<code>xegaDerivationTrees</code> an abstract data type for derivation trees.
+</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3>Copyright</h3>
+
+<p>(c) 2023 Andreas Geyer-Schulz
+</p>
+
+
+<h3>License</h3>
+
+<p>MIT
+</p>
+
+
+<h3>URL</h3>
+
+<p>&lt;https://github.com/ageyerschulz/xegaDerivationTrees&gt;
+</p>
+
+
+<h3>Installation</h3>
+
+<p>From cran with <code>install.packages("xegaDerivationTrees")</code>
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Andreas Geyer-Schulz
+</p>
+
+
+<h3>References</h3>
+
+<p>Geyer-Schulz, Andreas (1997):
+<em>Fuzzy Rule-Based Expert Systems and Genetic Machine Learning</em>,
+Physica, Heidelberg.
+(ISBN:978-3-7908-0830-X)
+</p>
+
+
+</div>

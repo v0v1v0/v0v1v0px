@@ -1,0 +1,99 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>FRpredcor</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Compute the FR coefficient  on two vectors based exactly on Gamma2.</h2>
+
+<h3>Description</h3>
+
+<p>This function computes the unidimensional graph prediction coefficient
+between two vectors xvec and yvec.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">FRpredcor(xvec, yvec, tiemethod = "average")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>xvec</code></td>
+<td>
+<p>Vector of numeric values in the first coordinate.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>yvec</code></td>
+<td>
+<p>Vector of numeric values in the second coordinate.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tiemethod</code></td>
+<td>
+<p>Choice of treatment for ties, default is the "average"</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>In the case simple = TRUE, function returns the value of the
+FR standardized coefficient.
+</p>
+
+
+<h3>Note</h3>
+
+<p>Auxiliary function with no checks for NA, etc.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Sourav Chatterjee, Susan Holmes
+</p>
+
+
+<h3>References</h3>
+
+<p>Chatterjee, S. and Holmes, S (2020)
+Practical observations and applications of the robust prediction
+coefficient.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>xicor FRpredcorhalf
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Compute  the coefficient and compare to the xi coefficient
+simulCompare &lt;- function(n = 20, B = 1000)
+{
+ diffs&lt;- rep(0,B)
+ xvec &lt;- 1:n
+ for (i in 1:B)
+ {
+   yvec &lt;- runif(n)
+   diffs[i] &lt;- FRpredcor(xvec, yvec) - xicor(xvec, yvec)
+ }
+ return(diffs)
+ }
+
+ simulcompare1K &lt;- simulCompare()
+ summary(simulcompare1K)
+
+
+</code></pre>
+
+
+</div>

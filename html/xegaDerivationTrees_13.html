@@ -1,0 +1,90 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>generateDerivationTree</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Generates a derivation tree from an integer vector.</h2>
+
+<h3>Description</h3>
+
+<p><code>generateDerivationTree()</code> 
+generates a derivation tree from an integer vector.
+The derivation tree may be incomplete.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">generateDerivationTree(sym, kvec, complete = TRUE, G, maxdepth = 5)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>sym</code></td>
+<td>
+<p>Non-terminal symbol.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>kvec</code></td>
+<td>
+<p>Integer vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>complete</code></td>
+<td>
+<p>Boolean. FALSE for incomplete derivation trees.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>G</code></td>
+<td>
+<p>Grammar.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>maxdepth</code></td>
+<td>
+<p>Integer. Maximal depth of the derivation tree.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p><code>generateDerivationTree()</code> recursively expands 
+non-terminals and builds a derivation tree.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A named list l$tree, l$kvec, l$complete.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Generate Derivation Tree: 
+<code>randomDerivationTree()</code>,
+<code>rndsubk()</code>,
+<code>rndsub()</code>,
+<code>substituteSymbol()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">g&lt;-compileBNF(booleanGrammar())
+a&lt;-sample(100, 100, replace=TRUE)
+b&lt;-generateDerivationTree(sym=g$Start, kvec=a, G=g, maxdepth=10)
+decodeDT(b$tree, g$ST)
+
+</code></pre>
+
+
+</div>

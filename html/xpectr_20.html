@@ -1,0 +1,57 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>simplified_formals</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Extract and simplify a function's formal arguments</h2>
+
+<h3>Description</h3>
+
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="../help/figures/lifecycle-experimental.svg" alt="[Experimental]"></a>
+</p>
+<p>Extracts <code>formals</code> and
+formats them as an easily testable <code>character vector</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">simplified_formals(fn)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>fn</code></td>
+<td>
+<p><code>Function</code>.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A <code>character vector</code> with the simplified formals.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ludvig Renbo Olsen, <a href="mailto:r-pkgs@ludvigolsen.dk">r-pkgs@ludvigolsen.dk</a>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Attach packages
+library(xpectr)
+
+fn1 &lt;- function(a = "x", b = NULL, c = NA, d){
+  paste0(a, b, c, d)
+}
+
+simplified_formals(fn1)
+</code></pre>
+
+
+</div>

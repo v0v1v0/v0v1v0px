@@ -1,0 +1,48 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>in_dir</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Evaluate an expression under a specified working directory</h2>
+
+<h3>Description</h3>
+
+<p>Change the working directory, evaluate the expression, and restore the
+working directory.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">in_dir(dir, expr)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>dir</code></td>
+<td>
+<p>Path to a directory.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>expr</code></td>
+<td>
+<p>An R expression.</p>
+</td>
+</tr>
+</table>
+<h3>Examples</h3>
+
+<pre><code class="language-R">library(xfun)
+in_dir(tempdir(), {
+    print(getwd())
+    list.files()
+})
+</code></pre>
+
+
+</div>

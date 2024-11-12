@@ -1,0 +1,55 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>md5</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Calculate the MD5 checksums of R objects</h2>
+
+<h3>Description</h3>
+
+<p>Serialize an object and calculate the checksum via
+<code>tools::md5sum()</code>. If <code>tools::md5sum()</code> does not have the argument <code>bytes</code>,
+the object will be first serialized to a temporary file, which will be
+deleted after the checksum is calculated, otherwise the raw bytes of the
+object will be passed to the <code>bytes</code> argument directly (which will be
+faster than writing to a temporary file).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">md5(...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Any number of R objects.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A character vector of the checksums of objects passed to <code>md5()</code>. If
+the arguments are named, the results will also be named.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">x1 = 1
+x2 = 1:10
+x3 = seq(1, 10)
+x4 = iris
+x5 = paste
+(m = xfun::md5(x1, x2, x3, x4, x5))
+stopifnot(m[2] == m[3])  # x2 and x3 should be identical
+
+xfun::md5(x1 = x1, x2 = x2)  # named arguments
+</code></pre>
+
+
+</div>

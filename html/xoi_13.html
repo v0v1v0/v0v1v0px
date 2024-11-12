@@ -1,0 +1,257 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>fitGamma</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Fit Gamma model</h2>
+
+<h3>Description</h3>
+
+<p>Fit the gamma model for crossover interference to data on crossover
+locations.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">fitGamma(
+  d,
+  censor = NULL,
+  nu = NULL,
+  lo = NULL,
+  hi = NULL,
+  se = FALSE,
+  supint = FALSE,
+  rescale = FALSE,
+  drop = 1.5,
+  tol = 0.00001,
+  maxit = 1000,
+  max.conv = 25,
+  integr.tol = 0.00000001,
+  max.subd = 1000,
+  min.subd = 10,
+  h = 0.1,
+  hstep = 1.5
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>d</code></td>
+<td>
+<p>A vector of inter-crossover distances in cM.  This should include
+distances from start of chromosome to first crossover, last crossover to end
+of chromosome, and chromosome length, if there are no crossovers.
+</p>
+<p>Alternatively, this may be a matrix with the first column being the
+distances and second column being the censoring types (<code>censor</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>censor</code></td>
+<td>
+<p>A vector of the same length as <code>d</code>, indicating the
+censoring type for each distance.  <code>0</code> = uncensored, <code>1</code> =
+right-censored, <code>2</code> = initial crossover on chromosome, <code>3</code> = whole
+chromosome.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>nu</code></td>
+<td>
+<p>A vector of interference parameters (<code class="reqn">\nu</code>) at which to
+calculate the log likelihood.  If NULL, <code>lo</code> and <code>hi</code> must be
+specified.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lo</code></td>
+<td>
+<p>If <code>nu</code> is unspecified, <code>lo</code> indicates the lower value
+of the interval in which to search for the MLE.  If <code>supint=TRUE</code>, this
+should be below the lower limit of the support interval.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hi</code></td>
+<td>
+<p>If <code>nu</code> is unspecified, <code>hi</code> indicates the upper value
+of the interval in which to search for the MLE.  If <code>supint=TRUE</code>, this
+should be above the upper limit of the support interval.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>se</code></td>
+<td>
+<p>If TRUE and <code>nu</code> was not specified, an estimated SE (based on
+the second derivative of the log likelihood) is estimated.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>supint</code></td>
+<td>
+<p>If TRUE and <code>nu</code> was not specified, a likelihood support
+interval is calculated, with <code>drop</code> being the amount to drop in log
+(base 10).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>rescale</code></td>
+<td>
+<p>If TRUE and <code>nu</code> was specified, re-scale the log
+likelihoods so that the maximum is at 0.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>drop</code></td>
+<td>
+<p>If <code>supint</code> was specified, this indicates the amount to
+drop in log (base 10) for the likelihood support interval.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tol</code></td>
+<td>
+<p>Tolerance for converence to calculate the likelihood, SE, and
+likelihood support interval.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>maxit</code></td>
+<td>
+<p>Maximum number of iterations in estimating the SE and
+likelihood support interval.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max.conv</code></td>
+<td>
+<p>Maximum limit for summation in the convolutions to get
+inter-crossover distance distribution from the inter-chiasma distance
+distributions.  This should be greater than the maximum number of chiasmata
+on the 4-strand bundle.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>integr.tol</code></td>
+<td>
+<p>Tolerance for convergence of numerical integration.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max.subd</code></td>
+<td>
+<p>Maximum number of subdivisions in numerical integration.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>min.subd</code></td>
+<td>
+<p>Minimum number of subdivisions in numerical integration.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>h</code></td>
+<td>
+<p>Step used in estimating the second derivative of the log
+likelihood.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hstep</code></td>
+<td>
+<p>factor by which <code>h</code> is decreased in each iteration of the
+estimation of the second derivative of the log likelihood.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>See Broman and Weber (2000) for details of the method.
+</p>
+<p>We use R's <code>stats::integrate()</code> function for numerical integrals,
+<code>stats::optimize()</code> for optimizing the likelihood, and
+<code>stats::uniroot()</code> for identifying the endpoints of the likelihood
+support interval.
+</p>
+
+
+<h3>Value</h3>
+
+<p>If <code>nu</code> is specified, we return a data frame with two columns:
+<code>nu</code> and the corresponding log (base e) likelihood.  If
+<code>rescale=TRUE</code>, the maximum log likelihood is subtracted off, so that
+its maximum is at 0.
+</p>
+<p>If <code>lo</code> and <code>hi</code> is specified, the output contains a single row
+with the MLE of <code class="reqn">\nu</code> and the corresponding log likelihood.  If
+<code>se=TRUE</code>, we also include the estimated SE.  If <code>supint=TRUE</code>, we
+include two additional rows with the lower and upper limits of the
+likelihood support interval.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Karl W Broman, <a href="mailto:broman@wisc.edu">broman@wisc.edu</a>
+</p>
+
+
+<h3>References</h3>
+
+<p>Broman, K. W. and Weber, J. L. (2000) Characterization of human
+crossover interference. <em>Am. J. Hum. Genet.</em> <strong>66</strong>, 1911–1926.
+</p>
+<p>Broman, K. W., Rowe, L. B., Churchill, G. A. and Paigen, K. (2002) Crossover
+interference in the mouse. <em>Genetics</em> <strong>160</strong>, 1123–1131.
+</p>
+<p>McPeek, M. S. and Speed, T. P. (1995) Modeling interference in genetic
+recombination.  <em>Genetics</em> <strong>139</strong>, 1031–1044.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>qtl::fitstahl()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+data(bssbsb)
+
+
+xodist &lt;- convertxoloc(find.breaks(bssbsb, chr=1))
+
+# plot a rough log likelihood curve
+## Not run: out &lt;- fitGamma(xodist, nu=seq(1, 19, by=2))
+
+plot(out, type="l", lwd=2)
+
+# get MLE
+## Not run: mle &lt;- fitGamma(xodist, lo=8, hi=12)
+
+mle
+
+abline(v=mle[1], h=mle[2], col="blue", lty=2)
+
+# get MLE and SE
+## Not run: mle &lt;- fitGamma(xodist, lo=9.5, hi=10.5, se=TRUE)
+
+mle
+
+# get MLE and 10^1.5 support interval
+## Not run: int &lt;- fitGamma(xodist, lo=1, hi=20, supint=TRUE)
+
+int
+abline(v=mle[2:3,1], h=mle[2:3,2], col="red", lty=2)
+
+</code></pre>
+
+
+</div>

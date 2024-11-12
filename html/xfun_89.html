@@ -1,0 +1,45 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>normalize_path</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Normalize paths</h2>
+
+<h3>Description</h3>
+
+<p>A wrapper function of <code>normalizePath()</code> with different defaults.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">normalize_path(x, winslash = "/", must_work = FALSE, resolve_symlink = TRUE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x, winslash, must_work</code></td>
+<td>
+<p>Arguments passed to
+<code>normalizePath()</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>resolve_symlink</code></td>
+<td>
+<p>Whether to resolve symbolic links.</p>
+</td>
+</tr>
+</table>
+<h3>Examples</h3>
+
+<pre><code class="language-R">library(xfun)
+normalize_path("~")
+</code></pre>
+
+
+</div>

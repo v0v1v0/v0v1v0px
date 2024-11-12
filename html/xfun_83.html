@@ -1,0 +1,66 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>msg_cat</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Generate a message with <code>cat()</code>
+</h2>
+
+<h3>Description</h3>
+
+<p>This function is similar to <code>message()</code>, and the difference is
+that <code>msg_cat()</code> uses <code>cat()</code> to write out the message,
+which is sent to <code>stdout()</code> instead of <code>stderr()</code>. The
+message can be suppressed by <code>suppressMessages()</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">msg_cat(...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Character strings of messages, which will be concatenated into one
+string via <code>paste(c(...), collapse = '')</code>.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>Invisible <code>NULL</code>, with the side-effect of printing the message.
+</p>
+
+
+<h3>Note</h3>
+
+<p>By default, a newline will not be appended to the message. If you need
+a newline, you have to explicitly add it to the message (see
+‘Examples’).
+</p>
+
+
+<h3>See Also</h3>
+
+<p>This function was inspired by <code>rlang::inform()</code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">{
+    # a message without a newline at the end
+    xfun::msg_cat("Hello world!")
+    # add a newline at the end
+    xfun::msg_cat(" This message appears right after the previous one.\n")
+}
+suppressMessages(xfun::msg_cat("Hello world!"))
+</code></pre>
+
+
+</div>

@@ -1,0 +1,84 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>as_list</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Coerce xml nodes to a list.</h2>
+
+<h3>Description</h3>
+
+<p>This turns an XML document (or node or nodeset) into the equivalent R
+list. Note that this is <code>as_list()</code>, not <code>as.list()</code>:
+<code>lapply()</code> automatically calls <code>as.list()</code> on its inputs, so
+we can't override the default.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">as_list(x, ns = character(), ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>A document, node, or node set.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ns</code></td>
+<td>
+<p>Optionally, a named vector giving prefix-url pairs, as produced
+by <code>xml_ns()</code>. If provided, all names will be explicitly
+qualified with the ns prefix, i.e. if the element <code>bar</code> is defined
+in namespace <code>foo</code>, it will be called <code>foo:bar</code>. (And
+similarly for attributes). Default namespaces must be given an explicit
+name. The ns is ignored when using <code>xml_name&lt;-()</code> and
+<code>xml_set_name()</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Needed for compatibility with generic. Unused.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p><code>as_list</code> currently only handles the four most common types of
+children that an element might have:
+</p>
+
+<ul>
+<li>
+<p> Other elements, converted to lists.
+</p>
+</li>
+<li>
+<p> Attributes, stored as R attributes. Attributes that have special meanings in R
+(<code>class()</code>, <code>comment()</code>, <code>dim()</code>,
+<code>dimnames()</code>, <code>names()</code>, <code>row.names()</code> and
+<code>tsp()</code>) are escaped with '.'
+</p>
+</li>
+<li>
+<p> Text, stored as a character vector.
+</p>
+</li>
+</ul>
+<h3>Examples</h3>
+
+<pre><code class="language-R">as_list(read_xml("&lt;foo&gt; a &lt;b /&gt;&lt;c&gt;&lt;![CDATA[&lt;d&gt;&lt;/d&gt;]]&gt;&lt;/c&gt;&lt;/foo&gt;"))
+as_list(read_xml("&lt;foo&gt; &lt;bar&gt;&lt;baz /&gt;&lt;/bar&gt; &lt;/foo&gt;"))
+as_list(read_xml("&lt;foo id = 'a'&gt;&lt;/foo&gt;"))
+as_list(read_xml("&lt;foo&gt;&lt;bar id='a'/&gt;&lt;bar id='b'/&gt;&lt;/foo&gt;"))
+</code></pre>
+
+
+</div>

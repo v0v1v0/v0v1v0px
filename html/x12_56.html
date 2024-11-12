@@ -1,0 +1,83 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>readSpc</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>
+Function to read X12-spc Files in x12Parameter R objects
+</h2>
+
+<h3>Description</h3>
+
+<p>Still an early beta, so it will not work in specific situations
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">readSpc(file,filename=TRUE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>file</code></td>
+<td>
+<p>character vector containing filenames of spc files</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>filename</code></td>
+<td>
+<p>if TRUE the filename (without) ".spc" will be used as name for the serie</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Not all arguments of an X12 spc file are supported, but the parameters described in <code>x12</code> should be covered. 
+</p>
+
+
+<h3>Value</h3>
+
+<p>The function returns an object of class "x12Single" if the file argument has length 1, otherwise it returns an
+"x12Batch" object.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Alexander Kowarik
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>x12</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+  x12SingleObject1 &lt;- readSpc("D:/aaa.spc")
+  x12SingleObject2 &lt;- readSpc("D:/ak_b.SPC")
+  x12BatchObject1 &lt;- readSpc(c("D:/ak_b.SPC","D:/aaa.spc"))
+  setwd("M:/kowarik/Test/x12test")
+  lf &lt;- list.files()
+  lf &lt;- lf[unlist(lapply(lf,function(x)substr(x,nchar(x)-2,nchar(x)))) %in%c("spc","SPC")]
+  lf &lt;- lf[-c(grep("ind",lf))]
+  allSPC &lt;- readSpc(lf)
+  a &lt;- x12(allSPC)  
+  plot(a@x12List[[1]])
+  summary(a@x12List[[1]])
+
+## End(Not run)
+</code></pre>
+
+
+</div>

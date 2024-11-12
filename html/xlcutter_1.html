@@ -1,0 +1,94 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>validate_xltemplate</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Validate an xlsx template file to use in <code>xlsx_cutter()</code>
+</h2>
+
+<h3>Description</h3>
+
+<p>Validate an xlsx template file to use in <code>xlsx_cutter()</code>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">validate_xltemplate(
+  template_file,
+  template_sheet = 1,
+  marker_open = "{{",
+  marker_close = "}}",
+  minimal = FALSE,
+  error = FALSE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>template_file</code></td>
+<td>
+<p>path to the template file to use as a model to parse the
+xlsx files in <code>data_folder</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>template_sheet</code></td>
+<td>
+<p>sheet id of the template file to use as a model to
+parse the xlsx files in <code>data_folder</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>marker_open, marker_close</code></td>
+<td>
+<p>character marker to mark the variables to
+extract in the <code>template_file</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>minimal</code></td>
+<td>
+<p>Logical (default to <code>FALSE</code>) saying whether the template
+should contain only variables delimited by markers and nothing else, or
+if extra text can be included (and ignored)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>error</code></td>
+<td>
+<p>Logical (defaults to <code>TRUE</code>) saying whether failed validations
+should result in an error (<code>TRUE</code>) or a warning (<code>FALSE</code>)</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p><code>TRUE</code> if the template is valid, <code>FALSE</code> otherwise
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Valid template
+validate_xltemplate(
+  system.file("example", "timesheet_template.xlsx", package = "xlcutter")
+)
+
+# Invalid templates
+validate_xltemplate(
+  system.file("example", "template_duped_vars.xlsx", package = "xlcutter")
+)
+
+validate_xltemplate(
+  system.file("example", "template_fluff.xlsx", package = "xlcutter"),
+  minimal = TRUE
+)
+</code></pre>
+
+
+</div>

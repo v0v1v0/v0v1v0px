@@ -1,0 +1,99 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>calculateXI</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Compute the cross rank coefficient xi on two vectors.</h2>
+
+<h3>Description</h3>
+
+<p>This function computes the xi coefficient between two vectors x and y.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">calculateXI(xvec, yvec, simple = TRUE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>xvec</code></td>
+<td>
+<p>Vector of numeric values in the first coordinate.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>yvec</code></td>
+<td>
+<p>Vector of numeric values in the second coordinate.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>simple</code></td>
+<td>
+<p>Whether auxiliary information is kept to pass on.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>In the case simple = TRUE, function returns the value of the
+xi
+coefficient,
+If simple = FALSE is chosen, the function returns a list:
+</p>
+<dl>
+<dt>xi</dt>
+<dd>
+<p>The xi coefficient</p>
+</dd>
+<dt>fr</dt>
+<dd>
+<p>rearranged rank of yvec</p>
+</dd>
+<dt>CU</dt>
+<dd>
+<p><code>mean(gr*(1-gr))</code></p>
+</dd>
+</dl>
+<h3>Note</h3>
+
+<p>Auxiliary function with no checks for NA, etc.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Sourav Chatterjee, Susan Holmes
+</p>
+
+
+<h3>References</h3>
+
+<p>Chatterjee, S. (2020) A New Coefficient Of Correlation,
+&lt;arXiv:1909.10140&gt;.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>xicor
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Compute one of the coefficients
+library("psychTools")
+data(peas)
+calculateXI(peas$parent,peas$child)
+calculateXI(peas$child,peas$parent)
+</code></pre>
+
+
+</div>

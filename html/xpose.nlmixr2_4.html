@@ -1,0 +1,146 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xpose_data_nlmixr2</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Import nlmixr2 output into xpose object</h2>
+
+<h3>Description</h3>
+
+<p>Convert 'nlmixr2' model output into an 'xpose' database.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xpose_data_nlmixr2(
+  obj = NULL,
+  pred = NULL,
+  wres = NULL,
+  gg_theme = theme_readable(),
+  xp_theme = theme_xp_default(),
+  quiet,
+  skip = NULL,
+  ...
+)
+
+xpose_data_nlmixr(
+  obj = NULL,
+  pred = NULL,
+  wres = NULL,
+  gg_theme = theme_readable(),
+  xp_theme = theme_xp_default(),
+  quiet,
+  skip = NULL,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>obj</code></td>
+<td>
+<p>nlmixr2 fit object to be evaluated.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pred</code></td>
+<td>
+<p>Name of the population prediction variable to use for
+plotting. If unspecified, it will choose either "NPDE",
+"CWRES", and "RES" (in that order) if the column exists in the
+data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>wres</code></td>
+<td>
+<p>Name of the weighted residual variable to use for
+plotting. If unspecified, it will choose either "NPDE",
+"CWRES", and "RES" (in that order) if the column exists in the
+data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>gg_theme</code></td>
+<td>
+<p>A ggplot2 theme object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xp_theme</code></td>
+<td>
+<p>An xpose theme or vector of modifications to the
+xpose theme (eg. <code>c(point_color = 'red', line_linetype =
+'dashed')</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>quiet</code></td>
+<td>
+<p>Logical, if <code>FALSE</code> messages are printed to the
+console.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>skip</code></td>
+<td>
+<p>Character vector be used to skip the import/generation
+of: 'data', 'files', 'summary' or any combination of the three.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments to be passed to the
+<code>read_delim</code> functions.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An <code>xpose_data</code> object suitable for use in 'xpose'.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+library(nlmixr2)
+
+one.cmt &lt;- function() {
+  ini({
+    ## You may label each parameter with a comment
+    tka &lt;- 0.45 # Ka
+    tcl &lt;- log(c(0, 2.7, 100)) # Log Cl
+   ## This works with interactive models
+    ## You may also label the preceding line with label("label text")
+    tv &lt;- 3.45; label("log V")
+    ## the label("Label name") works with all models
+    eta.ka ~ 0.6
+    eta.cl ~ 0.3
+    eta.v ~ 0.1
+    add.sd &lt;- 0.7
+  })
+  model({
+    ka &lt;- exp(tka + eta.ka)
+    cl &lt;- exp(tcl + eta.cl)
+    v &lt;- exp(tv + eta.v)
+    linCmt() ~ add(add.sd)
+  })
+}
+
+theo_sd_fit &lt;- nlmixr2(one.cmt, theo_sd, "focei", control=foceiControl(print=0))
+
+xpdb &lt;- xpose_data_nlmixr2(obj = theo_sd_fit)
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

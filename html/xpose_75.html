@@ -1,0 +1,46 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>list_nm_tables</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>List NONMEM output tables</h2>
+
+<h3>Description</h3>
+
+<p>List NONMEM output tables file names from a <code>nm_model</code> object.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">list_nm_tables(nm_model = NULL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>nm_model</code></td>
+<td>
+<p>An xpose nm_model object generated with <code>read_nm_model</code>.</p>
+</td>
+</tr></table>
+<h3>See Also</h3>
+
+<p><code>read_nm_model</code>, <code>read_nm_tables</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+read_nm_model(file = 'run001.lst') %&gt;% 
+  list_nm_tables()
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,50 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>optipng</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Run OptiPNG on all PNG files under a directory</h2>
+
+<h3>Description</h3>
+
+<p>Call the command <code>optipng</code> via <code>system2()</code> to optimize all PNG
+files under a directory.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">optipng(dir = ".", files = all_files("[.]png$", dir), ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>dir</code></td>
+<td>
+<p>Path to a directory.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>files</code></td>
+<td>
+<p>Alternatively, you can choose the specific files to optimize.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Arguments to be passed to <code>system2()</code>.</p>
+</td>
+</tr>
+</table>
+<h3>References</h3>
+
+<p>OptiPNG: <a href="https://optipng.sourceforge.net">https://optipng.sourceforge.net</a>.
+</p>
+
+
+</div>

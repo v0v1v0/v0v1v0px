@@ -1,0 +1,98 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xpose.logTicks</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Functions to create nice looking axes when using Log scales.</h2>
+
+<h3>Description</h3>
+
+<p>The functions are used to create standard tic marks and axis labels when the
+axes are on the log scale.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xpose.logTicks(lim, loc = c(1, 5))
+
+xpose.yscale.components.log10(lim, ...)
+
+xpose.xscale.components.log10(lim, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>lim</code></td>
+<td>
+<p>Limits</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>loc</code></td>
+<td>
+<p>Locations</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments passed to the function.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>These functions create log scales that look like they should (not the
+default R scales). These functions are used as input to the
+<code>xscale.components</code> argument in a lattice
+plot.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul>
+<li> <p><code>xpose.logTicks()</code>: Make log tic marks
+</p>
+</li>
+<li> <p><code>xpose.xscale.components.log10()</code>: Make log scale on x-axis
+</p>
+</li>
+</ul>
+<h3>Author(s)</h3>
+
+<p>Andrew Hooker
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xpose.plot.default</code>
+<code>xscale.components</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Not run: 
+xpdb5 &lt;- xpose.data(5)
+xpose.plot.default("PRED","DV",xpdb,logy=T,logx=T)
+xpose.plot.default("PRED","DV",xpdb,logy=T,logx=T,
+                   yscale.components = xpose.yscale.components.log10,
+                   xscale.components = xpose.xscale.components.log10)
+
+## both give the same result
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

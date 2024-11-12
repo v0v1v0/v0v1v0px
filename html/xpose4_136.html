@@ -1,0 +1,543 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>kaplan.plot</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Kaplan-Meier plots of (repeated) time-to-event data</h2>
+
+<h3>Description</h3>
+
+<p>Kaplan-Meier plots of (repeated) time-to-event data.  Includes VPCs.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">kaplan.plot(
+  x = "TIME",
+  y = "DV",
+  id = "ID",
+  data = NULL,
+  evid = "EVID",
+  by = NULL,
+  xlab = "Time",
+  ylab = "Default",
+  object = NULL,
+  events.to.plot = "All",
+  sim.data = NULL,
+  sim.zip.file = NULL,
+  VPC = FALSE,
+  nsim.lab = "simNumber",
+  sim.evct.lab = "counter",
+  probs = c(0.025, 0.975),
+  add.baseline = T,
+  add.last.area = T,
+  subset = NULL,
+  main = "Default",
+  main.sub = "Default",
+  main.sub.cex = 0.8,
+  nbins = NULL,
+  real.type = "l",
+  real.lty = 1,
+  real.lwd = 1,
+  real.col = "blue",
+  real.se = if (!is.null(sim.data)) F else T,
+  real.se.type = "l",
+  real.se.lty = 2,
+  real.se.lwd = 0.5,
+  real.se.col = "red",
+  cens.type = "l",
+  cens.lty = 1,
+  cens.col = "black",
+  cens.lwd = 1,
+  cens.rll = 0.02,
+  inclZeroWRES = TRUE,
+  onlyfirst = FALSE,
+  samp = NULL,
+  poly.alpha = 1,
+  poly.fill = "lightgreen",
+  poly.line.col = "darkgreen",
+  poly.lty = 2,
+  censor.lines = TRUE,
+  ylim = c(-5, 105),
+  cov = NULL,
+  cov.fun = "mean",
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>The independent variable.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>y</code></td>
+<td>
+<p>The dependent variable. event (&gt;0) or no event (0).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>id</code></td>
+<td>
+<p>The ID variable in the dataset.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data</code></td>
+<td>
+<p>A dataset can be used instead of the data in an Xpose object.
+Must have the same form as an xpose data object <code>xpdb@Data</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>evid</code></td>
+<td>
+<p>The EVID data item.  If not present then all rows are considered
+events (can be censored or an event). Otherwise, EVID!=0 are dropped from
+the data set.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>by</code></td>
+<td>
+<p>A vector of conditioning variables.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xlab</code></td>
+<td>
+<p>X-axis label</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylab</code></td>
+<td>
+<p>Y-axis label</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An Xpose object. Needed if no <code>data</code> is supplied.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>events.to.plot</code></td>
+<td>
+<p>Vector of events to be plotted.  "All" means that all
+events are plotted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sim.data</code></td>
+<td>
+<p>The simulated data file.  Should be a table file with one
+header row and have, at least, columns with headers corresponding to
+<code>x</code>, <code>y</code>, <code>id</code>, <code>by</code> (if used), <code>nsim.lab</code> and
+<code>sim.evct.lab</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sim.zip.file</code></td>
+<td>
+<p>The <code>sim.data</code> can be in \.zip format and xpose
+will unzip the file before reading in the data.  Must have the same
+structure as described above in <code>sim.data</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>VPC</code></td>
+<td>
+<p><code>TRUE</code> or <code>FALSE</code>.  If <code>TRUE</code> then Xpose will
+search for a zipped file with name
+<code>paste("simtab",object@Runno,".zip",sep="")</code>, for example
+"simtab42.zip".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>nsim.lab</code></td>
+<td>
+<p>The column header for <code>sim.data</code> that contains the
+simulation number for that row in the data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sim.evct.lab</code></td>
+<td>
+<p>The column header for <code>sim.data</code> that contains the
+individual event counter information.  For each individual the event counter
+should increase by one for each event (or censored event) that occurs.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>probs</code></td>
+<td>
+<p>The probabilities (non-parametric percentiles) to use in
+computation of the prediction intervals for the simulated data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>add.baseline</code></td>
+<td>
+<p>Should a (x=0,y=1) baseline measurement be added to each
+individual in the dataset. Otherwise each plot will begin at the first event
+in the dataset.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>add.last.area</code></td>
+<td>
+<p>Should an area be added to the VPC extending the last
+PI?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>subset</code></td>
+<td>
+<p>The subset of the data and sim.data to use.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>The title of the plot. Can also be <code>NULL</code> or
+<code>"Default"</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main.sub</code></td>
+<td>
+<p>The title of the subplots. Must be a list, the same length
+as the number of subplots (actual graphs), or <code>NULL</code> or
+<code>"Default"</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main.sub.cex</code></td>
+<td>
+<p>The size of the title of the subplots.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>nbins</code></td>
+<td>
+<p>The number of bins to use in the VPC.  If <code>NULL</code>, the the
+number of unique <code>x</code> values in <code>sim.data</code> is used.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>real.type</code></td>
+<td>
+<p>Type for the real data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>real.lty</code></td>
+<td>
+<p>Line type (lty) for the curve of the original (or real)
+data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>real.lwd</code></td>
+<td>
+<p>Line width (lwd) for the real data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>real.col</code></td>
+<td>
+<p>Color for the curve of the original (or real) data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>real.se</code></td>
+<td>
+<p>Should the standard errors of the real (non simulated) data
+be plotted?  Calculated using <code>survfit</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>real.se.type</code></td>
+<td>
+<p>Type for the standard errors.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>real.se.lty</code></td>
+<td>
+<p>Line type (lty) for the standard error lines.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>real.se.lwd</code></td>
+<td>
+<p>Line width (lwd) for the standard error lines.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>real.se.col</code></td>
+<td>
+<p>Color for the standard error lines.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cens.type</code></td>
+<td>
+<p>Type for the censored lines.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cens.lty</code></td>
+<td>
+<p>Line type (lty) for the censored lines.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cens.col</code></td>
+<td>
+<p>Color for the censored lines.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cens.lwd</code></td>
+<td>
+<p>Line width for the censored lines.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cens.rll</code></td>
+<td>
+<p>The relative line length of the censored line compared to the limits of the y-axis.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>inclZeroWRES</code></td>
+<td>
+<p>Include WRES=0 rows from the real data set in the plots?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>onlyfirst</code></td>
+<td>
+<p>Include only the first measurement for the real data in the
+plots?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>samp</code></td>
+<td>
+<p>Simulated data in the xpose data object can be used as the
+"real" data.  <code>samp</code> is a number selecting which simulated data set to
+use.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>poly.alpha</code></td>
+<td>
+<p>The transparency of the VPC shaded region.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>poly.fill</code></td>
+<td>
+<p>The fill color of the VPC shaded region.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>poly.line.col</code></td>
+<td>
+<p>The line colors for the VPC region.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>poly.lty</code></td>
+<td>
+<p>The line type for the VPC region.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>censor.lines</code></td>
+<td>
+<p>Should censored observations be marked on the plot?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylim</code></td>
+<td>
+<p>Limits for the y-axes</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cov</code></td>
+<td>
+<p>The covariate in the dataset to plot instead of the survival
+curve.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cov.fun</code></td>
+<td>
+<p>The summary function for the covariate in the dataset to plot
+instead of the survival curve.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments passed to the function.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>returns an object of class "xpose.multiple.plot".
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Andrew C. Hooker
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>survfit</code>, <code>Surv</code>,
+<code>xpose.multiple.plot</code>.
+</p>
+<p>Other specific functions: 
+<code>absval.cwres.vs.cov.bw()</code>,
+<code>absval.cwres.vs.pred()</code>,
+<code>absval.cwres.vs.pred.by.cov()</code>,
+<code>absval.iwres.cwres.vs.ipred.pred()</code>,
+<code>absval.iwres.vs.cov.bw()</code>,
+<code>absval.iwres.vs.idv()</code>,
+<code>absval.iwres.vs.ipred()</code>,
+<code>absval.iwres.vs.ipred.by.cov()</code>,
+<code>absval.iwres.vs.pred()</code>,
+<code>absval.wres.vs.cov.bw()</code>,
+<code>absval.wres.vs.idv()</code>,
+<code>absval.wres.vs.pred()</code>,
+<code>absval.wres.vs.pred.by.cov()</code>,
+<code>absval_delta_vs_cov_model_comp</code>,
+<code>addit.gof()</code>,
+<code>autocorr.cwres()</code>,
+<code>autocorr.iwres()</code>,
+<code>autocorr.wres()</code>,
+<code>basic.gof()</code>,
+<code>basic.model.comp()</code>,
+<code>cat.dv.vs.idv.sb()</code>,
+<code>cat.pc()</code>,
+<code>cov.splom()</code>,
+<code>cwres.dist.hist()</code>,
+<code>cwres.dist.qq()</code>,
+<code>cwres.vs.cov()</code>,
+<code>cwres.vs.idv()</code>,
+<code>cwres.vs.idv.bw()</code>,
+<code>cwres.vs.pred()</code>,
+<code>cwres.vs.pred.bw()</code>,
+<code>cwres.wres.vs.idv()</code>,
+<code>cwres.wres.vs.pred()</code>,
+<code>dOFV.vs.cov()</code>,
+<code>dOFV.vs.id()</code>,
+<code>dOFV1.vs.dOFV2()</code>,
+<code>data.checkout()</code>,
+<code>dv.preds.vs.idv()</code>,
+<code>dv.vs.idv()</code>,
+<code>dv.vs.ipred()</code>,
+<code>dv.vs.ipred.by.cov()</code>,
+<code>dv.vs.ipred.by.idv()</code>,
+<code>dv.vs.pred()</code>,
+<code>dv.vs.pred.by.cov()</code>,
+<code>dv.vs.pred.by.idv()</code>,
+<code>dv.vs.pred.ipred()</code>,
+<code>gof()</code>,
+<code>ind.plots()</code>,
+<code>ind.plots.cwres.hist()</code>,
+<code>ind.plots.cwres.qq()</code>,
+<code>ipred.vs.idv()</code>,
+<code>iwres.dist.hist()</code>,
+<code>iwres.dist.qq()</code>,
+<code>iwres.vs.idv()</code>,
+<code>par_cov_hist</code>,
+<code>par_cov_qq</code>,
+<code>parm.vs.cov()</code>,
+<code>parm.vs.parm()</code>,
+<code>pred.vs.idv()</code>,
+<code>ranpar.vs.cov()</code>,
+<code>runsum()</code>,
+<code>wres.dist.hist()</code>,
+<code>wres.dist.qq()</code>,
+<code>wres.vs.idv()</code>,
+<code>wres.vs.idv.bw()</code>,
+<code>wres.vs.pred()</code>,
+<code>wres.vs.pred.bw()</code>,
+<code>xpose.VPC()</code>,
+<code>xpose.VPC.both()</code>,
+<code>xpose.VPC.categorical()</code>,
+<code>xpose4-package</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Not run: 
+library(xpose4)
+
+## Read in the data
+runno &lt;- "57"
+xpdb &lt;- xpose.data(runno)
+
+####################################
+# here are the real data plots
+####################################
+
+kaplan.plot(x="TIME",y="DV",object=xpdb)
+kaplan.plot(x="TIME",y="DV",object=xpdb,
+            events.to.plot=c(1,2),
+            by=c("DOSE==0","DOSE!=0"))
+kaplan.plot(x="TIME",y="DV",object=xpdb,
+            events.to.plot=c(1,2),
+            by=c("DOSE==0","DOSE==10",
+            "DOSE==50","DOSE==200"))
+
+## make a PDF of the plots
+pdf(file=paste("run",runno,"_kaplan.pdf",sep=""))
+kaplan.plot(x="TIME",y="DV",object=xpdb,
+            by=c("DOSE==0","DOSE==10",
+            "DOSE==50","DOSE==200"))
+dev.off()
+
+####################################
+## VPC plots
+####################################
+
+kaplan.plot(x="TIME",y="DV",object=xpdb,VPC=T,events.to.plot=c(1))
+kaplan.plot(x="TIME",y="DV",object=xpdb,VPC=T,
+            events.to.plot=c(1,2,3),
+            by=c("DOSE==0","DOSE!=0"))
+kaplan.plot(x="TIME",y="DV",object=xpdb,VPC=T,
+            events.to.plot=c(1),
+            by=c("DOSE==0","DOSE==10","DOSE==50","DOSE==200"))
+
+## make a PDF of all plots
+pdf(file=paste("run",runno,"_kaplan.pdf",sep=""))
+kaplan.plot(x="TIME",y="DV",object=xpdb,VPC=T,
+            by=c("DOSE==0","DOSE==10","DOSE==50","DOSE==200"))
+dev.off()
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

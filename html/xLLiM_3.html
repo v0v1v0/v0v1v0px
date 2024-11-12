@@ -1,0 +1,69 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>data.xllim</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Simulated data to run examples of usage of <code>gllim</code> and <code>sllim</code> functions
+</h2>
+
+<h3>Description</h3>
+
+<p>Matrix of simulated data, generated under a GLLiM model, with K=5 clusters from the true parameters available in object <code>data.xllim.trueparameters</code>. The goal is to learn the non linear relation between the responses (Y) and the covariates (X) using <code>gllim</code>, <code>bllim</code> or <code>sllim</code>. Details are given hereafter. 
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">data(data.xllim)</code></pre>
+
+
+<h3>Format</h3>
+
+<p>A matrix of simulated data with 52 rows and 100 columns (observations). The first 2 rows are responses (Y) and the last 50 rows are covariates (X). The goal is to retrieve <code class="reqn">Y</code> from <code class="reqn">X</code> using <code>gllim</code> or <code>sllim</code>.
+</p>
+
+
+<h3>Details</h3>
+
+<p>This dataset is generated under a GLLiM model with L=2, D=50 and N=100. 
+</p>
+<p>First, the responses <code class="reqn">Y</code> are generated according to a Gaussian Mixture model with K=5 clusters: 
+</p>
+<p style="text-align: center;"><code class="reqn">p(Y=y | Z=k)= N(y; c_k,\Gamma_k)</code>
+</p>
+
+<p>where each <code class="reqn">(c_k)_{k=1}^K</code> is a L-vector randomly sampled from a standardized Gaussian, <code class="reqn">(\Gamma_k)_{k=1}^K</code> are LxL random correlation matrix and <code class="reqn">Z</code> is a multinomial hidden variable which indicates the cluster membership of each observation:
+</p>
+<p style="text-align: center;"><code class="reqn">p(Z=k) =\pi_k</code>
+</p>
+
+<p>where the probabilities <code class="reqn">(\pi_k)_{k=1}^K</code> are sampled from a standard uniform distribution and normalized to sum to 1. 
+</p>
+<p>Then, the covariates <code class="reqn">X</code> are generated according to a Gaussian Mixture of regressions. It is recalled that GLLiM models the following inverse relation, which is used to generate <code class="reqn">X</code>:
+</p>
+<p style="text-align: center;"><code class="reqn">X = \sum_{k=1}^{K=5} I_{Z=k}(A_kX+b_k+E_k)</code>
+</p>
+
+<p>where <code class="reqn">Y</code> is the vector of L responses and <code class="reqn">X</code> is the vector of D covariates and <code class="reqn">Z</code> is the hidden variable of cluster membership introduced above. Regression coefficients <code class="reqn">A_k</code> and intercepts <code class="reqn">b_k</code> are sampled from a standard Gaussian and the covariance matrix of the noise <code class="reqn">\Sigma_k=Var(E_k)</code> is the identity.  
+</p>
+<p>The goal is to retrieve <code class="reqn">Y</code> from <code class="reqn">X</code> using <code>gllim</code>, <code>bllim</code> or <code>sllim</code>.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xLLiM-package</code>, <code>gllim</code>, <code>sllim</code>, <code>data.xllim.test</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(data.xllim)
+dim(data.xllim) # 52 100
+Y = data.xllim[1:2,] # responses # 2 100
+X = data.xllim[3:52,] # covariates # 50 100
+</code></pre>
+
+
+</div>

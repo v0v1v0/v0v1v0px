@@ -1,0 +1,42 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>is_windows</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Test for types of operating systems</h2>
+
+<h3>Description</h3>
+
+<p>Functions based on <code>.Platform$OS.type</code> and <code>Sys.info()</code> to test if
+the current operating system is Windows, macOS, Unix, or Linux.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">is_windows()
+
+is_unix()
+
+is_macos()
+
+is_linux()
+
+is_arm64()
+</code></pre>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">library(xfun)
+# only one of the following statements should be true
+is_windows()
+is_unix() &amp;&amp; is_macos()
+is_linux()
+# In newer Macs, CPU can be either Intel or Apple
+is_arm64()  # TRUE on Apple silicone machines
+</code></pre>
+
+
+</div>

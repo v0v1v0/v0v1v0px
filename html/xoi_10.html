@@ -1,0 +1,94 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>find.breaks</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Estimate crossover locations</h2>
+
+<h3>Description</h3>
+
+<p>Estimate the locations of crossovers in a backcross.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">find.breaks(cross, chr = NULL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>cross</code></td>
+<td>
+<p>An object of class <code>cross</code>. (This must be a backcross,
+RIL, or intercross.) See <code>qtl::read.cross()</code> for details.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>chr</code></td>
+<td>
+<p>Optional set of chromosomes on which to look for crossovers.  If
+NULL, all chromosomes are considered.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>This works only a backcross, RIL, or intercross.  We use the function
+<code>qtl::locateXO()</code> in R/qtl.  Crossovers are estimated to be at the
+midpoint of the interval between the nearest flanking typed markers.
+</p>
+
+
+<h3>Value</h3>
+
+<p>If only one chromosome is considered, this is a list with one
+component for each individual.  If multiple chromosomes were considered,
+this is a list with one element for each chromosome, each of which is a list
+with one element for each individual, as above.
+</p>
+<p>For backcrosses and RIL, the componenets for the individuals are
+<code>numeric(0)</code> if there were no crossovers or a vector giving the
+crossover locations.  The length of the chromosome (in cM) is saved as an
+attribute.  (Note that the format is the same as the output of
+<code>simStahl()</code>.)
+</p>
+<p>For an intercross, the components for the individuals are themselves lists
+with all possible allocations of the crossovers to the two meiotic products;
+each component of this list is itself a list with two components,
+corresponding to the two meiotic products.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Karl W Broman, <a href="mailto:broman@wisc.edu">broman@wisc.edu</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>convertxoloc()</code>, <code>fitGamma()</code>,
+<code>simStahl()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+data(bssbsb)
+
+# crossover locations on chromosome 1
+xoloc1 &lt;- find.breaks(bssbsb, chr=1)
+
+# crossover locations on all chromosomes
+xoloc &lt;- find.breaks(bssbsb)
+
+</code></pre>
+
+
+</div>

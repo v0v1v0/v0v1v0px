@@ -1,0 +1,60 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>lighten_darken_color</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Generate lighter or darker version of a color</h2>
+
+<h3>Description</h3>
+
+<p>Produces a linear blend of the color with white or black.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">lighten_color(color_hex, strength = 0.7)
+
+darken_color(color_hex, strength = 0.8)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>color_hex</code></td>
+<td>
+<p>A character string representing a hex color</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>strength</code></td>
+<td>
+<p>The "strength" of the blend with white or black,
+where 0 is entirely the original color and 1 is entirely white
+(<code>lighten_color()</code>) or black (<code>darken_color()</code>).</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A character string with the lightened or darkened color in
+hexadecimal format.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">blue &lt;- "#0e6ba8"
+blue_light &lt;- lighten_color(blue, strength = 0.33)
+blue_dark &lt;- darken_color(blue, strength = 0.33)
+
+if (requireNamespace("scales", quietly = TRUE)) {
+  scales::show_col(c(blue_light, blue, blue_dark))
+}
+</code></pre>
+
+
+</div>

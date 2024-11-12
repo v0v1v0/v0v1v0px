@@ -1,0 +1,147 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>add.model.comp</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Additional model comparison plots, for Xpose 4</h2>
+
+<h3>Description</h3>
+
+<p>This creates a stack of four plots, comparing absolute values of PRED,
+absolute values of IPRED, delta CWRES (or WRES) and delta IWRES estimates
+for the two specified model fits.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">add.model.comp(
+  object,
+  object.ref = NULL,
+  onlyfirst = FALSE,
+  inclZeroWRES = FALSE,
+  subset = xsubset(object),
+  main = "Default",
+  force.wres = FALSE,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An xpose.data object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>object.ref</code></td>
+<td>
+<p>An xpose.data object. If not supplied, the user will be
+prompted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>onlyfirst</code></td>
+<td>
+<p>Logical value indicating whether only the first row per
+individual is included in the plot.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>inclZeroWRES</code></td>
+<td>
+<p>Logical value indicating whether rows with WRES=0 is
+included in the plot. The default is TRUE.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>subset</code></td>
+<td>
+<p>A string giving the subset expression to be applied to the
+data before plotting. See <code>xsubset</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>The title of the plot.  If <code>"Default"</code> then a default title
+is plotted. Otherwise the value should be a string like <code>"my title"</code> or
+<code>NULL</code> for no plot title.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>force.wres</code></td>
+<td>
+<p>Should we use the WRES in the plots instead of CWRES
+(logical <code>TRUE</code> or <code>FALSE</code>)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Other arguments passed to <code>link{xpose.plot.default}</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Four model comparison plots are displayed in sequence.
+</p>
+<p>Conditional weighted residuals (CWRES) require some extra steps to
+calculate. See <code>compute.cwres</code> for details.
+</p>
+<p>A wide array of extra options controlling xyplots are available. See
+<code>xpose.plot.default</code> for details.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Returns a stack of plots comprising comparisons of absolute values
+of PRED, absolute values of IPRED, absolute differences in CWRES (or WRES)
+and absolute differences in IWRES for the two specified runs.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>E. Niclas Jonsson, Mats Karlsson, Andrew Hooker &amp; Justin Wilkins
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xpose.plot.default</code>,
+<code>xpose.panel.default</code>, <code>xyplot</code>,
+<code>compute.cwres</code>, <code>xpose.prefs-class</code>,
+<code>xpose.data-class</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Not run: 
+## We expect to find the required NONMEM run and table files for runs
+## 5 and 6 in the current working directory
+xpdb5 &lt;- xpose.data(5)
+xpdb6 &lt;- xpose.data(6)
+
+## A vanilla plot, without prompts
+add.model.comp(xpdb5, xpdb6, prompt = FALSE)
+
+## Custom colours and symbols, no user IDs
+add.model.comp(xpdb5, xpdb6, cex=0.6, pch=8, col=1, ids=NULL)
+
+## End(Not run)
+
+
+</code></pre>
+
+
+</div>

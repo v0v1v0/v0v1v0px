@@ -1,0 +1,73 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xpose.ask.for.filename</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Function to ask the user for the name of a file</h2>
+
+<h3>Description</h3>
+
+<p>Asks the user for the name of a file.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xpose.ask.for.filename(
+  object,
+  listfile = paste("run", object@Runno, ".lst", sep = ""),
+  modfile = paste("run", object@Runno, ".mod", sep = ""),
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An <code>xpose.data</code> object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>listfile</code></td>
+<td>
+<p>A NONMEM output file</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>modfile</code></td>
+<td>
+<p>A NONMEM model file</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments passed to the function</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Function checks if the file exists, if it does then the filename is returned
+from the function.
+</p>
+
+
+<h3>Value</h3>
+
+<p>The name of the file if it exists, otherwise nothing is returned.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Niclas Jonsson, Justin Wilkins, Mats Karlsson and Andrew Hooker
+</p>
+
+
+</div>

@@ -1,0 +1,66 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>AcceptFactory</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Configure the acceptance function of a genetic algorithm.</h2>
+
+<h3>Description</h3>
+
+<p><code>AcceptanceFactory()</code> implements selection
+of an acceptance rule.
+</p>
+<p>Current support:
+</p>
+
+<ol>
+<li>
+<p> "All" returns <code>AcceptNewGene()</code> (Default).
+</p>
+</li>
+<li>
+<p> "Best" returns <code>AcceptBest()</code>.
+</p>
+</li>
+<li>
+<p> "Metropolis" returns <code>AcceptMetropolis()</code>.
+</p>
+</li>
+<li>
+<p> "IVMetropolis" returns <code>AcceptIVMetropolis()</code>.
+</p>
+</li>
+</ol>
+<h3>Usage</h3>
+
+<pre><code class="language-R">AcceptFactory(method = "All")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>A string specifying the acceptance rule.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>An acceptance rule for genes.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Configuration: 
+<code>ApplyFactory()</code>,
+<code>CoolingFactory()</code>,
+<code>CrossRateFactory()</code>,
+<code>MutationRateFactory()</code>,
+<code>xegaConfiguration()</code>
+</p>
+
+
+</div>

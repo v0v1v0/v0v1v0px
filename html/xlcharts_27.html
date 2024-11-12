@@ -1,0 +1,68 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>avoid_duplicate_name</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>avoid_duplicate_name</h2>
+
+<h3>Description</h3>
+
+<p>Naive check to see whether name already exists.
+</p>
+<p><a href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.workbook.child.html">https://openpyxl.readthedocs.io/en/stable/api/openpyxl.workbook.child.html</a>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">avoid_duplicate_name(names, value, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>names</code></td>
+<td>
+<p>names</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>value</code></td>
+<td>
+<p>value</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments, i.e. kwargs.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>If name does exist suggest a name using an incrementer
+Duplicates are case insensitive
+</p>
+
+
+<h3>Value</h3>
+
+<p>An character string.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+avoid_duplicate_name(names = "name", value = "name")
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

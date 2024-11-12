@@ -1,0 +1,43 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xmlr</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>xmlr</h2>
+
+<h3>Description</h3>
+
+<p>A package for creating and reading and manipulating XML
+inspired by JDOM (http://www.jdom.org/), implemented with Reference Classes.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">library("xmlr")
+doc &lt;- Document$new()
+root &lt;- Element$new("table")
+root$setAttribute("xmlns", "http://www.w3.org/TR/html4/")
+doc$setRootElement(root)
+
+root$addContent(
+  Element$new("tr")
+    $addContent(Element$new("td")$setText("Apples"))
+    $addContent(Element$new("td")$setText("Bananas"))
+)
+table &lt;- doc$getRootElement()
+stopifnot(table$getName() == "table")
+stopifnot(table$getAttribute("xmlns") == "http://www.w3.org/TR/html4/")
+
+children &lt;- table$getChild("tr")$getChildren()
+stopifnot(length(children) == 2)
+stopifnot(children[[1]]$getText() == "Apples")
+stopifnot(children[[2]]$getText() == "Bananas")
+
+# you can also parse character strings (or parse a file using parse.xmlfile(fileName))
+doc &lt;- parse.xmlstring("&lt;foo&gt;&lt;bar&gt;&lt;baz val='the baz attribute'/&gt;&lt;/bar&gt;&lt;/foo&gt;")
+</code></pre>
+
+
+</div>

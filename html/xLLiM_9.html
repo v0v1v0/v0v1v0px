@@ -1,0 +1,93 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>preprocess_data</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>
+A proposition of function to process high dimensional data before running gllim, sllim or bllim
+</h2>
+
+<h3>Description</h3>
+
+<p>The goal of <code>preprocess_data()</code> is to get relevant clusters for G-, S-, or BLLiM initialization, coupled with a feature selection for high-dimensional datasets. This function is an alternative to the default initialization implemented in <code>gllim()</code>, <code>sllim()</code> and <code>bllim()</code>. 
+</p>
+<p>In this function, clusters are initialized with K-means, and variable selection is performed with a LASSO (<code>glmnet</code>) within each clusters. Then selected features are merged to get a subset variables before running any prediction method of xLLiM. 
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">preprocess_data(tapp,yapp,in_K,...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>tapp</code></td>
+<td>
+<p>An <code>L x N</code> matrix of training responses with variables in rows and subjects in columns</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>yapp</code></td>
+<td>
+<p>An <code>D x N</code> matrix of training covariates with variables in rows and subjects in columns</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>in_K</code></td>
+<td>
+<p>Initial number of components or number of clusters</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Other arguments of glmnet can be passed</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>selected.variables</code></td>
+<td>
+<p>Vector of the indexes of selected variables. Selection is made within clusters and merged hereafter.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>clusters</code></td>
+<td>
+<p>Initialization clusters with k-means</p>
+</td>
+</tr>
+</table>
+<h3>Author(s)</h3>
+
+<p>Emeline Perthame (emeline.perthame@pasteur.fr), Emilie Devijver (emilie.devijver@kuleuven.be), Melina Gallopin (melina.gallopin@u-psud.fr)
+</p>
+
+
+<h3>References</h3>
+
+<p>[1] E. Devijver, M. Gallopin, E. Perthame. Nonlinear network-based quantitative trait prediction from transcriptomic data. Submitted, 2017, available at <a href="https://arxiv.org/abs/1701.07899">https://arxiv.org/abs/1701.07899</a>.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xLLiM-package</code>, <code>glmnet-package</code>, <code>kmeans</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">x &lt;- 1
+</code></pre>
+
+
+</div>

@@ -1,0 +1,135 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>wrapStringAddin</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Wraps the selection with paste0</h2>
+
+<h3>Description</h3>
+
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="../help/figures/lifecycle-experimental.svg" alt="[Experimental]"></a>
+</p>
+<p>Splits the selection every n characters
+and inserts it in a <code>paste0()</code> call.
+</p>
+<p>See <code>`Details`</code> for how to set a key command.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">wrapStringAddin(
+  selection = NULL,
+  indentation = 0,
+  every_n = NULL,
+  tolerance = 10,
+  insert = TRUE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>selection</code></td>
+<td>
+<p>String of code. (Character)
+</p>
+<p><strong>N.B.</strong> Mainly intended for testing the addin programmatically.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>indentation</code></td>
+<td>
+<p>Indentation of the selection. (Numeric)
+</p>
+<p><strong>N.B.</strong> Mainly intended for testing the addin programmatically.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>every_n</code></td>
+<td>
+<p>Number of characters per split.
+</p>
+<p>If <code>NULL</code>, the following is used to calculate the string width:
+</p>
+<p><code>max(min(80 - indentation, 70), 50)</code>
+</p>
+<p><strong>N.B.</strong> Strings shorter than <code>every_n + tolerance</code> will not be wrapped.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tolerance</code></td>
+<td>
+<p>Tolerance. Number of characters.
+</p>
+<p>We may prefer not to split a string that's only a few
+characters too long. Strings shorter than <code>every_n + tolerance</code>
+will not be wrapped.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>insert</code></td>
+<td>
+<p>Whether to insert the wrapped text via
+<code>rstudioapi::insertText()</code>
+or return it. (Logical)
+</p>
+<p><strong>N.B.</strong> Mainly intended for testing the addin programmatically.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+
+
+<h4>How to set up a key command in RStudio</h4>
+
+<p>After installing the package.
+Go to:
+</p>
+<p><code>Tools &gt;&gt; Addins &gt;&gt; Browse Addins &gt;&gt; Keyboard Shortcuts</code>.
+</p>
+<p>Find <code>"Wrap String with paste0"</code> and press its
+field under <code>Shortcut</code>.
+</p>
+<p>Press desired key command, e.g. <code>Alt+P</code>.
+</p>
+<p>Press <code>Apply</code>.
+</p>
+<p>Press <code>Execute</code>.
+</p>
+
+
+
+<h3>Value</h3>
+
+<p>Inserts the following (with newlines and correct indentation):
+</p>
+<p><code>paste0("first n chars", "next n chars")</code>
+</p>
+<p>Returns <code>NULL</code> invisibly.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ludvig Renbo Olsen, <a href="mailto:r-pkgs@ludvigolsen.dk">r-pkgs@ludvigolsen.dk</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other addins: 
+<code>assertCollectionAddin()</code>,
+<code>dputSelectedAddin()</code>,
+<code>initializeGXSFunctionAddin()</code>,
+<code>initializeTestthatAddin()</code>,
+<code>insertExpectationsAddin()</code>,
+<code>navigateTestFileAddin()</code>
+</p>
+
+
+</div>

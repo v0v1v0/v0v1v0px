@@ -1,0 +1,67 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>AcceptNewGene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Accepts a new gene.</h2>
+
+<h3>Description</h3>
+
+<p>Executes a genetic operator pipeline.
+The new gene is returned.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">AcceptNewGene(OperatorPipeline, gene, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>OperatorPipeline</code></td>
+<td>
+<p>Genetic operator pipeline (an R function).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>gene</code></td>
+<td>
+<p>Gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>New gene.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Acceptance Rule: 
+<code>AcceptBest()</code>,
+<code>AcceptIVMetropolis()</code>,
+<code>AcceptMetropolis()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">id&lt;-function(x, lF){x}
+g1&lt;-InitGene(lFxegaGaGene)
+AcceptNewGene(id, g1, lFxegaGaGene)
+</code></pre>
+
+
+</div>

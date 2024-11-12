@@ -1,0 +1,57 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>example.multiclass</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Simulated data with multi-categorical outcome</h2>
+
+<h3>Description</h3>
+
+<p>The simulated data contains 600 observations, 800 predictors, 10 covariates,
+and an multiclass outcome with three categories. The external information Z contains five indicator prior covariates.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">data(example.multiclass)
+</code></pre>
+
+
+<h3>Format</h3>
+
+<p>The <code>example.multiclass</code> object is a list containing three elements:
+</p>
+
+<ul>
+<li>
+<p> X: A simulated 600 by 800 matrix
+</p>
+</li>
+<li>
+<p> Y: Categorical outcome with three levels
+</p>
+</li>
+<li>
+<p> U: Covariates matrix with 600 by 10 dimension, will be forced in the model
+</p>
+</li>
+<li>
+<p> Z: A 800 by 5 matrix with indicator entries.
+</p>
+</li>
+</ul>
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(example.multiclass)
+X &lt;- example.multiclass$X
+Y &lt;- example.multiclass$Y
+U &lt;- example.multiclass$U
+Z &lt;- example.multiclass$Z
+fit &lt;- xtune(X = X,Y = Y, U = U, Z = Z, family = "multiclass", c = 0.5)
+fit$penalty.vector
+</code></pre>
+
+
+</div>

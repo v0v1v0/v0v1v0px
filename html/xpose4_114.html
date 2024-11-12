@@ -1,0 +1,107 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>export.variable.definitions</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Exports Xpose variable definitions to a file from an Xpose data object.</h2>
+
+<h3>Description</h3>
+
+<p>This function exports variable definitions for a specified Xpose data object
+to a file.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">export.variable.definitions(object, file = "")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An <code>xpose.data</code> object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>file</code></td>
+<td>
+<p>A file name as a string.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>This function exports variable definitions (contents of object@Prefs@Xvardef)
+for a given <code>xpose.data</code> object to a file, typically
+'xpose.vardefs.ini'.  Note that file format is not the same as used for
+graphics settings. It is a wrapper for the R function <code>dput</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Null.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Niclas Jonsson &amp; Justin Wilkins
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>import.variable.definitions</code>,
+<code>xpose.prefs-class</code> <code>dput</code>
+</p>
+<p>Other data functions: 
+<code>add_transformed_columns</code>,
+<code>change_graphical_parameters</code>,
+<code>change_misc_parameters</code>,
+<code>compute.cwres()</code>,
+<code>data.checkout()</code>,
+<code>data_extract_or_assign</code>,
+<code>db.names()</code>,
+<code>export.graph.par()</code>,
+<code>import.graph.par()</code>,
+<code>import.variable.definitions()</code>,
+<code>make.sb.data()</code>,
+<code>nsim()</code>,
+<code>par_cov_summary</code>,
+<code>read.TTE.sim.data()</code>,
+<code>read.nm.tables()</code>,
+<code>read_NM_output</code>,
+<code>read_nm_table()</code>,
+<code>simprazExample()</code>,
+<code>tabulate.parameters()</code>,
+<code>xlabel()</code>,
+<code>xpose.data</code>,
+<code>xpose.print()</code>,
+<code>xpose4-package</code>,
+<code>xsubset()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">od = setwd(tempdir()) # move to a temp directory
+(cur.files &lt;- dir()) # current files in temp directory
+
+export.variable.definitions(simpraz.xpdb,file="xpose.vardefs.ini")
+(new.files &lt;- dir()[!(dir() %in% cur.files)])  # what files are new here?
+
+file.remove(new.files) # remove this file
+setwd(od)  # restore working directory
+
+
+</code></pre>
+
+
+</div>

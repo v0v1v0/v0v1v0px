@@ -1,0 +1,146 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>plot.XDNUTS</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Function to view the draws from the posterior distribution.</h2>
+
+<h3>Description</h3>
+
+<p>Function to view the draws from the posterior distribution.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S3 method for class 'XDNUTS'
+plot(
+  x,
+  type = 1,
+  which = NULL,
+  warm_up = FALSE,
+  cex.titles = 1,
+  cex.legend = 1,
+  plot.new = FALSE,
+  which_chains = NULL,
+  colors = NULL,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>an object of class <code>XDNUTS</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>type</code></td>
+<td>
+<p>the type of plot to display. </p>
+
+<dl>
+<dt><code>type = 1</code></dt>
+<dd>
+<p>marginal chains, one for each desired dimension.</p>
+</dd>
+<dt><code>type = 2</code></dt>
+<dd>
+<p>bivariate plot.</p>
+</dd>
+<dt><code>type = 3</code></dt>
+<dd>
+<p>time series plot of the energy level sets. Good for a quick diagnostic of big models.</p>
+</dd>
+<dt><code>type = 4</code></dt>
+<dd>
+<p>stickplot of the step-length of each iteration.</p>
+</dd>
+<dt><code>type = 5</code></dt>
+<dd>
+<p>Histograms of the centered marginal energy in gray and of the first differences of energy in red.</p>
+</dd>
+<dt><code>type = 6</code></dt>
+<dd>
+<p>Autoregressive function plot of the parameters.</p>
+</dd>
+<dt><code>type = 7</code></dt>
+<dd>
+<p>Matplot of the empirical acceptance rate and refraction rates.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>which</code></td>
+<td>
+<p>either a numerical vector indicating the index of the parameters of interest or a string </p>
+
+<dl>
+<dt><code>which = 'continuous'</code></dt>
+<dd>
+<p>for plotting the first <code class="reqn">d-k</code> parameters.</p>
+</dd>
+<dt><code>which = 'discontinuous'</code></dt>
+<dd>
+<p>for plotting the last <code class="reqn">k</code> parameters.</p>
+</dd>
+</dl>
+<p>where both <code class="reqn">d</code> and <code class="reqn">k</code> are elements contained in the output of the xdnuts function.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>warm_up</code></td>
+<td>
+<p>a boolean value indicating whether the plot should be made using the warm-up samples.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cex.titles</code></td>
+<td>
+<p>a numerical value for regulating the size of the plot's titles, default value is <code>1</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cex.legend</code></td>
+<td>
+<p>a numerical value for regulating the size of the plot's legend, default value is <code>1</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>plot.new</code></td>
+<td>
+<p>a boolean value indicating whether a new graphical window should be opened. This is advised if the parameters space is big.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>which_chains</code></td>
+<td>
+<p>a numerical vector indicating the index of the chains of interest.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>colors</code></td>
+<td>
+<p>a numerical vector of the same length as <code>which_chains</code> containing the colors for each chain.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>additional arguments to customize plots.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>No return value.
+</p>
+
+
+</div>

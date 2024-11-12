@@ -1,0 +1,128 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xportr</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Wrapper to apply all core xportr functions and write xpt</h2>
+
+<h3>Description</h3>
+
+<p>Wrapper to apply all core xportr functions and write xpt
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xportr(
+  .df,
+  var_metadata = NULL,
+  df_metadata = NULL,
+  domain = NULL,
+  verbose = NULL,
+  path,
+  strict_checks = FALSE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>.df</code></td>
+<td>
+<p>A data frame of CDISC standard.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>var_metadata</code></td>
+<td>
+<p>A data frame containing variable level metadata</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>df_metadata</code></td>
+<td>
+<p>A data frame containing dataset level metadata.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>domain</code></td>
+<td>
+<p>Appropriate CDISC dataset name, e.g. ADAE, DM. Used to subset
+the metadata object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbose</code></td>
+<td>
+<p>The action this function takes when an action is taken on the
+dataset or function validation finds an issue. See 'Messaging' section for
+details. Options are 'stop', 'warn', 'message', and 'none'</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>path</code></td>
+<td>
+<p>Path where transport file will be written. File name sans will be
+used as <code>xpt</code> name.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>strict_checks</code></td>
+<td>
+<p>If TRUE, xpt validation will report errors and not write
+out the dataset. If FALSE, xpt validation will report warnings and continue
+with writing out the dataset. Defaults to FALSE</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Returns the input dataframe invisibly
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+data("adsl_xportr", "dataset_spec", "var_spec")
+adsl &lt;- adsl_xportr
+
+library(magrittr)
+test_dir &lt;- tempdir()
+
+pipeline_path &lt;- file.path(test_dir, "adslpipe.xpt")
+xportr_path &lt;- file.path(test_dir, "adslxptr.xpt")
+
+dataset_spec_low &lt;- setNames(dataset_spec, tolower(names(dataset_spec)))
+names(dataset_spec_low)[[2]] &lt;- "label"
+
+var_spec_low &lt;- setNames(var_spec, tolower(names(var_spec)))
+names(var_spec_low)[[5]] &lt;- "type"
+
+adsl %&gt;%
+  xportr_metadata(var_spec_low, "ADSL", verbose = "none") %&gt;%
+  xportr_type() %&gt;%
+  xportr_length() %&gt;%
+  xportr_label() %&gt;%
+  xportr_order() %&gt;%
+  xportr_format() %&gt;%
+  xportr_df_label(dataset_spec_low) %&gt;%
+  xportr_write(pipeline_path)
+
+# `xportr()` can be used to apply a whole pipeline at once
+xportr(
+  adsl,
+  var_metadata = var_spec_low,
+  df_metadata = dataset_spec_low,
+  domain = "ADSL",
+  verbose = "none",
+  path = xportr_path
+)
+
+</code></pre>
+
+
+</div>

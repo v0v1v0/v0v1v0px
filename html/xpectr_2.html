@@ -1,0 +1,102 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>capture_parse_eval_side_effects</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Capture side effects from parse eval</h2>
+
+<h3>Description</h3>
+
+<p>Wraps string in <code>capture_side_effects()</code>
+before parsing and evaluating it.
+The side effects (<code>error</code>, <code>warning</code>s, <code>message</code>s) are returned in a <code>list</code>.
+</p>
+<p>When capturing an <code>error</code>, no other side effects are captured.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">capture_parse_eval_side_effects(
+  string,
+  envir = NULL,
+  copy_env = FALSE,
+  reset_seed = FALSE,
+  disable_crayon = TRUE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>string</code></td>
+<td>
+<p>String of code that can be parsed and evaluated in <code>envir</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>envir</code></td>
+<td>
+<p>Environment to evaluate in. Defaults to
+<code>parent.frame()</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>copy_env</code></td>
+<td>
+<p>Whether to use deep copies of the environment when capturing side effects. (Logical)
+</p>
+<p>Disabled by default to save memory but is often preferable to enable, e.g. when the function
+alters non-local variables before throwing its <code>error</code>/<code>warning</code>/<code>message</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>reset_seed</code></td>
+<td>
+<p>Whether to reset the random state on exit. (Logical)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>disable_crayon</code></td>
+<td>
+<p>Whether to disable <code>crayon</code> formatting.
+This can remove ANSI characters from the messages. (Logical)</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p><code>named list</code> with the side effects.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ludvig Renbo Olsen, <a href="mailto:r-pkgs@ludvigolsen.dk">r-pkgs@ludvigolsen.dk</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other capturers: 
+<code>capture_side_effects()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Attach package
+library(xpectr)
+
+
+capture_parse_eval_side_effects("stop('hi!')")
+capture_parse_eval_side_effects("warning('hi!')")
+capture_parse_eval_side_effects("message('hi!')")
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,50 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xSub_census_individual_raw</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Census of individual-source event-level datasets in xSub (updated June 15, 2020)</h2>
+
+<h3>Description</h3>
+
+<p>A list of data sources and countries available for download. Used by <code>info_xSub()</code>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xSub_census_individual_raw
+</code></pre>
+
+
+<h3>Format</h3>
+
+<p>A list with 4 elements:
+</p>
+
+<dl>
+<dt>level0_bysource</dt>
+<dd>
+<p>Countries organized by <code>data_source</code>. List object, where each sub-entry is also a list, containing entries for <code>data_source</code>,<code>country_iso3</code>,<code>country_name</code>.</p>
+</dd>
+<dt>level0_bycountry</dt>
+<dd>
+<p>Data sources organized by country. List of data.frames, where each row is a country, with columns for <code>country_iso3</code>,<code>country_name</code>,<code>data_sources</code>.</p>
+</dd>
+<dt>level1</dt>
+<dd>
+<p>Detailed information on data sources, countries and spatial levels of analysis. data.frame, where each row is a source-country combination, with columns for <code>data_source</code>,<code>country_iso3</code>,<code>country_name</code>,<code>units</code>.</p>
+</dd>
+<dt>all_countries</dt>
+<dd>
+<p>Vector of all country ISO3 codes. Used by <code>get_xSub_multi</code>.</p>
+</dd>
+</dl>
+<h3>Source</h3>
+
+<p><a href="http://www.x-sub.org/">http://www.x-sub.org/</a>
+</p>
+
+
+</div>

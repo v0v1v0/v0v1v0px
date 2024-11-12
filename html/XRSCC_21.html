@@ -1,0 +1,147 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>R_it</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>
+Calculates the i'th iteration R Chart
+</h2>
+
+<h3>Description</h3>
+
+<p>Calculates the  iteration i'th for R chart, after the X chart is under control. The function estimates if any value (range) is out of control limits, and returns a values list.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">R_it(prev.results)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>prev.results</code></td>
+<td>
+<p>Is a list of previous results obtained by the <code>xrs_gr</code>, followed by <code>X_it</code> function if it is necessary. In other cases, needs more than one iteration to obtain the true control limits for R chart, before take conclusions about the process.
+</p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+<p>The function stops if the R chart is under control already, and also stops if there is not any active graphic device.
+</p>
+
+
+<h3>Value</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>in.control</code></td>
+<td>
+<p>The under control row list for the X chart</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>R.in.control</code></td>
+<td>
+<p>The <em>under control</em> row list for the R chart</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>out.control</code></td>
+<td>
+<p>The <em>out of control</em> row list for the X chart</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Iteraciones</code></td>
+<td>
+<p>The number of iterations, It is assumed to be the second or later</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data.0</code></td>
+<td>
+<p>The original data frame</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data.1</code></td>
+<td>
+<p>The filtered data frame</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data.r.1</code></td>
+<td>
+<p>The calculated ranges of data.0</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bin</code></td>
+<td>
+<p>The binary values for <em>out of control</em> equal to one and <em>under control</em> equal to zero, for X and R charts</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>LX</code></td>
+<td>
+<p>The X chart control limits vector</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>LR</code></td>
+<td>
+<p>The R chart control limits vector</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Limites Grafixa X</code></td>
+<td>
+<p>The X chart control limits vector</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Limites Grafixa R</code></td>
+<td>
+<p>The R chart control limits vector</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Conclusion del proceso</code></td>
+<td>
+<p>The same results in a phrase as the <em>bin</em> values</p>
+</td>
+</tr>
+</table>
+<h3>Author(s)</h3>
+
+<p>Erick Marroquin
+</p>
+
+
+<h3>References</h3>
+
+<p>Montgomery, D.C. (2005) <em>Introduction to Statistical Quality Control</em>, 5th ed. New York: John Wiley &amp; Sons, ISBN 0-471-65631-3
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xrs_gr</code>  <code>X_it</code>   <code>we_rules</code>   <code>Cp_X</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(dato2)
+results1&lt;-xrs_gr(dato2)
+results2&lt;-X_it(results1)
+results3&lt;-R_it(results2)
+</code></pre>
+
+
+</div>

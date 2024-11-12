@@ -1,0 +1,107 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xsubset</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Extract or set the value of the Subset slot.</h2>
+
+<h3>Description</h3>
+
+<p>Extract or set the value of the Subset slot of an "xpose.data" object.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xsubset(object)
+
+xsubset(object) &lt;- value
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An "xpose.data" object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>value</code></td>
+<td>
+<p>A string with the subset expression.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The subset string has the same syntax as the subset argument to, e.g.
+<code>panel.xyplot</code>. Note, however, that the "xpose.data" subset is not used
+as an argument to <code>panel.xyplot</code>. It is intended as the subset argument
+to the <code>Data</code> and <code>SData</code> functions.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A string representing the subset expression.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul><li> <p><code>xsubset(object) &lt;- value</code>: assign value with a string representing the subset expression
+</p>
+</li></ul>
+<h3>Author(s)</h3>
+
+<p>Niclas Jonsson
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>Data</code>, <code>SData</code>
+</p>
+<p>Other data functions: 
+<code>add_transformed_columns</code>,
+<code>change_graphical_parameters</code>,
+<code>change_misc_parameters</code>,
+<code>compute.cwres()</code>,
+<code>data.checkout()</code>,
+<code>data_extract_or_assign</code>,
+<code>db.names()</code>,
+<code>export.graph.par()</code>,
+<code>export.variable.definitions()</code>,
+<code>import.graph.par()</code>,
+<code>import.variable.definitions()</code>,
+<code>make.sb.data()</code>,
+<code>nsim()</code>,
+<code>par_cov_summary</code>,
+<code>read.TTE.sim.data()</code>,
+<code>read.nm.tables()</code>,
+<code>read_NM_output</code>,
+<code>read_nm_table()</code>,
+<code>simprazExample()</code>,
+<code>tabulate.parameters()</code>,
+<code>xlabel()</code>,
+<code>xpose.data</code>,
+<code>xpose.print()</code>,
+<code>xpose4-package</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">xpdb &lt;- simpraz.xpdb
+xsubset(xpdb) &lt;- "DV &gt; 0"
+xsubset(xpdb)
+
+</code></pre>
+
+
+</div>

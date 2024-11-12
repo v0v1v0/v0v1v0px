@@ -1,0 +1,72 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xml_name</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>The (tag) name of an xml element.</h2>
+
+<h3>Description</h3>
+
+<p>The (tag) name of an xml element.
+</p>
+<p>Modify the (tag) name of an element
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xml_name(x, ns = character())
+
+xml_name(x, ns = character()) &lt;- value
+
+xml_set_name(x, value, ns = character())
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>A document, node, or node set.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ns</code></td>
+<td>
+<p>Optionally, a named vector giving prefix-url pairs, as produced
+by <code>xml_ns()</code>. If provided, all names will be explicitly
+qualified with the ns prefix, i.e. if the element <code>bar</code> is defined
+in namespace <code>foo</code>, it will be called <code>foo:bar</code>. (And
+similarly for attributes). Default namespaces must be given an explicit
+name. The ns is ignored when using <code>xml_name&lt;-()</code> and
+<code>xml_set_name()</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>value</code></td>
+<td>
+<p>a character vector with replacement name.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A character vector.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">x &lt;- read_xml("&lt;bar&gt;123&lt;/bar&gt;")
+xml_name(x)
+
+y &lt;- read_xml("&lt;bar&gt;&lt;baz&gt;1&lt;/baz&gt;abc&lt;foo /&gt;&lt;/bar&gt;")
+z &lt;- xml_children(y)
+xml_name(xml_children(y))
+</code></pre>
+
+
+</div>

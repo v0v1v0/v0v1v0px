@@ -1,0 +1,231 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>XDNUTS-package</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>
+Discontinuous Hamiltonian Monte Carlo with Varying Trajectory Length
+</h2>
+
+<h3>Description</h3>
+
+<p>Hamiltonian Monte Carlo for both continuous and discontinuous
+  posterior distributions with customisable trajectory length 
+  termination criterion. See Nishimura et al. (2020) &lt;doi:10.1093/biomet/asz083&gt; for
+  the original Discontinuous Hamiltonian Monte Carlo, 
+  Hoffman et al. (2014) &lt;doi:10.48550/arXiv.1111.4246&gt; and Betancourt (2016) 
+  &lt;doi:10.48550/arXiv.1601.00225&gt; for the definition of possible Hamiltonian
+  Monte Carlo termination criteria.
+</p>
+
+
+<h3>Details</h3>
+
+<p>The DESCRIPTION file:
+</p>
+
+<table>
+<tr>
+<td style="text-align: left;">
+Package: </td>
+<td style="text-align: left;"> XDNUTS</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Type: </td>
+<td style="text-align: left;"> Package</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Title: </td>
+<td style="text-align: left;"> Discontinuous Hamiltonian Monte Carlo with Varying Trajectory Length</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Version: </td>
+<td style="text-align: left;"> 1.2</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Date: </td>
+<td style="text-align: left;"> 2024-08-02</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Authors@R: </td>
+<td style="text-align: left;"> person("Paolo", "Manildo", email = "paolo.manildo@studenti.unipd.it",
+  role = c("aut", "cre"), comment = c(ORCID = "0009-0006-7056-7012"))</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Description: </td>
+<td style="text-align: left;"> Hamiltonian Monte Carlo for both continuous and discontinuous
+  posterior distributions with customisable trajectory length 
+  termination criterion. See Nishimura et al. (2020) &lt;doi:10.1093/biomet/asz083&gt; for
+  the original Discontinuous Hamiltonian Monte Carlo, 
+  Hoffman et al. (2014) &lt;doi:10.48550/arXiv.1111.4246&gt; and Betancourt (2016) 
+  &lt;doi:10.48550/arXiv.1601.00225&gt; for the definition of possible Hamiltonian
+  Monte Carlo termination criteria.</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+License: </td>
+<td style="text-align: left;"> MIT + file LICENSE</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Imports: </td>
+<td style="text-align: left;"> base,
+coda,
+graphics,
+grDevices,
+parallel,
+purrr,
+Rcpp (&gt;= 1.0.12),
+Rdpack,
+stats</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+RdMacros: </td>
+<td style="text-align: left;"> Rdpack</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+LinkingTo: </td>
+<td style="text-align: left;"> Rcpp, RcppArmadillo</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+RoxygenNote: </td>
+<td style="text-align: left;"> 7.3.1</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Suggests: </td>
+<td style="text-align: left;"> knitr,
+rmarkdown,
+KernSmooth</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+VignetteBuilder: </td>
+<td style="text-align: left;"> knitr</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Depends: </td>
+<td style="text-align: left;"> R (&gt;= 2.10)</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+LazyData: </td>
+<td style="text-align: left;"> true</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Author: </td>
+<td style="text-align: left;"> Paolo Manildo [aut, cre] (&lt;https://orcid.org/0009-0006-7056-7012&gt;)</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Maintainer: </td>
+<td style="text-align: left;"> Paolo Manildo &lt;paolo.manildo@studenti.unipd.it&gt;</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+</td>
+</tr>
+</table>
+<p>Index of help topics:
+</p>
+<pre>
+XDNUTS-package          Discontinuous Hamiltonian Monte Carlo with
+                        Varying Trajectory Length
+main_function           Function to generate a Markov chain for both
+                        continuous and discontinuous posterior
+                        distributions.
+plot.XDNUTS             Function to view the draws from the posterior
+                        distribution.
+set_parameters          Function that regulates the specifications of
+                        the xdnuts function.
+summary.XDNUTS          Function to print the summary of an XDNUTS
+                        model.
+viscosity               Blood viscosity data
+xdextract               Function to extract samples from the output of
+                        an XDNUTS model.
+xdnuts                  Discontinuous Hamiltonian Monte Carlo using
+                        both manual and automatic termination criteria.
+xdtransform             Function to apply a transformation to the
+                        samples from the output of an XDNUTS model.
+</pre>
+<p>The package allows to use a more efficient version of the Discontinuous Hamiltonian Monte Carlo proposed in (Nishimura et al. 2020), thanks to the use of recycled samples from each trajectory (Nishimura and Dunson 2020) and a termination criterion for identyfing the optimal discrete integration time of each trajectory (Betancourt 2016). No models are at disposal, so the user must specify one through the definition of the function <code>nlp</code>. This function must evaluate the negative log posterior of the model and its gradient with respect to the first <code class="reqn">d-k</code> parameters. <code class="reqn">d</code> is the model dimension, while <code class="reqn">k</code> is the number of parameters for which the sampling scheme will be based on the method described in (Nishimura et al. 2020). This method was born for treating discontinuous components but it is applicable to continuous one too. <code>nlp</code> must be a function with 3 arguments:
+</p>
+
+<ul>
+<li>
+<p>the vector of parameters, current state of the chain/trajectory, for which the negative log posterior or its gradient must be evaluated.
+</p>
+</li>
+<li>
+<p>a list object that contains the necessary argouments, namely data and hyperparameters.
+</p>
+</li>
+<li>
+<p>a boolean value, <code>TRUE</code> to evaluate only the negative log posterior of the models, 
+<code>FALSE</code> to evaluate its gradient with respect to the continuous components of the posterior.
+</p>
+</li>
+</ul>
+<p>The available algorithms are the following
+</p>
+
+<dl>
+<dt>NUTS</dt>
+<dd>
+<p>No U-Turn Sampler of (Hoffman et al. 2014).</p>
+</dd>
+<dt>XHMC</dt>
+<dd>
+<p>Hamiltonian Monte Carlo with a termination criterion based on the exhustion of the virial (Betancourt 2016) which require the specification of a threshold.</p>
+</dd>
+<dt>HMC</dt>
+<dd>
+<p>Hamiltonian Monte Carlo with trajectory length varying uniformly inside a user specified interval. Instead of proposing the last value of each trajectories a sample is drawn uniformly from them. Reference can be found in (Betancourt 2017).</p>
+</dd>
+</dl>
+<p>All of them are embedded into the framework described in (Nishimura et al. 2020) which allows the use of Hamiltonian Monte Carlo with discontinuous posterior and hence to discrete parameter space by the definition of a step function shape density.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Paolo Manildo [aut, cre] (&lt;https://orcid.org/0009-0006-7056-7012&gt;)
+</p>
+<p>Maintainer: Paolo Manildo &lt;paolo.manildo@studenti.unipd.it&gt;
+</p>
+
+
+<h3>References</h3>
+
+<p>Hoffman MD, Gelman A, others (2014).
+“The No-U-Turn sampler: adaptively setting path lengths in Hamiltonian Monte Carlo.”
+<em>J. Mach. Learn. Res.</em>, <b>15</b>(1), 1593–1623.<br><br>
+Betancourt M (2016).
+“Identifying the optimal integration time in Hamiltonian Monte Carlo.”
+<em>arXiv preprint arXiv:1601.00225</em>.<br><br>
+Betancourt M (2017).
+“A conceptual introduction to Hamiltonian Monte Carlo.”
+<em>arXiv preprint arXiv:1701.02434</em>.<br><br>
+Nishimura A, Dunson DB, Lu J (2020).
+“Discontinuous Hamiltonian Monte Carlo for discrete parameters and discontinuous likelihoods.”
+<em>Biometrika</em>, <b>107</b>(2), 365–380.<br><br>
+Nishimura A, Dunson D (2020).
+“Recycling Intermediate Steps to Improve Hamiltonian Monte Carlo.”
+<em>Bayesian Analysis</em>, <b>15</b>(4).
+ISSN 1936-0975, <a href="https://doi.org/10.1214/19-ba1171">doi:10.1214/19-ba1171</a>, <a href="http://dx.doi.org/10.1214/19-BA1171">http://dx.doi.org/10.1214/19-BA1171</a>.
+</p>
+
+
+</div>

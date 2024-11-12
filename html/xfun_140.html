@@ -1,0 +1,57 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>tree</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Turn the output of <code>str()</code> into a tree diagram</h2>
+
+<h3>Description</h3>
+
+<p>The super useful function <code>str()</code> uses <code style="white-space: pre;">⁠..⁠</code> to indicate the level
+of sub-elements of an object, which may be difficult to read. This function
+uses vertical pipes to connect all sub-elements on the same level, so it is
+clearer which elements belong to the same parent element in an object with a
+nested structure (such as a nested list).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">tree(...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Arguments to be passed to <code>str()</code> (note that the
+<code>comp.str</code> is hardcoded inside this function, and it is the only
+argument that you cannot customize).</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A character string as a <code>raw_string()</code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">fit = lsfit(1:9, 1:9)
+str(fit)
+xfun::tree(fit)
+
+fit = lm(dist ~ speed, data = cars)
+str(fit)
+xfun::tree(fit)
+
+# some trivial examples
+xfun::tree(1:10)
+xfun::tree(iris)
+</code></pre>
+
+
+</div>

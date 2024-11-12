@@ -1,0 +1,162 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>x12Single-class</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Class <code>"x12Single"</code>
+</h2>
+
+<h3>Description</h3>
+
+<p>Class consisting of all information for <code>x12</code>.
+</p>
+
+
+<h3>Objects from the Class</h3>
+
+<p>Objects can be created by calls of the form <code>new("x12Single", ...)</code>.
+
+</p>
+
+
+<h3>Slots</h3>
+
+
+<dl>
+<dt>
+<code>ts</code>:</dt>
+<dd>
+<p>Object of class <code>ts</code></p>
+</dd>
+<dt>
+<code>x12Parameter</code>:</dt>
+<dd>
+<p>Object of class <code>x12Parameter-class</code></p>
+</dd>
+<dt>
+<code>x12Output</code>:</dt>
+<dd>
+<p>Object of class <code>x12Output-class</code></p>
+</dd>
+<dt>
+<code>x12OldParameter</code>:</dt>
+<dd>
+<p>Object of class <code>list</code></p>
+</dd>
+<dt>
+<code>x12OldOutput</code>:</dt>
+<dd>
+<p>Object of class <code>list</code></p>
+</dd>
+<dt>
+<code>tsName</code>:</dt>
+<dd>
+<p>Object of class <code>characterOrNULL</code></p>
+</dd>
+<dt>
+<code>firstRun</code>:</dt>
+<dd>
+<p>Object of class <code>logical</code></p>
+</dd>
+</dl>
+<h3>Methods</h3>
+
+
+<dl>
+<dt><code>setP</code></dt>
+<dd>
+<p><code>signature(object = "x12Single")</code></p>
+</dd>
+<dt><code>getP</code></dt>
+<dd>
+<p><code>signature(object = "x12Single")</code></p>
+</dd>
+<dt><code>prev</code></dt>
+<dd>
+<p><code>signature(object = "x12Single")</code></p>
+</dd>
+<dt><code>cleanArchive</code></dt>
+<dd>
+<p><code>signature(object = "x12Single")</code></p>
+</dd>
+<dt><code>loadP</code></dt>
+<dd>
+<p><code>signature(object = "x12Single")</code></p>
+</dd>
+<dt><code>saveP</code></dt>
+<dd>
+<p><code>signature(object = "x12Single")</code></p>
+</dd>
+<dt><code>summary</code></dt>
+<dd>
+<p><code>signature(object = "x12Single")</code></p>
+</dd>
+<dt><code>x12</code></dt>
+<dd>
+<p><code>signature(object = "x12Single")</code></p>
+</dd>
+<dt><code>plot</code></dt>
+<dd>
+<p><code>signature(object = "x12Single")</code></p>
+</dd>
+<dt><code>crossVal</code></dt>
+<dd>
+<p><code>signature(object = "x12Single")</code></p>
+</dd>
+<dt><code>plotSpec</code></dt>
+<dd>
+<p><code>signature(object = "x12Single")</code></p>
+</dd>
+<dt><code>plotSeasFac</code></dt>
+<dd>
+<p><code>signature(object = "x12Single")</code></p>
+</dd>    
+<dt><code>plotRsdAcf</code></dt>
+<dd>
+<p><code>signature(object = "x12Single")</code></p>
+</dd>
+<dt><code>cleanHistory</code></dt>
+<dd>
+<p><code>signature(object = "x12Single")</code></p>
+</dd>    
+</dl>
+<h3>Note</h3>
+
+<p>cleanHistory is deprecated and cleanArchive should be used instead.</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Alexander Kowarik</p>
+
+
+<h3>See Also</h3>
+
+<p><code>x12</code>,
+
+<code>x12Batch</code>,
+<code>x12Parameter</code>,
+<code>x12List</code>,
+<code>x12Output</code>,
+<code>x12BaseInfo</code>,
+<code>summary</code>,
+<code>getP</code>,
+
+<code>x12work</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+s &lt;- new("x12Single",ts=AirPassengers,tsName="air")
+s &lt;- setP(s,list(estimate=TRUE,regression.variables="AO1950.1",outlier.types="all",
+  outlier.critical=list(LS=3.5,TC=2.5)))
+s &lt;- x12(s)
+
+## End(Not run)
+</code></pre>
+
+
+</div>

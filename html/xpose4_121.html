@@ -1,0 +1,309 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>gof</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Structured goodness of fit diagnostics.</h2>
+
+<h3>Description</h3>
+
+<p>This is a template function for creating structured goodness of fit
+diagnostics using the functions in the Xpose specific library.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">gof(
+  runno = NULL,
+  save = FALSE,
+  onefile = FALSE,
+  saveType = "pdf",
+  pageWidth = 7.6,
+  pageHeight = 4.9,
+  structural = TRUE,
+  residual = TRUE,
+  covariate = FALSE,
+  iiv = FALSE,
+  iov = FALSE,
+  all = FALSE,
+  myTrace = xpPage
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>runno</code></td>
+<td>
+<p>The run number fo Xpose to identify the appropriate files to
+read. In addition <code>runno</code> is used to construct the file name to save
+plots in. <code>runno</code> can also be <code>NULL</code> for cases in which the
+function is used for non-Xpose based code.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>save</code></td>
+<td>
+<p>Logical. <code>TRUE</code> if the plot(s) is to be saved in a file.
+<code>FALSE</code> if the plot(s) is to be displayed on screen. The plot(s) will
+be saved in a file named with the function name followed by the word 'run',
+the run number, an order number followed by a file name extension
+appropriate for the selected <code>saveType</code>. For example 'gofrun1-01.pdf'
+for the first plot file created by a script called <code>gof</code> based on
+output from run 1 and <code>saveType='pdf'</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>onefile</code></td>
+<td>
+<p>Logical. <code>TRUE</code> if plots are to be save in a single file
+and <code>FALSE</code> if each plot should be saved as a separate file. In the
+latter case, each file will be have an incremented order number (01-99).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>saveType</code></td>
+<td>
+<p>The type of graphics file to produce if <code>save=TRUE</code>.
+Allowed values are 'pdf' (default), 'wmf' (only Windows) and 'png'.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pageWidth</code></td>
+<td>
+<p>The width of the graphics device in inches.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pageHeight</code></td>
+<td>
+<p>The height of the graphics device in inches.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>structural</code></td>
+<td>
+<p>Logical. <code>TRUE</code> if the code in the structural model
+section (see below) should be executed and <code>FALSE</code> if not.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>residual</code></td>
+<td>
+<p>Logical. <code>TRUE</code> if the code in the residual model
+section (see below) should be executed and <code>FALSE</code> if not.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>covariate</code></td>
+<td>
+<p>Logical. <code>TRUE</code> if the code in the covariate model
+section (see below) should be executed and <code>FALSE</code> if not.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>iiv</code></td>
+<td>
+<p>Logical. <code>TRUE</code> if the code in the IIV model section (see
+below) should be executed and <code>FALSE</code> if not.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>iov</code></td>
+<td>
+<p>Logical. <code>TRUE</code> if the code in the IOV model section (see
+below) should be executed and <code>FALSE</code> if not.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>all</code></td>
+<td>
+<p>Logical. <code>TRUE</code> if the code in all sections (see below)
+should be executed.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>myTrace</code></td>
+<td>
+<p><code>NULL</code> or the name of a function. The value of
+<code>myTrace</code> can used with the lattice <code>page=</code> argument to annotate
+plots for traceability.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The <code>gof</code> function is provided as a template to facilitate the
+(structured) use of the functions in the Xpose specific library. Xpose
+specific is extensively described in the 'Xpose Bestiary'.
+</p>
+<p>The function can be renamed so that multiple scripts can be used in
+parallel.
+</p>
+<p>The function is set up to make it easy to display plots on screen as well as
+to save them in files. In the latter case, plots are save in a sub-directory
+called 'Plots'.
+</p>
+<p>The arguments <code>structural</code>, <code>residual</code>, <code>covariate</code>,
+<code>iiv</code>, <code>iov</code> and <code>all</code> are just "switches" to different parts
+of the code (if-blocks). These blocks can be removed or the default values
+of the arguments changed to better suit the needs of the user.
+</p>
+<p>It is also possible to add tracing information to the produced plots. This
+is done via the <code>myTrace</code> argument. A non-NULL value should be a
+function that returns a <code>panel.text</code> object. The default is the
+<code>xpPage</code> function that will put a string concatenated from the device
+name, function name, working directory and date, in small, faint grey, font
+at the bottom of each graph page. Note that the user need to add
+<code>page=myTrace</code> as an argument to the Xpose functions for this to have
+an effect.
+</p>
+<p>The function calls a support function called <code>gofSetup</code>, which is
+responsible for setting up the graphics device and determining the file
+names for saved graphs.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Does not return anything unless the user specify a return value.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>E. Niclas Jonsson, Mats Karlsson and Andrew Hooker
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xpose4-package</code>
+</p>
+<p>Other generic functions: 
+<code>xpose.multiple.plot</code>,
+<code>xpose4-package</code>
+</p>
+<p>Other specific functions: 
+<code>absval.cwres.vs.cov.bw()</code>,
+<code>absval.cwres.vs.pred()</code>,
+<code>absval.cwres.vs.pred.by.cov()</code>,
+<code>absval.iwres.cwres.vs.ipred.pred()</code>,
+<code>absval.iwres.vs.cov.bw()</code>,
+<code>absval.iwres.vs.idv()</code>,
+<code>absval.iwres.vs.ipred()</code>,
+<code>absval.iwres.vs.ipred.by.cov()</code>,
+<code>absval.iwres.vs.pred()</code>,
+<code>absval.wres.vs.cov.bw()</code>,
+<code>absval.wres.vs.idv()</code>,
+<code>absval.wres.vs.pred()</code>,
+<code>absval.wres.vs.pred.by.cov()</code>,
+<code>absval_delta_vs_cov_model_comp</code>,
+<code>addit.gof()</code>,
+<code>autocorr.cwres()</code>,
+<code>autocorr.iwres()</code>,
+<code>autocorr.wres()</code>,
+<code>basic.gof()</code>,
+<code>basic.model.comp()</code>,
+<code>cat.dv.vs.idv.sb()</code>,
+<code>cat.pc()</code>,
+<code>cov.splom()</code>,
+<code>cwres.dist.hist()</code>,
+<code>cwres.dist.qq()</code>,
+<code>cwres.vs.cov()</code>,
+<code>cwres.vs.idv()</code>,
+<code>cwres.vs.idv.bw()</code>,
+<code>cwres.vs.pred()</code>,
+<code>cwres.vs.pred.bw()</code>,
+<code>cwres.wres.vs.idv()</code>,
+<code>cwres.wres.vs.pred()</code>,
+<code>dOFV.vs.cov()</code>,
+<code>dOFV.vs.id()</code>,
+<code>dOFV1.vs.dOFV2()</code>,
+<code>data.checkout()</code>,
+<code>dv.preds.vs.idv()</code>,
+<code>dv.vs.idv()</code>,
+<code>dv.vs.ipred()</code>,
+<code>dv.vs.ipred.by.cov()</code>,
+<code>dv.vs.ipred.by.idv()</code>,
+<code>dv.vs.pred()</code>,
+<code>dv.vs.pred.by.cov()</code>,
+<code>dv.vs.pred.by.idv()</code>,
+<code>dv.vs.pred.ipred()</code>,
+<code>ind.plots()</code>,
+<code>ind.plots.cwres.hist()</code>,
+<code>ind.plots.cwres.qq()</code>,
+<code>ipred.vs.idv()</code>,
+<code>iwres.dist.hist()</code>,
+<code>iwres.dist.qq()</code>,
+<code>iwres.vs.idv()</code>,
+<code>kaplan.plot()</code>,
+<code>par_cov_hist</code>,
+<code>par_cov_qq</code>,
+<code>parm.vs.cov()</code>,
+<code>parm.vs.parm()</code>,
+<code>pred.vs.idv()</code>,
+<code>ranpar.vs.cov()</code>,
+<code>runsum()</code>,
+<code>wres.dist.hist()</code>,
+<code>wres.dist.qq()</code>,
+<code>wres.vs.idv()</code>,
+<code>wres.vs.idv.bw()</code>,
+<code>wres.vs.pred()</code>,
+<code>wres.vs.pred.bw()</code>,
+<code>xpose.VPC()</code>,
+<code>xpose.VPC.both()</code>,
+<code>xpose.VPC.categorical()</code>,
+<code>xpose4-package</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Not run: 
+## This is an example of how the function may be setup by a user.
+
+library(xpose4)
+mygof &lt;- gof
+fix(mygof)
+
+myggof &lt;- function (runno = NULL, save = FALSE, onefile = FALSE, saveType = "pdf", 
+         pageWidth = 7.6, pageHeight = 4.9, structural = TRUE, residual = TRUE, 
+         covariate = FALSE, iiv = FALSE, iov = FALSE, all = FALSE, myTrace=xpPage) {
+
+         gofSetup(runno, save, onefile, saveType, pageWidth, pageHeight)
+         xpdb &lt;- xpose.data(runno)
+
+         if (structural || all) {
+          xplot &lt;- dv.vs.pred.ipred(xpdb, page = myPage)
+          print(xplot)
+         }
+         if (residual || all) {
+          xplot &lt;- absval.wres.vs.pred(xpdb, page = myPage)
+          print(xplot)
+         }
+         if (covariate || all) {
+         }
+         if (iiv || all) {
+         }
+         if (iov || all) {
+         }
+         if (save) dev.off()
+    invisible()
+  }
+
+## The function can then be execute, e.g.:
+mygof(1)
+
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

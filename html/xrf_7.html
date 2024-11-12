@@ -1,0 +1,109 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xrf.formula</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Fit an eXtreme RuleFit model</h2>
+
+<h3>Description</h3>
+
+<p>See Friedman &amp; Popescu (2008) for a description of the general RuleFit algorithm.
+This method uses XGBoost to fit a tree ensemble, extracts a ruleset as the conjunction of tree
+traversals, and fits a sparse linear model to the resulting feature set
+(including the original feature set) using glmnet.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S3 method for class 'formula'
+xrf(
+  object,
+  data,
+  family,
+  xgb_control = list(nrounds = 100, max_depth = 3),
+  glm_control = list(type.measure = "deviance", nfolds = 5),
+  sparse = TRUE,
+  prefit_xgb = NULL,
+  deoverlap = FALSE,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>a formula prescribing features to use in the model. transformation of the response variable is not supported. when using transformations on the input features (not suggested in general) it is suggested to set sparse=F</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data</code></td>
+<td>
+<p>a data frame with columns corresponding to the formula</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>family</code></td>
+<td>
+<p>the family of the fitted model. one of 'gaussian', 'binomial', 'multinomial'</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xgb_control</code></td>
+<td>
+<p>a list of parameters for xgboost. must supply an nrounds argument</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>glm_control</code></td>
+<td>
+<p>a list of parameters for the glmnet fit. must supply a type.measure and nfolds arguments (for the lambda cv)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sparse</code></td>
+<td>
+<p>whether a sparse design matrix should be used</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>prefit_xgb</code></td>
+<td>
+<p>an xgboost model (of class xgb.Booster) to be used instead of the model that <code>xrf</code> would normally fit</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>deoverlap</code></td>
+<td>
+<p>if true, the tree derived rules are deoverlapped, in that the deoverlapped rule set contains no overlapped rules</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>ignored arguments</p>
+</td>
+</tr>
+</table>
+<h3>References</h3>
+
+<p>Friedman, J. H., &amp; Popescu, B. E. (2008). Predictive learning via rule
+ensembles. <em>The Annals of Applied Statistics, 2</em>(3), 916-954.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">m &lt;- xrf(Petal.Length ~ ., iris,
+         xgb_control = list(nrounds = 2, max_depth = 2),
+         family = 'gaussian')
+
+</code></pre>
+
+
+</div>

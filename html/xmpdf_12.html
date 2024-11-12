@@ -1,0 +1,151 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>cat_bookmarks</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Concatenate pdf bookmarks</h2>
+
+<h3>Description</h3>
+
+<p><code>cat_bookmarks()</code> concatenates a list of bookmarks
+into a single bookmarks data frame while updating the page numbers.
+Useful if wanting to concatenate multiple pdf files together and
+would like to preserve the bookmarks information.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">cat_bookmarks(
+  l,
+  method = c("flat", "filename", "title"),
+  open = NA,
+  color = NA_character_,
+  fontface = NA_character_
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>l</code></td>
+<td>
+<p>A list of bookmark data frames as returned by <code>get_bookmarks()</code>.
+Each data frame should have a "total_pages" attribute.
+If <code>method = "filename"</code> each data frame should have a "filename" attribute.
+If <code>method = "title"</code> each data frame should have a "title" attribute.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>If "flat" simply concatenate the bookmarks while updating page numbers.
+If "filename" place each file's bookmarks a level under a new bookmark matching
+the (base)name of the filename and then concatenate the bookmarks while updating page numbers.
+If "title" place each file's bookmarks a level under a new bookmark matching
+the title of the file and then concatenate the bookmarks while updating page numbers.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>open</code></td>
+<td>
+<p>If <code>method = "filename"</code> or <code>method = "title"</code> a logical for whether the new top level bookmarks should start open?
+If missing will default to open.
+Note some pdf viewers quietly ignore the initially open/closed feature.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>color</code></td>
+<td>
+<p>If <code>method = "filename"</code> or <code>method = "title"</code> the color of the new top level bookmarks.
+If <code>NA_character_</code> will be unset (presumably defaults to "black").
+Note many pdf viewers quietly ignore this feature.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fontface</code></td>
+<td>
+<p>If <code>method = "filename"</code> or <code>method = "title"</code> should the fontface of the new top level bookmarks.
+If <code>NA_character_</code> or <code>NA_integer_</code> will be unset (defaults to "plain").
+"plain" or 1 is plain, "bold" or 2 is bold, "italic" or 3 is italic,
+Note many pdf viewers quietly ignore this feature.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A data frame of bookmark data (as suitable for use with <code>set_bookmarks()</code>).
+A "total_pages" attribute will be set for the theoretical total pages of
+the concatenated document represented by the concatenated bookmarks.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>get_bookmarks()</code> and <code>set_bookmarks()</code> for setting bookmarks.
+<code>cat_pages()</code> for concatenating pdf files together.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">if (supports_get_bookmarks() &amp;&amp;
+    supports_set_bookmarks() &amp;&amp;
+    supports_pdftk() &amp;&amp;
+    require("grid", quietly = TRUE)) {
+ # Create two different two-page pdf files
+ make_pdf &lt;- function(f, title) {
+   pdf(f, onefile = TRUE, title = title)
+   grid.text(paste(title, "Page 1"))
+   grid.newpage()
+   grid.text(paste(title, "Page 2"))
+   invisible(dev.off())
+ }
+ f1 &lt;- tempfile(fileext = "_doc1.pdf")
+ on.exit(unlink(f1))
+ make_pdf(f1, "Document 1")
+
+ f2 &lt;- tempfile(fileext = "_doc2.pdf")
+ on.exit(unlink(f2))
+ make_pdf(f2, "Document 2")
+
+ # Add bookmarks to the two two-page pdf files
+ bookmarks &lt;- data.frame(title = c("Page 1", "Page 2"),
+                         page = c(1L, 2L))
+ set_bookmarks(bookmarks, f1)
+ set_bookmarks(bookmarks, f2)
+ l &lt;- get_bookmarks(c(f1, f2))
+ print(l)
+
+ bm &lt;- cat_bookmarks(l, method = "flat")
+ cat('\nmethod = "flat":\n')
+ print(bm)
+
+ bm &lt;- cat_bookmarks(l, method = "filename")
+ cat('\nmethod = "filename":\n')
+ print(bm)
+
+ bm &lt;- cat_bookmarks(l, method = "title")
+ cat('\nmethod = "title":\n')
+ print(bm)
+
+ # `cat_bookmarks()` is useful for setting concatenated pdf files
+ # created with `cat_pages()`
+ if (supports_cat_pages()) {
+    fc &lt;- tempfile(fileext = "_cat.pdf")
+    on.exit(unlink(fc))
+    cat_pages(c(f1, f2), fc)
+    set_bookmarks(bm, fc)
+    unlink(fc)
+ }
+
+ unlink(f1)
+ unlink(f2)
+}
+</code></pre>
+
+
+</div>

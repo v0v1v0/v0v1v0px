@@ -1,0 +1,72 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>conticnt</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>continuous counting</h2>
+
+<h3>Description</h3>
+
+<p>It counts the number of continuous identical values.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">conticnt(x, cnt = FALSE, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>a vector or data frame.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cnt</code></td>
+<td>
+<p>whether to count the number rows in each continuous groups.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>ignored</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A integer vector indicating the number of continuous identical elements in x.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># example I
+x1 = c(0,0,0, 1,1,1)
+conticnt(x1)
+conticnt(x1, cnt=TRUE)
+
+x2 = c(1, 2,2, 3,3,3)
+conticnt(x2)
+conticnt(x2, cnt=TRUE)
+
+x3 = c('c','c','c', 'b','b', 'a')
+conticnt(x3)
+conticnt(x3, cnt=TRUE)
+
+# example II
+dt = data.frame(c1=x1, c2=x2, c3=x3)
+conticnt(dt, col=c('c1', 'c2'))
+conticnt(dt, col=c('c1', 'c2'), cnt = TRUE)
+
+</code></pre>
+
+
+</div>

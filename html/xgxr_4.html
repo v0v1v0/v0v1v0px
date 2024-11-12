@@ -1,0 +1,69 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>get_rmd_name</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Determine the name of a Rmd template</h2>
+
+<h3>Description</h3>
+
+<p><code>get_rmd_name</code> returns a name for an Rmd template, based on the desired PKPD parameters
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">get_rmd_name(
+  rmd_template_name = NULL,
+  multiple_dosing = FALSE,
+  pk_cmt = NULL,
+  pd_cmt = NULL,
+  pd_data_type = NULL
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>rmd_template_name</code></td>
+<td>
+<p>A custom output name for the generated Rmd file</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>multiple_dosing</code></td>
+<td>
+<p>if FALSE use single ascending dose template, if TRUE use multiple</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pk_cmt</code></td>
+<td>
+<p>An integer denoting the "compartment" containing the PK data. The "CMT" column will typically
+have these integers, where each row may contain either PK or PD data, potentially of different types (continuous, ordinal, etc.)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pd_cmt</code></td>
+<td>
+<p>An integer denoting the "compartment" containing the PD data, of the desired type  (continuous, ordinal, etc.). The "CMT" column will typically
+have these integers, where each row may contain either PK or PD data</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pd_data_type</code></td>
+<td>
+<p>The type of PD data - acceptable values exist in the following list: ["binary","continuous","count","ordinal","real_example","receptor_occupancy","time_to_event"]</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>a string for the Rmd template name
+</p>
+
+
+</div>

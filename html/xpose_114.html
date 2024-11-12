@@ -1,0 +1,243 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>res_vs_idv</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Residuals plotted against the independent variable</h2>
+
+<h3>Description</h3>
+
+<p>Model residuals plotted against the independent variable (IDV).
+</p>
+<p>The residuals can be one of:
+</p>
+
+<ul>
+<li>
+<p> RES: model residuals
+</p>
+</li>
+<li>
+<p> WRES: weighted model residuals
+</p>
+</li>
+<li>
+<p> CWRES: conditional weighted model residuals
+</p>
+</li>
+<li>
+<p> EWRES/ECWRES: Monte Carlo based model residuals
+</p>
+</li>
+<li>
+<p> NPDE: Normalized prediction distribution error 
+</p>
+</li>
+</ul>
+<h3>Usage</h3>
+
+<pre><code class="language-R">res_vs_idv(
+  xpdb,
+  mapping = NULL,
+  res = "CWRES",
+  group = "ID",
+  type = "pls",
+  title = "@y vs. @x | @run",
+  subtitle = "Ofv: @ofv",
+  caption = "@dir",
+  tag = NULL,
+  log = NULL,
+  guide = TRUE,
+  facets,
+  .problem,
+  quiet,
+  ...
+)
+
+absval_res_vs_idv(
+  xpdb,
+  mapping = NULL,
+  res = "CWRES",
+  group = "ID",
+  type = "pls",
+  title = "@y vs. @x  | @run",
+  subtitle = "Ofv: @ofv",
+  caption = "@dir",
+  tag = NULL,
+  log = NULL,
+  guide = FALSE,
+  facets,
+  .problem,
+  quiet,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>xpdb</code></td>
+<td>
+<p>An xpose database object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mapping</code></td>
+<td>
+<p>List of aesthetics mappings to be used for the xpose plot 
+(e.g. <code>point_color</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>res</code></td>
+<td>
+<p>Type of residual to be used. Default is "CWRES".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>group</code></td>
+<td>
+<p>Grouping variable to be used for lines.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>type</code></td>
+<td>
+<p>String setting the type of plot to be used. Can be points 'p',
+line 'l', smooth 's' and text 't' or any combination of the four.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>title</code></td>
+<td>
+<p>Plot title. Use <code>NULL</code> to remove.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>subtitle</code></td>
+<td>
+<p>Plot subtitle. Use <code>NULL</code> to remove.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>caption</code></td>
+<td>
+<p>Page caption. Use <code>NULL</code> to remove.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tag</code></td>
+<td>
+<p>Plot identification tag. Use <code>NULL</code> to remove.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>log</code></td>
+<td>
+<p>String assigning logarithmic scale to axes, can be either ”, 
+'x', y' or 'xy'.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>guide</code></td>
+<td>
+<p>Enable guide display (e.g. unity line).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>facets</code></td>
+<td>
+<p>Either a character string to use <code>facet_wrap_paginate</code>
+or a formula to use <code>facet_grid_paginate</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.problem</code></td>
+<td>
+<p>The $problem number to be used. By default returns 
+the last estimation problem.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>quiet</code></td>
+<td>
+<p>Logical, if <code>FALSE</code> messages are printed to the console.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Any additional aesthetics to be passed on <code>xplot_scatter</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Layers mapping</h3>
+
+<p>Plots can be customized by mapping arguments to specific layers. The naming convention is 
+layer_option where layer is one of the names defined in the list below and option is 
+any option supported by this layer e.g. point_color = 'blue', smooth_method = 'lm', etc.
+</p>
+
+<ul>
+<li>
+<p> point: options to <code>geom_point</code>
+</p>
+</li>
+<li>
+<p> line: options to <code>geom_line</code>
+</p>
+</li>
+<li>
+<p> guide: options to <code>geom_abline</code>
+</p>
+</li>
+<li>
+<p> smooth: options to <code>geom_smooth</code>
+</p>
+</li>
+<li>
+<p> text: options to <code>geom_text</code>
+</p>
+</li>
+<li>
+<p> xscale: options to <code>scale_x_continuous</code> or <code>scale_x_log10</code>
+</p>
+</li>
+<li>
+<p> yscale: options to <code>scale_y_continuous</code> or <code>scale_y_log10</code>
+</p>
+</li>
+</ul>
+<h3>Template titles</h3>
+
+<p>Template titles can be used to create highly informative diagnostics plots. 
+They can be applied to any plot title, subtitle, caption and tag. Template titles 
+are defined via a single string containing key variables staring with a '@' (e.g. '@ofv')
+which will be replaced by their actual value when rendering the plot.
+For example ''@run, @nobs observations in @nind subjects'' would become 
+''run001, 1022 observations in 74 subjects''. The available key variables 
+are listed under <code>template_titles</code>.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xplot_scatter</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Standard residual
+res_vs_idv(xpdb_ex_pk, res = c('IWRES', 'CWRES'))
+
+# Absolute value of the residuals
+absval_res_vs_idv(xpdb_ex_pk, res = 'CWRES')
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,63 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>treeListDepth</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Measures the depth of a (nested) list.</h2>
+
+<h3>Description</h3>
+
+<p><code>treeListDepth()</code> returns the depth of a nested list.  
+For a derivation tree, this is approximately twice
+the derivation depth.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">treeListDepth(t, tDepth = 0)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>t</code></td>
+<td>
+<p>List.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tDepth</code></td>
+<td>
+<p>Integer. List depth. Default: 0.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Depth of a nested list.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Measures of Tree Attributes: 
+<code>treeLeaves()</code>,
+<code>treeNodes()</code>,
+<code>treeSize()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">g&lt;-compileBNF(booleanGrammar())
+a&lt;-randomDerivationTree(g$Start, g)
+treeListDepth(a) 
+
+</code></pre>
+
+
+</div>

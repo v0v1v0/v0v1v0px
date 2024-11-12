@@ -1,0 +1,101 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xgx_annotate_filenames</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Append filenames to bottom of the plot</h2>
+
+<h3>Description</h3>
+
+<p><code>xgx_annotate_filenames</code> appends file details to the bottom of a plot 
+using the plot caption option. 
+File details to append include the parent directory, the path of the R 
+script which generated the plot, 
+and the path of the plot.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xgx_annotate_filenames(dirs, hjust = 0.5, color = "black", size = 11)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>dirs</code></td>
+<td>
+<p>list containing directories and filenames.  It must contain 
+five fields
+</p>
+
+<ol>
+<li>
+<p> parent_dir  = Parent directory containing the Rscript and the Results 
+folder
+</p>
+</li>
+<li>
+<p> rscript_dir = Subdirectory ofparent_dir that contains the Rscript 
+used to generate the figure
+</p>
+</li>
+<li>
+<p> rscript_name= Name of the Rscript used to generate the figure
+</p>
+</li>
+<li>
+<p> results_dir = Subdirectory ofparent_dir where the figure is stored
+</p>
+</li>
+<li>
+<p> filename    = Filename
+</p>
+</li>
+</ol>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hjust</code></td>
+<td>
+<p>horizontal justification of the caption</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>color</code></td>
+<td>
+<p>font color for caption, default black</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>size</code></td>
+<td>
+<p>font size for caption, default 11</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>None
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">dirs &lt;- list(parent_dir = "/your/parent/path/",
+             rscript_dir = "./Rscripts/",
+             rscript_name = "Example.R",
+             results_dir = "./Results/",
+             filename = "your_file_name.png")
+data &lt;- data.frame(x = 1:1000, y = rnorm(1000))
+ggplot2::ggplot(data = data, ggplot2::aes(x = x, y = y)) +
+  ggplot2::geom_point() +
+  xgx_annotate_filenames(dirs)
+
+</code></pre>
+
+
+</div>

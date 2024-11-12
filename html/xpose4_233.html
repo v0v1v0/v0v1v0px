@@ -1,0 +1,1449 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xpose.panel.default</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Default panel function for Xpose 4</h2>
+
+<h3>Description</h3>
+
+<p>This is the panel function for Xpose 4. This is not intended to be ised
+outside the <code>xpose.plot.default</code> function. Most of the arguments take
+their default values from xpose.data object but this can be overridden by
+supplying them as argument to <code>xpose.plot.default</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xpose.panel.default(
+  x,
+  y,
+  object,
+  subscripts,
+  groups = object@Prefs@Xvardef$id,
+  grp.col = NULL,
+  iplot = NULL,
+  inclZeroWRES = FALSE,
+  onlyfirst = FALSE,
+  samp = NULL,
+  xvarnam = NULL,
+  yvarnam = NULL,
+  PI = NULL,
+  PI.subset = NULL,
+  PI.bin.table = NULL,
+  PI.real = NULL,
+  PI.mirror = NULL,
+  PI.ci = NULL,
+  PPI = NULL,
+  PI.mean = FALSE,
+  PI.delta.mean = FALSE,
+  PI.x.median = TRUE,
+  PI.rug = "Default",
+  PI.rug.col = "orange",
+  PI.rug.lwd = 3,
+  PI.identify.outliers = TRUE,
+  PI.outliers.col = "red",
+  PI.outliers.pch = 8,
+  PI.outliers.cex = 1,
+  PI.limits = c(0.025, 0.975),
+  PI.arcol = "lightgreen",
+  PI.up.lty = 2,
+  PI.up.type = "l",
+  PI.up.col = "black",
+  PI.up.lwd = 2,
+  PI.down.lty = 2,
+  PI.down.type = "l",
+  PI.down.col = "black",
+  PI.down.lwd = 2,
+  PI.med.lty = 1,
+  PI.med.type = "l",
+  PI.med.col = "black",
+  PI.med.lwd = 2,
+  PI.mean.lty = 3,
+  PI.mean.type = "l",
+  PI.mean.col = "black",
+  PI.mean.lwd = 2,
+  PI.delta.mean.lty = 3,
+  PI.delta.mean.type = "l",
+  PI.delta.mean.col = "black",
+  PI.delta.mean.lwd = 2,
+  PI.real.up.lty = 2,
+  PI.real.up.type = "l",
+  PI.real.up.col = "red",
+  PI.real.up.lwd = 2,
+  PI.real.down.lty = 2,
+  PI.real.down.type = "l",
+  PI.real.down.col = "red",
+  PI.real.down.lwd = 2,
+  PI.real.med.lty = 1,
+  PI.real.med.type = "l",
+  PI.real.med.col = "red",
+  PI.real.med.lwd = 2,
+  PI.real.mean.lty = 3,
+  PI.real.mean.type = "l",
+  PI.real.mean.col = "red",
+  PI.real.mean.lwd = 2,
+  PI.real.delta.mean.lty = 3,
+  PI.real.delta.mean.type = "l",
+  PI.real.delta.mean.col = "red",
+  PI.real.delta.mean.lwd = 2,
+  PI.mirror.up.lty = 2,
+  PI.mirror.up.type = "l",
+  PI.mirror.up.col = "darkgreen",
+  PI.mirror.up.lwd = 1,
+  PI.mirror.down.lty = 2,
+  PI.mirror.down.type = "l",
+  PI.mirror.down.col = "darkgreen",
+  PI.mirror.down.lwd = 1,
+  PI.mirror.med.lty = 1,
+  PI.mirror.med.type = "l",
+  PI.mirror.med.col = "darkgreen",
+  PI.mirror.med.lwd = 1,
+  PI.mirror.mean.lty = 3,
+  PI.mirror.mean.type = "l",
+  PI.mirror.mean.col = "darkgreen",
+  PI.mirror.mean.lwd = 1,
+  PI.mirror.delta.mean.lty = 3,
+  PI.mirror.delta.mean.type = "l",
+  PI.mirror.delta.mean.col = "darkgreen",
+  PI.mirror.delta.mean.lwd = 1,
+  PI.ci.up.arcol = "blue",
+  PI.ci.up.lty = 3,
+  PI.ci.up.type = "l",
+  PI.ci.up.col = "darkorange",
+  PI.ci.up.lwd = 2,
+  PI.ci.down.arcol = "blue",
+  PI.ci.down.lty = 3,
+  PI.ci.down.type = "l",
+  PI.ci.down.col = "darkorange",
+  PI.ci.down.lwd = 2,
+  PI.ci.med.arcol = "red",
+  PI.ci.med.lty = 4,
+  PI.ci.med.type = "l",
+  PI.ci.med.col = "darkorange",
+  PI.ci.med.lwd = 2,
+  PI.ci.mean.arcol = "purple",
+  PI.ci.mean.lty = 4,
+  PI.ci.mean.type = "l",
+  PI.ci.mean.col = "darkorange",
+  PI.ci.mean.lwd = 2,
+  PI.ci.delta.mean.arcol = "purple",
+  PI.ci.delta.mean.lty = 4,
+  PI.ci.delta.mean.type = "l",
+  PI.ci.delta.mean.col = "darkorange",
+  PI.ci.delta.mean.lwd = 2,
+  PI.ci.area.smooth = FALSE,
+  type = object@Prefs@Graph.prefs$type,
+  col = object@Prefs@Graph.prefs$col,
+  pch = object@Prefs@Graph.prefs$pch,
+  cex = object@Prefs@Graph.prefs$cex,
+  lty = object@Prefs@Graph.prefs$lty,
+  lwd = object@Prefs@Graph.prefs$lwd,
+  fill = object@Prefs@Graph.prefs$fill,
+  ids = NULL,
+  idsmode = object@Prefs@Graph.prefs$idsmode,
+  idsext = object@Prefs@Graph.prefs$idsext,
+  idscex = object@Prefs@Graph.prefs$idscex,
+  idsdir = object@Prefs@Graph.prefs$idsdir,
+  abline = object@Prefs@Graph.prefs$abline,
+  abllwd = object@Prefs@Graph.prefs$abllwd,
+  abllty = object@Prefs@Graph.prefs$abllty,
+  ablcol = object@Prefs@Graph.prefs$ablcol,
+  smooth = object@Prefs@Graph.prefs$smooth,
+  smlwd = object@Prefs@Graph.prefs$smlwd,
+  smlty = object@Prefs@Graph.prefs$smlty,
+  smcol = object@Prefs@Graph.prefs$smcol,
+  smspan = object@Prefs@Graph.prefs$smspan,
+  smdegr = object@Prefs@Graph.prefs$smdegr,
+  smooth.for.groups = NULL,
+  lmline = object@Prefs@Graph.prefs$lmline,
+  lmlwd = object@Prefs@Graph.prefs$lmlwd,
+  lmlty = object@Prefs@Graph.prefs$lmlty,
+  lmcol = object@Prefs@Graph.prefs$lmcol,
+  suline = object@Prefs@Graph.prefs$suline,
+  sulwd = object@Prefs@Graph.prefs$sulwd,
+  sulty = object@Prefs@Graph.prefs$sulty,
+  sucol = object@Prefs@Graph.prefs$sucol,
+  suspan = object@Prefs@Graph.prefs$suspan,
+  sudegr = object@Prefs@Graph.prefs$sudegr,
+  grid = object@Prefs@Graph.prefs$grid,
+  logy = FALSE,
+  logx = FALSE,
+  force.x.continuous = FALSE,
+  bwhoriz = object@Prefs@Graph.prefs$bwhoriz,
+  bwratio = object@Prefs@Graph.prefs$bwratio,
+  bwvarwid = object@Prefs@Graph.prefs$bwvarwid,
+  bwdotpch = object@Prefs@Graph.prefs$bwdotpch,
+  bwdotcol = object@Prefs@Graph.prefs$bwdotcol,
+  bwdotcex = object@Prefs@Graph.prefs$bwdotcex,
+  bwreccol = object@Prefs@Graph.prefs$bwreccol,
+  bwrecfill = object@Prefs@Graph.prefs$bwrecfill,
+  bwreclty = object@Prefs@Graph.prefs$bwreclty,
+  bwreclwd = object@Prefs@Graph.prefs$bwreclwd,
+  bwumbcol = object@Prefs@Graph.prefs$bwumbcol,
+  bwumblty = object@Prefs@Graph.prefs$bwumblty,
+  bwumblwd = object@Prefs@Graph.prefs$bwumblwd,
+  bwoutcol = object@Prefs@Graph.prefs$bwoutcol,
+  bwoutcex = object@Prefs@Graph.prefs$bwoutcex,
+  bwoutpch = object@Prefs@Graph.prefs$bwoutpch,
+  autocorr = FALSE,
+  vline = NULL,
+  vllwd = 3,
+  vllty = 2,
+  vlcol = "grey",
+  hline = NULL,
+  hllwd = 3,
+  hllty = 1,
+  hlcol = "grey",
+  pch.ip.sp = pch,
+  cex.ip.sp = cex,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>Name(s) of the x-variable.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>y</code></td>
+<td>
+<p>Name(s) of the y-variable.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An xpose.data object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>subscripts</code></td>
+<td>
+<p>The standard Trellis subscripts argument (see
+<code>xyplot</code>)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>groups</code></td>
+<td>
+<p>Name of the variable used for superpose plots.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>grp.col</code></td>
+<td>
+<p>Logical value indicating whether or not to use colour
+highlighting when groups are specified. NULL means no highlighting, while
+TRUE will identify group members by colour.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>iplot</code></td>
+<td>
+<p>Is this an individual plots matrix? Internal use only.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>inclZeroWRES</code></td>
+<td>
+<p>Logical value indicating whether rows with WRES=0 is
+included in the plot.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>onlyfirst</code></td>
+<td>
+<p>Logical value indicating whether only the first row per
+individual is included in the plot.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>samp</code></td>
+<td>
+<p>An integer between 1 and object@Nsim
+(see<code>xpose.data-class</code>) specifying which of the simulated data
+sets to extract from SData.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xvarnam</code></td>
+<td>
+<p>Character string with the name of the x-variable.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>yvarnam</code></td>
+<td>
+<p>Character string with the name of the y-variable.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI</code></td>
+<td>
+<p>Either "lines", "area" or "both" specifying whether prediction
+intervals (as lines, as a shaded area or both) should be computed from the
+data in <code>SData</code> and added to the display. <code>NULL</code> means no
+prediction interval.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.subset</code></td>
+<td>
+<p>The subset to be used for the PI.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.bin.table</code></td>
+<td>
+<p>The table used to create VPC plots.  Has a specific
+format created by <code>read.npc.vpc.results</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.real</code></td>
+<td>
+<p>Plot the percentiles of the real data in the various bins.
+values can be NULL or TRUE.  Note that for a bin with few actual
+observations the percentiles will be approximate.  For example, the 95th
+percentile of 4 data points will always be the largest of the 4 data points.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mirror</code></td>
+<td>
+<p>Plot the percentiles of one simulated data set in each bin.
+values allowed are <code>NULL</code>, <code>TRUE</code> or <code>AN.INTEGER.VALUE</code>.
+<code>TRUE</code> takes the first mirror from <code>PI.bin.table</code> and
+<code>AN.INTEGER.VALUE</code> can be <code>1, 2, ...{} n</code> where <code>n</code> is the
+number of mirror's output in the <code>PI.bin.table</code>.  Used mainly by
+<code>xpose.VPC</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci</code></td>
+<td>
+<p>Plot the prediction interval of the simulated data's
+percentiles for each bin. Values can be <code>"both", "area" or "lines"</code>
+This can be thought of as a prediction interval about the <code>PI.real</code> or
+a confidence interval about the <code>PI</code>.  However, note that with
+increasing number of simulations the CI will not go towards zero because the
+interval is also dependent on the size of the data set.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PPI</code></td>
+<td>
+<p>The plot prediction interval. Has a specific format that must be
+followed.  See <code>setup.PPI</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mean</code></td>
+<td>
+<p>Should the mean be plotted in the VPCs? TRUE or FALSE.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.delta.mean</code></td>
+<td>
+<p>Should the delta mean be plotted in the VPCs? TRUE or
+FALSE.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.x.median</code></td>
+<td>
+<p>Should the x-location of percentile lines in a bin be 
+marked at the median of the x-values? (<code>TRUE</code> or <code>FALSE</code>)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.rug</code></td>
+<td>
+<p>Should there be markings on the plot showing where the binning intervals 
+for the VPC are 
+(or the locations of the independent variable used for each VPC calculation if binning is not used)?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.rug.col</code></td>
+<td>
+<p>Color of the PI.rug.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.rug.lwd</code></td>
+<td>
+<p>Linw width of the PI.rug.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.identify.outliers</code></td>
+<td>
+<p>Should outlying percentiles of the real data be highlighted? (TRUE of FALSE)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.outliers.col</code></td>
+<td>
+<p>Color of PI.identify.outliers points</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.outliers.pch</code></td>
+<td>
+<p>pch of PI.identify.outliers points</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.outliers.cex</code></td>
+<td>
+<p>cex of PI.identify.outliers points</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.limits</code></td>
+<td>
+<p>A vector of two values that describe the limits of the
+prediction interval that should be displayed.  For example <code>c(0.025,
+0.975)</code>.  These limits should be found in the ‘<span class="file">PI.bin.table</span>’ table.
+These limits are also used as the percentages for the <code>PI.real,
+PI.mirror</code> and <code>PI.ci</code>.  However, the confidence interval in
+<code>PI.ci</code> is always the one defined in the <code>PI.bin.table</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.arcol</code></td>
+<td>
+<p>The color of the <code>PI</code> area</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.up.lty</code></td>
+<td>
+<p>The upper line type. can be "dotted" or "dashed", etc.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.up.type</code></td>
+<td>
+<p>The upper type used for plotting.  Defaults to a line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.up.col</code></td>
+<td>
+<p>The upper line color</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.up.lwd</code></td>
+<td>
+<p>The upper line width</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.down.lty</code></td>
+<td>
+<p>The lower line type. can be "dotted" or "dashed", etc.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.down.type</code></td>
+<td>
+<p>The lower type used for plotting.  Defaults to a line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.down.col</code></td>
+<td>
+<p>The lower line color</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.down.lwd</code></td>
+<td>
+<p>The lower line width</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.med.lty</code></td>
+<td>
+<p>The median line type. can be "dotted" or "dashed", etc.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.med.type</code></td>
+<td>
+<p>The median type used for plotting.  Defaults to a line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.med.col</code></td>
+<td>
+<p>The median line color</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.med.lwd</code></td>
+<td>
+<p>The median line width</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mean.lty</code></td>
+<td>
+<p>The mean line type. can be "dotted" or "dashed", etc.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mean.type</code></td>
+<td>
+<p>The mean type used for plotting.  Defaults to a line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mean.col</code></td>
+<td>
+<p>The mean line color</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mean.lwd</code></td>
+<td>
+<p>The mean line width</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.delta.mean.lty</code></td>
+<td>
+<p>The delta.mean line type. can be "dotted" or
+"dashed", etc.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.delta.mean.type</code></td>
+<td>
+<p>The delta.mean type used for plotting.  Defaults
+to a line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.delta.mean.col</code></td>
+<td>
+<p>The delta.mean line color</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.delta.mean.lwd</code></td>
+<td>
+<p>The delta.mean line width</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.real.up.lty</code></td>
+<td>
+<p>The upper line type. can be "dotted" or "dashed", etc.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.real.up.type</code></td>
+<td>
+<p>The upper type used for plotting.  Defaults to a
+line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.real.up.col</code></td>
+<td>
+<p>The upper line color</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.real.up.lwd</code></td>
+<td>
+<p>The upper line width</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.real.down.lty</code></td>
+<td>
+<p>The lower line type. can be "dotted" or "dashed",
+etc.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.real.down.type</code></td>
+<td>
+<p>The lower type used for plotting.  Defaults to a
+line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.real.down.col</code></td>
+<td>
+<p>The lower line color</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.real.down.lwd</code></td>
+<td>
+<p>The lower line width</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.real.med.lty</code></td>
+<td>
+<p>The median line type. can be "dotted" or "dashed",
+etc.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.real.med.type</code></td>
+<td>
+<p>The median type used for plotting.  Defaults to a
+line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.real.med.col</code></td>
+<td>
+<p>The median line color</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.real.med.lwd</code></td>
+<td>
+<p>The median line width</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.real.mean.lty</code></td>
+<td>
+<p>The mean line type. can be "dotted" or "dashed",
+etc.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.real.mean.type</code></td>
+<td>
+<p>The mean type used for plotting.  Defaults to a
+line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.real.mean.col</code></td>
+<td>
+<p>The mean line color</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.real.mean.lwd</code></td>
+<td>
+<p>The mean line width</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.real.delta.mean.lty</code></td>
+<td>
+<p>The delta.mean line type. can be "dotted" or
+"dashed", etc.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.real.delta.mean.type</code></td>
+<td>
+<p>The delta.mean type used for plotting.
+Defaults to a line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.real.delta.mean.col</code></td>
+<td>
+<p>The delta.mean line color</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.real.delta.mean.lwd</code></td>
+<td>
+<p>The delta.mean line width</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mirror.up.lty</code></td>
+<td>
+<p>The upper line type. can be "dotted" or "dashed",
+etc.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mirror.up.type</code></td>
+<td>
+<p>The upper type used for plotting.  Defaults to a
+line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mirror.up.col</code></td>
+<td>
+<p>The upper line color</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mirror.up.lwd</code></td>
+<td>
+<p>The upper line width</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mirror.down.lty</code></td>
+<td>
+<p>The lower line type. can be "dotted" or "dashed",
+etc.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mirror.down.type</code></td>
+<td>
+<p>The lower type used for plotting.  Defaults to a
+line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mirror.down.col</code></td>
+<td>
+<p>The lower line color</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mirror.down.lwd</code></td>
+<td>
+<p>The lower line width</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mirror.med.lty</code></td>
+<td>
+<p>The median line type. can be "dotted" or "dashed",
+etc.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mirror.med.type</code></td>
+<td>
+<p>The median type used for plotting.  Defaults to a
+line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mirror.med.col</code></td>
+<td>
+<p>The median line color</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mirror.med.lwd</code></td>
+<td>
+<p>The median line width</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mirror.mean.lty</code></td>
+<td>
+<p>The mean line type. can be "dotted" or "dashed",
+etc.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mirror.mean.type</code></td>
+<td>
+<p>The mean type used for plotting.  Defaults to a
+line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mirror.mean.col</code></td>
+<td>
+<p>The mean line color</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mirror.mean.lwd</code></td>
+<td>
+<p>The mean line width</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mirror.delta.mean.lty</code></td>
+<td>
+<p>The delta.mean line type. can be "dotted" or
+"dashed", etc.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mirror.delta.mean.type</code></td>
+<td>
+<p>The delta.mean type used for plotting.
+Defaults to a line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mirror.delta.mean.col</code></td>
+<td>
+<p>The delta.mean line color</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.mirror.delta.mean.lwd</code></td>
+<td>
+<p>The delta.mean line width</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.up.arcol</code></td>
+<td>
+<p>The color of the upper <code>PI.ci</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.up.lty</code></td>
+<td>
+<p>The upper line type. can be "dotted" or "dashed", etc.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.up.type</code></td>
+<td>
+<p>The upper type used for plotting.  Defaults to a line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.up.col</code></td>
+<td>
+<p>The upper line color</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.up.lwd</code></td>
+<td>
+<p>The upper line width</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.down.arcol</code></td>
+<td>
+<p>The color of the lower <code>PI.ci</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.down.lty</code></td>
+<td>
+<p>The lower line type. can be "dotted" or "dashed", etc.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.down.type</code></td>
+<td>
+<p>The lower type used for plotting.  Defaults to a
+line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.down.col</code></td>
+<td>
+<p>The lower line color</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.down.lwd</code></td>
+<td>
+<p>The lower line width</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.med.arcol</code></td>
+<td>
+<p>The color of the median <code>PI.ci</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.med.lty</code></td>
+<td>
+<p>The median line type. can be "dotted" or "dashed", etc.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.med.type</code></td>
+<td>
+<p>The median type used for plotting.  Defaults to a
+line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.med.col</code></td>
+<td>
+<p>The median line color</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.med.lwd</code></td>
+<td>
+<p>The median line width</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.mean.arcol</code></td>
+<td>
+<p>The color of the mean <code>PI.ci</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.mean.lty</code></td>
+<td>
+<p>The mean line type. can be "dotted" or "dashed", etc.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.mean.type</code></td>
+<td>
+<p>The mean type used for plotting.  Defaults to a line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.mean.col</code></td>
+<td>
+<p>The mean line color</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.mean.lwd</code></td>
+<td>
+<p>The mean line width</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.delta.mean.arcol</code></td>
+<td>
+<p>The color of the delta.mean <code>PI.ci</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.delta.mean.lty</code></td>
+<td>
+<p>The delta.mean line type. can be "dotted" or
+"dashed", etc.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.delta.mean.type</code></td>
+<td>
+<p>The delta.mean type used for plotting.
+Defaults to a line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.delta.mean.col</code></td>
+<td>
+<p>The delta.mean line color</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.delta.mean.lwd</code></td>
+<td>
+<p>The delta.mean line width</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.ci.area.smooth</code></td>
+<td>
+<p>Should the "area" for <code>PI.ci</code> be smoothed to
+match the "lines" argument? Allowed values are <code>TRUE/FALSE</code>. The "area"
+is set by default to show the bins used in the <code>PI.ci</code> computation.  By
+smoothing, information is lost and, in general, the confidence intervals
+will be smaller than they are in reality.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>type</code></td>
+<td>
+<p>1-character string giving the type of plot desired.  The
+following values are possible, for details, see 'plot': '"p"' for points,
+'"l"' for lines, '"o"' for over-plotted points and lines, '"b"', '"c"') for
+(empty if '"c"') points joined by lines, '"s"' and '"S"' for stair steps and
+'"h"' for histogram-like vertical lines.  Finally, '"n"' does not produce
+any points or lines.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col</code></td>
+<td>
+<p>The color for lines and points. Specified as an integer or a text
+string. A full list is obtained by the R command <code>colours()</code>. The
+default is blue (col=4).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pch</code></td>
+<td>
+<p>The plotting character, or symbol, to use. Specified as an
+integer. See R help on <code>points</code>. The default is an open circle.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cex</code></td>
+<td>
+<p>The amount by which plotting text and symbols should be scaled
+relative to the default. 'NULL' and 'NA' are equivalent to '1.0'.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lty</code></td>
+<td>
+<p>The line type. Line types can either be specified as an integer
+(0=blank, 1=solid, 2=dashed, 3=dotted, 4=dotdash, 5=longdash, 6=twodash) or
+as one of the character strings '"blank"', '"solid"', '"dashed"',
+'"dotted"', '"dotdash"', '"longdash"', or '"twodash"', where '"blank"' uses
+'invisible lines' (i.e., doesn't draw them).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lwd</code></td>
+<td>
+<p>the width for lines. Specified as an integer. The default is 1.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fill</code></td>
+<td>
+<p>fill for areas in plot</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ids</code></td>
+<td>
+<p>Logical value specifying whether to label data points.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>idsmode</code></td>
+<td>
+<p>Determines the way text labels are added to plots.
+<code>NULL</code> means that only extreme points are labelled. Non-<code>NULL</code>
+means all data points are labelled. (See <code>link{xpose.plot.default}</code>)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>idsext</code></td>
+<td>
+<p>specifies the extent of the extremes to be used in labelling
+points. The default is 0.05 (only the most extreme 5% of points are
+labelled).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>idscex</code></td>
+<td>
+<p>the amount by which labels should be scaled relative to the
+default. 'NULL' and 'NA' are equivalent to '1.0'.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>idsdir</code></td>
+<td>
+<p>a string indicating the directions of the extremes to include
+in labelling. Possible values are "up", "down" and "both".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>abline</code></td>
+<td>
+<p>Vector of arguments to the <code>panel.abline</code>
+function. No abline is drawn if <code>NULL</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>abllwd</code></td>
+<td>
+<p>Line width of any abline.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>abllty</code></td>
+<td>
+<p>Line type of any abline.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ablcol</code></td>
+<td>
+<p>Line colour of any abline.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>smooth</code></td>
+<td>
+<p>A <code>NULL</code> value indicates that no superposed line should
+be added to the graph. If <code>TRUE</code> then a smooth of the data will be
+superimposed.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>smlwd</code></td>
+<td>
+<p>Line width of the x-y smooth.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>smlty</code></td>
+<td>
+<p>Line type of the x-y smooth.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>smcol</code></td>
+<td>
+<p>Line color of the x-y smooth.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>smspan</code></td>
+<td>
+<p>The smoothness parameter for the x-y smooth. The default is
+0.667. An argument to <code>panel.loess</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>smdegr</code></td>
+<td>
+<p>The degree of the polynomials to be used for the x-y smooth,
+up to 2. The default is 1. An argument to
+<code>panel.loess</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>smooth.for.groups</code></td>
+<td>
+<p>Should a smooth for each group be drawn?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lmline</code></td>
+<td>
+<p>logical variable specifying whether a linear regression line
+should be superimposed over an <code>xyplot</code>. <code>NULL</code> ~
+FALSE. (<code>y~x</code>)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lmlwd</code></td>
+<td>
+<p>Line width of the lmline.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lmlty</code></td>
+<td>
+<p>Line type of the lmline.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lmcol</code></td>
+<td>
+<p>Line colour of the lmline.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>suline</code></td>
+<td>
+<p>A <code>NULL</code> value indicates that no superposed line should
+be added to the graph. If non-<code>NULL</code> then this should be the vector
+(the same length as y) of data points to be used for the smoothed superposed
+line.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sulwd</code></td>
+<td>
+<p>Line width of the superposed smooth.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sulty</code></td>
+<td>
+<p>Line type of the superposed smooth.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sucol</code></td>
+<td>
+<p>Line color of the superposed smooth.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>suspan</code></td>
+<td>
+<p>The smoothness parameter. The default is 0.667. An argument to
+<code>panel.loess</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sudegr</code></td>
+<td>
+<p>The degree of the polynomials to be used, up to 2. The default
+is 1. An argument to <code>panel.loess</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>grid</code></td>
+<td>
+<p>logical value indicating whether a visual reference grid should
+be added to the graph. (Could use arguments for line type, color etc).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>logy</code></td>
+<td>
+<p>Logical value indicating whether the y-axis should be
+logarithmic.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>logx</code></td>
+<td>
+<p>Logical value indicating whether the y-axis should be
+logarithmic.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>force.x.continuous</code></td>
+<td>
+<p>Logical value indicating whether x-values should
+be taken as continuous, even if categorical.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwhoriz</code></td>
+<td>
+<p>logical value indicating whether box and whiskers should be
+horizontal or not. The default is FALSE.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwratio</code></td>
+<td>
+<p>Ratio of box height to inter-box space. The default is 1.5.
+An argument for <code>panel.bwplot</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwvarwid</code></td>
+<td>
+<p>Logical. If TRUE, widths of boxplots are proportional to the
+number of points used in creating it. The default is FALSE. An argument for
+<code>panel.bwplot</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwdotpch</code></td>
+<td>
+<p>Graphical parameter controlling the dot plotting character
+in boxplots. 'bwdotpch="|"' is treated specially, by replacing the dot with
+a line. The default is 16. An argument for
+<code>panel.bwplot</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwdotcol</code></td>
+<td>
+<p>Graphical parameter controlling the dot colour in boxplots -
+an integer or string. See 'col'. The default is black. An argument for
+<code>panel.bwplot</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwdotcex</code></td>
+<td>
+<p>The amount by which plotting text and symbols should be
+scaled relative to the default in boxplots. 'NULL' and 'NA' are equivalent
+to '1.0'. An argument for <code>panel.bwplot</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwreccol</code></td>
+<td>
+<p>The colour to use for the box rectangle in boxplots - an
+integer or string.  The default is blue. See
+<code>trellis.par.get</code> and "box.rectangle".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwrecfill</code></td>
+<td>
+<p>The colour to use for filling the box rectangle in boxplots
+- an integer or string. The default is transparent (none). See
+<code>trellis.par.get</code> and "box.rectangle".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwreclty</code></td>
+<td>
+<p>The line type for the box rectangle in boxplots - an integer
+or string.  The default is solid. See <code>trellis.par.get</code>
+and "box.rectangle".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwreclwd</code></td>
+<td>
+<p>The width of the lines for the box rectangle in boxplots -
+an integer. The default is 1. See <code>trellis.par.get</code> and
+"box.rectangle".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwumbcol</code></td>
+<td>
+<p>The colour to use for the umbrellas in boxplots - an integer
+or string.  The default is blue. See <code>trellis.par.get</code>
+and "box.umbrella".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwumblty</code></td>
+<td>
+<p>The line type for the umbrellas in boxplots - an integer or
+string. The default is solid.See <code>trellis.par.get</code> and
+"box.umbrella".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwumblwd</code></td>
+<td>
+<p>the width of the lines for the umbrellas in boxplots - an
+integer. The default is 1. See <code>trellis.par.get</code> and
+"box.umbrella".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwoutcol</code></td>
+<td>
+<p>The colour to use for the outliers in boxplots - an integer
+or string.  The default is blue. See <code>trellis.par.get</code>
+and "box.symbol".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwoutcex</code></td>
+<td>
+<p>The amount by which outlier points should be scaled relative
+to the default in boxplots. 'NULL' and 'NA' are equivalent to '1.0'. The
+default is 0.8. See <code>trellis.par.get</code> and "box.symbol".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bwoutpch</code></td>
+<td>
+<p>The plotting character, or symbol, to use for outlier points
+in boxplots.  Specified as an integer. See R help on 'points'. The default
+is an open circle. See <code>trellis.par.get</code> and
+"box.symbol".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>autocorr</code></td>
+<td>
+<p>Is this an autocorrelation plot?  Values can be
+<code>TRUE/FALSE</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>vline</code></td>
+<td>
+<p>Add a vertical line to the plot at the values specified.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>vllwd</code></td>
+<td>
+<p>Width (lwd) of vertical line</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>vllty</code></td>
+<td>
+<p>Line type (lty) for vertical line</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>vlcol</code></td>
+<td>
+<p>Color (col) of vertical line</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hline</code></td>
+<td>
+<p>Add a horizontal line to the plot at the values specified.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hllwd</code></td>
+<td>
+<p>Width (lwd) of horizontal line</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hllty</code></td>
+<td>
+<p>Line type (lty) for horizontal line</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hlcol</code></td>
+<td>
+<p>Color (col) of horizontal line</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pch.ip.sp</code></td>
+<td>
+<p>If there is a panel with just one observation then this
+specifies the type of points for the DV, IPRED and PRED respectively.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cex.ip.sp</code></td>
+<td>
+<p>If there is a panel with just one observation then this
+specifies the size of the points for the DV, IPRED and PRED respectively.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Other arguments that may be needed in the function.</p>
+</td>
+</tr>
+</table>
+<h3>Author(s)</h3>
+
+<p>E. Niclas Jonsson, Mats Karlsson, Justin Wilkins and Andrew Hooker
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xpose.data-class</code>, Cross-references above.
+</p>
+
+
+</div>

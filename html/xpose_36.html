@@ -1,0 +1,73 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>edit_xpose_data</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Master xpdb editing function</h2>
+
+<h3>Description</h3>
+
+<p>Generic function used to build dedicated editing functions
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">edit_xpose_data(.fun, .fname, .data, ..., .problem, .source, .where)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>.fun</code></td>
+<td>
+<p>An editing function to be applied to the data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.fname</code></td>
+<td>
+<p>The name of the editing function.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.data</code></td>
+<td>
+<p>An xpose database object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Name-value pairs of expressions. Use <code>NULL</code> to drop a variable.
+</p>
+<p>These arguments are automatically quoted and evaluated in the 
+context of the data frame. They support unquoting and splicing. 
+See the dplyr vignette("programming") for an introduction to these concepts.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.problem</code></td>
+<td>
+<p>The problem from which the data will be modified</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.source</code></td>
+<td>
+<p>The source of the data in the xpdb. Can either be 'data' or an output 
+file extension e.g. 'phi'.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.where</code></td>
+<td>
+<p>A vector of element names to be edited in special (e.g. 
+<code>.where = c('vpc_dat', 'aggr_obs')</code> with vpc).</p>
+</td>
+</tr>
+</table>
+</div>

@@ -1,0 +1,208 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>data_extract_or_assign</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Extract or assign data from an xpose.data object.</h2>
+
+<h3>Description</h3>
+
+<p>Extracts or assigns the data from the Data or SData slots in an "xpose.data" object.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">Data(object, inclZeroWRES = FALSE, onlyfirst = FALSE, subset = NULL)
+
+Data(object, quiet = TRUE, keep.structure = F) &lt;- value
+
+SData(
+  object,
+  inclZeroWRES = FALSE,
+  onlyfirst = FALSE,
+  subset = NULL,
+  samp = NULL
+)
+
+SData(object) &lt;- value
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An "xpose.data" object</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>inclZeroWRES</code></td>
+<td>
+<p>Logical value indicating whether rows with WRES==0
+should be included in the extracted data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>onlyfirst</code></td>
+<td>
+<p>Logical value indicating whether only the first line per
+individual should be included in the extracted data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>subset</code></td>
+<td>
+<p>Expression with which the extracted data should be subset (see
+<code>xsubset</code>)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>quiet</code></td>
+<td>
+<p><code>TRUE or FALSE</code> if <code>FALSE</code> then some more information
+is printed out when adding data to an Xpose object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>keep.structure</code></td>
+<td>
+<p><code>TRUE or FALSE</code> if<code>FALSE</code> then values are
+converted to continuous or categorical according to the rules set up by
+xpose using object@Prefs@Cat.levels, object@Prefs@DV.cat.levels and the
+values in the "catab" file.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>value</code></td>
+<td>
+<p>An R data.frame.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>samp</code></td>
+<td>
+<p>An integer between 1 and object@Nsim
+(see<code>xpose.data-class</code>) specifying which of the simulated data
+sets to extract from SData.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>When using Data to assign a data.frame to the Data slot in the "xpose.data"
+object a number of things happen:
+</p>
+<p>Each column in the data.frame is checked and set to factor if the number of
+unique values are less than the value of Cat.levels (see
+<code>xpose.prefs-class</code>).
+</p>
+<p>It is checked which of the predefined xpose data variables that exists in
+the data.frame. The variable definitions that does not exist are set to NULL.
+</p>
+<p>The column identified by the <code>dv</code> xpose variable definition, is checked
+and set to factor if the number of unique values are less than or equal to
+the DV.Cat.levels (see <code>xpose.prefs-class</code>).
+</p>
+<p>Finally, each column name in the data.frame is checked for a label (see
+<code>xpose.prefs-class</code>). If it is non-existent, the label is set to
+the column name.
+</p>
+<p>When SData is used to assign a data.frame to the SData slot it is first
+checked that the number of rows in the SData data.frame is an even multiple
+of the number of rown in Data. Next, each column in the SData data.frame is
+assigned the same class as the corresponding column in the Data data.frame
+(it is required that the columns are the same in Data and SData). Finally,
+an extra column, "iter", is added to SData, which indicates the iteration
+number that each row belongs to. At the same time, the Nsim slot of the
+"xpose.data" object is set to the number of iterations (see
+<code>nsim</code>).
+</p>
+
+
+<h3>Value</h3>
+
+<p>Returns a data.frame from the Data or SData slots, excluding rows as
+indicated by the arguments.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul>
+<li> <p><code>Data()</code>: Extract data
+</p>
+</li>
+<li> <p><code>Data(object, quiet = TRUE, keep.structure = F) &lt;- value</code>: assign data
+</p>
+</li>
+<li> <p><code>SData()</code>: extract simulated data
+</p>
+</li>
+<li> <p><code>SData(object) &lt;- value</code>: assign simulated data
+</p>
+</li>
+</ul>
+<h3>Author(s)</h3>
+
+<p>Niclas Jonsson
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xpose.data-class</code>,<code>xpose.prefs-class</code>
+</p>
+<p>Other data functions: 
+<code>add_transformed_columns</code>,
+<code>change_graphical_parameters</code>,
+<code>change_misc_parameters</code>,
+<code>compute.cwres()</code>,
+<code>data.checkout()</code>,
+<code>db.names()</code>,
+<code>export.graph.par()</code>,
+<code>export.variable.definitions()</code>,
+<code>import.graph.par()</code>,
+<code>import.variable.definitions()</code>,
+<code>make.sb.data()</code>,
+<code>nsim()</code>,
+<code>par_cov_summary</code>,
+<code>read.TTE.sim.data()</code>,
+<code>read.nm.tables()</code>,
+<code>read_NM_output</code>,
+<code>read_nm_table()</code>,
+<code>simprazExample()</code>,
+<code>tabulate.parameters()</code>,
+<code>xlabel()</code>,
+<code>xpose.data</code>,
+<code>xpose.print()</code>,
+<code>xpose4-package</code>,
+<code>xsubset()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+xpdb &lt;- simpraz.xpdb
+
+## Extract data
+my.dataframe &lt;- Data(xpdb)
+
+## Assign data
+Data(xpdb) &lt;- my.dataframe
+
+## Extract simulated data
+my.simulated.dataframe &lt;- SData(xpdb)
+
+## Assign simulated data
+SData(xpdb) &lt;- my.simulated.dataframe
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,55 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>treeChildren</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Returns the children of a derivation tree.</h2>
+
+<h3>Description</h3>
+
+<p><code>treeChildren()</code> returns the children of a derivation tree
+represented as a list of derivation trees.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">treeChildren(tree)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>tree</code></td>
+<td>
+<p>Derivation tree.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>The children of a derivation tree (a list of derivation trees).
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Access Tree Parts: 
+<code>filterANLid()</code>,
+<code>filterANL()</code>,
+<code>treeANL()</code>,
+<code>treeRoot()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">g&lt;-compileBNF(booleanGrammar())
+a&lt;-randomDerivationTree(g$Start, g)
+treeChildren(a) 
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,44 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>theme_xkcd</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Creates an XKCD theme</h2>
+
+<h3>Description</h3>
+
+<p>This function creates an XKCD theme
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">theme_xkcd()
+</code></pre>
+
+
+<h3>Value</h3>
+
+<p>A layer with the theme.
+</p>
+
+
+<h3>Note</h3>
+
+<p>See the vignette <code>vignette("xkcd-intro")</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+p &lt;- ggplot() + geom_point(aes(mpg, wt), data=mtcars) +
+     theme_xkcd()
+p
+
+## End(Not run)
+</code></pre>
+
+
+</div>

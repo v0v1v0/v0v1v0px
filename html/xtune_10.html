@@ -1,0 +1,221 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xtune</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Regularized regression incorporating external information</h2>
+
+<h3>Description</h3>
+
+<p><code>xtune</code> uses an Empirical Bayes approach to integrate external information into regularized regression models for both linear and categorical outcomes. It fits models with feature-specific penalty parameters based on external information.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xtune(
+  X,
+  Y,
+  Z = NULL,
+  U = NULL,
+  family = c("linear", "binary", "multiclass"),
+  c = 0.5,
+  epsilon = 5,
+  sigma.square = NULL,
+  message = TRUE,
+  control = list()
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>X</code></td>
+<td>
+<p>Numeric design matrix of explanatory variables (<code class="reqn">n</code> observations in rows, <code class="reqn">p</code> predictors in columns). <code>xtune</code> includes an intercept by default.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Y</code></td>
+<td>
+<p>Outcome vector of dimension <code class="reqn">n</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Z</code></td>
+<td>
+<p>Numeric information matrix about the predictors (<code class="reqn">p</code> rows, each corresponding to a predictor in X; <code class="reqn">q</code> columns of external information about the predictors, such as prior biological importance). If Z is the grouping of predictors, it is best if user codes it as a dummy variable (i.e. each column indicating whether predictors belong to a specific group).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>U</code></td>
+<td>
+<p>Covariates to be adjusted in the model (matrix with <code class="reqn">n</code> observations in rows, <code class="reqn">u</code> predictors in columns). Covariates are non-penalized in the model.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>family</code></td>
+<td>
+<p>The family of the model according to different types of outcomes including "linear", "binary", and "multiclass".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>c</code></td>
+<td>
+<p>The elastic-net mixing parameter ranging from 0 to 1. When  <code class="reqn">c</code> = 1, the model corresponds to Lasso. When <code class="reqn">c</code> is set to 0, it corresponds to Ridge. For values between 0 and 1 (with a default of 0.5), the model corresponds to the elastic net.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>epsilon</code></td>
+<td>
+<p>The parameter controls the boundary of the <code>alpha</code>. The maximum value that <code>alpha</code> could achieve equals to epsilon times of alpha max calculated by the pathwise coordinate descent. A larger value of epsilon indicates a stronger shrinkage effect (with a default of 5).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sigma.square</code></td>
+<td>
+<p>A user-supplied noise variance estimate. Typically, this is left unspecified, and the function automatically computes an estimated sigma square values using R package <code>selectiveinference</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>message</code></td>
+<td>
+<p>Generates diagnostic message in model fitting. Default is TRUE.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>control</code></td>
+<td>
+<p>Specifies <code>xtune</code> control object. See <code>xtune.control</code> for more details.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p><code>xtune</code> has two main usages:
+</p>
+
+<ul>
+<li>
+<p> The basic usage of it is to choose the tuning parameter <code class="reqn">\lambda</code> in elastic net regression using an
+Empirical Bayes approach, as an alternative to the widely-used cross-validation. This is done by calling <code>xtune</code> without specifying external information matrix Z.
+</p>
+</li>
+<li>
+<p> More importantly, if an external information Z about the predictors X is provided, <code>xtune</code> can allow predictor-specific shrinkage
+parameters for regression coefficients in penalized regression models. The idea is that Z might be informative for the effect-size of regression coefficients, therefore we can guide the penalized regression model using Z.
+</p>
+</li>
+</ul>
+<p>Please note that the number of rows in Z should match with the number of columns in X. Since each column in Z is a feature about X. <a href="https://github.com/JingxuanH/xtune">See here for more details on how to specify Z</a>.
+</p>
+<p>A majorization-minimization procedure is employed to fit <code>xtune</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>An object with S3 class <code>xtune</code> containing:
+</p>
+<table>
+<tr style="vertical-align: top;">
+<td><code>beta.est</code></td>
+<td>
+<p>The fitted vector of coefficients.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>penalty.vector</code></td>
+<td>
+<p>The estimated penalty vector applied to each regression coefficient. Similar to the <code>penalty.factor</code> argument in glmnet.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lambda</code></td>
+<td>
+<p>The estimated <code class="reqn">\lambda</code> value. Note that the lambda value is calculated to reflect that the fact that penalty factors are internally rescaled to sum to nvars in glmnet. Similar to the <code>lambda</code> argument in glmnet.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>alpha.est</code></td>
+<td>
+<p>The estimated second-level coefficient for prior covariate Z. The first value is the intercept of the second-level coefficient.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>n_iter</code></td>
+<td>
+<p>Number of iterations used until convergence.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>Same as in argument above</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sigma.square</code></td>
+<td>
+<p>The estimated sigma square value using <code>estimateVariance</code>, if <code>sigma.square</code> is left unspecified. When <code>family</code> equals to "binary" or "multiclass", the <code>sigma.square</code> equals to NULL.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>family</code></td>
+<td>
+<p>same as above</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>likelihood.score</code></td>
+<td>
+<p>A vector containing the marginal likelihood value of the fitted model at each iteration.</p>
+</td>
+</tr>
+</table>
+<h3>Author(s)</h3>
+
+<p>Jingxuan He and Chubing Zeng
+</p>
+
+
+<h3>See Also</h3>
+
+<p>predict_xtune, as well as glmnet.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## use simulated example data
+set.seed(1234567)
+data(example)
+X &lt;- example$X
+Y &lt;- example$Y
+Z &lt;- example$Z
+
+## Empirical Bayes tuning to estimate tuning parameter, as an alternative to cross-validation:
+
+fit.eb &lt;- xtune(X=X,Y=Y, family = "linear")
+fit.eb$lambda
+
+
+### compare with tuning parameter chosen by cross-validation, using glmnet
+
+fit.cv &lt;- glmnet::cv.glmnet(x=X,y=Y,alpha = 0.5)
+fit.cv$lambda.min
+
+
+## Feature-specific penalties based on external information Z:
+
+fit.diff &lt;- xtune(X=X,Y=Y,Z=Z, family = "linear")
+fit.diff$penalty.vector
+
+
+</code></pre>
+
+
+</div>

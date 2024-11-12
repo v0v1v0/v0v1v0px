@@ -1,0 +1,44 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>csv_options</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Parse comma-separated chunk options</h2>
+
+<h3>Description</h3>
+
+<p>For <span class="pkg">knitr</span> and R Markdown documents, code chunk options can be written
+using the comma-separated syntax (e.g., <code style="white-space: pre;">⁠opt1=value1, opt2=value2⁠</code>). This
+function parses these options and returns a list. If an option is not named,
+it will be treated as the chunk label.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">csv_options(x)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>The chunk options as a string.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A list of chunk options.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">xfun::csv_options("foo, eval=TRUE, fig.width=5, echo=if (TRUE) FALSE")
+</code></pre>
+
+
+</div>

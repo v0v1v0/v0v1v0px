@@ -1,0 +1,249 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>data.checkout</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Check through the source dataset to detect problems</h2>
+
+<h3>Description</h3>
+
+<p>This function graphically "checks out" the dataset to identify errors or
+inconsistencies.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">data.checkout(
+  obj = NULL,
+  datafile = ".ask.",
+  hlin = -99,
+  dotcol = "black",
+  dotpch = 16,
+  dotcex = 1,
+  idlab = "ID",
+  csv = NULL,
+  main = "Default",
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>obj</code></td>
+<td>
+<p>NULL or an xpose.data object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>datafile</code></td>
+<td>
+<p>A data file, suitable for import by
+<code>read.table</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hlin</code></td>
+<td>
+<p>An integer, specifying the line number on which the column
+headers appear.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dotcol</code></td>
+<td>
+<p>Colour for the dots in the dotplot. If obj is an xpose data
+object then the default is to use the same value as defined for
+box-and-whisker plots.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dotpch</code></td>
+<td>
+<p>Plotting character for the dots in the dotplot. If obj is an
+xpose data object then the default is to use the same value as defined for
+box-and-whisker plots.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dotcex</code></td>
+<td>
+<p>Relative scaling for the dots in the dotplot.  If obj is an
+xpose data object then the default is to use the same value as defined for
+box-and-whisker plots.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>idlab</code></td>
+<td>
+<p>The ID column label in the dataset.  Input as a text string.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>csv</code></td>
+<td>
+<p>Is the data file in CSV format (comma separated values)?  If the
+value is <code>NULL</code> then the user is asked at the command line.  If
+supplied to the function the value can be <code>TRUE/FALSE</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>The title to the plot. "default" means that Xpose creates a
+title.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Other arguments passed to <code>link[lattice]{dotplot}</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>This function creates a series of <code>dotplots</code>, one for each variable in
+the dataset, against individual ID. Outliers and clusters may easily be
+detected in this manner.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A stack of dotplots.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Niclas Jonsson, Andrew Hooker &amp; Justin Wilkins
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>dotplot</code>, <code>xpose.prefs-class</code>,
+<code>read.table</code>
+</p>
+<p>Other data functions: 
+<code>add_transformed_columns</code>,
+<code>change_graphical_parameters</code>,
+<code>change_misc_parameters</code>,
+<code>compute.cwres()</code>,
+<code>data_extract_or_assign</code>,
+<code>db.names()</code>,
+<code>export.graph.par()</code>,
+<code>export.variable.definitions()</code>,
+<code>import.graph.par()</code>,
+<code>import.variable.definitions()</code>,
+<code>make.sb.data()</code>,
+<code>nsim()</code>,
+<code>par_cov_summary</code>,
+<code>read.TTE.sim.data()</code>,
+<code>read.nm.tables()</code>,
+<code>read_NM_output</code>,
+<code>read_nm_table()</code>,
+<code>simprazExample()</code>,
+<code>tabulate.parameters()</code>,
+<code>xlabel()</code>,
+<code>xpose.data</code>,
+<code>xpose.print()</code>,
+<code>xpose4-package</code>,
+<code>xsubset()</code>
+</p>
+<p>Other specific functions: 
+<code>absval.cwres.vs.cov.bw()</code>,
+<code>absval.cwres.vs.pred()</code>,
+<code>absval.cwres.vs.pred.by.cov()</code>,
+<code>absval.iwres.cwres.vs.ipred.pred()</code>,
+<code>absval.iwres.vs.cov.bw()</code>,
+<code>absval.iwres.vs.idv()</code>,
+<code>absval.iwres.vs.ipred()</code>,
+<code>absval.iwres.vs.ipred.by.cov()</code>,
+<code>absval.iwres.vs.pred()</code>,
+<code>absval.wres.vs.cov.bw()</code>,
+<code>absval.wres.vs.idv()</code>,
+<code>absval.wres.vs.pred()</code>,
+<code>absval.wres.vs.pred.by.cov()</code>,
+<code>absval_delta_vs_cov_model_comp</code>,
+<code>addit.gof()</code>,
+<code>autocorr.cwres()</code>,
+<code>autocorr.iwres()</code>,
+<code>autocorr.wres()</code>,
+<code>basic.gof()</code>,
+<code>basic.model.comp()</code>,
+<code>cat.dv.vs.idv.sb()</code>,
+<code>cat.pc()</code>,
+<code>cov.splom()</code>,
+<code>cwres.dist.hist()</code>,
+<code>cwres.dist.qq()</code>,
+<code>cwres.vs.cov()</code>,
+<code>cwres.vs.idv()</code>,
+<code>cwres.vs.idv.bw()</code>,
+<code>cwres.vs.pred()</code>,
+<code>cwres.vs.pred.bw()</code>,
+<code>cwres.wres.vs.idv()</code>,
+<code>cwres.wres.vs.pred()</code>,
+<code>dOFV.vs.cov()</code>,
+<code>dOFV.vs.id()</code>,
+<code>dOFV1.vs.dOFV2()</code>,
+<code>dv.preds.vs.idv()</code>,
+<code>dv.vs.idv()</code>,
+<code>dv.vs.ipred()</code>,
+<code>dv.vs.ipred.by.cov()</code>,
+<code>dv.vs.ipred.by.idv()</code>,
+<code>dv.vs.pred()</code>,
+<code>dv.vs.pred.by.cov()</code>,
+<code>dv.vs.pred.by.idv()</code>,
+<code>dv.vs.pred.ipred()</code>,
+<code>gof()</code>,
+<code>ind.plots()</code>,
+<code>ind.plots.cwres.hist()</code>,
+<code>ind.plots.cwres.qq()</code>,
+<code>ipred.vs.idv()</code>,
+<code>iwres.dist.hist()</code>,
+<code>iwres.dist.qq()</code>,
+<code>iwres.vs.idv()</code>,
+<code>kaplan.plot()</code>,
+<code>par_cov_hist</code>,
+<code>par_cov_qq</code>,
+<code>parm.vs.cov()</code>,
+<code>parm.vs.parm()</code>,
+<code>pred.vs.idv()</code>,
+<code>ranpar.vs.cov()</code>,
+<code>runsum()</code>,
+<code>wres.dist.hist()</code>,
+<code>wres.dist.qq()</code>,
+<code>wres.vs.idv()</code>,
+<code>wres.vs.idv.bw()</code>,
+<code>wres.vs.pred()</code>,
+<code>wres.vs.pred.bw()</code>,
+<code>xpose.VPC()</code>,
+<code>xpose.VPC.both()</code>,
+<code>xpose.VPC.categorical()</code>,
+<code>xpose4-package</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Not run: 
+## We expect to find the required NONMEM run, table and data files for run
+## 5 in the current working directory 
+xpdb5 &lt;- xpose.data(5)
+
+data.checkout(xpdb5, datafile = "mydata.dta")
+data.checkout(datafile = "mydata.dta")
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

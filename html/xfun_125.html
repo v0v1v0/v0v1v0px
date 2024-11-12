@@ -1,0 +1,44 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>same_path</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Test if two paths are the same after they are normalized</h2>
+
+<h3>Description</h3>
+
+<p>Compare two paths after normalizing them with the same separator (<code>/</code>).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">same_path(p1, p2, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>p1, p2</code></td>
+<td>
+<p>Two vectors of paths.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Arguments to be passed to <code>normalize_path()</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Examples</h3>
+
+<pre><code class="language-R">library(xfun)
+same_path("~/foo", file.path(Sys.getenv("HOME"), "foo"))
+</code></pre>
+
+
+</div>

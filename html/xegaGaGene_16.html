@@ -1,0 +1,63 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaGaMutateGene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Mutate a gene.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaGaMutateGene</code> mutates a binary gene.
+The per-bit mutation rate is given by MutationRate().
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaGaMutateGene(gene, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>gene</code></td>
+<td>
+<p>A binary gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>The local configuration of the genetic algorithm</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A binary gene.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Mutation: 
+<code>xegaGaIVAdaptiveMutateGene()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">parm&lt;-function(x) {function() {return(x)}}
+lFxegaGaGene$BitMutationRate1&lt;-parm(1.0)
+gene1&lt;-xegaGaInitGene(lFxegaGaGene)
+xegaGaDecodeGene(gene1, lFxegaGaGene)
+lFxegaGaGene$BitMutationRate1()
+gene&lt;-xegaGaMutateGene(gene1, lFxegaGaGene)
+xegaGaDecodeGene(gene, lFxegaGaGene)
+</code></pre>
+
+
+</div>

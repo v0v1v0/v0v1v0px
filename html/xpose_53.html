@@ -1,0 +1,70 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>get_summary</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Access model summary data</h2>
+
+<h3>Description</h3>
+
+<p>Access model summary data from an xpdb object.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">get_summary(xpdb, .problem = NULL, .subprob = NULL, only_last = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>xpdb</code></td>
+<td>
+<p>An <code>xpose_data</code> object from which the summary data will be extracted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.problem</code></td>
+<td>
+<p>The .problem to be used, by default returns the last one for each label.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.subprob</code></td>
+<td>
+<p>The subproblem to be used, by default returns the last one for each label.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>only_last</code></td>
+<td>
+<p>Logical, if <code>TRUE</code> only the last record for each label is returned in case 
+of multiple problem and/or subproblem. If <code>FALSE</code> all values are returned.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A tibble of model summary.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xpose_data</code>, <code>template_titles</code>, <code>summary.xpose_data</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">run_summary &lt;- get_summary(xpdb_ex_pk)
+run_summary
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,77 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>fitted.tskrr</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>extract the predictions</h2>
+
+<h3>Description</h3>
+
+<p>This functions extracts the fitted predictions from a
+<code>tskrr</code> object or an object
+inheriting from that class. The <code>xnet</code>
+package provides an S4 generic for the function
+<code>fitted</code>  from the package <code>stats</code>,
+and a method for <code>tskrr</code> objects.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S3 method for class 'tskrr'
+fitted(object, labels = TRUE, ...)
+
+## S3 method for class 'linearFilter'
+fitted(object, ...)
+
+## S4 method for signature 'tskrr'
+fitted(object, labels = TRUE, ...)
+
+## S4 method for signature 'linearFilter'
+fitted(object, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>an object for which the extraction of model fitted values
+is meaningful.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>labels</code></td>
+<td>
+<p>a logical value indicating whether the labels should
+be shown. Defaults to TRUE</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>arguments passed to or from other methods.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>a numeric matrix with the predictions
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+data(drugtarget)
+
+mod &lt;- tskrr(drugTargetInteraction, targetSim, drugSim)
+pred &lt;- fitted(mod)
+
+</code></pre>
+
+
+</div>

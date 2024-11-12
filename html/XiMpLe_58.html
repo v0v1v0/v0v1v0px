@@ -1,0 +1,108 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>XiMpLe_doc,-class</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Classes XiMpLe_doc and XiMpLe.doc (old)</h2>
+
+<h3>Description</h3>
+
+<p>This class is used for objects that are returned by <code>parseXMLTree</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">is.XiMpLe.doc(x)
+
+as_XiMpLe_doc(obj, extra = list(), version = 2)
+
+## S4 method for signature 'XiMpLe.doc'
+as_XiMpLe_doc(obj, extra = list(), version = 2)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>An arbitrary <code>R</code> object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>obj</code></td>
+<td>
+<p>An object of old class <code>XiMpLe.doc</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>extra</code></td>
+<td>
+<p>A list of values to set the <code>extra</code> slot. Note that this will be applied recursively on child nodes also.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>version</code></td>
+<td>
+<p>Integer numeric,
+to set the <code>version</code> slot. Note that this will be applied recursively on child nodes also.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Class <code>XiMpLe.doc</code> is the older one,
+<code>XiMpLe_doc</code> was introduced with <code>XiMpLe</code> 0.11-1. It has two new slots
+(<code>extra</code> and <code>version</code>) that would have made it impossible to load old objects without issues. <code>XiMpLe_doc</code>
+inherits from <code>XiMpLe.doc</code>. You can convert old objects into valid new ones using the <code>as_XiMpLe_doc</code> method and
+are also advised to do so,
+as the <code>XiMpLe.doc</code> class might become deprecated in future releases.
+</p>
+<p>A contructor function <code>XiMpLe_doc(...)</code> is available to be used instead of <code>new("XiMpLe_doc",
+      ...)</code>.
+</p>
+<p>There's also <code>XiMpLe_doc_old(...)</code> to be used instead of <code>new("XiMpLe.doc",
+      ...)</code>, but you should not use that any longer.
+</p>
+
+
+<h3>Slots</h3>
+
+
+<dl>
+<dt><code>file</code></dt>
+<dd>
+<p>Character string, Name of the file.</p>
+</dd>
+<dt><code>xml</code></dt>
+<dd>
+<p>Either a named list of character values (attributes for the XML declaration of the file),
+or a list of <code>XiMpLe_node</code>s with tags whose names must start with a "?".</p>
+</dd>
+<dt><code>dtd</code></dt>
+<dd>
+<p>A named list, attributes for the doctype definition of the file.</p>
+</dd>
+<dt><code>children</code></dt>
+<dd>
+<p>A list of objects of class <code>XiMpLe_node</code> (<code>XiMpLe_doc</code> only),
+or
+<code>XiMpLe.node</code> (old, <code>XiMpLe.doc</code> only),
+representing the DOM structure of the XML document.</p>
+</dd>
+<dt><code>extra</code></dt>
+<dd>
+<p>A named list that can be used to store additional information on a document (<code>XiMpLe_doc</code> only).</p>
+</dd>
+<dt><code>version</code></dt>
+<dd>
+<p>A numeric integer,
+currently defaults to 2 (<code>XiMpLe_doc</code> only). This is a version number that can be used in the future
+in combination with the added <code>extra</code> slot. Should that get sime supported values that are interpreted by package methods,
+the version number will be increased and the differences documented here. You shouldn't set it manually.</p>
+</dd>
+</dl>
+</div>

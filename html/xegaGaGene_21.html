@@ -1,0 +1,83 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaGaUCross2Gene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Uniform crossover of 2 genes.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaGaUCross2Gene</code> swaps alleles of both genes
+with a probability of 0.5. It generates a random 
+mask which is used to build the new genes.
+It returns 2 genes.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaGaUCross2Gene(gg1, gg2, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>gg1</code></td>
+<td>
+<p>A binary gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>gg2</code></td>
+<td>
+<p>A binary gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>The local configuration of the genetic algorithm.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A list of 2 binary genes.
+</p>
+
+
+<h3>References</h3>
+
+<p>Syswerda, Gilbert (1989):
+Uniform Crossover in Genetic Algorithms. 
+In: Schaffer, J. David (Ed.)
+Proceedings of the Third International Conference on Genetic Algorithms,
+Morgan Kaufmann Publishers, Los Altos, California, pp. 2-9.
+(ISBN:1-55860-066-3)
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Crossover (2): 
+<code>xegaGaCross2Gene()</code>,
+<code>xegaGaUPCross2Gene()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">gene1&lt;-xegaGaInitGene(lFxegaGaGene)
+gene2&lt;-xegaGaInitGene(lFxegaGaGene)
+xegaGaDecodeGene(gene1, lFxegaGaGene)
+xegaGaDecodeGene(gene2, lFxegaGaGene)
+newgenes&lt;-xegaGaUCross2Gene(gene1, gene2, lFxegaGaGene)
+xegaGaDecodeGene(newgenes[[1]], lFxegaGaGene)
+xegaGaDecodeGene(newgenes[[2]], lFxegaGaGene)
+</code></pre>
+
+
+</div>

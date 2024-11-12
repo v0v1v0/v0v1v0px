@@ -1,0 +1,108 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>SelectUniformP</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Selection with uniform probability without replacement.</h2>
+
+<h3>Description</h3>
+
+<p><code>SelectUniformP</code> implements selection
+by choosing a gene with equal probability without 
+replacement.
+Usage:
+</p>
+
+<ol>
+<li>
+<p>To specify mating behavior in crossover operators.
+</p>
+</li>
+<li>
+<p>For computer experiments without selection pressure.
+</p>
+</li>
+</ol>
+<h3>Usage</h3>
+
+<pre><code class="language-R">SelectUniformP(fit, lF, size = 1)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>fit</code></td>
+<td>
+<p>Fitness vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>size</code></td>
+<td>
+<p>Number of selected genes. Default: 1.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Selection without replacement guarantees that 
+vectors of different indices are selected.
+A vector of the size of the population is a permutation 
+of indices. This property is needed for the classic 
+variant of differential evolution.
+</p>
+
+
+<h3>Value</h3>
+
+<p>The index vector of the selected genes.
+</p>
+
+
+<h3>References</h3>
+
+<p>Price, Kenneth V., Storn, Rainer M. and Lampinen, Jouni A. (2005)
+The Differential Evolution Algorithm (Chapter 2), pp. 37-134. 
+In: Differential Evolution. A Practical Approach to Global Optimization.
+Springer, Berlin.
+&lt;doi:10.1007/3-540-31306-0&gt;
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Selection Functions: 
+<code>SelectDuel()</code>,
+<code>SelectLRSelective()</code>,
+<code>SelectLinearRankTSR()</code>,
+<code>SelectPropFitDiffM()</code>,
+<code>SelectPropFitDiffOnln()</code>,
+<code>SelectPropFitDiff()</code>,
+<code>SelectPropFitM()</code>,
+<code>SelectPropFitOnln()</code>,
+<code>SelectPropFit()</code>,
+<code>SelectSTournament()</code>,
+<code>SelectSUS()</code>,
+<code>SelectTournament()</code>,
+<code>SelectUniform()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">fit&lt;-sample(10, 15, replace=TRUE)
+SelectUniformP(fit, NewlFselectGenes()) 
+SelectUniformP(fit, NewlFselectGenes(), length(fit)) 
+</code></pre>
+
+
+</div>

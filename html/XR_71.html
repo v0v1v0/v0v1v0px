@@ -1,0 +1,45 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>Unconvertible-class</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Unconverted Server Language Objects</h2>
+
+<h3>Description</h3>
+
+<p>Objects from this class represent server language objects whose conversion was requested
+but which are judged (by the server side of the interface) to have no equivalent R form.
+Rather than generating an error, the interface returns an object of this class, which can
+have convertible attributes.  Fields of a convertible object may be unconvertible without
+preventing conversion of the rest of the parent object.
+</p>
+
+
+<h3>Slots</h3>
+
+
+<dl>
+<dt><code>serverClass,serverModule</code></dt>
+<dd>
+<p>The names of the class and module in the server language.</p>
+</dd>
+<dt><code>language</code></dt>
+<dd>
+<p>The language name (for communicating with users), not the interface class name.</p>
+</dd>
+<dt><code>attributes</code></dt>
+<dd>
+<p>A list with names that should be interpreted as properties of the object.</p>
+</dd>
+</dl>
+<h3>References</h3>
+
+<p>Chambers, John M. (2016)
+<em>Extending R</em>,
+Chapman &amp; Hall/CRC.
+( Chapter 13, discussing this package, is included in the package: <a href="../doc/Chapter_XR.pdf">../doc/Chapter_XR.pdf</a>.)
+</p>
+
+
+</div>

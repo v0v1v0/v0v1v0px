@@ -1,0 +1,63 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xdtransform</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Function to apply a transformation to the samples from the output of an XDNUTS model.</h2>
+
+<h3>Description</h3>
+
+<p>Function to apply a transformation to the samples from the output of an XDNUTS model.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xdtransform(X, which = NULL, FUN = NULL, ..., new.names = NULL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>X</code></td>
+<td>
+<p>an object of class <code>XDNUTS</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>which</code></td>
+<td>
+<p>a vector of indices indicating which parameter the transformation should be applied to.
+If <code>NULL</code>, the function is applied to all current iterations of the chain.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>FUN</code></td>
+<td>
+<p>a function object which takes one or more components of an MCMC iteration and any other possible arguments.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>optional arguments for FUN.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>new.names</code></td>
+<td>
+<p>a character vector containing the parameter names in the new parameterization.
+If only one value is provided, but the transformation involves more, the name is iterated with an increasing index.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>an object of class <code>XDNUTS</code> with the specified transformation applied to each chain.
+</p>
+
+
+</div>

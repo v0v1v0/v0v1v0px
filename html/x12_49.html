@@ -1,0 +1,192 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>plotSpec</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2> ~~ Methods for Function <code>plotSpec</code> in Package <span class="pkg">x12</span> ~~</h2>
+
+<h3>Description</h3>
+
+<p>Spectral plots with function <code>plotSpec</code> in package <span class="pkg">x12</span>.
+</p>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>an object of class <code>x12Output-class</code>, <code>x12Single-class</code> or <code>spectrum-class</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>which</code></td>
+<td>
+<p>a string defining the executable of the editor to use (<code>"sa"</code> for the Spectrum of the Seasonally Adjusted Series,
+<code>"original"</code> for the Spectrum of the Original Series, <code>"irregular"</code> for the Spectrum of the Irregular Series
+and <code>"residuals"</code> for the Spectrum of the RegARIMA Residuals).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>frequency</code></td>
+<td>
+<p>frequency of the time series (has to be specified for objects of class <code>"spectrum"</code> only).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xlab</code></td>
+<td>
+<p>label of the x-axis.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylab</code></td>
+<td>
+<p>label of the y-axis.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>plot title.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col_bar</code></td>
+<td>
+<p>color of bars.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col_seasonal</code></td>
+<td>
+<p>color of seasonal frequencies.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col_td</code></td>
+<td>
+<p>color of trading day frequencies.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lwd_bar</code></td>
+<td>
+<p>line width of bars.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lwd_seasonal</code></td>
+<td>
+<p>line width of seasonal frequencies.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lwd_td</code></td>
+<td>
+<p>line width of trading day frequencies.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>plot_legend</code></td>
+<td>
+<p>logical specifying if a legend should be plotted.</p>
+</td>
+</tr>
+</table>
+<h3>Methods</h3>
+
+
+<dl>
+<dt><code>signature(x = "x12Output",which="sa",
+				xlab="Frequency",ylab="Decibels",
+				main="Spectrum",
+				col_bar="darkgrey",col_seasonal="red",col_td="blue",
+				lwd_bar=4,lwd_seasonal=4,lwd_td=4,plot_legend=TRUE,...)</code></dt>
+<dd>
+
+</dd>
+<dt><code>signature(x = "x12Single",which="sa",
+				xlab="Frequency",ylab="Decibels",
+				main="Spectrum",
+				col_bar="darkgrey",col_seasonal="red",col_td="blue",
+				lwd_bar=4,lwd_seasonal=4,lwd_td=4,plot_legend=TRUE,...)</code></dt>
+<dd>
+
+</dd>
+<dt><code>signature(x = "spectrum",frequency,
+				xlab="Frequency",ylab="Decibels",
+				main="Spectrum",
+				col_bar="darkgrey",col_seasonal="red",col_td="blue",
+				lwd_bar=4,lwd_seasonal=4,lwd_td=4,plot_legend=TRUE,...)</code></dt>
+<dd>
+
+</dd>
+</dl>
+<h3>Author(s)</h3>
+
+<p>Alexander Kowarik, Angelika Meraner</p>
+
+
+<h3>See Also</h3>
+
+<p><code>x12</code>,
+<code>plot</code>,
+<code>plotSeasFac</code>,
+<code>plotRsdAcf</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Not run: 
+s &lt;- new("x12Single",ts=AirPassengers,tsName="air")
+s &lt;- setP(s,list(estimate=TRUE,regression.variables="AO1950.1",outlier.types="all",
+  outlier.critical=list(LS=3.5,TC=2.5),backcast_years=1/2))
+s &lt;- x12(s)
+#w/o outliers
+plot(s@x12Output,sa=TRUE,trend=TRUE,original=FALSE)
+plot(s)
+#with (all) outliers
+plot(s,showAllout=TRUE,sa=TRUE,trend=TRUE,log_transform=TRUE,lwd_out=1,pch_ao=4)
+plot(s,showAllout=TRUE,sa=TRUE,trend=TRUE,original=FALSE,showAlloutLines=TRUE,
+  col_tc="purple")#,log_transform=TRUE)#,lwd_out=3)
+#with showOut
+plot(s,showOut="AO1960.Jun",sa=FALSE,trend=FALSE,annComp=TRUE,log_transform=TRUE)
+plot(s,showOut="AO1958.Mar",sa=TRUE,trend=TRUE,annComp=TRUE,annCompTrend=FALSE)
+plot(s,showOut="AO1950.Jun",annComp=FALSE,cex_out=3,pch_ao=19,col_ao="orange")
+plot(s,showOut="TC1954.Feb")
+plot(s,showOut="TC1954.Feb",col_tc="green3")
+
+#w/o legend
+plot(s,showAllout=TRUE,plot_legend=FALSE)
+plot(s,plot_legend=FALSE)
+plot(s,showOut="AO1950.1",plot_legend=FALSE,lwd_out=2,col_ao="purple")
+plot(s,showOut="TC1954.Feb",col_tc="orange",col_ao="magenta",plot_legend=FALSE)
+plot(s,showOut="AO1950.1",col_tc="orange",col_ao="magenta",plot_legend=FALSE)
+
+#Forecasts &amp; Backcasts
+plot(s,forecast=TRUE)
+plot(s,backcast=TRUE,showLine=TRUE)
+plot(s,backcast=TRUE,forecast=TRUE,showCI=FALSE)
+plot(s,forecast=TRUE,points_fc=TRUE,col_fc="purple",lty_fc=2,lty_original=3,
+  lwd_fc=0.9,lwd_ci=2)
+plot(s,sa=TRUE,plot_legend=FALSE)
+
+#Seasonal Factors and SI Ratios
+plotSeasFac(s)
+#Spectra
+plotSpec(s)
+plotSpec(s,highlight=FALSE)
+#Autocorrelations of the Residuals
+plotRsdAcf(s)
+plotRsdAcf(s,col_acf="black",lwd_acf=1)
+
+## End(Not run)
+</code></pre>
+
+
+</div>

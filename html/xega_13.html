@@ -1,0 +1,249 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xega</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Package xega</h2>
+
+<h3>Description</h3>
+
+<p>The main program of the e(x)tended (e)volutionary and  (g)enetic (a)lgorithm
+(xega) package.
+</p>
+
+
+<h3>Layers (in top-down direction)</h3>
+
+ 
+<ol>
+<li> <p><strong>Top-level main programs</strong>
+(Package <code>xega</code>): 
+<code>RunGA()</code>, <code>ReRun()</code>
+</p>
+</li>
+<li> <p><strong>Population level operations - independent of representation</strong>
+(Package <code>xegaPopulation</code>):
+The population layer consists of functions for initializing,
+logging, observing, evaluating a population of genes,
+as well as of computing the next population.
+</p>
+</li>
+<li> <p><strong>Gene level operations - representation-dependent</strong>.
+</p>
+
+<ol>
+<li> 
+<p><strong>Binary representation</strong> (Package <code>xegaGaGene</code>):
+Initialization of random binary genes, 
+several gene maps for binary genes, 
+several mutation operators, 
+several crossover operators with 1 and 2 kids, 
+replication pipelines for 1 and 2 kids, 
+and, last but not least, function factories for configuration. 
+</p>
+</li>
+<li> <p><strong>Real-coded genes</strong> (Package <code>xegaDfGene</code>).
+</p>
+</li>
+<li> <p><strong>Permutation genes</strong> (Package <code>xegaPermGene</code>).
+</p>
+</li>
+<li> <p><strong>Derivation-tree genes</strong> (Package <code>xegaGpGene</code>).
+</p>
+</li>
+<li> <p><strong>Binary genes with a grammar-driven decoder</strong>
+(Package <code>xegaGeGene</code>). 
+</p>
+</li>
+</ol>
+</li>
+<li> <p><strong>Gene level operations - independent of representation</strong>
+(Package <code>selectGene</code>):
+Functions for static and adaptive fitness scaling,  
+gene selection, and gene evaluation
+as well as for the measurement of performance and for configuration.
+</p>
+</li>
+</ol>
+<h3>Early Termination</h3>
+
+<p>A problem environment may implement a function 
+<code>terminate(solution)</code> which returns TRUE 
+if the <code>solution</code> meets a condition for early 
+termination.
+</p>
+
+
+<h3>Parallel and Distributed Execution</h3>
+
+<p>Parallel and distributed execution is supported for
+several combinations of hard- and software architectures
+by overloading the <code>lapply()</code>-function used in the 
+evaluation of a fitness function for a population of genes
+with a parallel version with the abstract interface:
+</p>
+<p><code>parallelApply(pop, EvalGene, lF)</code>
+</p>
+<p>where <code>pop</code> is a list of genes, <code>EvalGene</code> the evaluation 
+function for the fitness of a gene, and <code>lF</code> the local function
+configuration of the algorithm.
+</p>
+<p>The several implementations of a <code>parallelApply()</code> function 
+are provided. The implementations use
+</p>
+
+<ul>
+<li>
+<p> the function <code>parallel::mclapply()</code> for multicore 
+parallelization by the fork mechanism of Unix-based operating systems 
+on a single machine.
+</p>
+</li>
+<li>
+<p> the function <code>parallel::parLapply()</code> for socket connections
+on a single or multiple machines on the Internet.
+</p>
+</li>
+<li>
+<p> the function <code>future.apply::future_lapply()</code> for 
+asynchronous parallelization based on future packages.
+</p>
+</li>
+</ul>
+<p>In addition, user-defined parallel apply functions can be provided.
+Example scripts for using the <code>Rmpi::mpi.parLapply()</code> function
+of the <code>Rmpi</code> package are provided for a HPC environment with Slurm
+as well as on a notebook.
+</p>
+
+
+<h3>The Architecture of the xegaX-Packages</h3>
+
+<p>The xegaX-packages are a family of R-packages which implement 
+e(x)tended (e)volutionary and (g)enetic (a)lgorithms (xega).  
+The architecture has 3 layers, 
+namely the user interface layer,
+the population layer, and the gene layer: 
+</p>
+
+<ul>
+<li>
+<p>The user interface layer (package <code>xega</code>
+&lt;https://CRAN.R-project.org/package=xega&gt; 
+) provides a function call interface and configuration support
+for several algorithms: genetic algorithms (sga), 
+permutation-based genetic algorithms (sgPerm), 
+derivation free algorithms as e.g. differential evolution (sgde), 
+grammar-based genetic programming (sgp) and grammatical evolution
+(sge). 
+</p>
+</li>
+<li>
+<p>The population layer (package <code>xegaPopulation</code>
+&lt;https://CRAN.R-project.org/package=xegaPopulation&gt; 
+) contains
+population related functionality as well as support for 
+population statistics dependent adaptive mechanisms and 
+for parallelization.
+</p>
+</li>
+<li> 
+<p>The gene layer is split in a representation independent and 
+a representation dependent part:
+</p>
+
+<ol>
+<li> 
+<p>The representation indendent part 
+(package <code>xegaSelectGene</code>
+&lt;https://CRAN.R-project.org/package=xegaSelectGene&gt; 
+)
+is responsible for variants of selection operators, evaluation 
+strategies for genes, as well as profiling and timing capabilities.        
+</p>
+</li>
+<li> 
+<p>The representation dependent part consists of the following packages: 
+</p>
+
+<ul>
+<li> <p><code>xegaGaGene</code> 
+&lt;https://CRAN.R-project.org/package=xegaGaGene&gt; 
+for binary coded genetic algorithms.
+</p>
+</li>
+<li> <p><code>xegaPermGene</code> 
+&lt;https://CRAN.R-project.org/package=xegaPermGene&gt; 
+for permutation-based genetic algorithms.
+</p>
+</li>
+<li> <p><code>xegaDfGene</code> 
+&lt;https://CRAN.R-project.org/package=xegaDfGene&gt; 
+for derivation free algorithms as e.g. 
+differential evolution.
+</p>
+</li>
+<li> <p><code>xegaGpGene</code> 
+&lt;https://CRAN.R-project.org/package=xegaGpGene&gt; 
+for grammar-based genetic algorithms.
+</p>
+</li>
+<li> <p><code>xegaGeGene</code> 
+&lt;https://CRAN.R-project.org/package=xegaGaGene&gt; 
+for grammatical evolution algorithms.
+</p>
+</li>
+</ul>
+<p>The packages <code>xegaDerivationTrees</code> and <code>xegaBNF</code> support
+the packages <code>xegaGpGene</code> and <code>xegaGeGene</code>:
+</p>
+
+<ul>
+<li> <p><code>xegaBNF</code> 
+&lt;https://CRAN.R-project.org/package=xegaBNF&gt; 
+essentially provides a grammar compiler and
+</p>
+</li>
+<li> 
+<p><code>xegaDerivationTrees</code> 
+&lt;https://CRAN.R-project.org/package=xegaDerivationTrees&gt; 
+an abstract data type for derivation trees.
+</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3>Copyright</h3>
+
+<p>(c) 2023 Andreas Geyer-Schulz
+</p>
+
+
+<h3>License</h3>
+
+<p>MIT
+</p>
+
+
+<h3>URL</h3>
+
+<p>https://github.com/ageyerschulz/xega
+</p>
+
+
+<h3>Installation</h3>
+
+<p>From CRAN by <code>install.packages('xega')</code>
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Andreas Geyer-Schulz
+</p>
+
+
+</div>

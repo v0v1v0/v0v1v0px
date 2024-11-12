@@ -1,0 +1,82 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>coincidence</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Estimate coincidence function</h2>
+
+<h3>Description</h3>
+
+<p>Estimate coincidence function for a chromosome.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">coincidence(cross, chr = NULL, window = 5, ncalc = 500)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>cross</code></td>
+<td>
+<p>Cross object; must be a backcross.  See
+<code>qtl::read.cross()</code> for format details.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>chr</code></td>
+<td>
+<p>Chromosome to consider (only one is allowed).  If NULL, the
+first chromosome is considered.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>window</code></td>
+<td>
+<p>Window size</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ncalc</code></td>
+<td>
+<p>Total number of points for calculations.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Data frame with columns <code>distance</code> and <code>coincidence</code>.  The
+input argument <code>window</code> is kept as an attribute.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Il youp Kwak
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>intensity()</code>, <code>est.coi()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+map1 &lt;- sim.map(103, n.mar=104, anchor=TRUE, include.x=FALSE, eq=TRUE)
+x &lt;- sim.cross(map1, n.ind=2000, m=6, type="bc")
+
+out &lt;- coincidence(x, ncalc=101)
+plot(out, type="l", lwd=2, ylim=c(0, max(out[,2])))
+
+</code></pre>
+
+
+</div>

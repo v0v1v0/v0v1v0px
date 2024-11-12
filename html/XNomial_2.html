@@ -1,0 +1,195 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xmulti</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Perform Multinomial Goodness-Of-Fit Test By Full Enumeration</h2>
+
+<h3>Description</h3>
+
+<p>Use <code>xmulti</code> to compute a P value to test whether a set of counts fits a specific multinomial distribution. It does this by examining all possible outcomes with the same total count and determining the total (multinomial) probability of those cases which deviate from the expectation by at least as much as the observed. Please see the vignette for more.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xmulti(obs, expr, statName = "LLR", histobins = F, histobounds = c(0, 0),
+  showCurve = T, detail = 1, safety = 1e+09)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>obs</code></td>
+<td>
+<p>vector containing the observed numbers. All are non-negative integers summing to <code>&gt; 0</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>expr</code></td>
+<td>
+<p>vector containing expectation. The length should be the same as that of <code>obs</code> and they should be non-negative summing to <code>&gt; 0</code>. They need not be integers or sum to one.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>statName</code></td>
+<td>
+<p>name of the test statistic to use as a measure of how deviant an observation is from the expectation. The choices are: “LLR” for the log-likelihood ratio, “Prob” for the probability, “Chisq” for the chisquare statistic.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>histobins</code></td>
+<td>
+<p>specifies histogram plot. If set to 0, <code>F</code> or <code>FALSE</code> no histogram is plotted. If set to 1 or <code>T</code> or <code>TRUE</code> a histogram with 500 bins will be plotted. If set to a number <code>&gt; 1</code> a histogram with that number of bins is plotted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>histobounds</code></td>
+<td>
+<p>vector of length 2 indicating the bounds for the histogram, if any. If unspecified, bounds will be determined to include about 99.9 percent of the distribution.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>showCurve</code></td>
+<td>
+<p>should an asymptotic curve be drawn over the histogram?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>detail</code></td>
+<td>
+<p>how much detail should be reported concerning the P value. If 0, nothing is printed for cases where the function is used programmatically. Minimal information is printed if <code>detail</code> is set to 1, and additional information if it is set to 2.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>safety</code></td>
+<td>
+<p>a large number, such as one billion, to set a limit on how many samples will be examined. This limit is there to avoid long computations.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p><code>xmulti</code> returns a list with the following components:
+</p>
+<table>
+<tr style="vertical-align: top;">
+<td><code>$ obs</code></td>
+<td>
+<p>the observed numbers used as imput</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>$ expr</code></td>
+<td>
+<p>expected ratios</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>$ statType</code></td>
+<td>
+<p>which test statistic was used</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>$ pLLR</code></td>
+<td>
+<p>the P value with LLR as the test statistic</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>$ pProb</code></td>
+<td>
+<p>the P value with the multinomial probability as test statistic</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>$ pChi</code></td>
+<td>
+<p>the P value with the chisquare as test statistic</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>$ observedLLR</code></td>
+<td>
+<p>the value of LLR statistic for these data</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>$ observedProb</code></td>
+<td>
+<p>the multinomial probability of the observed data under the null hypothesis</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>$ observedChi</code></td>
+<td>
+<p>observed value of the chi square statistic</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>$ histobins</code></td>
+<td>
+<p>number of bins in the histogram (suppressed if zero)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>$ histobounds</code></td>
+<td>
+<p>range in histogram (suppressed if not used)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>$ histoData</code></td>
+<td>
+<p>data for histogram (suppressed if not used) Length is <code>histobins</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>$ asymptotoc.p.value</code></td>
+<td>
+<p>the P value obtained from the classical asymptotic test</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>$ cases.examined</code></td>
+<td>
+<p>the total number of possible tables</p>
+</td>
+</tr>
+</table>
+<h3>Examples</h3>
+
+<pre><code class="language-R">#
+#One of Gregor Mendel's crosses produced four types of pea seeds in the numbers:
+#
+peas &lt;- c(315, 108, 101, 32)
+#
+#and he expected them to appear in the ratio of 9:3:3:1 according to his genetic model.
+#
+expected &lt;- c(9, 3, 3, 1)
+#
+#Test Mendel's theory using
+#
+xmulti(peas, expected)
+#
+#In this example, the number of cases examined was 28956759,
+#and it probably took your computer less than half a second.
+#To see a histogram of the likelihood ratio statistic, use:
+#
+xmulti(peas, expected, histobins = TRUE)
+#
+#The red areas of the histogram represent those outcomes deviating from the expected 9:3:3:1 ratio 
+#at least as much as the observed numbers. (Much has been made of the tendency for Mendel's data 
+#to fit the expectations better than expected!)
+#If you wish to use the standard chisquare statistic as a measure of goodness-of-fit instead 
+#of the LLR, use:
+#
+xmulti(peas, expected, statName="Chisq", histobins=TRUE)
+</code></pre>
+
+
+</div>

@@ -1,0 +1,85 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xplain.getcall</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>
+Generating function calls for xplain wrapper functions
+</h2>
+
+<h3>Description</h3>
+
+<p>This function returns a string containing the call to the explained function to be used in an xplain wrapper function.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xplain.getcall(fun)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>fun</code></td>
+<td>
+<p>Name of the explained function as string</p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+<p><code>xplain.getcall()</code> can be called from an xplain wrapper function. It returns a string containing the call to the explained function with all arguments provided to the wrapper function. With xplain.getcall() it is very easy to write xplain wrapper functions.
+</p>
+<p>Wrapper functions are an elegant way to provide access to xplain interpretation/explanation information. The wrapper function takes the sames arguments as the explained function and then calls <code>xplain()</code>. <code>xplain.getcall()</code> identifies the arguments provided to the wrapper function and returns the complete call of the explained function as a string which can then be handed over to <code>xplain()</code> as argument <code>call</code>.
+</p>
+<p>The Examples section illustrates how to build a wrapper function using <code>xplain.getcall()</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>The full call of the explained function as a string, including the arguments provided by the user to the wrapper function.
+</p>
+
+
+<h3>More material on the internet</h3>
+
+<p>Web tutorial on how to work with xplain: <a href="https://www.zuckarelli.de/xplain/index.html">https://www.zuckarelli.de/xplain/index.html</a><br>
+xplain cheat sheet: <a href="https://www.zuckarelli.de/xplain/xplain_cheatsheet.pdf">https://www.zuckarelli.de/xplain/xplain_cheatsheet.pdf</a>
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Joachim Zuckarelli, <a href="mailto:joachim@zuckarelli.de">joachim@zuckarelli.de</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xplain-package</code>, <code>xplain</code>, <code>xplain.overview</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">library(car)
+
+xml.path &lt;- system.file("", "example_lm.xml", package = "xplain")
+
+# Example of a wrapper function for lm()
+lm.xplain &lt;- function(formula, data, subset, weights, na.action,
+                      method = "qr", model = TRUE, x = FALSE, y = FALSE, qr = TRUE,
+                      singular.ok = TRUE, contrasts = NULL, offset, ...) {
+  call&lt;-xplain.getcall("lm")
+  xplain(call, xml=xml.path)
+}
+
+lm.xplain(education ~ young + income + urban, data=Anscombe)
+
+</code></pre>
+
+
+</div>

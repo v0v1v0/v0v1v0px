@@ -1,0 +1,80 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>drugTargetInteraction</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>drug target interactions for neural receptors</h2>
+
+<h3>Description</h3>
+
+<p>A dataset for examining the interaction between 54 drugs and 26
+neural receptors. It consists of three different matrices.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">drugTargetInteraction
+</code></pre>
+
+
+<h3>Format</h3>
+
+
+<ul>
+<li>
+<p> for drugTargetInteraction: a numeric matrix of 26 rows by
+54 columns.
+</p>
+</li>
+<li>
+<p> For drugSim: a numeric square matrix with 54 rows/columns.
+</p>
+</li>
+<li>
+<p> For targetSim: a numeric square matrix with 26 rows/columns.
+</p>
+</li>
+</ul>
+<h3>Details</h3>
+
+<p>The dataset consists of the following objects :
+</p>
+
+<ul>
+<li>
+<p> drugTargetInteraction: a matrix indicating whether or not a
+certain drug compound interacts with a certain neural receptor.
+</p>
+</li>
+<li>
+<p> targetSim: a similarity matrix for the neural receptors.
+</p>
+</li>
+<li>
+<p> drugSim: a similarity matrix for the drugs
+</p>
+</li>
+</ul>
+<p>The data originates from Yamanishi et al (2008) but was partly reworked
+to be suitable for two-step kernel ridge regression. This is explained
+in detail in  the <a href="../doc/Preparation_example_data.html">Preparation of
+the example data</a> vignette.
+</p>
+
+
+<h3>Source</h3>
+
+<p><a href="https://doi.org/10.1093/bioinformatics/btn162">https://doi.org/10.1093/bioinformatics/btn162</a>
+</p>
+
+
+<h3>References</h3>
+
+<p><a href="https://doi.org/10.1093/bioinformatics/btn162">Yamanishi et al, 2008</a> : Prediction of drug-target interaction networks from the
+integration of chemical and genomic spaces.
+</p>
+
+
+</div>

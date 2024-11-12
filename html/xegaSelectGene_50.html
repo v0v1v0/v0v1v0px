@@ -1,0 +1,98 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>ThresholdScaleFitness</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Dispersion Ratio Based Fitness Scaling.</h2>
+
+<h3>Description</h3>
+
+<p>Fitness is transformed by a power function 
+<code>fit^lF$ScalingExp</code>.
+If <code>lF$ScalingExp</code> is 
+</p>
+
+<ul>
+<li>
+<p> less than 1: Selection pressure is decreased.
+</p>
+</li>
+<li>
+<p> 1:  Selection pressure remains constant.
+</p>
+</li>
+<li>
+<p> larger than 1: Selection pressure is increased.
+</p>
+</li>
+<li>
+<p> 0:  Fitness is constant. Random selection.
+</p>
+</li>
+<li>
+<p> smaller than 1: Fitness is 
+<code>1/fit^lF$ScalingExp</code>.
+</p>
+</li>
+</ul>
+<h3>Usage</h3>
+
+<pre><code class="language-R">ThresholdScaleFitness(fit, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>fit</code></td>
+<td>
+<p>Fitness vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Scaled fitness vector.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Scaling: 
+<code>ContinuousScaleFitness()</code>,
+<code>DispersionRatio()</code>,
+<code>ScaleFitness()</code>,
+<code>ScalingFitness()</code>
+</p>
+<p>Other Adaptive Parameter: 
+<code>ContinuousScaleFitness()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">lF&lt;-list()
+lF$Offset&lt;-parm(0.0001)
+lF$ScalingThreshold&lt;-parm(0.05)
+lF$RDM&lt;-parm(1.0)
+lF$ScalingExp&lt;-parm(0.5)
+lF$ScalingExp2&lt;-parm(2)
+fit&lt;-sample(10, 20, replace=TRUE)
+fit
+ThresholdScaleFitness(fit, lF)
+lF$RDM&lt;-parm(1.2)
+ThresholdScaleFitness(fit, lF)
+lF$RDM&lt;-parm(0.8)
+ThresholdScaleFitness(fit, lF)
+</code></pre>
+
+
+</div>

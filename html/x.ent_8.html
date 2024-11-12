@@ -1,0 +1,74 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xshow</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Show results</h2>
+
+<h3>Description</h3>
+
+<p>Show results after calling the function <code>xparse</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">  xshow(e=NULL,sort="a")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>e</code></td>
+<td>
+<p>an entity or a list of entities that you want display, default e = NULL =&gt; display all columns</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sort</code></td>
+<td>
+<p>type sort of data, default sort = "a" =&gt; sorted by alphabet, sort = "f" =&gt; sorted by frequency.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Show results after calling function <code>xparse</code>.
+The result file has format:
+</p>
+
+<ol>
+<li>
+<p>entity file1:entity1:$:data1:data2:data3:
+</p>
+</li>
+<li>
+<p>relation file1:entity1:entity2:$$:data_e1:data_e2:negation
+</p>
+</li>
+</ol>
+<h3>Author(s)</h3>
+
+<p>Tien T. Phan</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xparse</code>  call the main function of module extraction written by Perl<br><code>xshow</code> display results
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">  xfile() #show all names of files in corpus
+  xshow() #all columns
+  xshow(e="p",sort="a") #show result of entity "p", sorted by alphabet
+  xshow(e="p",sort="f")
+  xshow(e=c("p","m"))
+</code></pre>
+
+
+</div>

@@ -1,0 +1,121 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xpose.multiple.plot</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Create and object with class "xpose.multiple.plot".</h2>
+
+<h3>Description</h3>
+
+<p>Create and object with class "xpose.multiple.plot".
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xpose.multiple.plot(
+  plotList,
+  plotTitle = NULL,
+  nm7 = TRUE,
+  prompt = FALSE,
+  new.first.window = FALSE,
+  max.plots.per.page = 4,
+  title = list(title.x = unit(0.5, "npc"), title.y = unit(0.5, "npc"), title.gp =
+    gpar(cex = 1.2, fontface = "bold"), title.just = c("center", "center")),
+  mirror = FALSE,
+  bql.layout = FALSE,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>plotList</code></td>
+<td>
+<p>A list of lattice plots.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>plotTitle</code></td>
+<td>
+<p>Main title for plots.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>nm7</code></td>
+<td>
+<p><code>TRUE</code> if we are using NONMEM 7</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>prompt</code></td>
+<td>
+<p>When printing should we prompt for each new page in plot?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>new.first.window</code></td>
+<td>
+<p><code>TRUE</code> or <code>FALSE</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max.plots.per.page</code></td>
+<td>
+<p>A number.  Max value is 9.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>title</code></td>
+<td>
+<p>Title properties.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mirror</code></td>
+<td>
+<p>Are there mirror plots in plot list?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bql.layout</code></td>
+<td>
+<p>Should we use layout optimized for plots with BQL (below
+limit of quantification) measurements?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional options passed to function.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An object of class "xpose.multiple.plot".
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Niclas Jonsson and Andrew C. Hooker
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>print.xpose.multiple.plot</code>,
+<code>xpose.multiple.plot.default</code>
+</p>
+<p>Other generic functions: 
+<code>gof()</code>,
+<code>xpose4-package</code>
+</p>
+
+
+</div>

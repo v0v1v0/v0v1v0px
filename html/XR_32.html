@@ -1,0 +1,286 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>Interface-class</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Reference class for all interface evaluators</h2>
+
+<h3>Description</h3>
+
+<p>This class has the fields required for any specific interface and the methods that
+are defined centrally in the XR structure.  As noted in the documentation for inidividual
+methods, some methods must be redefined in the specific interface.
+</p>
+
+
+<h3>Fields</h3>
+
+
+<dl>
+<dt><code>evaluatorId</code></dt>
+<dd>
+<p>A character string (usually unique) giving the language and date when started</p>
+</dd>
+<dt><code>languageName</code></dt>
+<dd>
+<p>The server language.  Does not have to be unique if multiple classes implement interfaces to the same language.</p>
+</dd>
+<dt><code>proxyCount</code></dt>
+<dd>
+<p>Counter used to generate unique names for proxy objects.</p>
+</dd>
+<dt><code>propertyFormat</code></dt>
+<dd>
+<p>C-style format string for access to properties and methods in this
+evaluator.  Nearly always just the two names, separated by "."</p>
+</dd>
+<dt><code>proxyClassTable</code></dt>
+<dd>
+<p>An environment for all proxy classes known currently for this
+evaluator class.</p>
+</dd>
+<dt><code>prototypeObject</code></dt>
+<dd>
+<p>The object representing any proxy class for this inteface.  Usually from
+a class defined by the specific interface package, to distinguish its proxy classes. This
+field is passed as the <code>prototype</code> argument in calls to <code>asServerObject</code>.</p>
+</dd>
+<dt><code>simplify</code></dt>
+<dd>
+<p>Should lists whose elements are each basic scalars be unlisted?
+Default FALSE.  May also be a function that takes a possibly simplifiable
+list as argument and returns the vector/list result.
+Use this to apply a customized test; e.g., all scalars must have same type.</p>
+</dd>
+<dt><code>propertyFormat</code></dt>
+<dd>
+<p>The C-style format for a property (i.e., field) in the server language.
+The default assumes <code>"."</code> is the field operator, as in all likely server languages so far.</p>
+</dd>
+<dt><code>proxyClassTable</code></dt>
+<dd>
+<p>Used to keep track of proxy classes encountered</p>
+</dd>
+<dt><code>modules</code></dt>
+<dd>
+<p>The evaluator's table of currently imported modules.</p>
+</dd>
+<dt><code>serverPath</code></dt>
+<dd>
+<p>The evaluator's current server language path for importing.</p>
+</dd>
+</dl>
+<h3>Methods</h3>
+
+
+<dl>
+<dt><code>AddToPath(directory = base::tolower(languageName),
+  package = utils::packageName(topenv(parent.frame())), pos = NA)</code></dt>
+<dd>
+<p>Add the directory to the systemPath
+By default, appends to the path; if 'pos' is given, inserts at that position.
+If both directory and package are omitted, the method looks for the package name in the
+calling function (suitable if the method call is from a package source file).</p>
+</dd>
+<dt><code>AsRObject(object)</code></dt>
+<dd>
+<p>Given an R object made up of vectors, lists and named tables, interpret that as a general R object,
+using a convention that may be specialized to the server language by overriding
+$AsRObject() or by methods for asRObject().  The argument will may be from a proxy class.</p>
+</dd>
+<dt><code>AsServerObject(object, prototype = prototypeObject)</code></dt>
+<dd>
+<p>Given an R object return a string that, when evaluated in the server language gives
+a corresponding object in that language.  The default implementation uses the function
+XR::objectAsJSON, which returns a JSON string and assumes a function 'objectFromJSON(string)'
+in the server. The conversion may be specialized to server language classes by methods for
+asServerObject() or objectAsJSON().</p>
+</dd>
+<dt><code>Call(fun, ..., .get = NA)</code></dt>
+<dd>
+<p>Call the server language function 'fun'.  Each of the '...' arguments will be
+translated into a server language expression by the AsServerObject() method.</p>
+</dd>
+<dt><code>Command(expr, ...)</code></dt>
+<dd>
+<p>Like Eval(), but the value of the expression is ignored.  In particular, may be a command
+in the server language that is not an expression.</p>
+</dd>
+<dt><code>Eval(expr, ..., .get = NA)</code></dt>
+<dd>
+<p>Evaluate 'expr' and return the value, possibly as a proxy.
+Expressions are supplied as character strings to be parsed and
+evaluated by the server language. If 'expr' has "
+with the appropriate server language code equivalent to the '...' arguments.  If 'expr' has
+more than one element, all but the last are evaluated by $Command(), with '...' ignored.</p>
+</dd>
+<dt><code>finalize(...)</code></dt>
+<dd>
+<p>method called when the object is garbage collected.  A call to the $Quit() method
+also calls this method (recalling it later then does nothing).  In case some server action
+(like closing down a subprocess) is required, the $ServerQuit() method is called, and
+the evaluator is then removed from the table of interface evaluators.</p>
+</dd>
+<dt><code>Function(serverFun)</code></dt>
+<dd>
+<p>Returns an R function object that calls the specified sever language function,
+specified by its name in the server language or by the proxy object returned by the
+$Define() method of the evaluator</p>
+</dd>
+<dt><code>Get(what, ...)</code></dt>
+<dd>
+<p>Return the value, always converted to an R object.  Usually gets a proxy object as the argument, but can be called like $Eval(), if ... is non-empty.</p>
+</dd>
+<dt><code>Import(module, ...)</code></dt>
+<dd>
+<p>Import the module.  The "Interface" method assumes a command "import" in the server
+language and does not handle any extra arguments (e.g., for importing specific members).</p>
+</dd>
+<dt><code>initialize(...)</code></dt>
+<dd>
+<p>initializes the evaluator in a language-independent sense.</p>
+</dd>
+<dt><code>MethodCall(object, name, ..., .get = NA)</code></dt>
+<dd>
+<p>Call the server language method 'name' on 'object', with arguments '...',
+by default assuming a language in which the syntax is 'object.name(...)'.
+To override with a different syntax, define field propertyFormat in the evaluator.
+Note that 'name' must be a character string, not an evaluation in the server.</p>
+</dd>
+<dt><code>MethodEval(string, catch = FALSE, print = FALSE)</code></dt>
+<dd>
+<p>The string is a method call for the evaluator, or the name of a field.
+Evaluated as the expression ev$string.</p>
+</dd>
+<dt><code>New(serverClass, serverModule = "", ...)</code></dt>
+<dd>
+<p>Generate a new object from the specified server class.  The corresponding generator function
+in the server is given by ServerGenerator(serverClass), by default just the class name.
+Typically called from the $Initialize() method of the proxy class.</p>
+</dd>
+<dt><code>ProxyClassName(serverClass)</code></dt>
+<dd>
+<p>If there is a proxy class defined corresponding to this serverClass, return the name
+of that class (typically pasted with the server langauge, separated by underscore).  If no
+such class is defined, return NA.</p>
+</dd>
+<dt><code>ProxyClassObject(object)</code></dt>
+<dd>
+<p>If 'object' is an assigned proxy, check whether the serverClass is a known proxy class
+and if so, return an object from that class; otherwise return 'object'.</p>
+</dd>
+<dt><code>ProxyName(x, new = TRUE)</code></dt>
+<dd>
+<p>Called without arguments, returns a key for the next proxy object.  In the default strategy, this is a string
+"R_i_j" where i is the sequence code for the evaluator and j is the proxy count,
+incremented if 'new' is TRUE.  If 'x' is supplied as an existing proxy object,
+returns the key for that object.</p>
+</dd>
+<dt><code>SaveProxyFunction(save, object, objName = obj@name, docText = NULL)</code></dt>
+<dd>
+<p>The object is an expanded function definition, provided by the initialize method for this class.
+'save' should be either an environment in which to assign it or a place to dump the R source, either an
+open connection or a file name.</p>
+</dd>
+<dt><code>Send(object, serverClass = "", .key = NULL)</code></dt>
+<dd>
+<p>Send the converted version of 'object' to the server language.
+If '.key' is specified, assign it under that name.  By default (and recommended)
+a proxy object in R provides the name for the converted object.
+If 'serverClass' is supplied, there should be a corresponding asServerObject() method.</p>
+</dd>
+<dt><code>Serialize(object, file, append = FALSE)</code></dt>
+<dd>
+<p>Use the server language serialization to serialize 'object' to the specified 'file'.
+According to 'append' either append to the file (default) or overwrite.
+The supplied object should be a proxy for a server language object.</p>
+</dd>
+<dt><code>ServerClass(Class, module)</code></dt>
+<dd>
+<p>If possible, return the class structure of Class, a class in the server language.
+module= is the server module/package/library in which Class is defined, or "".
+If no reflection information is available, return NULL (which this definition does).
+Should return a list or reference object: "$fields" and "$methods" should be character
+vectors or named lists of the server fields and metohds.</p>
+</dd>
+<dt><code>ServerClassDef(Class, module, ...)</code></dt>
+<dd>
+<p>Individual interface packages will define this to return a named list or other object such that value$fields and value$methods are the server fields and methods, character vectors
+of names or named objects whose elements give further information.  This default version
+returns NULL, indicating that no metadata is available.</p>
+</dd>
+<dt><code>ServerEval(expr, key, get)</code></dt>
+<dd>
+<p>Must be defined by the server language interface: evaluates 'expr'(a text string).
+If 'key' is an empty string, 'expr' is treated as a directive, with no defined value.
+Otherwise, 'key' is a non-empty string, and the server
+object should be assigned with this name. The value returned is the R result, which may
+be an AssignedProxy() object. If 'get' is TRUE or the value judged simple enough,
+it will be converted to an ordinary R object instead.</p>
+</dd>
+<dt><code>ServerExpression(...)</code></dt>
+<dd>
+<p>The arguments define an expression in the server language.
+The first argument is a string; any others are objects to be substituted for 
+in the string.  These can include proxy objects or R data.</p>
+</dd>
+<dt><code>ServerFunctionDef(name, module = "", ...)</code></dt>
+<dd>
+<p>The XR method defines the proxy function with no special metadata information.
+Server langugae metadata may be used by a method that overrides this one, and calls it.</p>
+</dd>
+<dt><code>ServerRemove(key)</code></dt>
+<dd>
+<p>Should be defined by the server language interface:
+The reference previously created for 'key' should be removed.
+What happens has no effect on the client side; the intent is to potentially recover memory.</p>
+</dd>
+<dt><code>ServerSerialize(key, file)</code></dt>
+<dd>
+<p>Serialize the proxy function corresponding to 'key' to the specified 'file'.
+Will normally be defined using the serialization supported by the particular server
+language. The default gets the object and serializes in R, so only works if conversion does</p>
+</dd>
+<dt><code>ServerUnserialize(file, all)</code></dt>
+<dd>
+<p>Unserialize the file, returning a proxy object for a list, or equivalent in the server
+language, of all the objects serialized to this file.  Because open connections can not
+generally be shared among languages, must unserialize the entire file.</p>
+</dd>
+<dt><code>Shell(endCode = "quit", prompt = "&gt;&gt;&gt;: ", cont = "+++: ")</code></dt>
+<dd>
+<p>Starts an interactive shell.  Each line of input must be a complete expression
+or statement in the server language. To continue over multiple lines, append an unescaped
+backslash to all but the last line.
+</p>
+<p>A line typed to the shell starting with "$" is an escape back to the evaluator, and
+can be used to call evaluator methods, e.g., "ProxyName(x)".  See the example in
+the documentation for class "Interface" in XR</p>
+</dd>
+<dt><code>Source(filename)</code></dt>
+<dd>
+<p>Parse and evaluate the contents of the file.  This method is likely to be overriden for particular langauges
+with a directive to include the contents of the file.  The 'XR' version reads the file and processes the entire contents
+as a single string, newlines inserted between lines of the file.</p>
+</dd>
+<dt><code>startupActions()</code></dt>
+<dd>
+<p>Perform the evaluator actions specified for this object, typically additions to search path and imports</p>
+</dd>
+<dt><code>Unserialize(file, all = FALSE)</code></dt>
+<dd>
+<p>Unserialize a list of objects previously written to 'file' by $Serialize().
+Returns a list of proxy objects. If all=FALSE, returns a single object if exactly one object found.</p>
+</dd>
+</dl>
+<h3>References</h3>
+
+<p>Chambers, John M. (2016)
+<em>Extending R</em>,
+Chapman &amp; Hall/CRC.
+( Chapter 13, discussing this package, is included in the package: <a href="../doc/Chapter_XR.pdf">../doc/Chapter_XR.pdf</a>.)
+</p>
+
+
+</div>

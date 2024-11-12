@@ -1,0 +1,96 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>embed_xaringan</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Embed a xaringan presentation in a web page</h2>
+
+<h3>Description</h3>
+
+<p>Embed xaringan slides in any HTML web page, such as a blogdown page or an
+R Markdown website. The presentation is embedded in a responsive aspect ratio
+container for seamless integration with your web page. This feature works
+best when combined with <code>use_share_again()</code>, but <code>embed_xaringan()</code> can be
+used for any xaringan presentation.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">embed_xaringan(
+  url,
+  ratio = "16:9",
+  border = "2px solid currentColor",
+  max_width = NULL,
+  margin = "1em auto",
+  style = NULL
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>url</code></td>
+<td>
+<p>The URL or path to the presentation to embed.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ratio</code></td>
+<td>
+<p>The ratio of the presentation, either as <code>"width:height"</code> or
+<code>width/height</code>, e.g. <code>"16:9"</code> or <code>1.7777</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>border</code></td>
+<td>
+<p>The border style of the embedded <code style="white-space: pre;">⁠&lt;iframe&gt;⁠</code>. For no border, use
+<code>"none"</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max_width</code></td>
+<td>
+<p>The max width of the <code style="white-space: pre;">⁠&lt;iframe&gt;⁠</code>, in a valid CSS units.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>margin</code></td>
+<td>
+<p>The margin placed around the embedded <code style="white-space: pre;">⁠&lt;iframe&gt;⁠</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>style</code></td>
+<td>
+<p>Additional CSS <code>style</code> property value pairs, e.g.
+<code>c("padding-left: 1em", "padding-right: 1em")</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An <code>htmltools::tagList()</code> with the HTML dependencies required for
+<strong>share again</strong>.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>use_share_again()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># In your slides call
+use_share_again()
+
+</code></pre>
+
+
+</div>

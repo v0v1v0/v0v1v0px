@@ -1,0 +1,75 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>define_enet</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Define elastic net regularization object for predictor and external data</h2>
+
+<h3>Description</h3>
+
+<p>Helper function to define a elastic net penalty regularization
+object. See <code>define_penalty</code> for more details.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">define_enet(
+  en_param = 0.5,
+  num_penalty = 20,
+  penalty_ratio = NULL,
+  user_penalty = NULL,
+  custom_multiplier = NULL
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>en_param</code></td>
+<td>
+<p>elastic net parameter, between 0 and 1</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>num_penalty</code></td>
+<td>
+<p>number of penalty values to fit in grid. Default is 20.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>penalty_ratio</code></td>
+<td>
+<p>ratio between minimum and maximum penalty for x.
+Default is 1e-04 if <code class="reqn">n &gt; p</code> and 0.01 if <code class="reqn">n &lt;= p</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>user_penalty</code></td>
+<td>
+<p>user-defined vector of penalty values to use in penalty
+path.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>custom_multiplier</code></td>
+<td>
+<p>variable-specific penalty multipliers to apply to
+overall penalty. Default is 1 for all variables. 0 is no penalization.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A list object with regularization settings that are used to define
+the regularization for predictors or external data in <code>xrnet</code> and
+<code>tune_xrnet</code>. The list elements will match those returned by
+<code>define_penalty</code>, but with the penalty_type set to match the
+value of <code>en_param</code>.
+</p>
+
+
+</div>

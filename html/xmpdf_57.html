@@ -1,0 +1,473 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xmp</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>XMP metadata object</h2>
+
+<h3>Description</h3>
+
+<p><code>xmp()</code> creates an XMP metadata object.
+Such objects can be used with <code>set_xmp()</code> to edit XMP medata for a variety of media formats
+and such objects are returned by <code>get_xmp()</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xmp(
+  ...,
+  alt_text = NULL,
+  attribution_name = NULL,
+  attribution_url = NULL,
+  create_date = NULL,
+  creator = NULL,
+  creator_tool = NULL,
+  credit = NULL,
+  date_created = NULL,
+  description = NULL,
+  ext_description = NULL,
+  headline = NULL,
+  keywords = NULL,
+  license = NULL,
+  marked = NULL,
+  modify_date = NULL,
+  more_permissions = NULL,
+  producer = NULL,
+  rights = NULL,
+  subject = NULL,
+  title = NULL,
+  usage_terms = NULL,
+  web_statement = NULL,
+  auto_xmp = c("cc:attributionName", "cc:license", "dc:rights", "dc:subject",
+    "photoshop:Credit", "xmpRights:Marked", "xmpRights:UsageTerms",
+    "xmpRights:WebStatement"),
+  spdx_id = NULL
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Entries of xmp metadata.  The names are either the xmp tag names or alternatively the xmp namespace and tag names separated by ":".  The values are the xmp values.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>alt_text</code></td>
+<td>
+<p>Brief textual description that can be used as its "alt text" (XMP tag <code>Iptc4xmpCore:AltTextAccessibility</code>).
+Will be coerced by <code>as_lang_alt()</code>.
+Core IPTC photo metadata.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>attribution_name</code></td>
+<td>
+<p>The name to be used when attributing the work (XMP tag <code>cc:attributionName</code>).
+Recommended by Creative Commons.
+If missing and <code>"cc:attributionName"</code> in <code>auto_xmp</code> and
+and <code>photoshop:Credit</code> non-missing will use that else if <code>dc:creator</code> non-missing
+then will automatically use <code>stringi::stri_join(creator, collapse = " and ")</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>attribution_url</code></td>
+<td>
+<p>The URL to be used when attributing the work (XMP tag <code>cc:attributionURL</code>).
+Recommended by Creative Commons.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>create_date</code></td>
+<td>
+<p>The date the digital document was created (XMP tag <code>xmp:CreateDate</code>).
+Will be coerced by <code>datetimeoffset::as_datetimeoffset()</code>.
+Related pdf documentation info key is <code>CreationDate</code>.
+Not to be confused with <code>photoshop:DateCreated</code> which is the
+date the intellectual content was created.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>creator</code></td>
+<td>
+<p>The document's author(s) (XMP tag <code>dc:creator</code>).
+Related pdf documentation info key is <code>Author</code>.
+Core IPTC photo metadata used by Google Photos.
+If <code>credit</code> is missing and <code>"photoshop:Credit"</code> in <code>auto_xmp</code> then
+we'll also use this for the <code>photoshop:Credit</code> XMP tag.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>creator_tool</code></td>
+<td>
+<p>The name of the application that originally created the document (XMP tag <code>xmp:CreatorTool</code>).
+Related pdf documentation info key is <code>Creator</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>credit</code></td>
+<td>
+<p>Credit line field (XMP tag <code>photoshop:Credit</code>).
+Core IPTC photo metadata used by Google Photos.
+If missing and <code>"photoshop:Credit"</code> in <code>auto_xmp</code> and <code>dc:creator</code> non-missing
+then will automatically use <code>stringi::stri_join(creator, collapse = " and ")</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>date_created</code></td>
+<td>
+<p>The date the intellectual content was created (XMP tag <code>photoshop:DateCreated</code>).
+Will be coerced by <code>datetimeoffset::as_datetimeoffset()</code>.
+Core IPTC photo metadata.
+Not to be confused with <code>xmp:CreateDate</code> for when the digital document was created.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>description</code></td>
+<td>
+<p>The document's subject (XMP tag <code>dc:description</code>).
+Will be coerced by <code>as_lang_alt()</code>.
+Core IPTC photo metadata.
+Related pdf documentation info key is <code>Subject</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ext_description</code></td>
+<td>
+<p>An extended description (for accessibility)
+if the "alt text" is insufficient (XMP tag <code>Iptc4xmpCore:ExtDescrAccessibility</code>).
+Will be coerced by <code>as_lang_alt()</code>.
+Core IPTC photo metadata.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>headline</code></td>
+<td>
+<p>A short synopsis of the document (XMP tag <code>photoshop:Headline</code>).
+Core IPTC photo metadata.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>keywords</code></td>
+<td>
+<p>Character vector of keywords for this document (for cross-document searching).
+Related pdf documentation info key is <code>pdf:Keywords</code>.
+Will be coerced into a string by <code>stringi::stri_join(keywords, collapse = ", ")</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>license</code></td>
+<td>
+<p>The URL of (open source) license terms (XMP tag <code>cc:license</code>).
+Recommended by Creative Commons.
+Note <code>xmpRights:WebStatement</code> set in <code>web_statement</code> is a more popular XMP tag (e.g. used by Google Images)
+that can also hold the URL of license terms or a verifying web statement.
+If <code>cc:license</code> in <code>auto_xmp</code> and <code>spdx_id</code> is not <code>NULL</code> then
+we'll automatically use an URL from spdx_licenses corresponding to that license.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>marked</code></td>
+<td>
+<p>Whether the document is a rights-managed resource (XMP tag <code>xmpRights:Marked</code>).
+Use <code>TRUE</code> if rights-managed, <code>FALSE</code> if public domain, and <code>NULL</code> if unknown.
+Creative Commons recommends setting this.
+If <code>xmpRights:Marked</code> in <code>auto_xmp</code> and <code>spdx_id</code> is not <code>NULL</code> then
+we can automatically set this for a subset of SPDX licenses (including all Creative Commons licenses).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>modify_date</code></td>
+<td>
+<p>The date the document was last modified (XMP tag <code>xmp:ModifyDate</code>).
+Will be coerced by <code>datetimeoffset::as_datetimeoffset()</code>.
+Related pdf documentation info key is <code>ModDate</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>more_permissions</code></td>
+<td>
+<p>A URL for additional permissions beyond the <code>license</code> (XMP tag <code>cc:morePermissions</code>).
+Recommended by Creative Commons.
+Contrast with the <code>LicensorURL</code> property of <code>plus:Licensor</code> XMP tag.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>producer</code></td>
+<td>
+<p>The name of the application that converted the document to pdf (XMP tag <code>pdf:Producer</code>).
+Related pdf documentation info key is <code>Producer</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>rights</code></td>
+<td>
+<p>(copy)right information about the document (XMP tag <code>dc:rights</code>).
+Will be coerced by <code>as_lang_alt()</code>.
+Core IPTC photo metadata used by Google Photos that Creative Commons also recommends setting.
+If <code>dc:rights</code> in <code>auto_xmp</code> and <code>creator</code> and <code>date_created</code> are not <code>NULL</code> then
+we can automatically generate a basic copyright statement with the help of <code>spdx_id</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>subject</code></td>
+<td>
+<p>List of description phrases, keywords, classification codes (XMP tag <code>dc:subject</code>).
+Core IPTC photo metadata.
+A character vector.
+Similar but less popular to the XMP tag <code>pdf:Keywords</code> which is a string.
+If <code>dc:subject</code> in <code>auto_xmp</code> and <code>keywords</code> is not NULL then we can
+automatically extract the keywords from it using <code>strsplit(keywords, ", ")[[1]]</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>title</code></td>
+<td>
+<p>The document's title (XMP tag <code>dc:title</code>).
+Will be coerced by <code>as_lang_alt()</code>.
+Related pdf documentation info key is <code>Title</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>usage_terms</code></td>
+<td>
+<p>A string describing legal terms of use for the document (XMP tag <code>xmpRights:UsageTerms</code>).
+Will be coerced by <code>as_lang_alt()</code>.
+Core IPTC photo metadata and recommended by Creative Commons.
+If <code>xmpRights:UsageTerms</code> in <code>auto_xmp</code> and <code>spdx_id</code> is not <code>NULL</code> then
+we can automatically set this with that license's name and URL.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>web_statement</code></td>
+<td>
+<p>Web Statement of Rights (XMP tag <code>xmpRights:WebStatement</code>):
+a string of a full URL with license information about the page.
+If <code>xmpRights:WebStatement</code> in <code>auto_xmp</code> and <code>spdx_id</code> is not <code>NULL</code> then
+we'll automatically use an URL from spdx_licenses corresponding to that license.
+Core IPTC photo metadata used by Google Photos.
+Also recommended by Creative Commons (who also recommends using a "verifying" web statement).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>auto_xmp</code></td>
+<td>
+<p>Character vector of XMP metadata we should try to automatically determine
+if missing from other XMP metadata and <code>spdx_id</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>spdx_id</code></td>
+<td>
+<p>The id of a license in the SPDX license list.  See spdx_licenses.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An xmp object as can be used with <code>set_xmp()</code>.  Basically a named list whose names are the (optional) xmp namespace and tag names separated by ":" and the values are the xmp values.
+Datetimes should be a datetime object such as <code>POSIXlt()</code>.
+</p>
+
+
+<h3>
+<code>xmp</code> R6 Class Methods</h3>
+
+
+<dl>
+<dt><code>fig_process(..., auto = c("fig.alt", "fig.cap", "fig.scap"))</code></dt>
+<dd>
+<p>Returns a function to embed XMP metadata suitable for use with
+<code>{knitr}</code>'s <code>fig.process</code> chunk option.
+<code>...</code> are local XMP metadata changes for this function.
+<code>auto</code> are which chunk options should be used to further update metadata values.</p>
+</dd>
+<dt><code>get_item(key)</code></dt>
+<dd>
+<p>Get XMP metadata value for key <code>key</code>.
+Can also use the relevant active bindings to get more common values.</p>
+</dd>
+<dt><code>print(mode = c("null_omit", "google_images", "creative_commons", "all"), xmp_only = FALSE)</code></dt>
+<dd>
+<p>Print out XMP metadata values.  If <code>mode</code> is "null_omit" print out
+which metadata would be embedded.  If <code>mode</code> is "google images" print out
+values for the five fields Google Images uses.  If <code>mode</code> is <code>creative_commons</code>
+print out the values for the fields Creative Commons recommends be set when
+using their licenses.  If mode is <code>all</code> print out values for all
+XMP metadata that we provide active bindings for (even if <code>NULL</code>).
+If <code>xmp_only</code> is <code>TRUE</code> then don't print out <code>spdx_id</code> and <code>auto_xmp</code> values.</p>
+</dd>
+<dt><code>set_item(key, value)</code></dt>
+<dd>
+<p>Set XMP metadata key <code>key</code> with value <code>value</code>.
+Can also use the relevant active bindings to set XMP metadata values.</p>
+</dd>
+<dt><code>update(x)</code></dt>
+<dd>
+<p>Update XMP metadata entries
+using non-<code>NULL</code> entries in <code>x</code> coerced by <code>as_xmp()</code>.</p>
+</dd>
+</dl>
+<h3>
+<code>xmp</code> R6 Active Bindings</h3>
+
+
+<dl>
+<dt><code>alt_text</code></dt>
+<dd>
+<p>The image's alt text (accessibility).</p>
+</dd>
+<dt><code>attribution_name</code></dt>
+<dd>
+<p>The name to attribute the document.</p>
+</dd>
+<dt><code>attribution_url</code></dt>
+<dd>
+<p>The URL to attribute the document.</p>
+</dd>
+<dt><code>create_date</code></dt>
+<dd>
+<p>The date the document was created.</p>
+</dd>
+<dt><code>creator</code></dt>
+<dd>
+<p>The document's author.</p>
+</dd>
+<dt><code>creator_tool</code></dt>
+<dd>
+<p>The name of the application that originally created the document.</p>
+</dd>
+<dt><code>credit</code></dt>
+<dd>
+<p>Credit line.</p>
+</dd>
+<dt><code>date_created</code></dt>
+<dd>
+<p>The date the document's intellectual content was created</p>
+</dd>
+<dt><code>description</code></dt>
+<dd>
+<p>The document's description.</p>
+</dd>
+<dt><code>ext_description</code></dt>
+<dd>
+<p>An extended description for accessibility.</p>
+</dd>
+<dt><code>headline</code></dt>
+<dd>
+<p>A short synopsis of document.</p>
+</dd>
+<dt><code>keywords</code></dt>
+<dd>
+<p>String of keywords for this document (less popular than <code>subject</code>)).</p>
+</dd>
+<dt><code>license</code></dt>
+<dd>
+<p>URL of (open-source) license terms the document is licensed under.</p>
+</dd>
+<dt><code>marked</code></dt>
+<dd>
+<p>Boolean of whether this is a rights-managed document.</p>
+</dd>
+<dt><code>modify_date</code></dt>
+<dd>
+<p>The date the document was last modified.</p>
+</dd>
+<dt><code>more_permissions</code></dt>
+<dd>
+<p>URL for acquiring additional permissions beyond <code>license</code>.</p>
+</dd>
+<dt><code>producer</code></dt>
+<dd>
+<p>The name of the application that converted the document (to pdf).</p>
+</dd>
+<dt><code>rights</code></dt>
+<dd>
+<p>The document's copy(right) information.</p>
+</dd>
+<dt><code>subject</code></dt>
+<dd>
+<p>Vector of key phrases/words/codes for this document (more popular than <code>keywords</code>)).</p>
+</dd>
+<dt><code>title</code></dt>
+<dd>
+<p>The document's title.</p>
+</dd>
+<dt><code>usage_terms</code></dt>
+<dd>
+<p>The document's rights usage terms.</p>
+</dd>
+<dt><code>web_statement</code></dt>
+<dd>
+<p>A URL string for the web statement of rights for the document.</p>
+</dd>
+<dt><code>spdx_id</code></dt>
+<dd>
+<p>The id of a license in the SPDX license list.  See spdx_licenses.</p>
+</dd>
+<dt><code>auto_xmp</code></dt>
+<dd>
+<p>Character vector of XMP metadata we should try to automatically determine
+if missing from other XMP metadata and <code>spdx_id</code>.</p>
+</dd>
+</dl>
+<h3>XMP tag recommendations</h3>
+
+
+<ul>
+<li> <p><a href="https://exiftool.org/TagNames/XMP.html">https://exiftool.org/TagNames/XMP.html</a> recommends "dc", "xmp", "Iptc4xmpCore", and "Iptc4xmpExt" schemas if possible
+</p>
+</li>
+<li> <p><a href="https://github.com/adobe/xmp-docs/tree/master/XMPNamespaces">https://github.com/adobe/xmp-docs/tree/master/XMPNamespaces</a> are descriptions of some common XMP tags
+</p>
+</li>
+<li> <p><a href="https://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata#xmp-namespaces-and-identifiers">https://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata#xmp-namespaces-and-identifiers</a> is popular for photos
+</p>
+</li>
+<li> <p><a href="https://developers.google.com/search/docs/appearance/structured-data/image-license-metadata#iptc-photo-metadata">https://developers.google.com/search/docs/appearance/structured-data/image-license-metadata#iptc-photo-metadata</a> are the subset of IPTC photo metadata which Google Photos uses (if no structured data on web page)
+</p>
+</li>
+<li> <p><a href="https://wiki.creativecommons.org/wiki/XMP">https://wiki.creativecommons.org/wiki/XMP</a> are Creative Commons license recommendations
+</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p><code>get_xmp()</code> and <code>set_xmp()</code> for getting/setting such information from/to a variety of media file formats.
+<code>as_xmp()</code> for coercing to this object.
+<code>as_docinfo()</code> can be used to coerce <code>xmp()</code> objects into <code>docinfo()</code> objects.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">  x &lt;- xmp(attribution_url = "https://example.com/attribution",
+           creator = "John Doe",
+           description = "An image caption",
+           date_created = Sys.Date(),
+           spdx_id = "CC-BY-4.0")
+  print(x)
+  print(x, mode = "google_images", xmp_only = TRUE)
+  print(x, mode = "creative_commons", xmp_only = TRUE)
+
+  if (supports_set_xmp() &amp;&amp;
+      supports_get_xmp() &amp;&amp;
+      capabilities("png") &amp;&amp;
+      requireNamespace("grid", quietly = TRUE)) {
+
+    f &lt;- tempfile(fileext = ".png")
+    png(f)
+    grid::grid.text("This is an image!")
+    invisible(dev.off())
+    set_xmp(x, f)
+    print(get_xmp(f)[[1]])
+  }
+</code></pre>
+
+
+</div>

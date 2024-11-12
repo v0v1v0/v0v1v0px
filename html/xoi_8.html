@@ -1,0 +1,141 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>est.coi.um</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Estimate the coincidence as a function of micron distance</h2>
+
+<h3>Description</h3>
+
+<p>Estimate the coincidence as a function of micron distance, with
+data on XO locations in microns plus SC length in microns.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">est.coi.um(
+  xoloc,
+  sclength,
+  centromeres = NULL,
+  group = NULL,
+  intwindow = 0.05,
+  coiwindow = NULL,
+  intloc = NULL,
+  coiloc = NULL
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>xoloc</code></td>
+<td>
+<p>list of crossover locations (in microns) for each of several oocytes or spermatocytes.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sclength</code></td>
+<td>
+<p>vector of SC lengths (in microns).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>centromeres</code></td>
+<td>
+<p>vector of centromere locations (in microns). If NULL, taken to be <code>sclength/2</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>group</code></td>
+<td>
+<p>nominal vector of groups; the intensity function of
+the crossover process will be estimated separately for each group,
+but a joint coincidence function will be estimated.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>intwindow</code></td>
+<td>
+<p>Window size used to smooth the estimated intensity
+function.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>coiwindow</code></td>
+<td>
+<p>Window size used to smooth the estimated
+coincidence function.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>intloc</code></td>
+<td>
+<p>Locations at which to estimate the intensity
+function, in the interval [0,1]</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>coiloc</code></td>
+<td>
+<p>Values at which the coincidence function is to be
+estimated, in microns, less than <code>max(sclength)</code></p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The coincidence function is the probability of a recombination
+event in both of two intervals, divided by the product of the two
+intensity function for the two intervals.
+</p>
+<p>We estimate this as a function of the distance between the two
+intervals in microns, taking account of varying SC lengths,.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A list containing the estimated coincidence (as a matrix
+with two columns, micron distance and corresponding estimated
+coincidence) and the estimated intensity functions (as a matrix
+with <code>length(group)+1</code> columns (the locations at which the
+intensity functions were estimated followed by the group-specific estimates).
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Karl W Broman, <a href="mailto:broman@wisc.edu">broman@wisc.edu</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>gammacoi()</code>, <code>stahlcoi()</code>,
+<code>kfunc()</code>, <code>est.coi()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># simple example using data simulated with no crossover interference
+ncells &lt;- 1000
+L &lt;- 2                      # chr lengths in Morgans (constant here)
+nchi &lt;- rpois(ncells, 2*L)  # number of chiasmata
+xoloc &lt;- lapply(nchi, function(a) runif(a, 0, L)) # chi locations
+coi &lt;- est.coi.um(xoloc, rep(L, ncells))
+
+# plot estimated coincidence and intensity
+#    (intensity is after scaling chromosome to length 1)
+par(mfrow=c(2,1), las=1)
+plot(coi$coincidence, type="l", lwd=2, ylim=c(0, max(coi$coincidence[,2])))
+plot(coi$intensity, type="l", lwd=2, ylim=c(0, max(coi$intensity[,2])))
+
+</code></pre>
+
+
+</div>

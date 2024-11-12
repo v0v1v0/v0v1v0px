@@ -1,0 +1,69 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>DimensionHolder</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>DimensionHolder</h2>
+
+<h3>Description</h3>
+
+<p>Allow columns to be grouped
+</p>
+<p><a href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.dimensions.html">https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.dimensions.html</a>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">DimensionHolder(worksheet, reference = "index", default_factory = NULL, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>worksheet</code></td>
+<td>
+<p>worksheet</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>reference</code></td>
+<td>
+<p>reference</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>default_factory</code></td>
+<td>
+<p>default_factory</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments, i.e. kwargs.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An openpyxl Python object.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+wb &lt;- Workbook()
+ws &lt;- wb$active
+DimensionHolder(worksheet = ws)
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

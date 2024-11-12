@@ -1,0 +1,96 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>initializeTestthatAddin</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Initializes <code>test_that()</code> call</h2>
+
+<h3>Description</h3>
+
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="../help/figures/lifecycle-experimental.svg" alt="[Experimental]"></a>
+</p>
+<p>Inserts code for calling <code>testthat::test_that()</code>.
+</p>
+<p>See <code>`Details`</code> for how to set a key command.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">initializeTestthatAddin(insert = TRUE, indentation = NULL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>insert</code></td>
+<td>
+<p>Whether to insert the code via
+<code>rstudioapi::insertText()</code>
+or return it. (Logical)
+</p>
+<p><strong>N.B.</strong> Mainly intended for testing the addin programmatically.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>indentation</code></td>
+<td>
+<p>Indentation of the code. (Numeric)
+</p>
+<p><strong>N.B.</strong> Mainly intended for testing the addin programmatically.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+
+
+<h4>How to set up a key command in RStudio</h4>
+
+<p>After installing the package.
+Go to:
+</p>
+<p><code>Tools &gt;&gt; Addins &gt;&gt; Browse Addins &gt;&gt; Keyboard Shortcuts</code>.
+</p>
+<p>Find <code>"Initialize test_that()"</code> and press its field under <code>Shortcut</code>.
+</p>
+<p>Press desired key command, e.g. <code>Alt+T</code>.
+</p>
+<p>Press <code>Apply</code>.
+</p>
+<p>Press <code>Execute</code>.
+</p>
+
+
+
+<h3>Value</h3>
+
+<p>Inserts code for calling
+<code>testthat::test_that()</code>.
+</p>
+<p>Returns <code>NULL</code> invisibly.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ludvig Renbo Olsen, <a href="mailto:r-pkgs@ludvigolsen.dk">r-pkgs@ludvigolsen.dk</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other addins: 
+<code>assertCollectionAddin()</code>,
+<code>dputSelectedAddin()</code>,
+<code>initializeGXSFunctionAddin()</code>,
+<code>insertExpectationsAddin()</code>,
+<code>navigateTestFileAddin()</code>,
+<code>wrapStringAddin()</code>
+</p>
+
+
+</div>

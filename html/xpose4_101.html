@@ -1,0 +1,257 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>dOFV.vs.id</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Change in Objective function value vs. removal of individuals.</h2>
+
+<h3>Description</h3>
+
+<p>A plot showing the most and least influential individuals in determining a
+drop in OFV between two models.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">dOFV.vs.id(
+  xpdb1,
+  xpdb2,
+  sig.drop = -3.84,
+  decrease.label.number = 3,
+  increase.label.number = 3,
+  id.lab.cex = 0.6,
+  id.lab.pos = 2,
+  type = "o",
+  xlb = "Number of subjects removed",
+  ylb = expression(paste(Delta, "OFV")),
+  main = "Default",
+  sig.line.col = "red",
+  sig.line.lty = "dotted",
+  tot.line.col = "grey",
+  tot.line.lty = "dashed",
+  key = list(columns = 1, lines = list(pch = c(super.sym$pch[1:2], NA, NA), type =
+    list("o", "o", "l", "l"), col = c(super.sym$col[1:2], sig.line.col, tot.line.col),
+    lty = c(super.sym$lty[1:2], sig.line.lty, tot.line.lty)), text =
+    list(c(expression(paste(Delta, OFV[i] &lt; 0)), expression(paste(Delta, OFV[i] &gt; 0)),
+    expression(paste("Significant  ", Delta, OFV)), expression(paste("Total  ", Delta,
+    OFV)))), corner = c(0.95, 0.5), border = T),
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>xpdb1</code></td>
+<td>
+<p>Xpose data object for first NONMEM run ("new" run)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xpdb2</code></td>
+<td>
+<p>Xpose data object for Second NONMEM run ("reference" run)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sig.drop</code></td>
+<td>
+<p>What is a significant drop of OFV?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>decrease.label.number</code></td>
+<td>
+<p>How many points should bw labeled with ID
+values for those IDs with a drop in iOFV?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>increase.label.number</code></td>
+<td>
+<p>How many points should bw labeled with ID
+values for those IDs with an increase in iOFV?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>id.lab.cex</code></td>
+<td>
+<p>Size of ID labels.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>id.lab.pos</code></td>
+<td>
+<p>ID label position.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>type</code></td>
+<td>
+<p>Type of lines.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xlb</code></td>
+<td>
+<p>X-axis label.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylb</code></td>
+<td>
+<p>Y-axis label.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>Title of plot.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sig.line.col</code></td>
+<td>
+<p>Significant OFV drop line color.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sig.line.lty</code></td>
+<td>
+<p>Significant OFV drop line type.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tot.line.col</code></td>
+<td>
+<p>Total OFV drop line color.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tot.line.lty</code></td>
+<td>
+<p>Total OFV drop line type.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>key</code></td>
+<td>
+<p>Legend for plot.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments to function.</p>
+</td>
+</tr>
+</table>
+<h3>Author(s)</h3>
+
+<p>Andrew C. Hooker
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other specific functions: 
+<code>absval.cwres.vs.cov.bw()</code>,
+<code>absval.cwres.vs.pred()</code>,
+<code>absval.cwres.vs.pred.by.cov()</code>,
+<code>absval.iwres.cwres.vs.ipred.pred()</code>,
+<code>absval.iwres.vs.cov.bw()</code>,
+<code>absval.iwres.vs.idv()</code>,
+<code>absval.iwres.vs.ipred()</code>,
+<code>absval.iwres.vs.ipred.by.cov()</code>,
+<code>absval.iwres.vs.pred()</code>,
+<code>absval.wres.vs.cov.bw()</code>,
+<code>absval.wres.vs.idv()</code>,
+<code>absval.wres.vs.pred()</code>,
+<code>absval.wres.vs.pred.by.cov()</code>,
+<code>absval_delta_vs_cov_model_comp</code>,
+<code>addit.gof()</code>,
+<code>autocorr.cwres()</code>,
+<code>autocorr.iwres()</code>,
+<code>autocorr.wres()</code>,
+<code>basic.gof()</code>,
+<code>basic.model.comp()</code>,
+<code>cat.dv.vs.idv.sb()</code>,
+<code>cat.pc()</code>,
+<code>cov.splom()</code>,
+<code>cwres.dist.hist()</code>,
+<code>cwres.dist.qq()</code>,
+<code>cwres.vs.cov()</code>,
+<code>cwres.vs.idv()</code>,
+<code>cwres.vs.idv.bw()</code>,
+<code>cwres.vs.pred()</code>,
+<code>cwres.vs.pred.bw()</code>,
+<code>cwres.wres.vs.idv()</code>,
+<code>cwres.wres.vs.pred()</code>,
+<code>dOFV.vs.cov()</code>,
+<code>dOFV1.vs.dOFV2()</code>,
+<code>data.checkout()</code>,
+<code>dv.preds.vs.idv()</code>,
+<code>dv.vs.idv()</code>,
+<code>dv.vs.ipred()</code>,
+<code>dv.vs.ipred.by.cov()</code>,
+<code>dv.vs.ipred.by.idv()</code>,
+<code>dv.vs.pred()</code>,
+<code>dv.vs.pred.by.cov()</code>,
+<code>dv.vs.pred.by.idv()</code>,
+<code>dv.vs.pred.ipred()</code>,
+<code>gof()</code>,
+<code>ind.plots()</code>,
+<code>ind.plots.cwres.hist()</code>,
+<code>ind.plots.cwres.qq()</code>,
+<code>ipred.vs.idv()</code>,
+<code>iwres.dist.hist()</code>,
+<code>iwres.dist.qq()</code>,
+<code>iwres.vs.idv()</code>,
+<code>kaplan.plot()</code>,
+<code>par_cov_hist</code>,
+<code>par_cov_qq</code>,
+<code>parm.vs.cov()</code>,
+<code>parm.vs.parm()</code>,
+<code>pred.vs.idv()</code>,
+<code>ranpar.vs.cov()</code>,
+<code>runsum()</code>,
+<code>wres.dist.hist()</code>,
+<code>wres.dist.qq()</code>,
+<code>wres.vs.idv()</code>,
+<code>wres.vs.idv.bw()</code>,
+<code>wres.vs.pred()</code>,
+<code>wres.vs.pred.bw()</code>,
+<code>xpose.VPC()</code>,
+<code>xpose.VPC.both()</code>,
+<code>xpose.VPC.categorical()</code>,
+<code>xpose4-package</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Not run: 
+library(xpose4)
+
+## first make sure that the iofv values are read into xpose
+cur.dir &lt;- getwd()
+setwd(paste(cur.dir,"/LAG_TIME",sep=""))
+xpdb1 &lt;- xpose.data(1)
+setwd(paste(cur.dir,"/TRANSIT_MODEL",sep=""))
+xpdb2 &lt;- xpose.data(1)
+setwd(cur.dir)
+
+## then make the plot
+dOFV.vs.id(xpdb1,xpdb2)
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

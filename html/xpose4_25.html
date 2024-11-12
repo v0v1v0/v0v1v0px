@@ -1,0 +1,208 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>add.grid.table</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Print tables or text in a grid object</h2>
+
+<h3>Description</h3>
+
+<p>These functions take an array of values and labels or an array of text and
+add it to one or many grid viewports in an orderly fashion.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">add.grid.table(
+  txt,
+  col.nams = NULL,
+  ystart,
+  xstart = unit(0, "npc"),
+  start.pt = 1,
+  vp,
+  vp.num = 1,
+  minrow = 5,
+  cell.padding = 0.5,
+  mult.col.padding = 1,
+  col.optimize = TRUE,
+  equal.widths = FALSE,
+  space.before.table = 1,
+  center.table = FALSE,
+  use.rect = FALSE,
+  fill.type = NULL,
+  fill.col = "grey",
+  cell.lines.lty = 0,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>txt</code></td>
+<td>
+<p>The text or table values to add to the grid object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col.nams</code></td>
+<td>
+<p>the column names of the table values</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ystart</code></td>
+<td>
+<p>The y location to start printing in the grid viewport</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xstart</code></td>
+<td>
+<p>The x location to start printing in the grid viewport</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>start.pt</code></td>
+<td>
+<p>The start point (row) in the table array to start printing</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>vp</code></td>
+<td>
+<p>The viewport(s) to add the table or text to</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>vp.num</code></td>
+<td>
+<p>the viewport number in <code>vp</code> to start printing to</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>minrow</code></td>
+<td>
+<p>The minimum rows before printing more columns to use in the
+table</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cell.padding</code></td>
+<td>
+<p>padding between cells in the table</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mult.col.padding</code></td>
+<td>
+<p>padding between multiple columns in the table</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col.optimize</code></td>
+<td>
+<p>should we column optimize (<code>TRUE</code>) or row optimize
+(<code>FALSE</code>)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>equal.widths</code></td>
+<td>
+<p>Should all columns have equal widths</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>space.before.table</code></td>
+<td>
+<p>Should there be a space before the table</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>center.table</code></td>
+<td>
+<p>should we center the table in the viewport?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>use.rect</code></td>
+<td>
+<p>Should we make rectangles with background color around the
+table entries <code>TRUE</code> or <code>FALSE</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fill.type</code></td>
+<td>
+<p>Which rectangles should be filled.  Allowed values are
+<code>"all"</code>, <code>"top"</code>, <code>"side"</code>, <code>"both"</code> and <code>NULL</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fill.col</code></td>
+<td>
+<p>The color of the filled rectangles</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cell.lines.lty</code></td>
+<td>
+<p>The line-type for the lines between the cells, using
+the same values as lty.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Other arguments passed to the various functions.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A List is returned with the following components </p>
+<table>
+<tr style="vertical-align: top;">
+<td><code>ystart </code></td>
+<td>
+<p>new
+starting point for new text</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>stop.pt </code></td>
+<td>
+<p>null if everything gets
+printed</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>vp.num </code></td>
+<td>
+<p>the viewport needed for next text printed</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xpose.table </code></td>
+<td>
+<p>A grob object that can be plotted.</p>
+</td>
+</tr>
+</table>
+<h3>Author(s)</h3>
+
+<p>Andrew Hooker
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>runsum</code>, <code>grid.text</code>
+</p>
+
+
+</div>

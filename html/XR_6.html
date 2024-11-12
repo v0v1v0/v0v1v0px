@@ -1,0 +1,110 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>asRObject</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Specialize the R Object Returned from an Interface Evaluator</h2>
+
+<h3>Description</h3>
+
+<p>The result of a server language expression is returned as a string, using the JSON
+standard notation to represent a scalar, list or dictionary.  Methods for this function
+get the simple R object obtained from deparsing and interpret it generally.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">asRObject(object, evaluator)
+
+## S4 method for signature 'ProxyObject'
+asRObject(object, evaluator)
+
+## S4 method for signature 'vector_R'
+asRObject(object, evaluator)
+
+## S4 method for signature 'list'
+asRObject(object, evaluator)
+
+## S4 method for signature 'data.frame'
+asRObject(object, evaluator)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An object constructed from the explicit representation as a dictionary.
+The elements of the dictionary will be converted into objects for the slots of the same
+name.  Application-written methods will re-interpret the object into the intended <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span> form,
+not necessarily from the same class.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>evaluator</code></td>
+<td>
+<p>This argument will be supplied as the evaluator object doing the conversion.
+Therefore, methods may have one of the specific evaluator classes (e.g., <code>"PythonInterface"</code>,
+in their signature.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The methods supplied with the 'XR' pacakage handle the standard mechanisms for interpretation.
+Additional methods are likely to interpret proxy class objects for which the standard
+XR representation in terms of class and slots is not what's actually wanted.
+</p>
+
+
+<h3>Methods (by class)</h3>
+
+
+<ul>
+<li> <p><code>ProxyObject</code>: When a proxy object appears, usually as an element of a list, it
+is expanded, by using the 'Get()' method of the evaluator and calling 'asRObject()' on the
+result.
+</p>
+</li>
+<li> <p><code>vector_R</code>: To distinguish typed R vectors from a general JSON list, encode the
+desired data as an object from the "vector_R" class.
+Vector types whose elements cannot be represented in JSON (e..g, "complex") should
+be returned as a list of character strings in a format that R will parse as
+elements of the suitable vector object. (e.g, ".5+3i")
+</p>
+</li>
+<li> <p><code>list</code>: Both lists and dictionaries will come here from the basic conversion.
+'names(object)' will either be NULL or all non-empty, from a dictionary.
+</p>
+</li>
+<li> <p><code>data.frame</code>: Assume this has been done via .RClass; avoid inheriting the list method
+</p>
+</li>
+</ul>
+<h3>Writing Application Methods</h3>
+
+<p>Application packages will typically write methods for special classes, and often for classes
+themselves defined in the package.  One good reason is that the server language does not
+naturally return the eventually intended object in a convenient form; for example, because
+it does not have typed arrays.  Then a special class will be defined in <span style="font-family: Courier New, Courier; color: #666666;"><b>R</b></span>.  The server code
+will generate a dictionary with the <code>".RClass"</code> element having the class name, plus
+whatever slots make sense.  The application method for <code>asRObject()</code> will take these
+slots and construct whatever object is really intended.  For an example, see the method
+for class <code>vector_R</code>.
+</p>
+
+
+<h3>References</h3>
+
+<p>Chambers, John M. (2016)
+<em>Extending R</em>,
+Chapman &amp; Hall/CRC.
+( Chapter 13, discussing this package, is included in the package: <a href="../doc/Chapter_XR.pdf">../doc/Chapter_XR.pdf</a>.)
+</p>
+
+
+</div>

@@ -1,0 +1,96 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>parseXMLTree</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Read an XML file into an R object</h2>
+
+<h3>Description</h3>
+
+<p>Read an XML file into an R object
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">parseXMLTree(file, drop = NULL, object = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>file</code></td>
+<td>
+<p>Character string, valid path to the XML file which should be parsed.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>drop</code></td>
+<td>
+<p>Character vector with the possible values <code>"comments"</code>, <code>"cdata"</code>
+<code>"declarations"</code>, and <code>"doctype"</code>, defining element classes to be dropped
+from the resulting object, or <code>"empty_attributes"</code>, in case you would like to omit
+empty attributes (as used in HTML).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>Logical, if <code>TRUE</code>,
+<code>file</code> will not be treated as a path name but as a
+character vector to be parsed as XML directly.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An object of class <code>XiMpLe_doc</code> with four slots:
+</p>
+
+<dl>
+<dt>
+<code>file</code>:</dt>
+<dd>
+<p>Full path to the parsed file,
+or <code>"object"</code> if <code>object=TRUE</code>.</p>
+</dd>
+<dt>
+<code>xml</code>:</dt>
+<dd>
+<p>XML declaration, if found.</p>
+</dd>
+<dt>
+<code>dtd</code>:</dt>
+<dd>
+<p>Doctype definition, if found.</p>
+</dd>
+<dt>
+<code>children</code>:</dt>
+<dd>
+<p>A list of objects of class <code>XiMpLe_node</code>,
+with the elements
+<code>"name"</code> (the node name), <code>"attributes"</code> (list of attributes, if found),
+<code>"children"</code> (list of <code>XiMpLe_node</code> object, if found) and <code>"value"</code>
+(text value between a pair of start/end tags, if found).</p>
+</dd>
+</dl>
+<h3>See Also</h3>
+
+<p><code>XiMpLe_node</code>,
+<code>XiMpLe_doc</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+sample.XML.object &lt;- parseXMLTree("~/data/sample_file.xml")
+
+## End(Not run)
+</code></pre>
+
+
+</div>

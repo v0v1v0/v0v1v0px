@@ -1,0 +1,57 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>ProxyClassObject-class</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>A Class for Objects that are Proxies for Specific Server Class Objects</h2>
+
+<h3>Description</h3>
+
+<p>This class is extended by all specific proxy classes for a particular language.
+If a proxy object is returned from the server language whose server class matches a
+defined proxy class, then an object from that class is generated.
+</p>
+
+
+<h3>Fields</h3>
+
+
+<dl>
+<dt><code>.proxyObject</code></dt>
+<dd>
+<p>the actual proxy reference</p>
+</dd>
+<dt><code>.proxyClass</code></dt>
+<dd>
+<p>the description of the server language class (name, module, langauge)</p>
+</dd>
+<dt><code>.ev</code></dt>
+<dd>
+<p>the evaluator that produced this proxy object.</p>
+</dd>
+</dl>
+<h3>Methods</h3>
+
+
+<dl>
+<dt><code>proxyName()</code></dt>
+<dd>
+<p>the character string under which the server language object is assigned.
+Useful to examine the object in a shell for the server language.</p>
+</dd>
+<dt><code>size()</code></dt>
+<dd>
+<p>returns the server-language size of the object, possibly NA</p>
+</dd>
+</dl>
+<h3>References</h3>
+
+<p>Chambers, John M. (2016)
+<em>Extending R</em>,
+Chapman &amp; Hall/CRC.
+( Chapter 13, discussing this package, is included in the package: <a href="../doc/Chapter_XR.pdf">../doc/Chapter_XR.pdf</a>.)
+</p>
+
+
+</div>

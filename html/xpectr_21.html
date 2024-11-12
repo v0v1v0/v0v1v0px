@@ -1,0 +1,86 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>smpl</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Random sampling</h2>
+
+<h3>Description</h3>
+
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="../help/figures/lifecycle-experimental.svg" alt="[Experimental]"></a>
+</p>
+<p>Samples a <code>vector</code>, <code>factor</code> or <code>data.frame</code>. Useful to reduce size of testthat <code>expect_*</code> tests.
+Not intended for other purposes.
+</p>
+<p>Wraps <code>sample.int()</code>. <code>data.frame</code>s are sampled row-wise.
+</p>
+<p>The <code>seed</code> is set within the function with <code>sample.kind</code> as <code>"Rounding"</code>
+for compatibility with <code>R</code> versions <code>&lt; 3.6.0</code>. On exit, the random state is restored.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">smpl(data, n, keep_order = TRUE, seed = 42)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>data</code></td>
+<td>
+<p><code>vector</code> or <code>data.frame</code>. (Logical)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>n</code></td>
+<td>
+<p>Number of elements/rows to sample.
+</p>
+<p><strong>N.B.</strong> No replacement is used, why <code>n &gt;</code> the number of elements/rows in <code>`data`</code> won't
+perform oversampling.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>keep_order</code></td>
+<td>
+<p>Whether to keep the order of the elements. (Logical)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>seed</code></td>
+<td>
+<p><code>seed</code> to use.
+</p>
+<p>The <code>seed</code> is set with <code>sample.kind = "Rounding"</code>
+for compatibility with <code>R</code> versions <code>&lt; 3.6.0</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>When <code>`data`</code> has <code>&lt;=`n`</code> elements, <code>`data`</code> is returned.
+Otherwise, <code>`data`</code> is sampled and returned.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ludvig Renbo Olsen, <a href="mailto:r-pkgs@ludvigolsen.dk">r-pkgs@ludvigolsen.dk</a>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Attach packages
+library(xpectr)
+
+smpl(c(1,2,3,4,5), n = 3)
+smpl(data.frame("a" = c(1,2,3,4,5), "b" = c(2,3,4,5,6), stringsAsFactors = FALSE), n = 3)
+</code></pre>
+
+
+</div>

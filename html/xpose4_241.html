@@ -1,0 +1,361 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xpose.plot.splom</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>The Xpose 4 generic functions for scatterplot matrices.</h2>
+
+<h3>Description</h3>
+
+<p>This function is a wrapper for the lattice splom function.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xpose.plot.splom(
+  plist,
+  object,
+  varnames = NULL,
+  main = "Scatterplot Matrix",
+  xlb = NULL,
+  ylb = NULL,
+  scales = list(),
+  onlyfirst = TRUE,
+  inclZeroWRES = FALSE,
+  subset = xsubset(object),
+  by = object@Prefs@Graph.prefs$condvar,
+  force.by.factor = FALSE,
+  include.cat.vars = FALSE,
+  ordby = NULL,
+  byordfun = object@Prefs@Graph.prefs$byordfun,
+  shingnum = object@Prefs@Graph.prefs$shingnum,
+  shingol = object@Prefs@Graph.prefs$shingol,
+  strip = function(...) strip.default(..., strip.names = c(TRUE, TRUE)),
+  groups = NULL,
+  ids = object@Prefs@Graph.prefs$ids,
+  smooth = TRUE,
+  lmline = NULL,
+  panel = xpose.panel.splom,
+  aspect = object@Prefs@Graph.prefs$aspect,
+  samp = NULL,
+  max.plots.per.page = 4,
+  mirror = FALSE,
+  mirror.aspect = "fill",
+  pass.plot.list = FALSE,
+  x.cex = NULL,
+  y.cex = NULL,
+  main.cex = NULL,
+  mirror.internal = list(strip.missing = missing(strip)),
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>plist</code></td>
+<td>
+<p>A vector of strings containing variable names for the
+scatterplot matrix.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An "xpose.data" object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>varnames</code></td>
+<td>
+<p>A vector of strings containing labels for the variables in
+the scatterplot matrix.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>A string giving the plot title or <code>NULL</code> if none.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xlb</code></td>
+<td>
+<p>A string giving the label for the x-axis. <code>NULL</code> if none.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylb</code></td>
+<td>
+<p>A string giving the label for the y-axis. <code>NULL</code> if none.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>scales</code></td>
+<td>
+<p>A list to be used for the <code>scales</code> argument in
+<code>xyplot</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>onlyfirst</code></td>
+<td>
+<p>A logical value indicating whether only the first row per
+individual should be included in the plot.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>inclZeroWRES</code></td>
+<td>
+<p>A logical value indicating whether rows with WRES=0
+should be plotted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>subset</code></td>
+<td>
+<p>A string giving the subset expression to be applied to the
+data before plotting. See <code>xsubset</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>by</code></td>
+<td>
+<p>A string or a vector of strings with the name(s) of the
+conditioning variables.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>force.by.factor</code></td>
+<td>
+<p>Logical value. If TRUE, and <code>by</code> is not
+<code>NULL</code>, the variable specified by <code>by</code> is taken as categorical.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>include.cat.vars</code></td>
+<td>
+<p>Logical value.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ordby</code></td>
+<td>
+<p>A string with the name of a variable to be used to reorder any
+factor conditioning variables (<code>by</code>). The variable is used in a call to
+the <code>reorder.factor</code> function.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>byordfun</code></td>
+<td>
+<p>The name of the function to be used when reordering a factor
+conditioning variable (see argument <code>ordby</code>)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>shingnum</code></td>
+<td>
+<p>The number of shingles ("parts") a continuous conditioning
+variable should be divided into.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>shingol</code></td>
+<td>
+<p>The amount of overlap between adjacent shingles (see argument
+<code>shingnum</code>)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>strip</code></td>
+<td>
+<p>The name of the function to be used as the strip argument to
+the <code>xyplot</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>groups</code></td>
+<td>
+<p>A string with the name of any grouping variable (used as the
+groups argument to <code>panel.xyplot</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ids</code></td>
+<td>
+<p>A logical value indicating whether text labels should be used as
+plotting symbols (the variable used for these symbols indicated by the
+<code>idlab</code> xpose data variable).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>smooth</code></td>
+<td>
+<p>A <code>NULL</code> value indicates that no superposed line should
+be added to the graph. If <code>TRUE</code> then a smooth of the data will be
+superimposed.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lmline</code></td>
+<td>
+<p>logical variable specifying whether a linear regression line
+should be superimposed over an <code>xyplot</code>. <code>NULL</code> ~
+FALSE. (<code>y~x</code>)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>panel</code></td>
+<td>
+<p>The name of the panel function to use.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>aspect</code></td>
+<td>
+<p>The aspect ratio of the display (see
+<code>xyplot</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>samp</code></td>
+<td>
+<p>An integer between 1 and object@Nsim
+(see<code>xpose.data-class</code>) specifying which of the simulated data
+sets to extract from SData.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max.plots.per.page</code></td>
+<td>
+<p>The maximum number of plots per page that can be
+created with the mirror plots.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mirror</code></td>
+<td>
+<p>Should we create mirror plots from simulation data?  Value can
+be <code>FALSE</code>, <code>TRUE</code> or <code>1</code> for one mirror plot, or <code>3</code>
+for three mirror plots.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mirror.aspect</code></td>
+<td>
+<p>The aspect ratio of the plots used for mirror
+functionality.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pass.plot.list</code></td>
+<td>
+<p>Should we pass the list of plots created with mirror
+or should we print them directly.  Values can be <code>TRUE/FALSE</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x.cex</code></td>
+<td>
+<p>The size of the x-axis label.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>y.cex</code></td>
+<td>
+<p>The size of the y-axis label.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main.cex</code></td>
+<td>
+<p>The size of the title.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mirror.internal</code></td>
+<td>
+<p>an internal mirror argument used in
+<code>create.mirror</code>.  Checks if the <code>strip</code> argument from
+<code>qqmath</code> has been used.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Other arguments passed to <code>xpose.panel.default</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>If <code>ids</code> is <code>TRUE</code>, text labels are added to the plotting symbols.
+The labels are taken from the <code>idlab</code> xpose data variable. The way the
+text labels are plotted is governed by the <code>idsmode</code> argument (passed
+down to the panel function). <code>idsmode=NULL</code> (the default) means that
+only extreme data points are labelled while a non-<code>NULL</code> value adds
+labels to all data points (the default in Xpose 3).
+<code>xpose.panel.default</code> identifies extreme data points by fitting a loess
+smooth (<code>y~x</code>) and looking at the residuals from that fit. Points that
+are associated with the highest/lowest residuals are labelled. "High" and
+"low" are judged by the panel function parameter <code>idsext</code>, which gives
+the fraction of the total number of data points that are to be judged
+extreme in the "up" and "down" direction. The default value for
+<code>idsext</code> is 0.05 (see <code>link{xpose.prefs-class}</code>). There is also a
+possibility to label only the high or low extreme points. This is done
+through the <code>idsdir</code> argument to <code>xpose.panel.default</code>. A value of
+"both" (the default) means that both high and low extreme points are
+labelled while "up" and "down" labels the high and low extreme points
+respectively.
+</p>
+<p>More graphical parameters may be passed to <code>xpose.panel.splom</code>.
+for example, if you want to adjust the size of the <code>varnames</code> and
+<code>axis tick labels</code> you can use the parameters <code>varname.cex=0.5</code>
+and <code>axis.text.cex=0.5</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Returns a scatterplot matrix graph object.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>E. Niclas Jonsson, Mats Karlsson, Andrew Hooker &amp; Justin Wilkins
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xpose.panel.splom</code>, <code>splom</code>,
+<code>panel.splom</code>, <code>xpose.prefs-class</code>,
+<code>xpose.data-class</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Not run: 
+## xpdb5 is an Xpose data object
+## We expect to find the required NONMEM run and table files for run
+## 5 in the current working directory
+xpdb5 &lt;- xpose.data(5)
+
+## CL, WT, HT, SEX with a regression line
+xpose.plot.splom(c("CL", "WT", "HT", "SEX"), xpdb5, lmline = TRUE) 
+
+## End(Not run)
+
+
+</code></pre>
+
+
+</div>

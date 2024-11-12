@@ -1,0 +1,62 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>url_absolute</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Convert between relative and absolute urls.</h2>
+
+<h3>Description</h3>
+
+<p>Convert between relative and absolute urls.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">url_absolute(x, base)
+
+url_relative(x, base)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>A character vector of urls relative to that base</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>base</code></td>
+<td>
+<p>A string giving a base url.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A character vector of urls
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xml_url</code> to retrieve the URL associated with a document
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">url_absolute(c(".", "..", "/", "/x"), "http://hadley.nz/a/b/c/d")
+
+url_relative("http://hadley.nz/a/c", "http://hadley.nz")
+url_relative("http://hadley.nz/a/c", "http://hadley.nz/")
+url_relative("http://hadley.nz/a/c", "http://hadley.nz/a/b")
+url_relative("http://hadley.nz/a/c", "http://hadley.nz/a/b/")
+</code></pre>
+
+
+</div>

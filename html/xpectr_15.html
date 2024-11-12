@@ -1,0 +1,112 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>navigateTestFileAddin</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Navigates to test file</h2>
+
+<h3>Description</h3>
+
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="../help/figures/lifecycle-experimental.svg" alt="[Experimental]"></a>
+</p>
+<p><code>RStudio</code> Addin:
+Extracts file name and (possibly) line number of a test file
+from a selection or from clipboard content.
+Navigates to the file and places the cursor at the line number.
+</p>
+<p>Supported types of strings: <code>"test_x.R:3"</code>, <code>"test_x.R#3"</code>, <code>"test_x.R"</code>.
+</p>
+<p>The string must start with <code>"test_"</code> and contain <code>".R"</code>.
+It is split at either <code>":"</code> or <code>"#"</code>, with the second element (here <code>"3"</code>) being
+interpreted as the line number.
+</p>
+<p>See <code>`Details`</code> for how to set a key command.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">navigateTestFileAddin(selection = NULL, navigate = TRUE, abs_path = TRUE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>selection</code></td>
+<td>
+<p>String with file name and line number. (Character)
+</p>
+<p>E.g. <code>"test_x.R:3:"</code>, which navigates to the third line of <code>"/tests/testthat/test_x.R"</code>.
+</p>
+<p><strong>N.B.</strong> Mainly intended for testing the addin programmatically.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>navigate</code></td>
+<td>
+<p>Whether to navigate to the file or return the extracted file name and line number. (Logical)
+</p>
+<p><strong>N.B.</strong> Mainly intended for testing the addin programmatically.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>abs_path</code></td>
+<td>
+<p>Whether to return the full path or only the file name when <code>`navigate`</code> is <code>FALSE</code>.
+</p>
+<p><strong>N.B.</strong> Mainly intended for testing the addin programmatically.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+
+
+<h4>How to set up a key command in RStudio</h4>
+
+<p>After installing the package.
+Go to:
+</p>
+<p><code>Tools &gt;&gt; Addins &gt;&gt; Browse Addins &gt;&gt; Keyboard Shortcuts</code>.
+</p>
+<p>Find <code>"Go To Test File"</code> and press its field under <code>Shortcut</code>.
+</p>
+<p>Press desired key command, e.g. <code>Alt+N</code>.
+</p>
+<p>Press <code>Apply</code>.
+</p>
+<p>Press <code>Execute</code>.
+</p>
+
+
+
+<h3>Value</h3>
+
+<p>Navigates to file and line number.
+</p>
+<p>Does not return anything.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ludvig Renbo Olsen, <a href="mailto:r-pkgs@ludvigolsen.dk">r-pkgs@ludvigolsen.dk</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other addins: 
+<code>assertCollectionAddin()</code>,
+<code>dputSelectedAddin()</code>,
+<code>initializeGXSFunctionAddin()</code>,
+<code>initializeTestthatAddin()</code>,
+<code>insertExpectationsAddin()</code>,
+<code>wrapStringAddin()</code>
+</p>
+
+
+</div>

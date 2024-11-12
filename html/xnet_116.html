@@ -1,0 +1,135 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>tskrr</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Fitting a two step kernel ridge regression</h2>
+
+<h3>Description</h3>
+
+<p><code>tskrr</code> is the primary function for fitting a two-step kernel
+ridge regression model. It can be used for both homogeneous and heterogeneous
+networks.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">tskrr(
+  y,
+  k,
+  g = NULL,
+  lambda = 1e-04,
+  testdim = TRUE,
+  testlabels = TRUE,
+  symmetry = c("auto", "symmetric", "skewed"),
+  keep = FALSE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>y</code></td>
+<td>
+<p>a label matrix</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>k</code></td>
+<td>
+<p>a kernel matrix for the rows</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>g</code></td>
+<td>
+<p>an optional kernel matrix for the columns</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lambda</code></td>
+<td>
+<p>a numeric vector with one or two values for the
+hyperparameter lambda. If two values are given, the first one is
+used for the k matrix and the second for the g matrix.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>testdim</code></td>
+<td>
+<p>a logical value indicating whether symmetry
+and the dimensions of the kernel(s) should be tested.
+Defaults to <code>TRUE</code>, but for large matrices
+putting this to <code>FALSE</code> will speed up the function.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>testlabels</code></td>
+<td>
+<p>a logical value indicating wether the row- and column
+names of the matrices have to be checked for consistency. Defaults to
+<code>TRUE</code>, but for large matrices putting this to <code>FALSE</code> will
+speed up the function.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>symmetry</code></td>
+<td>
+<p>a character value with the possibilities
+"auto", "symmetric" or "skewed". In case of a homogeneous fit, you
+can either specify whether the label matrix is symmetric or
+skewed, or you can let the function decide (option "auto").</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>keep</code></td>
+<td>
+<p>a logical value indicating whether the kernel hat
+matrices should be stored in the model object. Doing so makes the
+model object quite larger, but can speed up predictions in
+some cases. Defaults to <code>FALSE</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>a <code>tskrr</code> object
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>response</code>, <code>fitted</code>,
+<code>get_eigen</code>, <code>eigen2hat</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+# Heterogeneous network
+
+data(drugtarget)
+
+mod &lt;- tskrr(drugTargetInteraction, targetSim, drugSim)
+
+Y &lt;- response(mod)
+pred &lt;- fitted(mod)
+
+# Homogeneous network
+
+data(proteinInteraction)
+
+modh &lt;- tskrr(proteinInteraction, Kmat_y2h_sc)
+
+Yh &lt;- response(modh)
+pred &lt;- fitted(modh)
+
+</code></pre>
+
+
+</div>

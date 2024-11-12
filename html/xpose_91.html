@@ -1,0 +1,46 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>parse_nm_files</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Parse NONMEM output files</h2>
+
+<h3>Description</h3>
+
+<p>Function parsing NONMEM output files from their 
+raw input.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">parse_nm_files(dat, quiet)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>dat</code></td>
+<td>
+<p>A list containing the raw data as vector of strings ('dat$raw')
+and their respective file names ('dat$name').</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>quiet</code></td>
+<td>
+<p>Logical, if <code>FALSE</code> messages are printed to the console.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A tibble containing the parsed 'data' along with 'name', 'problem', 
+'subprob', and 'method'.
+</p>
+
+
+</div>

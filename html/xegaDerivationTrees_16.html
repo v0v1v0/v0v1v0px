@@ -1,0 +1,61 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>rndPartition</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Randomly partitions n in k parts.</h2>
+
+<h3>Description</h3>
+
+<p>Sampling a partition is a two-step process:
+</p>
+
+<ol>
+<li>
+<p> The k parts of the partion are sampled in the loop.
+This implies that the first partition p is a random number 
+between 1 and 1+n-k. The next partition is sampled from 
+1 to 1+n-k-p. 
+</p>
+</li>
+<li>
+<p> We permute the partitions.      
+</p>
+</li>
+</ol>
+<h3>Usage</h3>
+
+<pre><code class="language-R">rndPartition(n, k)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>n</code></td>
+<td>
+<p>The integer to divide.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>k</code></td>
+<td>
+<p>Number of parts.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>The integer partition of n in k parts.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"> rndPartition(10, 4)
+</code></pre>
+
+
+</div>

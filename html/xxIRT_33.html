@@ -1,0 +1,181 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>model_3pl</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>3-parameter-logistic model</h2>
+
+<h3>Description</h3>
+
+<p>Routine functions for the 3PL model
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">model_3pl_prob(t, a, b, c, D = 1.702)
+
+model_3pl_info(t, a, b, c, D = 1.702)
+
+model_3pl_lh(u, t, a, b, c, D = 1.702, log = FALSE)
+
+model_3pl_rescale(t, a, b, c, param = c("t", "b"), mean = 0, sd = 1)
+
+model_3pl_gendata(n_p, n_i, t = NULL, a = NULL, b = NULL, c = NULL,
+  D = 1.702, t_dist = c(0, 1), a_dist = c(-0.1, 0.2), b_dist = c(0,
+  0.7), c_dist = c(5, 46), missing = NULL)
+
+model_3pl_plot(a, b, c, D = 1.702, type = c("prob", "info"),
+  total = FALSE, xaxis = seq(-4, 4, 0.1))
+
+model_3pl_plot_loglh(u, a, b, c, D = 1.702, xaxis = seq(-4, 4, 0.1),
+  show_mle = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>t</code></td>
+<td>
+<p>ability parameters, 1d vector</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>a</code></td>
+<td>
+<p>discrimination parameters, 1d vector</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>b</code></td>
+<td>
+<p>difficulty parameters, 1d vector</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>c</code></td>
+<td>
+<p>guessing parameters, 1d vector</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>D</code></td>
+<td>
+<p>the scaling constant, 1.702 by default</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>u</code></td>
+<td>
+<p>observed responses, 2d matrix</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>log</code></td>
+<td>
+<p>True to return log-likelihood</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>param</code></td>
+<td>
+<p>the parameter of the new scale: 't' or 'b'</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mean</code></td>
+<td>
+<p>the mean of the new scale</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sd</code></td>
+<td>
+<p>the standard deviation of the new scale</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>n_p</code></td>
+<td>
+<p>the number of people to be generated</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>n_i</code></td>
+<td>
+<p>the number of items to be generated</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>t_dist</code></td>
+<td>
+<p>parameters of the normal distribution used to generate t-parameters</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>a_dist</code></td>
+<td>
+<p>parameters of the lognormal distribution used to generate a-parameters</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>b_dist</code></td>
+<td>
+<p>parameters of the normal distribution used to generate b-parameters</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>c_dist</code></td>
+<td>
+<p>parameters of the beta distribution used to generate c-parameters</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>missing</code></td>
+<td>
+<p>the proportion or number of missing responses</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>type</code></td>
+<td>
+<p>the type of plot: 'prob' for item characteristic curve (ICC) and 
+'info' for item information function curve (IIFC)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>total</code></td>
+<td>
+<p>TRUE to sum values over items</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xaxis</code></td>
+<td>
+<p>the values of x-axis</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>show_mle</code></td>
+<td>
+<p>TRUE to print maximum likelihood estimates</p>
+</td>
+</tr>
+</table>
+<h3>Examples</h3>
+
+<pre><code class="language-R">with(model_3pl_gendata(10, 5), model_3pl_prob(t, a, b, c))
+with(model_3pl_gendata(10, 5), model_3pl_info(t, a, b, c))
+with(model_3pl_gendata(10, 5), model_3pl_lh(u, t, a, b, c))
+model_3pl_gendata(10, 5)
+model_3pl_gendata(10, 5, a=1, c=0, missing=.1)
+with(model_3pl_gendata(10, 5), model_3pl_plot(a, b, c, type="prob"))
+with(model_3pl_gendata(10, 5), model_3pl_plot(a, b, c, type="info", total=TRUE))
+with(model_3pl_gendata(5, 50), model_3pl_plot_loglh(u, a, b, c, show_mle=TRUE))
+</code></pre>
+
+
+</div>

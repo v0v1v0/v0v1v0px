@@ -1,0 +1,112 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>ScaleFitness</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Scaling Fitness</h2>
+
+<h3>Description</h3>
+
+<p>Fitness is transformed by a power function 
+<code>fit^k</code>.
+If <code>k</code> is 
+</p>
+
+<ul>
+<li>
+<p> less than 1: Selection pressure is decreased.
+</p>
+</li>
+<li>
+<p> 1:  Selection pressure remains constant.
+</p>
+</li>
+<li>
+<p> larger than 1: Selection pressure is increased.
+</p>
+</li>
+<li>
+<p> 0:  Fitness is constant. Random selection.
+</p>
+</li>
+<li>
+<p> smaller than 0: Fitness is 
+<code>1/k</code>.
+</p>
+</li>
+</ul>
+<h3>Usage</h3>
+
+<pre><code class="language-R">ScaleFitness(fit, k, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>fit</code></td>
+<td>
+<p>A fitness vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>k</code></td>
+<td>
+<p>Scaling exponent.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Power functions are used for contrast sharpening or softening
+in image analysis. 
+For fuzzy sets representing the value of a linguistic variable,
+the power function has been used as concentration or dilation
+transformations for modeling adverbs.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A scaled fitness vector.
+</p>
+
+
+<h3>References</h3>
+
+<p>Wenstop, Fred (1980) 
+Quantitative Analysis with Linguistic Variables.
+Fuzzy Sets and Systems, 4(2), pp. 99-115.
+&lt;doi:10.1016/0165-0114(80)90031-7&gt;
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Scaling: 
+<code>ContinuousScaleFitness()</code>,
+<code>DispersionRatio()</code>,
+<code>ScalingFitness()</code>,
+<code>ThresholdScaleFitness()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">lF&lt;-list()
+lF$Offset&lt;-parm(0.0001)
+fit&lt;-sample(10, 20, replace=TRUE)
+fit
+ScaleFitness(fit, 0.5, lF)
+</code></pre>
+
+
+</div>

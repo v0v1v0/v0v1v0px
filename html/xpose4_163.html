@@ -1,0 +1,106 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>read_NM_output</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Read NONMEM output files into Xpose 4</h2>
+
+<h3>Description</h3>
+
+<p>These are functions that read in a NONMEM output file (a '*.lst' file) and
+then format the input.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">calc.npar(object)
+
+create.parameter.list(listfile)
+
+read.lst(filename)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>The return value of <code>read.lst(filename)</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>listfile</code></td>
+<td>
+<p>A NONMEM output file.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>filename</code></td>
+<td>
+<p>A NONMEM output file.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>lists of read values.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul>
+<li> <p><code>calc.npar()</code>: calculates the number and type of parameters included in a
+NONMEM output file
+</p>
+</li>
+<li> <p><code>create.parameter.list()</code>: Reads parameters, uncertainty and termination messages included in a
+NONMEM output file
+</p>
+</li>
+<li> <p><code>read.lst()</code>: parses information out of NONMEM output.
+</p>
+</li>
+</ul>
+<h3>Author(s)</h3>
+
+<p>Niclas Jonsson, Andrew Hooker &amp; Justin Wilkins
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other data functions: 
+<code>add_transformed_columns</code>,
+<code>change_graphical_parameters</code>,
+<code>change_misc_parameters</code>,
+<code>compute.cwres()</code>,
+<code>data.checkout()</code>,
+<code>data_extract_or_assign</code>,
+<code>db.names()</code>,
+<code>export.graph.par()</code>,
+<code>export.variable.definitions()</code>,
+<code>import.graph.par()</code>,
+<code>import.variable.definitions()</code>,
+<code>make.sb.data()</code>,
+<code>nsim()</code>,
+<code>par_cov_summary</code>,
+<code>read.TTE.sim.data()</code>,
+<code>read.nm.tables()</code>,
+<code>read_nm_table()</code>,
+<code>simprazExample()</code>,
+<code>tabulate.parameters()</code>,
+<code>xlabel()</code>,
+<code>xpose.data</code>,
+<code>xpose.print()</code>,
+<code>xpose4-package</code>,
+<code>xsubset()</code>
+</p>
+
+
+</div>

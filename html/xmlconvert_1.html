@@ -1,0 +1,157 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>df_to_xml</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Converting XML to data frames and vice versa</h2>
+
+<h3>Description</h3>
+
+<p>Converts dataframes to XML documents.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">df_to_xml(
+  df,
+  fields = "tags",
+  record.tag = "record",
+  field.names = NULL,
+  only.fields = NULL,
+  exclude.fields = NULL,
+  root.node = "root",
+  xml.file = NULL,
+  non.exist = NULL,
+  encoding = "UTF-8",
+  no.return = FALSE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>df</code></td>
+<td>
+<p>Dataframe to be converted to XML</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fields</code></td>
+<td>
+<p>A character value, either <code>"tags"</code> or <code>"attributes"</code>.
+Specifies whether the fields of each data record will be represented in the
+resulting XML document by XML tags or by attributes. See the <em>Details</em>
+section of <code>df_to_xml()</code> for more on this topic. Default is
+<code>"tags"</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>record.tag</code></td>
+<td>
+<p>Name of the tags that will represent the data records in
+the resulting XML (i.e. each record has one element with this tag name).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>field.names</code></td>
+<td>
+<p>Names of the fields in the XML file. If <code>NULL</code> then
+the variable names from the dataframe are used. Field names are corrected
+automatically to comply with XML naming requirements.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>only.fields</code></td>
+<td>
+<p>Optional vector variable names from the dataframe that
+will be included in the XML document. If <code>NULL</code> then all fields from
+the dataframe are included in the XML document.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>exclude.fields</code></td>
+<td>
+<p>Optional vector of variable names from the dataframe
+that will not be included in the XML document.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>root.node</code></td>
+<td>
+<p>A character value with the desired name of the root element
+of the XML document; <code>"root"</code> by default.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xml.file</code></td>
+<td>
+<p>Name of a file the XML document it written to. If <code>NULL</code>
+no file will be created.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>non.exist</code></td>
+<td>
+<p>Value that will be written into the XML document as field
+value in case the respective element in the dataframe is <code>NA</code>. If
+<code>NULL</code>, which is the default, no XML tag/attribute (depennding on the
+<code>fields</code> argument) will be created for this dataframe element. Using a
+non-<code>NULL</code> value for <code>non-exist</code> allows to make sure that each
+data record tag in the XML document has exactly the same structure even if
+some values may be empty (because they are <code>NA</code> in the original data)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>encoding</code></td>
+<td>
+<p>Encoding of the XML document; default is <code>"UTF-8"</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>no.return</code></td>
+<td>
+<p>Logical option to prevent <code>df_to_xml()</code> from returning
+the XML document it creates; use this if you are only interested in saving
+the XML document to a file using the <code>xml.file</code> argument.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>The resulting XML document that be edited with the functions from the
+<span class="pkg">xml2</span> package. There is no return value if the <code>no.return</code>
+argument is set to <code>TRUE</code>.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other xmlconvert: 
+<code>xml_to_df()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Create a dataframe
+soccer.worldcups &lt;- data.frame(list(year=c(2014, 2010, 2006),
+    location=c("Brazil", "South Africa", "Germany"),
+    goals_scored=c(171, 145, 147),
+    average_goals=c(2.7, 2.3, 2.4),
+    average_attendance=c(57918, 49669,52491)),
+    stringsAsFactors = FALSE)
+
+# Convert to XML with the fields (i.e. dataframe variables/columns) stored in XML tags
+xml &lt;- df_to_xml(soccer.worldcups, fields="tags", record.tag = "worldcup")
+
+# Convert to XML with the fields (i.e. dataframe variables/columns) stored in attributes
+xml &lt;- df_to_xml(soccer.worldcups, fields="tags", record.tag = "worldcup")
+
+</code></pre>
+
+
+</div>

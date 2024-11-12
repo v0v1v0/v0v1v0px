@@ -1,0 +1,61 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>envXOR</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>The problem environment <code>envXOR</code> for programming the XOR function
+either by grammar-based genetic programming or grammatical evolution.</h2>
+
+<h3>Description</h3>
+
+<p>The problem environment <code>envXOR</code> is a list with the following elements:
+</p>
+
+<ul>
+<li> <p><code>envXOR$name</code>: 
+<code>"envXOR"</code>, the name of the problem environment.
+</p>
+</li>
+<li> <p><code>envXOR$buildtest(expr)</code>: 
+The function which builds the environment 
+for evaluating the expression with 
+a binding of the variables to the parameters.
+</p>
+</li>
+<li> <p><code>envXOR$TestCases</code>: The truth table of the XOR function.
+</p>
+</li>
+<li> <p><code>envXOR$f(expr, gene=NULL, lF=NULL)</code>: The fitness function.
+<code>expr</code> is the string with the 
+logical expression to be evaluated. 
+</p>
+</li>
+</ul>
+<h3>Usage</h3>
+
+<pre><code class="language-R">envXOR
+</code></pre>
+
+
+<h3>Format</h3>
+
+<p>An object of class <code>list</code> of length 4.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Problem Environments: 
+<code>DeJongF4Factory()</code>,
+<code>DelayedPFactory()</code>,
+<code>Parabola2DEarlyFactory()</code>,
+<code>Parabola2DErrFactory()</code>,
+<code>Parabola2DFactory()</code>,
+<code>lau15</code>,
+<code>newEnvXOR()</code>,
+<code>newTSP()</code>
+</p>
+
+
+</div>

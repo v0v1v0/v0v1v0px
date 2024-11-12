@@ -1,0 +1,89 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>predictSelectTime</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Predict the time use of a selection method for a popsize.</h2>
+
+<h3>Description</h3>
+
+<p>Predict the time use of a selection method for a popsize.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">predictSelectTime(df, method = "Uniform", popsize = 1e+05)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>df</code></td>
+<td>
+<p>Data frame.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>Selection method.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>popsize</code></td>
+<td>
+<p>Population size.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>List with
+</p>
+
+<ul>
+<li>
+<p><code>$model</code>:  The result of <code>stats::lm</code>.
+</p>
+</li>
+<li>
+<p><code>$predict</code>:  The result of <code>stats::predict</code>.
+</p>
+</li>
+</ul>
+<h3>Warning</h3>
+
+<p>Uses a quadratic regression model.
+But the complexities of the functions are of orders
+O(1), O(n), O(n.ln(n)) and O(n^2).
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Benchmark Selection Functions: 
+<code>runOneBenchmark()</code>,
+<code>runSelectBenchmarks()</code>,
+<code>selectBenchmark()</code>,
+<code>testSelectGene()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">popsizes&lt;-as.integer(seq(from=100, to=200, length.out=5))
+a&lt;-runSelectBenchmarks(popsizes, both=TRUE)
+b&lt;-predictSelectTime(a, method="SUS", 155)
+summary(b$model)
+b$predicted
+c&lt;- predictSelectTime(a, method="SUS  C", c(155, 500))
+summary(c$model)
+c$predicted
+</code></pre>
+
+
+</div>

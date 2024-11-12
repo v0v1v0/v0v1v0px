@@ -1,0 +1,109 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>compileBNF</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Compile a  BNF (Backus-Naur Form) of a context-free grammar.</h2>
+
+<h3>Description</h3>
+
+<p><code>compileBNF()</code> produces a context-free grammar  
+from its specification in Backus-Naur form (BNF).   
+Warning: No error checking is implemented.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">compileBNF(g, verbose = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>g</code></td>
+<td>
+<p>A character string with a BNF.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbose</code></td>
+<td>
+<p>Boolean. TRUE: Show progress. Default: FALSE.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>A grammar consists of the symbol table <code>ST</code>, the production
+table <code>PT</code>, the start symbol <code>Start</code>, 
+and the short production
+table <code>SPT</code>. 
+</p>
+<p>The function performs the following steps:
+</p>
+
+<ol>
+<li>
+<p> Make the symbol table. 
+</p>
+</li>
+<li>
+<p> Make the production table. 
+</p>
+</li>
+<li>
+<p> Extract the start symbol. 
+</p>
+</li>
+<li>
+<p> Compile a short production table.
+</p>
+</li>
+<li>
+<p> Return the grammar.</p>
+</li>
+</ol>
+<h3>Value</h3>
+
+<p>A grammar object (list) with the attributes 
+</p>
+
+<ul>
+<li> <p><code>name</code>: Filename of the grammar.
+</p>
+</li>
+<li> <p><code>ST</code>: Symbol table. 
+</p>
+</li>
+<li> <p><code>PT</code>: Production table. 
+</p>
+</li>
+<li> <p><code>Start</code>: Start symbol of the grammar.
+</p>
+</li>
+<li> <p><code>SPT</code>: Short production table.
+</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p>Other Grammar: 
+<code>booleanGrammar()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">g&lt;-compileBNF(booleanGrammar())
+g$ST
+g$PT
+g$Start
+g$SPT
+</code></pre>
+
+
+</div>

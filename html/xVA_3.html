@@ -1,0 +1,87 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>calcEADRegulatory</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Calculates the Exposure-At-Default (EAD)</h2>
+
+<h3>Description</h3>
+
+<p>Calculates the Exposure-At-Default (EAD) based on the given regulatory framework. It supports the CEM, IMM and (simplified) SA-CCR frameworks
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">calcEADRegulatory(
+  trades,
+  framework,
+  sa_ccr_simplified = "",
+  CSA,
+  collateral,
+  EEE,
+  time_points
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>trades</code></td>
+<td>
+<p>The full list of the Trade Objects</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>framework</code></td>
+<td>
+<p>Specifies the regulatory framework used in the calculations. It can take the values of 'IMM', 'CEM', 'SA-CCR'</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sa_ccr_simplified</code></td>
+<td>
+<p>(Optional) Specifies whether the standard SACCR or its simplified version or the OEM will be implemented. It can take the values of ”, 'simplified', 'OEM'</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>CSA</code></td>
+<td>
+<p>The margin agreement with the counterparty</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>collateral</code></td>
+<td>
+<p>The amount of collaterals currently exchanged with the counterparty</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>EEE</code></td>
+<td>
+<p>A vector containing the effective expected exposure against the counterparty</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>time_points</code></td>
+<td>
+<p>The timepoints that the analysis is performed on</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>The Exposure-At-Default
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Tasos Grivas &lt;tasos@openriskcalculator.com&gt;
+</p>
+
+
+</div>

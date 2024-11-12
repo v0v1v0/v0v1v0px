@@ -1,0 +1,71 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaGpInitGene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Generates a gene as a random derivation tree.</h2>
+
+<h3>Description</h3>
+
+<p>For a given grammar, <code>xegaGpInitGene()</code> 
+generates a gene as a random derivation tree
+with a depth-bound.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaGpInitGene(lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration of the genetic algorithm.</p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+<p>In the derivation tree representation of 
+package <code>xegaGp</code>, <em>gene</em> is a list with 
+</p>
+
+<ol>
+<li> <p><code>$evaluated</code>: Boolean: TRUE if the fitness is known.
+</p>
+</li>
+<li> <p><code>$fit</code>:       The fitness of the genotype of 
+<code>$gene1</code>         
+</p>
+</li>
+<li> <p><code>$gene1</code>:     a derivation tree.
+</p>
+</li>
+</ol>
+<p>This representation makes implementation of several 
+code optimizations and generalizations easier.
+</p>
+<p>The algorithm for generating a complete derivation tree 
+with a depth-bound
+is imported from package <code>xegaDerivationTrees</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Derivation tree.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">gene&lt;-xegaGpInitGene(lFxegaGpGene)
+
+</code></pre>
+
+
+</div>

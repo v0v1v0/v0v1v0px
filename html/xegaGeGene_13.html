@@ -1,0 +1,66 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaGeGeneMapFactory</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Configure the gene map function of a genetic algorithm for grammar evolution.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaGeGeneMapFactory()</code> implements the selection
+of one of the GeneMap functions in this
+package by specifying a text string.
+The selection fails ungracefully (produces
+a runtime error), if the label does not match.
+The functions are specified locally.
+</p>
+<p>Current support:
+</p>
+
+<ol>
+<li>
+<p> "Mod" returns <code>GeneMapMod()</code>. (Default).
+</p>
+</li>
+<li>
+<p> "Bucket" returns <code>GeneMapmLCM()</code>.
+</p>
+</li>
+</ol>
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaGeGeneMapFactory(method = "Mod")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>String specifying the GeneMap function.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>Gene map function for genes.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Configuration: 
+<code>xegaGePrecisionFactory()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">XGene&lt;-xegaGeGeneMapFactory("Mod")
+gene&lt;-xegaGeInitGene(lFxegaGeGene)
+XGene(gene$gene1, lFxegaGeGene)
+</code></pre>
+
+
+</div>

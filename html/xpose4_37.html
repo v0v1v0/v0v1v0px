@@ -1,0 +1,216 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>basic.model.comp</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Basic model comparison plots, for Xpose 4</h2>
+
+<h3>Description</h3>
+
+<p>This creates a stack of four plots, comparing PRED, IPRED, WRES (or CWRES),
+and IWRES estimates for the two specified model fits.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">basic.model.comp(
+  object,
+  object.ref = NULL,
+  onlyfirst = FALSE,
+  inclZeroWRES = FALSE,
+  subset = xsubset(object),
+  main = "Default",
+  force.wres = FALSE,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An xpose.data object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>object.ref</code></td>
+<td>
+<p>An xpose.data object. If not supplied, the user will be
+prompted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>onlyfirst</code></td>
+<td>
+<p>Logical value indicating whether only the first row per
+individual is included in the plot.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>inclZeroWRES</code></td>
+<td>
+<p>Logical value indicating whether rows with WRES=0 is
+included in the plot. The default is TRUE.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>subset</code></td>
+<td>
+<p>A string giving the subset expression to be applied to the
+data before plotting. See <code>xsubset</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>The title of the plot.  If <code>"Default"</code> then a default title
+is plotted. Otherwise the value should be a string like <code>"my title"</code> or
+<code>NULL</code> for no plot title.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>force.wres</code></td>
+<td>
+<p>Force function to use WRES?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Other arguments passed to <code>link{xpose.plot.default}</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Four basic model comparison plots are displayed in sequence.
+</p>
+<p>Conditional weighted residuals (CWRES) require some extra steps to
+calculate. See <code>compute.cwres</code> for details.
+</p>
+<p>A wide array of extra options controlling xyplots are available. See
+<code>xpose.plot.default</code> for details.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Returns a stack of plots comprising comparisons of PRED, IPRED, WRES
+(or CWRES) and IWRES for the two specified runs.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>E. Niclas Jonsson, Mats Karlsson, Andrew Hooker &amp; Justin Wilkins
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xpose.plot.default</code>,
+<code>xpose.panel.default</code>, <code>xyplot</code>,
+<code>compute.cwres</code>, <code>xpose.prefs-class</code>,
+<code>xpose.data-class</code>
+</p>
+<p>Other specific functions: 
+<code>absval.cwres.vs.cov.bw()</code>,
+<code>absval.cwres.vs.pred()</code>,
+<code>absval.cwres.vs.pred.by.cov()</code>,
+<code>absval.iwres.cwres.vs.ipred.pred()</code>,
+<code>absval.iwres.vs.cov.bw()</code>,
+<code>absval.iwres.vs.idv()</code>,
+<code>absval.iwres.vs.ipred()</code>,
+<code>absval.iwres.vs.ipred.by.cov()</code>,
+<code>absval.iwres.vs.pred()</code>,
+<code>absval.wres.vs.cov.bw()</code>,
+<code>absval.wres.vs.idv()</code>,
+<code>absval.wres.vs.pred()</code>,
+<code>absval.wres.vs.pred.by.cov()</code>,
+<code>absval_delta_vs_cov_model_comp</code>,
+<code>addit.gof()</code>,
+<code>autocorr.cwres()</code>,
+<code>autocorr.iwres()</code>,
+<code>autocorr.wres()</code>,
+<code>basic.gof()</code>,
+<code>cat.dv.vs.idv.sb()</code>,
+<code>cat.pc()</code>,
+<code>cov.splom()</code>,
+<code>cwres.dist.hist()</code>,
+<code>cwres.dist.qq()</code>,
+<code>cwres.vs.cov()</code>,
+<code>cwres.vs.idv()</code>,
+<code>cwres.vs.idv.bw()</code>,
+<code>cwres.vs.pred()</code>,
+<code>cwres.vs.pred.bw()</code>,
+<code>cwres.wres.vs.idv()</code>,
+<code>cwres.wres.vs.pred()</code>,
+<code>dOFV.vs.cov()</code>,
+<code>dOFV.vs.id()</code>,
+<code>dOFV1.vs.dOFV2()</code>,
+<code>data.checkout()</code>,
+<code>dv.preds.vs.idv()</code>,
+<code>dv.vs.idv()</code>,
+<code>dv.vs.ipred()</code>,
+<code>dv.vs.ipred.by.cov()</code>,
+<code>dv.vs.ipred.by.idv()</code>,
+<code>dv.vs.pred()</code>,
+<code>dv.vs.pred.by.cov()</code>,
+<code>dv.vs.pred.by.idv()</code>,
+<code>dv.vs.pred.ipred()</code>,
+<code>gof()</code>,
+<code>ind.plots()</code>,
+<code>ind.plots.cwres.hist()</code>,
+<code>ind.plots.cwres.qq()</code>,
+<code>ipred.vs.idv()</code>,
+<code>iwres.dist.hist()</code>,
+<code>iwres.dist.qq()</code>,
+<code>iwres.vs.idv()</code>,
+<code>kaplan.plot()</code>,
+<code>par_cov_hist</code>,
+<code>par_cov_qq</code>,
+<code>parm.vs.cov()</code>,
+<code>parm.vs.parm()</code>,
+<code>pred.vs.idv()</code>,
+<code>ranpar.vs.cov()</code>,
+<code>runsum()</code>,
+<code>wres.dist.hist()</code>,
+<code>wres.dist.qq()</code>,
+<code>wres.vs.idv()</code>,
+<code>wres.vs.idv.bw()</code>,
+<code>wres.vs.pred()</code>,
+<code>wres.vs.pred.bw()</code>,
+<code>xpose.VPC()</code>,
+<code>xpose.VPC.both()</code>,
+<code>xpose.VPC.categorical()</code>,
+<code>xpose4-package</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Not run: 
+## We expect to find the required NONMEM run and table files for runs
+## 5 and 6 in the current working directory
+xpdb5 &lt;- xpose.data(5)
+xpdb6 &lt;- xpose.data(6)
+
+## A vanilla plot, without prompts
+basic.model.comp(xpdb5, xpdb6, prompt = FALSE)
+
+## Custom colours and symbols, no user IDs
+basic.model.comp.cwres(xpdb5, xpdb6, cex=0.6, pch=8, col=1, ids=NULL)
+
+## End(Not run)
+
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,114 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>strip_msg</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Strip side-effect messages of non-alphanumeric characters and rethrow them</h2>
+
+<h3>Description</h3>
+
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="../help/figures/lifecycle-experimental.svg" alt="[Experimental]"></a>
+</p>
+<p>Catches side effects (<code>error</code>, <code>warning</code>s, <code>message</code>s), strips the message strings of
+non-alphanumeric characters with <code>strip()</code> and regenerates them.
+</p>
+<p>When numbers in error messages vary slightly between systems
+(and this variation isn't important to catch), we can strip the numbers as well.
+</p>
+<p>Use case: Sometimes <code>testthat</code> tests have differences in punctuation and newlines on different
+systems. By stripping both the error message and the expected message
+(with <code>strip()</code>), we can avoid such failed tests.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">strip_msg(
+  x,
+  remove_spaces = FALSE,
+  remove_numbers = FALSE,
+  remove_ansi = TRUE,
+  lowercase = FALSE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>Code that potentially throws <code>warning</code>s, <code>message</code>s, or an <code>error</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>remove_spaces</code></td>
+<td>
+<p>Whether to remove all whitespaces. (Logical)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>remove_numbers</code></td>
+<td>
+<p>Whether to remove all numbers. (Logical)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>remove_ansi</code></td>
+<td>
+<p>Whether to remove ANSI control sequences. (Logical)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lowercase</code></td>
+<td>
+<p>Whether to make the strings lowercase. (Logical)</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Returns <code>NULL</code> invisibly.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ludvig Renbo Olsen, <a href="mailto:r-pkgs@ludvigolsen.dk">r-pkgs@ludvigolsen.dk</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other strippers: 
+<code>strip()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Attach packages
+library(xpectr)
+library(testthat)
+
+## Not run: 
+strip_msg(stop("this 'dot' .\n is removed! 123"))
+strip_msg(warning("this 'dot' .\n is removed! 123"))
+strip_msg(message("this 'dot' .\n is removed! 123"))
+strip_msg(message("this 'dot' .\n is removed! 123"), remove_numbers = TRUE)
+error_fn &lt;- function(){stop("this 'dot' .\n is removed! 123")}
+strip_msg(error_fn())
+
+# With testthat tests
+expect_error(strip_msg(error_fn()),
+             strip("this 'dot' .\n is removed! 123"))
+expect_error(strip_msg(error_fn(), remove_numbers = TRUE),
+             strip("this 'dot' .\n is removed! 123", remove_numbers = TRUE))
+
+## End(Not run)
+</code></pre>
+
+
+</div>

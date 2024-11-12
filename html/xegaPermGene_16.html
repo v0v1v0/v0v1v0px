@@ -1,0 +1,67 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaPermMutateMix</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Mutation by a random mutation function.</h2>
+
+<h3>Description</h3>
+
+<p>A mutation function is randomly selected from the following list:
+xegaPermMutateGeneOrderBased, xegaPermMutateGenekInversion,
+xegaPermMutateGene2Opt, xegaPermMutateGenekOptLK, xegaPermMutateGeneGreedy,
+xegaPermMutateGeneBestGreedy.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaPermMutateMix(gene, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>gene</code></td>
+<td>
+<p>A permutation.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A permutation.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Mutation: 
+<code>xegaPermMutateGene2Opt()</code>,
+<code>xegaPermMutateGeneBestGreedy()</code>,
+<code>xegaPermMutateGeneGreedy()</code>,
+<code>xegaPermMutateGeneOrderBased()</code>,
+<code>xegaPermMutateGenekInversion()</code>,
+<code>xegaPermMutateGenekOptLK()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">gene1&lt;-xegaPermInitGene(lFxegaPermGene)
+xegaPermDecodeGene(gene1, lFxegaPermGene)
+gene&lt;-xegaPermMutateMix(gene1, lFxegaPermGene)
+xegaPermDecodeGene(gene, lFxegaPermGene)
+</code></pre>
+
+
+</div>

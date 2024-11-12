@@ -1,0 +1,81 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>XBRL</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>"Mutable state" function that exposes "methods" that analyze an
+XBRL instance an its associated DTS.</h2>
+
+<h3>Description</h3>
+
+<p><code>XBRL</code> is a "mutable state" function that offers a object-oriented
+programming-like interface, by exposing "methods" that perform accions
+on XBRL files. It keeps a list of data frames that are populated by
+the "methods" by calls to the low-level functions (see
+<code>xbrlParse</code>).
+</p>
+<p>The approach used is derived from an example included in *10.7 Scope*
+of *An Introduction to R*. The employed terminology may be inaccurate,
+hence the quotations. <code>XBRL</code> "methods" are called by
+<code>xbrlDoAll</code>. See examples of use below. 
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">XBRL()
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<p>no arguments</p>
+
+
+<h3>Value</h3>
+
+<p>a list of "methods"</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Roberto Bertolusso and Marek Kimmel
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xbrlDoAll</code>, <code>xbrlParse</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+## Setting stringsAsFactors = FALSE is highly recommended
+## to avoid data frames to create factors from character vectors.
+options(stringsAsFactors = FALSE)
+
+## XBRL instance file to be analyzed, accessed
+## directly from SEC website:
+inst &lt;- "https://www.sec.gov/Archives/edgar/data/21344/000002134413000050/ko-20130927.xml"
+
+xbrl &lt;- XBRL()
+xbrl$setCacheDir("XBRLcache")
+xbrl$openInstance(inst)
+## Perform a discovery of the taxonomy:
+xbrl$processSchema(xbrl$getSchemaName())
+## Process instance file:
+xbrl$processContexts()
+xbrl$processUnits()
+xbrl$processFacts()
+xbrl$processFootnotes()
+xbrl$closeInstance()
+xbrl.vars &lt;- xbrl$getResults()
+
+## End(Not run)
+</code></pre>
+
+
+</div>

@@ -1,0 +1,70 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xgx_conf_int</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>
+<code>xgx_conf_int</code> returns a dataframe with mean +/- confidence intervals</h2>
+
+<h3>Description</h3>
+
+<p><code>xgx_conf_int</code> returns a dataframe with mean +/- confidence intervals
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xgx_conf_int(y, conf_level = 0.95, distribution = "normal")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>y</code></td>
+<td>
+<p>data to compute confidence interval of</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>conf_level</code></td>
+<td>
+<p>The percentile for the confidence interval (should fall 
+between 0 and 1). The default is 0.95, which corresponds to a 95 percent 
+confidence interval.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>distribution</code></td>
+<td>
+<p>The distribution which the data follow, used for 
+calculating confidence intervals. The options are "normal", "lognormal", 
+and "binomial". The "normal" option will use the Student t Distribution 
+to calculate confidence intervals, the "lognormal" option will transform 
+data to the log space first. The "binomial" option will use the
+<code>binom.exact</code> function to calculate the
+confidence 
+intervals. Note: binomial data must be numeric and contain only 1's and 0's.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>data.frame
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># default settings for normally distributed data, 95% confidence interval,  
+data &lt;- data.frame(x = rep(c(1, 2, 3), each = 20),
+                   y = rep(c(1, 2, 3), each = 20) + stats::rnorm(60),
+                   group = rep(1:3, 20))
+xgx_conf_int(data$y)
+  
+</code></pre>
+
+
+</div>

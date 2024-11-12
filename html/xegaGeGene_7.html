@@ -1,0 +1,62 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>MinCodonPrecision</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Minimal precision of codon.</h2>
+
+<h3>Description</h3>
+
+<p>The minimal precision of the codon needed for generating a working 
+decoder for a context-free grammar <code>G</code>. However, the decoder 
+has some choice bias which reduces the efficiency of grammar evolution.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">MinCodonPrecision(LHS, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>LHS</code></td>
+<td>
+<p>Vector of Integers. The left-hand side of a grammar object <code>G</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Unused. Needed for common abstract interface of 
+precision functions.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Integer.  The Precision of a codon whose upper bound is the least power of 2 
+above the maximum number of rules for a non-terminal of a grammar.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Precision: 
+<code>CodonPrecisionWithThreshold()</code>,
+<code>mLCMGCodonPrecision()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">NT&lt;-sample(5, 50, replace=TRUE)
+MinCodonPrecision(NT)
+</code></pre>
+
+
+</div>

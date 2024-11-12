@@ -1,0 +1,88 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>treeExtract</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Extracts the subtree at position <code>pos</code> in a derivation tree.</h2>
+
+<h3>Description</h3>
+
+<p><code>treeExtract()</code> returns 
+the subtree at position <code>pos</code> in a derivation tree.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">treeExtract(tree, node)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>tree</code></td>
+<td>
+<p>Derivation tree.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>node</code></td>
+<td>
+<p>Attributed node.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>An attributed <code>node</code> is a list 
+whose element <code>node$Index</code> contains 
+an access function to the node. 
+The access function is represented as a string 
+with an executable R index expression.
+All what remains to be done, is 
+</p>
+
+<ul>
+<li>
+<p>  to complete 
+the access statement and  
+</p>
+</li>
+<li>
+<p> to return 
+the result of parsing and evaluating the string.
+</p>
+</li>
+</ul>
+<h3>Value</h3>
+
+<p>Derivation tree.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Tree Operations: 
+<code>compatibleSubtrees()</code>,
+<code>treeInsert()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">g&lt;-compileBNF(booleanGrammar())
+t1&lt;-randomDerivationTree(g$Start, g)
+t1anl&lt;-treeANL(t1, g$ST)
+n1&lt;-chooseNode(t1anl$ANL)
+st1&lt;-treeExtract(t1, n1)
+decodeCDT(st1, g$ST)
+st2&lt;-treeExtract(t1, chooseNode(t1anl$ANLa))
+decodeCDT(st2, g$ST)
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,100 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xbrlDoAll</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Function to do all required work on an XBRL instance and its
+associated DTS.</h2>
+
+<h3>Description</h3>
+
+<p><code>xbrlDoAll</code> performs all the steps necessary to extract a list
+of dataframes, starting from an XBRL instance file. <code>xbrlDoAll</code>
+offers the highest level of abstraction from the required steps. A
+medium-level access can be achieved by using <code>XBRL</code>. A
+low-level access can be achieved by using the functions related to
+<code>xbrlParse</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xbrlDoAll(file.inst, cache.dir = "xbrl.Cache", prefix.out = NULL,
+          verbose = FALSE, delete.cached.inst = TRUE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>file.inst</code></td>
+<td>
+<p>the name of the instance file</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cache.dir</code></td>
+<td>
+<p>the name of a local directory to be used as a cache
+of discovered taxonomies. if NULL, no cache is performed</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>prefix.out</code></td>
+<td>
+<p>if given, prefix used to create csv files with the
+content of the data frames produced</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbose</code></td>
+<td>
+<p>Set to TRUE to see output of the process of discovery
+and analysis if documents</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>delete.cached.inst</code></td>
+<td>
+<p>Set to TRUE to delete downloaded instance,
+schema and linkbase files</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>a list of data frames with extracted information</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Roberto Bertolusso and Marek Kimmel
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>XBRL</code>, <code>xbrlParse</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+## Setting stringsAsFactors = FALSE is highly recommended
+## to avoid data frames to create factors from character vectors.
+options(stringsAsFactors = FALSE)
+
+## XBRL instance file to be analyzed, accessed
+## directly from SEC website:
+inst &lt;- "https://www.sec.gov/Archives/edgar/data/21344/000002134413000050/ko-20130927.xml"
+
+xbrl.vars &lt;- xbrlDoAll(inst, cache.dir="XBRLcache", prefix.out="out", verbose=TRUE)
+
+## End(Not run)
+</code></pre>
+
+
+</div>

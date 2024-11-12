@@ -1,0 +1,64 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>as_frag</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Convert a list to an xml fragment</h2>
+
+<h3>Description</h3>
+
+<p>As frag is a helper function to convert a named list to an xml fragment, it
+transforms all values to character, and recursively transforms nested lists.
+<code>as_frag</code> can be used for flexible list created xml fragments, names of a
+list turn into tags, and values into text nodes.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">as_frag(x, ..., .attr = list(...))
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>named list that will be transformed into a fragment</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>optional attributes to be set on the parent of the fragment</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.attr</code></td>
+<td>
+<p>a list of attributes to add to the parent of the fragment, overrides the <code>...</code> argument</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p><code>xml_fragment()</code> object as if specified with <code>frag()</code>.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other xml_fragment: 
+<code>add_child_fragment()</code>,
+<code>as.character.xml_fragment()</code>,
+<code>as_xml_nodeset()</code>,
+<code>data_frag()</code>,
+<code>frag()</code>,
+<code>xml_fragment()</code>
+</p>
+
+
+</div>

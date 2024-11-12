@@ -1,0 +1,50 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xgx_summarize_data</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Check data for various issues</h2>
+
+<h3>Description</h3>
+
+<p>Calls <code>xgx_check_data</code>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xgx_summarize_data(data, covariates = NULL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>data</code></td>
+<td>
+<p>the dataset to check.  Must contain the above columns</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>covariates</code></td>
+<td>
+<p>the column names of covariates, to explore</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>data.frame
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">covariates &lt;- c("WEIGHTB", "SEX")
+check &lt;- xgx_summarize_data(mad_missing_duplicates, covariates)
+</code></pre>
+
+
+</div>

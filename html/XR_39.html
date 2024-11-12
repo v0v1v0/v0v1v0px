@@ -1,0 +1,47 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>noScalar</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Send a Non-scalar Version of an Object</h2>
+
+<h3>Description</h3>
+
+<p>Ensures that an object is interpreted as a vector (array) when sent to the server language.
+The default strategy is to send length-1 vectors as scalars.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">noScalar(object)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>A vector object.  Calling with a non-vector is an error.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>the object, but with the S4 bit turned on.
+Relies on the convention that XR interfaces leave S4 objects
+as vectors, not scalars, even when they are of length 1
+</p>
+
+
+<h3>References</h3>
+
+<p>Chambers, John M. (2016)
+<em>Extending R</em>,
+Chapman &amp; Hall/CRC.
+( Chapter 13, discussing this package, is included in the package: <a href="../doc/Chapter_XR.pdf">../doc/Chapter_XR.pdf</a>.)
+</p>
+
+
+</div>

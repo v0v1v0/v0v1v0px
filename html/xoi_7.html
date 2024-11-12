@@ -1,0 +1,133 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>est.coi</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Estimate the coincidence function</h2>
+
+<h3>Description</h3>
+
+<p>Estimate the coincidence function from backcross data.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">est.coi(
+  cross,
+  chr = NULL,
+  pos = NULL,
+  window = 0,
+  fill.method = c("imp", "argmax"),
+  error.prob = 0.0000000001,
+  map.function = c("haldane", "kosambi", "c-f", "morgan")
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>cross</code></td>
+<td>
+<p>Cross object; must be a backcross.  See
+<code>qtl::read.cross()</code> for format details.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>chr</code></td>
+<td>
+<p>Chromosome to consider (only one is allowed).  If NULL, the
+first chromosome is considered.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pos</code></td>
+<td>
+<p>If provided, these are used as the marker positions.  (This could
+be useful if you want to do things with respect to physical distance.)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>window</code></td>
+<td>
+<p>Window size used to smooth the estimates.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fill.method</code></td>
+<td>
+<p>Method used to impute missing data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>error.prob</code></td>
+<td>
+<p>Genotyping error probability used in imputation of missing
+data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>map.function</code></td>
+<td>
+<p>Map function used in imputation of missing data.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The coincidence function is the probability of a recombination event in both
+of two intervals, divided by the product of the two recombination fractions.
+We estimate this as a function of the distance between the two intervals.
+</p>
+<p>Note that we first call <code>qtl::fill.geno()</code> to impute any missing
+genotype data.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A data.frame containing the distance between intervals and the
+corresponding estimate of the coincidence.  There are actually two columns
+of estimates of the coincidence.  In the first estimate, we take a running
+mean of each of the numerator and denominator and then divide.  In the
+second estimate, we first take a ratio and then take a running mean.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Karl W Broman, <a href="mailto:broman@wisc.edu">broman@wisc.edu</a>
+</p>
+
+
+<h3>References</h3>
+
+<p>McPeek, M. S. and Speed, T. P. (1995) Modeling interference in
+genetic recombination.  <em>Genetics</em> <strong>139</strong>, 1031–1044.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>gammacoi()</code>, <code>stahlcoi()</code>, <code>kfunc()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+map1 &lt;- sim.map(103, n.mar=104, anchor=TRUE, include.x=FALSE, eq=TRUE)
+x &lt;- sim.cross(map1, n.ind=2000, m=6, type="bc")
+
+out &lt;- est.coi(x, window=5)
+plot(coi1 ~ d, data=out, type="l", lwd=2, col="blue")
+lines(coi2 ~ d, data=out, lwd=2, col="green")
+lines(gammacoi(7), lwd=2, col="red", lty=2)
+
+</code></pre>
+
+
+</div>

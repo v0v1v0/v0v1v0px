@@ -1,0 +1,125 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>dat.gen</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Generate  bivariate meta analysis studies</h2>
+
+<h3>Description</h3>
+
+<p>Generate  bivariate meta analysis studies based on random-effects model, 
+some studies with smallest weighted sum of the two outcomes are suppressed.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">dat.gen(
+  m.o,
+  m.m,
+  s.m,
+  angle.LC = pi/4,
+  mybeta,
+  tau.sq,
+  rho.w,
+  rho.b,
+  s.min = 0.01,
+  m.m.o = 0,
+  s2.dist = 2,
+  verbose = F
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>m.o</code></td>
+<td>
+<p>number of observed studies</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>m.m</code></td>
+<td>
+<p>number of missing / suppressed studies</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>s.m</code></td>
+<td>
+<p>vector of the mean of the variances of the two outcomes</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>angle.LC</code></td>
+<td>
+<p>direction of suppressing line, default is pi/4, i.e. the studies on the left bottom corner are missing</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mybeta</code></td>
+<td>
+<p>the true center of the effect sizes</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tau.sq</code></td>
+<td>
+<p>between-study variance, the larger it is the more heterogeneity.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>rho.w</code></td>
+<td>
+<p>within-study correlation of the two outcomes</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>rho.b</code></td>
+<td>
+<p>between-study correlation of the two outcomes</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>s.min</code></td>
+<td>
+<p>minimum of the variances of the outcomes, default is 0.01</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>m.m.o</code></td>
+<td>
+<p>number of studies on one side of the suppressing line been observed, 
+i.e. non-deterministic suppressing, default is 0, i.e. deterministic suppressing</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>s2.dist</code></td>
+<td>
+<p>options for generating the outcomes' variances. 1=runif, 2=runif^2, 3=runif^4, 4=rnorm</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbose</code></td>
+<td>
+<p>logical, galaxy plot the studies? Default FALSE</p>
+</td>
+</tr>
+</table>
+<h3>Author(s)</h3>
+
+<p>Chongliang Luo, Yong Chen
+</p>
+
+
+<h3>References</h3>
+
+<p>Luo C, Marks-Anglin AK, Duan R, Lin L, Hong C, Chu H, Chen Y. Accounting for small-study effects 
+using a bivariate trim and fill meta-analysis procedure. medRxiv. 2020 Jan 1.
+</p>
+
+
+</div>

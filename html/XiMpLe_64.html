@@ -1,0 +1,151 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>XiMpLe_node,-class</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Classes XiMpLe_node and XiMpLe.node (old)</h2>
+
+<h3>Description</h3>
+
+<p>These classes are used to create DOM trees of XML documents,
+like objects that are returned
+by <code>parseXMLTree</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">is.XiMpLe.node(x)
+
+is.XiMpLe_node(x)
+
+as_XiMpLe_node(obj, extra = list(), version = 2)
+
+## S4 method for signature 'XiMpLe.node'
+as_XiMpLe_node(obj, extra = list(), version = 2)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>An arbitrary <code>R</code> object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>obj</code></td>
+<td>
+<p>An object of old class <code>XiMpLe.node</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>extra</code></td>
+<td>
+<p>A list of values to set the <code>extra</code> slot. Note that this will be applied recursively on child nodes also.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>version</code></td>
+<td>
+<p>Integer numeric,
+to set the <code>version</code> slot. Note that this will be applied recursively on child nodes also.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Class <code>XiMpLe.node</code> is the older one,
+<code>XiMpLe_node</code> was introduced with <code>XiMpLe</code> 0.11-1. It has two new slots
+(<code>extra</code> and <code>version</code>) that would have made it impossible to load old objects without issues. <code>XiMpLe_node</code>
+inherits from <code>XiMpLe.node</code>. You can convert old objects into valid new ones using the <code>as_XiMpLe_node</code> method and
+are also advised to do so,
+as the <code>XiMpLe.node</code> class might become deprecated in future releases.
+</p>
+<p>There are certain special values predefined for the <code>name</code> slot to easily create special XML elements:
+</p>
+
+<dl>
+<dt><code>name=""</code></dt>
+<dd>
+<p>If the name is an empty character string,
+a pseudo node is created,
+<code>pasteXMLNode</code> will paste its <code>value</code> as plain text.</p>
+</dd>
+<dt><code>name="!--"</code></dt>
+<dd>
+<p>Creates a comment tag, i.e.,
+this will comment out all its <code>children</code>.</p>
+</dd>
+<dt><code>name="![CDATA["</code></dt>
+<dd>
+<p>Creates a CDATA section and places all its <code>children</code> in it.</p>
+</dd>
+<dt><code>name="*![CDATA["</code></dt>
+<dd>
+<p>Creates a CDATA section and places all its <code>children</code> in it,
+where the CDATA markers are
+commented out by <code>/* */</code>, as is used for JavaScript in XHTML.</p>
+</dd>
+</dl>
+<p>A contructor function <code>XiMpLe_node(...)</code> is available to be used instead of <code>new("XiMpLe_node",
+      ...)</code>.
+</p>
+<p>There's also <code>XiMpLe_node_old(...)</code> to be used instead of <code>new("XiMpLe.node",
+      ...)</code>, but you should not use that any longer.
+</p>
+
+
+<h3>Slots</h3>
+
+
+<dl>
+<dt><code>name</code></dt>
+<dd>
+<p>Name of the node (i.e.,
+the XML tag identifier). For special names see details.</p>
+</dd>
+<dt><code>attributes</code></dt>
+<dd>
+<p>A list of named character values,
+representing the attributes of this node.
+Use <code>character()</code> as value for empty attributes.</p>
+</dd>
+<dt><code>children</code></dt>
+<dd>
+<p>A list of further objects of class XiMpLe.node,
+representing child nodes of this node.</p>
+</dd>
+<dt><code>value</code></dt>
+<dd>
+<p>Plain text to be used as the enclosed value of this node. Set to <code>value=""</code> if you
+want a childless node to be forced into an non-empty pair of start and end tags by <code>pasteXMLNode</code>.</p>
+</dd>
+<dt><code>extra</code></dt>
+<dd>
+<p>A named list that can be used to store additional information on a node (<code>XiMpLe_node</code> only).
+The only value with a noticeable effect as of now (version 2) is:
+</p>
+
+<dl>
+<dt>
+<code>shine</code>: </dt>
+<dd>
+<p>A numeric integer value between 0 and 2,
+overwriting the <code>shine</code> value of, e.g., <code>pasteXML</code>
+for this particular node.</p>
+</dd>
+</dl>
+</dd>
+<dt><code>version</code></dt>
+<dd>
+<p>A numeric integer,
+currently defaults to 2 (<code>XiMpLe_node</code> only). This is a version number that can be used in the future
+in combination with the added <code>extra</code> slot. Should that get more supported values like <code>shine</code> that are interpreted by package methods,
+the version number will be increased and the differences documented here. You shouldn't set it manually.</p>
+</dd>
+</dl>
+</div>

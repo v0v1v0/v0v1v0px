@@ -1,0 +1,110 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>gen_tag_functions</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Function generator to simplify generation of <code>XiMpLe_node</code> objects</h2>
+
+<h3>Description</h3>
+
+<p>Takes a vector of character strings and turns them into functions in the defined environment
+which in turn will generate <code>XiMpLe_node</code> objects with the
+string values as tag names.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">gen_tag_functions(
+  tags,
+  func_names = paste0(tags, "_"),
+  envir = .GlobalEnv,
+  replace = FALSE,
+  func_rename = c(`?xml_` = "xml_", `!--_` = "comment_", `![CDATA[_` = "CDATA_",
+    `!DOCTYPE_` = "DOCTYPE_")
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>tags</code></td>
+<td>
+<p>A character vector defining the tags the generated functions should produce.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>func_names</code></td>
+<td>
+<p>A character vector the same length as <code>tags</code>, defining the names of
+the functions to generate.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>envir</code></td>
+<td>
+<p>The environment where all generated functions should appear.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>replace</code></td>
+<td>
+<p>Logical, whether objects by the same name already present in <code>envir</code>
+should be preserved or replaced/overwritten.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>func_rename</code></td>
+<td>
+<p>Named character vector defining which tags' functions should get a different name.
+This makes it easier to get functions with valid names that generate special tag nodes.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The generated functions will be named according to <code>func_names</code> and only have a dots
+argument that is given to <code>XMLNode</code>. See the examples to
+understand how it's supposed to work.
+</p>
+
+
+<h3>Value</h3>
+
+<p>As many functions as specified by <code>tags</code>/<code>func_names</code>.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>XMLNode</code>,
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Say we would like to generate an HTML website and want to use
+# &lt;a&gt;, &lt;div&gt; and &lt;p&gt; tags.
+# The standard way of creating a &lt;div&gt; node would be this:
+(my_node &lt;- XMLNode("div", "some content", class="important"))
+
+# By using gen_tag_functions(), we can create some shortcut functions
+# to get better readability for our code and save some typing:
+gen_tag_functions(tags=c("a", "div", "p"))
+# We can now use div_() instead of XMLNode("div"):
+(my_node2 &lt;- div_("some content", class="important"))
+
+# It also works for nested tags:
+(my_node3 &lt;- div_(a_(href="foo", "some content")))
+
+# If you don't want these functions filling up your .GlobalEnv,
+# you can also put them in an attached environment, e.g.
+attach(list(), name="XiMpLe_wrappers")
+gen_tag_functions(tags=c("head", "body"), envir=as.environment("XiMpLe_wrappers"))
+</code></pre>
+
+
+</div>

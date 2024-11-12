@@ -1,0 +1,165 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>XWFpValues</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>p-value computation for XWFs</h2>
+
+<h3>Description</h3>
+
+<p>Randomization method to compute p-values for an optimized extrema-weighted features generalized additive model fit.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">XWFpValues(GAMobject, xx, t, n.i, psi.list = NULL, F, z = NULL,
+  w = function(t, i, b, left) ifelse(left, min(1, (1 - F(xx[[i]](t)))/(1 -
+  b)), min(1, F(xx[[i]](t))/b)), n.boot = 100, progressbar = TRUE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>GAMobject</code></td>
+<td>
+<p>The GAMobject returned by <code>xwfGridsearch</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xx</code></td>
+<td>
+<p>List of function for which to compute the XWFs</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>t</code></td>
+<td>
+<p>Matrix containing the times at which the functions xx were measured: Element (i,j) contains the time of the j-th measurement of the i-th function.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>n.i</code></td>
+<td>
+<p>Vector containing the number of measurements for each function. The first n.i[i] elements of the i-th row of t should not be NA.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>psi.list</code></td>
+<td>
+<p>List of predefined local features which are functions of a function (first argument) and a measurement time (second argument)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>F</code></td>
+<td>
+<p>CDF of the values of the functions xx. Ignored if weighting function w is not the default.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>z</code></td>
+<td>
+<p>Optional matrix with covariates to be included as linear predictors in the generalized additive model</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>w</code></td>
+<td>
+<p>Weighting function. The default is the one used in the original paper. See the default for what the roles of its 3 arguments are.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>n.boot</code></td>
+<td>
+<p>Number for randomizations used to obtain the p-values. The resolution of the p-values is 1/n.boot</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>progressbar</code></td>
+<td>
+<p>Boolean specifying whether a progress bar indicating which randomizations have been completed should be displayed.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Named vector with p-values
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Data simulation similar to Section 3.2 of the paper
+
+# Sample size
+n &lt;- 100
+
+# Length of trajectories
+n.i &lt;- rep(5, n)
+max.n.i &lt;- max(n.i)
+
+# Times
+t &lt;- matrix(NA_integer_, nrow = n, ncol = max.n.i)
+for(i in 1:n) t[i, 1:n.i[i]] &lt;- 1:n.i[i]
+
+
+# Sample periods
+phi &lt;- runif(n = n, min = 1, max = 10)
+
+# Sample offsets
+m &lt;- 10*runif(n = n)
+
+# Blood pressure measurements
+x &lt;- t
+for(i in 1:n) x[i, 1:n.i[i]] &lt;- sin(phi[i] * 2*pi/max.n.i * t[i, 1:n.i[i]]) + m[i]
+
+# Matrix with covariates z
+q &lt;- 2 # Number of covariates
+z &lt;- matrix(rnorm(n = n*q), nrow = n, ncol = q)
+
+# Generate outcomes
+temp &lt;- phi*min(m, 7)
+temp &lt;- 40*temp
+prob &lt;- 1/(1+exp( 2*( median(temp)-temp ) ))
+y &lt;- rbinom(n = n, size = 1, prob = prob)
+
+xx &lt;- list()
+for(i in 1:n) xx[[i]] &lt;- approxfun(x = t[i,1:n.i[i]], y = x[i,1:n.i[i]], rule = 2)
+
+# Estimate f
+weights &lt;- matrix(1/n.i, ncol = max.n.i, nrow = n)[!is.na(t)]
+f &lt;- density(
+x = t(sapply(X = 1:n, FUN = function(i) c(xx[[i]](t[i,1:n.i[i]]), rep(NA, max.n.i-n.i[i])))),
+weights = weights/sum(weights),
+na.rm = T
+)
+
+# Define CDF of f, F
+CDF &lt;- c(0)
+for(i in 2:length(f$x)) CDF[i] &lt;- CDF[i-1]+(f$x[i]-f$x[i-1])*(f$y[i]+f$y[i-1])/2
+F &lt;- approxfun(x = f$x, y = CDF/max(CDF), yleft = 0, yright = 1)
+
+psi &lt;- list(
+  function(x, t) abs(x(t)-x(t-1))
+)
+
+XWFresult &lt;- xwfGridsearch(y = y, xx = xx, t = t, n.i = n.i, psi.list = psi, F = F, z = z)
+
+XWFpValues(
+GAMobject = XWFresult$GAMobject,
+xx = xx,
+t = t,
+n.i = n.i,
+psi.list = psi,
+F = F,
+z = z,
+n.boot = 3
+)
+
+</code></pre>
+
+
+</div>

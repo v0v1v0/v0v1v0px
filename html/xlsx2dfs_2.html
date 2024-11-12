@@ -1,0 +1,45 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>withNames</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Helper function for more convenient input (sheet name, data frame, sheet name, data frame, ...).</h2>
+
+<h3>Description</h3>
+
+<p>Helper function for more convenient input (sheet name, data frame, sheet name, data frame, ...).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">withNames(...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>alterning arguments: sheet name 1, data frame 1, sheet name 2, data frame 2, ...</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A list of the data frames with the names given each before.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">df1 &lt;- data.frame(A=c(1, 2), B=c(3, 4))
+df2 &lt;- data.frame(C=c(5, 6), D=c(7, 8))
+xlsx_fpath &lt;- file.path(tempdir(), "testout.xlsx")
+dfs2xlsx(withNames("sheet1", df1, "sheet2", df2), xlsx_fpath)
+file.remove(xlsx_fpath)
+</code></pre>
+
+
+</div>

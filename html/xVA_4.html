@@ -1,0 +1,61 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>calcEffectiveMaturity</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Calculates the Effective Maturity</h2>
+
+<h3>Description</h3>
+
+<p>Calculates the effective maturity based on the specified regulatory framework
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">calcEffectiveMaturity(trades, time_points, framework, simulated_exposure)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>trades</code></td>
+<td>
+<p>The full list of the Trade Objects</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>time_points</code></td>
+<td>
+<p>The timepoints that the analysis is performed on</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>framework</code></td>
+<td>
+<p>Specifies the regulatory framework used in the calculations. It can take the values of 'IMM', 'CEM', 'SA-CCR'</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>simulated_exposure</code></td>
+<td>
+<p>The exposure profile list containing the EE, EEE etc</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>The effective maturity of the trade set
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Tasos Grivas &lt;tasos@openriskcalculator.com&gt;
+</p>
+
+
+</div>

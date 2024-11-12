@@ -1,0 +1,138 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>randtest.hist</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Function to create a histogram of results from the randomization test tool
+(<code>randtest</code>) in <a href="https://uupharmacometrics.github.io/PsN/">PsN</a>
+</h2>
+
+<h3>Description</h3>
+
+<p>Reads results from the <code>randtest</code> tool in <a href="https://uupharmacometrics.github.io/PsN/">PsN</a>
+and then creates a histogram.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">randtest.hist(
+  results.file = "raw_results_run1.csv",
+  df = 1,
+  p.val = 0.05,
+  main = "Default",
+  xlim = NULL,
+  PCTSlcol = "black",
+  vlcol = c("red", "orange"),
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>results.file</code></td>
+<td>
+<p>The location of the results file from the
+<code>randtest</code> tool in <a href="https://uupharmacometrics.github.io/PsN/">PsN</a></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>df</code></td>
+<td>
+<p>The degrees of freedom between the full and reduced model used in
+the randomization test.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>p.val</code></td>
+<td>
+<p>The p-value you would like to use.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>The title of the plot.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xlim</code></td>
+<td>
+<p>The limits of the x-axis</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PCTSlcol</code></td>
+<td>
+<p>Color of the empirical line</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>vlcol</code></td>
+<td>
+<p>Colors of the original and nominal line</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments that can be passed to
+xpose.plot.histogram, xpose.panel.histogram,
+histogram and other lattice-package
+functions.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A lattice object
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Andrew Hooker
+</p>
+
+
+<h3>References</h3>
+
+<p><a href="https://uupharmacometrics.github.io/PsN/">PsN</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p>xpose.plot.histogram, xpose.panel.histogram,
+histogram and other lattice-package
+functions.
+</p>
+<p>Other PsN functions: 
+<code>boot.hist()</code>,
+<code>bootscm.import()</code>,
+<code>npc.coverage()</code>,
+<code>read.npc.vpc.results()</code>,
+<code>read.vpctab()</code>,
+<code>xpose.VPC()</code>,
+<code>xpose.VPC.both()</code>,
+<code>xpose.VPC.categorical()</code>,
+<code>xpose4-package</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Not run: 
+randtest.hist(results.file="randtest_dir1/raw_results_run1.csv",df=2)
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

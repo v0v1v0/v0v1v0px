@@ -1,0 +1,90 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaDfScaleFactorFactory</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Configure the scale factor function for differential mutation.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaDfScaleFactorFactory</code> implements the selection
+of one of the scale factor functions in this
+package by specifying a text string.
+The selection fails ungracefully (produces
+a runtime error) if the label does not match.
+The functions are specified locally.
+</p>
+<p>Current support:
+</p>
+
+<ol>
+<li>
+<p> "Const" returns <code>ConstScaleFactor</code>.
+</p>
+</li>
+<li>
+<p> "Uniform" returns <code>UniformRandomScaleFactor</code>.
+</p>
+</li>
+</ol>
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaDfScaleFactorFactory(method = "Const")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>A string specifying the scale factor function.</p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+<p>In the literature, several approaches have been suggested.
+For a review see Sharma et al. (2019).
+</p>
+
+
+<h3>Value</h3>
+
+<p>A scale factor function for genes.
+</p>
+
+
+<h3>References</h3>
+
+<p>Sharma, Prashant; Sharma, Harish; Kumar, Sandeep; Bansal, Jagdish Chand
+(2019):
+A Review on Scale Factor Strategies in Differential Evolution Algorithm.
+pp. 925-934. In:
+Bansal, Jagdish Chand et al. (2019)
+Soft Computing for Problem Solving.
+Advances in Intelligent Systems and Computing, Vol. 817.
+Springer, Singapore, 2019. (ISBN:978-981-13-1594-7)
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Configuration: 
+<code>lFxegaDfGene</code>,
+<code>xegaDfCrossoverFactory()</code>,
+<code>xegaDfGeneMapFactory()</code>,
+<code>xegaDfMutationFactory()</code>,
+<code>xegaDfReplicationFactory()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">f&lt;-xegaDfScaleFactorFactory("Uniform")
+f(lFxegaDfGene)
+f(lFxegaDfGene)
+</code></pre>
+
+
+</div>

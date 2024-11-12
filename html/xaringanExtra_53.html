@@ -1,0 +1,100 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>share_again</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Share or Embed xaringan Slides</h2>
+
+<h3>Description</h3>
+
+<p>The <em>share again</em> extension helps you share your xaringan slides. Adding the
+extension to your slides with <code>use_share_again()</code> enables a "share" bar that
+only appears when your slides are embedded in a web page in an <code style="white-space: pre;">⁠&lt;iframe&gt;⁠</code>. To
+embed your presentation in another page, like a blogdown post or a R Markdown
+based site, use <code>embed_xaringan()</code>. This function adds your slides in a
+responsive aspect ratio container that seamlessly includes your slides in
+the page. Finally, for perfect looking slides, use <code>style_share_again()</code> to
+style the share bar to match your slides' aesthetic. You can also use this
+function to enable or disable specific social media sites and platforms from
+the share menu.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">use_share_again()
+
+style_share_again(
+  foreground = "rgb(255, 255, 255)",
+  background = "rgba(0, 0, 0, 0.5)",
+  share_buttons = c("all", "none", "twitter", "facebook", "linkedin", "pinterest",
+    "pocket", "reddit")
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>foreground</code></td>
+<td>
+<p>The foreground color of the buttons and text in the share bar</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>background</code></td>
+<td>
+<p>The background color of the share bar</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>share_buttons</code></td>
+<td>
+<p>A vector of social media platforms to be included in the
+share menu of the share bar. You can include <code>"all"</code> sites or <code>"none"</code> of
+buttons, and if either are included in <code>share_buttons</code>, then the rest of
+the vector is ignored. (And <code>"all"</code> takes precedence over <code>"none"</code>.) The
+<em>copy link</em> option is always included.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An <code>htmltools::tagList()</code> with the HTML dependencies required for
+<strong>share again</strong>.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul>
+<li> <p><code>use_share_again()</code>: Add the <em>share again</em> bar to your slides (only shown
+when embedded in an <code style="white-space: pre;">⁠&lt;iframe&gt;⁠</code>)
+</p>
+</li>
+<li> <p><code>style_share_again()</code>: Style the <em>share again</em> bar to match your slides, or
+choose the social media sites included in the share menu
+</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p><code>embed_xaringan()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># In your slides call
+use_share_again()
+
+# In the document where you want to embed the slides call
+embed_xaringan("https://slides.yihui.org/xaringan/")
+
+</code></pre>
+
+
+</div>

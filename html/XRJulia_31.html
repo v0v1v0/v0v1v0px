@@ -1,0 +1,48 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>juliaVersion</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Get or test the Julia Version information</h2>
+
+<h3>Description</h3>
+
+<p>The Julia constant structure <code>VERSION</code> is returned.
+If <code>test</code> is <code>TRUE</code>, only returns a logical testing whether
+this version is compatible with <code>XRJulia</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">juliaVersion(test = FALSE, .ev = RJulia())
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>test</code></td>
+<td>
+<p>If <code>TRUE</code>, tests compatibility
+(currently that the major number is at least <code>1</code>). Default <code>FALSE</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.ev</code></td>
+<td>
+<p>The evaluator object to use.  By default, and usually, the current evaluator.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A named list with the
+members of the Julia object, the usually relevant ones being <code>"major"</code>, <code>"minor"</code> and 
+<code>"patch"</code>. <code>test=TRUE</code> overrides as described.
+</p>
+
+
+</div>

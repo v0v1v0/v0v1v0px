@@ -1,0 +1,78 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaDfUCrossGene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Uniform crossover of 2 genes.</h2>
+
+<h3>Description</h3>
+
+<p><code>UCrossGene</code> swaps alleles of both genes
+with a probability of 0.5. It generates a random 
+mask which is used to build the new gene.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaDfUCrossGene(gg1, gg2, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>gg1</code></td>
+<td>
+<p>Real-coded gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>gg2</code></td>
+<td>
+<p>Real-coded gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration of the genetic algorithm.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Real-coded gene.
+</p>
+
+
+<h3>References</h3>
+
+<p>Syswerda, Gilbert (1989):
+Uniform Crossover in Genetic Algorithms. 
+In: Schaffer, J. David (Ed.)
+Proceedings of the Third International Conference on Genetic Algorithms,
+Morgan Kaufmann Publishers, Los Altos, California, pp. 2-9.
+(ISBN:1-55860-066-3)
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Crossover (1): 
+<code>xegaDfCrossGene()</code>,
+<code>xegaDfUPCrossGene()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">gene1&lt;-xegaDfInitGene(lFxegaDfGene)
+gene2&lt;-xegaDfInitGene(lFxegaDfGene)
+gene3&lt;-xegaDfUCrossGene(gene1, gene2, lFxegaDfGene)
+</code></pre>
+
+
+</div>

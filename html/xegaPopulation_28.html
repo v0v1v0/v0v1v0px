@@ -1,0 +1,82 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>PparLapply</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>uses parLapply of library parallel for using workers on 
+machines in a local network.</h2>
+
+<h3>Description</h3>
+
+<p>uses parLapply of library parallel for using workers on 
+machines in a local network.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">PparLapply(pop, EvalGene, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>pop</code></td>
+<td>
+<p>a population of genes.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>EvalGene</code></td>
+<td>
+<p>the function for evaluating a gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>the local function factory which provides
+all functions needed in <code>EvalGene</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Fitness vector.
+</p>
+
+
+<h3>Warning</h3>
+
+<p>This section has not been properly tested.
+Random number generation?
+Examples?
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Execution Model: 
+<code>MClapply()</code>,
+<code>futureLapply()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">parm&lt;-function(x) {function() {x}}
+pop&lt;-xegaInitPopulation(1000, lFxegaGaGene)
+library(parallel)
+clus&lt;-makeCluster(spec=c("localhost", "localhost"), master="localhost", 
+                            port=1250, homogeneous=TRUE)
+lFxegaGaGene$cluster&lt;-parm(clus)
+popnew&lt;-PparLapply(pop, lFxegaGaGene$EvalGene, lFxegaGaGene)
+stopCluster(clus)
+
+</code></pre>
+
+
+</div>

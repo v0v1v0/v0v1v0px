@@ -1,0 +1,202 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>x12Output-class</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Class <code>"x12Output"</code>
+</h2>
+
+<h3>Description</h3>
+
+<p>Output class for <code>x12</code>.
+</p>
+
+
+<h3>Objects from the Class</h3>
+
+<p>Objects can be created by calls of the form <code>new("x12Output", ...)</code>.
+
+</p>
+
+
+<h3>Slots</h3>
+
+
+<dl>
+<dt>
+<code>a1</code>:</dt>
+<dd>
+<p>Object of class <code>"ts"</code> - the original time series.</p>
+</dd>
+<dt>
+<code>d10</code>:</dt>
+<dd>
+<p>Object of class <code>"ts"</code> - the final seasonal factors.</p>
+</dd>
+<dt>
+<code>d11</code>:</dt>
+<dd>
+<p>Object of class <code>"ts"</code> - the final seasonally adjusted data.</p>
+</dd>
+<dt>
+<code>d12</code>:</dt>
+<dd>
+<p>Object of class <code>"ts"</code> - the final trend cycle.</p>
+</dd>
+<dt>
+<code>d13</code>:</dt>
+<dd>
+<p>Object of class <code>"ts"</code> - the final irregular components.</p>
+</dd>
+<dt>
+<code>d16</code>:</dt>
+<dd>
+<p>Object of class <code>"ts"</code> - the combined adjustment factors.</p>
+</dd>
+<dt>
+<code>c17</code>:</dt>
+<dd>
+<p>Object of class <code>"ts"</code> - the final weights for the irregular component.</p>
+</dd>
+<dt>
+<code>d9</code>:</dt>
+<dd>
+<p>Object of class <code>"ts"</code> - the final replacements for the SI ratios.</p>
+</dd>
+<dt>
+<code>e2</code>:</dt>
+<dd>
+<p>Object of class <code>"ts"</code> - the differenced, transformed, seasonally adjusted data.</p>
+</dd>
+<dt>
+<code>d8</code>:</dt>
+<dd>
+<p>Object of class <code>"ts"</code> - the final unmodified SI ratios.</p>
+</dd>
+<dt>
+<code>b1</code>:</dt>
+<dd>
+<p>Object of class <code>"ts"</code> - the prior adjusted original series.</p>
+</dd>
+<dt>
+<code>td</code>:</dt>
+<dd>
+<p>Object of class <code>"tsOrNULL"</code> - the trading day component</p>
+</dd>
+<dt>
+<code>otl</code>:</dt>
+<dd>
+<p>Object of class <code>"tsOrNULL"</code> - the outlier regression series</p>
+</dd>
+<dt>
+<code>sp0</code>:</dt>
+<dd>
+<p>Object of class <code>"spectrum"</code> - the spectrum of the original series.</p>
+</dd>
+<dt>
+<code>sp1</code>:</dt>
+<dd>
+<p>Object of class <code>"spectrum"</code> - the spectrum of the differenced seasonally adjusted series.</p>
+</dd>
+<dt>
+<code>sp2</code>:</dt>
+<dd>
+<p>Object of class <code>"spectrum"</code> - the spectrum of modified irregular series.</p>
+</dd>
+<dt>
+<code>spr</code>:</dt>
+<dd>
+<p>Object of class <code>"spectrum"</code> - the spectrum of the regARIMA model residuals.</p>
+</dd>
+<dt>
+<code>forecast</code>:</dt>
+<dd>
+<p>Object of class <code>"fbcast"</code> - the  point forecasts with prediction intervals</p>
+</dd>
+<dt>
+<code>backcast</code>:</dt>
+<dd>
+<p>Object of class <code>"fbcast"</code> - the  point backcasts with prediction intervals</p>
+</dd>
+<dt>
+<code>dg</code>:</dt>
+<dd>
+<p>Object of class <code>"list"</code>, containing several seasonal adjustment and regARIMA modeling diagnostics, i.e.:<br><code>x11regress, transform, samode, seasonalma, trendma, arimamdl, automdl, regmdl, nout, nautoout, nalmostout, almostoutlier, crit, 
+	outlier, userdefined, autooutlier, peaks.seas, peaks.td, id.seas, id.rsdseas, spcrsd, spcori, spcsa, spcirr, m1, m2, m3, m4, m5, m6, 
+	m7, m8, m9, m10, m11, q, q2, nmfail, loglikelihood, aic, aicc, bic, hq, aape, autotransform, ifout, rsd.acf, rsd.pacf, rsd.acf2, 
+	tsName, frequency, span,...</code></p>
+</dd>
+</dl>
+<dl>
+<dt>
+<code>file</code>:</dt>
+<dd>
+<p>Object of class <code>"character"</code> - path to the output directory and filename</p>
+</dd>
+<dt>
+<code>tblnames</code>:</dt>
+<dd>
+<p>Object of class <code>"character"</code> - tables read into R</p>
+</dd>
+<dt>
+<code>Rtblnames</code>:</dt>
+<dd>
+<p>Object of class <code>"character"</code> - names of tables read into R</p>
+</dd>
+</dl>
+<h3>Methods</h3>
+
+
+<dl>
+<dt>summary</dt>
+<dd>
+<p><code>signature(object = "x12Output")</code>: ... </p>
+</dd>
+<dt>plot</dt>
+<dd>
+<p><code>signature(object = "x12Output")</code>: ... </p>
+</dd>
+<dt>plotSpec</dt>
+<dd>
+<p><code>signature(object = "x12Output")</code>: ... </p>
+</dd>
+<dt>plotSeasFac</dt>
+<dd>
+<p><code>signature(object = "x12Output")</code>: ... </p>
+</dd>    
+<dt>plotRsdAcf</dt>
+<dd>
+<p><code>signature(object = "x12Output")</code>: ... </p>
+</dd>    
+</dl>
+<h3>Author(s)</h3>
+
+<p>Alexander Kowarik, Angelika Meraner
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>x12</code>,
+<code>x12Single</code>,
+<code>x12Batch</code>,
+<code>x12Parameter</code>,
+<code>x12List</code>,
+<code>x12Output</code>,
+<code>x12BaseInfo</code>,
+
+<code>summary.x12work</code>,
+<code>x12work</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(AirPassengersX12)
+summary(AirPassengersX12)
+showClass("x12Output")
+</code></pre>
+
+
+</div>

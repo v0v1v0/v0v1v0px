@@ -1,0 +1,114 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>getInterface</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Get or start an evaluator for an interface</h2>
+
+<h3>Description</h3>
+
+<p>Utility functions to manage a table of evaluators, indexed by the evaluator class, typically
+one class per server language. All are typically hidden by functions or methods for the particular
+class. <code>rmInterface</code> and <code>evaluatorNumber</code> are used by methods and exported so that
+subclasses of interface evaluators will have access to them.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">getInterface(Class, ..., .makeNew = NA, .select = NULL)
+
+rmInterface(evaluator)
+
+evaluatorNumber(evaluator, add = length(id) &gt; 0)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>Class</code></td>
+<td>
+<p>the name of the interface class for this evaluator; by default, the class of the
+current evaluator. Can also be the class definition object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>arguments, if any, are passed to the generator for the evaluator</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.makeNew</code></td>
+<td>
+<p>can be used to force or prevent starting a new evaluator, if passed as
+a logical value.  Can also be passed as a function that tests the suitability of a
+current evaluator, returning TRUE if this one won't do, and a new one should be
+generated instead (consistent with the ... arguments, presumably).
+</p>
+<p>The default is NA, meaning that an existing evaluator is OK, but one should be generated
+if none exists.  In contrast, FALSE means to return NULL if no matching evaluator exists.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.select</code></td>
+<td>
+<p>Can be supplied as a function of one argument, which will be called for
+each evaluator of this class and which should return <code>TRUE</code>/<code>FALSE</code> according to
+whether the evaluator should be accepted.  Allows applications to select, for example, a
+particular evaluator corresponding to a known connection.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>evaluator</code></td>
+<td>
+<p>any evaluator object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>add</code></td>
+<td>
+<p>if this evaluator is not in the table, add it.  Default <code>TRUE</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Specific language interface packages usually supply a convenience function equivalent
+to calling <code>getInterface()</code> for their class; e.g., <code>RPython()</code> in <code>'XRPython'</code>
+</p>
+<p>If no <code>Class</code> is given, the current (i.e., last active) evaluator is returned
+</p>
+
+
+<h3>Value</h3>
+
+<p><code>getInterface()</code> returns an  interface evaluator for this class, starting one if none exists.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul>
+<li> <p><code>rmInterface</code>: Remove the specified  evaluator from the table of available interfaces.
+</p>
+</li>
+<li> <p><code>evaluatorNumber</code>: Return the sequential number for this evalutor; used in <code>ProxyName()</code> method.
+If not there: if <code>add</code>, add the evaluator to the table; else return <code>NA</code>.
+</p>
+</li>
+</ul>
+<h3>Examples</h3>
+
+<pre><code class="language-R">## the current evaluator, or NULL if none exists
+getInterface()
+## this will always be NULL, because no evaluator has this class
+getInterface("Interface", .makeNew = FALSE)
+</code></pre>
+
+
+</div>

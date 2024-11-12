@@ -1,0 +1,72 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>lazy_save</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Save objects to files and lazy-load them</h2>
+
+<h3>Description</h3>
+
+<p>The function <code>lazy_save()</code> saves objects to files with incremental integer
+names (e.g., the first object is saved to <code style="white-space: pre;">⁠1.rds⁠</code>, and the second object is
+saved to <code style="white-space: pre;">⁠2.rds⁠</code>, etc.). The function <code>lazy_load()</code> lazy-load objects from
+files saved via <code>lazy_save()</code>, i.e., a file will not be read until the object
+is used.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">lazy_save(list = NULL, path = "./", method = "auto", envir = parent.frame())
+
+lazy_load(path = "./", method = "auto", envir = parent.frame())
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>list</code></td>
+<td>
+<p>A character vector of object names. This list will be written to
+an index file with <code>0</code> as the base name (e.g., <code style="white-space: pre;">⁠0.rds⁠</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>path</code></td>
+<td>
+<p>The path to write files to / read files from.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>The file save/load method. It can be a string (e.g., <code>rds</code>,
+<code>raw</code>, or <code>qs</code>) or a list. See the <code>rw</code> argument of <code>cache_exec()</code>. By
+default, it is automatically detected by checking the existence of the
+index file (e.g., <code style="white-space: pre;">⁠0.rds⁠</code>, <code style="white-space: pre;">⁠0.raw⁠</code>, or <code style="white-space: pre;">⁠0.qs⁠</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>envir</code></td>
+<td>
+<p>The environment to get or assign objects.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p><code>lazy_save()</code> returns invisible <code>NULL</code>; <code>lazy_load()</code> returns the
+object names invisibly.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>delayedAssign()</code>
+</p>
+
+
+</div>

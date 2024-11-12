@@ -1,0 +1,157 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>permtest</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Calculate the relative importance of the edges</h2>
+
+<h3>Description</h3>
+
+<p>This function does a permutation-based evaluation of the impact of
+different edges on the final result. It does so by permuting the kernel
+matrices, refitting the model and calculating a loss function.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">permtest(x, ...)
+
+## S3 method for class 'permtest'
+print(x, digits = max(3L, getOption("digits") - 3), ...)
+
+## S4 method for signature 'tskrrHeterogeneous'
+permtest(
+  x,
+  n = 100,
+  permutation = c("both", "row", "column"),
+  exclusion = c("interaction", "row", "column", "both"),
+  replaceby0 = FALSE,
+  fun = loss_mse,
+  exact = FALSE
+)
+
+## S4 method for signature 'tskrrHomogeneous'
+permtest(
+  x,
+  n = 100,
+  permutation = c("both"),
+  exclusion = c("interaction", "both"),
+  replaceby0 = FALSE,
+  fun = loss_mse,
+  exact = FALSE
+)
+
+## S4 method for signature 'tskrrTune'
+permtest(x, permutation = c("both", "row", "column"), n = 100)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>either a <code>tskrr-class</code> or a
+<code>tskrrTune-class</code> object</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>arguments passed to other methods</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>digits</code></td>
+<td>
+<p>the number of digits shown in the output</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>n</code></td>
+<td>
+<p>the number of permutations for every kernel matrix</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>permutation</code></td>
+<td>
+<p>a character string that defines whether the row,
+column or both kernel matrices should be permuted. Ignored in case of
+a homogeneous network</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>exclusion</code></td>
+<td>
+<p>the exclusion to be used in the <code>loo</code> function. See also <code>get_loo_fun</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>replaceby0</code></td>
+<td>
+<p>a logical value indicating whether <code>loo</code>
+removes a value in the leave-one-out procedure or replaces it by zero.
+See also <code>get_loo_fun</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fun</code></td>
+<td>
+<p>a function (or a character string with the name of a
+function) that calculates the loss. See also <code>tune</code> and
+<code>loss_functions</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>exact</code></td>
+<td>
+<p>a logical value that indicates whether or not an
+exact p-value should be calculated, or be approximated based on
+a normal distribution.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The test involved uses a normal approximation. It assumes that under the
+null hypothesis, the loss values are approximately normally distributed.
+The cumulative probability of a loss as small or smaller than
+the one found in the original model, is calculated based on a normal
+distribution from which the mean and sd are calculated from the permutations.
+</p>
+
+
+<h3>Value</h3>
+
+<p>An object of the class permtest.
+</p>
+
+
+<h3>Warning</h3>
+
+<p>It should be noted that this normal approximation is an ad-hoc approach.
+There's no guarantee that the actual distribution of the loss under the
+null hypothesis is normal. Depending on the loss function, a significant
+deviation from the theoretic distribution can exist. Hence this functions should only
+be used as a rough guidance in model evaluation.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+# Heterogeneous network
+
+data(drugtarget)
+
+mod &lt;- tskrr(drugTargetInteraction, targetSim, drugSim)
+permtest(mod, fun = loss_auc)
+
+</code></pre>
+
+
+</div>

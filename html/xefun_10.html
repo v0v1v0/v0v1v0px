@@ -1,0 +1,73 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>date_num</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>date to number</h2>
+
+<h3>Description</h3>
+
+<p>It converts date to numeric value in specified unit.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">date_num(x, unit = "s", origin = "1970-01-01", scientific = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>date.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>unit</code></td>
+<td>
+<p>time unit, available values including milliseconds, seconds, minutes, hours, days, weeks.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>origin</code></td>
+<td>
+<p>original date, defaults to 1970-01-01.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>scientific</code></td>
+<td>
+<p>logical, whether to encode the number in scientific format, defaults to FALSE.</p>
+</td>
+</tr>
+</table>
+<h3>Examples</h3>
+
+<pre><code class="language-R"># setting unit
+date_num(Sys.time(), unit='milliseconds')
+date_num(Sys.time(), unit='mil')
+
+date_num(Sys.time(), unit='seconds')
+date_num(Sys.time(), unit='s')
+
+date_num(Sys.time(), unit='days')
+date_num(Sys.time(), unit='d')
+
+# setting origin
+date_num(Sys.time(), unit='d', origin = '1970-01-01')
+date_num(Sys.time(), unit='d', origin = '2022-01-01')
+
+# setting scientific format
+date_num(Sys.time(), unit='mil', scientific = FALSE)
+date_num(Sys.time(), unit='mil', scientific = TRUE)
+date_num(Sys.time(), unit='mil', scientific = NULL)
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,2931 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaRun</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Run an evolutionary or genetic algorithm for a problem environment 
+which contains a function to optimize.</h2>
+
+<h3>Description</h3>
+
+<p><code>Run</code> runs an evolutionary or genetic algorithm 
+whose type is selected by <code>algorithm</code>. Available
+algorithms are:
+</p>
+
+<ol>
+<li> <p><code>"sga"</code>:    Genetic algorithm with binary genes.
+</p>
+</li>
+<li> <p><code>"sgde"</code>:   Differential evolution with real genes.
+</p>
+</li>
+<li> <p><code>"sgperm"</code>: Genetic algorithm with permutation genes. 
+</p>
+</li>
+<li> <p><code>"sgp"</code>:    Grammar-based genetic programming with 
+derivation-tree genes.
+</p>
+</li>
+<li> <p><code>"sge"</code>:    Grammatical evolution (genetic algorithm 
+with binary genes and a grammar-driven
+decoder.
+</p>
+</li>
+</ol>
+<p>The choice of the algorithm determines the gene-dependent 
+configuration options.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaRun(
+  penv,
+  grammar = NULL,
+  max = TRUE,
+  algorithm = "sga",
+  popsize = 100,
+  generations = 20,
+  crossrate = 0.2,
+  mutrate = 1,
+  elitist = TRUE,
+  replay = 0,
+  maxdepth = 7,
+  maxtrials = 5,
+  codons = 25,
+  codonBits = 0,
+  codonPrecision = "LCM",
+  maxPBias = 0.01,
+  evalmethod = "EvalGeneU",
+  reportEvalErrors = TRUE,
+  genemap = "Bin2Dec",
+  crossrate2 = 0.3,
+  ivcrossrate = "Const",
+  crossover = "Cross2Gene",
+  uCrossSwap = 0.2,
+  mincrossdepth = 1,
+  maxcrossdepth = 7,
+  ivmutrate = "Const",
+  mutrate2 = 1,
+  bitmutrate = 0.005,
+  bitmutrate2 = 0.01,
+  maxmutdepth = 3,
+  minmutinsertiondepth = 1,
+  maxmutinsertiondepth = 7,
+  lambda = 0.05,
+  max2opt = 100,
+  scalefactor1 = 0.9,
+  scalefactor2 = 0.3,
+  scalefactor = "Const",
+  cutoffFit = 0.5,
+  mutation = "MutateGene",
+  replication = "Kid2",
+  offset = 1,
+  eps = 0.01,
+  tournamentSize = 2,
+  selectionBias = 1.5,
+  maxTSR = 1.5,
+  selection = "SUS",
+  mateselection = "SUS",
+  selectionContinuation = TRUE,
+  scaling = "NoScaling",
+  scalingThreshold = 0,
+  scalingExp = 1,
+  scalingExp2 = 1,
+  rdmWeight = 1,
+  drMax = 2,
+  drMin = 0.5,
+  dispersionMeasure = "var",
+  scalingDelay = 1,
+  accept = "All",
+  alpha = 0.99,
+  beta = 2,
+  cooling = "ExponentialMultiplicative",
+  coolingPower = 1,
+  temp0 = 40,
+  tempN = 0.01,
+  verbose = 1,
+  logevals = FALSE,
+  allsolutions = FALSE,
+  early = FALSE,
+  terminationEps = 0.01,
+  cores = NA,
+  executionModel = "Sequential",
+  uParApply = NULL,
+  Cluster = NULL,
+  profile = FALSE,
+  batch = FALSE,
+  path = ""
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>penv</code></td>
+<td>
+<p>Problem environment.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>grammar</code></td>
+<td>
+<p>A compiled grammar object. Default: NULL.
+Example: <code>compileBNF(booleanGrammar())</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max</code></td>
+<td>
+<p>If <code>TRUE</code> then Maximize! Default: TRUE.
+Used in functions <code>EvalGeneDet</code>, <code>EvalGeneStoch</code>,
+<code>EvalGeneU</code>, and <code>EvalGeneR</code> 
+of package <code>xegaSelectGene</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>algorithm</code></td>
+<td>
+<p>Specifies the algorithm class dependend 
+on gene representation:
+</p>
+
+<ul>
+<li>
+<p> "sga": Binary representation (Default).
+</p>
+</li>
+<li>
+<p> "sgde": Real representation. 
+E.g. Differential evolution.
+</p>
+</li>
+<li>
+<p> "sgperm": Permutation representation.
+</p>
+</li>
+<li>
+<p> "sge": Binary representation. 
+Grammatical evolution.    
+(Not yet variable length.)
+</p>
+</li>
+<li>
+<p> "sgp": Derivation tree representation. 
+Grammar Based Genetic Programming.
+</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>popsize</code></td>
+<td>
+<p>Population size. Default: 100.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>generations</code></td>
+<td>
+<p>Number of generations. Default: 20.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>crossrate</code></td>
+<td>
+<p>Probability of applying crossover operator. Default: 0.20.
+(Global parameter)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mutrate</code></td>
+<td>
+<p>Probability of applying mutation operator. Default: 1.0.
+(Global parameter)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>elitist</code></td>
+<td>
+<p>Boolean. If <code>TRUE</code>, 
+then keep best solution in population.
+Default: <code>TRUE</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>replay</code></td>
+<td>
+<p>Integer. If <code>replay&gt;0</code> then use <code>replay</code> 
+as seed of random number generator and  
+store it for exact repetition of run.
+Default: 0.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>maxdepth</code></td>
+<td>
+<p>The maximal depth of a derivation tree. Default: 7. (<code>"sgp"</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>maxtrials</code></td>
+<td>
+<p>Maximal number of trials of finding subtrees with same root symbol.
+Default: 5. (<code>sgp</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>codons</code></td>
+<td>
+<p>The maximal number of codons of derivations on a gene. 
+Default: 25. (<code>"sge"</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>codonBits</code></td>
+<td>
+<p>The number of bits of a codon.
+Default: 0. (<code>"sge"</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>codonPrecision</code></td>
+<td>
+<p>Specify the method to set the number of bits of a
+codon (<code>"sge"</code>):  
+</p>
+
+<ul>
+<li>
+<p> "Min": Sufficient to code the maximal number 
+of choices of production rules for 
+a non-terminal.
+</p>
+</li>
+<li>
+<p> "LCM": Contains the least common multiple 
+of the prime factors of the number of 
+choices of production rules for all 
+non-terminals.
+</p>
+</li>
+<li>
+<p> "MaxPBias": The computed precision guarantees
+that the choice rule bias for a non-terminal
+is below <code>maxPBias</code>. 
+</p>
+</li>
+</ul>
+<p>Argument of function factory 
+<code>xegaGePrecisionFactory</code> in package <code>xegaGeGene</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>maxPBias</code></td>
+<td>
+<p>The threshold of the choice rule bias. 
+Default: <code>0.01</code>. (<code>sge</code>").</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>evalmethod</code></td>
+<td>
+<p>Specifies the method of function evaluation:
+</p>
+ 
+<ul>
+<li>
+<p>  "EvalGeneU": The function is always evaluated. (Default)
+</p>
+</li>
+<li>
+<p>  "EvalGeneR": The function is always evaluated. 
+Repairs of the gene by the decoder are 
+possible.
+</p>
+</li>
+<li>
+<p>  "Deterministic": The function is evaluated only once.
+</p>
+</li>
+<li>
+<p>  "Stochastic": The expected function value and its 
+variance are incrementally updated.
+</p>
+</li>
+</ul>
+<p>Argument of function factory 
+<code>EvalGeneFactory</code> in package xegaSelectGene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>reportEvalErrors</code></td>
+<td>
+<p>Report errors in the evaluation 
+of fitness functions. Default: TRUE.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>genemap</code></td>
+<td>
+<p>Gene map for decoding. Default: "Bin2Dec".
+The default value works only for algorithm "sga".
+Used as <code>method</code> argument of the function factory
+<code>sgXGeneMapFactory</code> of package <code>xega</code>.
+</p>
+<p>Available available options determined by 
+<code>algorithm</code>:
+</p>
+
+<ul>
+<li>
+<p> "sga": Binary representation (Default).
+</p>
+
+<ul>
+<li>
+<p> "Bin2Dec": For real parameter vectors. 
+</p>
+</li>
+<li>
+<p> "Gray2Dec": For real parameter vectors.
+</p>
+</li>
+<li>
+<p> "Identity": For 0/1 parameter vectors.
+</p>
+</li>
+<li>
+<p> "Permutation": For permutations.
+</p>
+</li>
+</ul>
+<p>See the function factory 
+<code>xegaGaGeneMapFactory</code> in package <code>xegaGaGene</code>.
+</p>
+</li>
+<li>
+<p> "sgp": Derivation tree. 
+Gene map is not used, but must be specified.
+We use <code>xegaGaGene::xegaGaGeneMapFactory</code> 
+with <code>method="Identity"</code>.
+</p>
+</li>
+<li>
+<p> "sge": Binary representation (Default).
+How are genes decoded?
+</p>
+
+<ul>
+<li>
+<p> "Mod": The modulo rule.
+</p>
+</li>
+<li>
+<p> "Bucket": The bucket rule (with the mLCM). 
+Problem: Mapping <code>1: 2^k</code> to <code>1:mLCMG</code>.
+</p>
+</li>
+</ul>
+<p>See the function factory 
+<code>xegaGeGeneMapFactory</code> in package <code>xegaGeGene</code>.
+</p>
+</li>
+<li>
+<p> "sgde": Real coded gene.
+We use <code>xegaDfGene::xegaDfGeneMapFactory</code> 
+with <code>method="Identity"</code>.
+Function used: <code>xegaDfGene::xegaDfGeneMapIdentity</code>
+</p>
+</li>
+<li>
+<p> "sgperm": Permutation gene.
+Gene map is not used, but must be specified.
+We use <code>xegaDfGene::xegaDfGeneMapFactory</code> 
+with <code>method="Identity"</code>.
+Function used: <code>xegaDfGene::xegaDfGeneMapIdentity</code>
+</p>
+</li>
+</ul>
+<p> # end of genemap</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>crossrate2</code></td>
+<td>
+<p>Crossover rate for genes with below 
+“average” fitness. 
+Probability of applying crossover operator 
+for genes with a “below average” fitness.
+Default: 0.30. 
+(Global parameter)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ivcrossrate</code></td>
+<td>
+<p>Specifies the method of determining the crossover rate.
+</p>
+
+<ul>
+<li> 
+<p>"Const" Constant crossover rate. 
+The probability of applying the crossover operator
+is constant for the whole run of the algorithm.
+Default: "Const".
+</p>
+</li>
+<li>
+<p> "IV" Individually variable crossover rate.
+The crossrate of a gene is determined by the following threshold
+rule: 
+If the fitness of the gene is higher than 
+<code>lF$CutoffFit()*</code> <code>lF$CBestFitness()</code> then 
+<code>lF$CrossRate1()</code> else <code>lF$CrossRate2()</code>
+is used.
+</p>
+</li>
+</ul>
+<p>Argument of function factory 
+<code>CrossRateFactory</code> in package <code>xegaPopulation</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>crossover</code></td>
+<td>
+<p>Crossover method. Default: "CrossGene".
+The choice of crossover methods depends on the 
+setting of the argument <code>algorithm</code>.
+Used as the <code>method</code> argument in function factory
+<code>sgXCrossoverFactory</code> of package <code>xega</code>.
+</p>
+
+<ul>
+<li> <p><code>algorithm="sga"</code>:
+<code>crossover</code> is  argument of function factory 
+<code>xegaGaCrossoverFactory</code> in package <code>xegaGaGene</code>.
+</p>
+
+<ul>
+<li>
+<p> Crossover operators with 1 kid:
+</p>
+
+<ul>
+<li>
+<p> "CrossGene"  one-point crossover. 
+</p>
+</li>
+<li>
+<p> "UCrossGene" uniform crossover.
+</p>
+</li>
+<li>
+<p> "UPCrossgene" parameterized uniform crossover.
+Local parameter: <code>uCrossSwap</code>.
+</p>
+</li>
+</ul>
+</li>
+<li>
+<p> Crossover operators with 2 kids:
+</p>
+
+<ul>
+<li>
+<p> "Cross2Gene"  one-point crossover. 
+</p>
+</li>
+<li>
+<p> "UCross2Gene" uniform crossover.
+</p>
+</li>
+<li>
+<p> "UPCross2gene" parameterized uniform crossover.
+Local parameter: <code>uCrossSwap</code>.
+</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li> <p><code>algorithm="sgp"</code>:
+<code>crossover</code> is  argument of function factory 
+<code>xegaGpCrossoverFactory</code> in package <code>xegaGpGene</code>.
+</p>
+
+<ul>
+<li>
+<p> Crossover operators with 1 kid:
+</p>
+
+<ul><li>
+<p> "CrossGene"  position based one-point crossover. 
+</p>
+</li></ul>
+</li>
+<li>
+<p> Crossover operators with 2 kids:
+</p>
+
+<ul><li>
+<p> "Cross2Gene" position based one-point crossover. 
+</p>
+</li></ul>
+</li>
+</ul>
+</li>
+<li> <p><code>algorithm="sge"</code>:
+We use the factory <code>xegaGaCrossoverFactory</code>.
+</p>
+<p>(Adpatation needed for variable-length binary
+representation.)
+</p>
+</li>
+<li> <p><code>algorithm="sgde"</code>:
+<code>crossover</code> is  argument of function factory 
+<code>xegaDfCrossoverFactory</code> in package <code>xegaDfGene</code>.
+</p>
+
+<ul>
+<li>
+<p> Crossover operators with 1 kid:
+</p>
+
+<ul>
+<li>
+<p> "CrossGene"  one-point crossover  (of reals)
+</p>
+</li>
+<li>
+<p> "UCrossGene" uniform crossover  (of reals)
+</p>
+</li>
+<li>
+<p> "UPCrossGene" parametrized 
+uniform crossover  (of reals).
+Local parameter: <code>uCrossSwap</code>.
+</p>
+</li>
+</ul>
+</li>
+<li>
+<p> Crossover operators with 2 kids: Not implemented.
+</p>
+</li>
+</ul>
+</li>
+<li> <p><code>algorithm="sgperm"</code>:
+<code>crossover</code> is  argument of function factory 
+<code>xegaPermCrossoverFactory</code> in package <code>xegaPermGene</code>.
+</p>
+
+<ul>
+<li>
+<p> Crossover operators with 1 kid:
+</p>
+
+<ul><li>
+<p> "CrossGene"  position based one-point crossover. 
+</p>
+</li></ul>
+</li>
+<li>
+<p> Crossover operators with 2 kids:
+</p>
+
+<ul><li>
+<p> "Cross2Gene" position based one-point crossover. 
+</p>
+</li></ul>
+</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>uCrossSwap</code></td>
+<td>
+<p>The fraction of positions swapped in the
+parametrized uniform crossover operator.
+A local crossover parameter.
+Default: 0.2. (<code>"sga"</code> and <code>"sgde"</code>). 
+Used in packages <code>xegaGaGene</code> and <code>xegaDfGene</code>
+for functions 
+<code>xegaGaUPCross2Gene</code>,
+<code>xegaDfUPCross2Gene</code>,
+<code>xegaGaUPCrossGene</code>, and
+<code>xegaDfUPCrossGene</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mincrossdepth</code></td>
+<td>
+<p>minimal depth of exchange nodes (roots of subtrees
+swapped by crossover). (<code>"sgp"</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>maxcrossdepth</code></td>
+<td>
+<p>Maximal depth of exchange nodes (roots of subtrees
+swapped by crossover). (<code>"sgp"</code>).
+Used in package <code>xegaGpGene</code> functions 
+<code>xegaGpCrossGene</code> and <code>xegaGpCross2Gene</code>
+in package xegaGpGene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ivmutrate</code></td>
+<td>
+<p>"Const" or "IV" (individually variable). 
+Default: "Const".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mutrate2</code></td>
+<td>
+<p>Mutation rate. Default: 1.0.
+(Global parameter).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bitmutrate</code></td>
+<td>
+<p>Bit mutation rate. Default: 0.005.
+A local mutation parameter. (<code>"sga"</code> and <code>"sge"</code>).
+Used in package <code>xegaGaGene</code> functions 
+<code>MutateGene</code>
+<code>IVAdaptiveMutateGene</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bitmutrate2</code></td>
+<td>
+<p>Bit mutation rate for genes
+with “below average” fitness. Default: 0.01.
+A local mutation parameter. (<code>"sga"</code> and <code>"sge"</code>).
+Used in package <code>xegaGaGene</code> functions 
+<code>IVAdaptiveMutateGene</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>maxmutdepth</code></td>
+<td>
+<p>Maximal depth of a derivation tree inserted 
+by mutation. Default: 3. (<code>"sgp"</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>minmutinsertiondepth</code></td>
+<td>
+<p>Minimal depth at which an insertion tree
+is inserted. Default: 1. (<code>"sgp"</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>maxmutinsertiondepth</code></td>
+<td>
+<p>Maximal depth at which an insertion tree
+is inserted. Default: 7. (<code>"sgp"</code>).
+Used in package <code>xegaGpGene</code> function
+<code>xegaGpMutateGene</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lambda</code></td>
+<td>
+<p>Decay rate. Default: 0.05.
+A local mutation parameter. (<code>"sgperm"</code>).
+Used in package <code>xegaPermGene</code> function
+<code>xegaPermMutateGenekInversion</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max2opt</code></td>
+<td>
+<p>Maximal number of trials to find
+an improvement by a random edge exchange 
+in a permutation. Default: <code>100</code>. (<code>"sgperm"</code>).
+Used in package <code>xegaPermGene</code> function
+<code>xegaPermMutateGene2Opt</code>.
+and  <code>xegaPermMutateGeneOptLK</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>scalefactor1</code></td>
+<td>
+<p>Scale factor for differential mutation operator (Default: 0.9). (<code>"sgde"</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>scalefactor2</code></td>
+<td>
+<p>Scale factor for differential mutation operator (Default: 0.2). (<code>"sgde"</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>scalefactor</code></td>
+<td>
+<p>Method for setting scale factor (<code>"sgde"</code>):
+</p>
+
+<ul>
+<li>
+<p> "Const":  constant scale factor. 
+</p>
+</li>
+<li>
+<p> "Uniform": a random scale factor in 0.000001 to 1.0.
+</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cutoffFit</code></td>
+<td>
+<p>Cutoff for fitness.      Default: 0.5. (<code>"sga"</code> and <code>"sge"</code>).
+Used in package <code>xegaGaGene</code> function
+<code>IVAdaptiveMutateGene</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mutation</code></td>
+<td>
+<p>Label specifies mutation method
+dependend on <code>algorithm</code>. Default: "MutateGene".
+The (global) probability of calling a mutation method
+is specified by <code>mutrate</code> and <code>mutrate2</code>.
+Used as <code>method</code> argument of function factory 
+<code>sgXMutationFactory</code> package <code>xega</code>. 
+</p>
+
+<ul>
+<li> <p><code>algorithm="sga"</code>:
+<code>mutation</code> is  argument of function factory 
+<code>xegaGaMutationFactory</code> in package <code>xegaGaGene</code>.
+</p>
+
+<ul>
+<li>
+<p> "MutateGene": Bitwise mutation. 
+Local parameter: <code>bitmutrate</code>.
+Function used: <code>xegaGaGene::xegaGaMutateGene</code>.
+</p>
+</li>
+<li>
+<p> "IVM": Invividually variable mutation.
+Intuitively we know that 
+bad genes need higher mutation rates.
+Good genes have a fitness which is 
+above a threshold fitness. The threshold
+is determined as a percentage of the 
+current best fitness in the population.
+The percentage is set by the parameter 
+<code>cutoffFit</code>. 
+Local parameters: <code>bitmutrate</code> for good genes.
+<code>bitmutrate2</code> for bad genes.
+<code>bitmutrate2</code> should be higher then 
+<code>bitmutrate</code>.
+</p>
+</li>
+</ul>
+</li>
+<li> <p><code>algorithm="sgp"</code>:
+<code>mutation</code> is  argument of function factory 
+<code>xegaGpMutationFactory</code> in package <code>xegaGpGene</code>.
+</p>
+
+<ul><li>
+<p> "MutateGene": Random insertion of 
+a random derivation tree. 
+Local parameter: <code>maxmutdepth</code>.
+Function used: <code>xegaGpGene::xegaGpMutateGene</code>.
+</p>
+</li></ul>
+</li>
+<li> <p><code>algorithm="sge"</code>:
+<code>mutation</code> is  argument of function factory 
+<code>xegaGaMutationFactory</code>.
+Nothing specific to grammatical evolution implemented.
+</p>
+</li>
+<li> <p><code>algorithm="sgde"</code>:
+<code>mutation</code> is  argument of function factory 
+<code>xegaDfMutationFactory</code> in package <code>xegaDfGene</code>.
+</p>
+
+<ul><li>
+<p> "MutateGene": Add the scaled difference 
+of the parameters of two randomly selected
+to a gene.
+Local parameters: Choice of function for 
+<code>scalefactor</code> as well as
+<code>scalefactor1</code>  
+and <code>scalefactor2</code>.
+Function used: <code>xegaDfGene::xegaDfMutateGeneDE</code>.
+</p>
+</li></ul>
+</li>
+<li> <p><code>algorithm="sgperm"</code>:
+<code>mutation</code> is  argument of function factory 
+<code>xegaPermMutationFactory</code> in package <code>xegaPermGene</code>.
+</p>
+
+<ul>
+<li>
+<p> "MutateGene": 
+Function used: <code>xegaPermGene::xegaPermMutateGeneOrderBased</code>.
+</p>
+</li>
+<li>
+<p> "MutateGeneOrderBased": See "MutateGene". 
+</p>
+</li>
+<li>
+<p> "MutateGenekInversion": 
+Function used: <code>xegaPermGene::xegaPermMutateGenekInversion</code>.
+</p>
+</li>
+<li>
+<p> "MutateGene2Opt": 
+Function used: <code>xegaPermGene::xegaPermMutateGene2Opt</code>.
+</p>
+</li>
+<li>
+<p> "MutateGenekOptLK": 
+Function used: <code>xegaPermGene::xegaPermMutateGenekOptLK</code>.
+</p>
+</li>
+<li>
+<p> "MutateGeneGreedy": 
+Function used: <code>xegaPermGene::xegaPermMutateGeneGreedy</code>.
+</p>
+</li>
+<li>
+<p> "MutateGeneBestGreedy": 
+Function used: <code>xegaPermGene::xegaPermMutateGeneBestGreedy</code>.
+</p>
+</li>
+<li>
+<p> "MutateGeneMix": 
+Function used: <code>xegaPermGene::xegaPermMutateMix</code>.
+</p>
+</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>replication</code></td>
+<td>
+<p>"Kid1" or "Kid2". Default: "Kid1".
+For algorithms "sga", "sgPerm", "sgp", and "sge":
+"Kid1" means a crossover operator with one kid,
+"Kid2" means a crossover operator with two kids.
+</p>
+<p>For algorithm "sgde", <code>replication</code> must be 
+set to "DE".
+</p>
+<p>Used as the <code>method</code> argument of the 
+function factory <code>sgXReplicationFactory</code> 
+of package <code>xega</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>offset</code></td>
+<td>
+<p>Offset used in proportional selection. Default: 1. 
+Used in the following functions of package <code>xegaSelectGene</code>: 
+<code>ScaleFitness</code>,
+<code>PropFitOnLn</code>,
+<code>PropFit</code>,
+<code>PropFitM</code>,
+<code>PropFitDiffOnLn</code>,
+<code>PropFitDiff</code>,
+<code>SUS</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>eps</code></td>
+<td>
+<p>Epsilon in proportional 
+fitness difference selection. Default: 0.01.
+Used in package <code>xegaSelectGene</code> function
+<code>PropFitDiffM</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tournamentSize</code></td>
+<td>
+<p>Tournament size. Default: 2. 
+Used in package <code>xegaSelectGene</code> functions
+<code>SelectTournament</code>,
+<code>SelectSTournament</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>selectionBias</code></td>
+<td>
+<p>(&gt; 1.0). Controls selection pressure for 
+Whitley's linear rank selection
+with selective pressure. Default: 1.5. Near 1.0: almost
+uniform selection.
+Used in package <code>xegaSelectGene</code> function
+<code>SelectLRSelective</code>,</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>maxTSR</code></td>
+<td>
+<p>Controls selection pressure for 
+Grefenstette and Baker's linear rank selection 
+method. Should be higher than 1.0 and lower equal 2.0.
+Default: 1.5.
+Used in package <code>xegaSelectGene</code> function
+<code>SelectLinearRankTSR</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>selection</code></td>
+<td>
+<p>Selection method for first parent of crossover. 
+Default: "SUS".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mateselection</code></td>
+<td>
+<p>Selection method for second parent of crossover. 
+Default: "SUS". 
+</p>
+<p>Available selection methods for selection method of a parent:
+</p>
+
+<ul>
+<li>
+<p> Uniform random selection: "Uniform".
+</p>
+</li>
+<li>
+<p> Uniform random selection without replacement: "UniformP".
+</p>
+</li>
+<li>
+<p> Proportional to fitness: 
+"ProportionalOnln" (fastest), "Proportional", "ProportionalM",
+</p>
+</li>
+<li>
+<p> Proportional to fitness differences: 
+"PropFitDiffOnln" (fastest), "PropfitDiff", "PropfitDiffM",
+</p>
+</li>
+<li>
+<p> Stochastic universal sampling: "SUS", 
+</p>
+</li>
+<li>
+<p> Tournament selection: "Duel" (fastest), "Tournament", "STournament",  
+</p>
+</li>
+<li>
+<p> Rank selection: "LRSelective" (fastest), "LRTSR".
+</p>
+</li>
+</ul>
+<p>Argument of function factory 
+<code>SelectGeneFactory</code> in package <code>xegaSelectGene</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>selectionContinuation</code></td>
+<td>
+<p>Boolean. If <code>TRUE</code>, 
+precomputes selection indices for next generation once and
+transforms selection function to index lookup continuation.
+Default: <code>TRUE</code>.
+Used in package <code>xegaPopulation</code> function <code>xegaNextPopulation</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>scaling</code></td>
+<td>
+<p>Scaling method. Default: "NoScaling".
+Available scaling methods: 
+</p>
+
+<ul>
+<li>
+<p> "NoScaling", 
+</p>
+</li>
+<li>
+<p> "ConstantScaling" (Static), 
+</p>
+</li>
+<li>
+<p> "ThresholdScaling" (Dynamic), 
+</p>
+</li>
+<li>
+<p> "ContinuousScaling" (Dynamic).
+</p>
+</li>
+</ul>
+<p>Argument of function factory 
+<code>ScalingFactory</code> in package <code>xegaSelectGene</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>scalingThreshold</code></td>
+<td>
+<p>Numerical constant. Default: 0.0.
+If  ratio of dispersion measures is in 
+[(1-scalingThreshold), 1+scalingThreshold)], 
+fitness is not scaled.
+Used in package <code>xegaSelectGene</code> function
+<code>ThresholdScaleFitness</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>scalingExp</code></td>
+<td>
+<p>Scaling exponent <code>k</code> in <code>fit^k</code>.
+With "ConstantScaling": 0 =&lt; k. 
+With "ThresholdScaling": 1 &lt; k. (Default: 1)
+Used in package <code>xegaSelectGene</code>, functions
+<code>ScalingFitness</code>,
+<code>ThresholdScaleFitness</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>scalingExp2</code></td>
+<td>
+<p>Scaling exponent 
+for "ThresholdScaling": 0 &lt;= k &lt;1. (Default:1)
+Used in package <code>xegaSelectGene</code> function
+<code>ThresholdScaleFitness</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>rdmWeight</code></td>
+<td>
+<p>Numerical constant. Default: 1.0. Weight of 
+ratio of dispersion measures in continuous scaling.
+Used in package <code>xegaSelectGene</code> function
+<code>ContinuousScaleFitness</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>drMax</code></td>
+<td>
+<p>Maximal allowable dispersion ratio. Default: 2.0.
+Used in package <code>xegaSelectGene</code> function
+<code>DispersionRatio</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>drMin</code></td>
+<td>
+<p>Minimal allowable dispersion ratio. Default: 0.5.
+Used in package <code>xegaSelectGene</code> function
+<code>DispersionRatio</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dispersionMeasure</code></td>
+<td>
+<p>Dispersion measure used for computation of the
+ratio of dispersion measures for dynamic scaling methods.
+Default: "var".
+Available dispersion measures: 
+"var, "std", "mad", "cv", "range", "iqr".
+Argument of function factory 
+<code>DispersionMeasureFactory</code> in package <code>xegaSelectGene</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>scalingDelay</code></td>
+<td>
+<p>The ratio of dispersion measures compares the current
+population dispersion at t with the population dispersion 
+at t-scalingdelay. Default: 1.
+Used in package <code>xegaSelectGene</code> function
+<code>DispersionRatio</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>accept</code></td>
+<td>
+<p>Acceptance rule for new gene. Default: "All".
+</p>
+
+<ul>
+<li>
+<p> "All"  function <code>AcceptNewGene</code> 
+</p>
+</li>
+<li>
+<p> "Best"  function <code>AcceptBest</code> 
+</p>
+</li>
+<li>
+<p> "Metropolis" function <code>AcceptMetropolis</code>.
+The behavior of this acceptance rule depends on:
+</p>
+
+<ol>
+<li>
+<p> The distance between the fitness values.
+The larger the distance the larger the drop 
+in acceptance probability.
+</p>
+</li>
+<li> <p><code>alpha</code> is <code>1</code> minus the discount rate of the cooling
+schedule. <code>alpha</code> is in <code>[0, 1]</code>.
+The smaller <code>alpha</code> the faster the drop 
+in temperatur and thus acceptance probability.
+</p>
+</li>
+<li> <p><code>beta</code> a constant. The larger <code>beta</code>
+the faster the drop in acceptance probability.
+</p>
+</li>
+<li> <p><code>temperature</code> the starting value of the 
+temperature. Must be higher than the number of 
+generations.
+</p>
+</li>
+</ol>
+</li>
+<li>
+<p> "IVMetropolis" function <code>AcceptIVMetropolis</code>.
+The behavior of this acceptance rule is qualitatively the same as that 
+of the Metropolis acceptance rule above.
+The acceptance rule is adaptive by a correction of the temperature
+in proportion to the difference between the fitness of the current best and
+the fitness of the gene considered.
+</p>
+</li>
+</ul>
+<p>Argument of function factory 
+<code>AcceptFactory</code> in package <code>xegaPopulation</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>alpha</code></td>
+<td>
+<p><code>1</code> minus the  discount rate for temperature. (Default: 0.99).
+(Used in cooling schedule at the end of main GA-loop.)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>beta</code></td>
+<td>
+<p>Constant in Metropolis acceptance rule. (Default: 2.0).
+(Used in Metroplis acceptance rule.)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cooling</code></td>
+<td>
+<p>Cooling schedule for temperature. (Default: "ExponentialMultiplicative")
+</p>
+
+<ul>
+<li>
+<p> "ExponentialMultiplicative" calls <code>ExponentialMultiplicativeCooling</code>
+</p>
+</li>
+<li>
+<p> "LogarithmicMultiplicative" calls <code>LogarithmicMultiplicativeCooling</code>
+</p>
+</li>
+<li>
+<p> "PowerMultiplicative" calls <code>PowerMultiplicativeCooling</code>
+</p>
+</li>
+<li>
+<p> "PowerAdditive" calls <code>PowerAdditiveCooling</code>
+</p>
+</li>
+<li>
+<p> "ExponentialAdditive" calls <code>ExponentialAdditiveCooling</code>
+</p>
+</li>
+<li>
+<p> "TrigonometricAdditive" calls <code>TrigonometricAdditiveCooling</code>
+</p>
+</li>
+</ul>
+<p>Argument of function factory 
+<code>CoolingFactory</code> in package <code>xegaPopulation</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>coolingPower</code></td>
+<td>
+<p>Exponent for PowerMultiplicative cooling schedule. 
+(Default: 1. This is called linear multiplicative cooling.)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>temp0</code></td>
+<td>
+<p>Starting value of temperature (Default: 40).
+(Used in Metroplis acceptance rule. Updated in cooling schedule.)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tempN</code></td>
+<td>
+<p>Final value of temperature (Default: 0.01).
+(Used in Metroplis acceptance rule. Updated in cooling schedule.)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbose</code></td>
+<td>
+<p>The value of <code>verbose</code> (Default: 1) controls the
+information displayed:
+</p>
+
+<ol>
+<li> <p><code>== 0</code>: Nothing is displayed.
+</p>
+</li>
+<li> <p><code>== 1</code>: 1 point per generation.
+</p>
+</li>
+<li> <p><code>&gt; 1</code>: Max(fit), number of solutions, indices.
+</p>
+</li>
+<li> <p><code>&gt; 2</code>: and population fitness statistics.
+</p>
+</li>
+<li> <p><code>&gt; 3</code>: and fitness, value of phenotype, 
+and phenotype.
+</p>
+</li>
+<li> <p><code>&gt; 4</code>: and str(genotype). 
+</p>
+</li>
+</ol>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>logevals</code></td>
+<td>
+<p>Boolean.
+If <code>TRUE</code> then log all evaluations and their parameters 
+in the file
+<code>xegaEvalLog&lt;time stamp&gt;.rds</code>. Default: FALSE.
+</p>
+<p><code>log&lt;-readRDS(xegaEvalLog&lt;time stamp&gt;.rds)</code> reads the log.
+The format of a row of <code>log</code> is &lt;fitness&gt; &lt;parameters&gt;.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>allsolutions</code></td>
+<td>
+<p>Boolean. If <code>TRUE</code>, then return all best solutions.
+Default: <code>FALSE</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>early</code></td>
+<td>
+<p>Boolean. If FALSE (Default), ignore code for 
+early termination. 
+See Parabola2DEarly.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>terminationEps</code></td>
+<td>
+<p>Fraction of known optimal solution
+for computing termination interval. Default: 0.01
+See Parabola2DEarly.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cores</code></td>
+<td>
+<p>Number of cores used for multi core parallel execution.
+(Default: NA. NA means that the number of cores 
+is set by <code>parallelly:availableCores()</code> 
+if the execution model is "MultiCore".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>executionModel</code></td>
+<td>
+<p>Execution model of fitness function evaluation.
+Available:
+</p>
+
+<ul>
+<li>
+<p> "Sequential": <code>base::lapply</code> is used.
+</p>
+</li>
+<li>
+<p> "MultiCore":  <code>parallel::mclapply</code> is used.
+</p>
+</li>
+<li>
+<p> "FutureApply":  
+<code>future.apply::future_lapply</code> is used.
+</p>
+</li>
+<li>
+<p> "Cluster":  Requires a proper configuration of the cluster.
+</p>
+</li>
+</ul>
+<p>Default: "Sequential".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>uParApply</code></td>
+<td>
+<p>A user defined parallel apply function
+(e.g. for Rmpi). If specified, overrides 
+settings for <code>executionModel</code>. 
+Default: <code>NULL</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Cluster</code></td>
+<td>
+<p>A cluster object generated by 
+<code>parallel::makeCluster()</code> or
+<code>parallelly::makeCluster()</code>.
+Default: <code>NULL</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>profile</code></td>
+<td>
+<p>Boolean. 
+If <code>TRUE</code> measures execution time and counts number of executions
+to main components of genetic algorithms. Default: <code>FALSE</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>batch</code></td>
+<td>
+<p>Boolean.
+If <code>TRUE</code> then save result in file
+<code>xegaResult&lt;time stamp&gt;.rds</code>. Default: FALSE</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>path</code></td>
+<td>
+<p>Path. Default: <code>""</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The algorithm expects a problem environment <code>penv</code> which is a 
+named list with at least the following functions:
+</p>
+
+<ul>
+<li> <p><code>$name()</code>:      The name of the problem environment.
+</p>
+</li>
+<li> <p><code>$f(parm, gene=0, lF=0)</code>:   The function to optimize.
+The parameters gene and lF are provided
+for future extensions.
+</p>
+</li>
+</ul>
+<p>Additional parameters needed depend on the algorithm 
+and the problem environment. 
+For example, for binary genes for function optimization,    
+additional elements must be provided:
+</p>
+
+<ul>
+<li> <p><code>$bitlength()</code>: The vector of the 
+bitlengths of the parameters.  
+</p>
+</li>
+<li> <p><code>$genelength()</code>: The number of bits of a gene.  
+</p>
+</li>
+<li> <p><code>$lb()</code>:         The vector of lower bounds 
+of the parameters. 
+</p>
+</li>
+<li> <p><code>$ub()</code>:  The vector of upper bounds of the parameters. 
+</p>
+</li>
+</ul>
+<h3>Value</h3>
+
+<p>Result object. A named list of 
+</p>
+
+<ol>
+<li>
+<p><code>$popStat</code>: A matrix with mean, min, Q1, median, Q3, max,
+variance, and median absolute deviation
+of population fitness as columns:
+i-th row for the measures of the i-th generation.
+</p>
+</li>
+<li> 
+<p><code>$fit</code>: Fitness vector if <code>generations&lt;=1</code> else: NULL.
+</p>
+</li>
+<li>
+<p><code>$solution</code>: Named list with fields 
+</p>
+
+<ul>
+<li>
+<p><code>$solution$name</code>:    Name of problem environment. 
+</p>
+</li>
+<li>
+<p><code>$solution$fitness</code>: Fitness value of the best solution.
+</p>
+</li>
+<li>
+<p><code>$solution$value</code>:   The evaluated best gene.
+</p>
+</li>
+<li>
+<p><code>$solution$numberofsolutions</code>: 
+Number of solutions with the same fitness. 
+</p>
+</li>
+<li>
+<p><code>$solution$genotype</code>:     The gene a genetic code. 
+</p>
+</li>
+<li>
+<p><code>$solution$phenotype</code>:    The decoded gene.
+</p>
+</li>
+<li>
+<p><code>$solution$phenotypeValue</code>:   The   value of the
+function of the parameters of the solution.
+</p>
+</li>
+<li> 
+<p><code>$solution$evalFail</code>: Number of failures or fitness evaluations
+</p>
+</li>
+<li>
+<p>and, if configured, 
+<code>$solution$allgenotypes</code>, as well as 
+<code>$solution$allphenotypes</code>.
+</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>$GAconfig</code>: For rerun with <code>xegaReRun()</code>.
+</p>
+</li>
+<li>
+<p><code>$GAenv</code>: Attribute value list of GAconfig.
+</p>
+</li>
+<li> <p><code>$timer</code>: An attribute value list with 
+the time used (in seconds) in the main blocks of the GA:
+tUsed, tInit, tNext, tEval, tObserve, and tSummary.
+</p>
+</li>
+</ol>
+<h3>Problem Specification</h3>
+
+<p>The problem specification consists of 
+</p>
+ 
+<ul>
+<li> <p><code>penv</code>: The problem environment. 
+</p>
+</li>
+<li> <p><code>max</code>:  Maximize? Boolean. Default: <code>TRUE</code>.
+</p>
+</li>
+<li> <p><code>grammar</code>: A grammar object. For the algorithms <code>"sgp"</code> and <code>"sge"</code>.   
+</p>
+</li>
+</ul>
+<h3>Basic Parameters</h3>
+
+<p>The main parameters of a “standard” genetic algorithm are:
+</p>
+
+<ul>
+<li> <p><code>popsize</code>:     Population size.
+</p>
+</li>
+<li> <p><code>generations</code>: Number of generations.
+</p>
+</li>
+<li> <p><code>crossrate</code>:   Constant probability of one-point crossover.
+</p>
+</li>
+<li> <p><code>mutrate</code>:     Constant probability of mutation.
+</p>
+</li>
+</ul>
+<p><code>crossrate</code> and <code>mutrate</code> specify the probability of 
+applying the genetic operators crossover and mutation to a gene.
+</p>
+<p>Two more parameters are important:
+</p>
+
+<ul>
+<li> <p><code>elitist</code>: Boolean. If <code>TRUE</code> (default), the fittest gene always survives.
+</p>
+</li>
+<li> <p><code>replay</code>:  Integer. If <code>0</code> (default), a random seed of the random number generator is chosen.
+For exact replications of a run of a genetic algorithm, set replay to a positive integer.
+</p>
+</li>
+</ul>
+<h3>Global and Local Parameters</h3>
+
+<p>However, when using uniform crossover instead of one-point crossover, 
+an additional parameter which specifies the probability of taking a bit 
+from the first parent becomes necessary. 
+Therefore, we distinguish between global and local operator parameters:
+</p>
+
+<ol>
+<li>
+<p> Global operator parameters: 
+The probabilities of applying a crossover (<code>crossrate</code>) or 
+a mutation operator (<code>mutrate</code>) to a gene.
+</p>
+</li>
+<li>
+<p> Local operator parameters: 
+E.g. the per bit probability of mutation or the probability
+of taking a bit from parent 1 for the uniform crossover operator.
+Local operator parameters affect only 
+the genetic operator which needs them.
+</p>
+</li>
+</ol>
+<p>There exist several advantages of this classification of parameters:
+</p>
+
+<ul>
+<li>
+<p> For the formal analysis of the behavior of the algorithms, 
+we achieve a division in two parts: The equations of the 
+global parameters with operator specific expressions as plug-ins. 
+</p>
+</li>
+<li>
+<p> For empirically finding parameterizations for problem classes, 
+we propose to fix local parameters at reasonable values
+(e.g. based on biological evidence) and 
+and conditional on this optimize the (few) remaining global 
+parameters.
+</p>
+</li>
+<li>
+<p> For parallelization specialized 
+gene processing pipelines can be built and more efficiently executed, 
+because the global parameters <code>crossrate</code> and <code>mutrate</code> decide 
+which genes survive 
+</p>
+
+<ol>
+<li>
+<p> unchanged, 
+</p>
+</li>
+<li>
+<p> mutated, 
+</p>
+</li>
+<li>
+<p> crossed, and 
+</p>
+</li>
+<li>
+<p> crossed as well as mutated. 
+</p>
+</li>
+</ol>
+</li>
+</ul>
+<p>To mimic a classic genetic algorithm with crossover and bit mutation rate, 
+the probability of applying the mutation operator to a gene 
+should be set to <code>1</code>.
+</p>
+
+
+<h3>Global Adaptive Mechanisms</h3>
+
+<p>The adaptive mechanisms described in the following are based on threshold
+rules which determine how a parameter of the genetic operator is adapted.
+The threshold conditions are based on population statistics: 
+</p>
+<p><strong>Adaptive Scaling.</strong> For adaptive scaling, select a dynamic scaling method,
+e.g. <code>scaling="ThresholdScaling"</code>.
+A high selection pressure decreases the dispersion in the population.
+The parameter <code>scalingThreshold</code> is a numerical parameter which defines    
+an interval from <code>1-scalingThreshold</code> to <code>1+scalingThreshold</code>:
+</p>
+
+<ol>
+<li>
+<p> If the RDM is in this interval, the fitness function is not scaled. 
+</p>
+</li>
+<li>
+<p> If the RDM is larger than the upper bound of the interval, 
+the constant <code>scalingExp</code> which is higher than <code>1</code> is chosen for the scaling function.
+This implements the rule: If the dispersion has increased, increase the selection pressure.  
+</p>
+</li>
+<li>
+<p> If the RDM is smaller than the lower bound of the interval, 
+the constant <code>scalingExp2</code> which is smaller than <code>1</code> is chosen for the scaling function.
+This implements the rule: If the dispersion has decreased, increase the selection pressure.  
+</p>
+</li>
+</ol>
+<p>The dispersion measure is computed as ratio of the dispersion measure at <code>t</code> relative to the 
+dispersion measure at <code>t-scalingDelay</code>. 
+The default dispersion measure is the variance of the population fitness (<code>dispersionMeasure="var"</code>). 
+However, other dispersion measures ("std", "mad", "cv", "range", "iqr") can be configured.  
+</p>
+<p>Another adaptive scaling method is continuous scaling (<code>scaling="ContinuousScaling"</code>).
+The scaling exponent is adapted by a weighted ratio of dispersion measures. The weight 
+of the exponent is set by <code>rdmWeight=1.1</code>, its default is <code>1.0</code>. Since the ratio 
+of dispersion measures may be quite unstable, the default limits for the ratio are <code>drMin=0.5</code> 
+and <code>drMax=2.0</code>. 
+</p>
+<p><strong>Individually Variable Mutation and Crossover Probabilities</strong>
+</p>
+<p>The rationale of individually variable mutation and crossover rates is that selected genes 
+with a low fitness should be changed by a genetic operator with a higher probability. 
+This increases the chance of survival of the gene because of the chance of a fitness increase through  
+crossover or mutation.
+</p>
+<p>Select an adaptive genetic operator rate:
+For the crossover rate, <code>ivcrossrate="IV"</code>. For the mutation rate, <code>ivmutrate="IV"</code>.
+</p>
+<p>If the fitness of a gene is higher than <code>cutoffFit</code> times the current best fitness, 
+the crossover rate is <code>crossrate</code> else the crossover rate is <code>crossrate2</code>.
+</p>
+<p>If the fitness of a gene is higher than <code>cutoffFit</code> times the current best fitness, 
+the mutation rate is <code>mutrate</code> else the mutation rate is <code>mutrate2</code>.
+</p>
+
+
+<h3>The Initialization of a Population</h3>
+
+<p>For the algorithms "sga", "sgde", and "sgperm" the information needed for
+initialization is the length of the gene in bits, in parameters, and in
+the number of symbols of a permutation. 
+For "sgp", the depth bound gives an upper limit for the 
+program which can be represented by a derivation tree.
+For "sge", a codon is an integer for selecting a production rule.
+The number of bits of a genes is <code>codons*codonBits</code>. 
+</p>
+
+<table>
+<tr>
+<td style="text-align: left;">
+<strong>Algorithm</strong>
+</td>
+<td style="text-align: left;"> </td>
+<td style="text-align: left;"> <strong>Parameters</strong> </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+<strong>"sga"</strong>
+</td>
+<td style="text-align: left;"> Number of bits.  </td>
+<td style="text-align: left;"> <code>penv$genelength()</code> </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+<strong>"sgde"</strong>
+</td>
+<td style="text-align: left;"> Number of parameters. </td>
+<td style="text-align: left;"> 
+                    <code>length(penv$bitlength()</code>, 
+                    <code>penv$lb()</code>, <code>penv$ub()</code>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+<strong>"sgperm"</strong>
+</td>
+<td style="text-align: left;"> Number of symbols. </td>
+<td style="text-align: left;"> <code>penv$genelength()</code> </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+<strong>"sgp"</strong>
+</td>
+<td style="text-align: left;"> Depth bound of derivation tree. </td>
+<td style="text-align: left;"> <code>maxdepth</code> </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+<strong>"sge"</strong>
+</td>
+<td style="text-align: left;"> Number of codons and 
+   </td>
+<td style="text-align: left;">
+<code>codons</code>, <code>codonBits</code>,
+                  <code>codonPrecision</code>, <code>maxPBias</code> </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+</td>
+<td style="text-align: left;"> number of bits of a codon. </td>
+<td style="text-align: left;">
+</td>
+</tr>
+</table>
+<h3>The Pipeline of Genetic Operators</h3>
+
+<p>The pipeline of genetic operators merges the pipeline of a genetic algorithm with the pipeline of 
+evolutionary algorithms and simulated annealing by adding an acceptance step: 
+</p>
+
+<ul>
+<li>
+<p> For evolutionary algorithms,
+the acceptance rule <code>accept="Best"</code> means that the fitter gene out of a parent and its kid survives
+(is copied into the next generation).
+</p>
+</li>
+<li>
+<p> For genetic algorithms the acceptance rule <code>accept="All"</code> means that always the kid survives.
+</p>
+</li>
+<li>
+<p> For simulated annealing the acceptance rule <code>accept="Metropolis"</code> 
+means that the survival probability of a kid with a fitness
+worse than its parent decreases as the number of generations executed increases. 
+</p>
+</li>
+</ul>
+<p>Proper configuration of the pipeline allows the configuration of new algorithm variants which mix elements
+of genetic, evolutionary, and simulated annealing algorithms.
+</p>
+<p>The following table gives a working standard configuration of the pipeline of the genetic operators for each 
+of the five algorithms:
+</p>
+
+<table>
+<tr>
+<td style="text-align: left;">
+<strong>Step/Algorithm</strong>
+</td>
+<td style="text-align: center;"><strong>"sga"</strong></td>
+<td style="text-align: center;"><strong>"sgde"</strong></td>
+<td style="text-align: center;"><strong>"sgperm"</strong></td>
+<td style="text-align: center;"><strong>"sgp"</strong></td>
+<td style="text-align: center;"><strong>"sge"</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"> 
+(next) Scaling         </td>
+<td style="text-align: center;"> NoScaling    </td>
+<td style="text-align: center;"> NoScaling     </td>
+<td style="text-align: center;"> NoScaling       </td>
+<td style="text-align: center;"> NoScaling    </td>
+<td style="text-align: center;"> NoScaling    </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+(next) Selection       </td>
+<td style="text-align: center;">  SUS         </td>
+<td style="text-align: center;">  UniformP     </td>
+<td style="text-align: center;"> SUS             </td>
+<td style="text-align: center;">   SUS        </td>
+<td style="text-align: center;">  SUS         </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+(next) Replication     </td>
+<td style="text-align: center;">  Kid2        </td>
+<td style="text-align: center;">    DE         </td>
+<td style="text-align: center;">   Kid2          </td>
+<td style="text-align: center;">   Kid2       </td>
+<td style="text-align: center;">  Kid2        </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+(next) Crossover       </td>
+<td style="text-align: center;">  Cross2Gene  </td>
+<td style="text-align: center;">  UCrossGene   </td>
+<td style="text-align: center;">  Cross2Gene     </td>
+<td style="text-align: center;"> Cross2Gene   </td>
+<td style="text-align: center;"> Cross2Gene   </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+(next) Mutation        </td>
+<td style="text-align: center;">  MutateGene  </td>
+<td style="text-align: center;">  MutateGeneDE </td>
+<td style="text-align: center;">  MutateGene     </td>
+<td style="text-align: center;"> MutateGene   </td>
+<td style="text-align: center;"> MutateGene   </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+(next) Acceptance      </td>
+<td style="text-align: center;">    All       </td>
+<td style="text-align: center;">   Best        </td>
+<td style="text-align: center;">   All           </td>
+<td style="text-align: center;">    All       </td>
+<td style="text-align: center;">   All        </td>
+</tr>
+<tr>
+<td style="text-align: left;"> 
+(eval) Decoder         </td>
+<td style="text-align: center;">   Bin2Dec    </td>
+<td style="text-align: center;"> Identity      </td>
+<td style="text-align: center;"> Identity        </td>
+<td style="text-align: center;">     -        </td>
+<td style="text-align: center;">   Mod        </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+(eval) Evaluation      </td>
+<td style="text-align: center;">  EvalGeneU   </td>
+<td style="text-align: center;"> EvalGeneU     </td>
+<td style="text-align: center;"> EvalGeneU       </td>
+<td style="text-align: center;">  EvalGeneU   </td>
+<td style="text-align: center;"> EvalGeneU 
+</td>
+</tr>
+</table>
+<h3>Scaling</h3>
+
+<p>In genetic algorithms scaling of the fitness functions has the purpose of increasing or decreasing 
+the selection pressure. Two classes of scaling methods are available:
+</p>
+
+<ul>
+<li>
+<p> Constant scaling methods.
+</p>
+
+<ul>
+<li>
+<p> No scaling (configured by <code>scaling="NoScaling"</code>).
+</p>
+</li>
+<li>
+<p> Constant scaling (configured by <code>scaling="ConstantScaling"</code>).
+Depends on scaling exponent <code>scalingExp</code>. 
+</p>
+</li>
+</ul>
+</li>
+<li>
+<p> Adaptive scaling methods.
+</p>
+      
+<ul>
+<li>
+<p> Threshold scaling (configured by <code>scaling="ThresholdScaling"</code>).
+It is configured with the scaling exponents <code>scalingExp</code> and <code>scalingExp2</code>, 
+and the scaling threshold <code>scalingThreshold</code>.
+It uses a threshold rule about the change of a dispersion measure 
+of the population fitness <code>lF$RDM()</code> 
+to choose the scaling exponent:
+</p>
+
+<ul>
+<li> <p><code>lF$RDM()&gt;1+scalingThreshold</code>: The scaling exponent is <code>scalingExp</code> 
+which should be greater than <code>1</code>. 
+Rationale: Increase selection pressure to reduce dispersion of fitness.
+</p>
+</li>
+<li> <p><code>lF$RDM()&lt;1-scalingThreshold</code>: The scaling exponent is <code>scalingExp2</code> 
+which should be lower than <code>1</code>.
+Rationale: Decrease selection pressure to increase dispersion of fitness.
+</p>
+</li>
+<li>
+<p> Else: Scaling exponent is <code>1</code>. Fitness is not scaled.  
+</p>
+</li>
+</ul>
+</li>
+<li>
+<p> Continuous scaling (configured by <code>scaling="ContinuousScaling"</code>).
+The ratio of the dispersion measures <code>lF$RDM()</code> is 
+greater than 1 if the dispersion increased in the last generation and 
+less than 1 if the dispersion decreased in the last generation. 
+The scaling exponent is the product of the ratio of the 
+dispersion measures <code>lF$RDM()</code> with the 
+weight <code>rdmWeight</code>. 
+</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>The change of the dispersion measure of the population fitness is measured by the function <code>lF$RDM()</code>
+(RDM means (R)atio of (D)ispersion (M)easure). This function depends on
+</p>
+
+<ul>
+<li>
+<p> the choice of a dispersion measure of the population fitness <code>dispersionMeasure</code>. 
+The variance is the default (<code>dispersionMeasure="var"</code>).
+The following dispersion measure of the population fitness are avalaible:
+Variance (<code>"var"</code>), 
+standard deviation (<code>"std"</code>), 
+median absolute deviation (<code>"mad"</code>), 
+coefficient of variation (<code>"cv"</code>), 
+range (<code>"range"</code>), 
+inter quartile range (<code>"iqr"</code>). 
+</p>
+</li>
+<li>
+<p> the scaling delay <code>scalingDelay</code>. The default is <code>scalingDelay=1</code>. 
+This means the ratio of the variance of the fitness of the population at time t 
+and the variance of the fitness of the population at time t-1 is computed.
+</p>
+</li>
+<li>
+<p> the upper and lower bounds of the ratio of dispersion measures. 
+</p>
+</li>
+<li>
+<p> Dispersion ratios may have extreme fluctuations: The parameters <code>drMax</code> and <code>drMin</code>  
+define upper and lower bounds of the ratio of dispersion measures. 
+The defaults are <code>drMax=2</code> and <code>drMin=1</code>.
+</p>
+</li>
+</ul>
+<p>See package <code>xegaSelectGene</code> &lt;https://CRAN.R-project.org/package=xegaSelectGene&gt;
+</p>
+
+
+<h3>Selection</h3>
+
+<p>Selection operators determine which genes are chosen for the replication process for the next generation.
+Selection operators are configured by <code>selection</code> and <code>mateselection</code> 
+(the 2nd parent for crossover). The default operator is stochastic universal selection 
+for both parents (configured by <code>selection="SUS"</code> and <code>mateselection="SUS"</code>).  
+The following operators are implemented:
+</p>
+
+<ul>
+<li>
+<p> Uniform random selection with replacement (configured by <code>"Uniform"</code>).
+Needed for simulating uniform random mating behavior, computer experiments without
+selection pressure, for computing random search solutions as naive benchmarks.
+</p>
+</li>
+<li>
+<p> Uniform random selection without replacement (configured by <code>"UniformP"</code>).
+Needed for differential evolution.
+</p>
+</li>
+<li>
+<p> Selection proportional to fitness 
+(in <code>O(n)</code> by <code>"SelectPropFit"</code>, in <code>O(n*log(n))</code> by <code>"SelectPropFitOnln"</code>, 
+and in <code>O(n^2)</code> by <code>"SelectPropFitM"</code>).  
+<code>offset</code> configures the shift of the fitness vector if <code>min(fit)=&lt;0</code>.
+</p>
+</li>
+<li>
+<p> Selection proportional to fitness differences
+(in <code>O(n)</code> by <code>"SelectPropFitDiff"</code>, in <code>O(n*log(n))</code> by <code>"SelectPropFitDiffOnln"</code>, 
+and in <code>O(n^2)</code> by <code>"SelectPropFitDiffM"</code>). 
+Even the worst gene should have a minimal chance of survival: <code>eps</code> is added to the 
+fitness difference vector. This also guarantees numerical stability for populations 
+in which all genes have the same fitness. 
+</p>
+</li>
+<li>
+<p> Deterministic tournament selection of <code>k</code> genes (configured by <code>"Tournament"</code>).  
+The tournament size is configured by <code>tournamentSize</code>.
+Selection pressure increases with tournament size. 
+The worst <code>k-1</code> genes of a population never survive.
+</p>
+</li>
+<li>
+<p> Deterministic tournament selection of <code>2</code> genes (configured by <code>"Duel"</code>).  
+</p>
+</li>
+<li>
+<p> Stochastic tournament selection of <code>k</code> genes (configured by <code>"STournament"</code>).  
+The tournament size is configured by <code>tournamentSize</code>.
+</p>
+</li>
+<li>
+<p> Linear rank selection with selective pressure (configured by <code>"LRSelective"</code>). 
+The selection bias which regulates the selection pressure 
+is configured by <code>selectionBias</code> 
+(should be between <code>1.0</code> (uniform selection) and <code>2.0</code>). 
+</p>
+</li>
+<li>
+<p> Linear rank selection with interpolated target sampling rates (configured by <code>"LRTSR"</code>).
+The maximal target sampling rate is configured by <code>maxTSR</code> 
+(should be between <code>1</code> and <code>2</code>).
+</p>
+</li>
+<li>
+<p> Stochastic universal sampling (configured by <code>"SUS"</code>).
+</p>
+</li>
+</ul>
+<p>If <code>selectionContinuation=TRUE</code> then selection functions are computed exactly once 
+per generation. They are transformed into lookup-functions which deliver the index of selected genes by 
+indexing a vector of integers.
+</p>
+<p>See package <code>xegaSelectGene</code> &lt;https://CRAN.R-project.org/package=xegaSelectGene&gt;
+</p>
+
+
+<h3>Replication</h3>
+
+<p>For genetic algorithms ("sga", "sgp", sgperm", and "sge") 
+in the replication process of a gene the crossover operator may 
+by configured to produce one new gene (<code>replication="Kid1"</code>)  
+or two new genes (<code>replication="Kid2"</code>). The first version  
+looses genetic information in the crossover operation, whereas the second version 
+retains the genetic material in the population.
+There is a dependency between <code>replication</code> and <code>crossover</code>:
+<code>"Kid2"</code> requires a crossover operator which produces two kids.
+The replication method is configured by the function  
+<code>xegaGaReplicationFactory()</code> of package <code>xegaGaGene</code>.
+</p>
+<p>Note that only the function <code>xegaGaReplicateGene</code> of <code>xegaGaGene</code> 
+(configured with <code>replication="Kid1"</code>) implements a genetic operator pipeline
+with an acceptance rule. 
+</p>
+<p>For differential evolution (algorithm "sgde"), <code>replication="DE"</code> 
+must be configured.
+The replication method for differential evolution is configured by the function  
+<code>xegaDfReplicationFactory()</code> of package <code>xegaDfGene</code>.
+It implements a configurable acceptance rule. For classic differential evolution, 
+use <code>accept="Best"</code>.
+</p>
+
+
+<h3>Crossover</h3>
+
+<p>The table below summarizes the available crossover operators of the current version.
+</p>
+
+<table>
+<tr>
+<td style="text-align: left;">
+<strong>Algorithm:</strong> </td>
+<td style="text-align: left;"> <strong>"sga"</strong> and <strong>"sge"</strong>  </td>
+<td style="text-align: left;"> <strong>Package:</strong>   </td>
+<td style="text-align: left;">  <strong>xegaGaGene</strong>  </td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ Kids </td>
+<td style="text-align: left;"> Name  </td>
+<td style="text-align: left;"> Function </td>
+<td style="text-align: left;"> crossover=  </td>
+<td style="text-align: left;"> Influenced by</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ (2 kids)  </td>
+<td style="text-align: left;"> 1-Point              </td>
+<td style="text-align: left;">  xegaGaCross2Gene()            </td>
+<td style="text-align: left;"> "Cross2Gene"   </td>
+<td style="text-align: left;"> </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+           </td>
+<td style="text-align: left;"> Uniform              </td>
+<td style="text-align: left;">  xegaGaUCross2Gene()           </td>
+<td style="text-align: left;"> "UCross2Gene"  </td>
+<td style="text-align: left;"> </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+           </td>
+<td style="text-align: left;"> Parametrized Uniform </td>
+<td style="text-align: left;"> xegaGaUPCross2Gene()           </td>
+<td style="text-align: left;"> "UPCross2Gene" </td>
+<td style="text-align: left;"> ucrossSwap </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ (1 kid)   </td>
+<td style="text-align: left;"> 1-Point              </td>
+<td style="text-align: left;"> xegaGaCrossGene()              </td>
+<td style="text-align: left;"> "CrossGene"   </td>
+<td style="text-align: left;">           </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+           </td>
+<td style="text-align: left;"> Uniform              </td>
+<td style="text-align: left;"> xegaGaUCrossGene()             </td>
+<td style="text-align: left;"> "UCrossGene"  </td>
+<td style="text-align: left;">      </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+           </td>
+<td style="text-align: left;"> Parametrized Uniform </td>
+<td style="text-align: left;">  xegaGaUPCrossGene()           </td>
+<td style="text-align: left;"> "UPCrossGene" </td>
+<td style="text-align: left;"> ucrossSwap  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ <strong>Algorithm:</strong>  </td>
+<td style="text-align: left;"> <strong>"sgde"</strong> </td>
+<td style="text-align: left;"> <strong>Package:</strong>    </td>
+<td style="text-align: left;"> <strong>xegaDfGene</strong>  </td>
+<td style="text-align: left;"> </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ (1 kid)   </td>
+<td style="text-align: left;"> 1-Point              </td>
+<td style="text-align: left;">  xegaDfCrossGene()             </td>
+<td style="text-align: left;"> "CrossGene"   </td>
+<td style="text-align: left;">           </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+           </td>
+<td style="text-align: left;"> Uniform              </td>
+<td style="text-align: left;">  xegaDfCrossGene()             </td>
+<td style="text-align: left;"> "UCrossGene"  </td>
+<td style="text-align: left;">      </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+           </td>
+<td style="text-align: left;"> Parametrized Uniform </td>
+<td style="text-align: left;">  xegaDfUPCrossGene()           </td>
+<td style="text-align: left;"> "UPCrossGene" </td>
+<td style="text-align: left;"> ucrossSwap  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+<strong>Algorithm:</strong>  </td>
+<td style="text-align: left;"> <strong>"sgperm"</strong> </td>
+<td style="text-align: left;"> <strong>Package:</strong>    </td>
+<td style="text-align: left;"> <strong>xegaPermGene</strong>   </td>
+<td style="text-align: left;"> </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ (2 kids)  </td>
+<td style="text-align: left;"> Position-Based       </td>
+<td style="text-align: left;">  xegaPermCross2Gene()          </td>
+<td style="text-align: left;"> "Cross2Gene"   </td>
+<td style="text-align: left;"> </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ (1 kid)   </td>
+<td style="text-align: left;"> Position-Based       </td>
+<td style="text-align: left;">  xegaPermCrossGene()           </td>
+<td style="text-align: left;"> "CrossGene"   </td>
+<td style="text-align: left;">           </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+<strong>Algorithm:</strong>  </td>
+<td style="text-align: left;"> <strong>"sgp"</strong> </td>
+<td style="text-align: left;"> <strong>Package:</strong>    </td>
+<td style="text-align: left;"> <strong>xegaGpGene</strong>    </td>
+<td style="text-align: left;"> </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ (2 kids)  </td>
+<td style="text-align: left;"> of Derivation Trees  </td>
+<td style="text-align: left;">  xegaGpAllCross2Gene()       </td>
+<td style="text-align: left;"> "Cross2Gene" or </td>
+<td style="text-align: left;"> maxcrossdepth, </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+           </td>
+<td style="text-align: left;">                      </td>
+<td style="text-align: left;">                              </td>
+<td style="text-align: left;"> "All2Cross2Gene" </td>
+<td style="text-align: left;"> maxdepth, </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+           </td>
+<td style="text-align: left;">                      </td>
+<td style="text-align: left;">                              </td>
+<td style="text-align: left;">                  </td>
+<td style="text-align: left;"> and maxtrials </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+           </td>
+<td style="text-align: left;"> of Depth-Filtered    </td>
+<td style="text-align: left;">  xegaGpFilterCross2Gene()    </td>
+<td style="text-align: left;"> "FilterCross2Gene" </td>
+<td style="text-align: left;"> maxcrossdepth,</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+           </td>
+<td style="text-align: left;"> Derivation Trees     </td>
+<td style="text-align: left;">                              </td>
+<td style="text-align: left;">                    </td>
+<td style="text-align: left;"> mincrossdepth, </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+           </td>
+<td style="text-align: left;">                      </td>
+<td style="text-align: left;">                              </td>
+<td style="text-align: left;">                    </td>
+<td style="text-align: left;"> maxdepth, </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+           </td>
+<td style="text-align: left;">                      </td>
+<td style="text-align: left;">                              </td>
+<td style="text-align: left;">                    </td>
+<td style="text-align: left;"> and maxtrials </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ (1 kid)   </td>
+<td style="text-align: left;"> of Derivation Trees  </td>
+<td style="text-align: left;">  xegaGpAllCrossGene()       </td>
+<td style="text-align: left;"> "CrossGene" </td>
+<td style="text-align: left;"> maxcrossdepth, </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+           </td>
+<td style="text-align: left;">                      </td>
+<td style="text-align: left;">                              </td>
+<td style="text-align: left;">            </td>
+<td style="text-align: left;"> maxdepth, </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+           </td>
+<td style="text-align: left;">                      </td>
+<td style="text-align: left;">                              </td>
+<td style="text-align: left;">            </td>
+<td style="text-align: left;"> and maxtrials </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+           </td>
+<td style="text-align: left;"> of Depth-Filtered    </td>
+<td style="text-align: left;">  xegaGpFilterCrossGene()    </td>
+<td style="text-align: left;"> "FilterCrossGene" </td>
+<td style="text-align: left;"> maxcrossdepth, </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+           </td>
+<td style="text-align: left;"> Derivation Trees     </td>
+<td style="text-align: left;">                              </td>
+<td style="text-align: left;">                    </td>
+<td style="text-align: left;"> mincrossdepth, </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+           </td>
+<td style="text-align: left;">                      </td>
+<td style="text-align: left;">                              </td>
+<td style="text-align: left;">                    </td>
+<td style="text-align: left;"> maxdepth, </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+           </td>
+<td style="text-align: left;">                      </td>
+<td style="text-align: left;">                              </td>
+<td style="text-align: left;">                    </td>
+<td style="text-align: left;"> and maxtrials </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+</td>
+</tr>
+</table>
+<h3>Mutation</h3>
+
+<p>The table below summarizes the available mutation operators of the current version.
+</p>
+
+<table>
+<tr>
+<td style="text-align: left;">
+<strong>Algorithm:</strong> </td>
+<td style="text-align: left;"> <strong>"sga"</strong> and <strong>"sge"</strong>  </td>
+<td style="text-align: left;"> <strong>Package:</strong>   </td>
+<td style="text-align: left;">  <strong>xegaGaGene</strong> </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ Name  </td>
+<td style="text-align: left;"> Function </td>
+<td style="text-align: left;"> mutation=  </td>
+<td style="text-align: left;"> Influenced by</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ Bit Mutation         </td>
+<td style="text-align: left;">  xegaGaMutateGene()            </td>
+<td style="text-align: left;"> "MutateGene"   </td>
+<td style="text-align: left;"> bitmutrate </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ Individually        </td>
+<td style="text-align: left;">  xegaGaIVAdaptiveMutateGene()  </td>
+<td style="text-align: left;"> "IVM"  </td>
+<td style="text-align: left;"> bitmutrate,     </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ Variable Bit        </td>
+<td style="text-align: left;">                                </td>
+<td style="text-align: left;">        </td>
+<td style="text-align: left;"> bitmutrate2,     </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ Mutation            </td>
+<td style="text-align: left;">                                </td>
+<td style="text-align: left;">        </td>
+<td style="text-align: left;">  and cutoffFit     </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ <strong>Algorithm:</strong>  </td>
+<td style="text-align: left;"> <strong>"sgde"</strong> </td>
+<td style="text-align: left;"> <strong>Package:</strong>    </td>
+<td style="text-align: left;"> <strong>xegaDfGene</strong> </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ Differential </td>
+<td style="text-align: left;">  xegaDfMutateGeneDE()             </td>
+<td style="text-align: left;"> "MutateGene" or   </td>
+<td style="text-align: left;"> lF$ScaleFactor() </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ Evolution Mutation             </td>
+<td style="text-align: left;">                                     </td>
+<td style="text-align: left;"> "MutateGeneDe"    </td>
+<td style="text-align: left;"> (Configurable)   </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+<strong>Algorithm:</strong> </td>
+<td style="text-align: left;"> <strong>"sgperm"</strong> </td>
+<td style="text-align: left;"> <strong>Package:</strong>    </td>
+<td style="text-align: left;"> <strong>xegaPermGene</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ Generalized Order  </td>
+<td style="text-align: left;">  xegaPermMutateGeneOrderBased()          </td>
+<td style="text-align: left;"> "MutateGene"             </td>
+<td style="text-align: left;"> bitmutrate </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ Based Mutation     </td>
+<td style="text-align: left;">                                </td>
+<td style="text-align: left;"> "MutateGeneOrderBased"   </td>
+<td style="text-align: left;"> </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ k Inversion  </td>
+<td style="text-align: left;">  xegaPermMutateGenekInversion()          </td>
+<td style="text-align: left;"> "MutateGenekInversion" </td>
+<td style="text-align: left;"> lambda </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ Mutation     </td>
+<td style="text-align: left;">                                </td>
+<td style="text-align: left;">          </td>
+<td style="text-align: left;"> </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 2-Opt Mutation </td>
+<td style="text-align: left;">  xegaPermMutateGene2Opt()          </td>
+<td style="text-align: left;"> "MutateGene2Opt" </td>
+<td style="text-align: left;"> max2opt </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ k-Opt LK Mutation </td>
+<td style="text-align: left;">  xegaPermMutateGenekOptLK()          </td>
+<td style="text-align: left;"> "MutateGenekOptLK" </td>
+<td style="text-align: left;"> max2opt </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ (Lin-Kernighan)     </td>
+<td style="text-align: left;">                                </td>
+<td style="text-align: left;">          </td>
+<td style="text-align: left;"> </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ Greedy Path  </td>
+<td style="text-align: left;">  xegaPermMutateGeneGreedy()          </td>
+<td style="text-align: left;"> "MutateGeneGreedy" </td>
+<td style="text-align: left;"> lambda </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ Mutation     </td>
+<td style="text-align: left;">                                </td>
+<td style="text-align: left;">          </td>
+<td style="text-align: left;"> </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ Best Greedy Path  </td>
+<td style="text-align: left;">  xegaPermMutateGeneBestGreedy()          </td>
+<td style="text-align: left;"> "MutateGeneBestGreedy" </td>
+<td style="text-align: left;"> lambda </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ Mutation     </td>
+<td style="text-align: left;">                                </td>
+<td style="text-align: left;">          </td>
+<td style="text-align: left;"> </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ Random Mutation  </td>
+<td style="text-align: left;">  xegaPermMutateMix()          </td>
+<td style="text-align: left;"> "MutateGeneMix" </td>
+<td style="text-align: left;">  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ Operator     </td>
+<td style="text-align: left;">                                </td>
+<td style="text-align: left;">          </td>
+<td style="text-align: left;"> </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+<strong>Algorithm:</strong>  </td>
+<td style="text-align: left;"> <strong>"sgp"</strong> </td>
+<td style="text-align: left;"> <strong>Package:</strong>    </td>
+<td style="text-align: left;"> <strong>xegaGpGene</strong> </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ Derivation Tree  </td>
+<td style="text-align: left;">  xegaGpMutateAllGene()       </td>
+<td style="text-align: left;"> "MutateGene" or </td>
+<td style="text-align: left;"> maxmutdepth </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ Mutation         </td>
+<td style="text-align: left;">                              </td>
+<td style="text-align: left;"> "MutateAllGene" </td>
+<td style="text-align: left;">  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ Filtered Derivation   </td>
+<td style="text-align: left;">  xegaGpMutateGeneFilter()       </td>
+<td style="text-align: left;"> "MutateFilterGene" </td>
+<td style="text-align: left;"> maxmutdepth, </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ Tree Mutation         </td>
+<td style="text-align: left;">                              </td>
+<td style="text-align: left;">                 </td>
+<td style="text-align: left;">  minmutinsertiondepth, </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+                      </td>
+<td style="text-align: left;">                              </td>
+<td style="text-align: left;">                 </td>
+<td style="text-align: left;">  and maxmutinsertiondepth </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+</td>
+</tr>
+</table>
+<h3>Acceptance</h3>
+
+<p>Acceptance rules are extensions of genetic and evolutionary algorithms 
+which to the best of my knowledge have their origin in simulated annealing.  
+An acceptance rule compares the fitness value of a modified gene with the 
+fitness value of its parent and determines which of the two genes is passed
+into the next population.
+</p>
+<p>An acceptance rule is only executed as part of the genetic operator pipeline, if 
+<code>replicate="Kid1"</code> or <code>replicate="DE"</code>.
+</p>
+<p>Two classes of acceptance rules are provided: 
+</p>
+
+<ul>
+<li>
+<p> Simple acceptance rules.   
+</p>
+
+<ul>
+<li>
+<p> Accept the new gene unconditionally (configured by <code>accept="All"</code>).
+The new gene is always passed to the next population. 
+Choose the rule for configuring a classic genetic algorithm.
+(The default). 
+</p>
+</li>
+<li>
+<p> Accept only best gene (configured by <code>accept="Best"</code>).
+This acceptance rule guarantees an increasing fitness curve over the run 
+of the algorithm. For example, classic differential evolution uses this acceptance rule.
+</p>
+</li>
+</ul>
+</li>
+<li>
+<p> Configurable acceptance rules. 
+The rules always accept a new gene with a fitness improvement. 
+They also accept a new gene with a lower fitness with a probability which depends 
+on the fitness difference of the old and the new gene 
+and a temperature parameter which is reduced over the algorithm 
+run by a configurable cooling schedule. 
+</p>
+
+<ul>
+<li>
+<p> The Metropolis acceptance rule (configured by <code>accept="Metropolis"</code>). 
+The larger the parameter <code>beta</code> is set, the faster the drop in acceptance probability. 
+</p>
+</li>
+<li>
+<p> The individually adaptive Metropolis acceptance rule (configured by <code>accept="IVMetropolis"</code>). 
+The larger the parameter <code>beta</code> is set, the faster the drop in acceptance probability. 
+Individually adaptive means that the temperature is corrected. The correction (increase) of temperature 
+depends on the difference between the fitness of the currently known best solution and the 
+and the fitness of the new gene.
+</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>The cooling schedule updates the temperature parameter at the end of the main loop.
+The following cooling schedules are available:
+</p>
+ 
+<ul>
+<li>
+<p> Exponential multiplicative cooling (configured by <code>cooling="ExponentialMultiplicative"</code>).
+Depends on the discount factor <code>alpha</code> 
+and the start temperature <code>temp0</code>.
+</p>
+</li>
+<li>
+<p> Logarithmic multiplicative cooling (configured by <code>cooling="LogarithmicMultiplicative"</code>).
+Depends on the scaling factor <code>alpha</code> 
+and the start temperature <code>temp0</code>.
+</p>
+</li>
+<li>
+<p> Power multiplicative cooling (configured by <code>cooling="PowerMultiplicative"</code>).
+Depends on the scaling factor <code>alpha</code>, 
+the cooling power exponent <code>coolingPower</code>, 
+and the start temperature <code>temp0</code>.
+</p>
+</li>
+<li>
+<p> Power additive cooling (configured by <code>cooling="PowerAdditive"</code>).
+Depends on the number of generations <code>generations</code>, 
+the cooling power exponent <code>coolingPower</code>, 
+the start temperature <code>temp0</code>, and the final temperature <code>tempN</code>.
+</p>
+</li>
+<li>
+<p> Exponential additive cooling (configured by <code>cooling="ExponentialAdditive"</code>).
+Depends on the number of generations <code>generations</code>, the 
+start temperature <code>temp0</code>, and the final temperature <code>tempN</code>.
+</p>
+</li>
+<li>
+<p> Trigonometric additive cooling (configured by <code>cooling="TrigonometricAdditive"</code>).
+Depends on the number of generations <code>generations</code>, the 
+start temperature <code>temp0</code>, and the final temperature <code>tempN</code>.
+</p>
+</li>
+</ul>
+<p>See package <code>xegaPopulation</code> &lt;https://CRAN.R-project.org/package=xegaPopulation&gt;
+</p>
+
+
+<h3>Decoder</h3>
+
+<p>Decoders are algorithm and task dependent. Their implementation often makes use of a gene map. 
+The table below summarizes the available decoders 
+and gene maps of the current version.
+</p>
+
+<table>
+<tr>
+<td style="text-align: left;">
+Algorithm:          </td>
+<td style="text-align: center;">
+<strong>"sga"</strong>          </td>
+<td style="text-align: center;">
+<strong>"sgde"</strong>         </td>
+<td style="text-align: center;">
+<strong>"sgperm"</strong>     </td>
+</tr>
+<tr>
+<td style="text-align: left;"> 
+In package:         </td>
+<td style="text-align: center;"> xegaGaGene             </td>
+<td style="text-align: center;"> xegaDfGene             </td>
+<td style="text-align: center;"> xegaPermGene         </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Decoder:            </td>
+<td style="text-align: center;"> xegaGaDecodeGene()     </td>
+<td style="text-align: center;"> xegaDfDecodeGene()     </td>
+<td style="text-align: center;"> xegaPermDecodeGene() </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Gene map factories: </td>
+<td style="text-align: center;"> xegaGaGeneMapFactory() </td>
+<td style="text-align: center;"> xegaDfGeneMapFactory() </td>
+<td style="text-align: center;"> (Not configurable)   </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Method              </td>
+<td style="text-align: center;"> "Bin2Dec"               </td>
+<td style="text-align: center;"> "Identity"             </td>
+<td style="text-align: center;">                      </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Method              </td>
+<td style="text-align: center;"> "Gray2Dec"              </td>
+<td style="text-align: center;">                        </td>
+<td style="text-align: center;">                      </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Method              </td>
+<td style="text-align: center;"> "Identity"              </td>
+<td style="text-align: center;">                        </td>
+<td style="text-align: center;">                      </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Method              </td>
+<td style="text-align: center;"> "Permutation"           </td>
+<td style="text-align: center;">                        </td>
+<td style="text-align: center;">                      </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+</td>
+</tr>
+</table>
+<table>
+<tr>
+<td style="text-align: left;">
+Algorithm:          </td>
+<td style="text-align: center;"> <strong>"sgp"</strong>     </td>
+<td style="text-align: center;">
+<strong>"sge"</strong>          </td>
+</tr>
+<tr>
+<td style="text-align: left;"> 
+In package:         </td>
+<td style="text-align: center;"> xegaGpGene         </td>
+<td style="text-align: center;"> xegaGeGene             </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Decoder:            </td>
+<td style="text-align: center;"> xegaGpDecodeGene() </td>
+<td style="text-align: center;"> xegaGeDecodeGene()     </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Gene map factories: </td>
+<td style="text-align: center;"> (Not configurable) </td>
+<td style="text-align: center;"> xegaGeGeneMapFactory() </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Method              </td>
+<td style="text-align: center;">                    </td>
+<td style="text-align: center;"> "Mod"                  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+Method              </td>
+<td style="text-align: center;">                    </td>
+<td style="text-align: center;"> "Buck"                 </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+</td>
+</tr>
+</table>
+<h3>Evaluation</h3>
+
+<p>The method of evaluation of a gene is configured by
+<code>evalmethod</code>: "EvalGeneU" means that the function is always executed,
+"Deterministic" evaluates a gene only once, and "Stochastic" incrementally updates mean and 
+variance of a stochastic function. 
+If <code>reportEvalErrors==TRUE</code>, evaluation failures are reported. However, for grammatical  
+evolution without gene repair this should be set to <code>FALSE</code>. 
+See package <code>xegaSelectGene</code> &lt;https://CRAN.R-project.org/package=xegaSelectGene&gt;
+</p>
+
+
+<h3>Distributed and Parallel Processing</h3>
+
+<p>The current scope of parallelization is the parallel evaluation of genes (the steps marked with (eval) in the 
+genetic operator pipeline. This strategy is less efficient for differential evolution and permutation-based genetic
+algorithms because of the embedding of repeated evaluations into genetic operators. 
+</p>
+<p>In general, distributed and parallel processing requires a sequence of three steps:  
+</p>
+
+<ol>
+<li>
+<p> Configure and start the distributed or parallel infrastructure.
+</p>
+</li>
+<li>
+<p> Distribute processing and collect results. 
+In a evolutionary or genetic algorithm the architectural pattern used for implementation 
+coarse-grained parallelism by parallel evaluation of the fitness of the genes of a population
+is the master/worker pattern. In principle, the <code>lapply()</code>-function for evaluating a population 
+of genes is replaced by a parallel version. 
+</p>
+</li>
+<li>
+<p> Stop the distributed or parallel infrastructure.
+</p>
+</li>
+</ol>
+<p>For evolutionary and genetic algorithm, the second step is controlled by two parameters, 
+namely <code>executionModel</code> and <code>uParApply</code>:
+</p>
+
+<ol>
+<li>
+<p> If <code>uParApply=NULL</code>, then <code>executionModel</code> provides four ways of evaluating the 
+fitness of a population of genes:
+</p>
+
+<ol>
+<li> <p><code>executionModel="Sequential"</code>: The apply function used is <code>base::lapply()</code>. (Default).
+</p>
+</li>
+<li> <p><code>executionModel="MultiCore"</code>:  The apply function used is <code>parallel::mclapply()</code>.
+If the number of cores is not specied by <code>cores</code>, the number of available cores 
+is determined by <code>parallelly::availableCores()</code>. 
+</p>
+</li>
+<li> <p><code>executionModel="FutureApply"</code>:  The apply function used is <code>future.apply::future_lapply()</code>.
+The parallel/distributed model depends on a proper <code>future::plan()</code> statement. 
+</p>
+</li>
+<li> <p><code>executionModel="Cluster"</code>:  The apply function used is <code>parallel::parLapply()</code>.
+The information about the configuration of the computing cluster (master, port, list of workers)
+must be provided by <code>Cluster=cl</code> where 
+<code>cl&lt;-parallel::makeClusterPSOCK( rep(localhost, 5))</code>
+generates the cluster object and starts the R processes (of 5 workers in the same machine).  
+</p>
+</li>
+</ol>
+</li>
+<li>
+<p> Assume that a user-defined parallel apply function has been defined and called <code>UPARAPPLY</code>. 
+By setting <code>uParApply=UPARAPPLY</code>, the <code>lapply()</code> function used is <code>UPARAPPLY()</code>. 
+This overrides the specification by <code>executionModel</code>. For example,
+parallelization via the MPI interface can be achieved by providing a user-defined parallel 
+<code>lapply()</code> function which is implemented by a user-defined function whose function body 
+is the line <code>Rmpi::mpi.parLapply( pop, FUN=EvalGene, lF=lF)</code>.
+</p>
+</li>
+</ol>
+<p>See package <code>xegaPopulation</code>  &lt;https://CRAN.R-project.org/package=xegaPopulation&gt; 
+</p>
+<p><strong>Acknowledgment.</strong>The author acknowledges support by the state of Baden-Württemberg through bwHPC.
+</p>
+
+
+<h3>Reporting</h3>
+
+ 
+<ul>
+<li> <p><code>verbose</code> controls the information reported on the screen. 
+If <code>verbose</code> is <code>1</code>, then one dot is printed per generation to the console.
+</p>
+</li>
+<li> <p><code>reportEvalErrors=TRUE</code> reports the output of errors of fitness function evaluations 
+to the console. Grammatical evolution (algorithm "sge") routinely attempts to evaluate 
+incomplete derivation trees. This leads to an evaluation error of the fitness function. 
+</p>
+</li>
+<li> <p><code>profile=TRUE</code> measures the time spent in executing the main blocks of the algorithm:
+<code>InitPopulation()</code>, <code>NextPopulation()</code>, <code>EvalPopulation()</code>, 
+<code>ObservePopulation()</code>, and <code>SummaryPopulation()</code>. The measurements are stored in the
+named list <code>$timer</code> of the result object of the algorithm. 
+</p>
+</li>
+<li> <p><code>allSolutions=TRUE</code> collects all solutions with the same fitness value. 
+The lists of the genotypes and phenotypes of these solutions are stored 
+in <code>$solution$allgenotypes</code> and <code>$allphenotypes</code> of the result object of the algorithm.
+</p>
+</li>
+<li> <p><code>batch=TRUE</code> writes the result object and <code>logevals=TRUE</code> writes a list of all evaluated genes
+to a <code>rds</code>-file in the current directory. <code>path</code> allows to write the <code>rds</code>-files  
+into another directory. The existence of the directory specified by <code>path</code> is not checked.
+<code>batch=TRUE</code> combined with <code>verbose=TRUE</code> should be used in batch environments on 
+HPC environments.
+</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p>Other Main Program: 
+<code>xegaReRun()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">a&lt;-xegaRun(penv=Parabola2D, generations=10, popsize=20, verbose=0)
+b&lt;-xegaRun(penv=Parabola2D, algorithm="sga", generations=10, max=FALSE, 
+   verbose=1, replay=5, profile=TRUE)
+c&lt;-xegaRun(penv=Parabola2D, max=FALSE, algorithm="sgde", 
+   popsize=20, generations=50, 
+   mutation="MutateGeneDE", scalefactor="Uniform", crossover="UCrossGene", 
+   genemap="Identity", replication="DE", 
+   selection="UniformP", mateselection="UniformP", accept="Best")
+envXOR&lt;-NewEnvXOR()
+BG&lt;-compileBNF(booleanGrammar())
+d&lt;-xegaRun(penv=envXOR, grammar=BG, algorithm="sgp",  
+   generations=5, popsize=20, verbose=0)
+e&lt;-xegaRun(penv=envXOR, grammar=BG, algorithm="sge", genemap="Mod",  
+   generations=5, popsize=20, reportEvalErrors=FALSE, verbose=1)
+f&lt;-xegaRun(penv=lau15, max=FALSE, algorithm="sgperm", 
+   genemap="Identity", mutation="MutateGeneMix")
+
+</code></pre>
+
+
+</div>

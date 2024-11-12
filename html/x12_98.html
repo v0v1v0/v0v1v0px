@@ -1,0 +1,727 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>x12work</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Run x12 on an R TS-object</h2>
+
+<h3>Description</h3>
+
+<p>A wrapper function for the x12 binaries. It creates a specification file for an R time series and runs x12,
+afterwards the output is read into R.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">x12work(tso,period=frequency(tso),file="Rout",
+  series.span=NULL,series.modelspan=NULL,
+ 	transform.function="auto",transform.power=NULL,transform.adjust=NULL,
+	regression.variables=NULL,regression.user=NULL,regression.file=NULL,
+	regression.usertype=NULL,regression.centeruser=NULL,regression.start=NULL,
+	regression.aictest=NULL,
+	outlier.types=NULL,outlier.critical=NULL,outlier.span=NULL,outlier.method=NULL,
+	identify=FALSE,identify.diff=NULL,identify.sdiff=NULL,identify.maxlag=NULL,
+	arima.model=NULL,arima.smodel=NULL,arima.ar=NULL,arima.ma=NULL,
+	automdl=FALSE,automdl.acceptdefault=FALSE,automdl.balanced=TRUE,
+	automdl.maxorder=c(3,2),automdl.maxdiff=c(1,1),
+	forecast_years=NULL,backcast_years=NULL,forecast_conf=.95,
+	forecast_save="ftr",
+	estimate=FALSE,estimate.outofsample=TRUE,
+	check=TRUE,check.maxlag=NULL,
+	slidingspans=FALSE,
+	slidingspans.fixmdl=NULL,slidingspans.fixreg=NULL,
+	slidingspans.length=NULL,slidingspans.numspans=NULL,
+	slidingspans.outlier=NULL,
+	slidingspans.additivesa=NULL,slidingspans.start=NULL,
+	history=FALSE,
+	history.estimates=NULL,history.fixmdl=FALSE,
+	history.fixreg=NULL,history.outlier=NULL,
+	history.sadjlags=NULL,history.trendlags=NULL,
+	history.start=NULL,history.target=NULL,
+	x11.sigmalim=c(1.5,2.5),x11.type=NULL,x11.sfshort=FALSE,x11.samode=NULL,
+	x11.seasonalma=NULL,x11.trendma=NULL,
+	x11.appendfcst=TRUE,x11.appendbcst=FALSE,x11.calendarsigma=NULL,
+	x11.excludefcst=TRUE,x11.final="user",
+	x11regression=FALSE,
+	tblnames=NULL,Rtblnames=NULL,
+	x12path=NULL,use="x12",keep_x12out=TRUE,showWarnings=TRUE)
+
+		
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>tso</code></td>
+<td>
+<p>a time series object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>period</code></td>
+<td>
+<p>frequency of the time series.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>file</code></td>
+<td>
+<p>path to the output directory and filename, default is the working directory and <code>Rout</code>.*.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>series.span</code></td>
+<td>
+<p>vector of length 4, limiting the data used for the calculations and analysis to a certain time interval.<br>
+Start and end date of said time interval can be specified by 4 integers in the format <code>c(start year, start seasonal period, end year, end seasonal period)</code>
+If the start or end date of the time series object should be used, the respective year and seasonal period are to be set to <code>NA</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>series.modelspan</code></td>
+<td>
+<p>vector of length 4, defining the start and end date of the time interval of the data 
+that should be used to determine all regARIMA model coefficients. Specified in the same way as <code>span</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>transform.function</code></td>
+<td>
+<p>transform parameter for x12 (<code>"auto"</code>, <code>"log"</code>, <code>"none"</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>transform.power</code></td>
+<td>
+<p>numeric value specifying the power of the Box Cox power transformation.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>transform.adjust</code></td>
+<td>
+<p>determines the type of adjustment to be performed, 
+i.e. <code>transform.adjust="lom"</code> for length-of-month adjustment on monthly data, <code>transform.adjust="loq"</code> for length-of-quarter adjustment on quarterly data
+or <code>transform.adjust="lpyear"</code> for leap year adjustment of monthly or quarterly data (which is only allowed when either <code>transform.power=0</code> or <code>transform.function="log"</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>regression.variables</code></td>
+<td>
+<p>character or character vector representing the names of the regression variables.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>regression.user</code></td>
+<td>
+<p>character or character vector defining the user parameters in the regression argument.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>regression.file</code></td>
+<td>
+<p>path to the file containing the data values of all <code>regression.user</code> variables.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>regression.usertype</code></td>
+<td>
+<p>character or character vector assigning a type of model-estimated regression effect
+on each user parameter in the regression argument (<code>"seasonal"</code>, <code>"td"</code>, <code>"lpyear"</code>, <code>"user"</code>, ...).<br>
+By specifying a character vector of length greater one each variable can be given its own type.
+Otherwise the same type will be used for all user parameters.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>regression.centeruser</code></td>
+<td>
+<p>character specifying the removal of the (sample) mean or the seasonal means from 
+the user parameters in the regression argument (<code>"mean"</code>, <code>"seasonal"</code>).<br>
+Default is no modification of the respective user-defined regressors.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>regression.start</code></td>
+<td>
+<p>start date for the values of the <code>regression.user</code> variables, specified as a vector of two integers in the format <code>c(year, seasonal period)</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>regression.aictest</code></td>
+<td>
+<p>character vector defining the regression variables for which an AIC test is to be performed.</p>
+</td>
+</tr>
+</table>
+<table>
+<tr style="vertical-align: top;">
+<td><code>outlier.types</code></td>
+<td>
+<p>to enable the "outlier" specification in the spc file, this parameter has to be defined by a character or character vector determining the method(s) used for outlier detection (<code>"AO"</code>, <code>"LS"</code>, <code>"TC"</code>, <code>"all"</code>). </p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>outlier.critical</code></td>
+<td>
+<p>number specifying the critical value used for outlier detection 
+(same value used for all types of outliers)
+or named list (possible names of list elements being <code>AO</code>,<code>LS</code> and <code>TC</code>)
+where each list element specifies the respective critical value 
+used for detecting the corresponding type of outlier.<br>
+If not specified, the default critical value is used.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>outlier.span</code></td>
+<td>
+<p>vector of length 2, defining the span for outlier detection.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>outlier.method</code></td>
+<td>
+<p>character determining how detected outliers should be added to the model (<code>"addone"</code>, <code>"addall"</code>).
+If not specified,<code>"addone"</code> is used by default.</p>
+</td>
+</tr>
+</table>
+<table>
+<tr style="vertical-align: top;">
+<td><code>identify</code></td>
+<td>
+<p>Object of class <code>"logical"</code> - if <code>TRUE</code>, the "identify" specification will be enabled in the spc file.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>identify.diff</code></td>
+<td>
+<p>number or vector representing the orders of nonseasonal differences specified, default is 0.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>identify.sdiff</code></td>
+<td>
+<p>number or vector representing the orders of seasonal differences specified, default is 0.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>identify.maxlag</code></td>
+<td>
+<p>number of lags specified for the ACFs and PACFs, default is 36 for monthly series and 12 for quarterly series.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>arima.model</code></td>
+<td>
+<p>vector of length 3, defining the arima parameters.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>arima.smodel</code></td>
+<td>
+<p>vector of length 3, defining the sarima parameters.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>arima.ar</code></td>
+<td>
+<p>numeric or character vector specifying the initial values for nonseasonal and seasonal autoregressive parameters in the order that they appear in the <code>arima.model</code> argument. Empty positions are created with NA.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>arima.ma</code></td>
+<td>
+<p>numeric or character vector specifying the initial values for all moving average parameters in the order that they appear in the <code>arima.model</code> argument. Empty positions are created with NA.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>automdl</code></td>
+<td>
+<p><code>TRUE</code>/<code>FALSE</code> for activating auto modeling.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>automdl.acceptdefault</code></td>
+<td>
+<p>logical for <code>automdl</code> defining whether the default model should be chosen if the Ljung-Box Q statistic 
+for its model residuals is acceptable.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>automdl.balanced</code></td>
+<td>
+<p>logical for <code>automdl</code> defining whether the automatic model procedure will tend towards balanced
+models. <code>TRUE</code> yields the same preference as the TRAMO program.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>automdl.maxorder</code></td>
+<td>
+<p>vector of length 2, maximum order for <code>automdl</code>. Empty positions are created with NA.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>automdl.maxdiff</code></td>
+<td>
+<p>vector of length 2, maximum diff. order for <code>automdl</code>. Empty positions are created with NA.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>forecast_years</code></td>
+<td>
+<p>number of years to forecast, default is 1 year.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>backcast_years</code></td>
+<td>
+<p>number of years to backcast, default is no backcasts.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>forecast_conf</code></td>
+<td>
+<p>probability for the confidence interval of forecasts</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>forecast_save</code></td>
+<td>
+<p>character either "ftr"(in transformed scaling) or "fct"(in original scaling)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>estimate</code></td>
+<td>
+<p>if <code>TRUE</code>, the term "estimate" will be added to the spc file.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>estimate.outofsample</code></td>
+<td>
+<p>logical defining whether "out of sample" or "within sample" forecast errors
+should be used in calculating the average magnitude of forecast errors over the last three years.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>check</code></td>
+<td>
+<p><code>TRUE</code>/<code>FALSE</code> for activating the "check" specification in the spc file.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>check.maxlag</code></td>
+<td>
+<p>the number of lags requested for the residual sample ACF and PACF, default is 24 for monthly series and 8 for quarterly series.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>slidingspans</code></td>
+<td>
+<p>if <code>TRUE</code>, "slidingspans" specification will be enabled in the spc file.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>slidingspans.fixmdl</code></td>
+<td>
+<p>(<code>"yes"</code> (default), <code>"no"</code>, <code>"clear"</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>slidingspans.fixreg</code></td>
+<td>
+<p>character or character vector specifying the trading day, holiday, outlier or other user-defined regression effects to be fixed (<code>"td"</code>, <code>"holiday"</code>, <code>"outlier"</code>, <code>"user"</code>).
+All other regression coefficients will be re-estimated for each sliding span.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>slidingspans.length</code></td>
+<td>
+<p>numeric value specifying the length of each span in months or quarters (&gt;3 years, &lt;17 years).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>slidingspans.numspans</code></td>
+<td>
+<p>numeric value specifying the number of sliding spans used to generate output for comparisons (must be between 2 and 4, inclusive).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>slidingspans.outlier</code></td>
+<td>
+<p>(<code>"keep"</code> (default), <code>"remove"</code>, <code>"yes"</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>slidingspans.additivesa</code></td>
+<td>
+<p>(<code>"difference"</code> (default), <code>"percent"</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>slidingspans.start</code></td>
+<td>
+<p>specified as a vector of two integers in the format <code>c(start year, start seasonal period)</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>history</code></td>
+<td>
+<p>if <code>TRUE</code>, the <code>history</code> specification will be enabled.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>history.estimates</code></td>
+<td>
+<p>character or character vector determining which estimates from the regARIMA modeling and/or the x11 seasonal adjustment will be analyzed in the history analysis (<code>"sadj"</code> (default), <code>"sadjchng"</code>, <code>"trend"</code>, <code>"trendchng"</code>, <code>"seasonal"</code>, <code>"aic"</code>, <code>"fcst"</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>history.fixmdl</code></td>
+<td>
+<p>logical determining whether the regARIMA model will be re-estimated during the history analysis.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>history.fixreg</code></td>
+<td>
+<p>character or character vector specifying the trading day, holiday, outlier or other user-defined regression effects to be fixed (<code>"td"</code>, <code>"holiday"</code>, <code>"outlier"</code>, <code>"user"</code>). All other coefficients will be re-estimated for each history span.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>history.outlier</code></td>
+<td>
+<p>(<code>"keep"</code> (default), <code>"remove"</code>, <code>"auto"</code>)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>history.sadjlags</code></td>
+<td>
+<p>integer or vector specifying up to 5 revision lags (each &gt;0) that will be analyzed in the revisions analysis of lagged seasonal adjustments.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>history.trendlags</code></td>
+<td>
+<p>integer or vector specifying up to 5 revision lags (each &gt;0) that will be used in the revision history of the lagged trend components.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>history.start</code></td>
+<td>
+<p>specified as a vector of two integers in the format <code>c(start year, start seasonal period)</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>history.target</code></td>
+<td>
+<p>character determining whether the revisions of the seasonal adjustments and trends calculated at the lags specified in <code>history.sadjlags</code> and <code>history.trendlags</code> should be defined by the deviation from the concurrent estimate or the deviation from the final estimate (<code>"final"</code> (default), <code>"concurrent"</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x11.sigmalim</code></td>
+<td>
+<p>vector of length 2, defining the limits for sigma in the x11 methodology,
+used to downweight extreme irregular values in the internal seasonal adjustment iterations.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x11.type</code></td>
+<td>
+<p>character, i.e. <code>"summary"</code>, <code>"trend"</code> or <code>"sa"</code>. If  <code>x11.type="trend"</code>, x11 will only be used to estimate the final trend-cycle as well as the irregular components and to adjust according to trading days.
+The default setting is <code>type="sa"</code> where a seasonal decomposition of the series is calculated.</p>
+</td>
+</tr>
+</table>
+<table>
+<tr style="vertical-align: top;">
+<td><code>x11.sfshort</code></td>
+<td>
+<p>logical controlling the seasonal filter to be used if the series is at most 5 years long.
+If <code>TRUE</code>, the arguments of the <code>seasonalma</code> filter will be used wherever possible. 
+If <code>FALSE</code>, a stable seasonal filter will be used irrespective of <code>seasonalma</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x11.samode</code></td>
+<td>
+<p>character defining the type of seasonal adjustment decomposition calculated
+(<code>"mult"</code>, <code>"add"</code>, <code>"pseudoadd"</code>, <code>"logadd"</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x11.seasonalma</code></td>
+<td>
+<p>character or character vector of the format <code>c("snxm","snxm", ...)</code> 
+defining which seasonal nxm moving average(s) should be used for which calendar months or quarters 
+to estimate the seasonal factors.
+If only one ma is specified, the same ma will be used for all months or quarters.
+If not specified, the program will invoke an automatic choice.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x11.trendma</code></td>
+<td>
+<p>integer defining the type of Henderson moving average used for estimating
+the final trend cycle.
+If not specified, the program will invoke an automatic choice.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x11.appendfcst</code></td>
+<td>
+<p>logical defining whether forecasts should be included in certain x11 tables.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x11.appendbcst</code></td>
+<td>
+<p>logical defining whether forecasts should be included in certain x11 tables.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x11.calendarsigma</code></td>
+<td>
+<p>regulates the way the standard errors used for the detection and adjustment of
+extreme values should be computed (<code>"all"</code>, <code>"signif"</code>, <code>"select"</code> or no specification).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x11.excludefcst</code></td>
+<td>
+<p>logical defining if forecasts and backcasts from the regARIMA model
+should not be used in the generation of extreme values in the seasonal adjustment routines.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x11.final</code></td>
+<td>
+<p>character or character vector specifying which type(s) of prior adjustment factors should be
+removed from the final seasonally adjusted series (<code>"AO"</code>, <code>"LS"</code>, <code>"TC"</code>, <code>"user"</code>, <code>"none"</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x11regression</code></td>
+<td>
+<p>if <code>TRUE</code>, x11Regression will be performed using the respective regression and outlier commands above, 
+i.e. <code>regression.variables</code>, <code>regression.user</code>, <code>regression.file</code>, <code>regression.usertype</code>, <code>regression.centeruser</code> 
+and <code>regression.start</code> as well as <code>outlier.critical</code>, <code>outlier.span</code> and <code>outlier.method</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tblnames</code></td>
+<td>
+<p>character vector of additional tables to be read into R.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Rtblnames</code></td>
+<td>
+<p>character vector naming the additional tables.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x12path</code></td>
+<td>
+<p>path to the x12 binaries, for example <code>d:\x12a\x12a.exe</code>.</p>
+</td>
+</tr>
+</table>
+<table><tr style="vertical-align: top;">
+<td><code>use</code></td>
+<td>
+<p><code>"x12"</code> or <code>"x13"</code>, at the moment only <code>"x12"</code> is tested properly.</p>
+</td>
+</tr></table>
+<table>
+<tr style="vertical-align: top;">
+<td><code>keep_x12out</code></td>
+<td>
+<p>if <code>TRUE</code>, the output files generated by x12 are stored in the folder "gra" in 
+the output directory and are not deleted at the end of a successful run.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>showWarnings</code></td>
+<td>
+<p>logical defining whether warnings and notes generated by x12 should be returned.
+Errors will be displayed in any case.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Generates an x12 specification file, runs x12 and reads the output files. 
+</p>
+
+
+<h3>Value</h3>
+
+<p><code>x12work</code> returns an object of class <code>"x12"</code>.
+</p>
+<p>The function <code>summary</code> is used to print a summary of the diagnostics results.
+</p>
+<p>An object of class <code>"x12"</code> is a list containing at least the following components: 
+</p>
+<table>
+<tr style="vertical-align: top;">
+<td><code>a1</code></td>
+<td>
+<p>original time series</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>d10</code></td>
+<td>
+<p>final seasonal factors</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>d11</code></td>
+<td>
+<p>final seasonally adjusted data</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>d12</code></td>
+<td>
+<p>final trend cycle</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>d13</code></td>
+<td>
+<p>final irregular components</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>d16</code></td>
+<td>
+<p>combined adjustment factors</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>c17</code></td>
+<td>
+<p>final weights for irregular component</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>d9</code></td>
+<td>
+<p>final replacements for SI ratios</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>e2</code></td>
+<td>
+<p>differenced, transformed, seasonally adjusted data</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>d8</code></td>
+<td>
+<p>final unmodified SI ratios</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>b1</code></td>
+<td>
+<p>prior adjusted original series</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>forecast</code></td>
+<td>
+<p>point forecasts with prediction intervals</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>backcast</code></td>
+<td>
+<p>point backcasts with prediction intervals</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dg</code></td>
+<td>
+<p>a list containing several seasonal adjustment and regARIMA modeling diagnostics, i.e.:<br><code>x11regress, transform, samode, seasonalma, trendma, arimamdl, automdl, regmdl, nout, nautoout, 
+nalmostout, almostoutlier, crit, outlier, userdefined, autooutlier, peaks.seas, peaks.td, id.seas, 
+id.rsdseas, spcrsd, spcori, spcsa, spcirr, q, q2, nmfail, loglikelihood, aic, aicc, bic, hq, aape,
+autotransform, ifout, res.acf, res.pacf, res.acf2,...</code>
+</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>file</code></td>
+<td>
+<p>path to the output directory and filename</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tblnames</code></td>
+<td>
+<p>tables read into R</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Rtblnames</code></td>
+<td>
+<p>names of tables read into R</p>
+</td>
+</tr>
+</table>
+<h3>Note</h3>
+
+<p>Only working with available x12 binaries.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Alexander Kowarik, Angelika Meraner</p>
+
+
+<h3>Source</h3>
+
+<p><a href="https://www.census.gov/data/software/x13as.html">https://www.census.gov/data/software/x13as.html</a>
+</p>
+
+
+<h3>References</h3>
+
+<p>Alexander Kowarik, Angelika Meraner, Matthias Templ, Daniel
+Schopfhauser (2014). Seasonal Adjustment with the R Packages x12 and
+x12GUI. Journal of Statistical Software, 62(2), 1-21. URL
+http://www.jstatsoft.org/v62/i02/.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>x12</code>,
+<code>ts</code>,
+<code>summary.x12work</code>,
+<code>plot.x12work</code>,
+<code>x12-methods</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">### Examples
+data(AirPassengers)
+## Not run: 
+x12out &lt;- x12work(AirPassengers,x12path=".../x12a.exe",transform.function="auto",
+		arima.model=c(0,1,1),arima.smodel=c(0,1,1),regression.variables="lpyear",
+		x11.sigmalim=c(2.0,3.0),outlier.types="all",outlier.critical=list(LS=3.5,TC=3),
+		x11.seasonalma="s3x3")
+summary(x12out)
+## End(Not run)	
+</code></pre>
+
+
+</div>

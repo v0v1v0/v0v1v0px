@@ -1,0 +1,52 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>to_xmlrpc</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Create a <code>XML-RPC</code> Call</h2>
+
+<h3>Description</h3>
+
+<p>abc
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">to_xmlrpc(method, params)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>a character string giving the name of the method 
+to be invoked.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>params</code></td>
+<td>
+<p>a list containing the parmeters which are added to 
+the <code>XML</code> file sent via the remote procedure call.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>an object of class <code>"xml_node"</code> containing a <code>XML-RPC</code> call.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">params &lt;- list(1L, 1:3, rnorm(3), LETTERS[1:3], charToRaw("A"))
+cat(as.character(to_xmlrpc("some_method", params)))
+</code></pre>
+
+
+</div>

@@ -1,0 +1,69 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>shrink_images</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Shrink images to a maximum width</h2>
+
+<h3>Description</h3>
+
+<p>Use <code>magick::image_resize()</code> to shrink an
+image if its width is larger than the value specified by the argument
+<code>width</code>, and optionally call <code>tinify()</code> to compress it.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">shrink_images(
+  width = 800,
+  dir = ".",
+  files = all_files("[.](png|jpe?g|webp)$", dir),
+  tinify = FALSE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>width</code></td>
+<td>
+<p>The desired maximum width of images.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dir</code></td>
+<td>
+<p>The directory of images.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>files</code></td>
+<td>
+<p>A vector of image file paths. By default, this is all
+‘<span class="file">.png</span>’, ‘<span class="file">.jpeg</span>’, and ‘<span class="file">.webp</span>’ images under <code>dir</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tinify</code></td>
+<td>
+<p>Whether to compress images using <code>tinify()</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Examples</h3>
+
+<pre><code class="language-R">f = xfun:::all_files("[.](png|jpe?g)$", R.home("doc"))
+file.copy(f, tempdir())
+f = file.path(tempdir(), basename(f))
+magick::image_info(magick::image_read(f))  # some widths are larger than 300
+xfun::shrink_images(300, files = f)
+magick::image_info(magick::image_read(f))  # all widths &lt;= 300 now
+file.remove(f)
+</code></pre>
+
+
+</div>

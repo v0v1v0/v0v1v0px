@@ -1,0 +1,72 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>makeRule</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Transforms a single BNF rule into a production table.</h2>
+
+<h3>Description</h3>
+
+<p><code>makeRule()</code> transforms a single BNF rule
+into a production table.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">makeRule(Rule, ST)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>Rule</code></td>
+<td>
+<p>A rule.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ST</code></td>
+<td>
+<p>A symbol table.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Because a single BNF rule can provide a set of substitutions, 
+more than one line in a production table may result.
+The number of substitutions corresponds to the number of lines 
+in the production table.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A named list with 2 elements, namely <code>$LHS</code> and <code>$RHS</code>. 
+The left-hand side <code>$LHS</code> is 
+a vector of non-terminal identifiers
+and the right-hand side <code>$RHS</code> is a vector of vectors
+of numerical identifiers. 
+The list represents the substitution of <code>$LHS[i]</code> 
+by the identifier list <code>$RHS[[i]]</code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">c&lt;-booleanGrammar()$BNF
+ST&lt;-makeSymbolTable(c)
+c&lt;-booleanGrammar()$BNF 
+b&lt;-strsplit(c,";")[[1]]
+a&lt;-b[2:4]
+a&lt;-gsub(pattern=";",replacement="", paste(a[1], a[2], a[3], sep=""))
+makeRule(a, ST)
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,43 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>is_web_path</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Test if a path is a web path</h2>
+
+<h3>Description</h3>
+
+<p>Check if a path starts with ‘<span class="file">http://</span>’ or ‘<span class="file">https://</span>’ or
+‘<span class="file">ftp://</span>’ or ‘<span class="file">ftps://</span>’.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">is_web_path(x)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>A vector of paths.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A logical vector.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">xfun::is_web_path("https://www.r-project.org")  # TRUE
+xfun::is_web_path("www.r-project.org")  # FALSE
+</code></pre>
+
+
+</div>

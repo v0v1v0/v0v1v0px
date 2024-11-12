@@ -1,0 +1,101 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>use_banner</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Add a banner to the top or bottom of your slides.</h2>
+
+<h3>Description</h3>
+
+<p>Adds a banner to all the slides in your deck at the top or the bottom of the
+slide. You can place content in the left, center, or right portion of the
+banner.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">use_banner(
+  ...,
+  bottom_left = NULL,
+  bottom_center = NULL,
+  bottom_right = NULL,
+  top_left = NULL,
+  top_center = NULL,
+  top_right = NULL,
+  exclude = NULL
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Banner styles created with <code>style_banner()</code>. Technically,
+additional arguments are added into the <code>htmltools::tagList()</code> with the
+banner dependencies, but you'll only want to use <code>style_banner()</code> calls
+here.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bottom_left, top_left</code></td>
+<td>
+<p>Text or HTML to place in the left column of the
+top or bottom of the slide.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bottom_center, top_center</code></td>
+<td>
+<p>Text or HTML to place in the center column
+at the top or the bottom of the slide.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bottom_right, top_right</code></td>
+<td>
+<p>Text or HTML to place in the right column of
+the top or bottom of the slide.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>exclude</code></td>
+<td>
+<p>A vector of slide classes where the banner should not be
+applied. By default all slides are included, but you might want to exclude
+the title and inverse slides with <code>exclude = c("title-slide", "inverse")</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An <code>htmltools::tagList()</code> with the banner dependencies, or an
+htmltools::htmlDependency.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>style_banner()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">use_banner(bottom_left = "bit.ly/my-awesome-slides")
+
+use_banner(
+  bottom_left = "bit.ly/my-awesome-slides",
+  top_center = "My Presentation",
+  exclude = c("title-slide", "inverse"),
+  style_banner(text_color = "grey")
+)
+
+</code></pre>
+
+
+</div>

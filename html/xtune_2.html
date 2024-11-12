@@ -1,0 +1,65 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>diet</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Simulated diet data to predict weight loss</h2>
+
+<h3>Description</h3>
+
+<p>The simulated <code>diet</code> data contains 100 observations, 14 predictors,
+and an binary outcome, weightloss. The external information Z is the nutrition fact about the dietary items.
+Z contains three external information variables: Calories, protein and carbohydrates.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">data(diet)
+</code></pre>
+
+
+<h3>Format</h3>
+
+<p>The <code>diet</code> object is a list containing three elements:
+</p>
+
+<ul>
+<li>
+<p> DietItems: Matrix of predictors.
+</p>
+</li>
+<li>
+<p> weightloss: 0: no weight loss; 1: weight loss
+</p>
+</li>
+<li>
+<p> nutritionFact: External information of the predictors
+</p>
+</li>
+</ul>
+<h3>References</h3>
+
+<p>S. Witte, John &amp; Greenland, Sander &amp; W. Haile, Robert &amp; L. Bird, Cristy. (1994). Hierarchical Regression Analysis Applied to a Study of Multiple Dietary Exposures and Breast Cancer. Epidemiology (Cambridge, Mass.). 5. 612-21. 10.1097/00001648-199411000-00009.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>example</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(diet)
+X &lt;- diet$DietItems
+Y &lt;- diet$weightloss
+Z &lt;- diet$nutritionFact
+fit &lt;- xtune(X,Y,Z, family = "binary")
+fit$penalty.vector
+</code></pre>
+
+
+</div>

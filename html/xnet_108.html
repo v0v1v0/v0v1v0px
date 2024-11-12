@@ -1,0 +1,123 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>residuals</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>calculate residuals from a tskrr model</h2>
+
+<h3>Description</h3>
+
+<p>This function returns the residuals for
+an object inheriting from class <code>tskrr</code>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">residuals(object, ...)
+
+## S3 method for class 'tskrr'
+residuals(
+  object,
+  method = c("predictions", "loo"),
+  exclusion = c("interaction", "row", "column", "both"),
+  replaceby0 = FALSE,
+  ...
+)
+
+## S4 method for signature 'tskrr'
+residuals(
+  object,
+  method = c("predictions", "loo"),
+  exclusion = c("interaction", "row", "column", "both"),
+  replaceby0 = FALSE,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>a tskrr model</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>arguments passed from/to other methods.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>a character value indicating whether the
+residuals should be based on the predictions or on a
+leave-one-out crossvalidation.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>exclusion</code></td>
+<td>
+<p>a character value with possible values "interaction",
+"row", "column", "both" for heterogeneous models, and "edges", "vertices",
+"interaction" or "both" for homogeneous models.
+Defaults to "interaction". See details.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>replaceby0</code></td>
+<td>
+<p>a logical value indicating whether the interaction
+should be simply removed (<code>FALSE</code>) or replaced by 0 (<code>TRUE</code>).</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The parameter <code>exclusion</code> defines what is left out.
+The value "interaction" means that a single interaction is removed.
+In the case of a homogeneous model, this can be interpreted as the
+removal of the interaction between two edges. The values "row" and
+"column" mean that all interactions for a row edge resp. a column
+edge are removed. The value "both" removes all interactions for
+a row and a column edge.
+</p>
+<p>In the case of a homogeneous model, "row" and "column" don't make sense
+and will be replaced by "both" with a warning. This can be interpreted
+as removing vertices, i.e. all interactions between one edge and
+all other edges. Alternatively one can use "edges" to remove edges and
+"vertices" to remove vertices. In the case of a homogeneous model,
+the setting "edges" translates to "interaction", and "vertices"
+translates to "both". For more information, see Stock et al. (2018).
+</p>
+<p>Replacing by 0 only makes sense when <code>exclusion = "interaction"</code> and the
+label matrix contains only 0 and 1 values. The function checks whether
+the conditions are fulfilled and if not, returns an error.
+</p>
+
+
+<h3>Value</h3>
+
+<p>a matrix(!) with the requested residuals
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+data(drugtarget)
+mod &lt;- tskrr(drugTargetInteraction, targetSim, drugSim,
+             lambda = c(0.01,0.01))
+delta &lt;- response(mod) - loo(mod, exclusion = "both")
+resid &lt;- residuals(mod, method = "loo", exclusion = "both")
+all.equal(delta, resid)
+
+</code></pre>
+
+
+</div>

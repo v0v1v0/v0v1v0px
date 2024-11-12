@@ -1,0 +1,113 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>editable</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Editable</h2>
+
+<h3>Description</h3>
+
+<p>Editable gives you a way to write directly inside your slides. Make any
+element of your slides editable by using the <code>.can-edit[...]</code> class. Editable
+fields are reset when the slides are reloaded, but it is possible for edits
+to persist across sessions (in the same browser) by giving the editable
+element a <code style="white-space: pre;">⁠.key-&lt;NAME&gt;⁠</code> class, where <code style="white-space: pre;">⁠&lt;NAME&gt;⁠</code> is a unique identifier (and
+valid CSS class).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">use_editable(id = NULL, expires = 14)
+
+html_dependency_editable(expires = 14, id = NULL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>id</code></td>
+<td>
+<p>Optional. By default, when <code>id</code> is <code>NULL</code>, each re-generation of
+your slides creates a new document ID. This way, values that were
+previously stored in the browser for an older version of your slides will
+not be loaded into a new version. If you are confident that the editable
+fields in your slides are not changing between versions, you can set the
+document ID so that newer versions of your slides will continue to load
+edited values from previous versions in the browser.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>expires</code></td>
+<td>
+<p>Editable values that also have a <code>.key-KEYNAME</code> class are
+stored in the browser and automatically loaded when the slides are
+reloaded. These values are stored using cookies so that they can eventually
+expire and <code>expires</code> provides the number of days that those values should
+be stored before being released.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An <code>htmltools::tagList()</code> with the editable dependencies, or an
+htmltools::htmlDependency.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul>
+<li> <p><code>use_editable()</code>: Adds editable to your xaringan slides.
+</p>
+</li>
+<li> <p><code>html_dependency_editable()</code>: Returns an htmltools::htmlDependency with the tile
+view dependencies. Most users will want to use <code>use_editable()</code>.
+</p>
+</li>
+</ul>
+<h3>Usage</h3>
+
+<p>To make your xaringan presentations <em>editable</em>, add the
+following code chunk to your slides' R Markdown file.
+</p>
+<div class="sourceCode markdown"><pre>```{r xaringan-editable, echo=FALSE}
+# Setup editable fields and only store values in the browser for one day
+# (by default values expire in 2 weeks).
+xaringanExtra::use_editable(expires = 1)
+```
+</pre></div>
+<p>Then, to make a component of your slides editable, use the <code>.can-edit[]</code>
+class.
+</p>
+<div class="sourceCode markdown"><pre>## .can-edit[You can edit this slide title]
+</pre></div>
+<p>Editable fields that only have the <code>.can-edit</code> class are reset whenever the
+slides are re-loaded in your browser. If you want to store the edited
+values and have them persist across browser sessions, give each editable
+field a <code style="white-space: pre;">⁠.key-&lt;NAME&gt;⁠</code> class. Be sure to make each key unique and note that
+the key name must be a valid CSS class, i.e. it cannot contain spaces.
+</p>
+<div class="sourceCode markdown"><pre>## .can-edit.key-firstSlideTitle[Change this title and then reload the page]
+</pre></div>
+<p><strong>Warning</strong> Editable fields may not work well with slide continuations. If
+your full slide builds up over several slides, you can only edit the
+currently visible slide. If the field has a key, however, all editable
+elements with the same key class are updated when the slides are loaded.
+In other words, you can edit the title on the first slide of a multi-part
+slide and reload the page to have the title applied to subsequent slides.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">use_editable()
+
+</code></pre>
+
+
+</div>

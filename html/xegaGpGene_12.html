@@ -1,0 +1,87 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaGpMutateFilterGene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Mutate a gene (with a node filter)</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaGpMutateGeneFilter()</code> replaces 
+a randomly selected subtree by
+a random derivation tree with the same root symbol 
+with small probability.
+Only non-terminal nodes with a depth
+between <code>lF$MinMutInsertionDepth()</code> and
+<code>lF$MaxMutInsertionDepth()</code> are considered 
+as tree insertion points.
+Depth-bounds are respected.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaGpMutateFilterGene(g, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>g</code></td>
+<td>
+<p>Derivation tree.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration of the genetic algorithm.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Mutation is controlled by three local parameters: 
+</p>
+
+<ol>
+<li> <p><code>lF$MaxMutDepth()</code> controls the maximal depth of 
+of the new random generation tree.
+</p>
+</li>
+<li> <p><code>lF$MinMutInsertionDepth()</code> and 
+<code>lF$MaxMutInsertionDepth()</code> control the possible 
+insertion points for the new random derivation tree.
+The depth of the insertion node must be 
+between <code>lF$MinMutInsertionDepth()</code> and
+<code>lF$MaxMutInsertionDepth()</code>.
+</p>
+</li>
+</ol>
+<h3>Value</h3>
+
+<p>Derivation tree.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Mutation: 
+<code>xegaGpMutateAllGene()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">gene1&lt;-xegaGpInitGene(lFxegaGpGene)
+xegaGpDecodeGene(gene1, lFxegaGpGene)
+gene&lt;-xegaGpMutateFilterGene(gene1, lFxegaGpGene)
+xegaGpDecodeGene(gene, lFxegaGpGene)
+
+</code></pre>
+
+
+</div>

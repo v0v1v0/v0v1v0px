@@ -1,0 +1,54 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>spearman_brown</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Spearman Brown Prophecy</h2>
+
+<h3>Description</h3>
+
+<p>Use Spearman-brown formula to compute the predicted reliability
+when the test length is extened to n-fold or reversely the n-fold extension of
+test length in order to reach the targeted reliability
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">spearman_brown(n, rho)
+
+spearman_brown_reverse(rho, target)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>n</code></td>
+<td>
+<p>extend the test length to n-fold</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>rho</code></td>
+<td>
+<p>the reliability of current test</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>target</code></td>
+<td>
+<p>the targeted reliability</p>
+</td>
+</tr>
+</table>
+<h3>Examples</h3>
+
+<pre><code class="language-R">spearman_brown(2, .70)
+spearman_brown_reverse(.70, .85)
+</code></pre>
+
+
+</div>

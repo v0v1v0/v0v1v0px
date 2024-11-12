@@ -1,0 +1,65 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>is_sub_path</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Test if a path is a subpath of a dir</h2>
+
+<h3>Description</h3>
+
+<p>Check if the path starts with the dir path.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">is_sub_path(x, dir, n = nchar(dir))
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>A vector of paths.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dir</code></td>
+<td>
+<p>A vector of directory paths.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>n</code></td>
+<td>
+<p>The length of <code>dir</code> paths.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A logical vector.
+</p>
+
+
+<h3>Note</h3>
+
+<p>You may want to normalize the values of the <code>x</code> and <code>dir</code> arguments
+first (with <code>normalize_path()</code>), to make sure the path separators
+are consistent.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">xfun::is_sub_path("a/b/c.txt", "a/b")  # TRUE
+xfun::is_sub_path("a/b/c.txt", "d/b")  # FALSE
+xfun::is_sub_path("a/b/c.txt", "a\\b")  # FALSE (even on Windows)
+</code></pre>
+
+
+</div>

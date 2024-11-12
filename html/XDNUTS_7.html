@@ -1,0 +1,67 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xdextract</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Function to extract samples from the output of an XDNUTS model.</h2>
+
+<h3>Description</h3>
+
+<p>Function to extract samples from the output of an XDNUTS model.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xdextract(X, which = NULL, which_chains = NULL, collapse = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>X</code></td>
+<td>
+<p>an object of class <code>XDNUTS</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>which</code></td>
+<td>
+<p>either a numerical vector indicating the index of the parameters of interest or a string </p>
+
+<dl>
+<dt><code>which = 'continuous'</code></dt>
+<dd>
+<p>for plotting the first <code class="reqn">d-k</code> parameters.</p>
+</dd>
+<dt><code>which = 'discontinuous'</code></dt>
+<dd>
+<p>for plotting the last <code class="reqn">k</code> parameters.</p>
+</dd>
+</dl>
+<p>where both <code class="reqn">d</code> and <code class="reqn">k</code> are elements contained in the output of the function xdnuts.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>which_chains</code></td>
+<td>
+<p>a vector of indices containing the chains to extract. By default, all chains are considered.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>collapse</code></td>
+<td>
+<p>a boolean value. If TRUE, all samples from every chain are collapsed into one. The default value is FALSE.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>an <code class="reqn">N \times d</code> matrix or an <code class="reqn">N \times d \times C</code> array, where C is the number of chains, containing the MCMC samples.
+</p>
+
+
+</div>

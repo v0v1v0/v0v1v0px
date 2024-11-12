@@ -1,0 +1,37 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>file_rename</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Rename files and directories</h2>
+
+<h3>Description</h3>
+
+<p>First try <code>file.rename()</code>. If it fails (e.g., renaming a file from one volume
+to another on disk is likely to fail), try <code>file.copy()</code> instead, and clean
+up the original files if the copy succeeds.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">file_rename(from, to)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>from, to</code></td>
+<td>
+<p>Original and target paths, respectively.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A logical vector (<code>TRUE</code> for success and <code>FALSE</code> for failure).
+</p>
+
+
+</div>

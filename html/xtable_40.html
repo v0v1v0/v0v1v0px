@@ -1,0 +1,117 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>autoformat</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Automatically Format Export Tables</h2>
+
+<h3>Description</h3>
+
+<p>Suggest an appropriate alignment, number of digits, and display type
+for <code>xtable</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">autoformat(xtab, zap = getOption("digits"))
+
+xalign(x, pad = TRUE)
+xdigits(x, pad = TRUE, zap = getOption("digits"))
+xdisplay(x, pad = TRUE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>xtab</code></td>
+<td>
+<p>an object of class <code>xtable</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>a vector, matrix, or data frame.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pad</code></td>
+<td>
+<p>whether to format row names, when <code>x</code> is
+two-dimensional.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>zap</code></td>
+<td>
+<p>the number of digits passed to <code>zapsmall</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p><code>autoformat</code> returns a copy of <code>xtab</code>, after applying
+<code>xalign</code>, <code>xdigits</code>, and <code>xdisplay</code>.
+</p>
+<p><code>xalign</code> returns a character vector consisting of <code>"l"</code> and
+<code>"r"</code> elements, for left/right alignment.
+</p>
+<p><code>xdigits</code> returns an integer vector.
+</p>
+<p><code>xdisplay</code> returns a character vector of <code>"d"</code>, <code>"f"</code>,
+and <code>"s"</code> elements, for integer/double/string display.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Arni Magnusson.</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xtable</code>, <code>align</code>, <code>digits</code>,
+<code>display</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## 1  Vector
+xalign(precip)
+xdigits(precip)
+xdisplay(precip)
+
+
+## 2  Data frame
+head(mtcars)
+xdigits(mtcars, pad = FALSE)
+xdigits(mtcars, pad = TRUE)
+xalign(mtcars)
+xdisplay(mtcars)
+
+
+## 3  Autoformat when xtable is created
+xtable(mtcars, align = xalign(mtcars), digits = xdigits(mtcars),
+       display = xdisplay(mtcars))
+
+## equivalent shortcut
+xtable(mtcars, auto = TRUE)
+
+
+## 4  Autoformat existing xtable
+mt &lt;- xtable(mtcars)
+align(mt) &lt;- xalign(mt)
+digits(mt) &lt;- xdigits(mt)
+display(mt) &lt;- xdisplay(mt)
+
+## equivalent shortcut
+mt &lt;- autoformat(mt)
+</code></pre>
+
+
+</div>

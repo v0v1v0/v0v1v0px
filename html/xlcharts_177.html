@@ -1,0 +1,106 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>GradientFill</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>GradientFill</h2>
+
+<h3>Description</h3>
+
+<p>Fill areas with gradient
+</p>
+<p><a href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.styles.fills.html">https://openpyxl.readthedocs.io/en/stable/api/openpyxl.styles.fills.html</a>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">GradientFill(
+  type = "linear",
+  degree = 0L,
+  left = 0L,
+  right = 0L,
+  top = 0L,
+  bottom = 0L,
+  stop = list(),
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>type</code></td>
+<td>
+<p>type</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>degree</code></td>
+<td>
+<p>degree</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>left</code></td>
+<td>
+<p>left</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>right</code></td>
+<td>
+<p>right</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>top</code></td>
+<td>
+<p>top</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bottom</code></td>
+<td>
+<p>bottom</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>stop</code></td>
+<td>
+<p>stop</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments, i.e. kwargs.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Two types of gradient fill are supported: - A type='linear' gradient interpolates colours between a set of specified Stops, across the length of an area. The gradient is left-to-right by default, but this orientation can be modified with the degree attribute. A list of Colors can be provided instead and they will be positioned with equal distance between them. - A type='path' gradient applies a linear gradient from each edge of the area. Attributes top, right, bottom, left specify the extent of fill from the respective borders. Thus top="0.2" will fill the top 20
+</p>
+
+
+<h3>Value</h3>
+
+<p>An openpyxl Python object.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+GradientFill()
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

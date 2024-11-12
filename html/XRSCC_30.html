@@ -1,0 +1,150 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xrs_gr</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Calculate and plot the X, R and S Charts for variable charts
+</h2>
+
+<h3>Description</h3>
+
+<p>Calculates the control limits for X, R and S charts, using a data frame with a fixed subgroup size. Plots the corresponding graph, the function estimates if any value is out of the control limits, returns a list with calculations.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xrs_gr(X)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>X</code></td>
+<td>
+<p>A sample in a dataframe object, with <em>m</em> rows like subgroups, and <em>n</em> columns like sample size.
+</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>in.control</code></td>
+<td>
+<p>The <em>under control</em> row list for the X chart</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>R.in.control</code></td>
+<td>
+<p>The  <em>under control</em> row list for the R chart</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>out.control</code></td>
+<td>
+<p>The <em>out of control</em> row list for the X chart</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Iteraciones</code></td>
+<td>
+<p>The iterations number, the firts and the last one on this function</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data.0</code></td>
+<td>
+<p>The original data frame</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data.1</code></td>
+<td>
+<p>The <em>under control</em> subset after iteration</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data.r.1</code></td>
+<td>
+<p>The calculated ranges of data.0</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bin</code></td>
+<td>
+<p>The binary values for <em>out of control</em>  equal to one and <em>under control</em>  equal to zero, for X, R and S charts</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>LX</code></td>
+<td>
+<p>The X chart control limits vector</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>LR</code></td>
+<td>
+<p>The R chart control limits vector</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>LS</code></td>
+<td>
+<p>The S chart control limits vector</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Limites Grafixa X</code></td>
+<td>
+<p>The X chart control limits vector</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Limites Grafixa R</code></td>
+<td>
+<p>The R chart control limits vector</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Limites Grafixa S</code></td>
+<td>
+<p>The S chart control limits vector</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Conclusion del proceso</code></td>
+<td>
+<p>The same results in a phrase as the <em>bin</em> values</p>
+</td>
+</tr>
+</table>
+<h3>Author(s)</h3>
+
+<p>Erick Marroquin
+</p>
+
+
+<h3>References</h3>
+
+<p>Montgomery, D.C. (2005) <em>Introduction to Statistical Quality Control</em>, 5th ed. New York: John Wiley &amp; Sons, ISBN 0-471-65631-3
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>X_it</code>,  <code>we_rules</code>,   <code>R_it</code>,   <code>Cp_X</code>,    <code>Beta.X</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(vol_sample)
+results1&lt;-xrs_gr(vol_sample)
+</code></pre>
+
+
+</div>

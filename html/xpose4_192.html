@@ -1,0 +1,116 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xp.boot.par.est.corr</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Correlations between covariate coefficients</h2>
+
+<h3>Description</h3>
+
+<p>This function creates a plot showing the correlations in estimates for
+covariate coefficients, obtained from the first step (univariate testing) in
+each scm performed in the bootscm.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xp.boot.par.est.corr(
+  bootgam.obj = NULL,
+  sd.norm = TRUE,
+  by.cov.type = FALSE,
+  cov.plot = NULL,
+  ask.covs = FALSE,
+  dotpch = 19,
+  col = rgb(0.2, 0.2, 0.9, 0.75),
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>bootgam.obj</code></td>
+<td>
+<p>The object created using bootscm.import(), which hold the
+data for plotting.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sd.norm</code></td>
+<td>
+<p>Perform normalization of the covariate coefficients (default
+is TRUE). When TRUE, the estimated covariate coefficients will be multiplied
+by the standard deviation of the specific covariate (both for continuous and
+categorical covariates).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>by.cov.type</code></td>
+<td>
+<p>Split the plot for continuous and dichotomous covariates.
+Default is FALSE.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cov.plot</code></td>
+<td>
+<p>A character vector which lists the covariates to include in
+the plot. If none are specified (NULL), all covariate coefficients will be
+included in the plot.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ask.covs</code></td>
+<td>
+<p>Ask the user which covariates to include in the plot.
+Default is FALSE.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dotpch</code></td>
+<td>
+<p>The character used for plotting.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col</code></td>
+<td>
+<p>The colors used for plotting.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional plotting arguments may be passed to this function.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>No value returned.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ron Keizer
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Not run: 
+xp.boot.par.est.corr(current.bootscm, sd.norm = TRUE,
+                          cov.plot = c("CLSEX", "VSEX", "CLWT"))
+
+
+## End(Not run)
+</code></pre>
+
+
+</div>

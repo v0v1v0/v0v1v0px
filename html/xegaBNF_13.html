@@ -1,0 +1,71 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>readBNF</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Read text file.</h2>
+
+<h3>Description</h3>
+
+<p><code>readBNF()</code> reads a text file and 
+returns a character string.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">readBNF(filename, eol = "")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>filename</code></td>
+<td>
+<p>A file name.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>eol</code></td>
+<td>
+<p>End-of-line symbol(s). Default: ""</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A named list with
+</p>
+
+<ul>
+<li>
+<p> $filename  the filename.
+</p>
+</li>
+<li>
+<p> $BNF a character string with the newline symbol \n.
+</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p>Other File I/O: 
+<code>newBNF()</code>,
+<code>writeBNF()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">g&lt;-booleanGrammar()
+fn&lt;-tempfile()
+writeBNF(g, fn)
+g1&lt;-readBNF(fn)
+unlink(fn)
+</code></pre>
+
+
+</div>

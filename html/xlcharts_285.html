@@ -1,0 +1,56 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>range_to_tuple</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>range_to_tuple</h2>
+
+<h3>Description</h3>
+
+<p>Convert a worksheet range to the sheetname and maximum and minimum
+coordinate indices
+</p>
+<p><a href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.utils.cell.html">https://openpyxl.readthedocs.io/en/stable/api/openpyxl.utils.cell.html</a>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">range_to_tuple(range_string, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>range_string</code></td>
+<td>
+<p>range_string</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments, i.e. kwargs.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An list.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+range_to_tuple(range_string = "sheetname!A1:E4")
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

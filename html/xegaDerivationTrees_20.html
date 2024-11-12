@@ -1,0 +1,57 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>testGenerateDerivationTree</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Generate, decode, and show <code>times</code> derivation trees from random 
+integer vectors for grammar BNF on the console.</h2>
+
+<h3>Description</h3>
+
+<p>Generate, decode, and show <code>times</code> derivation trees from random 
+integer vectors for grammar BNF on the console.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">testGenerateDerivationTree(times, BNF, verbose = TRUE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>times</code></td>
+<td>
+<p>Number of derivation trees which should be generated.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>BNF</code></td>
+<td>
+<p>BNF.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbose</code></td>
+<td>
+<p>Boolean. If TRUE (default) , print decoded derivation tree on console.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Number of complete derivation trees generated.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">testGenerateDerivationTree(5, BNF=booleanGrammar())
+</code></pre>
+
+
+</div>

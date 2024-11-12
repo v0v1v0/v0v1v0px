@@ -1,0 +1,76 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>EvalGene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Evaluate a gene</h2>
+
+<h3>Description</h3>
+
+<p><code>EvalGene</code> is the abstract function which evaluates 
+a gene.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">EvalGene(gene, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>gene</code></td>
+<td>
+<p>A gene (representation independent).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>The local configuration (a function factory provided by 
+the <code>xegaX</code> package).</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>For minimization problems, the fitness value 
+must be multiplied by -1. The constant function 
+<code>lF$Max()</code> returns 1 for a maximization and 
+-1 for a minimization problem.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A gene.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Evaluation Functions: 
+<code>EvalGeneDet()</code>,
+<code>EvalGeneR()</code>,
+<code>EvalGeneStoch()</code>,
+<code>EvalGeneU()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">DeJongF4&lt;-DeJongF4Factory()
+lF&lt;-NewlFevalGenes(DeJongF4)
+EvalGene&lt;-EvalGeneFactory()
+g1&lt;-list(evaluated=FALSE, fit=0, gene1=c(1.0, -1.5))
+g1
+g2&lt;-EvalGene(g1, lF)
+g2
+</code></pre>
+
+
+</div>

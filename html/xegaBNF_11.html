@@ -1,0 +1,48 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>makeSymbolTable</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Build a symbol table from a character string which contains a BNF.</h2>
+
+<h3>Description</h3>
+
+<p><code>makeSymbolTable()</code> extracts all terminal 
+and non-terminal symbols from a BNF
+and builds a data frame with the columns 
+Symbols (string), NonTerminal (0 or 1), and SymbolId (int).
+The symbol "NotExpanded" is added which codes
+depth violations of a derivation tree.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">makeSymbolTable(BNF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>BNF</code></td>
+<td>
+<p>A character string with the BNF.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A data frame with the columns 
+<code>Symbols</code>, <code>NonTerminal</code>, and <code>SymbolID</code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">makeSymbolTable(booleanGrammar()$BNF)
+
+</code></pre>
+
+
+</div>

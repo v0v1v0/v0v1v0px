@@ -1,0 +1,47 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>css_position</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Helper to set absolute position of an element.</h2>
+
+<h3>Description</h3>
+
+<p>Sets position for an absolutely positioned element. Setting one of top or
+bottom or one of left or right will "unset" the other. It's probably not a
+good idea to set both top and bottom or right and left.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">css_position(top = "1em", right = "1em", left = NULL, bottom = NULL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>top, right, bottom, left</code></td>
+<td>
+<p>The position of the element in distance from the
+top, right, bottom, or left edge of it's container element.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>An object of class <code>css_position</code> that describes <code>top</code>, <code>right</code>,
+<code>bottom</code>, and <code>left</code> positions.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">css_position(top = "1em", right = "1em") # top right corner
+css_position(top = "1em", left = "1em") # top left corner
+css_position(bottom = 0, right = 0) # bottom right corner
+</code></pre>
+
+
+</div>

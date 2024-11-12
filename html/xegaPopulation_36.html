@@ -1,0 +1,92 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaLogEvalsPopulation</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Combine fitness, generations, and the phentype of the gene.</h2>
+
+<h3>Description</h3>
+
+<p>Combine fitness, generations, and the phentype of the gene.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaLogEvalsPopulation(pop, evallog, generation, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>pop</code></td>
+<td>
+<p>Population.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>evallog</code></td>
+<td>
+<p>Evaluation log.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>generation</code></td>
+<td>
+<p>Generation logged.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local function configuration.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Update of the evaluation log. 
+The evaluation log is a list of decoded and evaluated genes.
+A list item of the evaluation log has the following 
+elements:
+</p>
+
+<ul>
+<li> <p><code>$generation</code>:   The generation.
+</p>
+</li>
+<li> <p><code>$fit</code>:          The fitness value.
+</p>
+</li>
+<li> <p><code>$phenotype</code>:    The phenotype of the gene.
+</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p>Other Population Layer: 
+<code>xegaBestGeneInPopulation()</code>,
+<code>xegaBestInPopulation()</code>,
+<code>xegaEvalPopulation()</code>,
+<code>xegaInitPopulation()</code>,
+<code>xegaNextPopulation()</code>,
+<code>xegaObservePopulation()</code>,
+<code>xegaSummaryPopulation()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">pop10&lt;-xegaInitPopulation(10, lFxegaGaGene)
+epop10&lt;-xegaEvalPopulation(pop10, lFxegaGaGene)
+logevals&lt;-list()
+logevals
+logevals&lt;-xegaLogEvalsPopulation(epop10$pop, logevals, 1, lFxegaGaGene)
+logevals
+</code></pre>
+
+
+</div>

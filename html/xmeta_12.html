@@ -1,0 +1,66 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>summary.msset</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Summarize the objects <code>msset</code>
+</h2>
+
+<h3>Description</h3>
+
+<p>Summarize a model of class <code>msset</code> fitted by <code>msset</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">      ## S3 method for class 'msset'
+summary(object,...) 
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+  
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>an object inheriting from class <code>msset</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p> additional arguments; currently none is used.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A list with the following components: test statistics (msset) and p-value.
+</p>
+
+
+<h3>References</h3>
+
+<p>Hong, C., Salanti, G., Morton, S., Riley, R., Chu, H., Kimmel, S.E. and Chen Y. (2019). Testing small study effects in multivariate meta-analysis (Biometrics).
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>msset</code></p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(prostate)
+fit.msset=msset(data=prostate, nm.y1="y1", nm.s1="s1", nm.y2="y2", nm.s2="s2", 
+method = "nn.cl", type = "continuous", k=2)
+summary(fit.msset)
+</code></pre>
+
+
+</div>

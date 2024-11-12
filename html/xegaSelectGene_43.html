@@ -1,0 +1,92 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>SelectSUS</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Stochastic universal sampling.</h2>
+
+<h3>Description</h3>
+
+<p><code>SelectSUS</code> implements selection
+by Baker's stochastic universal sampling method. 
+SUS is a strictly sequential algorithm 
+which has zero bias and minimal spread.
+SUS uses a single random number for each generation.
+See Baker, James E. (1987), p. 16.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">SelectSUS(fit, lF, size = 1)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>fit</code></td>
+<td>
+<p>Fitness vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>size</code></td>
+<td>
+<p>Number of selected genes. Default: 1.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>The index vector of the selected genes.
+</p>
+
+
+<h3>References</h3>
+
+<p>Baker, James E. (1987):
+Reducing Bias and Inefficiency in the Selection Algorithm.
+In Grefenstette, John J.(Ed.) 
+<em>Proceedings of the Second International 
+Conference on Genetic Algorithms on Genetic Algorithms</em>, pp. 14-21.
+(ISBN:978-08058-0158-8)
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Selection Functions: 
+<code>SelectDuel()</code>,
+<code>SelectLRSelective()</code>,
+<code>SelectLinearRankTSR()</code>,
+<code>SelectPropFitDiffM()</code>,
+<code>SelectPropFitDiffOnln()</code>,
+<code>SelectPropFitDiff()</code>,
+<code>SelectPropFitM()</code>,
+<code>SelectPropFitOnln()</code>,
+<code>SelectPropFit()</code>,
+<code>SelectSTournament()</code>,
+<code>SelectTournament()</code>,
+<code>SelectUniformP()</code>,
+<code>SelectUniform()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">fit&lt;-sample(10, 15, replace=TRUE)
+SelectSUS(fit, NewlFselectGenes()) 
+SelectSUS(fit, NewlFselectGenes(), length(fit)) 
+</code></pre>
+
+
+</div>

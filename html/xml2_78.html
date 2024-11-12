@@ -1,0 +1,46 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xml_url</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>The URL of an XML document</h2>
+
+<h3>Description</h3>
+
+<p>This is useful for interpreting relative urls with <code>url_relative()</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xml_url(x)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>A node or document.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A character vector of length 1. Returns <code>NA</code> if the name is
+not set.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">catalog &lt;- read_xml(xml2_example("cd_catalog.xml"))
+xml_url(catalog)
+
+x &lt;- read_xml("&lt;foo/&gt;")
+xml_url(x)
+</code></pre>
+
+
+</div>

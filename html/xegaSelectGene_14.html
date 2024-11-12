@@ -1,0 +1,101 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>lau15</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>The problem environment <code>lau15</code> for a traveling salesman problem.</h2>
+
+<h3>Description</h3>
+
+<p>15 abstract cities for which a traveling salesman solution is sought.
+Solution: A path with a length of 291.
+</p>
+<p>The problem environment <code>lau15</code> is a list with the following functions: 
+</p>
+
+<ol>
+<li> <p><code>lau15$name()</code>:  <code>"lau15"</code>, the name of the TSP  
+problem environment.
+</p>
+</li>
+<li> <p><code>lau15$genelength()</code>: 15, the number of cities on the round trip.
+</p>
+</li>
+<li> <p><code>lau15$dist()</code>: The distance matrix of the problem.
+</p>
+</li>
+<li> <p><code>lau15$cities()</code>: A list of city names or the vector 
+<code>1:lau15$genelength()</code>.
+</p>
+</li>
+<li> <p><code>lau15$f (permutation, gene = 0, lF = 0, tour = TRUE)</code>: 
+The fitness function. Computes the roundtrip 
+for permutation of cities.
+</p>
+</li>
+<li> <p><code>lau15$solution()</code>: 291, the known optimal solution of lau15.
+</p>
+</li>
+<li> <p><code>lau15$path()</code>: The permutation for the optimal roundtrip.
+</p>
+</li>
+<li> <p><code>lau15$show(p)</code>: Prints the roundtrip <code>p</code>.
+</p>
+</li>
+<li> <p><code>lau15$greedy(startposition, k)</code>: Computes a path of length
+<code>k</code> starting at <code>startposition</code> 
+by choosing the nearest city.
+</p>
+</li>
+<li> <p><code>lau15$kBestGreedy(k, tour=TRUE)</code>:
+Computes the best greedy path/tour with 
+k cities. 
+</p>
+</li>
+<li> <p><code>lau15$rnd2Opt(permutation, maxtries=5)</code>:
+Tries to find a better permutation by 
+at most 5 random 2-opt heuristics.
+</p>
+</li>
+<li> <p><code>lau15$LinKernighan(permutation, maxtries=5)</code>:
+A randomized Lin-Kernigan heuristic implemented 
+as a sequence of randomized 2-opt moves.
+</p>
+</li>
+</ol>
+<h3>Usage</h3>
+
+<pre><code class="language-R">lau15
+</code></pre>
+
+
+<h3>Format</h3>
+
+<p>An object of class <code>list</code> of length 12.
+</p>
+
+
+<h3>References</h3>
+
+<p>Lau, H. T. (1986):
+<em>Combinatorial Heuristic Algorithms in FORTRAN</em>.
+Springer, 1986. p. 61. &lt;doi:10.1007/978-3-642-61649-5&gt;
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Problem Environments: 
+<code>DeJongF4Factory()</code>,
+<code>DelayedPFactory()</code>,
+<code>Parabola2DEarlyFactory()</code>,
+<code>Parabola2DErrFactory()</code>,
+<code>Parabola2DFactory()</code>,
+<code>envXOR</code>,
+<code>newEnvXOR()</code>,
+<code>newTSP()</code>
+</p>
+
+
+</div>

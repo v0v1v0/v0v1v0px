@@ -1,0 +1,66 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>decodeTree</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Returns a list of all symbols of a derivation tree  
+in depth-first left-to-right order.</h2>
+
+<h3>Description</h3>
+
+<p><code>decodeTree()</code> returns a
+list of all symbols of a derivation tree 
+in depth-first left-to-right order
+(coded as R Factor with the symbol identifiers as levels).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">decodeTree(tree, ST)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>tree</code></td>
+<td>
+<p>Derivation tree.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ST</code></td>
+<td>
+<p>Symbol table.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>List of all symbols in depth-first left-to-right order.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Decoder: 
+<code>decodeCDT()</code>,
+<code>decodeDTsym()</code>,
+<code>decodeDT()</code>,
+<code>leavesIncompleteDT()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">g&lt;-compileBNF(booleanGrammar())
+a&lt;-randomDerivationTree(g$Start, g)
+decodeTree(a, g$ST) 
+
+</code></pre>
+
+
+</div>

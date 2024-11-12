@@ -1,0 +1,90 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>reset.graph.par</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Resets Xpose variable definitions to factory settings</h2>
+
+<h3>Description</h3>
+
+<p>Function to reset Xpose's graphics parameters definitions to the default.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">reset.graph.par(object, classic = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An <code>xpose.data</code> object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>classic</code></td>
+<td>
+<p>A logical operator specifying whether the function should
+assume the classic menu system. This is an internal option and need never be
+called from the command line.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>This functions is used to reset Xpose's graphic settings definitions to
+their default values. Graphical settings are read from the file 'xpose.ini'
+in the root of the 'xpose4' package.
+</p>
+
+
+<h3>Value</h3>
+
+<p>An <code>xpose.data</code> object (classic == FALSE) or null
+(classic == TRUE).
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Niclas Jonsson &amp; Justin Wilkins
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xpose.prefs-class</code>, <code>import.graph.par</code>,
+<code>change.xvardef</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Not run: 
+## xpdb5 is an Xpose data object
+## We expect to find the required NONMEM run and table files for run
+## 5 in the current working directory
+xpdb5 &lt;- xpose.data(5)
+
+## Import graphics preferences you saved earlier using export.graph.par
+xpdb5 &lt;- import.graph.par(xpdb5)
+
+## Reset to default values
+xpdb5 &lt;- reset.graph.par(xpdb5)
+
+## Change WRES definition
+xpdb5 &lt;- change.wres(xpdb5)
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

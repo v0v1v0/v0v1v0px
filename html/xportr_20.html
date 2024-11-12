@@ -1,0 +1,159 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xportr_type</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Coerce variable type</h2>
+
+<h3>Description</h3>
+
+<p>XPT v5 datasets only have data types of character and numeric. <code>xportr_type</code>
+attempts to collapse R classes to those two XPT types. The
+'xportr.character_types' option is used to explicitly collapse the class of a
+column to character using <code>as.character</code>. Similarly, 'xportr.numeric_types'
+will collapse a column to a numeric type. If no type is passed for a
+variable, it is assumed to be numeric and coerced with <code>as.numeric()</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xportr_type(
+  .df,
+  metadata = NULL,
+  domain = NULL,
+  verbose = NULL,
+  metacore = deprecated()
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>.df</code></td>
+<td>
+<p>A data frame of CDISC standard.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>metadata</code></td>
+<td>
+<p>A data frame containing variable level metadata. See
+'Metadata' section for details.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>domain</code></td>
+<td>
+<p>Appropriate CDISC dataset name, e.g. ADAE, DM. Used to subset
+the metadata object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbose</code></td>
+<td>
+<p>The action this function takes when an action is taken on the
+dataset or function validation finds an issue. See 'Messaging' section for
+details. Options are 'stop', 'warn', 'message', and 'none'</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>metacore</code></td>
+<td>
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated"><img src="../help/figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a> Previously used to pass
+metadata now renamed with <code>metadata</code></p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Certain care should be taken when using timing variables. R serializes dates
+based on a reference date of 01/01/1970 where XPT uses 01/01/1960. This can
+result in dates being 10 years off when outputting from R to XPT if you're
+using a date class. For this reason, <code>xportr</code> will try to determine what
+should happen with variables that appear to be used to denote time.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Returns the modified table.
+</p>
+
+
+<h3>Messaging</h3>
+
+<p><code>type_log()</code> is the primary messaging tool for
+<code>xportr_type()</code>. The number of column types that mismatch the reported type
+in the metadata, if any, is reported by by <code>xportr_type()</code>. If there are any
+type mismatches, and the 'verbose' argument is 'stop', 'warn', or
+'message', each mismatch will be detailed with the actual type in the data
+and the type noted in the metadata.
+</p>
+
+
+<h3>Metadata</h3>
+
+<p>The argument passed in the 'metadata' argument can either
+be a metacore object, or a data.frame containing the data listed below. If
+metacore is used, no changes to options are required.
+</p>
+<p>For data.frame 'metadata' arguments four columns must be present:
+</p>
+
+<ol>
+<li>
+<p> Domain Name - passed as the 'xportr.domain_name' option. Default:
+"dataset". This is the column subset by the 'domain' argument in the
+function.
+</p>
+</li>
+<li>
+<p> Variable Name - passed as the 'xportr.variable_name' option. Default:
+"variable". This is used to match columns in '.df' argument and the
+metadata.
+</p>
+</li>
+<li>
+<p> Variable Type - passed as the 'xportr.type_name'. Default: "type". This
+is used to note the XPT variable "type" options are numeric or character.
+</p>
+</li>
+<li>
+<p> (Option only) Character Types - The list of classes that should be
+explicitly coerced to a XPT Character type. Default: c( "character",
+"char", "text", "date", "posixct", "posixt", "datetime", "time",
+"partialdate", "partialtime", "partialdatetime", "incompletedatetime",
+"durationdatetime", "intervaldatetime")'
+</p>
+</li>
+<li>
+<p> (Option only) Numeric Types - The list of classes that should be
+explicitly coerced to a XPT numeric type. Default: c("integer", "numeric",
+"num", "float")
+</p>
+</li>
+</ol>
+<h3>Examples</h3>
+
+<pre><code class="language-R">metadata &lt;- data.frame(
+  dataset = "test",
+  variable = c("Subj", "Param", "Val", "NotUsed"),
+  type = c("numeric", "character", "numeric", "character")
+)
+
+.df &lt;- data.frame(
+  Subj = as.character(123, 456, 789),
+  Different = c("a", "b", "c"),
+  Val = c("1", "2", "3"),
+  Param = c("param1", "param2", "param3")
+)
+
+df2 &lt;- xportr_type(.df, metadata, "test")
+</code></pre>
+
+
+</div>

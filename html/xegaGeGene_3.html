@@ -1,0 +1,75 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>CodonChoiceBiasesDeprecated</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Biases in Rule Choice (Deprecated)</h2>
+
+<h3>Description</h3>
+
+<p>See <code>CodonChoiceBiases</code>. 
+The use of the outer product leads to memory problems for 
+<code>precision&gt;31</code> and becomes slow for <code>precision&gt;24</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">CodonChoiceBiasesDeprecated(cv, precision)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>cv</code></td>
+<td>
+<p>Choice vector of grammar.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>precision</code></td>
+<td>
+<p>Number of bits of codon.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Data frame with the following columns
+</p>
+
+<ul>
+<li> <p><code>$precision</code>: Number of bits.
+</p>
+</li>
+<li> <p><code>$cv</code>:   i-th element of choice vector.
+</p>
+</li>
+<li> <p><code>$dp</code>:   Deviation from choice with equal probability for <code>$precision</code>.
+</p>
+</li>
+<li> <p><code>$dH</code>:   Entropy difference between choice with equal probability 
+and biased choice for <code>$precision</code>.
+</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p>Other Diagnostics: 
+<code>CodonChoiceBiases()</code>,
+<code>CodonPrecision()</code>,
+<code>tLCM()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"> CodonChoiceBiasesDeprecated(c(1, 2, 3, 5), 3)
+ CodonChoiceBiasesDeprecated(c(1, 2, 3, 5), 5)
+</code></pre>
+
+
+</div>

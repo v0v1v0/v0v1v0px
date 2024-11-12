@@ -1,0 +1,142 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>stahlLoglik</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Calculate log likelihood for Stahl model</h2>
+
+<h3>Description</h3>
+
+<p>Calculate the log likelihood for the Stahl model for varying parameters,
+with data on crossover locations.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">stahlLoglik(
+  xoloc,
+  chrlen = NULL,
+  nu,
+  p,
+  max.conv = 25,
+  integr.tol = 0.00000001,
+  max.subd = 1000,
+  min.subd = 10
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>xoloc</code></td>
+<td>
+<p>A list of crossover locations (in cM), each component being a
+vector of locations for a different meiotic product.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>chrlen</code></td>
+<td>
+<p>Chromosome length (in cM), either of length 1 or the same
+length as <code>xoloc</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>nu</code></td>
+<td>
+<p>A vector of interference parameters (<code class="reqn">\nu</code>) at which to
+calculate the log likelihood.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>p</code></td>
+<td>
+<p>A vector of parameter values for the proportion of crossovers from
+the no interference pathway.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max.conv</code></td>
+<td>
+<p>Maximum limit for summation in the convolutions to get
+inter-crossover distance distribution from the inter-chiasma distance
+distributions.  This should be greater than the maximum number of chiasmata
+on the 4-strand bundle.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>integr.tol</code></td>
+<td>
+<p>Tolerance for convergence of numerical integration.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max.subd</code></td>
+<td>
+<p>Maximum number of subdivisions in numerical integration.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>min.subd</code></td>
+<td>
+<p>Minimum number of subdivisions in numerical integration.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>See Housworth and Stahl (2003) and Broman and Weber (2000) for details of
+the method.
+</p>
+<p>If neither <code>nu</code> nor <code>p</code> has length 1, they both must have the same
+length.  If one has length 1 and the other does not, the one with length 1
+is repeated so that they both have the same length.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A vector of log likelihoods.
+</p>
+<p>The corresponding values of nu and p are saved as attributes.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Karl W Broman, <a href="mailto:broman@wisc.edu">broman@wisc.edu</a>
+</p>
+
+
+<h3>References</h3>
+
+<p>Housworth, E. A. and Stahl, F. W. (2003) Crossover interference
+in humans. <em>Am. J. Hum. Genet.</em> <strong>73</strong>, 188–197.
+</p>
+<p>Broman, K. W. and Weber, J. L. (2000) Characterization of human crossover
+interference. <em>Am. J. Hum. Genet.</em> <strong>66</strong>, 1911–1926.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>qtl::fitstahl()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+data(bssbsb)
+xoloc &lt;- find.breaks(bssbsb, chr=1)
+
+loglik &lt;- stahlLoglik(xoloc, nu=4, p=c(0.05, 0.1, 0.15))
+
+</code></pre>
+
+
+</div>

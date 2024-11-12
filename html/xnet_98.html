@@ -1,0 +1,84 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>permtest-class</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Class permtest</h2>
+
+<h3>Description</h3>
+
+<p>This class represents the permutation test outcomes. See also
+the function <code>permtest</code>.
+</p>
+
+
+<h3>Slots</h3>
+
+
+<dl>
+<dt><code>orig_loss</code></dt>
+<dd>
+<p>a numeric value with the original loss of
+the model.</p>
+</dd>
+<dt><code>perm_losses</code></dt>
+<dd>
+<p>a numeric vector with the losses of the
+different permutations.</p>
+</dd>
+<dt><code>n</code></dt>
+<dd>
+<p>the number of permutations</p>
+</dd>
+<dt><code>loss_function</code></dt>
+<dd>
+<p>the function used to calculate the losses.</p>
+</dd>
+<dt><code>exclusion</code></dt>
+<dd>
+<p>a character value indicating the exclusion
+setting used for the test</p>
+</dd>
+<dt><code>replaceby0</code></dt>
+<dd>
+<p>a locigal value that indicates whether the
+exclusion was done by replacing with zero. See also
+<code>loo</code>.</p>
+</dd>
+<dt><code>permutation</code></dt>
+<dd>
+<p>a character value that indicats in which
+kernel matrices were permuted.</p>
+</dd>
+<dt><code>pval</code></dt>
+<dd>
+<p>a p value indicating how likely it is to find a
+smaller loss than the one of the model based on a normal
+approximation.</p>
+</dd>
+<dt><code>exact</code></dt>
+<dd>
+<p>a logical value indicating whether the P value was
+calculated exactly or approximated by the normal distribution.</p>
+</dd>
+</dl>
+<h3>See Also</h3>
+
+
+<ul>
+<li>
+<p> the function <code>permtest</code> for the actual test.
+</p>
+</li>
+<li>
+<p> the function <code>loo</code> for the leave one out
+procedures
+</p>
+</li>
+<li>
+<p> the function <code>t.test</code> for the actual test
+</p>
+</li>
+</ul>
+</div>

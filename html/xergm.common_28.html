@@ -1,0 +1,104 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>alliances</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Longitudinal international defense alliance network, 1981–2000</h2>
+
+<h3>Description</h3>
+
+<p>The alliances dataset contains the international defense alliance
+network among 164 countries, covering the years 1981–2000. In addition
+to the yearly defense alliance network, it contains data on military
+capabilities, governing regime type, geographic contiguity and
+international conflict. This is an excerpt from a dataset that has
+been used in two published analyses. The full dataset (Cranmer,
+Desmarais and Menninga 2012; Cranmer, Desmarais and Kirlkand 2012)
+contains a large number of countries and a much longer time series.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">data("alliances")</code></pre>
+
+
+<h3>Format</h3>
+
+
+<dl>
+<dt><code>allyNet</code></dt>
+<dd>
+<p>is a list of network objects at 20 time points, 1981–2000, containing undirected defense alliance networks. In addition to the alliance ties, each network object contains three vertex attributes. <code>cinc</code> is the "CINC" or Composite Index of National Capability score (see <a href="https://correlatesofwar.org/data-sets/national-material-capabilities">https://correlatesofwar.org/data-sets/national-material-capabilities</a>). <code>polity</code> is the "polity score" of each country in the respective year. Quoting the online description, "the Polity Score captures this regime authority spectrum on a 21-point scale ranging from -10 (hereditary monarchy) to +10 (consolidated democracy)," (see <a href="http://www.systemicpeace.org/polityproject.html">http://www.systemicpeace.org/polityproject.html</a>). <code>year</code> is simply the year recorded as a vertex attribute.</p>
+</dd>
+<dt><code>contigMat</code></dt>
+<dd>
+<p>is a 164 x 164 binary matrix in which a 1 indicates that two countries share a border.</p>
+</dd>
+<dt><code>lNet</code></dt>
+<dd>
+<p>is a list of 20 matrices. Each element is the adjacency matrix from the previous year. This is used to model memory in the ties.</p>
+</dd>
+<dt><code>LSP</code></dt>
+<dd>
+<p>is a list of 20 matrices. Each element is a matrix recording the number of shared partners between countries in the alliance network from the previous year.</p>
+</dd>
+<dt><code>warNet</code></dt>
+<dd>
+<p>is a list of 20 matrices. Each element is a binary matrix that indicates whether two states were in a militarized interstate dispute in the respective year.</p>
+</dd>
+</dl>
+<h3>Source</h3>
+
+<p>The data were gathered by Skyler Cranmer and Bruce Desmarais in the
+process of writing Cranmer, Desmarais and Menninga (2012) and Cranmer,
+Desmarais and Kirlkand (2012).
+</p>
+<p>Permission to redistribute this dataset along with this package was
+granted by Skyler Cranmer and Bruce Desmarais on December 15, 2015.
+Questions about the data should be directed to them.
+</p>
+
+
+<h3>References</h3>
+
+<p>Skyler J. Cranmer, Bruce A. Desmarais, and Justin H. Kirkland (2012): Toward a Network Theory of Alliance Formation. <em>International Ineractions</em> 38(3): 295–324.
+</p>
+<p>Skyler J. Cranmer, Bruce A. Desmarais, and Elizabeth Menninga (2012): Complex Dependencies in the Alliance Network. <em>International Ineractions</em> 29(3):279–313.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+library("xergm")
+data("alliances")
+
+# btergm formulas look very similar to ERGM formulas.
+# Note the R argument; usually want R &gt; 1000.
+# Here it is set to 50 to limit computation time.
+# First, set the seed for replicability.
+set.seed(123)
+model &lt;- btergm(allyNet ~ edges + gwesp(0, fixed = TRUE)
+    + edgecov(lNet) + edgecov(LSP) + edgecov(warNet)
+    + nodecov("polity") + nodecov("cinc") + absdiff("polity")
+    + absdiff("cinc") + edgecov(contigMat) + nodecov("year"),
+    R = 50)
+
+# View estimates and confidence intervals.
+summary(model)
+
+# Evaluate model fit. Simulate 100 networks for each time point.
+# Calculate edgewise shared partners, degree and geodesic distance
+# distance distributions.
+alliance_gof &lt;- gof(model, statistics = c(deg, esp, geodesic))
+
+# Plot goodness of fit.
+plot(alliance_gof)
+
+## End(Not run)
+</code></pre>
+
+
+</div>

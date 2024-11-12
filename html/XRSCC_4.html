@@ -1,0 +1,127 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>Cp_X</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>
+Calculates the process capability
+</h2>
+
+<h3>Description</h3>
+
+<p>Given a variable sample, the function calculates the process capability and, assuming a normal distribution of the X chart, after the true control limits were found.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">Cp_X(prev.results, LES, LEI, mu)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>prev.results</code></td>
+<td>
+
+<p>Is a list of previous results obtained by the <code>xrs_gr</code> function in the first iteration, or the results obtained in further iterations by the <code>X_it</code> function.
+</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>LES</code></td>
+<td>
+
+<p>A numeric vector of length one, containing the upper specification limit.
+</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>LEI</code></td>
+<td>
+
+<p>A numeric vector of length one, containing the lower specification limit.
+</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mu</code></td>
+<td>
+
+<p>A numeric vector of length one, containing the average specification, if not exists, function takes the Control Limit of previous results.
+</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The function stops for the lack of any arguments.
+</p>
+
+
+<h3>Value</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>Cp</code></td>
+<td>
+<p>The process capability index</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Cpk</code></td>
+<td>
+<p>The process capability index in case is not centered</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>P.cp</code></td>
+<td>
+<p>The specification range percentage used by the control limits</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>X.sigma</code></td>
+<td>
+<p>The process standard deviation</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Conclusion del proceso</code></td>
+<td>
+<p>A phrase to take conclusion about the process capability</p>
+</td>
+</tr>
+</table>
+<h3>Author(s)</h3>
+
+<p>Erick Marroquin
+</p>
+
+
+<h3>References</h3>
+
+<p>Montgomery, D.C. (2005) <em>Introduction to Statistical Quality Control</em>, 5th ed. New York: John Wiley &amp; Sons, ISBN 0-471-65631-3
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xrs_gr</code>  <code>X_it</code>  <code>R_it</code>   <code>we_rules</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(vol_sample)
+results1&lt;-xrs_gr(vol_sample)
+results2&lt;-X_it(results1)
+# Type dev.off() function before use Cp_X
+Cp_X(results2, LES=510, LEI=490, mu=500)
+</code></pre>
+
+
+</div>

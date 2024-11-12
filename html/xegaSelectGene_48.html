@@ -1,0 +1,59 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>testEvalGeneStoch</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Test of incremental mean, variance, and standard deviation.</h2>
+
+<h3>Description</h3>
+
+<p>Test of incremental mean, variance, and standard deviation.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">testEvalGeneStoch(gene, lF, rep)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>gene</code></td>
+<td>
+<p>A gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>A local function list with a problem environment.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>rep</code></td>
+<td>
+<p>Number of repeated evaluations.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A gene.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">DeJongF4&lt;-DeJongF4Factory()
+lF&lt;-NewlFevalGenes(DeJongF4)
+g1&lt;-list(evaluated=FALSE, evalFail=FALSE, fit=0, gene1=c(1.0, -1.5))
+g10&lt;-testEvalGeneStoch(g1, lF, rep=10)
+g10
+</code></pre>
+
+
+</div>

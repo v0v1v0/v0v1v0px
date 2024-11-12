@@ -1,0 +1,81 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>mLCMG</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Compute the mLCM of the vector of the number of production rules
+in a production table.</h2>
+
+<h3>Description</h3>
+
+<p>Compute the least common multiple of the prime factors 
+of the vector of the number of rules applicable for each 
+non-terminal symbol.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">mLCMG(LHS)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>LHS</code></td>
+<td>
+<p>Vector of integers. The left-hand side of a grammar object <code>G</code>.</p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+<p>For removing the bias of the modulo rule in 
+grammatical evolution, see Keijzer, M., O'Neill, M., 
+Ryan, C. and Cattolico, M. (2002). 
+This version works for integer genes coded in the 
+domain <code>1:mlCM</code> without bias in choosing a rule.
+See Keijzer et al. (2002).
+However, if the mLCM and <code>2^k</code> are relative prime, it is impossible 
+to find an unbiased binary coding.
+The choice bias is considerable lower than for <code>MinCodonPrecision()</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Integer. The least common multiple of the vector of the available 
+rules for each non-terminal.
+</p>
+
+
+<h3>References</h3>
+
+<p>Keijzer, M., O'Neill, M., Ryan, C. and Cattolico, M. (2002)
+Grammatical Evolution Rules: The Mod and the Bucket Rule,
+pp. 123-130. 
+In: Foster, J. A., Lutton, E., Miller, J., Ryan, C. and 
+Tettamanzi, A. (Eds.): Genetic Programming.
+Lecture Notes in Computer Science, Vol.2278, 
+Springer, Heidelberg. 
+&lt;doi:10.1007/3-540-45984-7_12&gt;
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Utility: 
+<code>ChoiceVector()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">library(xegaBNF)
+g&lt;-compileBNF(booleanGrammar())
+mLCMG(g$PT$LHS)
+</code></pre>
+
+
+</div>

@@ -1,0 +1,108 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>loadP</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>
+<code>loadP</code> and <code>saveP</code>
+</h2>
+
+<h3>Description</h3>
+
+<p>Functions <code>loadP</code> and <code>saveP</code> load and save parameter settings.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S4 method for signature 'x12Single'
+loadP(object, file)
+## S4 method for signature 'x12Batch'
+loadP(object, file)
+## S4 method for signature 'x12Parameter'
+loadP(object, file)
+## S4 method for signature 'x12Single'
+saveP(object, file)
+## S4 method for signature 'x12Batch'
+saveP(object, file)
+## S4 method for signature 'x12Parameter'
+saveP(object, file)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>object of class <code>x12Single-class</code>, <code>x12Batch-class</code> or <code>x12Parameter-class</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>file</code></td>
+<td>
+<p>filepath</p>
+</td>
+</tr>
+</table>
+<h3>Methods</h3>
+
+
+<dl>
+<dt><code>signature(object = "x12Batch")</code></dt>
+<dd>
+
+</dd>
+<dt><code>signature(object = "x12Parameter")</code></dt>
+<dd>
+
+</dd>
+<dt><code>signature(object = "x12Single")</code></dt>
+<dd>
+
+</dd>
+</dl>
+<h3>See Also</h3>
+
+<p><code>x12</code>, <code>x12Batch</code></p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+#Create new batch object with 4 time series and change some parameters
+xb &lt;- new("x12Batch",list(AirPassengers,AirPassengers,AirPassengers,AirPassengers))
+xb &lt;- setP(xb,list(automdl=FALSE))
+xb &lt;- setP(xb,list(arima.model=c(1,1,0),arima.model=c(1,1,0)),1)
+xb &lt;- setP(xb,list(arima.model=c(0,1,1),arima.smodel=c(0,1,1)),2)
+xb &lt;- setP(xb,list(arima.model=c(0,1,1),arima.smodel=c(1,1,1)),3)
+xb &lt;- setP(xb,list(arima.model=c(1,1,1),arima.smodel=c(1,1,1)),4)
+
+#save all parameters
+saveP(xb,file="xyz.RData")
+xb1 &lt;- new("x12Batch",list(AirPassengers,AirPassengers,AirPassengers,AirPassengers))
+
+#load all parameters and save it to the corresponding series inside a x12Batch-object
+xb1 &lt;- loadP(xb1,file="xyz.RData")
+
+
+xs &lt;- new("x12Single",ts=AirPassengers)
+xs &lt;- setP(xs,list(arima.model=c(2,1,1),arima.smodel=c(2,1,1)))
+#Save the parameters
+saveP(xs,file="xyz1.RData")
+
+#Load a saved parameter set to a x12Single object
+xs &lt;- new("x12Single",ts=AirPassengers)
+xs &lt;- loadP(xs,file="xyz1.RData")
+
+#Replace all parameters in a x12Batch object with one parameter set
+xb &lt;- new("x12Batch",list(AirPassengers,AirPassengers,AirPassengers,AirPassengers))
+xb &lt;- loadP(xb,file="xyz1.RData")
+
+## End(Not run)
+</code></pre>
+
+
+</div>

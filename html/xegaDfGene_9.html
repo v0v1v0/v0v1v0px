@@ -1,0 +1,82 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaDfGeneMapIdentity</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Map the parameter vector of a real-coded gene to an identical vector.</h2>
+
+<h3>Description</h3>
+
+<p><code>GenemapIdentity</code> maps the real parameter vector
+to an identical vector.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaDfGeneMapIdentity(gene, penv)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>gene</code></td>
+<td>
+<p>Real-coded gene (the genotype).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>penv</code></td>
+<td>
+<p>Problem environment.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>A <em>gene</em> is a list with 
+</p>
+
+<ol>
+<li> <p><code>$evaluated</code> Boolean: TRUE if the fitness is known.
+</p>
+</li>
+<li> <p><code>$fit</code>       The fitness of the genotype of 
+<code>$gene1</code>         
+</p>
+</li>
+<li> <p><code>$gene1</code>     a real parameter vector (the genetopye).
+</p>
+</li>
+</ol>
+<p>This representation simplifies the implementation 
+af various optimizations
+and generalizations.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Decoded gene (the phenotype).
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Decoder: 
+<code>xegaDfDecodeGene()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">gene&lt;-xegaDfInitGene(lFxegaDfGene)
+xegaDfGeneMapIdentity(gene$gene1, lFxegaDfGene$penv)
+
+</code></pre>
+
+
+</div>

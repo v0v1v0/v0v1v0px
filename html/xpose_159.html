@@ -1,0 +1,64 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xp_var</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Access xpdb index information for a given variable or variable type</h2>
+
+<h3>Description</h3>
+
+<p>Access xpdb index information for a given variable or variable type
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xp_var(xpdb, .problem, col = NULL, type = NULL, silent = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>xpdb</code></td>
+<td>
+<p>An xpose database object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.problem</code></td>
+<td>
+<p>The $problem number to be used.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col</code></td>
+<td>
+<p>The column name to be searched in the index. Alternative to arg 'type'.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>type</code></td>
+<td>
+<p>The type of column to searched in the index. Alternative to 'col'.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>silent</code></td>
+<td>
+<p>Should the function be silent or return errors.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A subset of the xpdb index as tibble with columns: 
+col (column name), type (column type in the index), 
+label (label associated with the column) and units 
+(units associated with the column)
+</p>
+
+
+</div>

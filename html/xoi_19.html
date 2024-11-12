@@ -1,0 +1,94 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>kfunc</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>estimate Ripley's K function</h2>
+
+<h3>Description</h3>
+
+<p>estimate the 1-d version of Ripley's K function
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">kfunc(
+  x,
+  d = seq(0, 100, by = 0.1),
+  lengths = NULL,
+  exclude = 0,
+  tol = 0.000001
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>list with sorted locations of the data</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>d</code></td>
+<td>
+<p>values at which to calculate the function</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lengths</code></td>
+<td>
+<p>lengths of segments studied</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>exclude</code></td>
+<td>
+<p>distance to exclude</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tol</code></td>
+<td>
+<p>tolerance value</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>data frame with <code>d</code>, <code>k</code>, and <code>se</code>
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>gammacoi()</code>, <code>stahlcoi()</code>, <code>coincidence()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">L &lt;- 103
+n &lt;- 2000
+map1 &lt;- sim.map(L, n.mar=104, anchor=TRUE, include.x=FALSE, eq=TRUE)
+x &lt;- sim.cross(map1, n.ind=n, m=6, type="bc")
+
+xoloc &lt;- find.breaks(x)
+
+d &lt;- seq(0, 100, by=0.1)[-1]
+kf &lt;- kfunc(xoloc, d=d, lengths=rep(L, n))
+
+plot(k ~ d, data=kf, type="n", yaxs="i", xaxs="i", las=1,
+     ylim=c(0, max(kf$k + kf$se)))
+polygon(c(kf$d, rev(kf$d)), c(kf$k + kf$se, rev(kf$k-kf$se)),
+        border=NA, col="#add8e650")
+lines(k ~ d, data=kf)
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,58 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaGaInitGene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Generate a random binary gene.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaGaInitGene</code> generates a random binary gene 
+with a given length.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaGaInitGene(lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>The local configuration of the genetic algorithm.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A binary gene (a named list):
+</p>
+
+<ul>
+<li> <p><code>$evaluated</code>: FALSE. See package <code>xegaEvalGene</code>
+</p>
+</li>
+<li> <p><code>$evalFail</code>:  FALSE. Set by the error handler(s)
+in package <code>xegaEvalGene</code> 
+in the case of failure.
+</p>
+</li>
+<li> <p><code>$fit</code>:       the fitness
+</p>
+</li>
+<li> <p><code>$gene1</code>:      a binary gene 
+</p>
+</li>
+</ul>
+<h3>Examples</h3>
+
+<pre><code class="language-R">xegaGaInitGene(lFxegaGaGene)
+
+</code></pre>
+
+
+</div>

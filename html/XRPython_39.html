@@ -1,0 +1,36 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>setupStep</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>The Setup Step</h2>
+
+<h3>Description</h3>
+
+<p>The file <code>"setup.R"</code> in the <code>tools</code> directory is designed to create an explicit definiion of proxy
+classes for the <code>"list"</code> and <code>"dict"</code> types in Python.  The file would be run through
+<code>XR::packageSetup()</code> when creating or modifying these classes in the <code>XRPython</code> package.  It provides
+a useful example for the general task of creating an explicit, written-out version of a proxy class.
+</p>
+
+
+<h3>Details</h3>
+
+<p>The setup step generates a file <code>"R/pythonProxyClasses.R"</code> in the source directory for the package.  The
+setup step needs to be run twice, first to generate the R code in that file, and again to use the
+<code>roxygen2</code> package to generate documentation.
+</p>
+<p>For the first round, the package needs to be installed with an empty version of the file (the file has to exist
+because the package uses a <code>Collate:</code> directive that mentions it.  Running <code>packageSetup()</code> this time
+defines the proxy classes and dumps them (with some extra stuff) to the target file.  and  adds a line to the
+<code>NAMESPACE</code> to export both classes. (If we were willing to let <code>roxygenize()</code> create the namespace
+directives this would be automatic, but I'm not willing.)
+</p>
+<p>Now the package needs to be installed again, this time with the proxy classes, The second pass of the setup file
+runs <code>roxygenize()</code>.  Finally, as usual with <code>roxygenize()</code>,
+the package has to be installed one more time to generate the actual documentation.
+</p>
+
+
+</div>

@@ -1,0 +1,109 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xtune.control</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Control function for xtune fitting</h2>
+
+<h3>Description</h3>
+
+<p>Control function for <code>xtune</code> fitting.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xtune.control(
+  alpha.est.init = NULL,
+  max_s = 20,
+  margin_s = 1e-05,
+  maxstep = 100,
+  margin = 0.001,
+  maxstep_inner = 100,
+  margin_inner = 0.001,
+  compute.likelihood = FALSE,
+  verbosity = FALSE,
+  standardize = TRUE,
+  intercept = TRUE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>alpha.est.init</code></td>
+<td>
+<p>Initial values of alpha vector supplied to the algorithm. Alpha values are the hyper-parameters for the double exponential prior of regression coefficients, and it controls the prior variance of regression coefficients. Default is a vector of 0 with length p.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max_s</code></td>
+<td>
+<p>Maximum number of outer loop iterations for binary or multiclass outcomes. Default is 20.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>margin_s</code></td>
+<td>
+<p>Convergence threshold of the outer loop for binary or multiclass outcomes. Default is 1e-5.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>maxstep</code></td>
+<td>
+<p>Maximum number of iterations. Default is 100.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>margin</code></td>
+<td>
+<p>Convergence threshold. Default is 1e-3.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>maxstep_inner</code></td>
+<td>
+<p>Maximum number of iterations for the inner loop of the majorization-minimization algorithm. Default is 100.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>margin_inner</code></td>
+<td>
+<p>Convergence threshold for the inner loop of the majorization-minimization algorithm. Default is 1e-3.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>compute.likelihood</code></td>
+<td>
+<p>Should the function compute the marginal likelihood for hyper-parameters at each step of the update? Default is TRUE.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbosity</code></td>
+<td>
+<p>Track algorithm update process? Default is FALSE.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>standardize</code></td>
+<td>
+<p>Standardize X or not, same as the standardized option in <code>glmnet</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>intercept</code></td>
+<td>
+<p>Should intercept(s) be fitted (default=TRUE) or set to zero (FALSE), same as the intercept option in <code>glmnet</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A list of control objects after the checking.
+</p>
+
+
+</div>

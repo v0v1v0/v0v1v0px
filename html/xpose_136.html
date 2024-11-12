@@ -1,0 +1,45 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xp_themes</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>A set of xpose themes</h2>
+
+<h3>Description</h3>
+
+<p>xpose themes are used to consistently apply a set of preference for the plot geoms 
+(e.g. color scales, point size, etc.) whereas ggplot2 theme focus on the plot background, axes, 
+titles etc.
+</p>
+
+<ul>
+<li> <p><code>theme_xp_default</code>: The default xp_theme in xpose
+</p>
+</li>
+<li> <p><code>theme_xp_xpose4</code>: An xp_theme that makes xpose look like xpose4.
+</p>
+</li>
+</ul>
+<h3>Usage</h3>
+
+<pre><code class="language-R">theme_xp_default()
+
+theme_xp_xpose4()
+</code></pre>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># With the xp_theme theme_xp_default() (default)
+dv_vs_ipred(xpdb_ex_pk, facets = 'SEX')
+
+# With the xp_theme theme_xp_xpose4()
+xpdb_ex_pk %&gt;%
+  update_themes(xp_theme = theme_xp_xpose4()) %&gt;%
+  dv_vs_ipred(facets = 'SEX')
+  
+</code></pre>
+
+
+</div>

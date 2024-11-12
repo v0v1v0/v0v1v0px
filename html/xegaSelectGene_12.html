@@ -1,0 +1,112 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>EvalGeneStoch</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Evaluates a gene in a stochastic problem environment.</h2>
+
+<h3>Description</h3>
+
+<p><code>EvalGeneStoch</code> evaluates a gene in
+a stochastic problem environment.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">EvalGeneStoch(gene, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>gene</code></td>
+<td>
+<p>A gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>The local configuration of the genetic algorithm.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>In a stochastic problem environment, the expected fitness
+is maximized. The computation of the expectation is 
+done by incrementally updating the mean.
+For this, need the number of evaluations of the gene 
+(<code>$obs</code> of the gene).
+In addition, we compute the incremental variance 
+of the expected fitness 
+stored in <code>$var</code>.  
+The standard deviation is then <code>gene$var/gene$obs</code>.
+</p>
+<p>If the evaluation of the fitness function of the 
+problem environment fails, we catch the error and 
+return <code>NA</code> for the first evaluation of the gene.
+If the gene has been evaluated, we return the old gene.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A gene with the elements
+</p>
+
+<ul>
+<li>  <p><code>$evaluated</code>: Boolean.
+</p>
+</li>
+<li>  <p><code>$evalFail</code>:  Boolean. 
+</p>
+</li>
+<li>  <p><code>$fit</code>:       Mean fitness of gene. 
+</p>
+</li>
+<li>  <p><code>$gene1</code>:     Gene.  
+</p>
+</li>
+<li>  <p><code>$obs</code>:       Number of evaluations of gene.
+</p>
+</li>
+<li>  <p><code>$var</code>:       Variance of fitness.  
+</p>
+</li>
+<li>  <p><code>$sigma</code>:     Standard deviation of fitness.
+</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p>Other Evaluation Functions: 
+<code>EvalGeneDet()</code>,
+<code>EvalGeneR()</code>,
+<code>EvalGeneU()</code>,
+<code>EvalGene()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">DeJongF4&lt;-DeJongF4Factory()
+lF&lt;-NewlFevalGenes(DeJongF4)
+g1&lt;-list(evaluated=FALSE, evalFail=FALSE, fit=0, gene1=c(1.0, -1.5))
+g1
+g2&lt;-EvalGeneStoch(g1, lF)
+g2
+g3&lt;-EvalGeneStoch(g2, lF)
+g3
+g4&lt;-EvalGeneStoch(g3, lF)
+g4
+g5&lt;-EvalGeneStoch(g4, lF)
+g5
+</code></pre>
+
+
+</div>

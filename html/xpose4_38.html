@@ -1,0 +1,206 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>boot.hist</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Function to create histograms of results from the <code>bootstrap</code> tool in
+<a href="https://uupharmacometrics.github.io/PsN/">PsN</a>
+</h2>
+
+<h3>Description</h3>
+
+<p>Reads results from the <code>bootstrap</code> tool in <a href="https://uupharmacometrics.github.io/PsN/">PsN</a>
+and then creates histograms.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">boot.hist(
+  results.file = "raw_results_run1.csv",
+  incl.ids.file = "included_individuals1.csv",
+  min.failed = FALSE,
+  cov.failed = FALSE,
+  cov.warnings = FALSE,
+  boundary = FALSE,
+  showOriginal = TRUE,
+  showMean = FALSE,
+  showMedian = FALSE,
+  showPCTS = FALSE,
+  PCTS = c(0.025, 0.975),
+  excl.id = c(),
+  layout = NULL,
+  sort.plots = TRUE,
+  main = "Default",
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>results.file</code></td>
+<td>
+<p>The location of the results file from the
+<code>bootstrap</code> tool in <a href="https://uupharmacometrics.github.io/PsN/">PsN</a></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>incl.ids.file</code></td>
+<td>
+<p>The location of the included ids file from the
+<code>bootstrap</code> tool in <a href="https://uupharmacometrics.github.io/PsN/">PsN</a></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>min.failed</code></td>
+<td>
+<p>Should NONMEM runs that had failed minimization be
+skipped? <code>TRUE</code> or <code>FALSE</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cov.failed</code></td>
+<td>
+<p>Should NONMEM runs that had a failed covariance step be
+skipped? <code>TRUE</code> or <code>FALSE</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cov.warnings</code></td>
+<td>
+<p>Should NONMEM runs that had covariance step warnings be
+skipped? <code>TRUE</code> or <code>FALSE</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>boundary</code></td>
+<td>
+<p>Should NONMEM runs that had boundary warnings be skipped?
+<code>TRUE</code> or <code>FALSE</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>showOriginal</code></td>
+<td>
+<p>Should we show the value from the original NONMEM run in
+the histograms? <code>TRUE</code> or <code>FALSE</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>showMean</code></td>
+<td>
+<p>Should we show the mean of the histogram data? <code>TRUE</code>
+or <code>FALSE</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>showMedian</code></td>
+<td>
+<p>Should we show the median of the histogram data?
+<code>TRUE</code> or <code>FALSE</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>showPCTS</code></td>
+<td>
+<p>Should we show the percentiles of the histogram data?
+<code>TRUE</code> or <code>FALSE</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PCTS</code></td>
+<td>
+<p>the percentiles to show.  Can be a vector of any length.  For
+example, <code>c(0.05,0.2,0.5,0.7)</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>excl.id</code></td>
+<td>
+<p>Vector of id numbers to exclude.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>layout</code></td>
+<td>
+<p>Layout of plots.  A vector of number of rows and columns in
+each plot. <code>c(3,3)</code> for example.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sort.plots</code></td>
+<td>
+<p>Should the plots be sorted based on type of parameter.
+Sorting on parameters, standard errors, shrinkage and eigenvalues.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>The title of the plot.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments that can be passed to
+xpose.plot.histogram, xpose.panel.histogram,
+histogram and other lattice-package
+functions.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A lattice object
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Andrew Hooker
+</p>
+
+
+<h3>References</h3>
+
+<p><a href="https://uupharmacometrics.github.io/PsN/">PsN</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p>xpose.plot.histogram, xpose.panel.histogram,
+histogram and other lattice-package
+functions.
+</p>
+<p>Other PsN functions: 
+<code>bootscm.import()</code>,
+<code>npc.coverage()</code>,
+<code>randtest.hist()</code>,
+<code>read.npc.vpc.results()</code>,
+<code>read.vpctab()</code>,
+<code>xpose.VPC()</code>,
+<code>xpose.VPC.both()</code>,
+<code>xpose.VPC.categorical()</code>,
+<code>xpose4-package</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Not run: 
+boot.hist(results.file="./boot1/raw_results_run1.csv", 
+          incl.ids.file="./boot1/included_individuals1.csv")
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

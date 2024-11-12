@@ -1,0 +1,81 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>elem</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>add an element to an xmlbuilder object</h2>
+
+<h3>Description</h3>
+
+<p>add an element to an xmlbuilder object
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">elem(tag, text = NULL, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>tag</code></td>
+<td>
+<p>name of element</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>text</code></td>
+<td>
+<p>text contents of element</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>additional xml. attributes to be set</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>an xmlbuilder object
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">xb &lt;- elem("homeless") /
+  elem("person") / (
+     elem("name","John Doe") +
+     elem("age",35)
+  ) +
+  elem("person") /(
+    elem("name","Jane Doe") +
+    elem("age", 30)
+  ) +
+  elem("person") / (
+    elem("name","Jim Doe") +
+    elem("age", 25) +
+    elem("address") / (
+      elem("street", "123 Main St") +
+      elem("city", "Anytown") +
+      elem("state", "CA") +
+      elem("zip", 12345)
+    )
+  )
+
+print(xb)
+xb$end()
+xb$end()
+
+
+doc &lt;- xb |&gt; xml2::as_xml_document()
+doc |&gt; as.character() |&gt; cat()
+</code></pre>
+
+
+</div>

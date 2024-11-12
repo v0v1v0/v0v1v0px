@@ -1,0 +1,99 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>AcceptMetropolis</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Metropolis Acceptance Rule.</h2>
+
+<h3>Description</h3>
+
+<p>Change the gene by a genetic operator pipeline.
+Always accept a new gene with a fitness improvement.
+For maximizing fitness
+accept genes with lower fitness with probability
+<code>(runif(1)&lt;exp(-(fitness-newfitness)*beta/Temperature)</code>
+and reduce temperature with a cooling schedule.
+Used: <code>Temperature&lt;-alpha*Temperature</code> with 
+<code>alpha&lt;1</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">AcceptMetropolis(OperatorPipeline, gene, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>OperatorPipeline</code></td>
+<td>
+<p>Genetic operator pipeline.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>gene</code></td>
+<td>
+<p>Gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The temperature is updated at the end of each generation
+in the main loop of the genetic algorithm.
+</p>
+
+
+<h3>Value</h3>
+
+<p>The new gene if it has at least equal performance as the 
+old gene else the old gene.
+</p>
+
+
+<h3>References</h3>
+
+<p>Kirkpatrick, S., Gelatt, C. D. J, and Vecchi, M. P. (1983):
+Optimization by Simulated Annealing. 
+Science, 220(4598): 671-680.
+&lt;doi:10.1126/science.220.4598.671&gt;
+</p>
+<p>Metropolis, N., Rosenbluth, A. W., Rosenbluth, M. N., Teller, A. H.,
+Teller, E. (1953):
+Equation of state calculations by fast computing machines.
+Journal of Chemical Physics, 21(6):1087 – 1092.
+&lt;doi:10.1063/1.1699114&gt;
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Acceptance Rule: 
+<code>AcceptBest()</code>,
+<code>AcceptIVMetropolis()</code>,
+<code>AcceptNewGene()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">parm&lt;-function(x){function() {return(x)}}
+lFxegaGaGene$Beta&lt;-parm(1)
+lFxegaGaGene$TempK&lt;-parm(10)
+OPpipe1&lt;-function(g, lF){InitGene(lF)}
+g1&lt;-lFxegaGaGene$EvalGene(InitGene(lFxegaGaGene), lFxegaGaGene)
+g2&lt;-AcceptMetropolis(OPpipe1, g1, lFxegaGaGene)
+</code></pre>
+
+
+</div>

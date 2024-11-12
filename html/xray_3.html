@@ -1,0 +1,51 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>distributions</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Analyze each variable and generate a histogram describing it's distribution.</h2>
+
+<h3>Description</h3>
+
+<p>Also returns a table of all numeric variables describind it's percentiles 1, 10, 25, 50 (median), 75, 90 and 99.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">distributions(data_analyze, outdir, charts = T)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>data_analyze</code></td>
+<td>
+<p>a data frame to analyze</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>outdir</code></td>
+<td>
+<p>an optional output directory to save the resulting plots as png images</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>charts</code></td>
+<td>
+<p>set this to false to avoid generating charts, useful for batch script usage</p>
+</td>
+</tr>
+</table>
+<h3>Examples</h3>
+
+<pre><code class="language-R">library(xray)
+distributions(mtcars)
+
+</code></pre>
+
+
+</div>

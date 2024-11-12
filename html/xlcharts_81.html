@@ -1,0 +1,117 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>ColorScaleRule</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>ColorScaleRule</h2>
+
+<h3>Description</h3>
+
+<p>Backwards compatibility
+</p>
+<p><a href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.formatting.rule.html">https://openpyxl.readthedocs.io/en/stable/api/openpyxl.formatting.rule.html</a>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">ColorScaleRule(
+  start_type = NULL,
+  start_value = NULL,
+  start_color = NULL,
+  mid_type = NULL,
+  mid_value = NULL,
+  mid_color = NULL,
+  end_type = NULL,
+  end_value = NULL,
+  end_color = NULL,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>start_type</code></td>
+<td>
+<p>start_type</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>start_value</code></td>
+<td>
+<p>start_value</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>start_color</code></td>
+<td>
+<p>start_color</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mid_type</code></td>
+<td>
+<p>mid_type</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mid_value</code></td>
+<td>
+<p>mid_value</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mid_color</code></td>
+<td>
+<p>mid_color</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>end_type</code></td>
+<td>
+<p>end_type</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>end_value</code></td>
+<td>
+<p>end_value</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>end_color</code></td>
+<td>
+<p>end_color</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments, i.e. kwargs.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An openpyxl Python object.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+ColorScaleRule(
+start_type='percentile', start_value=10, start_color='FFAA0000',
+mid_type='percentile', mid_value=50, mid_color='FF0000AA',
+end_type='percentile', end_value=90, end_color='FF00AA00')
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

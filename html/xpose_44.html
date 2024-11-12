@@ -1,0 +1,89 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>subset_xpdb</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Subset datasets in an xpdb</h2>
+
+<h3>Description</h3>
+
+<p>Use <code>filter()</code> to select rows/cases where conditions are true. 
+Unlike base subsetting, rows where the condition evaluates to NA are dropped.
+Use <code>slice()</code> to select row/cases by their position
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S3 method for class 'xpose_data'
+filter(.data, ..., .problem, .source, .where)
+
+## S3 method for class 'xpose_data'
+slice(.data, ..., .problem, .source, .where)
+
+## S3 method for class 'xpose_data'
+distinct(.data, ..., .problem, .source, .where)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>.data</code></td>
+<td>
+<p>An xpose database object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Name-value pairs of expressions. Use <code>NULL</code> to drop a variable.
+</p>
+<p>These arguments are automatically quoted and evaluated in the 
+context of the data frame. They support unquoting and splicing. 
+See the dplyr vignette("programming") for an introduction to these concepts.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.problem</code></td>
+<td>
+<p>The problem from which the data will be modified</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.source</code></td>
+<td>
+<p>The source of the data in the xpdb. Can either be 'data' or an output 
+file extension e.g. 'phi'.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.where</code></td>
+<td>
+<p>A vector of element names to be edited in special (e.g. 
+<code>.where = c('vpc_dat', 'aggr_obs')</code> with vpc).</p>
+</td>
+</tr>
+</table>
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Subset by condition
+xpdb_ex_pk %&gt;% 
+ filter(DV &lt; 1, .problem = 1) %&gt;% 
+ dv_vs_ipred()
+  
+# Subset by positions
+xpdb_ex_pk %&gt;% 
+ slice(1:100, .problem = 1) %&gt;% 
+ dv_vs_ipred()
+ 
+# Deduplicate rows
+xpdb_ex_pk %&gt;% 
+ distinct(TIME, .problem = 1) %&gt;% 
+ dv_vs_ipred()
+</code></pre>
+
+
+</div>

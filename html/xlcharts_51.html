@@ -1,0 +1,93 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>CellIsRule</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>CellIsRule</h2>
+
+<h3>Description</h3>
+
+<p>Conditional formatting rule based on cell contents.
+</p>
+<p><a href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.formatting.rule.html">https://openpyxl.readthedocs.io/en/stable/api/openpyxl.formatting.rule.html</a>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">CellIsRule(
+  operator = NULL,
+  formula = list(),
+  stopIfTrue = NULL,
+  font = NULL,
+  border = NULL,
+  fill = NULL,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>operator</code></td>
+<td>
+<p>operator</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>formula</code></td>
+<td>
+<p>formula as list</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>stopIfTrue</code></td>
+<td>
+<p>stopIfTrue</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>font</code></td>
+<td>
+<p>font</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>border</code></td>
+<td>
+<p>border</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fill</code></td>
+<td>
+<p>fill</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments, i.e. kwargs.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An openpyxl Python object.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+CellIsRule(operator = "equal")
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,81 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaGeInitGene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Initialize a binary gene</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaGeInitGene()</code> generates a random binary gene 
+with a given length.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaGeInitGene(lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>the local configuration of the genetic algorithm</p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+<p>In the binary representation of 
+package <code>xega</code>, <em>gene</em> is a list with 
+</p>
+
+<ol>
+<li> <p><code>$evaluated</code> Boolean: TRUE if the fitness is known.
+</p>
+</li>
+<li> <p><code>$fit</code>       The fitness of the genotype of 
+<code>$gene1</code>         
+</p>
+</li>
+<li> <p><code>$gene1</code>     a bit string (the genetopye).
+</p>
+</li>
+</ol>
+<p>This representation makes several code optimizations
+and generalizations easier.
+</p>
+
+
+<h3>Value</h3>
+
+<p>a binary gene (a named list):
+</p>
+
+<ul>
+<li> <p><code>$evaluated</code>: FALSE. See package <code>xegaEvalGene</code>
+</p>
+</li>
+<li> <p><code>$evalFail</code>:  FALSE. Set by the error handler(s)
+in package <code>xegaEvalGene</code> 
+in the case of failure.
+</p>
+</li>
+<li> <p><code>$fit</code>:       Fitness vector.
+</p>
+</li>
+<li> <p><code>$gene1</code>:     Binary gene.
+</p>
+</li>
+</ul>
+<h3>Examples</h3>
+
+<pre><code class="language-R">xegaGeInitGene(lFxegaGeGene)
+
+</code></pre>
+
+
+</div>

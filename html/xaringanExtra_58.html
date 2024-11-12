@@ -1,0 +1,51 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>use_xaringan_extra</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Use xaringanExtra Extensions</h2>
+
+<h3>Description</h3>
+
+<p>Load multiple <span class="pkg">xaringanExtra</span> extensions at once. All extensions can be
+loaded with this function.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">use_xaringan_extra(
+  include = c("tile_view", "animate_css", "tachyons", "panelset", "broadcast",
+    "share_again", "scribble")
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>include</code></td>
+<td>
+<p>Character vector of extensions to include. One or more of
+<code>"tile_view"</code>, <code>"editable"</code>, <code>"share_again"</code>, <code>"broadcast"</code>, <code>"slide_tone"</code>,
+<code>"animate_css"</code>, <code>"panelset"</code> <code>"tachyons"</code>, <code>"fit_screen"</code>, <code>"webcam"</code>,
+<code>"clipboard"</code>, <code>"search"</code>, <code>"scribble"</code>, <code>"freezeframe"</code>.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>An <code>htmltools::tagList()</code> with the <code>htmltools::htmlDependency()</code>s
+for the requested extensions.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">use_xaringan_extra(c("tile_view", "panelset"))
+use_xaringan_extra(c("tile_view", "scribble", "share_again"))
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,99 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>data_frag</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Create an xml_fragment from a data.frame</h2>
+
+<h3>Description</h3>
+
+<p>Create a <code>xml_fragment()</code> from a data.frame, in which each row is a set of xml elements (columns).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">data_frag(df, row_tags = "row", .attr = NULL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>df</code></td>
+<td>
+<p>data frame that will be stored as set of xml elements</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>row_tags</code></td>
+<td>
+<p><code>character</code> the tag name that is used for each row. Note that
+this can be a single value or a vector of length equal to the number of rows in the data.frame.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.attr</code></td>
+<td>
+<p>optional <code>data.frame</code> with xml row attributes</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p><code>xml_fragment()</code> object
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other xml_fragment: 
+<code>add_child_fragment()</code>,
+<code>as.character.xml_fragment()</code>,
+<code>as_frag()</code>,
+<code>as_xml_nodeset()</code>,
+<code>frag()</code>,
+<code>xml_fragment()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">persons &lt;- data.frame(
+  name = c("John Doe", "Jane Doe"),
+  age = c(30, 25),
+  stringsAsFactors = FALSE
+)
+
+df &lt;- data_frag(persons, row_tag = "person")
+print(df)
+
+# setting ids on rows
+persons &lt;- data.frame(
+  name = c("John Doe", "Jane Doe"),
+  age = c(30, 25),
+  id = c("p1", "p2"),
+  stringsAsFactors = FALSE
+)
+
+df &lt;- data_frag(
+  persons[1:2],
+  row_tag = "person",
+  .attr = persons[3]
+)
+
+print(df)
+
+# turning it into a document
+doc &lt;- xml_doc("study", id = "1") / frag(
+  source = "homeless db",
+  data = df
+)
+
+cat(as.character(doc))
+</code></pre>
+
+
+</div>

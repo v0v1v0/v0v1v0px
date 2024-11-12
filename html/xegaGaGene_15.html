@@ -1,0 +1,93 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaGaIVAdaptiveMutateGene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Individually variable adaptive mutation of a gene.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaGaIVAdaptiveMutateGene</code> mutates a binary gene.
+Two mutation rates (<code>lF$MutationRate()</code> 
+and <code>lF$MutationRate2()</code> which is higher than the first)
+are used depending on the relative fitness of the gene.
+<code>lF$CutoffFit</code> and <code>lF$CBestFitness</code> are used
+to determine the relative fitness of the gene.
+The rationale is that mutating genes having a low fitness
+with a higher probability rate improves the performance
+of a genetic algorithm, because the gene gets a higher 
+chance to improve.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaGaIVAdaptiveMutateGene(gene, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>gene</code></td>
+<td>
+<p>A binary gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>The local configuration of the genetic algorithm.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>This principle is a candidate for a more abstract implementation,
+because it applies to all variants of evolutionary algorithms.
+</p>
+<p>The goal is to separate the threshold code and the 
+representation-dependent part and 
+to combine them in the factory properly.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A binary gene
+</p>
+
+
+<h3>References</h3>
+
+<p>Stanhope, Stephen A. and Daida, Jason M. (1996)
+An Individually Variable Mutation-rate Strategy for Genetic Algorithms.
+In: Koza, John (Ed.)
+Late Breaking Papers at the Genetic Programming 1996 Conference.
+Stanford University Bookstore, Stanford, pp. 177-185.
+(ISBN:0-18-201-031-7)
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Mutation: 
+<code>xegaGaMutateGene()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">parm&lt;-function(x) {function() {return(x)}}
+  lFxegaGaGene$BitMutationRate1&lt;-parm(1.0)
+  lFxegaGaGene$BitMutationRate2&lt;-parm(0.5)
+gene1&lt;-xegaGaInitGene(lFxegaGaGene)
+xegaGaDecodeGene(gene1, lFxegaGaGene)
+gene&lt;-xegaGaIVAdaptiveMutateGene(gene1, lFxegaGaGene)
+xegaGaDecodeGene(gene, lFxegaGaGene)
+</code></pre>
+
+
+</div>

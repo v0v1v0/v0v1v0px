@@ -1,0 +1,794 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>style_mono_dark</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Monotone Dark Theme</h2>
+
+<h3>Description</h3>
+
+<p>A dark monotone theme based around a single color.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">style_mono_dark(
+  base_color = "#cbf7ed",
+  white_color = lighten_color(base_color, 0.8),
+  black_color = darken_color(base_color, 0.85),
+  text_color = white_color,
+  header_color = base_color,
+  background_color = black_color,
+  link_color = base_color,
+  text_bold_color = base_color,
+  text_slide_number_color = base_color,
+  padding = "16px 64px 16px 64px",
+  background_image = NULL,
+  background_size = NULL,
+  background_position = NULL,
+  code_highlight_color = "rgba(255,255,0,0.5)",
+  code_inline_color = base_color,
+  code_inline_background_color = NULL,
+  code_inline_font_size = "1em",
+  inverse_background_color = base_color,
+  inverse_text_color = black_color,
+  inverse_text_shadow = FALSE,
+  inverse_header_color = inverse_text_color,
+  inverse_link_color = link_color,
+  title_slide_text_color = inverse_text_color,
+  title_slide_background_color = inverse_background_color,
+  title_slide_background_image = NULL,
+  title_slide_background_size = NULL,
+  title_slide_background_position = NULL,
+  footnote_color = NULL,
+  footnote_font_size = "0.9em",
+  footnote_position_bottom = "60px",
+  left_column_subtle_color = apply_alpha(base_color, 0.6),
+  left_column_selected_color = base_color,
+  blockquote_left_border_color = apply_alpha(base_color, 0.5),
+  table_border_color = "#666",
+  table_row_border_color = "#ddd",
+  table_row_even_background_color = darken_color(base_color, 0.7),
+  base_font_size = "20px",
+  text_font_size = "1rem",
+  header_h1_font_size = "2.75rem",
+  header_h2_font_size = "2.25rem",
+  header_h3_font_size = "1.75rem",
+  header_background_auto = FALSE,
+  header_background_color = header_color,
+  header_background_text_color = background_color,
+  header_background_padding = NULL,
+  header_background_content_padding_top = "7rem",
+  header_background_ignore_classes = c("normal", "inverse", "title", "middle", "bottom"),
+  text_slide_number_font_size = "0.9rem",
+  text_font_google = NULL,
+  text_font_family = xaringanthemer_font_default("text_font_family"),
+  text_font_weight = xaringanthemer_font_default("text_font_weight"),
+  text_bold_font_weight = "bold",
+  text_font_url = xaringanthemer_font_default("text_font_url"),
+  text_font_family_fallback = xaringanthemer_font_default("text_font_family_fallback"),
+  text_font_base = "sans-serif",
+  header_font_google = NULL,
+  header_font_family = xaringanthemer_font_default("header_font_family"),
+  header_font_weight = xaringanthemer_font_default("header_font_weight"),
+  header_font_family_fallback = "Georgia, serif",
+  header_font_url = xaringanthemer_font_default("header_font_url"),
+  code_font_google = NULL,
+  code_font_family = xaringanthemer_font_default("code_font_family"),
+  code_font_size = "0.9rem",
+  code_font_url = xaringanthemer_font_default("code_font_url"),
+  code_font_family_fallback = xaringanthemer_font_default("code_font_family_fallback"),
+  link_decoration = "none",
+  colors = NULL,
+  extra_css = NULL,
+  extra_fonts = NULL,
+  outfile = "xaringan-themer.css"
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>base_color</code></td>
+<td>
+<p>Monotone Base Color, works best with a light color..
+Defaults to #cbf7ed. Used in multiple CSS rules. The value of this
+variable is also stored as a CSS variable that can be referenced with
+<code>var(--base)</code> in any argument of a style function or in custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>white_color</code></td>
+<td>
+<p>Brightest color used, default is a very light version of
+<code>base_color</code>. Defaults to <code>lighten_color(base_color, 0.8)</code>. Used in
+multiple CSS rules. The value of this variable is also stored as a CSS
+variable that can be referenced with <code>var(--white)</code> in any argument of a
+style function or in custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>black_color</code></td>
+<td>
+<p>Darkest color used, default is a very dark, version of
+<code>base_color</code>. Defaults to <code>darken_color(base_color, 0.85)</code>. Used in
+multiple CSS rules. The value of this variable is also stored as a CSS
+variable that can be referenced with <code>var(--black)</code> in any argument of a
+style function or in custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>text_color</code></td>
+<td>
+<p>Text Color. Defaults to <code>white_color</code>. Modifies the <code>body</code>
+element. The value of this variable is also stored as a CSS variable that
+can be referenced with <code>var(--text_color)</code> in any argument of a style
+function or in custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>header_color</code></td>
+<td>
+<p>Header Color. Defaults to <code>base_color</code>. Modifies the
+<code style="white-space: pre;">⁠h1, h2, h3⁠</code> elements. The value of this variable is also stored as a CSS
+variable that can be referenced with <code>var(--header-color)</code> in any argument
+of a style function or in custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>background_color</code></td>
+<td>
+<p>Slide Background Color. Defaults to <code>black_color</code>.
+Modifies the <code>.remark-slide-content</code> class. The value of this variable is
+also stored as a CSS variable that can be referenced with
+<code>var(--background-color)</code> in any argument of a style function or in custom
+CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>link_color</code></td>
+<td>
+<p>Link Color. Defaults to <code>base_color</code>. Modifies the
+<code style="white-space: pre;">⁠a, a &gt; code⁠</code> elements. The value of this variable is also stored as a CSS
+variable that can be referenced with <code>var(--link-color)</code> in any argument
+of a style function or in custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>text_bold_color</code></td>
+<td>
+<p>Bold Text Color. Defaults to <code>base_color</code>. Modifies
+the <code>strong</code> element. The value of this variable is also stored as a CSS
+variable that can be referenced with <code>var(--text-bold-color)</code> in any
+argument of a style function or in custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>text_slide_number_color</code></td>
+<td>
+<p>Slide Number Color. Defaults to <code>base_color</code>.
+Modifies the <code>.remark-slide-number</code> class.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>padding</code></td>
+<td>
+<p>Slide Padding in <code style="white-space: pre;">⁠top right [bottom left]⁠</code> format. Defaults
+to 16px 64px 16px 64px. Modifies the <code>.remark-slide-content</code> class.
+Accepts CSS
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding">padding</a>
+property values.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>background_image</code></td>
+<td>
+<p>Background image applied to each <em>and every</em> slide.
+Set <code>title_slide_background_image = "none"</code> to remove the background image
+from the title slide. Defaults to <code>NULL</code>. Modifies the
+<code>.remark-slide-content</code> class.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>background_size</code></td>
+<td>
+<p>Background image size, requires <code>background_image</code> to
+be set. If <code>background_image</code> is set, <code>background_size</code> will default to
+<code>cover</code> so the background fills the screen. If both <code>background_image</code> and
+<code>background_position</code> are set, will default to 100 percent. Defaults to
+<code>NULL</code>. Modifies the <code>.remark-slide-content</code> class. Accepts CSS
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-size">background-size</a>
+property values.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>background_position</code></td>
+<td>
+<p>Background image position, requires
+<code>background_image</code> to be set, and it is recommended to adjust
+<code>background_size</code>. Defaults to <code>NULL</code>. Modifies the
+<code>.remark-slide-content</code> class. Accepts CSS
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-position">background-position</a>
+property values.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>code_highlight_color</code></td>
+<td>
+<p>Code Line Highlight. Defaults to
+rgba(255,255,0,0.5). Modifies the <code>.remark-code-line-highlighted</code> class.
+The value of this variable is also stored as a CSS variable that can be
+referenced with <code>var(--code-highlight-color)</code> in any argument of a style
+function or in custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>code_inline_color</code></td>
+<td>
+<p>Inline Code Color. Defaults to <code>base_color</code>.
+Modifies the <code>.remark-inline-code</code> class.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>code_inline_background_color</code></td>
+<td>
+<p>Inline Code Background Color. Defaults
+to <code>NULL</code>. Modifies the <code>.remark-inline-code</code> class.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>code_inline_font_size</code></td>
+<td>
+<p>Inline Code Text Font Size. Defaults to 1em.
+Modifies the <code>.remark-inline-code</code> class. Accepts CSS
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-size">font-size</a>
+property values. The value of this variable is also stored as a CSS
+variable that can be referenced with <code>var(--code-inline-font-size)</code> in any
+argument of a style function or in custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>inverse_background_color</code></td>
+<td>
+<p>Inverse Background Color. Defaults to
+<code>base_color</code>. Modifies the <code>.inverse</code> class. The value of this variable is
+also stored as a CSS variable that can be referenced with
+<code>var(--inverse-background-color)</code> in any argument of a style function or
+in custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>inverse_text_color</code></td>
+<td>
+<p>Inverse Text Color. Defaults to <code>black_color</code>.
+Modifies the <code>.inverse</code> class. The value of this variable is also stored
+as a CSS variable that can be referenced with <code>var(--inverse-text-color)</code>
+in any argument of a style function or in custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>inverse_text_shadow</code></td>
+<td>
+<p>Enables Shadow on text of inverse slides.
+Defaults to <code>FALSE</code>. Modifies the <code>.inverse</code> class.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>inverse_header_color</code></td>
+<td>
+<p>Inverse Header Color. Defaults to
+<code>inverse_text_color</code>. Modifies the <code style="white-space: pre;">⁠.inverse h1, .inverse h2, .inverse h3⁠</code>
+classes. The value of this variable is also stored as a CSS variable that
+can be referenced with <code>var(--inverse-header-color)</code> in any argument of a
+style function or in custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>inverse_link_color</code></td>
+<td>
+<p>Inverse Link Color. Defaults to <code>link_color</code>.
+Modifies the <code style="white-space: pre;">⁠.inverse a, .inverse a &gt; code⁠</code> classes. The value of this
+variable is also stored as a CSS variable that can be referenced with
+<code>var(--inverse-link-color)</code> in any argument of a style function or in
+custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>title_slide_text_color</code></td>
+<td>
+<p>Title Slide Text Color. Defaults to
+<code>inverse_text_color</code>. Modifies the <code>.title-slide</code> class. The value of this
+variable is also stored as a CSS variable that can be referenced with
+<code>var(--title-slide-text-color)</code> in any argument of a style function or in
+custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>title_slide_background_color</code></td>
+<td>
+<p>Title Slide Background Color. Defaults
+to <code>inverse_background_color</code>. Modifies the <code>.title-slide</code> class. The
+value of this variable is also stored as a CSS variable that can be
+referenced with <code>var(--title-slide-background-color)</code> in any argument of a
+style function or in custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>title_slide_background_image</code></td>
+<td>
+<p>Title Slide Background Image URL.
+Defaults to <code>NULL</code>. Modifies the <code>.title-slide</code> class.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>title_slide_background_size</code></td>
+<td>
+<p>Title Slide Background Image Size,
+defaults to "cover" if background image is set. Defaults to <code>NULL</code>.
+Modifies the <code>.title-slide</code> class. Accepts CSS
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-size">background-size</a>
+property values.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>title_slide_background_position</code></td>
+<td>
+<p>Title Slide Background Image
+Position. Defaults to <code>NULL</code>. Modifies the <code>.title-slide</code> class. Accepts
+CSS
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-position">background-position</a>
+property values.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>footnote_color</code></td>
+<td>
+<p>Footnote text color (if <code>NA</code>, then it will be the same
+color as <code>text_color</code>). Defaults to <code>NULL</code>. Modifies the <code>.footnote</code>
+class.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>footnote_font_size</code></td>
+<td>
+<p>Footnote font size. Defaults to 0.9em. Modifies
+the <code>.footnote</code> class. Accepts CSS
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-size">font-size</a>
+property values.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>footnote_position_bottom</code></td>
+<td>
+<p>Footnote location from bottom of screen.
+Defaults to 60px. Modifies the <code>.footnote</code> class. Accepts CSS
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position_value">position</a>
+property values.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>left_column_subtle_color</code></td>
+<td>
+<p>Left Column Text (not last). Defaults to
+<code>apply_alpha(base_color, 0.6)</code>. Modifies the
+<code style="white-space: pre;">⁠.left-column h2, .left-column h3⁠</code> classes.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>left_column_selected_color</code></td>
+<td>
+<p>Left Column Current Selection. Defaults to
+<code>base_color</code>. Modifies the
+<code style="white-space: pre;">⁠.left-column h2:last-of-type, .left-column h3:last-child⁠</code> classes.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>blockquote_left_border_color</code></td>
+<td>
+<p>Blockquote Left Border Color. Defaults
+to <code>apply_alpha(base_color, 0.5)</code>. Modifies the <code>blockquote</code> element.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>table_border_color</code></td>
+<td>
+<p>Table top/bottom border. Defaults to #666.
+Modifies the <code style="white-space: pre;">⁠table: border-top, border-bottom⁠</code> elements.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>table_row_border_color</code></td>
+<td>
+<p>Table row inner bottom border. Defaults to
+#ddd. Modifies the <code style="white-space: pre;">⁠table thead th: border-bottom⁠</code> elements.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>table_row_even_background_color</code></td>
+<td>
+<p>Table Even Row Background Color.
+Defaults to <code>darken_color(base_color, 0.7)</code>. Modifies the
+<code style="white-space: pre;">⁠thead, tfoot, tr:nth-child(even)⁠</code> elements.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>base_font_size</code></td>
+<td>
+<p>Base Font Size for All Slide Elements (must be <code>px</code>).
+Defaults to 20px. Modifies the <code>html</code> element. The value of this variable
+is also stored as a CSS variable that can be referenced with
+<code>var(--base-font-size)</code> in any argument of a style function or in custom
+CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>text_font_size</code></td>
+<td>
+<p>Slide Body Text Font Size. Defaults to 1rem. Modifies
+the <code>.remark-slide-content</code> class. Accepts CSS
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-size">font-size</a>
+property values. The value of this variable is also stored as a CSS
+variable that can be referenced with <code>var(--text-font-size)</code> in any
+argument of a style function or in custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>header_h1_font_size</code></td>
+<td>
+<p>h1 Header Text Font Size. Defaults to 2.75rem.
+Modifies the <code style="white-space: pre;">⁠.remark-slide-content h1⁠</code> class. Accepts CSS
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-size">font-size</a>
+property values. The value of this variable is also stored as a CSS
+variable that can be referenced with <code>var(--header-h1-font-size)</code> in any
+argument of a style function or in custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>header_h2_font_size</code></td>
+<td>
+<p>h2 Header Text Font Size. Defaults to 2.25rem.
+Modifies the <code style="white-space: pre;">⁠.remark-slide-content h2⁠</code> class. Accepts CSS
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-size">font-size</a>
+property values. The value of this variable is also stored as a CSS
+variable that can be referenced with <code>var(--header-h2-font-size)</code> in any
+argument of a style function or in custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>header_h3_font_size</code></td>
+<td>
+<p>h3 Header Text Font Size. Defaults to 1.75rem.
+Modifies the <code style="white-space: pre;">⁠.remark-slide-content h3⁠</code> class. Accepts CSS
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-size">font-size</a>
+property values. The value of this variable is also stored as a CSS
+variable that can be referenced with <code>var(--header-h3-font-size)</code> in any
+argument of a style function or in custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>header_background_auto</code></td>
+<td>
+<p>Add background under slide title automatically
+for h1 header elements. If not enabled, use <code>class: header_background</code> to
+enable. Defaults to <code>FALSE</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>header_background_color</code></td>
+<td>
+<p>Background Color for h1 Header with
+Background. Defaults to <code>header_color</code>. Modifies the
+<code style="white-space: pre;">⁠.remark-slide-content h1⁠</code> class. The value of this variable is also
+stored as a CSS variable that can be referenced with
+<code>var(--header-background-color)</code> in any argument of a style function or in
+custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>header_background_text_color</code></td>
+<td>
+<p>Text Color for h1 Header with
+Background. Defaults to <code>background_color</code>. Modifies the
+<code style="white-space: pre;">⁠.remark-slide-content h1⁠</code> class. The value of this variable is also
+stored as a CSS variable that can be referenced with
+<code>var(--header-background-text-color)</code> in any argument of a style function
+or in custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>header_background_padding</code></td>
+<td>
+<p>Padding for h1 Header with Background.
+Defaults to <code>NULL</code>. Modifies the <code style="white-space: pre;">⁠.remark-slide-content h1⁠</code> class. Accepts
+CSS <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding">padding</a>
+property values.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>header_background_content_padding_top</code></td>
+<td>
+<p>Top Padding for Content in
+Slide with Header with Background. Defaults to 7rem. Modifies the
+<code>.remark-slide-content</code> class.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>header_background_ignore_classes</code></td>
+<td>
+<p>Slide Classes Where Header with
+Background will not be Applied. Defaults to
+<code>c('normal', 'inverse', 'title', 'middle', 'bottom')</code>. Modifies the
+<code>.remark-slide-content</code> class.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>text_slide_number_font_size</code></td>
+<td>
+<p>Slide Number Text Font Size. Defaults to
+0.9rem. Modifies the <code>.remark-slide-number</code> class. Accepts CSS
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-size">font-size</a>
+property values.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>text_font_google</code></td>
+<td>
+<p>Use <code>google_font()</code> to specify body font. Defaults
+to <code>NULL</code>. Modifies the <code>body</code> element.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>text_font_family</code></td>
+<td>
+<p>Body Text Font Family (xaringan default is
+<code>'Droid Serif'</code>). Defaults to
+<code>xaringanthemer_font_default("text_font_family")</code>. Modifies the <code>body</code>
+element. The value of this variable is also stored as a CSS variable that
+can be referenced with <code>var(--text-font-family)</code> in any argument of a
+style function or in custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>text_font_weight</code></td>
+<td>
+<p>Body Text Font Weight. Defaults to
+<code>xaringanthemer_font_default("text_font_weight")</code>. Modifies the <code>body</code>
+element. Accepts CSS
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight">font-weight</a>
+property values.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>text_bold_font_weight</code></td>
+<td>
+<p>Body Bold Text Font Weight. Defaults to bold.
+Modifies the <code>strong</code> element.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>text_font_url</code></td>
+<td>
+<p>Body Text Font URL(s). Defaults to
+<code>xaringanthemer_font_default("text_font_url")</code>. Modifies the
+<code style="white-space: pre;">⁠@import url()⁠</code> elements.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>text_font_family_fallback</code></td>
+<td>
+<p>Body Text Font Fallbacks. Defaults to
+<code>xaringanthemer_font_default("text_font_family_fallback")</code>. Modifies the
+<code>body</code> element. The value of this variable is also stored as a CSS
+variable that can be referenced with <code>var(--text-font-family-fallback)</code> in
+any argument of a style function or in custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>text_font_base</code></td>
+<td>
+<p>Body Text Base Font (Total Failure Fallback). Defaults
+to sans-serif. Modifies the <code>body</code> element. The value of this variable is
+also stored as a CSS variable that can be referenced with
+<code>var(--text-font-base)</code> in any argument of a style function or in custom
+CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>header_font_google</code></td>
+<td>
+<p>Use <code>google_font()</code> to specify header font.
+Defaults to <code>NULL</code>. Modifies the <code>body</code> element.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>header_font_family</code></td>
+<td>
+<p>Header Font Family (xaringan default is
+<code>'Yanone Kaffeesatz'</code>). Defaults to
+<code>xaringanthemer_font_default("header_font_family")</code>. Modifies the
+<code style="white-space: pre;">⁠h1, h2, h3⁠</code> elements. The value of this variable is also stored as a CSS
+variable that can be referenced with <code>var(--header-font-family)</code> in any
+argument of a style function or in custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>header_font_weight</code></td>
+<td>
+<p>Header Font Weight. Defaults to
+<code>xaringanthemer_font_default("header_font_weight")</code>. Modifies the
+<code style="white-space: pre;">⁠h1, h2, h3⁠</code> elements. Accepts CSS
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight">font-weight</a>
+property values.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>header_font_family_fallback</code></td>
+<td>
+<p>Header Font Family Fallback. Defaults to
+Georgia, serif. Modifies the <code style="white-space: pre;">⁠h1, h2, h3⁠</code> elements. The value of this
+variable is also stored as a CSS variable that can be referenced with
+<code>var(--header-font-family-fallback)</code> in any argument of a style function
+or in custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>header_font_url</code></td>
+<td>
+<p>Header Font URL. Defaults to
+<code>xaringanthemer_font_default("header_font_url")</code>. Modifies the
+<code style="white-space: pre;">⁠@import url⁠</code> elements.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>code_font_google</code></td>
+<td>
+<p>Use <code>google_font()</code> to specify code font. Defaults
+to <code>NULL</code>. Modifies the <code>body</code> element.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>code_font_family</code></td>
+<td>
+<p>Code Font Family. Defaults to
+<code>xaringanthemer_font_default("code_font_family")</code>. Modifies the
+<code style="white-space: pre;">⁠.remark-code, .remark-inline-code⁠</code> classes. The value of this variable is
+also stored as a CSS variable that can be referenced with
+<code>var(--code-font-family)</code> in any argument of a style function or in custom
+CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>code_font_size</code></td>
+<td>
+<p>Code Text Font Size. Defaults to 0.9rem. Modifies the
+<code>.remark-inline</code> class. Accepts CSS
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-size">font-size</a>
+property values. The value of this variable is also stored as a CSS
+variable that can be referenced with <code>var(--code-font-size)</code> in any
+argument of a style function or in custom CSS.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>code_font_url</code></td>
+<td>
+<p>Code Font URL. Defaults to
+<code>xaringanthemer_font_default("code_font_url")</code>. Modifies the <code style="white-space: pre;">⁠@import url⁠</code>
+elements.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>code_font_family_fallback</code></td>
+<td>
+<p>Code Font Fallback. Defaults to
+<code>xaringanthemer_font_default("code_font_family_fallback")</code>. Modifies the
+<code style="white-space: pre;">⁠.remark-code, .remark-inline-code⁠</code> classes.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>link_decoration</code></td>
+<td>
+<p>Text decoration of links. Defaults to none. Modifies
+the <code style="white-space: pre;">⁠a, a &gt; code⁠</code> elements. Accepts CSS
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration">text-decoration</a>
+property values.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>colors</code></td>
+<td>
+<p>A named vector of custom colors. The names of the colors
+become CSS variables and classes that can be used within your slides.
+For example, <code>colors = c(blue = "#bad4ed")</code> adds a CSS variable
+<code>--blue</code>, a <code>.blue</code> CSS class that applies the color to the text or
+foreground color, and a <code>.bg-blue</code> CSS class that applies the color
+to the background.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>extra_css</code></td>
+<td>
+<p>A named list of CSS definitions each containing a named list
+of CSS property-value pairs, i.e.
+<code>list(".class-id" = list("css-property" = "value"))</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>extra_fonts</code></td>
+<td>
+<p>A list of additional fonts to import, each list element
+can be either a URL as a character string or a call to
+<code>google_font()</code>. To use a font imported in <code>extra_fonts</code>, you
+will need to write custom CSS rules that apply the font to an element or
+class with the <code>font-family</code> property. See the <strong>Fonts</strong> section of
+<code>vignette("xaringanthemer")</code> for an example.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>outfile</code></td>
+<td>
+<p>Customized xaringan CSS output file name, default is "xaringan-themer.css"</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>The CSS styles are written to the file path provided in <code>outfile</code>
+(by default to <code>xaringan-themer.css</code>). If <code>outfile</code> is <code>NULL</code>, the CSS is
+returned directly as a character string.
+</p>
+
+
+<h3>Usage</h3>
+
+<p>To use the styles created by this theme function, make sure
+that you use <code>xaringan-themer.css</code> as your CSS file in your slides' YAML
+header. If you change the name of the output file using the <code>outfile</code>
+argument, use that name instead of the default file name.
+</p>
+<div class="sourceCode yaml"><pre>output:
+xaringan::moon_reader:
+  css: xaringan-themer.css
+</pre></div>
+
+
+<h3>See Also</h3>
+
+<p>Other themes: 
+<code>style_duo()</code>,
+<code>style_duo_accent()</code>,
+<code>style_duo_accent_inverse()</code>,
+<code>style_mono_accent()</code>,
+<code>style_mono_accent_inverse()</code>,
+<code>style_mono_light()</code>,
+<code>style_solarized_dark()</code>,
+<code>style_solarized_light()</code>,
+<code>xaringanthemer_font_default()</code>
+</p>
+<p>Other Monotone themes: 
+<code>style_mono_accent()</code>,
+<code>style_mono_accent_inverse()</code>,
+<code>style_mono_light()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Create a xaringan style in a temporary file
+xaringan_themer_css &lt;- tempfile("xaringan-themer-", fileext = ".css")
+
+style_mono_dark(
+  base_color = "#cbf7ed",
+  outfile = xaringan_themer_css # omit in your slides to write the
+                                # styles to xaringan-themer.css
+)
+
+# View the CSS:
+# file.edit(xaringan_themer_css)
+</code></pre>
+
+
+</div>

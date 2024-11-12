@@ -1,0 +1,143 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>onehot2sql</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Prepare training data in R so that it is ready for XGBoost model fitting.
+Meta information is stored so the exact transformation can be applied to any new data.
+It also outputs SQL query performing the exact one-hot encoding for in-database data preparation.</h2>
+
+<h3>Description</h3>
+
+<p>This function performs full one-hot encoding for all the categorical features inside the training data,
+with all NAs inside both categorical and numeric features preserved.
+Other than outputting a matrix <code>model.matrix</code> which is the data after processing,
+it also outputs <code>meta</code> information keeping track of all the transformation the function performs,
+while SQL query for the transformation is kept in output <code>sql</code> and write to the file specified by <code>output_file_name</code>.
+If <code>meta</code> is specified as input to the function, the transformation and the corresponding SQL query will
+follow what is kept in <code>meta</code> exactly.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">onehot2sql(data, meta = NULL, sep = "_", ws_replace = TRUE,
+  ws_replace_with = "", unique_id = NULL, output_file_name = NULL,
+  input_table_name = NULL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>data</code></td>
+<td>
+<p>Data object of class <code>data.frame</code> or <code>data.table</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>meta</code></td>
+<td>
+<p>Optional, a list keeps track of all the transformation that has been taken on the categorical features.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sep</code></td>
+<td>
+<p>Separation symbol between the categorical features and their levels, which will be the column names inside the output <code>model.matrix</code>, default to "_".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ws_replace</code></td>
+<td>
+<p>Boolean indicator controls whether white-space and punctuation inside categorical feature levels should be replaced, default to TRUE.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ws_replace_with</code></td>
+<td>
+<p>Replacing symbol, default to ” which means all white-space and punctuation should be removed.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>unique_id</code></td>
+<td>
+<p>A row unique identifier is crucial for in-database scoring of XGBoost model. If not given, SQL query will be generated with id name "ROW_KEY".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>output_file_name</code></td>
+<td>
+<p>Optional, a file name that the SQL query will write to.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>input_table_name</code></td>
+<td>
+<p>Name of raw data table in the database, that the SQL query will select from. If not given, SQL query will be generated with table name "INPUT_TABLE".</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A list of 1). <code>meta</code> data tracking the transformation;
+2). matrix <code>model.matrix</code> is the data after processing which is ready for XGBoost fitting;
+3). SQL query <code>sql</code> performing the exact one-hot encoding in the database.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">library(data.table)
+### load test data
+df = data.frame(ggplot2::diamonds)
+head(df)
+
+d1 = data.frame(ggplot2::diamonds)
+d1[1,2] = NA  # NA on 1st row cut
+d1[2,5] = NA  # NA on 2nd row depth
+head(d1)
+
+d2 = data.table(ggplot2::diamonds)
+d2[, cut:=factor(cut, ordered=FALSE)]
+d2[, clarity:=as.character(clarity)]
+d2[, tsdt:=as.IDate('2017-01-05')]
+d2[1:3, tsdt:=tsdt-1]
+head(d2)
+
+### out is obtained for training data
+out &lt;- onehot2sql(df)
+out1 &lt;- onehot2sql(d1)  # NA is kept in the output
+out2 &lt;- onehot2sql(d2)  # all non-numeric features will be treated as categorical
+
+### perform same transformation for new data when meta is given
+# test-1: new data has column class change
+newdata = df[1:5,]
+newdata$cut = as.character(newdata$cut)
+onehot2sql(newdata, meta=out$meta)$model.matrix
+
+# test-2: new data has NA
+newdata = df[1:5,]
+newdata[1,1]=NA; newdata[2,1]=NA; newdata[3,2]=NA; newdata[3,3]=NA; newdata[5,4]=NA
+onehot2sql(newdata, meta=out$meta)$model.matrix
+
+# test-3: newdata has column with new elements
+newdata = d2[1:5,]
+newdata[5,clarity:='NEW']; newdata[1,tsdt:=as.IDate('2017-05-01')]
+onehot2sql(newdata, meta=out2$meta)$model.matrix
+
+# test-4: newdata has new columns
+newdata = d2[1:5,]
+newdata[,new_col:=1]
+onehot2sql(newdata, meta=out2$meta)$model.matrix
+
+# test-5: newdata is lacking some columns
+newdata = d2[1:5,]
+newdata[,cut:=NULL]
+onehot2sql(newdata, meta=out2$meta)$model.matrix
+</code></pre>
+
+
+</div>

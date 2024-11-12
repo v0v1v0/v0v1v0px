@@ -1,0 +1,70 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>proteinInteraction</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Protein interaction for yeast</h2>
+
+<h3>Description</h3>
+
+<p>A dataset for examining the interaction between proteins of
+yeast. The dataset consists of the following objects:
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">proteinInteraction
+</code></pre>
+
+
+<h3>Format</h3>
+
+
+<ul>
+<li>
+<p> proteinInteraction: a numeric square matrix with 150 rows/columns
+</p>
+</li>
+<li>
+<p> Kmat_y2h_sc: a numeric square matrix with 150 rows/columns
+</p>
+</li>
+</ul>
+<h3>Details</h3>
+
+
+<ul>
+<li>
+<p> proteinInteraction: the label matrix based on the protein
+network taken from the KEGG/PATHWAY database
+</p>
+</li>
+<li>
+<p> Kmat_y2h_sc: a kernel matrix indicating similarity of proteins.
+</p>
+</li>
+</ul>
+<p>The proteins in the dataset are a subset of the 769 proteins
+used in Yamanishi et al (2004). The kernel matrix used is the
+combination of 4 kernels: one based on expression data, one
+on protein interaction data, one on localization data and one
+on phylogenetic profile. These kernels and their combination are
+also explained in Yamanishi et al (2004).
+</p>
+
+
+<h3>Source</h3>
+
+<p><a href="https://doi.org/10.1093/bioinformatics/bth910">https://doi.org/10.1093/bioinformatics/bth910</a>
+</p>
+
+
+<h3>References</h3>
+
+<p><a href="https://doi.org/10.1093/bioinformatics/bth910">Yamanishi et al, 2004</a>: Protein network inference from multiple genomic data: a supervised approach.
+</p>
+
+
+</div>

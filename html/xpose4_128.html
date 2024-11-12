@@ -1,0 +1,333 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>ind.plots.cwres.hist</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Histograms of weighted residuals for each individual in an Xpose data
+object, for Xpose 4</h2>
+
+<h3>Description</h3>
+
+<p>This is a compound plot consisting of histograms of the distribution of
+weighted residuals (any weighted residual available from NONMEM) for every
+individual in the dataset.  It is a wrapper encapsulating arguments to the
+<code>xpose.plot.histogram</code> function.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">ind.plots.cwres.hist(object, wres = "cwres", ...)
+
+ind.plots.wres.hist(
+  object,
+  main = "Default",
+  wres = "wres",
+  ylb = NULL,
+  layout = c(4, 4),
+  inclZeroWRES = FALSE,
+  subset = xsubset(object),
+  scales = list(cex = 0.7, tck = 0.5),
+  aspect = "fill",
+  force.by.factor = TRUE,
+  ids = F,
+  as.table = TRUE,
+  hicol = object@Prefs@Graph.prefs$hicol,
+  hilty = object@Prefs@Graph.prefs$hilty,
+  hilwd = object@Prefs@Graph.prefs$hilwd,
+  hidcol = object@Prefs@Graph.prefs$hidcol,
+  hidlty = object@Prefs@Graph.prefs$hidlty,
+  hidlwd = object@Prefs@Graph.prefs$hidlwd,
+  hiborder = object@Prefs@Graph.prefs$hiborder,
+  prompt = FALSE,
+  mirror = NULL,
+  main.cex = 0.9,
+  max.plots.per.page = 1,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An xpose.data object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>wres</code></td>
+<td>
+<p>Which weighted residual should we plot? Defaults to the WRES.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Other arguments passed to <code>xpose.plot.histogram</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>The title of the plot.  If <code>"Default"</code> then a default title
+is plotted. Otherwise the value should be a string like <code>"my title"</code> or
+<code>NULL</code> for no plot title.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylb</code></td>
+<td>
+<p>A string giving the label for the y-axis. <code>NULL</code> if none.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>layout</code></td>
+<td>
+<p>A list giving the layout of the graphs on the plot, in columns
+and rows. The default is 4x4.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>inclZeroWRES</code></td>
+<td>
+<p>Logical value indicating whether rows with WRES=0 is
+included in the plot. The default is FALSE.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>subset</code></td>
+<td>
+<p>A string giving the subset expression to be applied to the
+data before plotting. See <code>xsubset</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>scales</code></td>
+<td>
+<p>see <code>xpose.plot.histogram</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>aspect</code></td>
+<td>
+<p>see <code>xpose.plot.histogram</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>force.by.factor</code></td>
+<td>
+<p>see <code>xpose.plot.histogram</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ids</code></td>
+<td>
+<p>see <code>xpose.plot.histogram</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>as.table</code></td>
+<td>
+<p>see <code>xpose.plot.histogram</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hicol</code></td>
+<td>
+<p>the fill colour of the histogram - an integer or string.  The
+default is blue (see <code>histogram</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hilty</code></td>
+<td>
+<p>the border line type of the histogram - an integer.  The
+default is 1 (see <code>histogram</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hilwd</code></td>
+<td>
+<p>the border line width of the histogram - an integer.  The
+default is 1 (see <code>histogram</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hidcol</code></td>
+<td>
+<p>the fill colour of the density line - an integer or string.
+The default is black (see <code>histogram</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hidlty</code></td>
+<td>
+<p>the border line type of the density line - an integer.  The
+default is 1 (see <code>histogram</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hidlwd</code></td>
+<td>
+<p>the border line width of the density line - an integer.  The
+default is 1 (see <code>histogram</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hiborder</code></td>
+<td>
+<p>the border colour of the histogram - an integer or string.
+The default is black (see <code>histogram</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>prompt</code></td>
+<td>
+<p>Specifies whether or not the user should be prompted to press
+RETURN between plot pages. Default is FALSE.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mirror</code></td>
+<td>
+<p>Mirror plots are not yet implemented in this function and this
+argument must contain a value of <code>NULL</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main.cex</code></td>
+<td>
+<p>The size of the title.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max.plots.per.page</code></td>
+<td>
+<p>Maximum number of plots per page</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Matrices of histograms of weighted residuals in each included individual are
+displayed. <code>ind.plots.cwres.hist</code> is just a wrapper for
+<code>ind.plots.wres.hist(object,wres="cwres").</code>
+</p>
+
+
+<h3>Value</h3>
+
+<p>Returns a compound plot comprising histograms of weighted residual
+conditioned on individual.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul><li> <p><code>ind.plots.cwres.hist()</code>: Histograms of conditional 
+weighted residuals for each individual
+</p>
+</li></ul>
+<h3>Author(s)</h3>
+
+<p>E. Niclas Jonsson, Mats Karlsson, Justin Wilkins &amp; Andrew Hooker
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xpose.plot.histogram</code>,
+<code>xpose.panel.histogram</code>, <code>histogram</code>,
+<code>xpose.prefs-class</code>, <code>xpose.data-class</code>
+</p>
+<p>Other specific functions: 
+<code>absval.cwres.vs.cov.bw()</code>,
+<code>absval.cwres.vs.pred()</code>,
+<code>absval.cwres.vs.pred.by.cov()</code>,
+<code>absval.iwres.cwres.vs.ipred.pred()</code>,
+<code>absval.iwres.vs.cov.bw()</code>,
+<code>absval.iwres.vs.idv()</code>,
+<code>absval.iwres.vs.ipred()</code>,
+<code>absval.iwres.vs.ipred.by.cov()</code>,
+<code>absval.iwres.vs.pred()</code>,
+<code>absval.wres.vs.cov.bw()</code>,
+<code>absval.wres.vs.idv()</code>,
+<code>absval.wres.vs.pred()</code>,
+<code>absval.wres.vs.pred.by.cov()</code>,
+<code>absval_delta_vs_cov_model_comp</code>,
+<code>addit.gof()</code>,
+<code>autocorr.cwres()</code>,
+<code>autocorr.iwres()</code>,
+<code>autocorr.wres()</code>,
+<code>basic.gof()</code>,
+<code>basic.model.comp()</code>,
+<code>cat.dv.vs.idv.sb()</code>,
+<code>cat.pc()</code>,
+<code>cov.splom()</code>,
+<code>cwres.dist.hist()</code>,
+<code>cwres.dist.qq()</code>,
+<code>cwres.vs.cov()</code>,
+<code>cwres.vs.idv()</code>,
+<code>cwres.vs.idv.bw()</code>,
+<code>cwres.vs.pred()</code>,
+<code>cwres.vs.pred.bw()</code>,
+<code>cwres.wres.vs.idv()</code>,
+<code>cwres.wres.vs.pred()</code>,
+<code>dOFV.vs.cov()</code>,
+<code>dOFV.vs.id()</code>,
+<code>dOFV1.vs.dOFV2()</code>,
+<code>data.checkout()</code>,
+<code>dv.preds.vs.idv()</code>,
+<code>dv.vs.idv()</code>,
+<code>dv.vs.ipred()</code>,
+<code>dv.vs.ipred.by.cov()</code>,
+<code>dv.vs.ipred.by.idv()</code>,
+<code>dv.vs.pred()</code>,
+<code>dv.vs.pred.by.cov()</code>,
+<code>dv.vs.pred.by.idv()</code>,
+<code>dv.vs.pred.ipred()</code>,
+<code>gof()</code>,
+<code>ind.plots()</code>,
+<code>ind.plots.cwres.qq()</code>,
+<code>ipred.vs.idv()</code>,
+<code>iwres.dist.hist()</code>,
+<code>iwres.dist.qq()</code>,
+<code>iwres.vs.idv()</code>,
+<code>kaplan.plot()</code>,
+<code>par_cov_hist</code>,
+<code>par_cov_qq</code>,
+<code>parm.vs.cov()</code>,
+<code>parm.vs.parm()</code>,
+<code>pred.vs.idv()</code>,
+<code>ranpar.vs.cov()</code>,
+<code>runsum()</code>,
+<code>wres.dist.hist()</code>,
+<code>wres.dist.qq()</code>,
+<code>wres.vs.idv()</code>,
+<code>wres.vs.idv.bw()</code>,
+<code>wres.vs.pred()</code>,
+<code>wres.vs.pred.bw()</code>,
+<code>xpose.VPC()</code>,
+<code>xpose.VPC.both()</code>,
+<code>xpose.VPC.categorical()</code>,
+<code>xpose4-package</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Here we load the example xpose database 
+xpdb &lt;- simpraz.xpdb
+
+## A plot of the first 16 individuals
+ind.plots.cwres.hist(xpdb, subset="ID&lt;18")
+
+</code></pre>
+
+
+</div>

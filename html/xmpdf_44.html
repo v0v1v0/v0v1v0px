@@ -1,0 +1,71 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>spdx_licenses</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>SPDX License List data</h2>
+
+<h3>Description</h3>
+
+<p><code>spdx_licenses</code> is a data frame of SPDX License List data.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">spdx_licenses
+</code></pre>
+
+
+<h3>Format</h3>
+
+<p>a data frame with eight variables:
+</p>
+
+<dl>
+<dt>id</dt>
+<dd>
+<p>SPDX Identifier.</p>
+</dd>
+<dt>name</dt>
+<dd>
+<p>Full name of license.
+For Creative Commons licenses these have been tweaked from the SPDX version
+to more closely match the full name used by Creative Commons Foundation. </p>
+</dd>
+<dt>url</dt>
+<dd>
+<p>URL for copy of license located at <code>spdx.org</code></p>
+</dd>
+<dt>fsf</dt>
+<dd>
+<p>Is this license considered Free/Libre by the FSF?</p>
+</dd>
+<dt>osi</dt>
+<dd>
+<p>Is this license OSI approved?</p>
+</dd>
+<dt>deprecated</dt>
+<dd>
+<p>Has this SPDFX Identifier been deprecated by SPDX?</p>
+</dd>
+<dt>url_alt</dt>
+<dd>
+<p>Alternative URL for license.
+Manually created for a subset of Creative Commons licenses.
+Others taken from <a href="https://github.com/sindresorhus/spdx-license-list">https://github.com/sindresorhus/spdx-license-list</a>.
+</p>
+</dd>
+<dt>pd</dt>
+<dd>
+<p>Is this license a "public domain" license?  Manually created.</p>
+</dd>
+</dl>
+<h3>See Also</h3>
+
+<p>See <a href="https://spdx.org/licenses/">https://spdx.org/licenses/</a> for more information.
+</p>
+
+
+</div>

@@ -1,0 +1,109 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>ata_helpers</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Helper functions of ATA</h2>
+
+<h3>Description</h3>
+
+<p>miscellaneous helper functions of ATA
+</p>
+<p><code>ata_append_constraints</code> appends constraint definitions to the model
+</p>
+<p><code>ata_form_index</code> converts input forms into actual form indices in the model
+</p>
+<p><code>ata_obj_coef</code> processes input coefficients of the objective functions
+</p>
+<p><code>ata_solve_lpsolve</code> solves the the MIP model using lp_solve
+</p>
+<p><code>ata_solve_glpk</code> solves the the MIP model using GLPK
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">ata_append_constraints(x, mat, dir, rhs)
+
+ata_form_index(x, forms, collapse, internal_index)
+
+ata_obj_coef(x, coef, compensate)
+
+ata_solve_lpsolve(x, time_limit, message, ...)
+
+ata_solve_glpk(x, time_limit, message, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>mat</code></td>
+<td>
+<p>coefficient matrix</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dir</code></td>
+<td>
+<p>direction</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>rhs</code></td>
+<td>
+<p>right-hand-side value</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>forms</code></td>
+<td>
+<p>indices of forms</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>collapse</code></td>
+<td>
+<p><code>TRUE</code> to collaspe forms into one form</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>internal_index</code></td>
+<td>
+<p><code>TRUE</code> to use internal form indices</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>coef</code></td>
+<td>
+<p>coefficients</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>compensate</code></td>
+<td>
+<p><code>TRUE</code> to combine coefficients</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>time_limit</code></td>
+<td>
+<p>the time limit in seconds passed along to solvers</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>message</code></td>
+<td>
+<p><code>TRUE</code> to print messages from solvers</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>additional control parameters for solvers</p>
+</td>
+</tr>
+</table>
+</div>

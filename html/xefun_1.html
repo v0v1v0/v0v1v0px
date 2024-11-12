@@ -1,0 +1,54 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>as.list2</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>vector to list</h2>
+
+<h3>Description</h3>
+
+<p>Converting a vector to a list with names specified.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">as.list2(x, name = TRUE, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>a vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>name</code></td>
+<td>
+<p>specify the names of list. Setting the names of list as x by default.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional parameters provided in the as.list function.</p>
+</td>
+</tr>
+</table>
+<h3>Examples</h3>
+
+<pre><code class="language-R">as.list2(c('a', 'b'))
+
+as.list2(c('a', 'b'), name = FALSE)
+
+as.list2(c('a', 'b'), name = c('c', 'd'))
+
+</code></pre>
+
+
+</div>

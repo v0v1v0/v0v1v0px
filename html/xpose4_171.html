@@ -1,0 +1,238 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>runsum</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Print run summary in Xpose 4</h2>
+
+<h3>Description</h3>
+
+<p>Function to build Xpose run summaries.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">runsum(
+  object,
+  dir = "",
+  modfile = paste(dir, "run", object@Runno, ".mod", sep = ""),
+  listfile = paste(dir, "run", object@Runno, ".lst", sep = ""),
+  main = NULL,
+  subset = xsubset(object),
+  show.plots = TRUE,
+  txt.cex = 0.7,
+  txt.font = 1,
+  show.ids = FALSE,
+  param.table = TRUE,
+  txt.columns = 2,
+  force.wres = FALSE,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An xpose.data object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dir</code></td>
+<td>
+<p>The directory to look for the model and output file of a NONMEM
+run.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>modfile</code></td>
+<td>
+<p>The name of the NONMEM control stream associated with the
+current run.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>listfile</code></td>
+<td>
+<p>The name of the NONMEM output file associated with the
+current run.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>A string giving the main heading. <code>NULL</code> if none.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>subset</code></td>
+<td>
+<p>A string giving the subset expression to be applied to the
+data before plotting. See <code>xsubset</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>show.plots</code></td>
+<td>
+<p>Logical indicating if GOF plots should be shown in the run
+summary.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>txt.cex</code></td>
+<td>
+<p>Number indicating the size of the txt in the run summary.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>txt.font</code></td>
+<td>
+<p>Font of the text in the run summary.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>show.ids</code></td>
+<td>
+<p>Logical indicating if IDs should be plotted in the plots for
+the run summary.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>param.table</code></td>
+<td>
+<p>Logical indicating if the parameter table should be shown
+in the run summary.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>txt.columns</code></td>
+<td>
+<p>The number of text columns in the run summary.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>force.wres</code></td>
+<td>
+<p>Plot the WRES even if other residuals are available.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Other arguments passed to the various functions.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A compound plot containing an Xpose run summary is created.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Niclas Jonsson and Andrew Hooker
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other specific functions: 
+<code>absval.cwres.vs.cov.bw()</code>,
+<code>absval.cwres.vs.pred()</code>,
+<code>absval.cwres.vs.pred.by.cov()</code>,
+<code>absval.iwres.cwres.vs.ipred.pred()</code>,
+<code>absval.iwres.vs.cov.bw()</code>,
+<code>absval.iwres.vs.idv()</code>,
+<code>absval.iwres.vs.ipred()</code>,
+<code>absval.iwres.vs.ipred.by.cov()</code>,
+<code>absval.iwres.vs.pred()</code>,
+<code>absval.wres.vs.cov.bw()</code>,
+<code>absval.wres.vs.idv()</code>,
+<code>absval.wres.vs.pred()</code>,
+<code>absval.wres.vs.pred.by.cov()</code>,
+<code>absval_delta_vs_cov_model_comp</code>,
+<code>addit.gof()</code>,
+<code>autocorr.cwres()</code>,
+<code>autocorr.iwres()</code>,
+<code>autocorr.wres()</code>,
+<code>basic.gof()</code>,
+<code>basic.model.comp()</code>,
+<code>cat.dv.vs.idv.sb()</code>,
+<code>cat.pc()</code>,
+<code>cov.splom()</code>,
+<code>cwres.dist.hist()</code>,
+<code>cwres.dist.qq()</code>,
+<code>cwres.vs.cov()</code>,
+<code>cwres.vs.idv()</code>,
+<code>cwres.vs.idv.bw()</code>,
+<code>cwres.vs.pred()</code>,
+<code>cwres.vs.pred.bw()</code>,
+<code>cwres.wres.vs.idv()</code>,
+<code>cwres.wres.vs.pred()</code>,
+<code>dOFV.vs.cov()</code>,
+<code>dOFV.vs.id()</code>,
+<code>dOFV1.vs.dOFV2()</code>,
+<code>data.checkout()</code>,
+<code>dv.preds.vs.idv()</code>,
+<code>dv.vs.idv()</code>,
+<code>dv.vs.ipred()</code>,
+<code>dv.vs.ipred.by.cov()</code>,
+<code>dv.vs.ipred.by.idv()</code>,
+<code>dv.vs.pred()</code>,
+<code>dv.vs.pred.by.cov()</code>,
+<code>dv.vs.pred.by.idv()</code>,
+<code>dv.vs.pred.ipred()</code>,
+<code>gof()</code>,
+<code>ind.plots()</code>,
+<code>ind.plots.cwres.hist()</code>,
+<code>ind.plots.cwres.qq()</code>,
+<code>ipred.vs.idv()</code>,
+<code>iwres.dist.hist()</code>,
+<code>iwres.dist.qq()</code>,
+<code>iwres.vs.idv()</code>,
+<code>kaplan.plot()</code>,
+<code>par_cov_hist</code>,
+<code>par_cov_qq</code>,
+<code>parm.vs.cov()</code>,
+<code>parm.vs.parm()</code>,
+<code>pred.vs.idv()</code>,
+<code>ranpar.vs.cov()</code>,
+<code>wres.dist.hist()</code>,
+<code>wres.dist.qq()</code>,
+<code>wres.vs.idv()</code>,
+<code>wres.vs.idv.bw()</code>,
+<code>wres.vs.pred()</code>,
+<code>wres.vs.pred.bw()</code>,
+<code>xpose.VPC()</code>,
+<code>xpose.VPC.both()</code>,
+<code>xpose.VPC.categorical()</code>,
+<code>xpose4-package</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">od = setwd(tempdir()) # move to a temp directory
+(cur.files &lt;- dir()) # current files in temp directory
+
+simprazExample(overwrite=TRUE) # write files
+(new.files &lt;- dir()[!(dir() %in% cur.files)])  # what files are new here?
+
+xpdb &lt;- xpose.data(1)
+runsum(xpdb)
+
+
+file.remove(new.files) # remove these files
+setwd(od)  # restore working directory
+
+
+</code></pre>
+
+
+</div>

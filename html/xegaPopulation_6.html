@@ -1,0 +1,187 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>ApplyFactory</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Configure the the execution model for gene evaluation.</h2>
+
+<h3>Description</h3>
+
+<p>The current approach to distribution/parallelization of the genetic
+algorithm is to parallelize the evaluation of the fitness function
+only. The execution model defines the function <code>lF$lapply()</code>
+used in the function <code>EvalPopulation()</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">ApplyFactory(method = "Sequential")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>The label of the execution model: 
+"Sequential" | "MultiCore" | 
+"FutureApply" |  "Cluster".</p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+<p>Currently we support the following parallelization models:
+</p>
+
+<ol>
+<li>
+<p> "Sequential": Uses <code>base::apply()</code>. (Default).
+</p>
+</li>
+<li>
+<p> "MultiCore": Uses <code>parallel::mclapply()</code>. 
+</p>
+</li>
+<li>
+<p> "FutureApply": Uses <code>future.apply::future_lapply()</code>
+Plans must be set up and
+worker processes must be stopped.
+</p>
+</li>
+<li>
+<p> "Cluster": Uses <code>parallel:parLapply()</code>.
+A cluster object must be set up and the 
+worker processes must be stopped. 
+</p>
+</li>
+</ol>
+<p>The execution model <strong>"MultiCore"</strong> provides parallelization restricted 
+to a single computer: The master process starts R slave processes 
+by fork() which are are run in separate memory spaces. 
+At the time of fork() both memory spaces 
+have the same content. Memory writes performed by one of the processes
+do not affect the other. 
+</p>
+<p>The execution model <strong>"FutureApply"</strong> makes the possibilities 
+of the future backends for a wide range of parallel and distributed 
+architectures available.  
+The models of parallel resolving a future use 
+different types of communication between master 
+and slaves: 
+</p>
+ 
+<ol>
+<li> <p><code>plan(sequential)</code> configures sequential execution. Default.
+</p>
+</li>
+<li> <p><code>w&lt;-5; plan(multicore, workers=w)</code> configures an 
+asynchronous multicore execution of futures on 5 workers.
+</p>
+</li>
+<li> <p><code>w&lt;-8; plan(multisession, workers=w)</code> configures a 
+multisession environment with 5 workers. 
+The evaluation of the future is done in parallel in 5 other 
+R sessions on the same machine. 
+Communication is done via socket connections, 
+the R sessions started serve multiple futures over their life time.
+The worker R sessions are stopped by calling <code>plan(sequential)</code>.
+The number of parallel sessions is restricted by the availability
+of connections. Up to R version 4.3, 
+a maximum of 125 connections is available.
+</p>
+</li>
+<li> <p><code>w&lt;-7; plan(callr, workers=w)</code> configures  
+the evaluation of futures on top of the <code>callr</code> package.
+The <code>callr</code> package creates for each future a separate R session.
+The communications is via files of serialized R objects.
+The advantages of <code>callr</code> are:
+</p>
+  
+<ol>
+<li>
+<p> Each <code>callr</code> future is evaluated in a new R session
+which ends as soon as the value of the future has been 
+collected.
+</p>
+</li>
+<li>
+<p> The number of parallel <code>callr</code> futures is not restricted
+by the number of available connections, because the 
+communication is based on files of serialized R objects.
+</p>
+</li>
+<li>
+<p> No ports are used. This means no port clashes with other 
+processes and no firewall issues.
+</p>
+</li>
+</ol>
+</li>
+<li>
+<p> Setting up a cluster environment for resolving futures works
+as follows. Write a function with the following elements:
+</p>
+
+<ol>
+<li>
+<p> Generate a cluster object:
+</p>
+<p><code>cl&lt;-makeClusterPSOCK(rep("localhost", workers)</code> 
+</p>
+</li>
+<li>
+<p> Set up an on.exit condition for stopping the worker processes.
+</p>
+<p><code>on.exit(parallel::stopCluster(cl))</code>
+</p>
+</li>
+<li>
+<p> Set up the plan for resolving the future:
+</p>
+<p><code>oldplan&lt;-plan(cluster, workers=cl)</code>
+</p>
+</li>
+<li>
+<p> Call the function with <code>future.apply::future_lapply</code>.
+E.g. the genetic algorithm.
+</p>
+</li>
+<li>
+<p> Restore the previous plan:
+<code>plan(oldplan)</code>
+</p>
+</li>
+</ol>
+<p>The cluster processes may be located on one or several computers.
+The communication between the processes is via sockets.
+Remote computers must allow the use of ssh to start R-processes
+without an interactive login.
+</p>
+</li>
+</ol>
+<p>The execution model <strong>"Cluster"</strong> allows the configuration of 
+master-slave processing on local and remote machines.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A function with the same result as the <code>lapply()</code>-function.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Configuration: 
+<code>AcceptFactory()</code>,
+<code>CoolingFactory()</code>,
+<code>CrossRateFactory()</code>,
+<code>MutationRateFactory()</code>,
+<code>xegaConfiguration()</code>
+</p>
+
+
+</div>

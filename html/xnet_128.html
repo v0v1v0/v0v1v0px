@@ -1,0 +1,77 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>tskrrImputeHomogeneous-class</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Class tskrrImputeHomogeneous</h2>
+
+<h3>Description</h3>
+
+<p>The class <code>tskrrImputeHomogeneous</code> is a subclass of the
+class <code>tskrrHomogeneous</code> and
+<code>tskrrImpute</code>
+specifically for homogeneous networks with imputed values. It is
+the result of the function <code>impute_tskrr</code> on a
+homogeneous network model.
+</p>
+
+
+<h3>Slots</h3>
+
+
+<dl>
+<dt><code>y</code></dt>
+<dd>
+<p>the matrix with responses</p>
+</dd>
+<dt><code>k</code></dt>
+<dd>
+<p>the eigen decomposition of the kernel matrix for the rows</p>
+</dd>
+<dt><code>lambda.k</code></dt>
+<dd>
+<p>the lambda value used for k</p>
+</dd>
+<dt><code>pred</code></dt>
+<dd>
+<p>the matrix with the predictions</p>
+</dd>
+<dt><code>symmetry</code></dt>
+<dd>
+<p>a character value that can have the possible values
+<code>"symmetric"</code>, <code>"skewed"</code> or <code>"not"</code>. It indicates
+whether the <code>y</code> matrix is symmetric, skewed-symmetric or not
+symmetric.</p>
+</dd>
+<dt><code>has.hat</code></dt>
+<dd>
+<p>a logical value indicating whether the kernel hat matrices
+are stored in the object.</p>
+</dd>
+<dt><code>Hk</code></dt>
+<dd>
+<p>the kernel hat matrix for the rows.</p>
+</dd>
+<dt><code>labels</code></dt>
+<dd>
+<p>a list with elements <code>k</code> and <code>g</code> (see
+<code>tskrr-class</code>). For homogeneous networks, <code>g</code>
+is always <code>NA</code>. If <code>k</code> is <code>NA</code>, the labels used
+are integers indicating the row resp column number.</p>
+</dd>
+<dt><code>imputeid</code></dt>
+<dd>
+<p>a vector with integer values indicating which of
+the values in <code>y</code> are imputed</p>
+</dd>
+<dt><code>niter</code></dt>
+<dd>
+<p>an integer value gving the number of iterations used</p>
+</dd>
+<dt><code>tol</code></dt>
+<dd>
+<p>a numeric value with the tolerance used</p>
+</dd>
+</dl>
+</div>

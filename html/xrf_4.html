@@ -1,0 +1,48 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>print.xrf</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Print an eXtreme RuleFit model</h2>
+
+<h3>Description</h3>
+
+<p>Print an eXtreme RuleFit model
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S3 method for class 'xrf'
+print(x, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>an object of class "xrf"</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>ignored arguments</p>
+</td>
+</tr>
+</table>
+<h3>Examples</h3>
+
+<pre><code class="language-R">m &lt;- xrf(Petal.Length ~ ., iris,
+         xgb_control = list(nrounds = 2, max_depth = 2),
+         family = 'gaussian')
+print(m)
+
+</code></pre>
+
+
+</div>

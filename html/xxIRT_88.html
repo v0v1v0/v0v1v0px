@@ -1,0 +1,187 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>model_grm</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Graded Response Model</h2>
+
+<h3>Description</h3>
+
+<p>Routine functions for the GRM
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">model_grm_prob(t, a, b, D = 1.702, raw = FALSE)
+
+model_grm_info(t, a, b, D = 1.702)
+
+model_grm_lh(u, t, a, b, D = 1.702, log = FALSE)
+
+model_grm_gendata(n_p, n_i, n_c, t = NULL, a = NULL, b = NULL,
+  D = 1.702, t_dist = c(0, 1), a_dist = c(-0.1, 0.2), b_dist = c(0,
+  0.8), missing = NULL)
+
+model_grm_rescale(t, a, b, param = c("t", "b"), mean = 0, sd = 1)
+
+model_grm_plot(a, b, D = 1.702, type = c("prob", "info"),
+  by_item = FALSE, total = FALSE, xaxis = seq(-6, 6, 0.1),
+  raw = FALSE)
+
+model_grm_plot_loglh(u, a, b, D = 1.702, xaxis = seq(-6, 6, 0.1),
+  show_mle = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>t</code></td>
+<td>
+<p>ability parameters, 1d vector</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>a</code></td>
+<td>
+<p>discrimination parameters, 1d vector</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>b</code></td>
+<td>
+<p>item location parameters, 2d matrix</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>D</code></td>
+<td>
+<p>the scaling constant, 1.702 by default</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>raw</code></td>
+<td>
+<p>TRUE to return P*</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>u</code></td>
+<td>
+<p>the observed scores (starting from 0), 2d matrix</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>log</code></td>
+<td>
+<p>TRUE to return log-likelihood</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>n_p</code></td>
+<td>
+<p>the number of people to be generated</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>n_i</code></td>
+<td>
+<p>the number of items to be generated</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>n_c</code></td>
+<td>
+<p>the number of score categories</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>t_dist</code></td>
+<td>
+<p>parameters of the normal distribution used to generate t-parameters</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>a_dist</code></td>
+<td>
+<p>parameters of the lognormal distribution used to generate a-parameters</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>b_dist</code></td>
+<td>
+<p>parameters of the normal distribution used to generate b-parameters</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>missing</code></td>
+<td>
+<p>the proportion or number of missing responses</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>param</code></td>
+<td>
+<p>the parameter of the new scale: 't' or 'b'</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>mean</code></td>
+<td>
+<p>the mean of the new scale</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sd</code></td>
+<td>
+<p>the standard deviation of the new scale</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>type</code></td>
+<td>
+<p>the type of plot, prob for ICC and info for IIFC</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>by_item</code></td>
+<td>
+<p>TRUE to combine categories</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>total</code></td>
+<td>
+<p>TRUE to sum values over items</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xaxis</code></td>
+<td>
+<p>the values of x-axis</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>show_mle</code></td>
+<td>
+<p>TRUE to print maximum likelihood values</p>
+</td>
+</tr>
+</table>
+<h3>Examples</h3>
+
+<pre><code class="language-R">with(model_grm_gendata(10, 5, 3), model_grm_prob(t, a, b))
+with(model_grm_gendata(10, 5, 3), model_grm_info(t, a, b))
+with(model_grm_gendata(10, 5, 3), model_grm_lh(u, t, a, b))
+model_grm_gendata(10, 5, 3)
+model_grm_gendata(10, 5, 3, missing=.1)
+with(model_grm_gendata(10, 5, 3), model_grm_plot(a, b, type='prob'))
+with(model_grm_gendata(10, 5, 3), model_grm_plot(a, b, type='info', by_item=TRUE))
+with(model_grm_gendata(5, 50, 3), model_grm_plot_loglh(u, a, b))
+</code></pre>
+
+
+</div>

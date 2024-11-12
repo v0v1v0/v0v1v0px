@@ -1,0 +1,110 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>compileBNF</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Compile a  BNF (Backus-Naur Form) of a context-free grammar.</h2>
+
+<h3>Description</h3>
+
+<p><code>compileBNF</code> produces a context-free grammar  
+from its specification in Backus-Naur form (BNF).   
+Warning: No error checking is implemented.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">compileBNF(g, verbose = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>g</code></td>
+<td>
+<p>A character string with a BNF.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbose</code></td>
+<td>
+<p>Boolean. TRUE: Show progress. Default: FALSE.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>A grammar consists of the symbol table <code>ST</code>, the production
+table <code>PT</code>, the start symbol <code>Start</code>, 
+and the short production
+table <code>SPT</code>.
+</p>
+<p>The function performs the following steps:
+</p>
+
+<ol>
+<li>
+<p> Make the symbol table. See <code>makeSymbolTable</code>.
+</p>
+</li>
+<li>
+<p> Make the production table. See <code>makeProductionTable</code>.
+</p>
+</li>
+<li>
+<p> Extract the start symbol. See <code>makeStartSymbol</code>.
+</p>
+</li>
+<li>
+<p> Compile a short production table. See <code>compileShortPT</code>.
+</p>
+</li>
+<li>
+<p> Return the grammar.</p>
+</li>
+</ol>
+<h3>Value</h3>
+
+<p>A grammar object (list) with the attributes 
+</p>
+
+<ul>
+<li> <p><code>name</code> (the filename of the grammar),
+</p>
+</li>
+<li> <p><code>ST</code> (symbol table), 
+</p>
+</li>
+<li> <p><code>PT</code> (production table), 
+</p>
+</li>
+<li> <p><code>Start</code> (the start symbol of the grammar), and
+</p>
+</li>
+<li> <p><code>SPT</code> (the short production table).
+</p>
+</li>
+</ul>
+<h3>References</h3>
+
+<p>Geyer-Schulz, Andreas (1997):
+<em>Fuzzy Rule-Based Expert Systems and Genetic Machine Learning</em>,
+Physica, Heidelberg. (ISBN:978-3-7908-0830-X)
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">g&lt;-compileBNF(booleanGrammar())
+g$ST
+g$PT
+g$Start
+g$SPT
+</code></pre>
+
+
+</div>

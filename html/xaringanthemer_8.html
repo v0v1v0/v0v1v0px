@@ -1,0 +1,59 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>google_font</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Specify Google Font</h2>
+
+<h3>Description</h3>
+
+<p>Builds Google Fonts URL from family name. Extra weights are given in the
+<code>...</code> parameters. Languages can be specified in <code>languages</code> and must one or
+more of the language codes as given by <code>google_language_codes()</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">google_font(family, ..., languages = NULL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>family</code></td>
+<td>
+<p>Font family</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Font weights to include, example "400", "400i"</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>languages</code></td>
+<td>
+<p>Font languages to include (dependent on the font.) See
+<code>google_language_codes()</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A <code>"google_font"</code> object.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">google_font("Josefin Sans", "400", "400i", "600i", "700")
+google_font("Josefin Sans", languages = c("latin-ext", "vietnamese"))
+</code></pre>
+
+
+</div>

@@ -1,0 +1,70 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>MutationRateFactory</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Configure the mutation rate function of a genetic algorithm.</h2>
+
+<h3>Description</h3>
+
+<p>The <code>MutationRateFactory()</code> implements selection
+of one of the crossover rate functions in this
+package by specifying a text string.
+The selection fails ungracefully (produces
+a runtime error), if the label does not match.
+The functions are specified locally.
+</p>
+<p>Current support:
+</p>
+
+<ol>
+<li>
+<p> "Const" returns <code>ConstMRate()</code> (Default).
+</p>
+</li>
+<li>
+<p> "IV" returns <code>IAMrate()</code>.
+This function gives bad genes a higher mutation rate.
+</p>
+</li>
+</ol>
+<h3>Usage</h3>
+
+<pre><code class="language-R">MutationRateFactory(method = "Const")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>A string specifying a function for the mutation rate.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A mutation rate function.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Configuration: 
+<code>AcceptFactory()</code>,
+<code>ApplyFactory()</code>,
+<code>CoolingFactory()</code>,
+<code>CrossRateFactory()</code>,
+<code>xegaConfiguration()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">f&lt;-MutationRateFactory("Const")
+f(10, list(MutationRate1=function() {0.2}))
+</code></pre>
+
+
+</div>

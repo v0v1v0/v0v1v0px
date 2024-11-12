@@ -1,0 +1,158 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>read_nm_model</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>NONMEM model file parser</h2>
+
+<h3>Description</h3>
+
+<p>Parse NONMEM model files in R format
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">read_nm_model(
+  runno = NULL,
+  prefix = "run",
+  ext = ".lst",
+  file = NULL,
+  dir = NULL,
+  check_ext = TRUE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>runno</code></td>
+<td>
+<p>Run number to be used to generate model file name. Used in
+combination with <code>prefix</code> and <code>ext</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>prefix</code></td>
+<td>
+<p>Prefix to be used to generate model file name. Used in
+combination with <code>runno</code> and <code>ext</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ext</code></td>
+<td>
+<p>Extension to be used to generate model file name. Should be one of
+'.lst' (default), '.out', '.res', '.mod' or '.ctl' for NONMEM.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>file</code></td>
+<td>
+<p>Model file name (preferably a '.lst' file) containing the file
+extension. Alternative to <code>prefix</code>, <code>runno</code> and <code>ext</code>
+arguments.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dir</code></td>
+<td>
+<p>Location of the model files.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>check_ext</code></td>
+<td>
+<p>Logical, if <code>TRUE</code> will provide an error message if the
+extension of the NONMEM input file is not one of '.lst', '.out', '.res',
+'.mod' or '.ctl' for NONMEM. If <code>FALSE</code> any file extension can be
+used.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>A NONMEM model output file (i.e. .lst, .out or .res) should preferably be provided to <code>read_nm_model</code> to allow for a more extensive xpose 
+summary. However in some cases these output files may not contain the model code, thus preventing xpose from identifying the associated output 
+tables names. In such cases xpose will attempt to read the associated model file (i.e. .mod or .ctl) instead to find the model code. Note: it 
+is important that between the naming convention between the NONMEM output and the model file remains consistent e.g. run001.lst should be 
+associated with run001.mod.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A <code>tibble</code> of class <code>model</code> containing the following columns: 
+</p>
+
+<ul>
+<li>
+<p> problem: a numeric identifier for the $PROBLEM associated with the code.
+</p>
+</li>
+<li>
+<p> level: a unique numeric identifier to each subroutine block associated with the code.
+</p>
+</li>
+<li>
+<p> subroutine: a character identifier named after the 3 first letters of the subroutine name e.g. '$THETA' and 
+'$TABLE' will become 'the' and 'tab' respectively. In addition all output from the .lst is labeled 'lst', the general nonmem 
+output e.g. NM-TRAN messages are labelled 'oth'. With priors thp, tpv, omp, opd, sip, spd abbreviations are given to the THETAP, 
+THETAPV, OMEGAP, etc.
+</p>
+</li>
+<li>
+<p> code: the code without comments or subroutine names e.g. '$THETA 0.5 ; TVCL' will return '0.5'.
+</p>
+</li>
+<li>
+<p> comment: the last comment of a record e.g. '0.5 ; Clearance (L/h) ; TVCL' will return 'TVCL'.
+</p>
+</li>
+</ul>
+<h3>File path generation</h3>
+
+<p>The rules for model file names generation are
+as follow: </p>
+
+<ul>
+<li>
+<p> with <code>runno</code>: the full path is generated as
+<code>&lt;dir&gt;/&lt;prefix&gt;&lt;runno&gt;.&lt;ext&gt;</code> e.g. with <code>dir = 'model/pk'</code>,
+<code>prefix = 'run'</code>, <code>runno = '001'</code>, <code>ext = '.lst'</code> the
+resulting path would be <code>model/pk/run001.lst</code>
+</p>
+</li>
+<li>
+<p> with <code>file</code>:
+the full path is generated as <code>&lt;dir&gt;/&lt;file&gt;</code> e.g. with <code>dir =
+  'model/pk'</code>, <code>file = 'run001.lst'</code> the resulting path would also be
+<code>model/pk/run001.lst</code>. Note: in this case the file extension should be
+provided as part of the 'file' argument.
+</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p><code>xpose_data</code>, <code>read_nm_tables</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+# Using the `file` argument to import a model file:
+nm_model &lt;- read_nm_model(file = 'run001.lst', dir = 'models')
+
+# Using the `runno` argument to import a model file:
+nm_model &lt;- read_nm_model(runno = '001', ext = '.lst', dir = 'models')
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

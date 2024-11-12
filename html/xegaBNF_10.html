@@ -1,0 +1,55 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>makeStartSymbol</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Extracts the numerical identifier of the start symbol of the grammar.</h2>
+
+<h3>Description</h3>
+
+<p><code>makeStartSymbol()</code> returns 
+the start symbol's numerical identifier 
+from a specification of a context-free grammar in BNF.   
+Warning: No error checking implemented.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">makeStartSymbol(BNF, ST)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>BNF</code></td>
+<td>
+<p>A character string with the BNF.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ST</code></td>
+<td>
+<p>A symbol table.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>The numerical identifier of the start symbol of the BNF.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">a&lt;-booleanGrammar()$BNF
+ST&lt;-makeSymbolTable(a)
+makeStartSymbol(a,ST)
+
+</code></pre>
+
+
+</div>

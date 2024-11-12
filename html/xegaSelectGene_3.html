@@ -1,0 +1,103 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>DeJongF4Factory</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Factory for function F4 (30-dimensional quartic with noise)</h2>
+
+<h3>Description</h3>
+
+<p>This function factory sets up the problem environment
+for De Jong's function F4.
+F4 is a 30-dimensional quartic function with Gaussian noise.
+It is a continuous, convex, unimodal, high-dimensional quartic function
+with Gaussian noise. For validation,  <code class="reqn">\epsilon = 3*\sigma</code> 
+will work most of the time.
+Note: There exist <code class="reqn">2^{30}</code> maxima (without noise)!
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">DeJongF4Factory()
+</code></pre>
+
+
+<h3>Value</h3>
+
+<p>A problem environment represented as a list of functions:
+</p>
+
+<ul>
+<li> <p><code>$name()</code>: The name of the problem environment.
+</p>
+</li>
+<li> <p><code>$bitlength()</code>: The vector of the number of bits of 
+each parameter of the function.
+</p>
+</li>
+<li> <p><code>$genelength()</code>: The number of bits of the gene.
+</p>
+</li>
+<li> <p><code>$lb()</code>: The vector of lower bounds of the parameters.
+</p>
+</li>
+<li> <p><code>$ub()</code>: The vector of upper bounds of the parameters.
+</p>
+</li>
+<li> <p><code>$f(parm, gene=0, lF=0)</code>): The fitness function. 
+</p>
+</li>
+</ul>
+<p>Additional elements:
+</p>
+
+<ul>
+<li> <p><code>$describe()</code>: Print a description of the problem environment to the console.
+</p>
+</li>
+<li> <p><code>$solution()</code>: The solution structure. A named list with <code>minimum</code>, <code>maximum</code> and
+2 lists of equivalent solutions: <code>minpoints</code>, <code>maxpoints</code>. 
+</p>
+</li>
+</ul>
+<h3>References</h3>
+
+<p>De Jong, Kenneth A. (1975):
+<em>An Analysis of the Behavior of a Class of Genetic Adaptive Systems.</em>
+PhD thesis, Michigan, Ann Arbor, pp. 203-206.
+&lt;https://deepblue.lib.umich.edu/handle/2027.42/4507&gt;
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Problem Environments: 
+<code>DelayedPFactory()</code>,
+<code>Parabola2DEarlyFactory()</code>,
+<code>Parabola2DErrFactory()</code>,
+<code>Parabola2DFactory()</code>,
+<code>envXOR</code>,
+<code>lau15</code>,
+<code>newEnvXOR()</code>,
+<code>newTSP()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">DeJongF4&lt;-DeJongF4Factory()
+DeJongF4$name()
+DeJongF4$bitlength()
+DeJongF4$genelength()
+DeJongF4$lb()
+DeJongF4$ub()
+DeJongF4$f(c(2.01, -1.05, 4.95, -4.3, -3.0))
+DeJongF4$f(c(2.01, -1.05, 4.95, -4.3, -3.0))
+DeJongF4$describe()
+DeJongF4$solution()
+</code></pre>
+
+
+</div>

@@ -1,0 +1,166 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>get_xSub_multi</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Get xSub files for multiple countries</h2>
+
+<h3>Description</h3>
+
+<p>This function downloads and merges mutiple country files from <code>www.x-sub.org</code>. Syntax is similar to <code>get_xSub()</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">get_xSub_multi(
+  data_source,
+  sources_type = "individual",
+  data_type = "spatial panel",
+  country_iso3 = NULL,
+  space_unit,
+  time_unit,
+  geo_window = "1 km",
+  time_window = "1 day",
+  dyad_type = "undirected",
+  merge_files = TRUE,
+  out_dir = getwd(),
+  write_file = FALSE,
+  write_format = "csv",
+  verbose = FALSE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>data_source</code></td>
+<td>
+<p>Name of data source. Character string. See <code>info_xSub()</code> for full list.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sources_type</code></td>
+<td>
+<p>Type of data sources ("individual" or "multiple"). Character string.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data_type</code></td>
+<td>
+<p>Type of dataset ("event" or "panel"). Character string.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>country_iso3</code></td>
+<td>
+<p>Country codes (ISO3). Character string or vector. See <code>info_xSub()</code> for full list. If left blank, function will download all available countries for selected data source.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>space_unit</code></td>
+<td>
+<p>Geographic level of analysis. Character string. Can be one of <code>"adm0"</code> (country), <code>"adm1"</code> (province), <code>"adm2"</code> (district), <code>"priogrid"</code> (grid cell), <code>"clea"</code> (electoral constituency). See <code>info_xSub(details=TRUE)</code> for availability by country.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>time_unit</code></td>
+<td>
+<p>Temporal level of analysis. Character string. Can be one of <code>"year"</code>, <code>"month"</code>, <code>"week"</code>, <code>"day"</code>. See <code>info_xSub(details=TRUE)</code> for availability by country.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>geo_window</code></td>
+<td>
+<p>Geographic window (if source_type="multiple"). Could be either of "1 km" or "5 km". Character string or vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>time_window</code></td>
+<td>
+<p>Time window (if source_type="multiple"). Could be either of "1 day" or "2 day". Character string or vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dyad_type</code></td>
+<td>
+<p>Time window (if source_type="multiple"). Could be either of "undirected" or "directed". Character string or vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>merge_files</code></td>
+<td>
+<p>Logical. If <code>merge_files=TRUE</code> (default), function will combine individual country files into single data.frame, and write single file to disk. If <code>merge_files=FALSE</code>, function produces a list, and writes individual country files to disk separately.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>out_dir</code></td>
+<td>
+<p>Path to directory where files will be saved. Character string.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>write_file</code></td>
+<td>
+<p>Logical. If <code>write_file=TRUE</code>, selected file will be written to disk, at location specified by <code>out_dir</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>write_format</code></td>
+<td>
+<p>Output file format. Character string. Can be one of <code>"csv"</code> (comma-separated values, default), <code>"R"</code> (RData format, compatible with R statistical programming language), <code>"STATA"</code> (dta format, compatible with Stata 14).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbose</code></td>
+<td>
+<p>Logical. When <code>verbose=TRUE</code>, file download progress is printed to console..</p>
+</td>
+</tr>
+</table>
+<h3>See Also</h3>
+
+<p><code>info_xSub</code>, <code>get_xSub</code>
+</p>
+<p><code>info_xSub</code>, <code>get_xSub</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Check which countries are available for GED
+info_xSub(data_source="GED")
+
+# Example with two countries
+## Not run: 
+my_file &lt;- get_xSub_multi(data_source = "PITF",country_iso3 = c("ALB","ARM"),
+           space_unit = "adm0",time_unit = "year")
+
+## End(Not run)
+
+# Example with two countries
+## Not run: 
+my_file &lt;- get_xSub_multi(data_source = "GED",country_iso3 = c("EGY","AGO"),
+           space_unit = "adm1",time_unit = "month")
+
+## End(Not run)
+
+# Example with two countries, multiple sources, event-level
+## Not run: 
+my_file &lt;- get_xSub_multi(sources_type = "multiple",data_type="event",country_iso3 = c("EGY","AGO"))
+
+## End(Not run)
+
+# Example with all countries (WARNING: this can take a long time to run)
+## Not run: 
+my_file &lt;- get_xSub_multi(data_source = "BeissingerProtest",country_iso3 = NULL,
+           space_unit = "adm0",time_unit = "year")
+
+## End(Not run)
+</code></pre>
+
+
+</div>

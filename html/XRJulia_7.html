@@ -1,0 +1,34 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>from_Julia-class</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Class for General Julia Composite Type Objects</h2>
+
+<h3>Description</h3>
+
+<p>The Julia side of the interface will return a general object from a composite type as an R
+object of class "from_Julia.  its Julia fields (converted to R objects) can be accessed by the <code>$</code>
+operator.
+</p>
+
+
+<h3>Slots</h3>
+
+
+<dl>
+<dt><code>serverClass</code></dt>
+<dd>
+<p>the Julia type.</p>
+</dd>
+<dt><code>module</code></dt>
+<dd>
+<p>the Julia module, or ""</p>
+</dd>
+<dt><code>fields</code></dt>
+<dd>
+<p>the converted versioin of the Julia fields; these are accessed by the <code>$</code> operator.</p>
+</dd>
+</dl>
+</div>

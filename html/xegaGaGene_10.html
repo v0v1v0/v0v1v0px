@@ -1,0 +1,77 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaGaGeneMapFactory</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Configure the gene map function of a genetic algorithm.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaGaGeneMapFactory</code> implements the selection
+of one of the GeneMap functions in this
+package by specifying a text string.
+The selection fails ungracefully (produces
+a runtime error) if the label does not match.
+The functions are specified locally.
+</p>
+<p>Current support:
+</p>
+
+<ol>
+<li>
+<p> "Bin2Dec" returns <code>GeneMap</code>. (Default).
+</p>
+</li>
+<li>
+<p> "Gray2Dec" returns <code>GeneMapGray</code>.
+</p>
+</li>
+<li>
+<p> "Identity" returns <code>GeneMapIdentity</code>.
+</p>
+</li>
+<li>
+<p> "Permutation" returns <code>GeneMapPerm</code>.
+</p>
+</li>
+</ol>
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaGaGeneMapFactory(method = "Bin2Dec")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>A string specifying the GeneMap function.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>A gene map function for genes.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Configuration: 
+<code>lFxegaGaGene</code>,
+<code>xegaGaCrossoverFactory()</code>,
+<code>xegaGaMutationFactory()</code>,
+<code>xegaGaReplicationFactory()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">XGene&lt;-xegaGaGeneMapFactory("Identity")
+gene1&lt;-xegaGaInitGene(lFxegaGaGene)
+XGene(gene1, lFxegaGaGene$penv)
+</code></pre>
+
+
+</div>

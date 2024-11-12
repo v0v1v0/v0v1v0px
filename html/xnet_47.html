@@ -1,0 +1,151 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>impute_tskrr</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Impute missing values in a label matrix</h2>
+
+<h3>Description</h3>
+
+<p>This function implements an optimization algorithm that allows
+imputing missing values in the label matrix while fitting a
+<code>tskrr</code> model.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">impute_tskrr(
+  y,
+  k,
+  g = NULL,
+  lambda = 0.01,
+  testdim = TRUE,
+  testlabels = TRUE,
+  symmetry = c("auto", "symmetric", "skewed"),
+  keep = FALSE,
+  niter = 10000,
+  tol = sqrt(.Machine$double.eps),
+  start = mean(y, na.rm = TRUE),
+  verbose = FALSE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>y</code></td>
+<td>
+<p>a label matrix</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>k</code></td>
+<td>
+<p>a kernel matrix for the rows</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>g</code></td>
+<td>
+<p>an optional kernel matrix for the columns</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lambda</code></td>
+<td>
+<p>a numeric vector with one or two values for the
+hyperparameter lambda. If two values are given, the first one is
+used for the k matrix and the second for the g matrix.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>testdim</code></td>
+<td>
+<p>a logical value indicating whether symmetry
+and the dimensions of the kernel(s) should be tested.
+Defaults to <code>TRUE</code>, but for large matrices
+putting this to <code>FALSE</code> will speed up the function.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>testlabels</code></td>
+<td>
+<p>a logical value indicating wether the row- and column
+names of the matrices have to be checked for consistency. Defaults to
+<code>TRUE</code>, but for large matrices putting this to <code>FALSE</code> will
+speed up the function.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>symmetry</code></td>
+<td>
+<p>a character value with the possibilities
+"auto", "symmetric" or "skewed". In case of a homogeneous fit, you
+can either specify whether the label matrix is symmetric or
+skewed, or you can let the function decide (option "auto").</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>keep</code></td>
+<td>
+<p>a logical value indicating whether the kernel hat
+matrices should be stored in the model object. Doing so makes the
+model object quite larger, but can speed up predictions in
+some cases. Defaults to <code>FALSE</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>niter</code></td>
+<td>
+<p>an integer giving the maximum number of iterations</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tol</code></td>
+<td>
+<p>a numeric value indicating the tolerance for convergence of
+the algorithm. It is the maximum sum of squared differences between
+to iteration steps.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>start</code></td>
+<td>
+<p>a numeric value indicating the value with which NA's are
+replaced in the first step of the algorithm. Defaults to 0.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbose</code></td>
+<td>
+<p>either a logical value, 1 or 2. <code>1</code> means "show the number
+of iterations and the final deviation", <code>2</code> means "show the deviation
+every 10 iterations". A value <code>TRUE</code> is read as <code>1</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A <code>tskrr</code> model of the class <code>tskrrImputeHeterogeneous</code> or <code>tskrrImputeHomogeneous</code> depending on whether or
+not <code>g</code> has a value.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+data(drugtarget)
+
+naid &lt;- sample(length(drugTargetInteraction), 30)
+drugTargetInteraction[naid] &lt;- NA
+
+impute_tskrr(drugTargetInteraction, targetSim, drugSim)
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,118 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>compatibleSubtrees</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Test the compatibility of subtrees.</h2>
+
+<h3>Description</h3>
+
+<p><code>compatibleSubtrees()</code> tests the compatibility of two 
+subtrees.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">compatibleSubtrees(n1, n2, maxdepth = 5, DepthBounded = TRUE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>n1</code></td>
+<td>
+<p>Attributed node of the root of subtree 1.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>n2</code></td>
+<td>
+<p>Attributed node of the root of subtree 2.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>maxdepth</code></td>
+<td>
+<p>Integer. Maximal derivation depth.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>DepthBounded</code></td>
+<td>
+
+<ul>
+<li> <p><code>TRUE</code>: Only subtrees 
+with the same root symbol and which respect 
+the depth restrictions are compatible. 
+</p>
+</li>
+<li> <p><code>FALSE</code>: The depth restrictions are not 
+checked.</p>
+</li>
+</ul>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p><code>compatibleSubtrees()</code> tests the compatibility of two 
+subtrees:
+</p>
+
+<ol>
+<li>
+<p> The root symbol of the two subtrees must be identical:
+<code>(n1$ID==n2$ID)</code>.
+</p>
+</li>
+<li>
+<p> The depth restrictions must hold:
+</p>
+
+<ol>
+<li> <p><code>depth(n1) + depth(subtree2) &lt;= maxdepth+maxSPT</code>
+</p>
+</li>
+<li> <p><code>depth(n2) + depth(subtree1) &lt;= maxdepth+maxSPT</code> 
+</p>
+</li>
+</ol>
+<p>maxSPT is the maximal number of derivations needed 
+to generate a complete derivation tree.</p>
+</li>
+</ol>
+<h3>Value</h3>
+
+<p><code>TRUE</code> or <code>FALSE</code>
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Tree Operations: 
+<code>treeExtract()</code>,
+<code>treeInsert()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">g&lt;-compileBNF(booleanGrammar())
+t1&lt;-randomDerivationTree(g$Start, g)
+t1anl&lt;-treeANL(t1, g$ST)
+t2&lt;-randomDerivationTree(g$Start, g)
+t2anl&lt;-treeANL(t2, g$ST)
+n1&lt;-chooseNode(t1anl$ANL)
+n2&lt;-chooseNode(t2anl$ANL)
+compatibleSubtrees(n1, n2)
+compatibleSubtrees(n1, n2, maxdepth=1)
+compatibleSubtrees(n1, n2, DepthBounded=FALSE)
+
+</code></pre>
+
+
+</div>

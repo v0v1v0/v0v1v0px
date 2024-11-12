@@ -1,0 +1,92 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>DispersionRatio</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Dispersion Ratio</h2>
+
+<h3>Description</h3>
+
+<p>The dispersion ratio is computed as 
+the ratio <code>DM(t)/DM(k)</code>
+where <code>DM(t)</code> is the dispersion measure of period t and 
+<code>DM(k)</code> the dispersion measure of period <code>max(1, (t-k))</code>.
+<code>k</code> is specified by <code>lF$ScalingDelay</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">DispersionRatio(popStat, DM, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>popStat</code></td>
+<td>
+<p>Population statistics.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>DM</code></td>
+<td>
+<p>Dispersion function.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The dispersion ratio may take unreasonably high and low values
+leading to numerical underflow or overflow 
+of fitness values. Therefore,
+we use hard thresholding to force 
+the dispersion ratio into the interval 
+<code>[lF$DRmin(), lF$DRmax()]</code>.
+The default interval is <code>[0.5, 2.0]</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Dispersion ratio.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Scaling: 
+<code>ContinuousScaleFitness()</code>,
+<code>ScaleFitness()</code>,
+<code>ScalingFitness()</code>,
+<code>ThresholdScaleFitness()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">p&lt;-matrix(0, nrow=3, ncol=8)
+p[1,]&lt;-c(14.1,  0.283,  5.53, 14.0, 19.4, 38.1, 90.2, 6.54)
+p[2,]&lt;-c(20.7,  0.794, 14.63, 19.0, 26.5, 38.8, 71.4, 5.27)
+p[3,]&lt;-c(24.0,  6.007, 16.89, 24.1, 29.2, 38.8, 73.4, 6.50)
+F&lt;-list()
+F$ScalingDelay&lt;-function() {1}
+F$DRmax&lt;-function() {2.0}
+F$DRmin&lt;-function() {0.5}
+dm&lt;-DispersionMeasureFactory("var")
+DispersionRatio(p, dm, F)
+F$ScalingDelay&lt;-function() {2}
+DispersionRatio(p, dm, F)
+</code></pre>
+
+
+</div>

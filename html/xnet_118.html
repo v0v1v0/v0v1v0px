@@ -1,0 +1,116 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>tskrr.fit</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Carry out a two-step kernel ridge regression</h2>
+
+<h3>Description</h3>
+
+<p>This function provides an interface for two-step kernel ridge regression.
+To use this function, you need at least one kernel matrix and one
+label matrix. It's the internal engine used by the function
+<code>tskrr</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">tskrr.fit(y, k, g = NULL, lambda.k = NULL, lambda.g = NULL, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>y</code></td>
+<td>
+<p>a matrix representing the links between the nodes of both
+networks.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>k</code></td>
+<td>
+<p>an object of class <code>eigen</code> containing the eigen
+decomposition of the first kernel matrix.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>g</code></td>
+<td>
+<p>an optional object of class <code>eigen</code> containing
+the eigen decomposition of the second kernel matrix. If <code>NULL</code>,
+the network is considered to be homogeneous.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lambda.k</code></td>
+<td>
+<p>a numeric value for the lambda parameter tied
+to the first kernel.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lambda.g</code></td>
+<td>
+<p>a numeric value for the lambda parameter tied
+to the second kernel. If <code>NULL</code>, the model is fit using the same
+value for <code>lambda.k</code> and <code>lambda.g</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>arguments passed to other functions. Currently ignored.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>This function is mostly available for internal use. In most cases, it
+makes much more sense to use <code>tskrr</code>, as that function
+returns an object one can work with. The function
+<code>tskrr.fit</code> could be useful when doing simulations or
+fitting algorithms, as the information returned from this function
+is enough to use the functions returned by <code>get_loo_fun</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>a list with three elements:
+</p>
+
+<ul>
+<li>
+<p> k : the hat matrix for the rows
+</p>
+</li>
+<li>
+<p> g : the hat matrix for the columns (or <code>NULL</code>)
+for homogeneous networks.
+</p>
+</li>
+<li>
+<p> pred : the predictions
+</p>
+</li>
+</ul>
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+data(drugtarget)
+
+K &lt;- eigen(targetSim)
+G &lt;- eigen(drugSim)
+
+res &lt;- tskrr.fit(drugTargetInteraction,K,G,
+                 lambda.k = 0.01, lambda.g = 0.05)
+
+</code></pre>
+
+
+</div>

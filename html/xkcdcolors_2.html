@@ -1,0 +1,86 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>name2color</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>
+Look up a color by name
+</h2>
+
+<h3>Description</h3>
+
+<p>Look up a color by exact or partial name.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">name2color(name, exact = TRUE, hex_only = TRUE, n = -1)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>name</code></td>
+<td>
+
+<p>Character string giving color name
+</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>exact</code></td>
+<td>
+
+<p>If <code>TRUE</code> return only exact matches to the name, otherwise use <code>grep</code> to find partial matches
+</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>hex_only</code></td>
+<td>
+
+<p>If <code>TRUE</code> return only the color as a hex string, otherwise return the name and RGB as well
+</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>n</code></td>
+<td>
+
+<p>For partial matching, limit the results to the <code>n</code> highest-frequency (in the survey) colors.
+</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A character string with a hex color code, or a data frame
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Thomas Lumley</p>
+
+
+<h3>References</h3>
+
+<p><a href="http://blog.xkcd.com/2010/05/03/color-survey-results/">http://blog.xkcd.com/2010/05/03/color-survey-results/</a></p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">name2color("green")
+
+name2color("green",exact=FALSE,hex_only=FALSE,n=10)
+
+barplot(rep(1,10), col=name2color("green",exact=FALSE,n=10))
+
+</code></pre>
+
+
+</div>

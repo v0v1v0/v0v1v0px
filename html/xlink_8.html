@@ -1,0 +1,59 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>select_output</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Selected results table by P value</h2>
+
+<h3>Description</h3>
+
+<p><code>select_output</code> returns selected SNP information by P value.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">select_output(input, pv_thold = 1)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>input</code></td>
+<td>
+<p>Input results from xlink fit.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pv_thold</code></td>
+<td>
+<p>P value threshold for output.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>It returns estimated parameters, confidence interval, P value, MAF and Best model information.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xlink_fit{xlink}</code> for input results.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">Covars&lt;-c("Age","Smoking","Treatment")
+SNPs&lt;-c("snp_1","snp_2","snp_3")
+result&lt;-xlink_fit(os="OS",ostime ="OS_time",snps=SNPs,gender ="gender",covars=Covars,
+                  option =list(type="all",MAF_v=0.05), model="survival", data = Rdata)
+select_output(input=result,pv_thold=10^-5)
+</code></pre>
+
+
+</div>

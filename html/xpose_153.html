@@ -1,0 +1,200 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xpose_data</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Import NONMEM output into R</h2>
+
+<h3>Description</h3>
+
+<p>Gather model outputs into a R database
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xpose_data(
+  runno = NULL,
+  prefix = "run",
+  ext = ".lst",
+  file = NULL,
+  dir = NULL,
+  gg_theme = theme_readable,
+  xp_theme = theme_xp_default(),
+  simtab = NULL,
+  manual_import = NULL,
+  ignore = NULL,
+  check_ext = TRUE,
+  extra_files,
+  quiet,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>runno</code></td>
+<td>
+<p>Run number to be used to generate model file name. Used in
+combination with <code>prefix</code> and <code>ext</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>prefix</code></td>
+<td>
+<p>Prefix to be used to generate model file name. Used in
+combination with <code>runno</code> and <code>ext</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ext</code></td>
+<td>
+<p>Extension to be used to generate model file name. Should be one of
+'.lst' (default), '.out', '.res', '.mod' or '.ctl' for NONMEM.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>file</code></td>
+<td>
+<p>Model file name (preferably a '.lst' file) containing the file
+extension. Alternative to <code>prefix</code>, <code>runno</code> and <code>ext</code>
+arguments.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dir</code></td>
+<td>
+<p>Location of the model files.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>gg_theme</code></td>
+<td>
+<p>A complete ggplot2 theme object (e.g.
+<code>theme_classic</code>), or a function returning a complete
+ggplot2 theme.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xp_theme</code></td>
+<td>
+<p>A complete xpose theme object (e.g.
+<code>theme_xp_default</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>simtab</code></td>
+<td>
+<p>If <code>TRUE</code> only reads in simulation tables, if <code>FALSE</code>
+only reads estimation tables. Default <code>NULL</code> reads all tables. Option
+not compatible with manual_import.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>manual_import</code></td>
+<td>
+<p>If <code>NULL</code> (default) the names of the output tables
+to import will be obtained from the model file. To manually import files as
+in previous versions of xpose, the check the function
+<code>manual_nm_import</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ignore</code></td>
+<td>
+<p>Character vector be used to ignore the import/generation of:
+'data', 'files', 'summary' or any combination of the three.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>check_ext</code></td>
+<td>
+<p>Logical, if <code>TRUE</code> will provide an error message if the
+extension of the NONMEM input file is not one of '.lst', '.out', '.res',
+'.mod' or '.ctl' for NONMEM. If <code>FALSE</code> any file extension can be
+used.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>extra_files</code></td>
+<td>
+<p>A vector of additional output file extensions to be
+imported. Default is '.ext', '.cov', '.cor', '.phi', '.grd' for NONMEM.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>quiet</code></td>
+<td>
+<p>Logical, if <code>FALSE</code> messages are printed to the console.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments to be passed to the
+<code>read_nm_tables</code> functions.</p>
+</td>
+</tr>
+</table>
+<h3>File path generation</h3>
+
+<p>The rules for model file names generation are
+as follow: </p>
+
+<ul>
+<li>
+<p> with <code>runno</code>: the full path is generated as
+<code>&lt;dir&gt;/&lt;prefix&gt;&lt;runno&gt;.&lt;ext&gt;</code> e.g. with <code>dir = 'model/pk'</code>,
+<code>prefix = 'run'</code>, <code>runno = '001'</code>, <code>ext = '.lst'</code> the
+resulting path would be <code>model/pk/run001.lst</code>
+</p>
+</li>
+<li>
+<p> with <code>file</code>:
+the full path is generated as <code>&lt;dir&gt;/&lt;file&gt;</code> e.g. with <code>dir =
+  'model/pk'</code>, <code>file = 'run001.lst'</code> the resulting path would also be
+<code>model/pk/run001.lst</code>. Note: in this case the file extension should be
+provided as part of the 'file' argument.
+</p>
+</li>
+</ul>
+<h3>Table format requirement</h3>
+
+<p>When importing data, an <code>ID</code> column
+must be present in at least one table for each problem and for each
+'firstonly' category. <code>ID</code> columns are required to properly
+combine/merge tables and removing <code>NA</code> records. If <code>ID</code> columns
+are missing xpose will return the following warning: <code>Dropped
+  `&lt;tablenames&gt;` due to missing required `ID` column.</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+# Using the `file` argument to point to the model file:
+xpdb &lt;- xpose_data(file = 'run001.lst', dir = 'models')
+
+# Using the `runno` argument to point to the model file:
+xpdb &lt;- xpose_data(runno = '001', ext = '.lst', dir = 'models')
+
+# Using the `extra_files` argument to import specific output files only:
+xpdb &lt;- xpose_data(file = 'run001.lst', dir = 'models', extra_files = c('.ext', '.phi'))
+
+# Using `ignore` to disable import of tables and output files:
+xpdb &lt;- xpose_data(file = 'run001.lst', dir = 'models', ignore = c('data', 'files'))
+
+# Using `simtab` to disable import of simulation tables
+xpdb &lt;- xpose_data(file = 'run001.lst', dir = 'models', simtab = FALSE)
+
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

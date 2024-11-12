@@ -1,0 +1,84 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaGaUPCross2Gene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Parameterized uniform crossover of 2 genes.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaGaUP2CrossGene</code> swaps alleles of both genes
+with a probability of <code>lF$UCrossSwap</code>. 
+It generates a random 
+mask which is used to build the new gene.
+It returns 2  genes.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaGaUPCross2Gene(gg1, gg2, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>gg1</code></td>
+<td>
+<p>A binary gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>gg2</code></td>
+<td>
+<p>A binary gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>The local configuration of the genetic algorithm.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A list of 2 binary genes.
+</p>
+
+
+<h3>References</h3>
+
+<p>Spears William and De Jong, Kenneth (1991):
+On the Virtues of Parametrized Uniform Crossover. 
+In: Belew, Richar K. and Booker, Lashon B. (Ed.)
+Proceedings of the Fourth International Conference on Genetic Algorithms,
+Morgan Kaufmann Publishers, Los Altos, California, pp. 230-236.
+(ISBN:1-55860-208-9)
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Crossover (2): 
+<code>xegaGaCross2Gene()</code>,
+<code>xegaGaUCross2Gene()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">gene1&lt;-xegaGaInitGene(lFxegaGaGene)
+gene2&lt;-xegaGaInitGene(lFxegaGaGene)
+xegaGaDecodeGene(gene1, lFxegaGaGene)
+xegaGaDecodeGene(gene2, lFxegaGaGene)
+newgenes&lt;-xegaGaUPCross2Gene(gene1, gene2, lFxegaGaGene)
+xegaGaDecodeGene(newgenes[[1]], lFxegaGaGene)
+xegaGaDecodeGene(newgenes[[2]], lFxegaGaGene)
+</code></pre>
+
+
+</div>

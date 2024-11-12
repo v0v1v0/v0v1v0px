@@ -1,0 +1,83 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>tag</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Create a tag fragment</h2>
+
+<h3>Description</h3>
+
+<p>Create a tag fragment with optional text and attributes
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">tag(tag, text = NULL, ..., .attr = list(...))
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>tag</code></td>
+<td>
+<p>character, the name of the tag</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>text</code></td>
+<td>
+<p>character, the text to include in the tag</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>additional attributes to add to the tag</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.attr</code></td>
+<td>
+<p>a list of additional attributes to add to the tag, overrides the <code>...</code> argument</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>an xml_fragment with the new tag added
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+tag("greeting", "hi", id = "hi")
+
+tag("person", id = "1") / (tag("name", "John Doe") + tag("age", 35))
+
+xml_fragment(person = frag(
+  .attr = c(id = 1),
+  name = "John Doe",
+  age = 30
+))   / tag("address", "Unknown")
+
+
+a &lt;- tag("person", id = 1) /
+  xml_fragment(
+    name ="John Doe",
+    age = 30,
+    address = frag(
+      street = "123 Main St",
+      city = "Springfield"
+    )
+  )
+
+cat(as.character(a))
+</code></pre>
+
+
+</div>

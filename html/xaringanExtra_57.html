@@ -1,0 +1,91 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>webcam</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Webcam</h2>
+
+<h3>Description</h3>
+
+<p>Add a live video of your webcam into your slides (in your own browser only).
+Useful when you are presenting via video conference to include your video,
+or when you are recording a class or lecture.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">use_webcam(width = 200, height = 200, margin = "1em")
+
+html_dependency_webcam(width = 200, height = 200, margin = "1em")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>width, height</code></td>
+<td>
+<p>Width and height of the video pane in absolute CSS units,
+i.e. as <code>200</code> or <code>"200px"</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>margin</code></td>
+<td>
+<p>Margin around the video pane in CSS units.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>To add <strong>webcam</strong> to your xaringan presentation, add the following code
+chunk to your slides’ R Markdown file.
+</p>
+<div class="sourceCode markdown"><pre>```{r}
+xaringanExtra::use_webcam()
+```
+</pre></div>
+<p>Inside your slides, press <strong>w</strong> to turn the webcam on and off, or press
+<strong>Shift</strong> + <strong>W</strong> to move the video to the next corner. You can also
+drag and drop the video within the browser window.
+</p>
+
+
+<h3>Value</h3>
+
+<p>An <code>htmltools::tagList()</code> with the HTML dependencies required for
+<strong>webcam</strong>.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul>
+<li> <p><code>use_webcam()</code>: Add the webcam extension to your slides
+</p>
+</li>
+<li> <p><code>html_dependency_webcam()</code>: Returns an <code>htmltools::htmlDependency()</code> with the webcam
+dependencies. Most users will want to use <code>use_webcam()</code>.
+</p>
+</li>
+</ul>
+<h3>References</h3>
+
+<p>The webcam extension is based on the original
+<a href="https://yihui.org/en/2017/12/html5-camera/">webcam implementation</a> by
+Yihui Xie, author of <span class="pkg">xaringan</span>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">use_webcam()
+
+</code></pre>
+
+
+</div>

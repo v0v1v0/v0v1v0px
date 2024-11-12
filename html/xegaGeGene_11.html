@@ -1,0 +1,83 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaGeDecodeGene</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Decode a gene for a context free grammar.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaGeDecodeGene()</code> decodes a binary gene with 
+a context-free grammar.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaGeDecodeGene(gene, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>gene</code></td>
+<td>
+<p>Binary gene.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration of the genetic algorithm.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The codons (k-bit sequences) of the binary gene are determining
+the choices of non-terminal symbols of a depth-first left-to-right
+tree traversal. Decoding works in 2 steps:
+</p>
+
+<ol>
+<li>
+<p> From the binary gene and a grammar a potentially 
+incomplete derivation tree is built.
+</p>
+</li>
+<li>
+<p> The leaves of the derivation tree are extracted.
+</p>
+</li>
+</ol>
+<p>It is not guaranteed that a complete derivation trees is returned.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Decoded gene.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Decoder: 
+<code>xegaGeGeneMapMod()</code>,
+<code>xegaGeGeneMapmLCM()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">lFxegaGeGene$GeneMap&lt;-xegaGeGeneMapFactory("Mod")
+gene&lt;-xegaGeInitGene(lFxegaGeGene)
+xegaGeDecodeGene(gene, lFxegaGeGene)
+
+</code></pre>
+
+
+</div>

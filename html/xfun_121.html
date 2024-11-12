@@ -1,0 +1,81 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>proj_root</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Return the (possible) root directory of a project</h2>
+
+<h3>Description</h3>
+
+<p>Given a path of a file (or dir) in a potential project (e.g., an R package or
+an RStudio project), return the path to the project root directory.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">proj_root(path = "./", rules = root_rules)
+
+root_rules
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>path</code></td>
+<td>
+<p>The initial path to start the search. If it is a file path, its
+parent directory will be used.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>rules</code></td>
+<td>
+<p>A matrix of character strings of two columns: the first column
+contains regular expressions to look for filenames that match the patterns,
+and the second column contains regular expressions to match the content of
+the matched files. The regular expression can be an empty string, meaning
+that it will match anything.</p>
+</td>
+</tr>
+</table>
+<h3>Format</h3>
+
+<p>An object of class <code>matrix</code> (inherits from <code>array</code>) with 2 rows and 2 columns.
+</p>
+
+
+<h3>Details</h3>
+
+<p>The search for the root directory is performed by a series of tests,
+currently including looking for a ‘<span class="file">DESCRIPTION</span>’ file that contains
+<code style="white-space: pre;">⁠Package: *⁠</code> (which usually indicates an R package), and a
+‘<span class="file">*.Rproj</span>’ file that contains <code style="white-space: pre;">⁠Version: *⁠</code> (which usually indicates
+an RStudio project). If files with the expected patterns are not found in the
+initial directory, the search will be performed recursively in upper-level
+directories.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Path to the root directory if found, otherwise <code>NULL</code>.
+</p>
+
+
+<h3>Note</h3>
+
+<p>This function was inspired by the <span class="pkg">rprojroot</span> package, but is much
+less sophisticated. It is a rather simple function designed to be used in
+some of packages that I maintain, and may not meet the need of general
+users until this note is removed in the future (which should be unlikely).
+If you are sure that you are working on the types of projects mentioned in
+the ‘Details’ section, this function may be helpful to you,
+otherwise please consider using <span class="pkg">rprojroot</span> instead.
+</p>
+
+
+</div>

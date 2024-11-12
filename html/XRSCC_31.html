@@ -1,0 +1,152 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>X_it</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>
+Calculates the iteration i'th  X Chart
+</h2>
+
+<h3>Description</h3>
+
+<p>With the results of <code>xrs_gr</code> followed by previous X_it iterations, the function calculates the X control limits charts, using a data frame with a fixed subgroup size <em>n</em>. In the graph plotting, the function estimates if any value (row or subgroup average) is out of control limits, and returns a list with calculations. Also, gives the R chart and control limits, which will be used in <code>R_it</code> function.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">X_it(prev.results)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>prev.results</code></td>
+<td>
+<p>Is a list of previous results obtained by the <code>xrs_gr</code> function in the first iteration, or a list of results obtained in further iterations by the X_it function.
+</p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+<p>The function stops if the X chart is under control already, and also stops if there is not any active graphic device.
+</p>
+
+
+<h3>Value</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>in.control</code></td>
+<td>
+<p>The <em>under control</em> row list for the X chart</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>R.in.control</code></td>
+<td>
+<p>The <em>under control</em> row list for the R chart</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>out.control</code></td>
+<td>
+<p>The <em>out of control</em> row list for the X chart</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Iteraciones</code></td>
+<td>
+<p>The iterations number, It is assumed to be the second or later</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data.0</code></td>
+<td>
+<p>The original data frame</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data.1</code></td>
+<td>
+<p>The <em>under control</em> subset after iteration</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data.r.1</code></td>
+<td>
+<p>The calculated ranges of data.0</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bin</code></td>
+<td>
+<p>The binary values for <em>out of control</em> equal to one and <em>under control</em> equal to zero, for X and R charts</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>LX</code></td>
+<td>
+<p>The X chart control limits vector</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>LR</code></td>
+<td>
+<p>The R chart control limits vector</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Limites Grafixa X</code></td>
+<td>
+<p>The X chart control limits vector</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Limites Grafixa R</code></td>
+<td>
+<p>The R chart control limits vector</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>Conclusion del proceso</code></td>
+<td>
+<p>The same results in a phrase as the <em>bin</em> values</p>
+</td>
+</tr>
+</table>
+<h3>Note</h3>
+
+<p>For the true Range control limits calculation, use <code>R_it</code>.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Erick Marroquin
+</p>
+
+
+<h3>References</h3>
+
+<p>Montgomery, D.C. (2005) <em>Introduction to Statistical Quality Control, 5th ed. New York: John Wiley &amp; Sons, ISBN 0-471-65631-3</em>
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xrs_gr</code>,  <code>R_it</code>,   <code>Cp_X</code>, <code>we_rules</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(vol_sample)
+results1&lt;-xrs_gr(vol_sample)
+results2&lt;-X_it(results1)
+</code></pre>
+
+
+</div>

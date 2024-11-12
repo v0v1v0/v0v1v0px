@@ -1,0 +1,84 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>randomDerivationTree</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Generates a random derivation tree.</h2>
+
+<h3>Description</h3>
+
+<p><code>randomDerivationTree()</code> 
+generates a random derivation tree.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">randomDerivationTree(sym, G, maxdepth = 5, CompleteDT = TRUE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>sym</code></td>
+<td>
+<p>Non-terminal symbol.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>G</code></td>
+<td>
+<p>Grammar.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>maxdepth</code></td>
+<td>
+<p>Integer. Maximal depth of the derivation tree.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>CompleteDT</code></td>
+<td>
+<p>Boolean. Generate a complete derivation tree? 
+Default: TRUE.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p><code>RandomDerivationTree()</code> recursively expands 
+non-terminals and builds a depth-bounded derivation tree.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Derivation tree (a nested list).
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Generate Derivation Tree: 
+<code>generateDerivationTree()</code>,
+<code>rndsubk()</code>,
+<code>rndsub()</code>,
+<code>substituteSymbol()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">g&lt;-compileBNF(booleanGrammar())
+a&lt;-randomDerivationTree(g$Start, g)
+b&lt;-randomDerivationTree(g$Start, g, maxdepth=10)
+c&lt;-randomDerivationTree(g$Start, g, 2, FALSE)
+
+</code></pre>
+
+
+</div>

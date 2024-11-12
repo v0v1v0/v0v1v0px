@@ -1,0 +1,38 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xml_comment</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Construct a comment node</h2>
+
+<h3>Description</h3>
+
+<p>Construct a comment node
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xml_comment(content)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>content</code></td>
+<td>
+<p>The comment content</p>
+</td>
+</tr></table>
+<h3>Examples</h3>
+
+<pre><code class="language-R">x &lt;- xml_new_document()
+r &lt;- xml_add_child(x, "root")
+xml_add_child(r, xml_comment("Hello!"))
+as.character(x)
+</code></pre>
+
+
+</div>

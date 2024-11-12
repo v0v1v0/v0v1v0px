@@ -1,0 +1,74 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>mime_type</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Get the MIME types of files</h2>
+
+<h3>Description</h3>
+
+<p>If the <span class="pkg">mime</span> package is installed, call <code>mime::guess_type()</code>, otherwise
+use the system command <code>file --mime-type</code> to obtain the MIME type of a file.
+Typically, the <code>file</code> command exists on *nix. On Windows, the command should
+exist if Cygwin or Rtools is installed. If it is not found, .NET's
+<code>MimeMapping</code> class will be used instead (which requires the .NET framework).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">mime_type(x, use_mime = loadable("mime"), empty = "text/plain")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>A vector of file paths.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>use_mime</code></td>
+<td>
+<p>Whether to use the <span class="pkg">mime</span> package.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>empty</code></td>
+<td>
+<p>The MIME type for files without extensions (e.g., <code>Makefile</code>).
+If <code>NA</code>, the type will be obtained from system command. This argument is
+used only for <code>use_mime = FALSE</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A character vector of MIME types.
+</p>
+
+
+<h3>Note</h3>
+
+<p>When querying the MIME type via the system command, the result will be
+cached to <code>xfun:::cache_dir()</code>. This will make future queries much faster,
+since running the command in real time can be a little slow.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+f = list.files(R.home("doc"), full.names = TRUE)
+mime_type(f)
+mime_type(f, FALSE)  # don't use mime
+mime_type(f, FALSE, NA)  # run command for files without extension
+
+</code></pre>
+
+
+</div>

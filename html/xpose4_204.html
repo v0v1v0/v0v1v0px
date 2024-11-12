@@ -1,0 +1,131 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xp.incl.index.cov</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Plot of inclusion index of covariates.</h2>
+
+<h3>Description</h3>
+
+<p>Covariate inclusion indices show the correlation in inclusion of a covariate
+in the final model in a bootgam or bootscm.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xp.incl.index.cov(
+  bootgam.obj = NULL,
+  boot.type = NULL,
+  main = NULL,
+  xlb = "Index",
+  ylb = "Covariate",
+  add.ci = FALSE,
+  incl.range = NULL,
+  return_plot = TRUE,
+  results.tab = NULL,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>bootgam.obj</code></td>
+<td>
+<p>The bootgam or bootscm object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>boot.type</code></td>
+<td>
+<p>Either "bootgam" or "bootscm". Default is NULL, which means
+the user will be asked to make a choice.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>Plot title.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xlb</code></td>
+<td>
+<p>Label for the x-axis.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylb</code></td>
+<td>
+<p>Label for the y-axis.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>add.ci</code></td>
+<td>
+<p>Add a confidence interval to the plotted data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>incl.range</code></td>
+<td>
+<p>Included range</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>return_plot</code></td>
+<td>
+<p>Should the function return a plot?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>results.tab</code></td>
+<td>
+<p>Specify your own results table.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional plotting information.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A lattice plot object is returned.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ron Keizer
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other bootgam: 
+<code>xp.daic.npar.plot()</code>,
+<code>xp.dofv.npar.plot()</code>,
+<code>xp.inc.cond.stab.cov()</code>,
+<code>xp.inc.ind.cond.stab.cov()</code>,
+<code>xp.inc.stab.cov()</code>,
+<code>xp.incl.index.cov.ind()</code>
+</p>
+<p>Other bootscm: 
+<code>bootscm.import()</code>,
+<code>xp.daic.npar.plot()</code>,
+<code>xp.dofv.npar.plot()</code>,
+<code>xp.inc.cond.stab.cov()</code>,
+<code>xp.inc.ind.cond.stab.cov()</code>,
+<code>xp.inc.stab.cov()</code>,
+<code>xp.incl.index.cov.ind()</code>
+</p>
+
+
+</div>

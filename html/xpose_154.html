@@ -1,0 +1,45 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xpose_panels</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Generic panel function for 'xpose_plots'</h2>
+
+<h3>Description</h3>
+
+<p>Convenience wrapper around ggforce faceting functions.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xpose_panels(xp_theme, extra_args)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>xp_theme</code></td>
+<td>
+<p>An 'xpose_theme' object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>extra_args</code></td>
+<td>
+<p>User arguments to be passed to the 
+faceting functions.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Output a 'facet' layer. Layer will be 'facet_wrap_paginate' if 
+'facets' is a string, and 'facet_grid_paginate' if 'facets' is a formula.
+</p>
+
+
+</div>

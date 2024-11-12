@@ -1,0 +1,147 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>strip</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Strip strings of non-alphanumeric characters</h2>
+
+<h3>Description</h3>
+
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="../help/figures/lifecycle-experimental.svg" alt="[Experimental]"></a>
+</p>
+
+<ol>
+<li>
+<p> Removes any character that is not alphanumeric or a space.
+</p>
+</li>
+<li>
+<p> (Disabled by default): Remove numbers.
+</p>
+</li>
+<li>
+<p> Reduces multiple consecutive whitespaces to a single whitespace and trims ends.
+</p>
+</li>
+</ol>
+<p>Can for instance be used to simplify error messages before checking them.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">strip(
+  strings,
+  replacement = "",
+  remove_spaces = FALSE,
+  remove_numbers = FALSE,
+  remove_ansi = TRUE,
+  lowercase = FALSE,
+  allow_na = TRUE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>strings</code></td>
+<td>
+<p><code>vector</code> of strings. (Character)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>replacement</code></td>
+<td>
+<p>What to replace blocks of punctuation with. (Character)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>remove_spaces</code></td>
+<td>
+<p>Whether to remove all whitespaces. (Logical)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>remove_numbers</code></td>
+<td>
+<p>Whether to remove all numbers. (Logical)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>remove_ansi</code></td>
+<td>
+<p>Whether to remove ANSI control sequences. (Logical)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lowercase</code></td>
+<td>
+<p>Whether to make the strings lowercase. (Logical)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>allow_na</code></td>
+<td>
+<p>Whether to allow <code>strings</code>
+to contain <code>NA</code>s. (Logical)</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+
+<ol>
+<li>
+<p> ANSI control sequences are removed with <code>fansi::strip_ctl()</code>.
+</p>
+</li>
+<li> <p><code>gsub("[^[:alnum:][:blank:]]", replacement, strings))</code>
+</p>
+</li>
+<li> <p><code>gsub('[0-9]+', '', strings)</code> (Note: only if specified!)
+</p>
+</li>
+<li> <p><code>trimws( gsub("[[:blank:]]+", " ", strings) )</code>
+(Or <code>""</code> if <code>remove_spaces</code> is <code>TRUE</code>)
+</p>
+</li>
+</ol>
+<h3>Value</h3>
+
+<p>The stripped strings.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ludvig Renbo Olsen, <a href="mailto:r-pkgs@ludvigolsen.dk">r-pkgs@ludvigolsen.dk</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other strippers: 
+<code>strip_msg()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R"># Attach packages
+library(xpectr)
+
+strings &lt;- c(
+  "Hello! I am George.  \n\rDon't call me Frank! 123",
+  "    \tAs that, is, not, my,     name!"
+)
+
+strip(strings)
+strip(strings, remove_spaces = TRUE)
+strip(strings, remove_numbers = TRUE)
+</code></pre>
+
+
+</div>

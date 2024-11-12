@@ -1,0 +1,85 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>NewEnvXOR</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Generate the problem environment EnvXOR</h2>
+
+<h3>Description</h3>
+
+<p><code>NewEnvXOR()</code> generates the problem environment
+for the XOR-Problem.
+</p>
+<p>The problem environment provides an abstract interface
+to the simple genetic programming algorithm.
+<code>ProblemEnv$f(parm)</code> defines the function we want to optimize.
+</p>
+<p>A problem environment is a function factory with the following
+elements:
+</p>
+
+<ol>
+<li>
+<p><code>name()</code>   a string with the name of the environment
+</p>
+</li>
+<li>
+<p><code>ProblemEnv$f(word)</code>
+function with word a word of the language (as text string).
+</p>
+</li>
+</ol>
+<p>Should be provided by the user as standard R-file.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">NewEnvXOR()
+</code></pre>
+
+
+<h3>Value</h3>
+
+<p>The problem environment:
+</p>
+
+<ul>
+<li> <p><code>$name</code>: The name of the problem environment.
+</p>
+</li>
+<li> <p><code>$f</code>:    The fitness function. 
+For this environment number of correct test cases 
+(correct function)
+and the inverse of the number of terminal symbols
+(boolean function with small number of elements). 
+</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p>Other Problem Environment: 
+<code>Parabola2DEarly</code>,
+<code>Parabola2D</code>,
+<code>lau15</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">EnvXOR&lt;-NewEnvXOR()
+EnvXOR$name()
+a2&lt;-"OR(OR(D1, D2), (AND(NOT(D1), NOT(D2))))"
+a3&lt;-"OR(OR(D1, D2), AND(D1, D2))"
+a4&lt;-"AND(OR(D1,D2),NOT(AND(D1,D2)))"
+gp4&lt;-"(AND(AND(OR(D2,D1),NOT(AND(D1,D2))),(OR(D2,D1))))"
+EnvXOR$f(a2)
+EnvXOR$f(a3)
+EnvXOR$f(a4)
+EnvXOR$f(gp4)
+
+</code></pre>
+
+
+</div>

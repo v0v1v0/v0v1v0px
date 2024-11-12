@@ -1,0 +1,133 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>runOneBenchmark</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Script for testing a single selection functions</h2>
+
+<h3>Description</h3>
+
+<p>Script for testing a single selection functions
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">runOneBenchmark(name, limit = c(10, 100, 1000), both = TRUE, verbose = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>name</code></td>
+<td>
+<p>Name is one of the following strings.
+</p>
+
+<ol>
+<li>
+<p> "Uniform" benchmarks <code>SelectUniform</code>.
+</p>
+</li>
+<li>
+<p> "ProportionalOnln" benchmarks <code>SelectPropFitOnln</code>.
+</p>
+</li>
+<li>
+<p> "Proportional" benchmarks <code>SelectPropFit</code>.
+</p>
+</li>
+<li>
+<p> "ProportionalM" benchmarks <code>SelectPropFitM</code>.
+</p>
+</li>
+<li>
+<p> "PropFitDiffOnln" benchmarks <code>SelectPropFitDiffOnln</code>.
+</p>
+</li>
+<li>
+<p> "PropFitDiff" benchmarks <code>SelectPropFitDiff</code>.
+</p>
+</li>
+<li>
+<p> "PropFitDiffM" benchmarks <code>SelectPropFitDiffM</code>.
+</p>
+</li>
+<li>
+<p> "Tournament" benchmarks <code>SelectTournament</code>.
+</p>
+</li>
+<li>
+<p> "Duel" benchmarks <code>SelectDuel</code>.
+</p>
+</li>
+<li>
+<p> "LinearRank" benchmarks <code>SelectLinearRank</code>.
+</p>
+</li>
+<li>
+<p> "SUS" benchmarks <code>SelectSUS</code>.
+</p>
+</li>
+</ol>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>limit</code></td>
+<td>
+<p>Vector of population sizes.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>both</code></td>
+<td>
+<p>For <code>both=TRUE</code> the selection function 
+is benchmarked with and without transformation. 
+For <code>both=FALSE</code>, only the transformed selection functions
+are benchmarked.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbose</code></td>
+<td>
+<p>Boolean. Default: <code>FALSE</code>. 
+If <code>TRUE</code>, the function benchmarked and the population size 
+are printed to the console.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A data frame sorted in ascending order of time of last column.
+</p>
+
+
+<h3>Warning</h3>
+
+<p>The time to run the function for <code>lim&gt;6</code> explodes 
+for all benchmark functions with higher than linear complexity.
+(e.g. <code>PropFit</code>, <code>PropFitdiff</code>, and <code>Tournament</code>).
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Benchmark Selection Functions: 
+<code>predictSelectTime()</code>,
+<code>runSelectBenchmarks()</code>,
+<code>selectBenchmark()</code>,
+<code>testSelectGene()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">runOneBenchmark("Duel", 5, both=FALSE)
+runOneBenchmark("PropFitDiffOnln")
+</code></pre>
+
+
+</div>

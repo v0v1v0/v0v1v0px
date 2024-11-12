@@ -1,0 +1,74 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>tskrrTune-class</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Class tskrrTune</h2>
+
+<h3>Description</h3>
+
+<p>The class tskrrTune represents a tuned <code>tskrr</code>
+model, and is the output of the function <code>tune</code>. Apart from
+the model, it contains extra information on the tuning procedure. This is
+a virtual class only.
+</p>
+
+
+<h3>Slots</h3>
+
+
+<dl>
+<dt><code>lambda_grid</code></dt>
+<dd>
+<p>a list object with the elements <code>k</code> and possibly
+<code>g</code> indicating the tested lambda values for the row kernel <code>K</code>
+and - if applicable - the column kernel <code>G</code>. Both elements have
+to be numeric.</p>
+</dd>
+<dt><code>best_loss</code></dt>
+<dd>
+<p>a numeric value with the loss associated with the
+best lambdas</p>
+</dd>
+<dt><code>loss_values</code></dt>
+<dd>
+<p>a matrix with the loss results from the searched grid.
+The rows form the X dimension (related to the first lambda), the columns
+form the Y dimension (related to the second lambda if applicable)</p>
+</dd>
+<dt><code>loss_function</code></dt>
+<dd>
+<p>the used loss function</p>
+</dd>
+<dt><code>exclusion</code></dt>
+<dd>
+<p>a character value describing the exclusion used</p>
+</dd>
+<dt><code>replaceby0</code></dt>
+<dd>
+<p>a logical value indicating whether or not the cross
+validation replaced the excluded values by zero</p>
+</dd>
+<dt><code>onedim</code></dt>
+<dd>
+<p>a logical value indicating whether the grid search
+was done in one dimension. For homogeneous networks, this is
+true by default.</p>
+</dd>
+</dl>
+<h3>See Also</h3>
+
+
+<ul>
+<li>
+<p> the function <code>tune</code> for the tuning itself
+</p>
+</li>
+<li>
+<p> the class <code>tskrrTuneHomogeneous</code> and
+<code>tskrrTuneHeterogeneous</code> for the actual classes.
+</p>
+</li>
+</ul>
+</div>

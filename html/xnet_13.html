@@ -1,0 +1,73 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>create_grid</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Create a grid of values for tuning tskrr</h2>
+
+<h3>Description</h3>
+
+<p>This function creates a grid of values for
+tuning a <code>tskrr</code> model. The grid is equally spaced on
+a logarithmic scale. Normally it's not needed to call this method
+directly, it's usually called from <code>tune</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">create_grid(lim = c(1e-04, 10000), ngrid = 10)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>lim</code></td>
+<td>
+<p>a numeric vector with 2 values giving the lower and upper limit
+for the grid.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ngrid</code></td>
+<td>
+<p>the number of values that have to be produced. If this
+number is not integer, it is truncated. The value should be 2 or
+larger.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The <code>lim</code> argument sets the boundaries of the domain in which
+the lambdas are sought. The lambda values at which the function is
+evaluated, are calculated as:
+</p>
+<p><code>exp(seq(log(1e-4), log(1e4), length.out = ngrid))</code>
+</p>
+
+
+<h3>Value</h3>
+
+<p>a numeric vector with values evenly spaced on a
+logarithmic scale.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>tune</code> for tuning a tskrr model.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">create_grid(lim = c(1e-4, 1), ngrid = 5)
+
+</code></pre>
+
+
+</div>

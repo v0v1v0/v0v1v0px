@@ -1,0 +1,111 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaObservePopulation</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Observe summary statistics of the fitness of the population.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaObservePopulation()</code> reports
+summary statistics of the fitness of the population.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaObservePopulation(fit, v = vector())
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>fit</code></td>
+<td>
+<p>Vector of fitness values of a population.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>v</code></td>
+<td>
+<p>Vector of population statistic vectors.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Population statistics are used for 
+</p>
+
+<ul>
+<li>
+<p> implementing individually variable operator rates and
+</p>
+</li>
+<li>
+<p> visualizing the progress of the algorithm.      
+</p>
+</li>
+</ul>
+<h3>Value</h3>
+
+<p>Vector of population statistics. If position
+<code>x</code> modulo <code>8</code> equals
+</p>
+
+<ol>
+<li> <p><code>1</code>:  Mean fitness.
+</p>
+</li>
+<li> <p><code>2</code>:  Min fitness.
+</p>
+</li>
+<li> <p><code>3</code>:  Lower-hinge 
+(approx. 1st quartile) of fitness.
+</p>
+</li>
+<li> <p><code>4</code>:  Median fitness.
+</p>
+</li>
+<li> <p><code>5</code>:  Upper-hinge 
+(approx. 3rd quartile) of fitness.
+</p>
+</li>
+<li> <p><code>6</code>:  Max fitness.
+</p>
+</li>
+<li> <p><code>7</code>:  Variance.
+</p>
+</li>
+<li> <p><code>8</code>: Mean absolute deviation. 
+</p>
+</li>
+</ol>
+<h3>See Also</h3>
+
+<p>Other Population Layer: 
+<code>xegaBestGeneInPopulation()</code>,
+<code>xegaBestInPopulation()</code>,
+<code>xegaEvalPopulation()</code>,
+<code>xegaInitPopulation()</code>,
+<code>xegaLogEvalsPopulation()</code>,
+<code>xegaNextPopulation()</code>,
+<code>xegaSummaryPopulation()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">pop10&lt;-xegaInitPopulation(10, lFxegaGaGene)
+epop10&lt;-xegaEvalPopulation(pop10, lFxegaGaGene)
+popStats&lt;-xegaObservePopulation(epop10$fit)
+popStats&lt;-xegaObservePopulation(epop10$fit, popStats)
+matrix(popStats, ncol=8, byrow=TRUE)
+
+</code></pre>
+
+
+</div>

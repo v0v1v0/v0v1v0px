@@ -1,0 +1,118 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>scribble</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Scribble</h2>
+
+<h3>Description</h3>
+
+<p>Scribble lets you draw on your <span class="pkg">xaringan</span> slides. Click the pencil icon
+to begin drawing. Use the eraser to remove lines from your drawing, or the
+trash to clear the entire canvas. Note that in order to minimize confusion,
+you will not be able to navigate slides while in draw or erase mode.
+</p>
+<p>You may toggle the visibility of the scribble toolbox by pressing <code>S</code> at
+any time. Your drawings will persist when changing slides. You may save a
+permanent copy of the slides with the markup by printing your presentation
+(e.g. using Chrome &gt; File &gt; Print).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">use_scribble(
+  pen_color = "#FF0000",
+  pen_size = 3,
+  eraser_size = pen_size * 10,
+  palette = NULL
+)
+
+html_dependency_fabricjs(minimized = TRUE)
+
+html_dependency_scribble(pen_color, pen_size, eraser_size, palette = NULL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>pen_color</code></td>
+<td>
+<p>Initial pen color (default is <code style="white-space: pre;">⁠"#FF0000⁠</code> (red)). Must be a
+hexadecimal color, e.g. <code style="white-space: pre;">⁠#000⁠</code> or <code style="white-space: pre;">⁠#4232ea⁠</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pen_size</code></td>
+<td>
+<p>Pen size (default is 3).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>eraser_size</code></td>
+<td>
+<p>Eraser size (default is <code>pen_size * 10</code>).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>palette</code></td>
+<td>
+<p>A selection of up to 10 colors that become available when
+drawing is active via the keys <code>0</code> through <code>9</code>. Press the number keys of
+0-9 to quickly active each of the palette colors.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>minimized</code></td>
+<td>
+<p>Use the minimized <code>fabric.js</code> dependency?</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An <code>htmltools::tagList()</code> with the scribble dependencies, or an
+<code>htmltools::htmlDependency()</code>.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul>
+<li> <p><code>use_scribble()</code>: Adds scribble to your xaringan slides.
+</p>
+</li>
+<li> <p><code>html_dependency_fabricjs()</code>: Returns an <code>htmltools::htmlDependency()</code> with the
+<code>fabric.js</code> dependencies for use in xaringan and R Markdown documents.
+Most users will want to use <code>use_scribble()</code> instead.
+</p>
+</li>
+<li> <p><code>html_dependency_scribble()</code>: Returns an <code>htmltools::htmlDependency()</code> with the
+scribble dependencies for use in xaringan and R Markdown documents. Most
+users will want to use <code>use_scribble()</code> instead.
+</p>
+</li>
+</ul>
+<h3>Usage</h3>
+
+<p>To add scribble to your <code>xaringan</code> presentation,
+add the following code chunk to your slides' R Markdown file.
+</p>
+<div class="sourceCode markdown"><pre>```{r xaringan-scribble, echo=FALSE}
+xaringanExtra::use_scribble()
+```
+</pre></div>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">use_scribble()
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,58 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>is_symmetric</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Test symmetry of a matrix</h2>
+
+<h3>Description</h3>
+
+<p>The function <code>isSymmetric</code> tests for symmetry of a matrix but also
+takes row and column names into account. This function is a toned-down
+(and slightly faster) version that ignores row and column names.
+Currently, the function only works for real matrices, not complex ones.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">is_symmetric(x, tol = 100 * .Machine$double.eps)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>a matrix to be tested.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tol</code></td>
+<td>
+<p>the tolerance for comparing the numbers.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>a logical value indicating whether or not the matrix is
+symmetric
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">x &lt;- matrix(1:16,ncol = 4)
+is_symmetric(x)
+
+x &lt;- x %*% t(x)
+is_symmetric(x)
+
+</code></pre>
+
+
+</div>

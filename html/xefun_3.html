@@ -1,0 +1,39 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>cols_const</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>constant columns</h2>
+
+<h3>Description</h3>
+
+<p>The columns name of a data frame with constant value.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">cols_const(dt)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>dt</code></td>
+<td>
+<p>a data frame.</p>
+</td>
+</tr></table>
+<h3>Examples</h3>
+
+<pre><code class="language-R">dt = data.frame(a = sample(0:9, 6), b = sample(letters, 6),
+                c = rep(1, 6), d = rep('a', 6))
+dt
+cols_const(dt)
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,87 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>PowerMultiplicativeCooling</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Power multiplicative cooling.</h2>
+
+<h3>Description</h3>
+
+<p>This schedule decreases by the inverse proportion of 
+a power 
+of <code>k</code>. <code>lF$Alpha()</code> should be larger than 1.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">PowerMultiplicativeCooling(k, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>k</code></td>
+<td>
+<p>Number of steps to discount.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Temperature is updated at the end of each generation
+in the main loop of the genetic algorithm.
+For <code>lF$CoolingPower()==1</code> and 
+<code>lF$CoolingPower()==2</code> this results in the 
+the linear and quadratic multiplicative cooling schemes 
+in A Comparison of Cooling Schedules for Simulated Annealing.
+<code>lF$Temp0()</code> is the starting temperature.
+<code>lF$Alpha()</code> is a scaling factor.
+<code>lF$CoolingPower()</code> is an exponential factor.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Temperature at time k.
+</p>
+
+
+<h3>References</h3>
+
+<p>The-Crankshaft Publishing (2023)
+A Comparison of Cooling Schedules for Simulated Annealing.
+&lt;https://what-when-how.com/artificial-intelligence/a-comparison-of-cooling-schedules-for-simulated-annealing-artificial-intelligence/&gt;
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Cooling: 
+<code>ExponentialAdditiveCooling()</code>,
+<code>ExponentialMultiplicativeCooling()</code>,
+<code>LogarithmicMultiplicativeCooling()</code>,
+<code>PowerAdditiveCooling()</code>,
+<code>TrigonometricAdditiveCooling()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">parm&lt;-function(x){function() {return(x)}}
+lF&lt;-list(Temp0=parm(100), Alpha=parm(1.01), CoolingPower=parm(2))
+PowerMultiplicativeCooling(0, lF)
+PowerMultiplicativeCooling(2, lF)
+</code></pre>
+
+
+</div>

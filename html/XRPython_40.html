@@ -1,0 +1,54 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>convert</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Convert Proxy Objects between XRPython and reticulate</h2>
+
+<h3>Description</h3>
+
+<p>Packages XRPython and reticulate both support proxies for Python objects; that is, R objects that are
+proxies for objects created in Python by evaluations in the respective packages.  Function <code>fromRtclt()</code>
+returns the equivalent XRPython proxy object given a reticulate object.
+Function <code>toRtclt()</code> returns the equivalent reticulate proxy object given an XRPython object.
+Normally, no copying is involved in either direction.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">fromRtclt(obj, .ev = XRPython::RPython())
+
+toRtclt(obj, .ev = XRPython::RPython())
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>obj</code></td>
+<td>
+<p>a proxy object, computed in XRPython for <code>toRtclt</code> or by reticulate for <code>fromRtclt</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>.ev</code></td>
+<td>
+<p>an XRPython evaluator, by default and usually the current evaluator.</p>
+</td>
+</tr>
+</table>
+<h3>Functions</h3>
+
+
+<ul>
+<li> <p><code>fromRtclt</code>: Convert from reticulate to XRPython
+</p>
+</li>
+<li> <p><code>toRtclt</code>: Convert from XRPython to reticulate
+</p>
+</li>
+</ul>
+</div>

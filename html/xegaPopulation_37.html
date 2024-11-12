@@ -1,0 +1,88 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaNextPopulation</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Computes the next population of genes.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaNextPopulation()</code> 
+builds the next population by repeatedly
+calling <code>ReplicateGene()</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaNextPopulation(pop, fit, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>pop</code></td>
+<td>
+<p>Population of genes.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fit</code></td>
+<td>
+<p>Fitness.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The current version is sequential.
+For parallelization, a restructuring of the 
+main loop with an integration of <code>xegaNextPopulation</code>
+and <code>xegaEvalPopulation</code> is planned, because
+this allows the parallelization of a large part of 
+the genetic operations which are sequential in the 
+current version.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Population of genes.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Population Layer: 
+<code>xegaBestGeneInPopulation()</code>,
+<code>xegaBestInPopulation()</code>,
+<code>xegaEvalPopulation()</code>,
+<code>xegaInitPopulation()</code>,
+<code>xegaLogEvalsPopulation()</code>,
+<code>xegaObservePopulation()</code>,
+<code>xegaSummaryPopulation()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">lFxegaGaGene$MutationRate&lt;-MutationRateFactory(method="Const")
+lFxegaGaGene$ReplicateGene&lt;-ReplicateGene
+lFxegaGaGene$Accept&lt;-AcceptFactory(method="All")
+pop10&lt;-xegaInitPopulation(10, lFxegaGaGene)
+epop10&lt;-xegaEvalPopulation(pop10, lFxegaGaGene)
+newpop&lt;-xegaNextPopulation(epop10$pop, epop10$fit, lFxegaGaGene)
+
+</code></pre>
+
+
+</div>

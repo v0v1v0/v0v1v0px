@@ -1,0 +1,120 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xwf</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Compute XWFs</h2>
+
+<h3>Description</h3>
+
+<p>Compute extrema-weighted features based on functions, predefined local features, and weighting functions
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xwf(xx, t, n.i, psi, w = function(t, i) ifelse(left, min(1, (1 -
+  F(xx[[i]](t)))/(1 - b)), min(1, F(xx[[i]](t))/b)), b = 0.5, F = NULL,
+  t.min = NULL, t.max = NULL, t.range = NULL, rel.shift = 0.001,
+  left = TRUE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>xx</code></td>
+<td>
+<p>List of function for which to compute the XWFs</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>t</code></td>
+<td>
+<p>Matrix containing the times at which the functions xx were measured: Element (i,j) contains the time of the j-th measurement of the i-th function.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>n.i</code></td>
+<td>
+<p>Vector containing the number of measurements for each function. The first n.i[i] elements of the i-th row of t should not be NA.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>psi</code></td>
+<td>
+<p>Predefined local feature which is a function of a function (first argument) and a measurement time (second argument)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>w</code></td>
+<td>
+<p>Weighting function. The default is the one used in the original paper.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>b</code></td>
+<td>
+<p>Parameter of the weighting function. See original paper for details. Ignored if weighting function w is not the default.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>F</code></td>
+<td>
+<p>CDF of the values of the functions xx. Ignored if weighting function w is not the default.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>t.min</code></td>
+<td>
+<p>Vector with time of first measurement for each function. Computed from t if omitted but providing it saves computational cost.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>t.max</code></td>
+<td>
+<p>Analogous to t.min but now the time of the last measurement.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>t.range</code></td>
+<td>
+<p>Vector with differences between t.max and t.min. Can be supplied to avoid recomputation.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>rel.shift</code></td>
+<td>
+<p>Optional relative reduction of the integration range to avoid instabilities at the end of the integration ranges. Set to 0 if no such correction is desired.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>left</code></td>
+<td>
+<p>Boolean specifying whether the left (TRUE) or right (FALSE) extrema-weighted features should be computed: Left and right refer to the weighting function. Ignored if weighting function w is not the default.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Vector containing the extrema-weighted features obtained by numerical integration for each of the functions.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">xwf(
+xx = list(function(t) t),
+t = (1:10)/10,
+n.i = 10,
+psi = function(x, t) x(t),
+b = .2,
+F = function(x) x
+)
+
+</code></pre>
+
+
+</div>

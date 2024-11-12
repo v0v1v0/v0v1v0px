@@ -1,0 +1,123 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>read.vpctab</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Read the vpctab file from PsN into Xpose</h2>
+
+<h3>Description</h3>
+
+<p>This function read in the vpctab file created from PsN and gathers the
+information needed to make a vpc plot.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">read.vpctab(
+  vpctab = NULL,
+  object = NULL,
+  vpc.name = "vpctab",
+  vpc.suffix = "",
+  tab.suffix = "",
+  inclZeroWRES = FALSE,
+  verbose = FALSE,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>vpctab</code></td>
+<td>
+<p>The vpctab file from a '<code>vpc</code>' run in PsN.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An xpose data object. Created from <code>xpose.data</code>.
+One of <code>object</code> or <code>vpctab</code> is required.  If both are present then
+the information from the <code>vpctab</code> will over-ride the xpose data object
+<code>object</code> (i.e. the values from the vpctab will replace any matching
+values in the <code>object@Data</code> portion of the xpose data object). If only
+<code>object</code> is present then the function will look for a vpctab with the
+same run number as the one associated with the object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>vpc.name</code></td>
+<td>
+<p>The default name of the vpctab file. Used if only
+<code>object</code> is supplied.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>vpc.suffix</code></td>
+<td>
+<p>The suffix of the vpctab file. Used if only <code>object</code>
+is supplied.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tab.suffix</code></td>
+<td>
+<p>The table suffix of the vpctab file. Used if only
+<code>object</code> is supplied. Final order of the file would be then
+<code>paste(vpc.name,object@Runno,vpc.suffix,tab.suffix)</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>inclZeroWRES</code></td>
+<td>
+<p>If there are no zero valued weighted residuals in the
+<code>object</code> then this should be <code>TRUE</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbose</code></td>
+<td>
+<p>Text messages passed to screen or not.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Other arguments passed to other functions.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Returned is an xpose data object with vpctab information included.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Andrew Hooker
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xpose.VPC</code>
+</p>
+<p>Other PsN functions: 
+<code>boot.hist()</code>,
+<code>bootscm.import()</code>,
+<code>npc.coverage()</code>,
+<code>randtest.hist()</code>,
+<code>read.npc.vpc.results()</code>,
+<code>xpose.VPC()</code>,
+<code>xpose.VPC.both()</code>,
+<code>xpose.VPC.categorical()</code>,
+<code>xpose4-package</code>
+</p>
+
+
+</div>

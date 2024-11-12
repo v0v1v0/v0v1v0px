@@ -1,0 +1,102 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>chooseNode</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Selects an attributed node in an attributed node list randomly.</h2>
+
+<h3>Description</h3>
+
+<p><code>chooseNode()</code> returns  a random attributed node 
+from an attributed node list
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">chooseNode(ANL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>ANL</code></td>
+<td>
+<p>Attributed node list.</p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+<p>An attributed <code>node</code> has the following elements:
+</p>
+
+<ul>
+<li> <p><code>ID</code>
+</p>
+</li>
+<li> <p><code>NonTerminal</code>
+</p>
+</li>
+<li> <p><code>Pos</code>
+</p>
+</li>
+<li> <p><code>Depth</code>
+</p>
+</li>
+<li> <p><code>Rdepth</code>
+</p>
+</li>
+<li> <p><code>subtreedepth</code>
+</p>
+</li>
+<li> <p><code>node$Index</code>
+</p>
+</li>
+</ul>
+<p>These elements can be used e.g. 
+</p>
+
+<ul>
+<li>
+<p> for inserting and extracting subtrees 
+(<code>Pos</code> or  <code>node$Index</code>), 
+</p>
+</li>
+<li>
+<p> for checking
+the feasibility of subtree substitution (<code>ID</code>),
+</p>
+</li>
+<li>
+<p> for checking depth bounds 
+(<code>Depth</code>, <code>RDepth</code>, and <code>subtreedepth</code>),
+...
+</p>
+</li>
+</ul>
+<h3>Value</h3>
+
+<p>Attributed node.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Random Choice: 
+<code>chooseRule()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">g&lt;-compileBNF(booleanGrammar())
+a&lt;-randomDerivationTree(g$Start, g)
+b&lt;-treeANL(a, g$ST)
+c&lt;-chooseNode(b$ANL)
+
+</code></pre>
+
+
+</div>

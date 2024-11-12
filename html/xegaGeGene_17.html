@@ -1,0 +1,73 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaGePrecisionFactory</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Configure the function for computing the codon precision for grammar evolution.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaGePrecisionFactory()</code> implements the selection
+of one of the functions for computing the codon precision in this
+package by specifying a text string.
+The selection fails ungracefully (produces
+a runtime error), if the label does not match.
+The functions are specified locally.
+</p>
+<p>Current support:
+</p>
+
+<ol>
+<li>
+<p> "Min" returns <code>MinCodonPrecision</code>.
+Shortest coding, but some choice bias.
+</p>
+</li>
+<li>
+<p> "LCM" returns <code>mLCMGCodonPrecision</code>. (Default)
+</p>
+</li>
+<li>
+<p> "MaxPBias" returns <code>CodonPrecisionWithThreshold</code>.
+</p>
+</li>
+</ol>
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaGePrecisionFactory(method = "LCM")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>String specifying the GeneMap function.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>Precision of codon function.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Configuration: 
+<code>xegaGeGeneMapFactory()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">CodonPrecision&lt;-xegaGePrecisionFactory("Min")
+NT&lt;-sample(5, 50, replace=TRUE)
+CodonPrecision(NT)
+CodonPrecision&lt;-xegaGePrecisionFactory("MaxPBias")
+CodonPrecision(NT, 0.1)
+</code></pre>
+
+
+</div>

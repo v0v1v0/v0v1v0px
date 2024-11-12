@@ -1,0 +1,205 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>GAM_summary_and_plot</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>GAM functions for Xpose 4</h2>
+
+<h3>Description</h3>
+
+<p>These are functions for summarizing and plotting the results of 
+the generalized additive model within Xpose
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xp.akaike.plot(
+  gamobj = NULL,
+  title = "Default",
+  xlb = "Akaike value",
+  ylb = "Models",
+  ...
+)
+
+xp.cook(gam.object)
+
+xp.ind.inf.fit(
+  gamobj = NULL,
+  plot.ids = TRUE,
+  idscex = 0.7,
+  ptscex = 0.7,
+  title = "Default",
+  recur = FALSE,
+  xlb = NULL,
+  ylb = NULL,
+  ...
+)
+
+xp.ind.inf.terms(
+  gamobj = NULL,
+  xlb = NULL,
+  ylb = NULL,
+  plot.ids = TRUE,
+  idscex = 0.7,
+  ptscex = 0.7,
+  prompt = TRUE,
+  ...
+)
+
+xp.ind.stud.res(
+  gamobj = NULL,
+  title = "Default",
+  recur = FALSE,
+  xlb = NULL,
+  ylb = NULL
+)
+
+xp.plot(
+  gamobj = NULL,
+  plot.ids = TRUE,
+  idscex = 0.7,
+  ptscex = 0.7,
+  prompt = TRUE,
+  ...
+)
+
+xp.summary(gamobj = NULL)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>gamobj</code></td>
+<td>
+<p>A GAM object to use in the plot. IF null then the user is
+asked to choose from a list of GAM objects in memory.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>title</code></td>
+<td>
+<p>A text string indicating plot title. If <code>NULL</code>, left
+blank.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xlb</code></td>
+<td>
+<p>A text string indicating x-axis legend. If <code>NULL</code>, left
+blank.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylb</code></td>
+<td>
+<p>A text string indicating y-axis legend. If <code>NULL</code>, left
+blank.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Other arguments passed to the GAM functions.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>gam.object</code></td>
+<td>
+<p>A GAM object (see <code>gam</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>plot.ids</code></td>
+<td>
+<p>Logical, specifies whether or not ID numbers should be
+displayed.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>idscex</code></td>
+<td>
+<p>ID label size.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ptscex</code></td>
+<td>
+<p>Point size.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>recur</code></td>
+<td>
+<p>If dispersion should be used in the GAM object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>prompt</code></td>
+<td>
+<p>Specifies whether or not the user should be prompted to press
+RETURN between plot pages. Default is TRUE.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An xpose.data object.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Plots or summaries.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul>
+<li> <p><code>xp.akaike.plot()</code>: An Akaike plot of the results.
+</p>
+</li>
+<li> <p><code>xp.cook()</code>: Individual parameters to GAM fit.
+</p>
+</li>
+<li> <p><code>xp.ind.inf.fit()</code>: Individual influence on GAM fit.
+</p>
+</li>
+<li> <p><code>xp.ind.inf.terms()</code>: Individual influence on GAM terms.
+</p>
+</li>
+<li> <p><code>xp.ind.stud.res()</code>: Studentized residuals.
+</p>
+</li>
+<li> <p><code>xp.plot()</code>: GAM residuals of base model vs. covariates.
+</p>
+</li>
+<li> <p><code>xp.summary()</code>: Summarize GAM.
+</p>
+</li>
+</ul>
+<h3>Author(s)</h3>
+
+<p>Niclas Jonsson &amp; Andrew Hooker
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>gam</code>, <code>dotplot</code>
+</p>
+<p>Other GAM functions: 
+<code>xp.get.disp()</code>,
+<code>xp.scope3()</code>,
+<code>xpose.bootgam()</code>,
+<code>xpose.gam()</code>,
+<code>xpose4-package</code>
+</p>
+
+
+</div>

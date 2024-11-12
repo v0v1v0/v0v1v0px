@@ -1,0 +1,107 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xtsum</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Calculate summary statistics for panel data</h2>
+
+<h3>Description</h3>
+
+<p>This function computes summary statistics for panel data, including overall
+statistics, between-group statistics, and within-group statistics.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xtsum(
+  data,
+  variables = NULL,
+  id = NULL,
+  t = NULL,
+  na.rm = FALSE,
+  return.data.frame = FALSE,
+  dec = 3
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>data</code></td>
+<td>
+<p>A data.frame or pdata.frame object representing panel data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>variables</code></td>
+<td>
+<p>(Optional) Vector of variable names for which to calculate statistics.
+If not provided, all numeric variables in the data will be used.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>id</code></td>
+<td>
+<p>(Optional) Name of the individual identifier variable.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>t</code></td>
+<td>
+<p>(Optional) Name of the time identifier variable.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>na.rm</code></td>
+<td>
+<p>Logical indicating whether to remove NAs when calculating statistics.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>return.data.frame</code></td>
+<td>
+<p>If the return object should be a dataframe</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dec</code></td>
+<td>
+<p>Number of significant digits to report</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A table summarizing statistics for each variable, including Mean, SD, Min, and Max,
+broken down into Overall, Between, and Within dimensions.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+# Using a data.frame and specifying variables, id, it, na.rm, dec
+data("nlswork", package = "sampleSelection")
+xtsum(nlswork, "hours", id = "idcode", t = "year", na.rm = TRUE, dec = 6)
+
+# Using pdata.frame object without specifying a variable
+data("Gasoline", package = "plm")
+Gas &lt;- pdata.frame(Gasoline, index = c("country", "year"), drop.index = TRUE)
+xtsum(Gas)
+
+
+# Using regular data.frame with id and t specified
+data("Crime", package = "plm")
+xtsum(Crime, variables = c("crmrte", "prbarr"), id = "county", t = "year")
+
+# Specifying variables to include in the summary
+xtsum(Gas, variables = c("lincomep", "lgaspcar"))
+
+</code></pre>
+
+
+</div>

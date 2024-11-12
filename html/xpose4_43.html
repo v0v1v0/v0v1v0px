@@ -1,0 +1,230 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>cat.pc</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Categorical (visual) predictive check.</h2>
+
+<h3>Description</h3>
+
+<p>Categorical (visual) predictive check plots.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">cat.pc(
+  object,
+  dv = xvardef("dv", object),
+  idv = xvardef("idv", object),
+  level.to.plot = NULL,
+  subset = NULL,
+  histo = T,
+  median.line = F,
+  PI.lines = F,
+  xlb = if (histo) {
+     paste("Proportion of ", dv)
+ } else {
+     paste(idv)
+ },
+  ylb = if (histo) {
+     paste("Percent of Total")
+ } else {
+    
+    paste("Proportion of Total")
+ },
+  main = xpose.create.title.text(NULL, dv, "Predictive check of", object, subset =
+    subset, ...),
+  strip = "Default",
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>Xpose data object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dv</code></td>
+<td>
+<p>The dependent variable (e.g. <code>"DV"</code> or <code>"CP"</code>.)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>idv</code></td>
+<td>
+<p>The independent variable (e.g. <code>"TIME"</code>.)</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>level.to.plot</code></td>
+<td>
+<p>The levels to plot.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>subset</code></td>
+<td>
+<p>Subset of data.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>histo</code></td>
+<td>
+<p>If <code>FALSE</code> then a VPC is created, given that <code>idv</code> is
+defined.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>median.line</code></td>
+<td>
+<p>Make a median line?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>PI.lines</code></td>
+<td>
+<p>Make prediction interval lines?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xlb</code></td>
+<td>
+<p>Label for x axis.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylb</code></td>
+<td>
+<p>label for y axis.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>Main title.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>strip</code></td>
+<td>
+<p>Defining how the strips should appear in the conditioning
+plots.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Extra arguments passed to the function.</p>
+</td>
+</tr>
+</table>
+<h3>Author(s)</h3>
+
+<p>Andrew C. Hooker
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other specific functions: 
+<code>absval.cwres.vs.cov.bw()</code>,
+<code>absval.cwres.vs.pred()</code>,
+<code>absval.cwres.vs.pred.by.cov()</code>,
+<code>absval.iwres.cwres.vs.ipred.pred()</code>,
+<code>absval.iwres.vs.cov.bw()</code>,
+<code>absval.iwres.vs.idv()</code>,
+<code>absval.iwres.vs.ipred()</code>,
+<code>absval.iwres.vs.ipred.by.cov()</code>,
+<code>absval.iwres.vs.pred()</code>,
+<code>absval.wres.vs.cov.bw()</code>,
+<code>absval.wres.vs.idv()</code>,
+<code>absval.wres.vs.pred()</code>,
+<code>absval.wres.vs.pred.by.cov()</code>,
+<code>absval_delta_vs_cov_model_comp</code>,
+<code>addit.gof()</code>,
+<code>autocorr.cwres()</code>,
+<code>autocorr.iwres()</code>,
+<code>autocorr.wres()</code>,
+<code>basic.gof()</code>,
+<code>basic.model.comp()</code>,
+<code>cat.dv.vs.idv.sb()</code>,
+<code>cov.splom()</code>,
+<code>cwres.dist.hist()</code>,
+<code>cwres.dist.qq()</code>,
+<code>cwres.vs.cov()</code>,
+<code>cwres.vs.idv()</code>,
+<code>cwres.vs.idv.bw()</code>,
+<code>cwres.vs.pred()</code>,
+<code>cwres.vs.pred.bw()</code>,
+<code>cwres.wres.vs.idv()</code>,
+<code>cwres.wres.vs.pred()</code>,
+<code>dOFV.vs.cov()</code>,
+<code>dOFV.vs.id()</code>,
+<code>dOFV1.vs.dOFV2()</code>,
+<code>data.checkout()</code>,
+<code>dv.preds.vs.idv()</code>,
+<code>dv.vs.idv()</code>,
+<code>dv.vs.ipred()</code>,
+<code>dv.vs.ipred.by.cov()</code>,
+<code>dv.vs.ipred.by.idv()</code>,
+<code>dv.vs.pred()</code>,
+<code>dv.vs.pred.by.cov()</code>,
+<code>dv.vs.pred.by.idv()</code>,
+<code>dv.vs.pred.ipred()</code>,
+<code>gof()</code>,
+<code>ind.plots()</code>,
+<code>ind.plots.cwres.hist()</code>,
+<code>ind.plots.cwres.qq()</code>,
+<code>ipred.vs.idv()</code>,
+<code>iwres.dist.hist()</code>,
+<code>iwres.dist.qq()</code>,
+<code>iwres.vs.idv()</code>,
+<code>kaplan.plot()</code>,
+<code>par_cov_hist</code>,
+<code>par_cov_qq</code>,
+<code>parm.vs.cov()</code>,
+<code>parm.vs.parm()</code>,
+<code>pred.vs.idv()</code>,
+<code>ranpar.vs.cov()</code>,
+<code>runsum()</code>,
+<code>wres.dist.hist()</code>,
+<code>wres.dist.qq()</code>,
+<code>wres.vs.idv()</code>,
+<code>wres.vs.idv.bw()</code>,
+<code>wres.vs.pred()</code>,
+<code>wres.vs.pred.bw()</code>,
+<code>xpose.VPC()</code>,
+<code>xpose.VPC.both()</code>,
+<code>xpose.VPC.categorical()</code>,
+<code>xpose4-package</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Not run: 
+## read in table files
+runno &lt;- 45
+xpdb &lt;- xpose.data(runno)
+
+## create proportion (visual) predictive check
+cat.pc(xpdb,idv=NULL)
+cat.pc(xpdb,idv="DOSE")
+cat.pc(xpdb,idv="DOSE",histo=F)
+cat.pc(xpdb,idv="TIME",histo=T,level.to.plot=1)
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

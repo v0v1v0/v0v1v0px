@@ -1,0 +1,139 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xmlwriter-package</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Fast and elegant XML generation</h2>
+
+<h3>Description</h3>
+
+<p><code>xmlwriter</code> is an R package that provides a simple interface for creating XML documents
+and fragments from R. It provides a simple elegant syntax for creating <code>xml_fragment</code>s and furthermore
+contains a feed-forward API that allows you to write xml.
+</p>
+
+
+<h3>Details</h3>
+
+<p><code>xmlwriter</code>'s xml generation from R lists is fast, implemented in C++ using <a href="https://cran.r-project.org/package=Rcpp"><code>Rcpp</code></a>.
+</p>
+<p><code>xmlwriter</code> provides two different ways to create xml documents:
+</p>
+
+<ul>
+<li>
+<p> a light weight R syntax using <code>xml_doc()</code>, <code>xml_fragment()</code> and <code>frag()</code>, creating an xml fragment
+that can be easily translated into a xml string or <code>xml2::xml_document</code> object
+</p>
+</li>
+<li>
+<p> a feed-forward API using <code>xmlbuilder()</code> that allows you to create xml documents in a feed-forward manner.
+</p>
+</li>
+</ul>
+<p>It implements several <code>xml2</code> methods:
+</p>
+
+<ul>
+<li> <p><code>as_xml_document.xml_fragment()</code>
+</p>
+</li>
+<li> <p><code>as_list.xml_fragment()</code>
+</p>
+</li>
+<li> <p><code>write_xml.xml_fragment()</code>
+</p>
+</li>
+</ul>
+<h3>Author(s)</h3>
+
+<p><strong>Maintainer</strong>: Edwin de Jonge <a href="mailto:edwindjonge@gmail.com">edwindjonge@gmail.com</a> (<a href="https://orcid.org/0000-0002-6580-4718">ORCID</a>)
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Useful links:
+</p>
+
+<ul><li> <p><a href="https://edwindj.github.io/xmlwriter/">https://edwindj.github.io/xmlwriter/</a>
+</p>
+</li></ul>
+<h3>Examples</h3>
+
+<pre><code class="language-R">doc &lt;- xml_fragment(
+  study = frag(
+    .attr = c(id="1"),
+    person = frag(
+      .attr = c(id = "p1"),
+      name = "John Doe",
+      age = 30
+    ),
+    person = frag(
+      name = "Jane Doe",
+      age = 25,
+      address = frag(street = "123 Main St", city = "Springfield"),
+      "This is a text node"
+    )
+  )
+)
+
+print(doc)
+if (require("xml2")){
+  as_xml_document(doc)
+}
+
+# you can create a function to generate an xml fragment:
+person_frag &lt;- function(name, age, id){
+  tag("person", id = id) / frag(
+    name = name,
+    age  = age,
+    address = frag(
+      street = "123 Main St",
+      city = "Springfield"
+    )
+  )
+}
+
+# xml_doc is a xml_fragment with the restriction of having one root element
+doc2 &lt;- xml_doc("study") / (
+  person_frag("John Doe", 30, "p1") +
+  person_frag("Jane Doe", 25, "p2")
+)
+
+print(doc2)
+
+if (require("xml2")){
+  as_xml_document(doc2)
+}
+
+# a fragment can have multiple root elements
+fgmt &lt;- person_frag("John Doe", 30, id = "p1") +
+  person_frag("Jane Doe", 25, id = "p2")
+
+
+print(fgmt)
+
+if (require("xml2")){
+  # as_xml_document won't work because it expects a single root element,
+  # so we retrieve a nodeset instead
+  as_xml_nodeset(fgmt)
+}
+
+iris_xml &lt;- xml_doc("fieldstudy", id = "iris", doi ="10.1111/j.1469-1809.1936.tb02137.x") /
+  frag(
+    source = "Fisher, R. A. (1936) The use of multiple measurements in
+taxonomic problems. Annals of Eugenics, 7, Part II, 179–188.",
+    data = data_frag(iris, row_tag = "obs")
+  )
+
+print(iris_xml, max_characters = 300)
+
+if (require("xml2")){
+  as_xml_document(iris_xml)
+}
+</code></pre>
+
+
+</div>

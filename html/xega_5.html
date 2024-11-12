@@ -1,0 +1,102 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>Parabola2D</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Problem environment for a 2-dimensional quadratic parabola</h2>
+
+<h3>Description</h3>
+
+<p>Problem environment for finding maxima and minima
+of a 2-dimensional quadratic parabola.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">Parabola2D
+</code></pre>
+
+
+<h3>Format</h3>
+
+<p>An object of class <code>list</code> of length 8.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A named list 
+</p>
+
+<ul>
+<li> <p><code>$name()</code>: Returns the name of the problem environment.
+</p>
+</li>
+<li> <p><code>$bitlength()</code>: The vector of the 
+bitlengths of the parameters.  
+</p>
+</li>
+<li> <p><code>$genelength()</code>: The number of bits of a gene.  
+</p>
+</li>
+<li> <p><code>$lb()</code>:         The vector of lower bounds 
+of the parameters. 
+</p>
+</li>
+<li> <p><code>$ub()</code>:  The vector of upper bounds of the parameters. 
+</p>
+</li>
+<li> <p><code>$f(parm)</code>:   The implementation of the function of the
+quadratic parabola. 
+</p>
+
+<ul>
+<li> <p><code>parm</code>:  A 2-element vector of reals.
+</p>
+</li>
+<li>
+<p> Returns the value of the function.
+</p>
+</li>
+</ul>
+</li>
+<li> <p><code>$describe()</code>:   Returns the description of 
+the problem environment.
+</p>
+</li>
+<li> <p><code>$solution()</code>:   The solutions (maxima/minima) of the 
+problem environment (if known). 
+</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p>Other Problem Environment: 
+<code>NewEnvXOR()</code>,
+<code>Parabola2DEarly</code>,
+<code>lau15</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">names(Parabola2D)
+Parabola2D$name()
+Parabola2D$describe()
+Parabola2D$bitlength()
+Parabola2D$genelength()
+Parabola2D$lb()
+Parabola2D$ub()
+Parabola2D$f
+Parabola2D$f(c(2.2, -1.37))
+Parabola2D$solution()
+Parabola2D$solution()$minimum
+Parabola2D$solution()$minpoints
+Parabola2D$solution()$maximum
+Parabola2D$solution()$maxpoints
+</code></pre>
+
+
+</div>

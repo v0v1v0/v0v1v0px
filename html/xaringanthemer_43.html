@@ -1,0 +1,98 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>theme_xaringan_set_defaults</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Set and Restore ggplot2 geom Defaults</h2>
+
+<h3>Description</h3>
+
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#maturing"><img src="../help/figures/lifecycle-maturing.svg" alt="[Maturing]"></a>
+</p>
+<p>Set <span class="pkg">ggplot2</span> <em>geom</em> defaults to match <code>theme_xaringan()</code> with
+<code>theme_xaringan_set_defaults()</code> and restore the standard or previously-set
+defaults with <code>theme_xaringan_restore_defaults()</code>. By default,
+<code>theme_xaringan_set_defaults()</code> is run with <code>theme_xaringan()</code> or
+<code>theme_xaringan_inverse()</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">theme_xaringan_set_defaults(
+  text_color = NULL,
+  background_color = NULL,
+  accent_color = text_color,
+  accent_secondary_color = accent_color,
+  text_font = NULL
+)
+
+theme_xaringan_restore_defaults()
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>text_color</code></td>
+<td>
+<p>Color for text and foreground, inherits from <code>text_color</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>background_color</code></td>
+<td>
+<p>Color for background, inherits from
+<code>background_color</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>accent_color</code></td>
+<td>
+<p>Color for titles and accents, inherits from
+<code>header_color</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>accent_secondary_color</code></td>
+<td>
+<p>Color for secondary accents, inherits from
+<code>text_bold_color</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>text_font</code></td>
+<td>
+<p>Font to use for text elements, passed to
+<code>sysfonts::font_add_google()</code>, if available and <code>text_font_use_google</code> is
+<code>TRUE</code>. Inherits from <code>text_font_family</code>. Must be a length-one character.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Invisibly returns a list of the current ggplot2 geom defaults
+</p>
+<p>Invisibly returns a list of the current ggplot2 geom defaults
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul><li> <p><code>theme_xaringan_restore_defaults()</code>: Restore previous or standard
+<span class="pkg">ggplot2</span> <em>geom</em> defaults.
+</p>
+</li></ul>
+<h3>See Also</h3>
+
+<p>Other xaringanthemer ggplot2 themes: 
+<code>theme_xaringan()</code>,
+<code>theme_xaringan_base()</code>,
+<code>theme_xaringan_inverse()</code>
+</p>
+
+
+</div>

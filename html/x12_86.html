@@ -1,0 +1,178 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>x12Batch-class</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Class <code>"x12Batch"</code>
+</h2>
+
+<h3>Description</h3>
+
+<p>Concatenation of multiple <code>x12Single-class</code> objects.
+</p>
+
+
+<h3>Objects from the Class</h3>
+
+<p>Objects can be created by calls of the form <code>new("x12Batch", tsList, tsName, x12BaseInfo)</code>.
+
+</p>
+
+
+<h3>Slots</h3>
+
+
+<dl>
+<dt>
+<code>x12List</code>:</dt>
+<dd>
+<p>Object of class <code>"x12List"</code> ~~ </p>
+</dd>
+<dt>
+<code>x12BaseInfo</code>:</dt>
+<dd>
+<p>Object of class <code>"x12BaseInfo"</code> ~~ </p>
+</dd>
+</dl>
+<h3>Methods</h3>
+
+
+<dl>
+<dt><code>setP</code></dt>
+<dd>
+<p><code>signature(object = "x12Batch")</code>: ... </p>
+</dd>
+<dt><code>getP</code></dt>
+<dd>
+<p><code>signature(object = "x12Batch")</code>: ... </p>
+</dd>
+<dt><code>prev</code></dt>
+<dd>
+<p><code>signature(object = "x12Batch")</code>: ... </p>
+</dd>
+<dt><code>cleanArchive</code></dt>
+<dd>
+<p><code>signature(object = "x12Batch")</code>: ... </p>
+</dd>
+<dt><code>loadP</code></dt>
+<dd>
+<p><code>signature(object = "x12Batch")</code>: ... </p>
+</dd>
+<dt><code>saveP</code></dt>
+<dd>
+<p><code>signature(object = "x12Batch")</code>: ... </p>
+</dd>
+<dt><code>summary</code></dt>
+<dd>
+<p><code>signature(object = "x12Batch")</code>: ... </p>
+</dd>
+<dt><code>x12</code></dt>
+<dd>
+<p><code>signature(object = "x12Batch")</code>: ... </p>
+</dd>
+<dt>dim</dt>
+<dd>
+<p><code>signature(x = "x12Batch")</code>: ... </p>
+</dd>
+<dt>length</dt>
+<dd>
+<p><code>signature(x = "x12Batch")</code>: ... </p>
+</dd>
+<dt><code>cleanHistory</code></dt>
+<dd>
+<p><code>signature(object = "x12Batch")</code>: ... </p>
+</dd>
+</dl>
+<h3>Note</h3>
+
+<p>cleanHistory is deprecated and cleanArchive should be used instead.</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Alexander Kowarik
+</p>
+
+
+<h3>References</h3>
+
+<p>Alexander Kowarik, Angelika Meraner, Matthias Templ, Daniel
+Schopfhauser (2014). Seasonal Adjustment with the R Packages x12 and
+x12GUI. Journal of Statistical Software, 62(2), 1-21. URL
+http://www.jstatsoft.org/v62/i02/.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>x12</code>,
+<code>x12Single</code>,
+
+<code>x12Parameter</code>,
+<code>x12List</code>,
+<code>x12Output</code>,
+<code>x12BaseInfo</code>,
+<code>summary</code>,
+<code>getP</code>,
+
+<code>x12work</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+#object containing 4 time series and the corresponding parameters and output
+data(AirPassengersX12Batch)
+summary(AirPassengersX12Batch)
+#summary with oldOutput
+summary(AirPassengersX12Batch,oldOutput=10)
+#Change the parameter and output of the first series back to the first run
+AirPassengersX12Batch &lt;- prev(AirPassengersX12Batch,index=1,n=1)
+#summary with oldOutput (--- No valid previous runs. ---)
+summary(AirPassengersX12Batch,oldOutput=10)
+
+#Create new batch object with 4 time series
+xb &lt;- new("x12Batch",list(AirPassengers,ldeaths,nottem,UKgas),
+  c("Air","ldeaths","nottem","UKgas"))
+# change outlier.types to "all" in all 4 elements
+xb &lt;- setP(xb,list(outlier.types="all"))
+#change the arima.model and arima.smodel setting for the first ts object
+xb &lt;- setP(xb,list(arima.model=c(0,1,1),arima.smodel=c(0,1,1)),1)
+#change the arima.model and arima.smodel setting for the second ts object
+xb &lt;- setP(xb,list(arima.model=c(0,1,1),arima.smodel=c(0,1,1)),2)
+#change the arima.model and arima.smodel setting for the third ts object
+xb &lt;- setP(xb,list(arima.model=c(0,1,1),arima.smodel=c(0,1,1)),3)
+#change the arima.model and arima.smodel setting for the fourth ts object
+xb &lt;- setP(xb,list(arima.model=c(0,1,1),arima.smodel=c(0,1,1)),4)
+#run x12 on all series
+xb &lt;- x12(xb)
+summary(xb)
+#Set automdl=TRUE for the first ts
+xb &lt;- setP(xb,list(automdl=TRUE),1)
+#rerun x12 on all series (the binaries will only run on the first one)
+xb &lt;- x12(xb)
+#summary with oldOutput
+summary(xb,oldOutput=10)
+#Change the parameter and output of the first series back to the first run
+xb &lt;- prev(xb,index=1,n=1)
+#summary with oldOutput (--- No valid previous runs. ---)
+summary(xb,oldOutput=10)
+
+#Create new batch object by combining objects of class x12Single
+s1 &lt;- new("x12Single",ts=AirPassengers,tsName="air")
+s1 &lt;- setP(s1,list(estimate=TRUE,regression.variables="AO1950.1",outlier.types="all",
+  outlier.critical=list(LS=3.5,TC=2.5)))
+s2 &lt;- new("x12Single",ts=UKgas,tsName="UKgas")
+s2 &lt;- setP(s2,list(slidingspans=TRUE,history=TRUE,
+  history.estimates=c("sadj","sadjchng","trend","trendchng","seasonal","aic"),
+  history.sadjlags=c(1,2),automdl=TRUE))
+b &lt;- new("x12Batch",list(s1,s2))
+b &lt;- x12(b)
+
+## End(Not run)
+</code></pre>
+
+
+</div>

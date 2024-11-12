@@ -1,0 +1,122 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xpose_save</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Save xpose plot</h2>
+
+<h3>Description</h3>
+
+<p>Built as a wrapper around ggsave, this function
+facilitates the export of xpose plots.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xpose_save(
+  plot = last_plot(),
+  file = NULL,
+  dir = NULL,
+  device = NULL,
+  scale = 1,
+  width = 7,
+  height = 6,
+  units = c("in", "cm", "mm", "px"),
+  dpi = 200,
+  limitsize = TRUE,
+  bg = NULL,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>plot</code></td>
+<td>
+<p>A xpose plot object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>file</code></td>
+<td>
+<p>A name with file extension (if device is <code>NULL</code>) to be given
+to the output file. Template variables such as <code>@run</code> (run number) and
+<code>@plotfun</code> (plot function) can be used to automatically name files
+e.g. <code>file = '@run_@plotfun.pdf'</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dir</code></td>
+<td>
+<p>Directory under which the xpose plots will be saved. Template
+variables such as <code>@dir</code> can be used to generate template names.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>device</code></td>
+<td>
+<p>Graphical device to use. Can be either be a device function
+(e.g. <code>png</code>), or one of 'eps', 'ps', 'tex' (pictex), 'pdf',
+'jpeg', 'tiff', 'png', 'bmp', 'svg' or 'wmf' (windows only).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>scale</code></td>
+<td>
+<p>Multiplicative scaling factor.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>width, height, units</code></td>
+<td>
+<p>Plot size in in <code>units</code> ("in", "cm", "mm", or
+"px"). If not supplied, uses the size of current graphics device.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dpi</code></td>
+<td>
+<p>Plot resolution. Also accepts a string input: "retina" (320),
+"print" (300), or "screen" (72). Applies only to raster output types.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>limitsize</code></td>
+<td>
+<p>When <code>TRUE</code> (the default), <code>xpose_save()</code> will not
+save images larger than 50x50 inches, to prevent the common error of
+specifying dimensions in pixels.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>bg</code></td>
+<td>
+<p>Background color. If <code>NULL</code>, uses the <code>plot.background</code>
+fill value from the plot theme.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Other arguments passed on to the graphics device function, as
+specified by <code>device</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+xpdb_ex_pk %&gt;%
+ dv_vs_ipred() %&gt;%
+ xpose_save(file = file.path(tempdir(), "dv_vs_ipred_example.pdf"))
+
+## End(Not run)
+</code></pre>
+
+
+</div>

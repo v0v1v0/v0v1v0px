@@ -1,0 +1,102 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>sgXMutationFactory</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Factory for configuring a gene dependent Mutation function.</h2>
+
+<h3>Description</h3>
+
+<p><code>sgXMutationFactory()</code> selects 
+</p>
+
+<ol>
+<li>
+<p> the algorithm specific crossover factory and 
+</p>
+</li>
+<li>
+<p> the method in this factory. 
+</p>
+</li>
+</ol>
+<h3>Usage</h3>
+
+<pre><code class="language-R">sgXMutationFactory(algorithm = "sga", method = "MutateGene")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>algorithm</code></td>
+<td>
+<p>Algorithm. 
+Available: "sga", "sgde", "sgperm", "sge", sgp". 
+Default: "sga".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>Method. Available methods are package-dependent.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The available methods for each factory are:
+</p>
+
+<ul>
+<li>
+<p> "sga": "MutateGene", "IVM".
+</p>
+</li>
+<li>
+<p> "sge": "MutateGene", "IVM".
+</p>
+</li>
+<li>
+<p> "sgp": "MutateGene".
+</p>
+</li>
+<li>
+<p> "sgde": "MutateGeneDE".
+</p>
+</li>
+<li>
+<p> "sgperm": "MutateGeneOrderBased", 
+"MutateGenekInversion", "MutateGene2Opt", "MutateGenekOptLK",
+"MutateGeneGreedy", "MutateGeneBestGreedy", "MutateGeneMix".
+</p>
+</li>
+</ul>
+<h3>Value</h3>
+
+<p>MutateGene Function for the selected  algorithm 
+from the correct package.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Configuration: 
+<code>sgXCrossoverFactory()</code>,
+<code>sgXDecodeGeneFactory()</code>,
+<code>sgXGeneMapFactory()</code>,
+<code>sgXInitGeneFactory()</code>,
+<code>sgXReplicationFactory()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">sgXMutationFactory(algorithm="sga", method="MutateGene")
+
+</code></pre>
+
+
+</div>

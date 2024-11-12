@@ -1,0 +1,168 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>fitStahl</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Fit Stahl model</h2>
+
+<h3>Description</h3>
+
+<p>Fit the Stahl model for crossover interference to data on crossover
+locations.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">fitStahl(
+  xoloc,
+  chrlen = NULL,
+  nu = c(1, 20),
+  p = 0.02,
+  max.conv = 25,
+  integr.tol = 0.00000001,
+  max.subd = 1000,
+  min.subd = 10,
+  verbose = TRUE,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>xoloc</code></td>
+<td>
+<p>A list of crossover locations (in cM), each component being a
+vector of locations for a different meiotic product.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>chrlen</code></td>
+<td>
+<p>Chromosome length (in cM), either of length 1 or the same
+length as <code>xoloc</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>nu</code></td>
+<td>
+<p>Interference parameter (<code class="reqn">\nu</code>).  This should be a pair of
+values to be used as endpoints to first do a 1-dimensional optimization with
+<code class="reqn">p=0</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>p</code></td>
+<td>
+<p>Starting value for the proportion of crossovers from the no
+interference pathway, for the 2-dimensional optimization.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max.conv</code></td>
+<td>
+<p>Maximum limit for summation in the convolutions to get
+inter-crossover distance distribution from the inter-chiasma distance
+distributions.  This should be greater than the maximum number of chiasmata
+on the 4-strand bundle.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>integr.tol</code></td>
+<td>
+<p>Tolerance for convergence of numerical integration.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max.subd</code></td>
+<td>
+<p>Maximum number of subdivisions in numerical integration.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>min.subd</code></td>
+<td>
+<p>Minimum number of subdivisions in numerical integration.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbose</code></td>
+<td>
+<p>If TRUE, print tracing information.  If "..." includes
+<code>control</code>, this is ignored.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Further arguments sent to <code>stats::optim()</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>See Housworth and Stahl (2003) and Broman and Weber (2000) for details of
+the method.
+</p>
+<p>We first use <code>stats::optimize()</code> to find the MLE with the
+contraint <code>p=0</code>, followed by use of <code>stats::optim()</code> to do a
+2-dimensional optimization for the MLEs of the pair.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A vector with the estimates of <code class="reqn">\nu</code> (interference
+parameter) and <code class="reqn">p</code> (proportion of crossovers coming from the no
+interference pathway), the maximized log likelihood, the estimate of nu with
+p constrained to be 0, the maximized log likelihood in this case, and the
+log likelihood ratio for comparing the model with p allowed to vary freely
+versus contrained to be 0.  (Note that it's the natural log of the
+likelihood ratio, and not twice that.)
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Karl W Broman, <a href="mailto:broman@wisc.edu">broman@wisc.edu</a>
+</p>
+
+
+<h3>References</h3>
+
+<p>Housworth, E. A. and Stahl, F. W. (2003) Crossover interference
+in humans. <em>Am. J. Hum. Genet.</em> <strong>73</strong>, 188–197.
+</p>
+<p>Broman, K. W. and Weber, J. L. (2000) Characterization of human crossover
+interference. <em>Am. J. Hum. Genet.</em> <strong>66</strong>, 1911–1926.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>fitGamma()</code>, <code>stahlLoglik()</code>,
+<code>simStahl()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+data(bssbsb)
+
+
+xoloc &lt;- find.breaks(bssbsb, chr=1)
+L &lt;- attr(xoloc, "L")
+
+# get MLE (limiting maximum iterations to 10, just for speed in this example)
+## Not run: mle &lt;- fitStahl(xoloc, L, nu=c(9, 12), control=list(maxit=10))
+
+
+</code></pre>
+
+
+</div>

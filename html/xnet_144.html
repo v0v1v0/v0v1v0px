@@ -1,0 +1,55 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>weights,tskrrHeterogeneous-method</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Extract weights from a tskrr model</h2>
+
+<h3>Description</h3>
+
+<p>This function calculates the weight matrix for
+calculating the predictions of a tskrr model.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S4 method for signature 'tskrrHeterogeneous'
+weights(object)
+
+## S4 method for signature 'tskrrHomogeneous'
+weights(object)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>a <code>tskrr</code> object for which the weights
+have to be calculated.</p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+<p>The weight matrix is calculated from the map matrices through the
+function <code>eigen2map</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>a matrix with the weights for the tskrr model.
+</p>
+
+
+<h3>Note</h3>
+
+<p>The package <code>xnet</code> adds a S4 generic function
+for <code>weights</code>.
+</p>
+
+
+</div>

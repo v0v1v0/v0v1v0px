@@ -1,0 +1,123 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xp.inc.stab.cov</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Inclusion stability plot
+A plot of the inclusion frequency of covariates vs bootgam/bootscm
+iteration number. This plot can be used to evaluate whether sufficient
+iterations have been performed.</h2>
+
+<h3>Description</h3>
+
+<p>Inclusion stability plot
+</p>
+<p>A plot of the inclusion frequency of covariates vs bootgam/bootscm
+iteration number. This plot can be used to evaluate whether sufficient
+iterations have been performed.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xp.inc.stab.cov(
+  bootgam.obj = NULL,
+  boot.type = NULL,
+  main = NULL,
+  normalize = TRUE,
+  split.plots = FALSE,
+  xlb = "Bootstrap replicate number",
+  ylb = "Difference of estimate with final",
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>bootgam.obj</code></td>
+<td>
+<p>The bootgam or bootscm object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>boot.type</code></td>
+<td>
+<p>Either "bootgam" or "bootscm". Default is NULL, 
+which means the user will be asked to make a choice.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>Plot title</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>normalize</code></td>
+<td>
+<p>Should the plot be normalized?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>split.plots</code></td>
+<td>
+<p>Should the plots be split?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xlb</code></td>
+<td>
+<p>The label for the x-axis.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylb</code></td>
+<td>
+<p>The label for the y-axis.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional plotting parameters</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A lattice plot object is returned.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ron Keizer
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other bootgam: 
+<code>xp.daic.npar.plot()</code>,
+<code>xp.dofv.npar.plot()</code>,
+<code>xp.inc.cond.stab.cov()</code>,
+<code>xp.inc.ind.cond.stab.cov()</code>,
+<code>xp.incl.index.cov()</code>,
+<code>xp.incl.index.cov.ind()</code>
+</p>
+<p>Other bootscm: 
+<code>bootscm.import()</code>,
+<code>xp.daic.npar.plot()</code>,
+<code>xp.dofv.npar.plot()</code>,
+<code>xp.inc.cond.stab.cov()</code>,
+<code>xp.inc.ind.cond.stab.cov()</code>,
+<code>xp.incl.index.cov()</code>,
+<code>xp.incl.index.cov.ind()</code>
+</p>
+
+
+</div>

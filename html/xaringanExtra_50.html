@@ -1,0 +1,61 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>use_progress_bar</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Add an animated progress bar</h2>
+
+<h3>Description</h3>
+
+<p>Adds an animated progress bar to all slides.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">use_progress_bar(
+  color = "red",
+  location = c("top", "bottom"),
+  height = "0.25em"
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>color</code></td>
+<td>
+<p>A valid CSS color to be used as the color of the progress bar.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>location</code></td>
+<td>
+<p>One of <code>"top"</code> or <code>"bottom"</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>height</code></td>
+<td>
+<p>A valid CSS unit specifying the height of the progress bar.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An <code>htmltools::tagList()</code> with the HTML dependencies required for
+<strong>progress bar</strong>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">xaringanExtra::use_progress_bar("red", "top", "0.25em")
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,51 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>example</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>An simulated example dataset</h2>
+
+<h3>Description</h3>
+
+<p>The simulated <code>example</code> data contains 100 observations, 200 predictors, and an continuous outcome. Z contains 3 columns, each column is
+indicator variable (can be viewed as the grouping of predictors).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">data(example)
+</code></pre>
+
+
+<h3>Format</h3>
+
+<p>The <code>example</code> object is a list containing three elements:
+</p>
+
+<ul>
+<li>
+<p> X: A simulated 100 by 200 matrix
+</p>
+</li>
+<li>
+<p> Y: Continuous response vector of length 100
+</p>
+</li>
+<li>
+<p> Z: A 200 by 3 matrix. Z_jk indicates whether predictor X_j has external variable Z_k or not.
+</p>
+</li>
+</ul>
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(example)
+X &lt;- example$X
+Y &lt;- example$Y
+Z &lt;- example$Z
+xtune(X,Y,Z)
+</code></pre>
+
+
+</div>

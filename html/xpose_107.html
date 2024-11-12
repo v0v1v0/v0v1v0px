@@ -1,0 +1,125 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>read_nm_tables</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>NONMEM output table import function</h2>
+
+<h3>Description</h3>
+
+<p>Quickly import NONMEM output tables into R. This function automatically 
+detects the optimal settings to import the tables from nonmem.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">read_nm_tables(
+  file = NULL,
+  dir = NULL,
+  combined = TRUE,
+  rm_duplicates = TRUE,
+  quiet = FALSE,
+  simtab = NULL,
+  ziptab = TRUE,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>file</code></td>
+<td>
+<p>A character vector of path to the files or a <code>nm_table_list</code> object created with <code>list_nm_tables</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>dir</code></td>
+<td>
+<p>Location of the model files.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>combined</code></td>
+<td>
+<p>Logical value indicating whether multiple tables should be combined into a single one. If the number of rows 
+does not match an error will be returned.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>rm_duplicates</code></td>
+<td>
+<p>Logical value indicating whether duplicated columns should be removed.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>quiet</code></td>
+<td>
+<p>Logical, if <code>FALSE</code> messages are printed to the console.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>simtab</code></td>
+<td>
+<p>If <code>TRUE</code> only reads in simulation tables, if <code>FALSE</code> only reads estimation tables. 
+Default <code>NULL</code> reads all tables.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ziptab</code></td>
+<td>
+<p>If <code>TRUE</code> search for the tables that have been compressed and renamed ´&lt;file&gt;.zip'.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments to be passed to the <code>read_table</code> or <code>read_csv</code> functions.</p>
+</td>
+</tr>
+</table>
+<h3>Table format requirement</h3>
+
+<p>When using <code>read_nm_tables</code> with the <code>combined</code> argument set to <code>FALSE</code> an <code>ID</code> column 
+must be present in all data tables. When <code>combined</code> is set to <code>TRUE</code> instead an <code>ID</code> column must be 
+present in at least one table for each problem and for each 'firstonly' category. <code>ID</code> columns are required 
+to properly combine/merge tables and removing <code>NA</code> records. If the <code>ID</code> column is missing from a table and 
+<code>combined = FALSE</code> <code>read_nm_tables</code> will return the following warning: <code>Unknown variables: `ID`</code>. While
+the data is returned beware that <code>NA</code> records might be left in the data and the output should be checked carefully.
+If <code>combined = TRUE</code> <code>read_nm_tables</code> xpose is more strict and will return the following warning instead: 
+<code>Dropped `&lt;tablenames&gt;` due to missing required `ID` column.</code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+# Import tables manually and return them as a list of individual tables
+nm_tables &lt;- read_nm_tables(file = c('sdtab001', 'patab001'), 
+                            dir = 'models', combined = FALSE)
+
+# Import tables manually and return them as a single merged table
+nm_tables &lt;- read_nm_tables(file = c('sdtab001', 'patab001'), 
+                            dir = 'models', combined = TRUE)
+
+# Import tables automatically (used internally by xpose_data())
+nm_tables &lt;- read_nm_model(file = 'run001.lst', dir = 'models') %&gt;% 
+              list_nm_tables() %&gt;% 
+              read_nm_tables()
+
+# Passing arguments to readr via `...` 
+# (e.g. import columns as character and only first 10 rows)
+nm_tables &lt;- read_nm_tables(file = 'sdtab001', dir = 'models', 
+                            col_type = readr::cols(.default = 'c'), 
+                            n_max = 10)
+
+
+## End(Not run)
+</code></pre>
+
+
+</div>

@@ -1,0 +1,60 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>handleMissings</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Handle missing data in matrices.</h2>
+
+<h3>Description</h3>
+
+<p>Handle missing data in matrices.</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">handleMissings(mat, na = NA, method = "remove", logical = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>mat</code></td>
+<td>
+<p> A matrix object. </p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>na</code></td>
+<td>
+<p> The value that missing data are coded as. Usually <code>NA</code>, sometimes <code>9</code> or <code>10</code>. </p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p> What should be done with the missing data? If <code>method = "remove"</code> is set, the function determines how many missing entries are in each row and column and iteratively removes rows or columns with the largest amount of missing data until no missing data are left in the matrix. If <code>method = "fillmode"</code> is set, the modal value of the matrix is identified (usually <code>0</code> in network matrices) and missing cells are imputed by filling in this modal value. <code>method = "zero"</code> replaces NAs by 0s. </p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>logical</code></td>
+<td>
+<p> Return a matrix with logical values indicating which cells should be removed? By default the manipulated matrix is returned. </p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>This function deals with missing data in matrices or network objects used for inferential network analysis. It can either remove missing rows and/or columns iteratively (rows and columns with more NA values first, then successively rows and columns with fewer NA entries) or replace missing values by the modal value of the matrix or by 0. The function can return either the manipulated matrix or a matrix with logical values indicating which of the cells should be removed.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>adjust
+</p>
+
+
+</div>

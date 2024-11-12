@@ -1,0 +1,145 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>animate_css</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Animate.css</h2>
+
+<h3>Description</h3>
+
+<p>Animate.css is a popular collection of CSS animations. It contains "a
+bunch of cool, fun, and cross-browser animations for you to use in your
+projects. Great for emphasis, home pages, sliders, and general
+just-add-water-awesomeness."
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">use_animate_css(minified = FALSE, xaringan = TRUE)
+
+html_dependency_animate_css(minified = FALSE, xaringan = TRUE)
+
+use_animate_all(
+  style = c("slide_left", "slide_right", "slide_up", "slide_down", "roll", "fade")
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>minified</code></td>
+<td>
+<p>Should the minified or full CSS source be used?</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xaringan</code></td>
+<td>
+<p>When <code>TRUE</code>, the <code>.animated</code> selector is modified so that the
+animation is only applied when the slide is visible. Without this,
+presentations with many animated slides may have poor performance,
+especially on page load. Set to <code>FALSE</code> to use animate.css in other
+HTML-based documents.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>style</code></td>
+<td>
+<p>Animation style to be used for all slides.
+</p>
+
+<ul>
+<li> <p><code>slide_left</code>: Slide in from the right and out to the left
+</p>
+</li>
+<li> <p><code>slide_right</code>: Slide in from the left and out to the right
+</p>
+</li>
+<li> <p><code>slide_up</code>: Slide in from the bottom and out to the top
+</p>
+</li>
+<li> <p><code>slide_down</code>: Slide in from the top and out to the bottom
+</p>
+</li>
+<li> <p><code>roll</code>: Roll in from the left and roll out to the right
+</p>
+</li>
+<li> <p><code>fade</code>: Fade in
+</p>
+</li>
+</ul>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An <code>htmltools::tagList()</code> with the tile view dependencies, or an
+<code>htmltools::htmlDependency()</code>.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul>
+<li> <p><code>use_animate_css()</code>: Use animate.css in your xaringan slides.
+</p>
+</li>
+<li> <p><code>html_dependency_animate_css()</code>: Returns an <code>htmltools::htmlDependency()</code> with the tile
+view dependencies. Most users will want to use <code>use_animate_css()</code>.
+</p>
+</li>
+<li> <p><code>use_animate_all()</code>: Use a default animation for all slides. Sets coupled
+in an out animations for all slides that can be disabled on individual
+slides by adding the class <code>.no-animation</code>.
+</p>
+</li>
+</ul>
+<h3>Usage</h3>
+
+<p>To add animate.css to your xaringan presentation, add the
+following code chunk to your slides' R Markdown file.
+</p>
+<div class="sourceCode markdown"><pre>```{r xaringan-animate, echo=FALSE}
+xaringanExtra::use_animate_css()
+```
+
+---
+class: animated fadeInLeft slideOutRight
+
+This slide fades in from the left and slides out to the right!
+</pre></div>
+<p>Note that when <code>xaringan = TRUE</code>, as is the default, out animations are
+only applied to slides that are exiting so that you can specify both in
+and out behavior of each slide.
+</p>
+<p>Or use <code>use_animate_all()</code> to set default in and out animations for all
+slides. Animations can be disabled for individual slides by adding the
+class <code>.no-animation</code> to the slide.
+</p>
+<div class="sourceCode markdown"><pre>```{r xaringan-animate, echo=FALSE}
+xaringanExtra::use_animate_all("slide_left")
+```
+</pre></div>
+
+
+<h3>References</h3>
+
+<p>See <a href="https://daneden.github.io/animate.css/">animate.css</a> for a
+full list of animations.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">use_animate_css()
+html_dependency_animate_css()
+
+</code></pre>
+
+
+</div>

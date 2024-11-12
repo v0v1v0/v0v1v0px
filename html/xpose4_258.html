@@ -1,0 +1,101 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xvardef</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Extract and set Xpose variable definitions.</h2>
+
+<h3>Description</h3>
+
+<p>This function extracts and set Xpose variable definitions in "xpose.data"
+objects.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xvardef(x, object)
+
+xvardef(object) &lt;- value
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>The name of an xpose variable (see below).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An <code>xpose.data</code> object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>value</code></td>
+<td>
+<p>A two element vector of which the first element is the name of
+the variable and the second the column name in the Data slot of the object.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The Xpose variable definitions are used to map particular variable types to
+column names in the data.frame in the Data slot of the "xpose.data" object.
+The single-valued Xpose variable definitions are: <code>id, idlab, idv, occ,
+dv, pred, ipred, iwres, res</code>. The (potentially) vector-valued Xpose variable
+definitions are: <code>parms, covariates, ranpar, tvparms</code> (parameters,
+covariates, random effects parameters=etas, typical value parameters). The
+default values of these can be found in the <code>createXposeClasses</code>
+function.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Returns a string with the name of the data variable defined as the
+Xpose data variable.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul><li> <p><code>xvardef(object) &lt;- value</code>: reset the which column the label dv points to in the Data slot of
+the xpose database object
+</p>
+</li></ul>
+<h3>Author(s)</h3>
+
+<p>Niclas Jonsson
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xpose.data-class</code>,<code>xpose.prefs-class</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">xpdb &lt;- simpraz.xpdb
+
+## get the column name in the Data slot of object xpdb
+## corresponding to the label dv
+xvardef("dv", xpdb)
+
+## reset the which column the label dv points to in the Data slot of
+## object xpdb
+xvardef(xpdb) &lt;- c("dv", "DVA")
+
+</code></pre>
+
+
+</div>

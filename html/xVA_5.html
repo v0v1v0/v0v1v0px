@@ -1,0 +1,94 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>calcKVA</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Calculates the Capital Valuation Adjustment (KVA)</h2>
+
+<h3>Description</h3>
+
+<p>Calculates the capital valuation adjustment by computing the default capital charge and the CVA capital charge and applying the required return-on-capital
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">calcKVA(
+  CSA,
+  collateral,
+  trades,
+  reg_data,
+  time_points,
+  EAD,
+  effective_maturity,
+  ignore_def_charge = TRUE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>CSA</code></td>
+<td>
+<p>The margin agreement with the counterparty</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>collateral</code></td>
+<td>
+<p>The current amount of collaterals currently exchanged with the counterparty</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>trades</code></td>
+<td>
+<p>The full list of the Trade Objects</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>reg_data</code></td>
+<td>
+<p>A list containing data related to the regulatory calculations (for example the 'framework' member variable can be 'IMM','SACCR','CEM')</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>time_points</code></td>
+<td>
+<p>The timepoints that the analysis is performed on</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>EAD</code></td>
+<td>
+<p>The Exposure-at-default calculated based on the prescribed framework as appearing in the 'reg_data'</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>effective_maturity</code></td>
+<td>
+<p>The effective maturity of the trades performed with a specific counterparty</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ignore_def_charge</code></td>
+<td>
+<p>if set to true the default capital charge is set to zero</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>The capital valuation adjustment (KVA)
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Tasos Grivas &lt;tasos@openriskcalculator.com&gt;
+</p>
+
+
+</div>

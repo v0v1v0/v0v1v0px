@@ -1,0 +1,75 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>id2symb</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Convert a numeric identifier to a symbol.</h2>
+
+<h3>Description</h3>
+
+<p><code>id2symb()</code> converts a numeric id to a symbol.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">id2symb(Id, ST)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>Id</code></td>
+<td>
+<p>A numeric identifier (integer).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ST</code></td>
+<td>
+<p>A symbol table.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+
+<ul>
+<li>
+<p>  A symbol string if the identifier exists or 
+</p>
+</li>
+<li>
+<p>  an empty character string (<code>character(0)</code>) 
+if the identifier 
+does not exist.</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p>Other Utility Functions: 
+<code>derive()</code>,
+<code>isNonTerminal()</code>,
+<code>isTerminal()</code>,
+<code>rules()</code>,
+<code>symb2id()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">g&lt;-compileBNF(booleanGrammar())
+id2symb(1, g$ST)
+id2symb(2, g$ST)
+id2symb(5, g$ST)
+id2symb(12, g$ST)
+id2symb(15, g$ST)
+identical(id2symb(15, g$ST), character(0))
+
+</code></pre>
+
+
+</div>

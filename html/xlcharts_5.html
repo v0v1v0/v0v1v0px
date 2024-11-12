@@ -1,0 +1,82 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>add_data</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Add a range of data in a single pass.</h2>
+
+<h3>Description</h3>
+
+<p>The default is to treat each column as a data series.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">add_data(py_obj, data, from_rows = FALSE, titles_from_data = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>py_obj</code></td>
+<td>
+<p>py_obj</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data</code></td>
+<td>
+<p>data</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>from_rows</code></td>
+<td>
+<p>from_rows</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>titles_from_data</code></td>
+<td>
+<p>titles_from_data</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An openpyxl Python object.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+wb &lt;- Workbook()
+ws &lt;- active(wb)
+
+chart1 &lt;- BarChart(
+  type = "col",
+ style = 10,
+  title = "Bar Chart",
+  shape = 4
+) |&gt;
+  y_axis(title = "Test number") |&gt;
+  x_axis(title = "Sample length (mm)")
+
+data &lt;- Reference(ws, min_col=2, min_row=1, max_row=7, max_col=3)
+cats &lt;- Reference(ws, min_col=1, min_row=2, max_row=7)
+
+chart1 |&gt;
+  add_data(data = data, titles_from_data = TRUE) |&gt;
+  set_categories(cats)
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

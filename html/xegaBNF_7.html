@@ -1,0 +1,85 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>isTerminal</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Is the numeric identifier a terminal symbol?</h2>
+
+<h3>Description</h3>
+
+<p><code>isTerminal()</code> tests if the numeric identifier 
+is a terminal symbol.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">isTerminal(Id, ST)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>Id</code></td>
+<td>
+<p>A numeric identifier (integer).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ST</code></td>
+<td>
+<p>A symbol table.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p><code>isTerminal()</code> is one of the most frequently used 
+functions of a grammar-based genetic programming algorithm.
+Careful coding pays off! 
+Do not index the symbol table as a matrix 
+(e.g. <code>ST[2,2]</code>), because this is really slow!
+</p>
+
+
+<h3>Value</h3>
+
+ 
+<ul>
+<li> <p><code>TRUE</code> if the numeric identifier is a terminal symbol.
+</p>
+</li>
+<li> <p><code>FALSE</code> if the numeric identifier is a non-terminal symbol.
+</p>
+</li>
+<li> <p><code>NA</code> if the symbol does not exist.</p>
+</li>
+</ul>
+<h3>See Also</h3>
+
+<p>Other Utility Functions: 
+<code>derive()</code>,
+<code>id2symb()</code>,
+<code>isNonTerminal()</code>,
+<code>rules()</code>,
+<code>symb2id()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">g&lt;-compileBNF(booleanGrammar())
+isTerminal(1, g$ST)
+isTerminal(2, g$ST)
+isTerminal(5, g$ST)
+isTerminal(12, g$ST)
+isTerminal(15, g$ST)
+identical(isTerminal(15, g$ST), NA)
+
+</code></pre>
+
+
+</div>

@@ -1,0 +1,493 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>plot-methods</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2> ~~ Methods for Function <code>plot</code> in Package <span class="pkg">x12</span> ~~</h2>
+
+<h3>Description</h3>
+
+<p>Plot function for <code>x12</code> output in package <span class="pkg">x12</span>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S4 method for signature 'x12Single'
+plot(x, original=TRUE, sa=FALSE, trend=FALSE, log_transform=FALSE,
+  ylab="Value", xlab="Date", main="TS", col_original="black", col_sa="blue",
+  col_trend="green", lwd_original=1, lwd_sa=1, lwd_trend=1, lty_sa=1, lty_trend=1, ytop=1,
+  showAllout=FALSE, showAlloutLines=FALSE, showOut=NULL, annComp=TRUE, annCompTrend=TRUE,
+  col_ao="red", col_ls="red", col_tc="red", col_annComp="grey", lwd_out=1, cex_out=1.5,
+  pch_ao=4, pch_ls=2, pch_tc=23, plot_legend=TRUE, legend_horiz=TRUE, legend_bty="o",
+  forecast=FALSE, backcast=FALSE,
+  showCI=TRUE, col_fc="#2020ff", col_bc="#2020ff", col_ci="#d1d1ff",
+  col_cishade="#d1d1ff", lty_original=1, lty_fc=2, lty_bc=2, lty_ci=1, lwd_fc=1, lwd_bc=1,
+  lwd_ci=1, points_bc=FALSE, points_fc=FALSE, points_original=FALSE, showLine=FALSE,
+  col_line="grey", lty_line=3, ylim=NULL, span=NULL, ...)
+## S4 method for signature 'x12Batch'
+plot(x, what="ask",original=TRUE, sa=FALSE, trend=FALSE, log_transform=FALSE,
+  ylab="Value", xlab="Date", main="TS", col_original="black", col_sa="blue",
+  col_trend="green", lwd_original=1, lwd_sa=1, lwd_trend=1, lty_sa=1, lty_trend=1, ytop=1,
+  showAllout=FALSE, showAlloutLines=FALSE, showOut=NULL, annComp=TRUE, annCompTrend=TRUE,
+  col_ao="red", col_ls="red", col_tc="red", col_annComp="grey", lwd_out=1, cex_out=1.5,
+  pch_ao=4, pch_ls=2, pch_tc=23, plot_legend=TRUE, legend_horiz=TRUE, legend_bty="o",
+  forecast=FALSE, backcast=FALSE,
+  showCI=TRUE, col_fc="#2020ff", col_bc="#2020ff", col_ci="#d1d1ff",
+  col_cishade="#d1d1ff", lty_original=1, lty_fc=2, lty_bc=2, lty_ci=1, lwd_fc=1, lwd_bc=1,
+  lwd_ci=1, points_bc=FALSE, points_fc=FALSE, points_original=FALSE, showLine=FALSE,
+  col_line="grey", lty_line=3, ylim=NULL, span=NULL, ...)
+## S4 method for signature 'x12Output'
+plot(x, original=TRUE, sa=FALSE, trend=FALSE, log_transform=FALSE,
+  ylab="Value", xlab="Date", main="TS", col_original="black", col_sa="blue",
+  col_trend="green", lwd_original=1, lwd_sa=1, lwd_trend=1, lty_sa=1, lty_trend=1, ytop=1,
+  showAllout=FALSE, showAlloutLines=FALSE, showOut=NULL, annComp=TRUE, annCompTrend=TRUE,
+  col_ao="red", col_ls="red", col_tc="red", col_annComp="grey", lwd_out=1, cex_out=1.5,
+  pch_ao=4, pch_ls=2, pch_tc=23, plot_legend=TRUE, legend_horiz=TRUE, legend_bty="o",
+  forecast=FALSE, backcast=FALSE, showCI=TRUE,
+  col_fc="#2020ff", col_bc="#2020ff", col_ci="#d1d1ff", col_cishade="#d1d1ff",
+  lty_original=1, lty_fc=2, lty_bc=2, lty_ci=1, lwd_fc=1, lwd_bc=1, lwd_ci=1,
+  points_bc=FALSE, points_fc=FALSE, points_original=FALSE,
+  showLine=FALSE, col_line="grey", lty_line=3, ylim=NULL, span=NULL, ...)
+				
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>object of class <code>x12Output-class</code> or <code>x12Single-class</code>.</p>
+</td>
+</tr></table>
+<table>
+<tr style="vertical-align: top;">
+<td><code>original</code></td>
+<td>
+<p>logical defining whether the original time series should be plotted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>sa</code></td>
+<td>
+<p>logical defining whether the seasonally adjusted time series should be plotted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>trend</code></td>
+<td>
+<p>logical defining whether the trend should be plotted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>log_transform</code></td>
+<td>
+<p>logical defining whether the log transform should be plotted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>showAllout</code></td>
+<td>
+<p>logical defining whether all outliers should be plotted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>showOut</code></td>
+<td>
+<p>character in the format <code>"TypeYear.Seasonalperiod"</code> defining a specific outlier to be plotted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>annComp</code></td>
+<td>
+<p>logical defining whether an annual comparison should be performed for the outlier defined in <code>showOut</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>forecast</code></td>
+<td>
+<p>logical defining whether the forecasts should be plotted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>backcast</code></td>
+<td>
+<p>logical defining whether the backcasts should be plotted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>showCI</code></td>
+<td>
+<p>logical defining whether the prediction intervals should be plotted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylab</code></td>
+<td>
+<p>label of y-axis.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xlab</code></td>
+<td>
+<p>label of x-axis.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>plot title.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col_original</code></td>
+<td>
+<p>color of the original time series.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col_sa</code></td>
+<td>
+<p>color of the seasonally adjusted time series.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col_trend</code></td>
+<td>
+<p>color of the trend.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lwd_original</code></td>
+<td>
+<p>line width of the original time series.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lwd_sa</code></td>
+<td>
+<p>line width of the seasonally adjusted time series.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lwd_trend</code></td>
+<td>
+<p>line width of the trend.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lty_original</code></td>
+<td>
+<p>line type of the original time series.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lty_sa</code></td>
+<td>
+<p>line type of the seasonally adjusted time series.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lty_trend</code></td>
+<td>
+<p>line type of the trend.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ytop</code></td>
+<td>
+<p>multiplication factor for <code>ylim</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>showAlloutLines</code></td>
+<td>
+<p>logical specifying if vertical lines should be plotted with the outliers.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>annCompTrend</code></td>
+<td>
+<p>logical specifying if the trend of the annual comparison should be plotted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col_ao</code></td>
+<td>
+<p>color of additive outliers.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col_ls</code></td>
+<td>
+<p>color of level shifts.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col_tc</code></td>
+<td>
+<p>color of transitory changes.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col_annComp</code></td>
+<td>
+<p>color of annual comparison.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lwd_out</code></td>
+<td>
+<p>line width of outliers.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>cex_out</code></td>
+<td>
+<p>magnification factor for size of symbols used for plotting outliers.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pch_ao</code></td>
+<td>
+<p>symbols used for additive outliers.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pch_ls</code></td>
+<td>
+<p>symbols used for level shifts.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pch_tc</code></td>
+<td>
+<p>symbols used for transitory changes.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>plot_legend</code></td>
+<td>
+<p>logical specifying if a legend should be plotted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>legend_horiz</code></td>
+<td>
+<p>Orientation of the legend</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>legend_bty</code></td>
+<td>
+<p>the type of box to be drawn around the legend. The allowed values are "o" (the default) and "n".</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col_fc</code></td>
+<td>
+<p>color of forecasts.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col_bc</code></td>
+<td>
+<p>color of backcasts.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col_ci</code></td>
+<td>
+<p>color of prediction interval.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col_cishade</code></td>
+<td>
+<p>color of prediction interval shading.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lty_fc</code></td>
+<td>
+<p>line type of forecasts.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lty_bc</code></td>
+<td>
+<p>line type of backcasts.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lty_ci</code></td>
+<td>
+<p>line type of prediction interval.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lwd_fc</code></td>
+<td>
+<p>line width of forecasts.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lwd_bc</code></td>
+<td>
+<p>line width of backcasts.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lwd_ci</code></td>
+<td>
+<p>line width of prediction interval.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>points_bc</code></td>
+<td>
+<p>logical specifying if backcasts should additionally be indicated with points.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>points_fc</code></td>
+<td>
+<p>logical specifying if forecasts should additionally be indicated with points.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>points_original</code></td>
+<td>
+<p>logical specifying if the original time series should additionally be indicated with points.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>showLine</code></td>
+<td>
+<p>logical indicating if a boundary line should be drawn before/after fore-/backcasts.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col_line</code></td>
+<td>
+<p>color of <code>showLine</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lty_line</code></td>
+<td>
+<p>line type of <code>showLine</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylim</code></td>
+<td>
+<p>range of the y-axis.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>span</code></td>
+<td>
+<p>vector of length 4, limiting the data used for the plot.<br>
+Start and end date of said time interval can be specified by 4 integers in the format <code>c(start year, start seasonal period, end year, end seasonal period)</code>
+</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>what</code></td>
+<td>
+<p>How multiple plots should be treated. "ask" is the only option at the moment.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>ignored.</p>
+</td>
+</tr>
+</table>
+<h3>Methods</h3>
+
+
+
+
+
+
+
+
+<dl>
+<dt><code>signature(x = "x12Output")</code></dt>
+<dd>
+
+</dd>
+<dt><code>signature(x = "x12Single")</code></dt>
+<dd>
+
+</dd>
+</dl>
+<h3>Author(s)</h3>
+
+<p>Alexander Kowarik, Angelika Meraner</p>
+
+
+<h3>See Also</h3>
+
+<p><code>plotSpec</code>,
+<code>plotSeasFac</code>,
+<code>plotRsdAcf</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+s &lt;- new("x12Single",ts=AirPassengers,tsName="air")
+s &lt;- setP(s,list(estimate=TRUE,regression.variables="AO1950.1",outlier.types="all",
+  outlier.critical=list(LS=3.5,TC=2.5),backcast_years=1/2))
+s &lt;- x12(s)
+#w/o outliers
+plot(s@x12Output,sa=TRUE,trend=TRUE,original=FALSE)
+plot(s)
+#with (all) outliers
+plot(s,showAllout=TRUE,sa=TRUE,trend=TRUE,log_transform=TRUE,lwd_out=1,pch_ao=4)
+plot(s,showAllout=TRUE,sa=TRUE,trend=TRUE,original=FALSE,showAlloutLines=TRUE,
+  col_tc="purple")#,log_transform=TRUE)#,lwd_out=3)
+plot(s,showAllout=TRUE,span=c(1951,1,1953,12),points_original=TRUE,cex_out=2)
+#with showOut
+plot(s,showOut="AO1960.Jun",sa=FALSE,trend=FALSE,annComp=TRUE,log_transform=TRUE)
+plot(s,showOut="AO1958.Mar",sa=TRUE,trend=TRUE,annComp=TRUE,annCompTrend=FALSE)
+plot(s,showOut="AO1950.Jun",annComp=FALSE,cex_out=3,pch_ao=19,col_ao="orange")
+plot(s,showOut="TC1954.Mar",span=c(1954,1,1955,12))
+plot(s,showOut="TC1954.Feb",col_tc="green3")
+
+#w/o legend
+plot(s,showAllout=TRUE,plot_legend=FALSE)
+plot(s,plot_legend=FALSE)
+plot(s,showOut="AO1950.1",plot_legend=FALSE,lwd_out=2,col_ao="purple")
+plot(s,showOut="TC1954.Feb",col_tc="orange",col_ao="magenta",plot_legend=FALSE)
+plot(s,showOut="AO1950.1",col_tc="orange",col_ao="magenta",plot_legend=FALSE)
+
+#Forecasts &amp; Backcasts
+plot(s,forecast=TRUE)
+plot(s,backcast=TRUE,showLine=TRUE)
+plot(s,backcast=TRUE,forecast=TRUE,showCI=FALSE)
+plot(s,forecast=TRUE,points_fc=TRUE,col_fc="purple",lty_fc=2,lty_original=3,
+  lwd_fc=0.9,lwd_ci=2)
+plot(s,sa=TRUE,plot_legend=FALSE)
+
+#Seasonal Factors and SI Ratios
+plotSeasFac(s)
+#Spectra
+plotSpec(s)
+plotSpec(s,highlight=FALSE)
+#Autocorrelations of the Residuals
+plotRsdAcf(s)
+plotRsdAcf(s,col_acf="black",lwd_acf=1)
+
+## End(Not run)
+</code></pre>
+
+
+</div>

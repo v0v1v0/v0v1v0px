@@ -1,0 +1,68 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>ContinuousScaleFitness</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Dispersion Ratio Based Fitness Scaling.</h2>
+
+<h3>Description</h3>
+
+<p>Dispersion Ratio Based Fitness Scaling.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">ContinuousScaleFitness(fit, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>fit</code></td>
+<td>
+<p>A fitness vector.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Scaled fitness vector.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Scaling: 
+<code>DispersionRatio()</code>,
+<code>ScaleFitness()</code>,
+<code>ScalingFitness()</code>,
+<code>ThresholdScaleFitness()</code>
+</p>
+<p>Other Adaptive Parameter: 
+<code>ThresholdScaleFitness()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">lF&lt;-list()
+lF$Offset&lt;-parm(0.0001)
+lF$RDMWeight&lt;-parm(2)
+lF$RDM&lt;-parm(1.2)
+fit&lt;-sample(10, 20, replace=TRUE)
+fit
+ContinuousScaleFitness(fit, lF)
+</code></pre>
+
+
+</div>

@@ -1,0 +1,176 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>x12</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2> ~~ Methods for Function <code>x12</code> in Package <span class="pkg">x12</span> ~~</h2>
+
+<h3>Description</h3>
+
+<p>~~ Methods for function <code>x12</code> in package <span class="pkg">x12</span> ~~
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">x12(object,x12Parameter=new("x12Parameter"),x12BaseInfo=new("x12BaseInfo"),...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>object of class <code>ts</code>, <code>x12Single-class</code> or <code>x12Batch-class</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x12Parameter</code></td>
+<td>
+<p>object of class <code>x12Parameter</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>x12BaseInfo</code></td>
+<td>
+<p>object of class <code>x12BaseInfo</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>at the moment only forceRun=FALSE</p>
+</td>
+</tr>
+</table>
+<h3>Methods</h3>
+
+
+<dl>
+<dt><code>signature(object = "ts")</code></dt>
+<dd>
+
+</dd>
+<dt><code>signature(object = "x12Single")</code></dt>
+<dd>
+
+</dd>
+<dt><code>signature(object = "x12Batch")</code></dt>
+<dd>
+
+</dd>
+</dl>
+<h3>Value</h3>
+
+
+<dl>
+<dt>x12Output</dt>
+<dd>
+<p>An S4 object of class <code>x12Output-class</code> if <code>object</code> is of class <code>ts</code></p>
+</dd>
+<dt>x12Single</dt>
+<dd>
+<p>An S4 object of class <code>x12Single-class</code> if <code>object</code> is of class <code>x12Single-class</code></p>
+</dd>
+<dt>x12Batch</dt>
+<dd>
+<p>An S4 object of class <code>x12Batch-class</code> if <code>object</code> is of class <code>x12Batch-class</code></p>
+</dd>
+</dl>
+<h3>Note</h3>
+
+<p>Parallelization is implemented for x12Batch objects with help of the package 'parallel'.
+To process in parallel set the option 'x12.parallel' to an integer value representing the number of cores to use ( options(x12.parallel=2) ).
+Afterwards all calls to the function 'x12' on an object of class 'x12Batch' will be parallelized (For reseting use options(x12.parallel=NULL) ).
+</p>
+<p>cleanHistory is deprecated and cleanArchive should be used instead.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Alexander Kowarik, Angelika Meraner</p>
+
+
+<h3>Source</h3>
+
+<p><a href="https://www.census.gov/data/software/x13as.html">https://www.census.gov/data/software/x13as.html</a>
+</p>
+
+
+<h3>References</h3>
+
+<p>Alexander Kowarik, Angelika Meraner, Matthias Templ, Daniel
+Schopfhauser (2014). Seasonal Adjustment with the R Packages x12 and
+x12GUI. Journal of Statistical Software, 62(2), 1-21. URL
+http://www.jstatsoft.org/v62/i02/.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>summary</code>,
+<code>plot</code>,
+<code>x12env</code>,
+<code>setP</code>,
+<code>getP</code>,
+<code>loadP</code>,
+<code>saveP</code>,
+<code>prev</code>,
+<code>cleanArchive</code>,
+<code>crossVal</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+xts &lt;- x12(AirPassengers)
+summary(xts)
+xs &lt;- x12(new("x12Single",ts=AirPassengers))
+summary(xs)
+
+
+xb&lt;-x12(new("x12Batch",list(AirPassengers,AirPassengers,AirPassengers)))
+summary(xb)
+
+#Create new batch object with 4 time series
+xb &lt;- new("x12Batch",list(AirPassengers,AirPassengers,AirPassengers,AirPassengers))
+
+# change the automdl to FALSE in all 4 elements
+xb &lt;- setP(xb,list(automdl=FALSE))
+#change the arima.model and arima.smodel setting for the first ts object
+xb &lt;- setP(xb,list(arima.model=c(1,1,0),arima.smodel=c(1,1,0)),1)
+#change the arima.model and arima.smodel setting for the second ts object
+xb &lt;- setP(xb,list(arima.model=c(0,1,1),arima.smodel=c(0,1,1)),2)
+#change the arima.model and arima.smodel setting for the third ts object
+xb &lt;- setP(xb,list(arima.model=c(0,1,1),arima.smodel=c(1,1,1)),3)
+#change the arima.model and arima.smodel setting for the fourth ts object
+xb &lt;- setP(xb,list(arima.model=c(1,1,1),arima.smodel=c(1,1,1)),4)
+#run x12 on all series
+xb &lt;- x12(xb)
+summary(xb)
+
+#Set automdl=TRUE for the first ts
+xb &lt;- setP(xb,list(automdl=TRUE),1)
+
+#rerun x12 on all series (the binaries will only run on the first one)
+xb &lt;- x12(xb)
+
+#summary with oldOutput
+summary(xb,oldOutput=10)
+
+#Change the parameter and output of the first series back to the first run
+xb &lt;- prev(xb,index=1,n=1)
+
+#summary with oldOutput (--- No valid previous runs. ---)
+summary(xb,oldOutput=10)
+
+## End(Not run)
+</code></pre>
+
+
+</div>

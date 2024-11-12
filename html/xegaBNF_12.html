@@ -1,0 +1,70 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>newBNF</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Convert grammar file into a constant function.</h2>
+
+<h3>Description</h3>
+
+<p><code>newBNF()</code> reads a text file and 
+returns a constant function which returns
+the BNF as a character string.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">newBNF(filename, eol = "\n")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>filename</code></td>
+<td>
+<p>A file name.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>eol</code></td>
+<td>
+<p>End-of-line symbol(s). Default: <code>"\n"</code></p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The purpose of this function is to include examples
+of grammars in packages.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Returns a constant function which returns a BNF.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other File I/O: 
+<code>readBNF()</code>,
+<code>writeBNF()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">g&lt;-booleanGrammar()
+fn&lt;-tempfile()
+writeBNF(g, fn)
+g1&lt;-newBNF(fn)
+unlink(fn)
+</code></pre>
+
+
+</div>

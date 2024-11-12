@@ -1,0 +1,40 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>data.xllim.test</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Testing data to run examples of usage of <code>gllim_inverse_map</code> and <code>sllim_inverse_map</code> functions
+</h2>
+
+<h3>Description</h3>
+
+<p><code>data.xllim.test</code> is a matrix of simulated testing data, generated under the same GLLiM model as <code>data.xllim</code>, from the true parameters available in object <code>data.xllim.trueparameters</code>. The goal is to train a GLLiM (resp. SLLiM and BLLiM) model on training data (see <code>data.xllim</code>) and to retrieve the unknown responses from data.xllim.test using  <code>gllim_inverse_map</code> (resp. <code>sllim_inverse_map</code>). 
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">data(data.xllim.test)</code></pre>
+
+
+<h3>Format</h3>
+
+<p>A matrix of simulated testing data with 50 rows (covariates) and 20 columns (observations). 
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xLLiM-package</code>, <code>data.xllim</code>, <code>gllim_inverse_map</code>, <code>sllim_inverse_map</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">  data(data.xllim.test)
+  dim(data.xllim.test) # 50 20
+</code></pre>
+
+
+</div>

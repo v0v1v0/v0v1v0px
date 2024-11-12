@@ -1,0 +1,121 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>initializeGXSFunctionAddin</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Initialize <code>gxs_function()</code> call</h2>
+
+<h3>Description</h3>
+
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental"><img src="../help/figures/lifecycle-experimental.svg" alt="[Experimental]"></a>
+</p>
+<p>Initializes the <code>gxs_function()</code> call with the arguments and default values
+of the selected function.
+</p>
+<p>See <code>`Details`</code> for how to set a key command.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">initializeGXSFunctionAddin(selection = NULL, insert = TRUE, indentation = 0)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>selection</code></td>
+<td>
+<p>Name of function to test with <code>gxs_function()</code>. (Character)
+</p>
+<p><strong>N.B.</strong> Mainly intended for testing the addin programmatically.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>insert</code></td>
+<td>
+<p>Whether to insert the code via
+<code>rstudioapi::insertText()</code>
+or return them. (Logical)
+</p>
+<p><strong>N.B.</strong> Mainly intended for testing the addin programmatically.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>indentation</code></td>
+<td>
+<p>Indentation of the selection. (Numeric)
+</p>
+<p><strong>N.B.</strong> Mainly intended for testing the addin programmatically.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+
+
+<h4>How</h4>
+
+<p>Parses and evaluates the selected code string
+within the parent environment.
+When the output is a function, it extracts the formals (arguments and default values)
+and creates the initial <code>`args_values`</code> for <code>gxs_function()</code>.
+When the output is not a function, it throws an error.
+</p>
+
+
+
+<h4>How to set up a key command in RStudio</h4>
+
+<p>After installing the package.
+Go to:
+</p>
+<p><code>Tools &gt;&gt; Addins &gt;&gt; Browse Addins &gt;&gt; Keyboard Shortcuts</code>.
+</p>
+<p>Find <code>"Initialize gxs_function()"</code> and press its field under <code>Shortcut</code>.
+</p>
+<p>Press desired key command, e.g. <code>Alt+F</code>.
+</p>
+<p>Press <code>Apply</code>.
+</p>
+<p>Press <code>Execute</code>.
+</p>
+
+
+
+<h3>Value</h3>
+
+<p>Inserts <code>gxs_function()</code> call for
+the selected function.
+</p>
+<p>Returns <code>NULL</code> invisibly.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ludvig Renbo Olsen, <a href="mailto:r-pkgs@ludvigolsen.dk">r-pkgs@ludvigolsen.dk</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other expectation generators: 
+<code>gxs_function()</code>,
+<code>gxs_selection()</code>,
+<code>insertExpectationsAddin()</code>
+</p>
+<p>Other addins: 
+<code>assertCollectionAddin()</code>,
+<code>dputSelectedAddin()</code>,
+<code>initializeTestthatAddin()</code>,
+<code>insertExpectationsAddin()</code>,
+<code>navigateTestFileAddin()</code>,
+<code>wrapStringAddin()</code>
+</p>
+
+
+</div>

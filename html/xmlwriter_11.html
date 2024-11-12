@@ -1,0 +1,106 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>list_as_xml_string</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Convert a list to an xml string</h2>
+
+<h3>Description</h3>
+
+<p><code>list_to_xml_string</code> is fast and efficient way to convert a specific list to an xml string.
+The preferred interface is to use <code>xml_fragment()</code> and <code>xml_doc()</code> to create xml fragments.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">list_as_xml_string(x, ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>a list as returned by <code>xml2::as_list()</code></p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>reserved for future use</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>This function is the working horse for turning <code>xml_fragment()</code>, <code>xml_doc()</code> and list
+object into <code>character</code> xml strings and <code>xml2::xml_document</code> objects.
+</p>
+<p>The input list format is identical to the format returned by <code>xml2::as_list()</code> function,
+but much faster in generating an xml string from it. It writes the xml directly to a string buffer.
+</p>
+<p>This function allows for easy conversion of R data structures
+into xml format by creating the list structures in R and then converting them to xml.
+The function can be used in tandem with <code>xml2::as_list()</code> to convert R data structures.
+</p>
+
+
+<h3>Value</h3>
+
+<p>a character string with the xml representation of the list
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other xml2: 
+<code>as_xml_nodeset()</code>,
+<code>list_as_xml_document()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data &lt;-
+  list(
+    study = list(
+      person = list(
+        name = "John Doe",
+        age = "30"
+      ),
+      person = list(
+        name = "Jane Doe",
+        age = "25"
+      )
+    )
+  )
+
+list_as_xml_string(data)
+if (require("xml2")){
+  list_as_xml_document(data)
+}
+
+#note the xml_fragment function is more powerful to create lists
+
+data &lt;- xml_doc("study", id = "1") /
+  frag(
+    person = frag(
+      name = "John Doe",
+      age = "30"
+    ),
+    person = frag(
+      name = "Jane Doe",
+      age = "25"
+    ),
+    "This is a text node"
+)
+
+list_as_xml_string(data)
+</code></pre>
+
+
+</div>

@@ -1,0 +1,324 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xportr_format</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Assign SAS Format</h2>
+
+<h3>Description</h3>
+
+<p>Assigns a SAS format from a variable level metadata to a given data frame. If
+no format is found for a given variable, it is set as an empty character
+vector. This is stored in the '<code>format.sas</code>' attribute.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xportr_format(
+  .df,
+  metadata = NULL,
+  domain = NULL,
+  verbose = NULL,
+  metacore = deprecated()
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>.df</code></td>
+<td>
+<p>A data frame of CDISC standard.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>metadata</code></td>
+<td>
+<p>A data frame containing variable level metadata. See
+'Metadata' section for details.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>domain</code></td>
+<td>
+<p>Appropriate CDISC dataset name, e.g. ADAE, DM. Used to subset
+the metadata object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbose</code></td>
+<td>
+<p>The action this function takes when an action is taken on the
+dataset or function validation finds an issue. See 'Messaging' section for
+details. Options are 'stop', 'warn', 'message', and 'none'</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>metacore</code></td>
+<td>
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated"><img src="../help/figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a> Previously used to pass
+metadata now renamed with <code>metadata</code></p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Data frame with <code>SASformat</code> attributes for each variable.
+</p>
+
+
+<h3>Format Checks</h3>
+
+<p>This function carries out a series of basic
+checks to ensure the formats being applied make sense.
+</p>
+<p>Note, the 'type' of message that is generated will depend on the value
+passed to the <code>verbose</code> argument: with 'stop' producing an error, 'warn'
+producing a warning, or 'message' producing a message. A value of 'none'
+will not output any messages.
+</p>
+
+<ol>
+<li>
+<p> If the variable has a suffix of <code>DT</code>, <code>DTM</code>, <code>TM</code> (indicating a
+numeric date/time variable) then a message will be shown if there is
+no format associated with it.
+</p>
+</li>
+<li>
+<p> If a variable is character then a message will be shown if there is
+no <code>$</code> prefix in the associated format.
+</p>
+</li>
+<li>
+<p> If a variable is character then a message will be shown if the
+associated format has greater than 31 characters (excluding the <code>$</code>).
+</p>
+</li>
+<li>
+<p> If a variable is numeric then a message will be shown if there is a
+<code>$</code> prefix in the associated format.
+</p>
+</li>
+<li>
+<p> If a variable is numeric then a message will be shown if the
+associated format has greater than 32 characters.
+</p>
+</li>
+<li>
+<p> All formats will be checked against a list of formats considered
+'standard' as part of an ADaM dataset. Note, however, this list is not
+exhaustive (it would not be feasible to check all the functions
+within the scope of this package). If the format is not found in the
+'standard' list, then a message is created advising the user to
+check.
+</p>
+</li>
+</ol>
+<table>
+<tr>
+<td style="text-align: left;">
+   <strong>Format Name</strong> </td>
+<td style="text-align: left;"> <strong>w Values</strong> </td>
+<td style="text-align: left;"> <strong>d Values</strong> </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   w.d </td>
+<td style="text-align: left;"> 1 - 32 </td>
+<td style="text-align: left;"> ., 0 - 31 </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   $w. </td>
+<td style="text-align: left;"> 1 - 200 </td>
+<td style="text-align: left;">  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   DATEw. </td>
+<td style="text-align: left;"> ., 5 - 11 </td>
+<td style="text-align: left;">  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   DATETIMEw. </td>
+<td style="text-align: left;"> 7 - 40 </td>
+<td style="text-align: left;">  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   DDMMYYw. </td>
+<td style="text-align: left;"> ., 2 - 10 </td>
+<td style="text-align: left;">  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   HHMM. </td>
+<td style="text-align: left;">  </td>
+<td style="text-align: left;">  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   MMDDYYw. </td>
+<td style="text-align: left;"> ., 2 - 10 </td>
+<td style="text-align: left;">  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   TIMEw. </td>
+<td style="text-align: left;"> ., 2 - 20 </td>
+<td style="text-align: left;">  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   WEEKDATEw. </td>
+<td style="text-align: left;"> ., 3 - 37 </td>
+<td style="text-align: left;">  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   YYMMDDw. </td>
+<td style="text-align: left;"> ., 2 - 10 </td>
+<td style="text-align: left;">  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   B8601DAw. </td>
+<td style="text-align: left;"> ., 8 - 10 </td>
+<td style="text-align: left;">  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   B8601DTw.d </td>
+<td style="text-align: left;"> ., 15 - 26 </td>
+<td style="text-align: left;"> ., 0 - 6 </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   B8601TM. </td>
+<td style="text-align: left;">  </td>
+<td style="text-align: left;">  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   IS8601DA. </td>
+<td style="text-align: left;">  </td>
+<td style="text-align: left;">  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   IS8601TM. </td>
+<td style="text-align: left;">  </td>
+<td style="text-align: left;">  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   E8601DAw. </td>
+<td style="text-align: left;"> ., 10 </td>
+<td style="text-align: left;">  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   E8601DNw. </td>
+<td style="text-align: left;"> ., 10 </td>
+<td style="text-align: left;">  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   E8601DTw.d </td>
+<td style="text-align: left;"> ., 16 - 26 </td>
+<td style="text-align: left;"> ., 0 - 6 </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   E8601DXw. </td>
+<td style="text-align: left;"> ., 20 - 35 </td>
+<td style="text-align: left;">  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   E8601LXw. </td>
+<td style="text-align: left;"> ., 20 - 35 </td>
+<td style="text-align: left;">  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   E8601LZw. </td>
+<td style="text-align: left;"> ., 9 - 20 </td>
+<td style="text-align: left;">  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   E8601TMw.d </td>
+<td style="text-align: left;"> ., 8 - 15 </td>
+<td style="text-align: left;"> ., 0 - 6 </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   E8601TXw. </td>
+<td style="text-align: left;"> ., 9 - 20 </td>
+<td style="text-align: left;">  </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   E8601TZw.d </td>
+<td style="text-align: left;"> ., 9 - 20 </td>
+<td style="text-align: left;"> ., 0 - 6 </td>
+</tr>
+<tr>
+<td style="text-align: left;">
+</td>
+</tr>
+</table>
+<h3>Metadata</h3>
+
+<p>The argument passed in the 'metadata' argument can either
+be a metacore object, or a data.frame containing the data listed below. If
+metacore is used, no changes to options are required.
+</p>
+<p>For data.frame 'metadata' arguments three columns must be present:
+</p>
+
+<ol>
+<li>
+<p> Domain Name - passed as the 'xportr.domain_name' option. Default:
+"dataset". This is the column subset by the 'domain' argument in the
+function.
+</p>
+</li>
+<li>
+<p> Format Name - passed as the 'xportr.format_name' option. Default:
+"format". Character values to update the '<code>format.sas</code>' attribute of the
+column. This is passed to <code>haven::write</code> to note the format.
+</p>
+</li>
+<li>
+<p> Variable Name - passed as the 'xportr.variable_name' option. Default:
+"variable". This is used to match columns in '.df' argument and the
+metadata.
+</p>
+</li>
+</ol>
+<h3>Examples</h3>
+
+<pre><code class="language-R">adsl &lt;- data.frame(
+  USUBJID = c(1001, 1002, 1003),
+  BRTHDT = c(1, 1, 2)
+)
+
+metadata &lt;- data.frame(
+  dataset = c("adsl", "adsl"),
+  variable = c("USUBJID", "BRTHDT"),
+  format = c(NA, "DATE9.")
+)
+
+adsl &lt;- xportr_format(adsl, metadata, domain = "adsl")
+</code></pre>
+
+
+</div>

@@ -1,0 +1,75 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>plot.x12work</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Plot method for objects of class x12work</h2>
+
+<h3>Description</h3>
+
+<p>Plot method for objects of class <code>"x12work"</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S3 method for class 'x12work'
+plot(x,plots=c(1:9), ...)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>an object of class <code>"x12work"</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>plots</code></td>
+<td>
+<p>a vector containing numbers between 1 and 9.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>further arguments (currently ignored).</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>Plots:<br>
+1: Original<br>
+2: Original Trend Adjusted<br>
+3: Log Original<br>
+4: Seasonal Factors<br>
+5: Seasonal Factors with SI Ratios<br>
+6: Spectrum Adjusted Original<br>
+7: Spectrum Seasonal Adjusted<br>
+8: Spectrum Irregular<br>
+9: Spectrum Residulas<br></p>
+
+
+<h3>Author(s)</h3>
+
+<p>Alexander Kowarik</p>
+
+
+<h3>See Also</h3>
+
+<p><code>x12work</code></p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">  data(AirPassengersX12)
+  #plot(AirPassengersX12)
+</code></pre>
+
+
+</div>

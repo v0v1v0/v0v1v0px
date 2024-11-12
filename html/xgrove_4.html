@@ -1,0 +1,76 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>upsilon</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Explainability</h2>
+
+<h3>Description</h3>
+
+<p>Compute explainability given predicted data of the model and an explainer.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">upsilon(porig, pexp)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>porig</code></td>
+<td>
+<p>An object of class <code>xgrove</code>.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pexp</code></td>
+<td>
+<p>Name of the measure to be plotted on the x-axis, either <code>"trees"</code>, <code>"rules"</code>, <code>"upsilon"</code> or <code>"cor"</code>.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>Numeric explainability upsilon.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p><a href="mailto:gero.szepannek@web.de">gero.szepannek@web.de</a>
+</p>
+
+
+<h3>References</h3>
+
+
+<ul><li> <p>Szepannek, G. and Luebke, K.(2023): How much do we see? On the explainability of partial dependence plots for credit risk scoring,
+Argumenta Oeconomica 50, DOI: 10.15611/aoe.2023.1.07.
+</p>
+</li></ul>
+<h3>Examples</h3>
+
+<pre><code class="language-R">library(randomForest)
+library(pdp)
+data(boston)
+set.seed(42)
+# Compute original model
+rf &lt;- randomForest(cmedv ~ ., data = boston)
+data &lt;- boston[,-3] # remove target variable
+# Compute predictions
+porig &lt;- predict(rf, data)
+
+# Compute surrogate grove
+xg &lt;- xgrove(rf, data)
+pexp &lt;- predict(xg$model, data, n.trees = 16)
+upsilon(porig, pexp)
+
+</code></pre>
+
+
+</div>

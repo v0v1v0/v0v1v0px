@@ -1,0 +1,118 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>evaluatorActions</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Add to Table of Search Paths and Import Commands</h2>
+
+<h3>Description</h3>
+
+<p>Utilities to add to the table of search paths, import commands and tasks for all evalutors of the
+specified class.  Called only from analogous functions in packages for specific languages.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">serverAddToPath(Class, directory,
+  package = utils::packageName(topenv(parent.frame())), pos = NA,
+  onLoad = NA, where = topenv(parent.frame()))
+
+serverImport(Class, ..., onLoad = nzchar(packageName(where))  &amp;&amp;
+                 !environmentIsLocked(where),  where = topenv(parent.frame()))
+
+serverTask(Class, command, onLoad = nzchar(packageName(where)),
+  where = topenv(parent.frame()))
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>Class</code></td>
+<td>
+<p>the class of the server-specific evalutor.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>directory</code></td>
+<td>
+<p>the directory to add to the search path table.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>package</code></td>
+<td>
+<p>the name of the server-specific interface package.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>pos</code></td>
+<td>
+<p>where in the list of directories to insert this one.  Defaults to the end.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>onLoad, where</code></td>
+<td>
+<p>used to set up a load action; should be omitted if called from a package source</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>arguments to pass to the evaluator's <code>$Import()</code> method</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>command</code></td>
+<td>
+<p>an <em>unevaluated</em> command or expression for the evaluator.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The server-specific information is added to the table stored by the XR package.  All future
+evaluators for the specified interface class will have these directories in their search
+path, will import the module information specified and carry out any other tasks supplied.
+</p>
+<p>If a current evaluator for this
+class exists, it applies all the commands, but <em>previous</em> evalutors
+for this class are not modified.
+</p>
+<p>Commands are evaluated in the order of the calls to these functions.  For example, the application
+package should execute a call to add to the search path before any calls to import modules form
+the corresponding directory.
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul>
+<li> <p><code>serverAddToPath</code>: Add the directory to the search path of all evaluators of this class.
+</p>
+</li>
+<li> <p><code>serverImport</code>: An import command with these arguments will be executed for each new evaluator of this
+interface class, and for the current evaluator if one exists.
+</p>
+</li>
+<li> <p><code>serverTask</code>: An unevalated command or expression for the interface is supplied, typically using
+<code>quote()</code> or <code>substitute</code>.  When an evaluator from the class is created, this
+command will be evaluated.
+</p>
+</li>
+</ul>
+<h3>References</h3>
+
+<p>Chambers, John M. (2016)
+<em>Extending R</em>,
+Chapman &amp; Hall/CRC.
+( Chapter 13, discussing this package, is included in the package: <a href="../doc/Chapter_XR.pdf">../doc/Chapter_XR.pdf</a>.)
+</p>
+
+
+</div>

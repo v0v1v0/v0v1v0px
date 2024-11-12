@@ -1,0 +1,55 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>IS_ELIGIBLE_CCY</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Checks if specified currency is low risk</h2>
+
+<h3>Description</h3>
+
+<p>Checks if the specified currency is eligible to receive reduced regulatory risk weights
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">IS_ELIGIBLE_CCY(ccy)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>ccy</code></td>
+<td>
+<p>The currency to be checked</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>TRUE if the currency is is eligible to receive reduced regulatory risk weights
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Tasos Grivas &lt;tasos@openriskcalculator.com&gt;
+</p>
+
+
+<h3>References</h3>
+
+<p>https://www.bis.org/basel_framework/chapter/MAR/50.htm?inforce=20230101&amp;published=20200708
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+TRUE == IS_ELIGIBLE_CCY('EUR')
+
+</code></pre>
+
+
+</div>

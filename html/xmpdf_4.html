@@ -1,0 +1,76 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>as_lang_alt</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Coerce to XMP "language alternative" structure</h2>
+
+<h3>Description</h3>
+
+<p><code>as_lang_alt()</code> coerces to an XMP "language alternative" structure
+suitable for use with <code>xmp()</code> objects.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">as_lang_alt(x, ...)
+
+## S3 method for class 'character'
+as_lang_alt(x, ..., default_lang = getOption("xmpdf_default_lang"))
+
+## S3 method for class 'lang_alt'
+as_lang_alt(x, ...)
+
+## S3 method for class 'list'
+as_lang_alt(x, ..., default_lang = getOption("xmpdf_default_lang"))
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>Object suitable for coercing</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Ignored</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>default_lang</code></td>
+<td>
+<p>Language tag value to copy as the "x-default"</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A named list of class "lang_alt".
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xmp()</code>, <code>as_xmp()</code>, <code>get_xmp()</code>, and <code>set_xmp()</code>.
+For more information about the XMP "language alternative" structure see
+<a href="https://github.com/adobe/xmp-docs/blob/master/XMPNamespaces/XMPDataTypes/CoreProperties.md#language-alternative">https://github.com/adobe/xmp-docs/blob/master/XMPNamespaces/XMPDataTypes/CoreProperties.md#language-alternative</a>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">  as_lang_alt("A single title")
+  as_lang_alt(c(en = "An English Title", fr = "A French Title"))
+  as_lang_alt(c(en = "An English Title", fr = "A French Title"), default_lang = "en")
+  as_lang_alt(list(en = "An English Title", fr = "A French Title"))
+</code></pre>
+
+
+</div>

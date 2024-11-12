@@ -1,0 +1,93 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>FormulaRule</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>FormulaRule</h2>
+
+<h3>Description</h3>
+
+<p>Conditional formatting with custom differential style
+</p>
+<p><a href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.formatting.rule.html">https://openpyxl.readthedocs.io/en/stable/api/openpyxl.formatting.rule.html</a>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">FormulaRule(
+  formula = NULL,
+  stopIfTrue = NULL,
+  font = NULL,
+  border = NULL,
+  fill = NULL,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>formula</code></td>
+<td>
+<p>formula</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>stopIfTrue</code></td>
+<td>
+<p>stopIfTrue</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>font</code></td>
+<td>
+<p>font</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>border</code></td>
+<td>
+<p>border</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>fill</code></td>
+<td>
+<p>fill</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional arguments, i.e. kwargs.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>An openpyxl Python object.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">## Not run: 
+wb &lt;- Workbook()
+ws &lt;- wb$active
+ws$conditional_formatting$add('E1:E10',
+  FormulaRule(
+    formula = list('ISBLANK(A1)'),
+    stopIfTrue=TRUE
+  )
+)
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

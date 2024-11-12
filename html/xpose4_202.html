@@ -1,0 +1,88 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xp.inc.prob.comb.2</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Inclusion frequency plot for combination of covariates.</h2>
+
+<h3>Description</h3>
+
+<p>Plot the inclusion frequency of the most common 2-covariate combinations.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xp.inc.prob.comb.2(
+  bootgam.obj = NULL,
+  boot.type = NULL,
+  main = NULL,
+  col = "#6495ED",
+  xlb = NULL,
+  ylb = "Covariate combination",
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>bootgam.obj</code></td>
+<td>
+<p>The bootgam or bootscm object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>boot.type</code></td>
+<td>
+<p>Either "bootgam" or "bootscm". Default is NULL, which means
+the user will be asked to make a choice.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>main</code></td>
+<td>
+<p>Plot title</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>col</code></td>
+<td>
+<p>Color used for plot.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>xlb</code></td>
+<td>
+<p>Label for x-axis.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>ylb</code></td>
+<td>
+<p>Label for y-axis.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>...</code></td>
+<td>
+<p>Additional plotting parameters.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A lattice plot object will be returned.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Ron Keizer
+</p>
+
+
+</div>

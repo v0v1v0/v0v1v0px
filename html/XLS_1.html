@@ -1,0 +1,67 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xls.fit</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Fitting an eXtreme Least Squares Model</h2>
+
+<h3>Description</h3>
+
+<p>Almost the same interface as <code>stats::lm</code>.
+Just includes two parameters more, error_weights and error_ahead_level
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xls.fit(formula, data, error_weights = NULL, error_ahead_level = 4)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>formula</code></td>
+<td>
+<p>An object of class "formula": a symbolic description of the model to be fitted.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>data</code></td>
+<td>
+<p>A "data.frame" (with no missing values) object containing the variables in the model.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>error_weights</code></td>
+<td>
+<p>A numeric vector including error weights by order. If NULL, it is created automatically by error_ahead_level amount, decreasing at equal intervals.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>error_ahead_level</code></td>
+<td>
+<p>An integer which represents how many steps further the parameters will be optimized for each data point.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A <code>lm</code> object whose coefficients are optimized by the mentioned method.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">df &lt;- datasets::airquality
+
+ordered_df &lt;- df[with(df,order(Month,Day)),]
+
+model &lt;- xls.fit(Ozone ~ Solar.R + Wind + Temp,ordered_df,
+error_weights = c(0.4,0.3,0.2,0.1),error_ahead_level = 4)
+</code></pre>
+
+
+</div>

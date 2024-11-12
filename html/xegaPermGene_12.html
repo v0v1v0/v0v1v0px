@@ -1,0 +1,74 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaPermMutateGeneGreedy</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Mutate a gene (by inserting a greedy path at start of random length k).</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaPermMutateGeneGreedy</code> mutates a permutation 
+by inserting a greedy path of length <code>k</code> 
+at a random position <code>start</code>.
+The mutation rate for a gene is given by MutationRate().
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaPermMutateGeneGreedy(gene, lF)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>gene</code></td>
+<td>
+<p>A Permutation.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>lF</code></td>
+<td>
+<p>Local configuration of the genetic algorithm.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>The path length <code>k</code> is expontially decaying
+with exponential decay constant <code>lambda</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A Permutation.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Mutation: 
+<code>xegaPermMutateGene2Opt()</code>,
+<code>xegaPermMutateGeneBestGreedy()</code>,
+<code>xegaPermMutateGeneOrderBased()</code>,
+<code>xegaPermMutateGenekInversion()</code>,
+<code>xegaPermMutateGenekOptLK()</code>,
+<code>xegaPermMutateMix()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">gene1&lt;-xegaPermInitGene(lFxegaPermGene)
+xegaPermDecodeGene(gene1, lFxegaPermGene)
+gene&lt;-xegaPermMutateGeneGreedy(gene1, lFxegaPermGene)
+xegaPermDecodeGene(gene, lFxegaPermGene)
+</code></pre>
+
+
+</div>

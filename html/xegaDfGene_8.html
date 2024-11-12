@@ -1,0 +1,64 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>xegaDfGeneMapFactory</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Configure the gene map function of a genetic algorithm.</h2>
+
+<h3>Description</h3>
+
+<p><code>xegaDfGeneMapFactory</code> implements the selection
+of one of the GeneMap functions in this
+package by specifying a text string.
+The selection fails ungracefully (produces
+a runtime error) if the label does not match.
+The functions are specified locally.
+</p>
+<p>Current support:
+</p>
+
+<ol><li>
+<p> "Identity" returns <code>GeneMapIdentity</code>. (Default)
+</p>
+</li></ol>
+<h3>Usage</h3>
+
+<pre><code class="language-R">xegaDfGeneMapFactory(method = "Identity")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>String specifying the GeneMap function.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>Gene map function for genes.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Configuration: 
+<code>lFxegaDfGene</code>,
+<code>xegaDfCrossoverFactory()</code>,
+<code>xegaDfMutationFactory()</code>,
+<code>xegaDfReplicationFactory()</code>,
+<code>xegaDfScaleFactorFactory()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">XGene&lt;-xegaDfGeneMapFactory("Identity")
+gene1&lt;-xegaDfInitGene(lFxegaDfGene)
+XGene(gene1, lFxegaDfGene$penv)
+</code></pre>
+
+
+</div>

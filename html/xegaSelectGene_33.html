@@ -1,0 +1,142 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>SelectGeneFactory</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Configure the selection function of a genetic algorithm.</h2>
+
+<h3>Description</h3>
+
+<p><code>SelectGeneFactory</code> implements selection
+of one of the gene selection functions in this 
+package by specifying a text string.
+The selection fails ungracefully (produces
+a runtime error), if the label does not match.
+The functions are specified locally.             
+</p>
+<p>Current support:
+</p>
+
+<ol>
+<li>
+<p> "Uniform" returns <code>SelectUniform</code>.
+</p>
+</li>
+<li>
+<p> "UniformP" returns <code>SelectUniformP</code>.
+</p>
+</li>
+<li>
+<p> "ProportionalOnln" returns <code>SelectPropFitOnln</code>.
+</p>
+</li>
+<li>
+<p> "Proportional" returns <code>SelectPropFit</code>.
+</p>
+</li>
+<li>
+<p> "ProportionalM" returns <code>SelectPropFitM</code>.
+</p>
+</li>
+<li>
+<p> "PropFitDiffOnln" returns <code>SelectPropFitDiffOnln</code>.
+</p>
+</li>
+<li>
+<p> "PropFitDiff" returns <code>SelectPropFitDiff</code>.
+</p>
+</li>
+<li>
+<p> "PropFitDiffM" returns <code>SelectPropFitDiffM</code>.
+</p>
+</li>
+<li>
+<p> "Tournament" returns <code>SelectTournament</code>.
+</p>
+</li>
+<li>
+<p> "STournament" returns <code>SelectSTournament</code>.
+</p>
+</li>
+<li>
+<p> "Duel" returns <code>SelectDuel</code>.
+</p>
+</li>
+<li>
+<p> "LRSelective" returns <code>SelectLRSelective</code>.
+</p>
+</li>
+<li>
+<p> "LRTSR" returns <code>SelectLinearRankTSR</code>.
+</p>
+</li>
+<li>
+<p> "SUS" returns a function factory for <code>SelectSUS</code>.
+</p>
+</li>
+</ol>
+<h3>Usage</h3>
+
+<pre><code class="language-R">SelectGeneFactory(method = "PropFitDiffOnln")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>method</code></td>
+<td>
+<p>A string specifying the selection function.</p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+<p>If <code>SelectionContinuation()==TRUE</code> then:
+</p>
+
+<ol>
+<li>
+<p> In package xegaPopulation function <code>NextPopulation</code>,
+first the functions 
+<code>SelectGene</code> and <code>SelectMate</code> 
+are transformed by <code>TransformSelect</code> to
+a continuation function with
+embedded index vector and counter.
+</p>
+</li>
+<li>
+<p> For each call in <code>ReplicateGene</code>,
+<code>SelectGene</code> and <code>SelectMate</code> 
+return the index of the selected gene.
+</p>
+</li>
+</ol>
+<h3>Value</h3>
+
+<p>A selection function for genes.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other Configuration: 
+<code>DispersionMeasureFactory()</code>,
+<code>EvalGeneFactory()</code>,
+<code>ScalingFactory()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">SelectGene&lt;-SelectGeneFactory("Uniform")
+fit&lt;-sample(10, 15, replace=TRUE)
+SelectGene(fit, lFselectGenes) 
+sel&lt;-"Proportional"
+SelectGene&lt;-SelectGeneFactory(method=sel)
+fit&lt;-sample(10, 15, replace=TRUE)
+SelectGene(fit, lFselectGenes) 
+</code></pre>
+
+
+</div>

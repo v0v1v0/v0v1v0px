@@ -1,0 +1,54 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>set_envvar</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Set environment variables</h2>
+
+<h3>Description</h3>
+
+<p>Set environment variables from a named character vector, and return the old
+values of the variables, so they could be restored later.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">set_envvar(vars)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>vars</code></td>
+<td>
+<p>A named character vector of the form <code>c(VARIABLE = VALUE)</code>.
+If any value is <code>NA</code>, this function will try to unset the variable.</p>
+</td>
+</tr></table>
+<h3>Details</h3>
+
+<p>The motivation of this function is that <code>Sys.setenv()</code> does not
+return the old values of the environment variables, so it is not
+straightforward to restore the variables later.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Old values of the variables (if not set, <code>NA</code>).
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">vars = xfun::set_envvar(c(FOO = "1234"))
+Sys.getenv("FOO")
+xfun::set_envvar(vars)
+Sys.getenv("FOO")
+</code></pre>
+
+
+</div>

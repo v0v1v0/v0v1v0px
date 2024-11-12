@@ -1,0 +1,161 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>add_transformed_columns</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Column-transformation functions for Xpose 4</h2>
+
+<h3>Description</h3>
+
+<p>These functions transform existing Xpose 4 data columns, adding new columns.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">add.absval(object, listall = TRUE, classic = FALSE)
+
+add.dichot(object, listall = TRUE, classic = FALSE)
+
+add.exp(object, listall = TRUE, classic = FALSE)
+
+add.log(object, listall = TRUE, classic = FALSE)
+
+add.tad(object, classic = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>object</code></td>
+<td>
+<p>An <code>xpose.data</code> object.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>listall</code></td>
+<td>
+<p>A logical operator specifying whether the items in the
+database should be listed.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>classic</code></td>
+<td>
+<p>A logical operator specifying whether the function should
+assume the classic menu system.  This is an internal option and need never
+be called from the command line.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>These functions may be used to create new data columns within the Xpose data
+object by transforming existing ones.
+</p>
+
+
+<h3>Value</h3>
+
+<p>An <code>xpose.data</code> object (classic == FALSE) or null
+(classic == TRUE).
+</p>
+
+
+<h3>Functions</h3>
+
+
+<ul>
+<li> <p><code>add.absval()</code>: Create a column containing the absolute values of data 
+in another column.
+</p>
+</li>
+<li> <p><code>add.dichot()</code>: Create a categorical data column based on a continuous data column
+</p>
+</li>
+<li> <p><code>add.exp()</code>: Create an exponentiated version of an existing variable
+</p>
+</li>
+<li> <p><code>add.log()</code>: Create a log transformation of an existing variable
+</p>
+</li>
+<li> <p><code>add.tad()</code>: Create a time-after-dose
+(TAD) data item based upon the dose and time variables in the dataset.
+</p>
+</li>
+</ul>
+<h3>Author(s)</h3>
+
+<p>Niclas Jonsson, Justin Wilkins and Andrew Hooker
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>xpose.data</code>
+</p>
+<p>Other data functions: 
+<code>change_graphical_parameters</code>,
+<code>change_misc_parameters</code>,
+<code>compute.cwres()</code>,
+<code>data.checkout()</code>,
+<code>data_extract_or_assign</code>,
+<code>db.names()</code>,
+<code>export.graph.par()</code>,
+<code>export.variable.definitions()</code>,
+<code>import.graph.par()</code>,
+<code>import.variable.definitions()</code>,
+<code>make.sb.data()</code>,
+<code>nsim()</code>,
+<code>par_cov_summary</code>,
+<code>read.TTE.sim.data()</code>,
+<code>read.nm.tables()</code>,
+<code>read_NM_output</code>,
+<code>read_nm_table()</code>,
+<code>simprazExample()</code>,
+<code>tabulate.parameters()</code>,
+<code>xlabel()</code>,
+<code>xpose.data</code>,
+<code>xpose.print()</code>,
+<code>xpose4-package</code>,
+<code>xsubset()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+## Not run: 
+## xpdb5 is an Xpose data object
+## We expect to find the required NONMEM run and table files for run
+## 5 in the current working directory
+xpdb5 &lt;- xpose.data(5)
+
+## Create a column containing the absolute values of data in another 
+## column
+add.absval(xpdb5)
+
+## Create a categorical data column based on a continuous data column, 
+## and do not list variables 
+add.dichot(xpdb5, listall = FALSE)
+
+## Create a column containing the exponentiated values of data in 
+## another column
+add.exp(xpdb5)
+
+## Create a column containing log-transformations of data in another 
+## column
+add.log(xpdb5)
+
+## Create a time-after-dose column
+add.tad(xpdb5)
+
+## End(Not run)
+
+</code></pre>
+
+
+</div>

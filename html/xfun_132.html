@@ -1,0 +1,63 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>split_source</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Split source lines into complete expressions</h2>
+
+<h3>Description</h3>
+
+<p>Parse the lines of code one by one to find complete expressions in the code,
+and put them in a list.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">split_source(x, merge_comments = FALSE, line_number = FALSE)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>A character vector of R source code.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>merge_comments</code></td>
+<td>
+<p>Whether to merge consecutive lines of comments as a
+single expression to be combined with the next non-comment expression (if
+any).</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>line_number</code></td>
+<td>
+<p>Whether to store the line numbers of each expression in
+the returned value.</p>
+</td>
+</tr>
+</table>
+<h3>Value</h3>
+
+<p>A list of character vectors, and each vector contains a complete R
+expression, with an attribute <code>lines</code> indicating the starting and ending
+line numbers of the expression if the argument <code>line_number = TRUE</code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">code = c("# comment 1", "# comment 2", "if (TRUE) {", "1 + 1", "}", "print(1:5)")
+xfun::split_source(code)
+xfun::split_source(code, merge_comments = TRUE)
+</code></pre>
+
+
+</div>

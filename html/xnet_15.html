@@ -1,0 +1,50 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>dim,tskrr-method</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Get the dimensions of a tskrr object</h2>
+
+<h3>Description</h3>
+
+<p>These functions allow you to extract the dimensions of a tskrr
+object. These dimensions are essentially the dimensions of the
+label matrix y.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">## S4 method for signature 'tskrr'
+dim(x)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table><tr style="vertical-align: top;">
+<td><code>x</code></td>
+<td>
+<p>a <code>tskrr</code> object.</p>
+</td>
+</tr></table>
+<h3>Value</h3>
+
+<p>a vector with two values indicating the number of rows
+and the number of columns.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">data(drugtarget)
+mod &lt;- tskrr(drugTargetInteraction, targetSim, drugSim)
+dim(mod)
+nrow(mod)
+ncol(mod)
+
+</code></pre>
+
+
+</div>

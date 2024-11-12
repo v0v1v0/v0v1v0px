@@ -1,0 +1,136 @@
+<div class="container">
+
+<table style="width: 100%;"><tr>
+<td>chiasma</td>
+<td style="text-align: right;">R Documentation</td>
+</tr></table>
+<h2>Estimate chiasma distribution from crossover counts</h2>
+
+<h3>Description</h3>
+
+<p>Fit several models, with an assumption of no chromatid interference, to
+crossover count data to obtain fitted distributions of the number of
+chiasmata.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">chiasma(
+  xo,
+  max.chiasma = max(xo) * 2 + 5,
+  n.iter = 10000,
+  tol = 0.000001,
+  verbose = FALSE
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr style="vertical-align: top;">
+<td><code>xo</code></td>
+<td>
+<p>Vector of non-negative integers; the number of crossovers in a set
+of meiotic products.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>max.chiasma</code></td>
+<td>
+<p>Maximum number of chiasmata to allow.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>n.iter</code></td>
+<td>
+<p>Maximum number of iterations in the EM algorithm.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>tol</code></td>
+<td>
+<p>Tolerance for convergence of the EM algorithm.</p>
+</td>
+</tr>
+<tr style="vertical-align: top;">
+<td><code>verbose</code></td>
+<td>
+<p>If TRUE, print number of interations for each of the 4 models
+at the end.</p>
+</td>
+</tr>
+</table>
+<h3>Details</h3>
+
+<p>See Broman and Weber (2000) for details of the method.
+</p>
+<p>We use R's <code>stats::integrate()</code> function for numerical integrals,
+<code>stats::optimize()</code> for optimizing the likelihood, and
+<code>stats::uniroot()</code> for identifying the endpoints of the likelihood
+support interval.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A list with three components.
+</p>
+<p>First, a matrix containing the observed distribution of the numbers of
+crossovers, followed by the fitted distributions under the Poisson model,
+the truncated Poisson model (assuming an obligate chiasma), the obligate
+chiasma model, and the freely varying model.  In all cases we assume no
+chromatid interference.
+</p>
+<p>Second, a matrix containing the estimated distributions of the number of
+chiasmata on the four-strand bundle for the above four models.
+</p>
+<p>Third, the estimated average number of crossovers under the Poisson and
+truncated Poisson models.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Karl W Broman, <a href="mailto:broman@wisc.edu">broman@wisc.edu</a>
+</p>
+
+
+<h3>References</h3>
+
+<p>Broman, K. W. and Weber, J. L. (2000) Characterization of human
+crossover interference. <em>Am. J. Hum. Genet.</em> <strong>66</strong>, 1911–1926.
+</p>
+<p>Broman, K. W., Rowe, L. B., Churchill, G. A. and Paigen, K. (2002) Crossover
+interference in the mouse. <em>Genetics</em> <strong>160</strong>, 1123–1131.
+</p>
+<p>Yu, K. and Feinbold, E. (2001) Estimating the frequency distribution of
+crossovers during meiosis from recombination data.  <em>Biometrics</em>
+<strong>57</strong>, 427–434.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>fitGamma()</code>, <code>qtl::fitstahl()</code>,
+<code>countxo()</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class="language-R">
+data(bssbsb)
+
+# estimated number of crossovers on chr 1
+nxo &lt;- countxo(bssbsb, chr=1)
+
+# estimate chiasma distribution
+## Not run: chiasma(nxo)
+
+
+</code></pre>
+
+
+</div>
